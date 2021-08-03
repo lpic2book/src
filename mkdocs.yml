@@ -61,6 +61,8 @@ theme:
     code: Anonymous Pro
   language: 'en'
 repo_url: https://github.com/lpic2book/src
+repo_name: LPIC2Book
+edit_uri: edit/main/docs
 nav: 
   - The LPIC2 Exam Prep: 'index.md'
   - About this book: 'lpicbook_about.md'
