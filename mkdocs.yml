@@ -14,8 +14,9 @@ plugins:
       lang:
         - nl
         - en
-  - git-revision-date-localized:
-      type: timeago
+# Not supported by mkdocs action
+#  - git-revision-date-localized:
+#      type: timeago
   - awesome-pages
   - minify:
       minifi_html: true
