@@ -17,12 +17,9 @@ plugins:
 # Not supported by mkdocs action
 #  - git-revision-date-localized:
 #      type: timeago
-  - awesome-pages
+#  - awesome-pages
   - minify:
       minifi_html: true
-  - drawio-exporter:
-      drawio_args:
-        - --no-sandbox
 markdown_extensions:
   - admonition
   - attr_list
