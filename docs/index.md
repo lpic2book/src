@@ -14,9 +14,9 @@ output:
 
 <span style="font-size:1.5em;">8th edition &beta;, for version 4.5</span>
 
-Written, updated and reviewed by many past and present colleagues.
+Written, updated and reviewed by many past and present colleagues @ Sue B.V., Geldermalsen, The Netherlands.
 
-Edited by associates of Sue B.V., Geldermalsen, The Netherlands
+Donated in 2021 to the community for many more updates and reviews.
 
 _Copyright © 2001-2021 Sue B.V._ -  _Open Sourced 2021_
 
