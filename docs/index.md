@@ -9,12 +9,10 @@ output:
 
 # <span style="font-size:2em;">The LPIC2 Exam Prep</span>
 
-[![Sue](images/suelg.png)](https://sue.nl)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![](images/LPIC-2.png){width=190px}
+![](images/LPIC-2.png){width=190px}
 
 
-<span style="font-size:1.5em;">7th edition &beta;, for version 4.6</span>
-
-<span style="font-size:1.5em;">[Sue B.V.](https://sue.nl)</span>
+<span style="font-size:1.5em;">8th edition &beta;, for version 4.5</span>
 
 Written, updated and reviewed by many past and present colleagues.
 

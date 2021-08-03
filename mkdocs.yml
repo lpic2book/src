@@ -1,6 +1,6 @@
 site_name: The LPIC2 Exam Prep
 site_author: Sue B.V., The Netherlands
-copyright: Copyright &copy; 1997-2021 Sue B.V., The Netherlands
+copyright: Copyright &copy; 1997-2021 Sue B.V., The Netherlands - Open Sourced 2021
 markdown_extensions:
   - toc:
       permalink: True
@@ -51,7 +51,8 @@ theme:
     - tabs
     - instant
   language: 'en'
-  logo: images/Sue-vierkant-190x125.png
+  icon:
+    logo: material/book
   palette:
     primary: light blue
     accent: light blue
