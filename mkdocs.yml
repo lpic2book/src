@@ -53,8 +53,7 @@ theme:
     - tabs
     - instant
   language: 'en'
-  icon:
-    logo: images/Sue-vierkant-190x125.png
+  logo: images/Sue-vierkant-190x125.png
   palette:
     primary: light blue
     accent: light blue
