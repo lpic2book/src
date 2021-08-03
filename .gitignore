@@ -1,0 +1,6 @@
+site/*
+*~
+*.orig
+.#*
+\#*
+*.DS_Store
