@@ -1,0 +1,65 @@
+site_name: The LPIC2 Exam Prep
+site_author: Sue B.V., The Netherlands
+copyright: Copyright &copy; 1997-2021 Sue B.V., The Netherlands
+markdown_extensions:
+  - toc:
+      permalink: True
+      toc_depth: 4
+  - admonition
+  - codehilite:
+      guess_lang: false
+plugins:
+  - search:
+      separator: '[\s\-\.]+'
+      lang:
+        - nl
+        - en
+  - git-revision-date-localized:
+      type: timeago
+  - awesome-pages
+  - minify:
+      minifi_html: true
+  - drawio-exporter:
+      drawio_args:
+        - --no-sandbox
+markdown_extensions:
+  - admonition
+  - attr_list
+  - codehilite:
+      linenums: true
+  - footnotes
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+theme:
+  name: 'material'
+  features:
+    - search.highlight
+    - tabs
+    - instant
+  language: 'en'
+  icon:
+    logo: images/Sue-vierkant-190x125.png
+  palette:
+    primary: light blue
+    accent: light blue
+  font:
+    text: Nunito
+    code: Anonymous Pro
+  language: 'en'
+repo_url: https://github.com/lpic2book/lpic2book
