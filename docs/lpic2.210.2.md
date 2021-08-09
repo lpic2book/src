@@ -61,8 +61,7 @@ session
     both an opening and closing hook for modules that affect the
     services available to a user.
 
-PAM can be configured using the file `/etc/pam.conf` ConfiguringPAM
-PAMpam.conf which has the following format:
+PAM can be configured using the file `/etc/pam.conf` which has the following format:
 
         service   type   control   module-path   module-arguments
                 
