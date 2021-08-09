@@ -285,9 +285,6 @@ font-size : 10px;
 font-weight : bold;
 color : #486591;
 }
-.tdbg {
- background-image: url("images/suebg.png");
-}
 .filter {
         filter: alpha(Opacity=30);
 }
@@ -368,9 +365,6 @@ font-family : arial, helvetica, sanserif;
 font-size : 10px;
 font-weight : bold;
 color : #486591;
-}
-.tdbg {
- background-image: url("images/suebg.png");
 }
 .filter {
         filter: alpha(Opacity=30);
