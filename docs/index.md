@@ -11,8 +11,10 @@ output:
 
 ![](images/LPIC-2.png){width=190px}
 
-
 <span style="font-size:1.5em;">8th edition &beta;, for version 4.5</span>
+
+!!! warning "Update your bookmark!"
+    "The former `https://lpic2...` URL might no longer be available."
 
 Written, updated and reviewed by many past and present colleagues @ Sue B.V., Geldermalsen, The Netherlands.
 
