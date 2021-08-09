@@ -68,8 +68,7 @@ PAM can be configured using the file `/etc/pam.conf` which has the following for
 
 service
 
--   This is the name of the application involved, for example: PAMlogin
-    PAMssh PAMpasswd `login`, `ssh` or `passwd`.
+-   This is the name of the application involved, for example: `login`, `ssh` or `passwd`.
 
 type
 
@@ -83,24 +82,24 @@ control
 
     re-quisite
 
-    -   Upon failure, the authentication process will be PAMrequisite
+    -   Upon failure, the authentication process will be
         terminated immediately.
 
     required
 
-    -   This will return failure after the remaining modules PAMrequired
+    -   This will return failure after the remaining modules
         for this service and type have been invoked.
 
     sufficient
 
-    -   Upon success, the authentication process will be PAMsufficient
+    -   Upon success, the authentication process will be
         satisfied, unless a prior required module has failed the
         authentication.
 
     optional
 
     -   The success or failure of this module is only important
-        PAMoptional if this is the only module associated with this
+        if this is the only module associated with this
         service and this type.
 
 module-path
@@ -132,7 +131,7 @@ This module configures authentication via `/etc/passwd` and
 account
 
 -   The type "account" does not authenticate the user but checks
-    PAMaccount other things such as the expiration date of the password
+    other things such as the expiration date of the password
     and might force the user to change his password based on the
     contents of the files `/etc/passwd` and `/etc/shadow`.
 
@@ -147,7 +146,7 @@ account
 auth
 
 -   The type "auth" checks the user's password against the password
-    PAMauth database(s). This component is configured in the file
+    database(s). This component is configured in the file
     `/etc/nsswitch.conf`. Please consult the man page
     (`man nsswitch.conf`) for further details.
 
@@ -167,18 +166,18 @@ auth
     nullok
 
     -   Allows empty passwords. Normally authentication fails if
-        PAMnullok the password is blank.
+        the password is blank.
 
     try\_first\_pass
 
-    -   Use the password from the previous stacked auth module and PAM
-        try\_first\_pass prompt for a new password if the retrieved
+    -   Use the password from the previous stacked auth module and
+        prompt for a new password if the retrieved
         password is blank or incorrect.
 
     use\_first\_pass
 
-    -   Use the result from the previous stacked auth module, never PAM
-        use\_first\_pass prompt the user for a password and fails if the
+    -   Use the result from the previous stacked auth module, never 
+        prompt the user for a password and fails if the
         result was a fail.
 
 password
@@ -239,7 +238,7 @@ password
 session
 
 -   The type "session" uses syslog to log the user's name and session
-    PAMsession type at the start and end of a session.
+    type at the start and end of a session.
 
     The "session" type does not support any options.
 
@@ -272,7 +271,7 @@ For example purposes the file `/etc/pam.d/login` will be used:
 
 This module configures authentication via NIS. ConfiguringNIS
 Authentication To be able to authenticate via NIS, the module
-`pam_nis.so` is needed. This module can be PAMpam\_nis.so found at [PAM
+`pam_nis.so` is needed. This module can be found at [PAM
 NIS Authorisation
 Module](http://www.chiark.greenend.org.uk/~peterb/uxsup/project/pam_nis/).
 
@@ -297,7 +296,7 @@ authenticatie via LDAP, the module ConfiguringLDAP Authentication
 Ltd](http://www.padl.com/pam_ldap.html).
 
 To set up things in such a way that LDAP authentication is sufficient,
-(and if that is not the case try `pam_unix.so`), the PAMpam\_ldap.so
+(and if that is not the case try `pam_unix.so`), the
 lines that do the trick in `/etc/pam.d/login` are:
 
         auth    sufficient pam_ldap.so
