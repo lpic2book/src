@@ -348,7 +348,7 @@ parameter item and can have the value of user, tty, rhost, ruser, group,
 or shell. The *sense* configuration parameter determines whether the
 entries in the list are allowed. Possible values are allow and deny.
 
-SSSD
+###   SSSD
 
 Configure SSSD for LDAP authentication
 
