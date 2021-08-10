@@ -428,6 +428,6 @@ avoid issues with application stacks like `PHP`, which have difficulties
 with `LDAPS` and `TLS`.
 
 6\. Make sure that sssd is up and running and that it will be started
-after a system reboot. Run `systemctl` `status sssd` to check this. To
-start sssd, run `systemctl` `start sssd` and to make sssd persistent
-across reboots, run `systemctl` `enable sssd`.
+after a system reboot. Run `systemctl status sssd` to check this. To
+start sssd, run `systemctl start sssd` and to make sssd persistent
+across reboots, run `systemctl enable sssd`.
