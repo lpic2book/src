@@ -412,7 +412,7 @@ Verify that all changes are effective by running:
         # authconfig test
                 
 
-5\. Update `/etc/openldap.conf` to use the same ldap settings. Your
+5\. Update `/etc/openldap/ldap.conf` to use the same ldap settings. Your
 `ldap.conf` file will look like this:
 
         SASL_NOCANON on
