@@ -118,7 +118,7 @@ LDIF
 
 ldapsearch
 
-ldapsearch `ldapsearch` is a shell-accessible interface to the
+`ldapsearch` is a shell-accessible interface to the
 ldap\_search(3) library call. `ldapsearch` opens a connection to an LDAP
 server, binds, and performs a search using specified parameters. The
 filter should conform to the string representation for search filters as
@@ -136,7 +136,7 @@ defined in [RFC 2254](http://www.faqs.org/rfc/rfc2254.txt).
 |Less than or equal to|<=|Returns entries containing attributes that are less than or equal to the specified value.|
 |Parentheses|()|Separates filters to allow other logical operators to function.|
 |And|&|Boolean operator. Joins filters together. All conditions in the series must be true. For example, (&(filter)(filter)...).|
-|Or|||Boolean operator. Joins filters together. At least one condition in the series must be true. For example, (|(filter)(filter)...).|
+|Or|\||Boolean operator. Joins filters together. At least one condition in the series must be true. For example, (|(filter)(filter)...).|
 |Not|!|Boolean operator. Excludes all objects that match the filter. Only one filter is affected by the NOT operator. For example, (!(filter))|
 
 Boolean expressions are evaluated in the following order:
