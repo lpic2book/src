@@ -39,7 +39,7 @@ The LDAP project was started at the [University of
 Michigan](http://www.umich.edu/~dirsvcs/ldap/), but, as can be read on
 their site, is no longer maintained there. For current information, the
 University of Michigan site points visitors to the
-[OpenLDAP](http://www.openldap.org/) site instead. OpenLDAP
+[OpenLDAP](http://www.openldap.org/) site instead.
 
 The type of information best suited for storage in a directory is
 information with a low mutation grade. The reason for this is that
@@ -96,12 +96,20 @@ LDIF
                                 
 
     Each entry can contain as many \<attrtype\>: \<attrvalue\> pairs as
-    needed. A blank line indicates the end of an entry.
+    needed. A blank line indicates the end of an entry. A line may be
+    broken and continued (folded) by indenting the continued portion of
+    a line by one space. For example, the following two statements 
+    are identical:
+
+            dn: cn=some_example_user,dc=example,dc=com
+            dn: cn=some_e
+             xample_user,
+             dc=example,d
+             c=com
 
     **Note**
     All \<attrtype\> and \<attrvalue\> pairs must be defined in a
     corresponding schema file to use this information.
-    :::
 
     Any value enclosed within a \"\<\" and a \"\>\" is a variable and
     can be set whenever a new LDAP entry is created. This rule does not
