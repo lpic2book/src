@@ -24,7 +24,7 @@ and managing users.
 
 ##  LDAP
 
-LDAP stands for Lightweight Directory Access Protocol. As the name X.500
+LDAP stands for Lightweight Directory Access Protocol. As the name
 suggests, it is a lighter version of DAP, which stands for the Directory
 Access Protocol that is defined by the X.500 standard. For more
 information on X.500, please read [RFC
