@@ -98,8 +98,7 @@ LDIF
     Each entry can contain as many \<attrtype\>: \<attrvalue\> pairs as
     needed. A blank line indicates the end of an entry. A line may be
     broken and continued (folded) by indenting the continued portion of
-    a line by one space. For example, the following two statements 
-    are identical:
+    the line. For example, the following two statements are identical:
 
             dn: cn=some_example_user,dc=example,dc=com
             dn: cn=some_e
