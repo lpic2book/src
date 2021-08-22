@@ -210,9 +210,9 @@ the entry "uid=jhay,cn=Human Resources,cn=example,dc=com" and its object
 classes and attributes.
 
 
-###   dapdelete
+###   ldapdelete
 
-ldapdelete` - LDAP delete entry tool
+`ldapdelete` - LDAP delete entry tool
 
 `ldapdelete` is a shell-accessible interface to the ldap\_delete\_ext(3)
 library call.
