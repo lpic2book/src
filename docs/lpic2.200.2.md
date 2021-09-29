@@ -15,7 +15,7 @@ Key Knowledge Areas:
 -   Graph the trend of capacity usage.
 
 -   Awareness of monitoring solutions such as
-    [Icanga2](https://www.icinga.org/products/icinga-2/),
+    [Icinga2](https://www.icinga.com/products/infrastructure-monitoring/),
     [Nagios](http://www.nagios.org),
     [collectd](http://www.collectd.org),
     [MRTG](http://oss.oetiker.ch/mrtg/) and
@@ -53,7 +53,7 @@ collectd only collects data, to display the collected data addtional
 tools are required.
 
 Also other monitoring tools like
-[Icinga2](https://www.icinga.com/products/infrastructure_monitoring/),
+[Icinga2](https://www.icinga.com/products/infrastructure-monitoring/),
 [Nagios](http://www.nagios.org), [MRTG](http://oss.oetiker.ch/mrtg/) and
 [Cacti](http://www.cacti.net) can be used to measure, collect and
 display resource performance statistics. Using a montoring tool can help
