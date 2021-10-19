@@ -23,7 +23,7 @@ bandwidth, identify and troubleshoot resource problems.
 
 -   Match / correlate system symptoms with likely problems
 
--   Estimate throughput and identify bottlenecksin a system including
+-   Estimate throughput and identify bottlenecks in a system including
     networking
     
 ###     Terms and utilities:
@@ -68,20 +68,20 @@ bandwidth, identify and troubleshoot resource problems.
 ##  iostat
 
 
-**Note**
-Depending on the version and distribution of your Linux version it may
-be necessary to install a package like Debian `sysstat` to install tools
-like `iostat`, `sar`, `mpstat` etc. The Debian `procps` package contains
-utilities like `free`, vmstat `uptime`, `vmstat`, `w`, `sysctl` etc.
-
 The `iostat` command is used for monitoring system input/output
-(I/O) device load. monitoringIO load This is done by observing *the
-time* the devices are active in relation to their *average* transfer
-rates. The `iostat` command without any options shows the `iostat`
-statistics since the last system reboot. The `iostat` command with
-sequence options, using interval and count, first shows the statistics
-since the last system reboot, unless this is omitted using the `-y`
-option, followed by the statistics during each specified interval.
+(I/O) device load. This is done by observing the *time* the 
+devices are active in relation to their *average* transfer
+rates. Without any options, the `iostat` command displays
+statistics since the last system reboot. When interval and count
+arguments are passed to `iostat`, statistics for each specified time
+interval are added to the output. The `-y` option can also be
+used to suppress statistics since the last reboot.
+
+**Note**
+Depending on the version of your Linux distribution it may
+be necessary to install a package like Debian `sysstat` to access tools
+like `iostat`, `sar`, `mpstat`, etc. The Debian `procps` package contains
+utilities like `free`, `uptime`, `vmstat`, `w`, `sysctl` etc.
 
 Usage:
 
@@ -165,7 +165,7 @@ Example:
 
 
 The `vmstat` command reports virtual memory statistics virtual
-memorystatistics about processes, memory, paging, block IO, traps, and
+memorystatistics about processes, memory, paging, block I/O, traps, and
 CPU utilization.
 
 Usage:
@@ -355,10 +355,9 @@ Example:
 ##  iptraf
 
 
-`iptraf` is a network monitoring utility for IP networks and can
+The `iptraf` tool is a network monitoring utility for IP networks and can
 be used to monitor the load on an IP network. It intercepts packets on
-the network and gives out various pieces of information about the
-current IP traffic over it.
+the network and displays information about the current traffic over it.
 
 `iptraf` gathers data like TCP connection packet and byte counts,
 interface statistics and activity indicators, TCP/UDP traffic
@@ -424,13 +423,13 @@ Examples:
 ##  pstree
 
 
-The `pstree` command shows the same processes as `ps` and `top`,
-but the output is formatted as a tree. The tree is rooted at pid (or
-`init` if pid is omitted), and if a username is specified the tree will
-root at all processes owned by that username. `pstree` provides an easy
-way to track back a process to its parent process id (PPID). Output
-between square brackets prefixed by a number are identical branches of
-processes grouped together, the prefixed number represents the
+The `pstree` command displays the same processes as `ps` and `top`,
+but the output is presented in a tree-like structure. The tree is rooted
+at pid (or `init` if pid is omitted), and if a username is specified the
+tree will root at all processes owned by that username. `pstree` provides
+an easy way to track back a process to its parent process id (PPID).
+Output between square brackets prefixed by a number are identical branches
+of processes grouped together, the prefixed number represents the
 repetition count. Grouped child threads are shown between square
 brackets as well but the process name will be shown between curly braces
 as an addition. The last line of the output shows the number of children
@@ -476,7 +475,7 @@ Option `-s` stands for "short format".
 ##  lsof
 
 
-The `lsof` command is used to list information about open files
+The `lsof` command is used to list information about
 *open files* and their corresponding processes. `lsof` will handle
 regular files, directories, block special files, character special
 files, executing text references, libraries, streams or network files.
@@ -491,8 +490,8 @@ Usage:
         $ lsof options names
                 
 
-names acts as a filter here, without options `lsof` will show *all* open
-files belonging to *all* active processes.
+The names argument acts as a filter here. Without options, `lsof` will
+display *all* open files belonging to *all* active processes.
 
 Examples:
 
@@ -519,10 +518,9 @@ level.
 ##  free
 
 
-The `free` command shows a current overview of the total amount of both
-physical and virtual memory of a system, as well as the amount of free
-memory, memory in use and buffers used by the kernel. memoryphysical
-memoryvirtual
+The `free` command displays a current overview of the total amount of both
+physical and swap memory on a system, as well as the amount of free
+memory, memory in use and buffers used by the kernel.
 
 The fourth column, called *shared* has been obsolete but is now used to
 display the memory used for tmpfs (shmem in /proc/meminfo)
@@ -683,9 +681,8 @@ Some of the most important options to be used with `sar` are:
 Match / correlate system symptoms with likely problems
 
 
-In order to be able to troubleshoot a certain problem, one must first be
-able to distinguish normal system behaviour from abnormal system
-behaviour.
+To troubleshoot a given problem, one must first be able to distinguish
+*normal* system behaviour from *abnormal* system behaviour.
 
 In the [previous section](#lpic2.200.1), a number of very specific
 system utilities as well as their utilization is explained. In this
@@ -703,8 +700,6 @@ or the input/output between one or more of these components.
 
 ##  Estimate throughput and identify bottlenecks in a system including networking
 
-
-processes blocked on I/O
 
 To determine whether or not a certain problem is related to a lack of
 resources, the problem itself has to be properly formulated first. Then,
