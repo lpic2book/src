@@ -9,18 +9,17 @@ bandwidth, identify and troubleshoot resource problems.
 
 ##  Key Knowledge Areas:
 
--   Measure CPU UsageCPU Usage
+-   Measure CPU usage
 
--   Measure memory usagememory usage
+-   Measure memory usage
 
--   Measure disk I/Odisk I/O
+-   Measure disk I/O
 
--   Measure network I/Onetwork I/O
+-   Measure network I/O
 
--   Measure firewalling and routing throughputfirewalling and routing
-    throughput
+-   Measure firewalling and routing throughput
 
--   Map client bandwith usagebandwith usage.
+-   Map client bandwith usage
 
 -   Match / correlate system symptoms with likely problems
 
@@ -75,7 +74,7 @@ be necessary to install a package like Debian `sysstat` to install tools
 like `iostat`, `sar`, `mpstat` etc. The Debian `procps` package contains
 utilities like `free`, vmstat `uptime`, `vmstat`, `w`, `sysctl` etc.
 
-iostat The `iostat` command is used for monitoring system input/output
+The `iostat` command is used for monitoring system input/output
 (I/O) device load. monitoringIO load This is done by observing *the
 time* the devices are active in relation to their *average* transfer
 rates. The `iostat` command without any options shows the `iostat`
@@ -131,7 +130,7 @@ Examples:
 ##  iotop
 
 
-iotop The `iotop` command is similar to the `top` command. It shows I/O
+The `iotop` command is similar to the `top` command. It shows I/O
 usage information output by the Linux kernel and displays a table of
 current I/O usage by processes or threads on the system.
 
@@ -199,7 +198,7 @@ a number of counts (repetitions) as an argument, but the process and
 memory measurement results will always remain to be instantaneous.
 
 The first process column, "r" lists the number of processes currently
-allocated to the processor*run* queue. These processes are waiting for
+allocated to the processor *run* queue. These processes are waiting for
 processor run time, also known as CPU time.
 
 The second process column, "b" lists the number of processes currently
@@ -207,10 +206,10 @@ allocated to the *block* queue. These processes are listed as being in
 *uninterruptable sleep*, which means they are waiting for a device to
 return either input or output (I/O).
 
-swap The first memory column, "swpd" lists the amount of virtual memory
+The first memory column, "swpd" lists the amount of virtual memory
 being used expressed in kilobytes (1024 bytes). Virtual memory consists
 of swap space from disk, which is considerably slower than physical
-memory allocated inside memorychips.
+memory allocated inside memory chips.
 
 The second memory column, "free" lists the amount of memory currently
 not in use, not cached and not buffered expressed.
@@ -328,13 +327,13 @@ Examples:
 ##  ss
 
 
-ss The `ss` command is used to show socket statistics. It can display
+The `ss` command is used to show socket statistics. It can display
 stats for PACKET sockets, TCP sockets, UDP sockets, DCCP sockets, RAW
 sockets, Unix domain sockets, and more. It allows showing information
 similar to the `netstat` command, but it can display more TCP and state
 information.
 
-Most Linux distributions are shipped with ss. Being familiar with this
+Most Linux distributions are shipped with `ss`. Being familiar with this
 tool helps enhance your understand of what's going on in the system
 sockets and helps you find the possible causes of a performance problem.
 
@@ -356,7 +355,7 @@ Example:
 ##  iptraf
 
 
-iptraf `iptraf` is a network monitoring utility for IP networks and can
+`iptraf` is a network monitoring utility for IP networks and can
 be used to monitor the load on an IP network. It intercepts packets on
 the network and gives out various pieces of information about the
 current IP traffic over it.
@@ -392,16 +391,16 @@ The `ps` command shows a list of the processes currently running. These
 are the same processes which are being shown by the `top` command. The
 GNU version of `ps` accepts three different *kind* of options:
 
-1.  UNIX options - these may be grouped and *must* be preceded by a dash
+1.  UNIX options - these may be grouped and *must* be preceded by a single dash
 
 2.  BSD options - these may be grouped and must be used *without* a dash
 
 3.  GNU long options - these are preceded by *two* dashes
 
-These options may be mixed on GNU `ps` up to some extent, but bare in
+These options may be mixed on GNU `ps` up to some extent, but bear in
 mind that depending on the version of Linux you are working on you might
 encounter a less flexible variant of `ps`. The `ps` manpage can be,
-depending on the distribution being questioned, up to nearly 900 lines
+depending on the distribution being questioned, nearly 900 lines
 long. Because of its versatile nature, you are encouraged to read
 through the manpage and try out some of the options `ps` has to offer.
 
@@ -425,7 +424,7 @@ Examples:
 ##  pstree
 
 
-pstree The `pstree` command shows the same processes as `ps` and `top`,
+The `pstree` command shows the same processes as `ps` and `top`,
 but the output is formatted as a tree. The tree is rooted at pid (or
 `init` if pid is omitted), and if a username is specified the tree will
 root at all processes owned by that username. `pstree` provides an easy
@@ -454,7 +453,7 @@ Example:
 ##  w
 
 
-ws The `w` command displays information about the users currently logged
+The `w` command displays information about the users currently logged
 on to the machine, their processes and the same statistics as provided
 by the `uptime` command.
 
@@ -477,7 +476,7 @@ Option `-s` stands for "short format".
 ##  lsof
 
 
-lsof The `lsof` command is used to list information about open files
+The `lsof` command is used to list information about open files
 *open files* and their corresponding processes. `lsof` will handle
 regular files, directories, block special files, character special
 files, executing text references, libraries, streams or network files.
@@ -545,8 +544,7 @@ Example:
 ##  top
 
 
-top The `top` command provides a "dynamic real-time view" of a running
-system.
+The `top` command provides a "dynamic real-time view" of a running system.
 
 Usage:
 
@@ -570,7 +568,7 @@ Example:
 Because of its interactive mode, the most important keys while operating
 `top` are the *help* keys `h` or `?` and the *quit* key `q`. The
 following scheme provides an overview of the most important function
-keys and it's alternatives:
+keys and their equivalent alternatives:
 
         key      equivalent-key-combinations
         Up       alt + \      or  alt + k
@@ -606,7 +604,7 @@ Example:
 ##  uptime
 
 
-uptime The `uptime` command shows how long the system has been running,
+The `uptime` command shows how long the system has been running,
 how many users are logged on, the system load averages for the past 1, 5
 and 15 minutes and the current time. It support the `-V` option for
 version information.
@@ -625,8 +623,7 @@ Example:
 ##  sar
 
 
-sar The `sar` command collects, reports or saves system activity
-information.
+The `sar` command collects, reports or saves system activity information.
 
 Usage:
 
@@ -663,7 +660,7 @@ Using the `-d` option sar will output disk statistics.
                 
 
 The `-b` option switch shows output related to I/O and transfer rate
-statistics statisticstransfer rate:
+statistics:
 
         $ sar -b
         06:45:01      tps      rtps      wtps   bread/s   bwrtn/s
@@ -715,18 +712,18 @@ this formulated "deviated" behaviour has to be compared to the expected
 behaviour which would result from a trouble-free operating system.
 
 If possible, historical data from `sar` or other tools should be
-investigated and compared to real-time tools like `top`top,
-`vmstat`vmstat, `netstat` and `iostat`iostat.
+investigated and compared to real-time tools like `top`,
+`vmstat`, `netstat` and `iostat`.
 
 Problems reported by either users or reporting tools are often related
-to availability availability, either certain resources aren't available
+to availability, either certain resources aren't available
 in an orderly fashion or not at all. Orderly fashion might be
-interpreted as "within an acceptable period of time" here. These kind of
+interpreted as "within an acceptable period of time" here. These kinds of
 issues are often reported because they are very noticeable for users, it
 affects their *user experience*.
 
-Examples of these kind of issues might be certain files or
-(web)applications which aren't accessible or responding in a certain
+Examples of these kinds of issues might be certain files or
+(web) applications which aren't accessible or responding in a certain
 period of time. To adequately analyse the situation, it would be handy
 to have a *baseline* at hand which dictates what the "expected
 behaviour" should be. This baseline should be determined on a system
@@ -735,10 +732,10 @@ considered.
 
 If there is no baseline, the measurements themselves should be able to
 help determine the root cause of a resource related problem. If one of
-the resources mentioned above is at 100% of it's capacity, the reason
-for the abnormal system behaviour should be easy to explain. Finding the
-cause however takes a bit more effort. The utilities presented in the
-previous chapter however, should be able to help out here as well.
+the resources mentioned above is at 100% of its capacity, the reason
+for the abnormal system behaviour should be easy to explain; finding the
+cause, however, takes a bit more effort. The utilities presented in the
+previous chapter should be be helpful here as well.
 
 Examples:
 
