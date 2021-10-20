@@ -68,6 +68,12 @@ bandwidth, identify and troubleshoot resource problems.
 ##  iostat
 
 
+**Note**
+Depending on the version of your Linux distribution it may
+be necessary to install a package like Debian `sysstat` to access tools
+like `iostat`, `sar`, `mpstat`, etc. The Debian `procps` package contains
+utilities like `free`, `uptime`, `vmstat`, `w`, `sysctl` etc.
+
 The `iostat` command is used for monitoring system input/output
 (I/O) device load. This is done by observing the *time* the 
 devices are active in relation to their *average* transfer
@@ -76,12 +82,6 @@ statistics since the last system reboot. When interval and count
 arguments are passed to `iostat`, statistics for each specified time
 interval are added to the output. The `-y` option can also be
 used to suppress statistics since the last reboot.
-
-**Note**
-Depending on the version of your Linux distribution it may
-be necessary to install a package like Debian `sysstat` to access tools
-like `iostat`, `sar`, `mpstat`, etc. The Debian `procps` package contains
-utilities like `free`, `uptime`, `vmstat`, `w`, `sysctl` etc.
 
 Usage:
 
@@ -262,10 +262,10 @@ stolen from a virtual machine. This is the amount of real CPU time the
 virtual machine (hypervisor or VirtualBox) has allocated to tasks other
 than running your virtual machine.
 
-####  netstat
+##  netstat
 
 
-netstat The `netstat` command shows network connections, routing tables,
+The `netstat` command shows network connections, routing tables,
 interface statistics, masquerade connections and multicast memberships.
 The results are dependant on the first argument:
 
@@ -381,7 +381,7 @@ Example:
 ##  ps
 
 
-ps Usage:
+Usage:
 
         $ ps options
                 
@@ -711,26 +711,26 @@ investigated and compared to real-time tools like `top`,
 `vmstat`, `netstat` and `iostat`.
 
 Problems reported by either users or reporting tools are often related
-to availability, either certain resources aren't available
-in an orderly fashion or not at all. Orderly fashion might be
-interpreted as "within an acceptable period of time" here. These kinds of
-issues are often reported because they are very noticeable for users, it
-affects their *user experience*.
+to availability: either resources aren't available in an orderly fashion
+or are unavailable altogether. Orderly fashion may be interpreted as
+"within an acceptable period of time" here. These kinds of issues are
+often reported because they are easily noticeable to users&mdash;i.e., it
+affects the *user experience*.
 
-Examples of these kinds of issues might be certain files or
-(web) applications which aren't accessible or responding in a certain
-period of time. To adequately analyse the situation, it would be handy
-to have a *baseline* at hand which dictates what the "expected
-behaviour" should be. This baseline should be determined on a system
-which behaves properly, and a certain amount of threshold should be
-considered.
+Examples of these kinds of issues might be certain files or (web)
+applications which aren't accessible or responding within a reasonable
+period of time. To adequately analyse such a situation, it may be useful
+to establish a *baseline* which dictates the "expected behaviour" of the
+program. This baseline should be established on a properly behaving system,
+and providing a threshold should also be considered.
 
-If there is no baseline, the measurements themselves should be able to
-help determine the root cause of a resource related problem. If one of
-the resources mentioned above is at 100% of its capacity, the reason
-for the abnormal system behaviour should be easy to explain; finding the
-cause, however, takes a bit more effort. The utilities presented in the
-previous chapter should be be helpful here as well.
+If there is no baseline, resource measurements themselves may help
+to determine the root cause of a resource-related problem. If one of
+the resources mentioned above is at 100% of its capacity, for example,
+the existence of abnormal system behaviour should be easy to explain;
+finding the precise *source* of the issue, however, may require a bit more
+effort. The utilities presented in the previous chapter should be be helpful
+here as well.
 
 Examples:
 
