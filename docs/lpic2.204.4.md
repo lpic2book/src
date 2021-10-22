@@ -16,7 +16,8 @@ cardmgr
 
 ###   Overview of PCMCIA
 
-Nowadays, almost all laptops, and even a number of desktops, contain
+Nowadays, PCMCIA slots are quite a rarity. Only found on specialized and legacy devices. 
+but at the turn of the century almost all laptops, and even a number of desktops, contain
 PCMCIA slots. PCMCIA is an PCMCIA abbreviation for
 Personal Computer Memory Card International Association, a commission
 that defines standards for expansion cards. The PCMCIA itself was
