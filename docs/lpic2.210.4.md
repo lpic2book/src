@@ -61,13 +61,12 @@ units, people, printers, documents, or just about anything else.
 
 ###   Access Control
 
-While the OpenLDAP directory gets filled the data becomes more critical.
-Some data might be protected by law or be confidential in an other way.
-Therefore access to the directory needs to be controlled. The default
-policy allows read access to all clients. Regardless of what access
-control policy is defined, the olcRootDN is always allowed full rights
-(i.e. auth, search, compare, read, and write) on everything and
-anything.
+While the OpenLDAP directory gets filled the protection of data may become
+more critical. Some data might be protected by law or be confidential in
+any other way. Therefore access to the directory needs to be controlled.
+The default policy allows read access to all clients. Regardless of what 
+access control policy is defined, the olcRootDN is always allowed full 
+rights (i.e. auth, search, compare, read, and write) on everything.
 
 Access to `slapd` entries and attributes is controlled by the
 `olcAccess` attribute, whose values are a sequence of access rules. They

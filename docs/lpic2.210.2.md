@@ -348,7 +348,7 @@ parameter item and can have the value of user, tty, rhost, ruser, group,
 or shell. The *sense* configuration parameter determines whether the
 entries in the list are allowed. Possible values are allow and deny.
 
-SSSD
+###   SSSD
 
 Configure SSSD for LDAP authentication
 
@@ -412,7 +412,7 @@ Verify that all changes are effective by running:
         # authconfig test
                 
 
-5\. Update `/etc/openldap.conf` to use the same ldap settings. Your
+5\. Update `/etc/openldap/ldap.conf` to use the same ldap settings. Your
 `ldap.conf` file will look like this:
 
         SASL_NOCANON on
@@ -428,6 +428,6 @@ avoid issues with application stacks like `PHP`, which have difficulties
 with `LDAPS` and `TLS`.
 
 6\. Make sure that sssd is up and running and that it will be started
-after a system reboot. Run `systemctl` `status sssd` to check this. To
-start sssd, run `systemctl` `start sssd` and to make sssd persistent
-across reboots, run `systemctl` `enable sssd`.
+after a system reboot. Run `systemctl status sssd` to check this. To
+start sssd, run `systemctl start sssd` and to make sssd persistent
+across reboots, run `systemctl enable sssd`.
