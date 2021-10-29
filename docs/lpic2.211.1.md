@@ -925,7 +925,7 @@ certificates to the authenticity and integrity of DNSSEC, it becomes
 less of a problem to depend on self-signed certificates. If multiple
 domains are served on the same Postfix server, it is recommended to
 publish a digest for every seperate domain (and therefore certificate)
-in DNS. The `smtpd_tls_security_level` value can be set to either `dane`
+in DNS. The `smtpd_tls_support_level` value can be set to either `dane`
 or `dane-only` to handle TLSA records. Refer to the `TLS_README` file
 for details.
 
