@@ -24,7 +24,7 @@ and managing users.
 
 ##  LDAP
 
-LDAP stands for Lightweight Directory Access Protocol. As the name X.500
+LDAP stands for Lightweight Directory Access Protocol. As the name
 suggests, it is a lighter version of DAP, which stands for the Directory
 Access Protocol that is defined by the X.500 standard. For more
 information on X.500, please read [RFC
@@ -39,7 +39,7 @@ The LDAP project was started at the [University of
 Michigan](http://www.umich.edu/~dirsvcs/ldap/), but, as can be read on
 their site, is no longer maintained there. For current information, the
 University of Michigan site points visitors to the
-[OpenLDAP](http://www.openldap.org/) site instead. OpenLDAP
+[OpenLDAP](http://www.openldap.org/) site instead.
 
 The type of information best suited for storage in a directory is
 information with a low mutation grade. The reason for this is that
@@ -96,12 +96,19 @@ LDIF
                                 
 
     Each entry can contain as many \<attrtype\>: \<attrvalue\> pairs as
-    needed. A blank line indicates the end of an entry.
+    needed. A blank line indicates the end of an entry. A line may be
+    broken and continued (folded) by indenting the continued portion of
+    the line. For example, the following two statements are identical:
+
+            dn: cn=some_example_user,dc=example,dc=com
+            dn: cn=some_e
+             xample_user,
+             dc=example,d
+             c=com
 
     **Note**
     All \<attrtype\> and \<attrvalue\> pairs must be defined in a
     corresponding schema file to use this information.
-    :::
 
     Any value enclosed within a \"\<\" and a \"\>\" is a variable and
     can be set whenever a new LDAP entry is created. This rule does not
@@ -110,7 +117,7 @@ LDIF
 
 ldapsearch
 
-ldapsearch `ldapsearch` is a shell-accessible interface to the
+`ldapsearch` is a shell-accessible interface to the
 ldap\_search(3) library call. `ldapsearch` opens a connection to an LDAP
 server, binds, and performs a search using specified parameters. The
 filter should conform to the string representation for search filters as
@@ -128,7 +135,7 @@ defined in [RFC 2254](http://www.faqs.org/rfc/rfc2254.txt).
 |Less than or equal to|<=|Returns entries containing attributes that are less than or equal to the specified value.|
 |Parentheses|()|Separates filters to allow other logical operators to function.|
 |And|&|Boolean operator. Joins filters together. All conditions in the series must be true. For example, (&(filter)(filter)...).|
-|Or|||Boolean operator. Joins filters together. At least one condition in the series must be true. For example, (|(filter)(filter)...).|
+|Or|\||Boolean operator. Joins filters together. At least one condition in the series must be true. For example, (|(filter)(filter)...).|
 |Not|!|Boolean operator. Excludes all objects that match the filter. Only one filter is affected by the NOT operator. For example, (!(filter))|
 
 Boolean expressions are evaluated in the following order:
@@ -203,9 +210,9 @@ the entry "uid=jhay,cn=Human Resources,cn=example,dc=com" and its object
 classes and attributes.
 
 
-###   dapdelete
+###   ldapdelete
 
-ldapdelete` - LDAP delete entry tool
+`ldapdelete` - LDAP delete entry tool
 
 `ldapdelete` is a shell-accessible interface to the ldap\_delete\_ext(3)
 library call.
