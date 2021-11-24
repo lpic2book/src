@@ -229,16 +229,18 @@ listed below
 
 "Rebuilds" a pre existing array. Typically used when
 migrating arrays to new hosts, but more often used from system startup
-to launch a pre existing array., *Build* Does not create array
-superblocks, and therefore does not destroy any pre existing data. May
-be useful when attempting to recover or access stale data. (can not be
-used in combination with `mdadm.conf `). Typically used with legacy
-arrays, and rarely used., 
+to launch a pre existing array. 
+
+#### Build 
+Does not create array superblocks, and therefore does not destroy any pre 
+existing data. May be useful when attempting to recover or access stale 
+data. (can not be used in combination with `mdadm.conf `). Typically used 
+with legacy arrays, and rarely used.
 
 #### Create
 
 Creates an array from scratch, using
-pre-existing block devices, and activates the array., 
+pre-existing block devices, and activates the array.
 
 #### Grow
 
@@ -246,7 +248,7 @@ pre-existing block devices, and activates the array.,
 Used to
 modify a existing array, for example adding, or removing devices.
 Capability is expected to be extended during the development lifecycle
-of the 2.6 kernel., 
+of the 2.6 kernel.
 
 #### Misc 
 
