@@ -238,7 +238,7 @@ arrays, and rarely used.,
 #### Create
 
 Creates an array from scratch, using
-pre-existing block devices, and activates the array., 
+pre-existing block devices, and activates the array.
 
 #### Grow
 
@@ -246,7 +246,7 @@ pre-existing block devices, and activates the array.,
 Used to
 modify a existing array, for example adding, or removing devices.
 Capability is expected to be extended during the development lifecycle
-of the 2.6 kernel., 
+of the 2.6 kernel.
 
 #### Misc 
 
