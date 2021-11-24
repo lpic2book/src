@@ -229,11 +229,15 @@ listed below
 
 "Rebuilds" a pre existing array. Typically used when
 migrating arrays to new hosts, but more often used from system startup
-to launch a pre existing array., *Build* Does not create array
+to launch a pre existing array.
+
+### Build
+
+Does not create array
 superblocks, and therefore does not destroy any pre existing data. May
 be useful when attempting to recover or access stale data. (can not be
 used in combination with `mdadm.conf `). Typically used with legacy
-arrays, and rarely used., 
+arrays, and rarely used.
 
 #### Create
 
