@@ -371,7 +371,7 @@ Use your package manager to install these packages.
 
 2\. Check the current settings for sssd, if any:
 
-        # authconfig test
+        # authconfig --test
                 
 
 This will show you the current settings which are already in place. Also
