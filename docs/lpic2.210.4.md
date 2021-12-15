@@ -170,7 +170,7 @@ directly. Configuration changes should be performed via LDAP operations,
 e.g. `ldapadd`, `ldapdelete`, or `ldapmodify`.
 
 Depending on the linux distribution the `slapd-config` configuration
-tree `slapd.d` slapd.d may be located in `/etc/OpenLDAP` or
+tree `slapd.d` may be located in `/etc/OpenLDAP` or
 `/usr/local/etc/OpenLDAP`.
 
 An example might look like this:
@@ -265,7 +265,7 @@ the `olcRootPW` line would be changed into something like the following:
         olcRootPW: {SSHA}xEleXlHqbSyi2FkmObnQ5m4fReBrjwGb
                     
 
-The `olcLogLevel` olcLogLevel directive specifies at which debugging
+The `olcLogLevel` directive specifies at which debugging
 level statements and operation statistics should be syslogged. Log
 levels may be specified as integers or by keyword. Multiple log levels
 may be used and the levels are additive.
