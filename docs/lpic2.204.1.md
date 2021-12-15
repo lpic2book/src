@@ -354,7 +354,7 @@ format a RAID drive:
     on the array simply by `diff`'ing the current and stored output.
     Create as follows:
 
-    `mdadm` \--detail \--scan \--verbose \> `/etc/mdadm.conf`
+        mdadm --detail --scan --verbose > /etc/mdadm.conf
 
 5.  Create mount points and edit `/etc/fstab`
 
