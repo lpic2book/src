@@ -79,7 +79,7 @@ Samba consists of two daemons:
 
 - `nmbd`: the NetBIOS Name Service Daemon which
     handles NetBIOS name lookups and WINS requests. If you've told
-    Samba to function as a wins server WINS Server, an extra copy of
+    Samba to function as a WINS server, an extra copy of
     `nmbd` will be running. Additionally, if DNS is used to translate
     NetBIOS names, yet another copy of `nmbd` will be running.
 
