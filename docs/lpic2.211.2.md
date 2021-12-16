@@ -44,7 +44,7 @@ system-wide Procmail processing to a minimum and instead focus on using
 ##  Sieve
 
 Dovecot Sieve is a scripting language that may be used to
-preproces and sort incoming email. It can also be used to sort out email
+preprocess and sort incoming email. It can also be used to sort out email
 from mailinglists, to filter spam and send auto-replies. To use sieve it
 should first be configured on the email servers. In this setup postfix
 is used to deliver email to the Dovecot local delivery agent. In the
@@ -118,57 +118,6 @@ Example:
            stop; #end processing
                     
 
-Sievevacation extension Sieve also offers an auto-responder
-functionality by using the `vacation>` extension. Below is an example
-shown that uses the vacation extension.
-
-        require ["fileinto", "vacation"];
-
-        vacation
-            # Reply at most once a day to a same sender
-        :days 1
-                :subject "Out of office reply"
-        # List of additional recipient addresses which are included in the auto replying.
-        # If a mail's recipient is not the envelope recipient and it's not on this list,
-        # no vacation reply is sent for it.
-        :addresses ["j.doe@company.dom", "john.doe@company.dom"]
-            "I'm out of office, please contact Joan Doe instead.
-        Best regards
-        John Doe";
-                                    
-
-The "vacation" extension provides several options, namely:
-
--   `:days number` - Is used to specify the period where addresses are
-    kept and not responded to (in days).
-
--   `:subject string` - Specifies the subject line attached to any
-    vacation response.
-
--   `:from string` - Specifies an alternate to use in the From field of
-    vacation messages.
-
--   `:addresses string-list` - Specifies additional email addresses to
-    the recipient.
-
--   `:mime` - Specifies arbitrary mime content. For example to specify
-    multiple vacation messages in different languages.
-
--   `:handle string` - Tells sieve to treat two vacation actions with
-    different arguments as the same command for response tracking
-
--   *reason: string* - The actual message
-
-Example:
-
-        require "vacation";
-        if header :contains "subject" "lunch" {
-               vacation :handle "ran-away" "I'm out and can't meet for lunch";
-        } else {
-               vacation :handle "ran-away" "I'm out";
-        }
-                    
-
 ####  Control commands
 
 The control commands in sieve are the basic `if`, `else` and `elsif`
@@ -184,10 +133,10 @@ processing of the script. Example:
         if header :contains "from" "lottery" {
             discard;
         } elsif header :contains ["subject"] ["$$$"] {
-                discard;
-            } else {
-                fileinto "INBOX";
-            }
+            discard;
+        } else {
+            fileinto "INBOX";
+        }
                 
 
 Example:
@@ -204,7 +153,7 @@ The control commands as stated in the previous section can support
 different test commands, namely: `address`, `allof`, `anyof`, `exists`,
 `false`, `header`, `not`, `size` and `true`.
 
-With the address command you can only test if an email adres is in the
+With the `address` command you can only test if an email address is in the
 header. If the `to` header contains "John Doe \<john\@doe.com\>", then
 the test would evaluate to false. If the `to` address contains
 "john\@doe.com" then the test would be true because only the address is
@@ -250,8 +199,8 @@ The `header` command tests if a header matches the condition set by the
 argument and evaluates to true. Example:
 
         if header :is ["subject"] "make money fast" {
-                  discard; 
-              stop;
+            discard; 
+            stop;
         }
                 
 
@@ -300,7 +249,7 @@ The `redirect` command redirects the message to the address that is
 specified in the argument without tampering the message. Example:
 
         if exists "x-virus-found" {
-           redirect "admin@example.com";
+            redirect "admin@example.com";
         }
                 
 
@@ -308,9 +257,61 @@ The `discard` command causes the message silently deleted without
 sending any notification or any other message. Example:
 
         if size :over 2M { 
-          discard; 
+            discard; 
         }
                 
+### Sieve vacation extension
+Sieve also offers an auto-responder functionality by using the
+`vacation` extension. Below is an example shown that uses the `vacation`
+extension.
+
+        require ["fileinto", "vacation"];
+
+        vacation
+            # Reply at most once a day to a same sender
+            :days 1
+            :subject "Out of office reply"
+            # List of additional recipient addresses which are included in the auto replying.
+            # If a mail's recipient is not the envelope recipient and it's not on this list,
+            # no vacation reply is sent for it.
+            :addresses ["j.doe@company.dom", "john.doe@company.dom"]
+        "I'm out of office, please contact Joan Doe instead.
+        Best regards
+        John Doe";
+                                    
+
+The `vacation` extension provides several options, namely:
+
+-   `:days number` - Is used to specify the period where addresses are
+    kept and not responded to (in days).
+
+-   `:subject string` - Specifies the subject line attached to any
+    vacation response.
+
+-   `:from string` - Specifies an alternate to use in the From field of
+    vacation messages.
+
+-   `:addresses string-list` - Specifies additional email addresses to
+    the recipient.
+
+-   `:mime` - Specifies arbitrary mime content. For example to specify
+    multiple vacation messages in different languages.
+
+-   `:handle string` - Tells sieve to treat two vacation actions with
+    different arguments as the same command for response tracking
+
+-   *reason: string* - The actual message
+
+Example:
+
+        require "vacation";
+        if header :contains "subject" "lunch" {
+               vacation :handle "ran-away" "I'm out and can't meet for lunch";
+        } else {
+               vacation :handle "ran-away" "I'm out";
+        }
+                    
+
 ##  Mbox and maildir storage formats
 
 Mbox and maildir are email storage formats. Postfix and Dovecot support
