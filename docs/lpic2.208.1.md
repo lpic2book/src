@@ -59,7 +59,7 @@ file access
 Building Apache from source was routinely done when Apache emerged.
 Nowadays Apache is available in binary format for most modern (post
 2005) Linux distributions. Installing programs from source is already
-covered in 206.1. Therefore, we will concentrate on working with rpm and
+covered in [206.1](/src/lpic2.206.1/). Therefore, we will concentrate on working with rpm and
 apt package managers and tools during this chapter. Do not underestimate
 the importance of building Apache from source though. Depending on
 requirements and (lack of) availability, it might still be necessary to
@@ -69,9 +69,8 @@ behaviour of the server. But in general Apache is started by other
 scripts that serve as a wrapper for `httpd`. These scripts should take
 care of passing required flags to `httpd`. The behaviour of the server
 is configured by setting various options called `directives`. These
-`directives` are declared in configuration files. ApacheApache2
-configuration files The location of configuration files and how they are
-organized varies. Red Hat and similar distributions have their
+`directives` are declared in configuration files. The location of configuration
+files and how they are organized varies. Red Hat and similar distributions have their
 configuration files in the `/etc/httpd/conf` directory. Other locations
 which are or have been used are `/etc/apache/config`,
 `/etc/httpd/config` and `/etc/apache2`.
@@ -82,8 +81,8 @@ or both. Apache 2.0 does comply to the LPIC-2 Apache 2.x scope due to
 its name, but Apache 2.0 is no longer maintained. It is therefore not
 recommended to use Apache 2.0. Instead, Apache 2.4 is recommended to be
 used by the Apache foundation. As a Linux administrator, you may however
-still encounter Apache 2.0 on servers. It is therefore recommended to be
-familiar with the configuration differences between the different
+still encounter Apache 2.0 on servers. It is therefore recommended to
+familiarize yourself with the configuration differences between the different
 versions. The Apache foundation does provide guidence: Via
 <https://httpd.apache.org/docs/> upgrade documents can be accessed that
 address the necessary steps when upgrading from Apache 2.0 to 2.2, and
@@ -161,7 +160,7 @@ modules written in an interpreted (scripted) language.
 
 The modular structure of Apache's *source code* should not be confused
 with the functionality of *run-time loading* of Apache modules. Run-time
-Apachemodules modules are loaded after the core functionality of Apache
+modules are loaded after the core functionality of Apache
 has started and are a relatively new feature. In older versions, to use
 the functionality of a module, it needed to be compiled in during the
 *build* phase. Current implementations of Apache are capable of
@@ -183,15 +182,15 @@ extension `.so` is used. These files are usually installed in a
 program-specific directory. The executable program manually loads the
 DSO at run-time into its address space via `dlopen()`.
 
-How to run Apache-SSL as a shareable (DSO) module: Install the
-appropriate package:
+How to run Apache-SSL as a shareable (DSO) module: First of all, install
+the appropriate package:
 
         packagemanager installcommand modulename
                     
 
 Depending on your distribution, the configuration file(s) might or might
 not have been adjusted accordingly. Always check for the existence of a
-LoadModule line in one of the configuration files: Apachelibssl.so
+`LoadModule` line in one of the configuration files:
 
         LoadModule apache_ssl_module modules/libssl.so
                     
@@ -226,29 +225,28 @@ file, at the top of the hiearchy.
 
 To see whether your version of Apache supports DSOs, execute the command
 `httpd -l` which lists the modules that have been compiled into Apache.
-Apachehttpd If `mod_so.c` appears in the list of modules then your
+If `mod_so.c` appears in the list of modules then your
 Apache server can make use of dyamic modules.
 
 ####  APache eXtenSion (APXS) support tool
 
 The APXS is a new support tool from Apache 1.3 and onwards which can be
-used ApacheAPXS APXS to build an Apache module as a DSO *outside the
-Apache source-tree*. It knows the platform dependent build parameters
-for making DSO files and provides an easy way to run the build commands
-with them.
+used to build an Apache module as a DSO *outside the Apache source-tree*.
+It knows the platform dependent build parameters for making DSO files and
+provides an easy way to run the build commands with them.
 
 ###   Monitoring Apache load and performance
 
 An Open Source system that can be used to periodically load-test pages
-of web-servers is Cricket. Cricket can be Cricket easily set up to
+of web-servers is Cricket. Cricket can be easily set up to
 record page-load times, and it has a web-based grapher that will
 generate charts to display the data in several formats. It is based on
-RRDtool whose ancestor is MRTG (short MRTG for "Multi-Router Traffic
-Grapher"). RRDtool (Round Robin RRDtool Data Tool) is a package that
-collects data in "round robin" databases; each data file is fixed in
-size so that running Cricket does not slowly fill up your disks. The
-database tables are sized when created and do not grow larger over time.
-As the data ages, it is averaged.
+RRDtool (Round Robin Data Tool) whose ancestor is  MRTG (short MRTG for
+"Multi-Router Traffic Grapher"). RRDtool is a package that collects data
+in "round robin" databases; each data file is fixed in size so that
+running Cricket does not slowly fill up your disks. The database tables
+are sized when created and do not grow larger over time. As the data
+ages, it is averaged.
 
 ####  Enhancing Apache performance
 
@@ -265,12 +263,12 @@ one hand, and the possibility to handle heavy load on the other. As each
 chain is only as strong as it's weakest link, the underlying system
 should be adequatetly configured to handle the expected load. The LPIC-2
 exam focuses more on the detection of these performance bottlenecks in
-chapter 200.1.
+chapter [200.1](/src/lpic2.200.1/).
 
 ###   Apache `access_log` file
 
 access logs The `access_log` contains a generic overview of
-Apacheaccess\_log page requests for your web-server. The format of the
+page requests for your web-server. The format of the
 access log is highly configurable. The format is specified using a
 format string that looks much like a C-style `printf` format string. A
 typical configuration for the access log might look like the following:
@@ -281,9 +279,9 @@ typical configuration for the access log might look like the following:
 
 This defines the nickname *common* and associates it with a particular
 log format string. The format as shown is known as the Common Log Format
-(CLF). Common Log Format ApacheCLF It is a standard format produced by
-many web servers and can be read by most log analysis programs. Log file
-entries produced in CLF will look similar to this line:
+(CLF). It is a standard format produced bymany web servers and can be
+read by most log analysis programs. Log file entries produced in CLF
+will look similar to this line:
 
         127.0.0.1 - bob [10/Oct/2000:13:55:36 -0100] "GET /apache_pb.gif HTTP/1.0" 200 2326
                 
@@ -379,13 +377,12 @@ Many systems use either DAC or MAC to control access to objects:
 
 -   A system that employs DAC allows users to set object permissions
     themselves. They can change these at their discretion.
-    ApacheDiscretionary Access Control
 
 **Mandatory Access Controls (MAC)**
 
 -   A system that employs MAC has all its objects (e.g., files) under
     strict control of a system administrator. Users are not allowed to
-    set any permissions themselves. ApacheMandatory Access Control
+    set any permissions themselves.
 
 Apache takes a liberal stance and defines discretionary controls to be
 controls based on usernames and passwords, and mandatory controls to be
@@ -414,8 +411,8 @@ very well be a symbolic link to a directory somewhere else on the
 filesystem. This can be determined by invoking `pwd -P` or `ls -ld` from
 within the modules directory as shown by the following example:
 
-                    [user@redhatbased /etc/httpd]$ pwd -P
-                    /usr/lib64/httpd/modules
+        [user@redhatbased /etc/httpd]$ pwd -P
+        /usr/lib64/httpd/modules
                 
 
 In the example above, the symbolic link `/etc/httpd/modules` provides
@@ -424,7 +421,7 @@ files. Apache modules are loaded using the `LoadModule` directive. This
 directive expects the path to the module to be relative to the Apache
 configuration directory declared by the `ServerRoot` directive.
 
-In general, modules will Apachemod\_auth use some form of database to
+In general, modules will use some form of database to
 store and retrieve credential data. The `mod_authn_file` module for
 instance uses text files where `mod_auth_dbm` employs a Unix DBM
 database.
@@ -440,7 +437,7 @@ standard Apache distribution.
 `mod_access`
 
 -   (MAC) This used to be the only module in the standard Apache
-    distribution which applies Apachemod\_access what Apache defines as
+    distribution which applies what Apache defines as
     mandatory controls. It used to allow you to list hosts, domains,
     and/or IP addresses or networks that were permitted or denied access
     to documents. As of Apache 2.4, this module is no longer used.
@@ -456,7 +453,7 @@ standard Apache distribution.
     configuration loads this compabibility module with a line similar
     to:
 
-                                        LoadModule mod_access_compat modules/mod_access_compat.so
+        LoadModule mod_access_compat modules/mod_access_compat.so
                                     
 
 `mod_authn_anon`
@@ -544,12 +541,12 @@ standard Apache distribution.
     For instance, all of the following is regarded as valid input and
     will be interpreted by the rules that apply:
 
-            Require host: sue.nl
-            Require ip: 10.6.6
-            Require ip: 172
-            Require ip: 10.9.9.9/32
-            Require forward-dns: cloudhost.sue.nl
-            Require local
+         Require host: sue.nl
+         Require ip: 10.6.6
+         Require ip: 172
+         Require ip: 10.9.9.9/32
+         Require forward-dns: cloudhost.sue.nl
+         Require local
                                     
 
 One of the noteworthy differences between Apache 2.2 and 2.4 lies in the
@@ -1021,13 +1018,12 @@ browser at `http://localhost/test.php`. A page should appear with the
 PHP logo and additional information about your PHP configuration. Notice
 that PHP commands are contained by `<?` and `?>` tags.
 
-The httpd binary {#apachehttpd}
+####  The httpd binary {#apachehttpd}
 
-Apacheapache2ctl\> Apacheapachectl\> The `httpd` binary is the actual
-HTTP server component of Apache. During normal operation, it is
-recommended to use the `apachectl` or `apache2ctl` command to control
-the httpd daemon. On some distributions the `httpd` binary is named
-`apache2`.
+The `httpd` binary is the actual HTTP server component of Apache. 
+During normal operation, it is recommended to use the `apachectl` or 
+`apache2ctl` command to controlthe httpd daemon. On some distributions
+the `httpd` binary is named `apache2`.
 
 Apache used to be a daemon that forked child-processes only when needed.
 To allow better response times, nowadays Apache can also be run in
@@ -1035,27 +1031,25 @@ pre-forked mode. This means that the server will spawn a number of
 child-processes in advance, ready to serve any communication requests.
 On most distributions the pre-forked mode is run by default.
 
-Configuring Apache server options {#apacheoptions}
+###   Configuring Apache server options {#apacheoptions}
 
-The `httpd.conf` file contains a number of sections ConfiguringApache
+The `httpd.conf` file contains a number of sections
 that allow you to configure the behavior of the Apache server. A number
 of keywords/sections are listed below.
 
 `MaxKeepAliveRequests`
 
 -   The maximum number of requests to allow during a persistent
-    ApacheMaxKeepAliveRequests connection. Set to 0 to allow an
-    unlimited amount.
+    connection. Set to 0 to allow an unlimited amount.
 
 `StartServers`
 
--   The number of servers to start initially. ApacheStartServers
+-   The number of servers to start initially.
 
 `MinSpareServers`; `MaxSpareServers`
 
--   Used for server-pool size regulation. Rather than making
-    ApacheMinSpareServers ApacheMaxSpareServers you guess how many
-    server processes you need, Apache dynamically adapts to the load it
+-   Used for server-pool size regulation. Rather than making you guess how
+    many server processes you need, Apache dynamically adapts to the load it
     sees. That is, it tries to maintain enough server processes to
     handle the current load, plus a few spare servers to handle
     transient load spikes (e.g., multiple simultaneous requests from a
@@ -1067,7 +1061,7 @@ of keywords/sections are listed below.
 `MaxClients`
 
 -   Limit on total number of servers running, i.e., limit on the number
-    ApacheMaxClients of clients that can simultaneously connect. If this
+    of clients that can simultaneously connect. If this
     limit is ever reached, clients will be *locked out*, so it should
     *not be set too low*. It is intended mainly as a brake to keep a
     runaway server from taking the system with it as it spirals down.
@@ -1081,8 +1075,8 @@ are added to the Apache configuration during startup of Apache.
 
 ####  Apache Virtual Hosting
 
-*Virtual Hosting* is a technique that provides the capability virtual
-hosting to host more than one domain on one *physical* host. There are
+*Virtual Hosting* is a technique that provides the capability
+to host more than one domain on one *physical* host. There are
 two methods to implement virtual hosting:
 
 **Name-based virtual hosting**
@@ -1106,22 +1100,21 @@ of the TCP connection to determine the correct virtual host to serve.
 #### Name-based virtual hosting
 
 Name-based virtual hosting is a fairly simple technique. You need to
-configure ApacheName-base virtual hosting your DNS server to map each
-domain name to the correct IP address first. Then, configure the Apache
-HTTP Server to recognize the different domain names and serve the
-appropriate websites.
+configure  your DNS server to map each domain name to the correct IP
+address first. Then, configure the Apache HTTP Server to recognize
+the different domain names and serve the appropriate websites.
 
 Name-based virtual hosting eases the demand for scarce IPv4 addresses.
-Therefore you could (or should?) use name-based virtual hosting unless
+Therefore you could (or should) use name-based virtual hosting unless
 there is a specific reason to choose IP-based virtual hosting, see
 [IP-based Virtual Hosting](#IPBasedVirtualHosting).
 
 To use name-based virtual hosting, you must designate the IP address
 (and possibly port) on the server that will be accepting requests for
 the hosts. On Apache 2.x up to 2.4, this is configured using the
-`NameVirtualHost` directive. This NameVirtualHost directive is
+`NameVirtualHost` directive. This `NameVirtualHost` directive is
 deprectated since Apache 2.4. Each `VirtualHost` also implies a
-NameVirtualHost, so defining a VirtualHost is sufficient from Apache 2.4
+`NameVirtualHost`, so defining a `VirtualHost` is sufficient from Apache 2.4
 on. Any available IP address can be used. There should be a balance
 between ease of configuration, use and administration on one hand, and
 security on the other. Using a wildcard as the listening IP address
@@ -1138,7 +1131,7 @@ all of these IP addresses as well. Whether or not this is either
 preferable or imposes risk, depends on the circumstances. If the server
 is using multiple network interfaces and/or IP addresses, special care
 should be taken when configuring services. Every daemon exposing
-services to the network could contain code based or configuration
+services to the network could contain code based or configuration based
 errors. These errors could be abused by someone with malicious
 intentions. By minimizing the so called network footprint of the server,
 the available attack surface is also minimized. Whether or not the
@@ -1146,18 +1139,17 @@ additional configuration overhead of preventing wildcards is worth the
 effort, will always remain a trade off.
 
 -   `Listen` can be used to specify the IP addresses and ports to which
-    ApacheListen an Apache listener should be opened in order to serve
-    the configured content.
+    an Apache listener should be opened in order to serve the configured
+    content.
 
 The `<VirtualHost>` directive is the next step to create for each
-different ApacheVirtualHost webdomain you would like to serve. The
-argument to the `<VirtualHost>` directive should be the same as the
-argument to the (pre-Apache 2.4) `NameVirtualHost` ApacheNameVirtualHost
-directive (i.e., an IP address or `*` for all addresses). Inside each
-`<VirtualHost>` block you will need, at minimum, a `ServerName`
-directive to designate which host is served and a ApacheServerName
-`DocumentRoot` directive to point out where in the filesystem the
-content for ApacheDocumentRoot that webdomain can be found.
+different webdomain you would like to serve. The argument to the 
+`<VirtualHost>` directive should be the same as the argument to 
+the (pre-Apache 2.4) `NameVirtualHost` directive (i.e., an IP address
+or `*` for all addresses). Inside each `<VirtualHost>` block you will
+need, at minimum, a `ServerName` directive to designate which host is
+served and a `DocumentRoot` directive to point out where in the
+filesystem the content for that webdomain can be found.
 
 Suppose that both `www.domain.tld` and `www.otherdomain.tld` point to
 the IP address `111.22.33.44`. You could then add the following to
@@ -1166,13 +1158,13 @@ the IP address `111.22.33.44`. You could then add the following to
         NameVirtualHost 111.22.33.44
 
         <VirtualHost 111.22.33.44>
-        ServerName www.domain.tld
-        DocumentRoot /www/domain
+            ServerName www.domain.tld
+            DocumentRoot /www/domain
         </VirtualHost>
 
         <VirtualHost 111.22.33.44>
-        ServerName www.otherdomain.tld
-        DocumentRoot /www/otherdomain
+            ServerName www.otherdomain.tld
+            DocumentRoot /www/otherdomain
         </VirtualHost>
                     
 
@@ -1185,7 +1177,6 @@ the organization behind `domain.tld` wants to facilitate
 `blog.domain.tld`. There are multiple ways to implement this
 functionality, but one of them uses the `ServerAlias` directive. The
 `ServerAlias` directive is declared inside the \<VirtualHost\> section.
-ApacheServerAlias
 
 If, for example, you add the following to the first \<VirtualHost\>
 block above
@@ -1195,10 +1186,10 @@ block above
 
 then requests for all hosts in the `domain.tld` domain will be served by
 the `www.domain.tld` virtual host. The wildcard characters `*` and `?`
-can be used to match names. Apache\* Apache?
+can be used to match names.
 
 Of course, you can't just make up names and place them in `ServerName`
-or `ServerAlias`. The DNS system must be properly configured ApacheDNS
+or `ServerAlias`. The DNS system must be properly configured
 to map those names to the IP address(es) declared in the
 `NameVirtualHost` directive.
 
@@ -1229,9 +1220,9 @@ specification in the Apache configuration.
 
 #### IP-based virtual hosting
 
-Despite the advantages of name-based
-virtual hosting, there are some reasons why you might consider using
-IP-based virtual hosting instead. These are niche scenarios though:
+Despite the advantages of name-based virtual hosting, there are some
+reasons why you might consider using IP-based virtual hosting instead.
+These are niche scenarios though:
 
 -   Some older or exotic web clients are not compatible with name-based
     virtual hosting for HTTP or HTTPS. HTTPS name-based virtual hosting
@@ -1257,13 +1248,12 @@ hosts:
 
 -   By running a single daemon that supports all the virtual hosts.
 
-Use multiple daemons when: Apachemultiple daemons
+Use multiple daemons when:
 
 -   There are security issues, e.g., if you want to maintain strict
     separation between the web-pages for separate customers. In this
     case you would need one daemon per customer, each running with
-    different `User`, ApacheUser `Group`, `Listen` and `ServerRoot`
-    ApacheServerRoot settings;
+    different `User`, `Group`, `Listen` and `ServerRoot` settings;
 
 -   You can afford the memory and file descriptor requirements of
     listening to every IP alias on the machine. It is only possible to
@@ -1280,7 +1270,7 @@ Use a single daemon when:
 -   The machine serves a large number of requests, and so the
     performance loss in running separate daemons may be significant.
 
-####Setting up multiple daemons
+####  Setting up multiple daemons
 
 Create a separate `httpd` installation for each virtual host. For each
 installation, use the `Listen` directive in the configuration file to
@@ -1326,35 +1316,34 @@ and 443 for HTTPS on all available IP addresses if no `Listen
 Apache server will fail to start if no valid `Listen` directive is
 specified.
 
-####Setting up a single daemon
+####  Setting up a single daemon
 
 For this case, a single `httpd` will service requests for the main
 server and all the virtual hosts. The `VirtualHost` directive in the
 configuration file is used to set the values of `ServerAdmin`,
-ApacheServerAdmin `ServerName`, `DocumentRoot`, `ErrorLog` and
-ApacheTransferLog ApacheCustomLog `TransferLog` or `CustomLog`
+`ServerName`, `DocumentRoot`, `ErrorLog` and `TransferLog` or `CustomLog`
 configuration directives to different values for each virtual host.
 
         <VirtualHost www.sue.nl>
-        ServerAdmin webmaster@mail.sue.nl
-        DocumentRoot /groups/sue/www
-        ServerName www.sue.nl
-        ErrorLog /groups/sue/logs/error_log
-        TransferLog /groups/sue/logs/access_log
+            ServerAdmin webmaster@mail.sue.nl
+            DocumentRoot /groups/sue/www
+            ServerName www.sue.nl
+            ErrorLog /groups/sue/logs/error_log
+            TransferLog /groups/sue/logs/access_log
         </VirtualHost>
 
         <VirtualHost www.unix.nl>
-        ServerAdmin webmaster@mail.unix.nl
-        DocumentRoot /groups/unix_nl/www
-        ServerName www.unix.nl
-        ErrorLog /groups/unix_nl/logs/error_log
-        TransferLog /groups/unix_nl/logs/access_log
+            ServerAdmin webmaster@mail.unix.nl
+            DocumentRoot /groups/unix_nl/www
+            ServerName www.unix.nl
+            ErrorLog /groups/unix_nl/logs/error_log
+            TransferLog /groups/unix_nl/logs/access_log
         </VirtualHost>
                         
 
-Customizing file access {#redirective}
+####  Customizing file access {#redirective}
 
-`Redirect` allows you to tell clients about ApacheRedirect documents
+`Redirect` allows you to tell clients about documents
 which used to exist in your server's namespace, but do not anymore.
 This allows you to tell the clients where to look for the relocated
 document.
