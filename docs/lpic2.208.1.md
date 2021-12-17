@@ -952,29 +952,28 @@ browser on every script invocation but most of the time it's better
 either to use the `$r->send_http_header` method using the Apache Perl
 API or to use the `$q->header` method from the `CGI.pm` module.
 
-Configuring `mod_php` support
+####  Configuring `mod_php` support
 
 PHP is a server-side, cross-platform, HTML embedded scripting language.
-ConfiguringApache mod\_php PHP PHP started as a quick Perl hack written
-by Rasmus Lerdorf in late 1994. Later he rewrote his code in C and hence
-the \"Personal Home Page/Forms Interpreter\" (PHP/FI) was born. Over the
-next two to three years, it evolved into PHP/FI 2.0. Zeev Suraski and
-Andi Gutmans wrote a new parser in the summer of 1997, which led to the
-introduction of PHP 3.0. PHP 3.0 defined the syntax and semantics used
-in both versions 3 and 4. PHP became the de facto programming language
-for millions of web developers. Still another version of the (Zend)
-parser and much better support for object oriented programming led to
-the introduction of version 5.0 in july 2004. Several subversions
-followed and also version 6 was started to include native Unicode
-support. However this version was abandoned. For the year 2015 the start
-for version 7.0 was planned.
+PHP started as a quick Perl hack written by Rasmus Lerdorf in late 1994.
+Later he rewrote his code in C and hence the \"Personal Home Page/Forms
+Interpreter\" (PHP/FI) was born. Over the next two to three years, it
+evolved into PHP/FI 2.0. Zeev Suraski and Andi Gutmans wrote a new
+parser in the summer of 1997, which led to the introduction of PHP 3.0.
+PHP 3.0 defined the syntax and semantics used in both versions 3 and 4. PHP
+became the de facto programming language for millions of web developers.
+Still another version of the (Zend) parser and much better support for
+object oriented programming led to the introduction of version 5.0 in july
+2004. Several subversions followed and also version 6 was started to include
+native Unicode support. However this version was abandoned. The current version
+of PHP at the time of writing is PHP 8
 
 PHP can be called from the CGI interface, but the common approach is to
 configure PHP in the Apache web server as a (dynamic) [DSO](#DSO)
 module. To do this, you can either use pre-built modules extracted from
 RPM's or roll your own from the source code. You need to configure
 the `make` process first. To tell `configure` to build the module as a
-[DSO](#DSO), you need to tell it to use [APXS](#APXS):
+[DSO](#DSO), you need to tell it to use [APXS](#apache-extension-apxs-support-tool):
 
         ./configure -with-apxs
                 
