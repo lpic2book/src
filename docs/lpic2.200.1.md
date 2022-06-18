@@ -164,9 +164,8 @@ Example:
 ##  vmstat
 
 
-The `vmstat` command reports virtual memory statistics virtual
-memorystatistics about processes, memory, paging, block I/O, traps, and
-CPU utilization.
+The `vmstat` command reports virtual memory statistics about processes, memory, paging, 
+block I/O, traps, and CPU utilization.
 
 Usage:
 
