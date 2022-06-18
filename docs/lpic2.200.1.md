@@ -678,7 +678,7 @@ Some of the most important options to be used with `sar` are:
 
 -   `-r` Free memory and swap over time
 
-Match / correlate system symptoms with likely problems
+## Match / correlate system symptoms with likely problems
 
 
 To troubleshoot a given problem, one must first be able to distinguish
