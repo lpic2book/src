@@ -272,7 +272,7 @@ The results are dependant on the first argument:
 -   `(no argument given)` - all active sockets of all configured address
     families will be listed.
 
--   `--route, -r` - the kernel routing tables kernelrouting tables are
+-   `--route, -r` - the kernel routing tables are
     shown, output is identical to `route -e` (note: in order to use
     `route`, elevated privileges might be needed whereas `netstat -r`
     can be run with user privileges instead).
