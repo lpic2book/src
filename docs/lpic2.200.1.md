@@ -729,7 +729,7 @@ to determine the root cause of a resource-related problem. If one of
 the resources mentioned above is at 100% of its capacity, for example,
 the existence of abnormal system behaviour should be easy to explain;
 finding the precise *source* of the issue, however, may require a bit more
-effort. The utilities presented in the previous chapter should be be helpful
+effort. The utilities presented in the previous chapter should be helpful
 here as well.
 
 Examples:
