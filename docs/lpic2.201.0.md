@@ -8,8 +8,8 @@ three objectives:
 -   Candidates should be able to utilize kernel components that are
     necessary to specific hardware, hardware drivers, system resources
     and requirements. This objective includes implementing different
-    types of kernel images, understanding stable and longterm kernel
-    kernels and patches, as well as using kernel modules.
+    types of kernel images, understanding stable and longterm kernels
+    and patches, as well as using kernel modules.
 
 ##  Objective 201.2: Compiling a Linux kernel (weight: 3)
 
