@@ -285,9 +285,8 @@ The results are dependant on the first argument:
 -   `--statistics, -s` - lists a summary of statistics for each
     protocol, similar to SNMP output
 
--   `--masquerade, -M` - lists masqueraded connections masqueraded
-    connections on pre-2.4 kernels. On newer kernels, use `cat
-                        /proc/net/ip_conntrack` instead. In order for
+-   `--masquerade, -M` - lists masqueraded connections on pre-2.4 kernels. 
+    On newer kernels, use `cat /proc/net/ip_conntrack` instead. In order for
     this to work, the *ipt\_MASQUERADE* kernel module has to be loaded.
     This applies to 2.x and 3.x kernels.
 
