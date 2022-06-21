@@ -98,7 +98,7 @@ Refer to the man-pages on `tar` and, `xz` for more information.
 ##  Cleaning the kernel
 
 To make sure you start with a clean state you should "clean" the kernel
-first. make When you compile a kernel into objects, the `make` utility
+first. When you compile a kernel into objects, the `make` utility
 keeps track of things and will not recompile any code it thinks has been
 correctly compiled before. In some cases, however, this may cause
 problems, especially when you change the kernel configuration. It is
@@ -120,7 +120,7 @@ Cleaning can be done on three levels:
 
 -   Removes editor backup files, patch leftover files and the like.
 
-makemrproper Running `make mrproper` before configuring and building a
+Running `make mrproper` before configuring and building a
 kernel is generally a good idea.
 
 **Note**
@@ -275,11 +275,7 @@ the configuration using another name and/or location in the filesystem.
 If you choose another name or location you need to move the `.config`
 file into the `/usr/src/linux` directory to compile the kernel.
 
-`make xconfig` and `gconfig` {#MakeXConfig}
-
-make xconfig
-
-make gconfig
+### `make xconfig` and `make gconfig`
 
 The `make xconfig` command presents a GUI menu to configure the
 kernel. It requires a working X Window System and the QT development
@@ -345,7 +341,7 @@ others.
 
 The `zImage` and `bzImage` arguments both effectively build the kernel.
 The difference between these two is explained in
-[???](#zImageVersusbzImage).
+[Different types of kernel images](https://lpic2book.github.io/src/lpic2.201.1/#different-types-of-kernel-images).
 
 After the compile process the kernel image can be found in the
 `/usr/src/linux/arch/i386/boot` directory (on i386 systems).
@@ -422,7 +418,7 @@ it is unmounted.
 There are a number of ways to create your own `initrd` file. A very
 convenient method, mainly used by Red Hat (based) distributions is by
 using the `mkinitrd` script. It is a shell script which you might want
-to inspect to see how it works. On DebianNDASHbased distributions a
+to inspect to see how it works. On Debian-based distributions a
 utility named mkinitramfs `mkinitramfs` can be used for the same
 purpose. You can also opt to build the file by hand, see the chapter
 below.
@@ -437,8 +433,8 @@ properly continue its boot.
 As said, the `mkinitrd` script offers a convenient way to build the
 `initrd` file, however not all distributions provide it. If you want (or
 must) build one by hand the steps are: create a root filesystem,
-populate it with modules and files, create a `tar` or `cpio` gzip
-archive from it and lastly `gzip` it.
+populate it with modules and files, create a `tar` or `cpio` archive
+from it and lastly `gzip` it.
 
 What type of archive to use depends on the distribution and kernel
 version. Older kernels employ `tar`, newer use `cpio`. If you are unsure
@@ -509,7 +505,7 @@ scripts, binaries, it does not matter. Refer to
 [???](#minimal.dirs.needed) for an example of the directories and files
 needed at minimum. One of the most important files to copy over is
 `/linuxrc`. Whenever the kernel is set up to use a `initrd` image it
-will search for a file `/linuxrc` file and execute it. It can be a
+will search for a file `/linuxrc` and execute it. It can be a
 script or a compiled binary. Hence, what will happen after mounting your
 image file is totally under your control. In this example we will make
 `/linuxrc` a link to `/bin/sh`. Make sure `/linuxrc` is given execute
@@ -693,7 +689,7 @@ files or sources from the actual kernel source tree. This way, both the
 kernel and kernel modules may be upgraded independent of each other.
 Major Linux distributions offer the DKMS framework through their package
 system. When the kernel is upgraded by the package manager software on a
-system running DKMS, a hook wil take care of deciding whether any kernel
+system running DKMS, a hook will take care of deciding whether any kernel
 modules need to be compiled and/or installed for the new kernel. The
 other way around, new kernel modules can be compiled and/or installed by
 DKMS without requirements towards the kernel version.
@@ -718,7 +714,7 @@ Due to the adoption of DKMS amongst major Linux distributions, many
 kernel modules available through package managers are (also) available
 as DKMS-modules. On Debian-based Linux systems, these DKMS kernel
 modules can be identified by their naming convention. The package names
-for these files end in `-dpkg`. For example: `oss4-dkms`. After
+for these files end in `-dkms`. For example: `oss4-dkms`. After
 installation of these packages, the kernel module source files are
 placed within a corresponding `/usr/src/module-version` directory
 together with a `dkms.conf` configuration file. Whenever a kernel or
@@ -751,7 +747,7 @@ module. `DEST_MODULE_LOCATION` determines the location for the compiled
 module. The value for this directive should always start with "/kernel"
 which in turn redirects to `/lib/modules/kernelversion/kernel`. This
 value is mandatory except for the following Linux distributions which
-use a distributionspecific directory: Fedora Core 6 and higher, RHEL 5
+use a distribution specific directory: Fedora Core 6 and higher, RHEL 5
 and higher, Novell SuSE Linux ES 10 and higher and Ubuntu.
 `PACKAGE_NAME` determines the name associated with the entire package of
 modules. This directive is mandatory. `PACKAGE_VERSION` determines the
