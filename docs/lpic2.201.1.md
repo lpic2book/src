@@ -36,11 +36,11 @@ supported hardware, regardless if your system uses that hardware. As the
 list of supported hardware grew the amount of code that was never used
 on any given system grew too. Therefore a system was introduced that
 allowed the kernel to load some hardware drivers dynamically. These
-loadable device drivers were named \"kernel modules\".
+loadable device drivers were named "kernel modules".
 
 Though the Linux kernel can load and unload modules it does not qualify
 as a microkernel. Microkernels are designed such that only the least
-possible amount of code is run in supervisor mode NDASH this was never a
+possible amount of code is run in supervisor mode - this was never a
 design goal for Linux kernels. The Linux kernel is best described as a
 hybrid kernel: it is capable of loading and unloading code as
 microkernels do, but runs almost exclusively in supervisor mode, as
@@ -53,10 +53,10 @@ advantages too: it may have a smaller footprint as you can download and
 build just the parts you need and dependencies are clearer.
 
 When stored on disk most kernel images are compressed to save space.
-There are two types of compressed kerneltypes: `zImage` and `bzImage`.
+There are two types of compressed kernel types: `zImage` and `bzImage`.
 
 `zImage` and `bzImage` files have different layouts and loading
-algorithms. The maximum allowed kernelsize for a `zImage` is 512Kb,
+algorithms. The maximum allowed kernel size for a `zImage` is 512Kb,
 where a `bzImage` does not pose this limit. As a result the `bzImage`
 kernel is the preferred image type for larger kernels. `zImage` will be
 loaded in low memory and `bzImage` can also be loaded in high memory if
@@ -64,7 +64,7 @@ needed.
 
 **Note**
 Both `zImage` and `bzImage` use gzip compression. The "bz" in `bzImage`
-refers to "*big zImage*" NDASH not to the "bzip" compression algorithm.
+refers to "*big zImage*" - not to the "bzip" compression algorithm.
 
 ##  Overview of numbering schemes for kernels and patches 
 
