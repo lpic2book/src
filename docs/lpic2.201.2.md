@@ -785,8 +785,7 @@ sources or both. When adding modules to DKMS this way it is important
 that the archive also contains a valid `dkms.conf` file. Using the
 `dkms mktarball` command, such an archive can be created based on
 modules extracted from the current system. This tarball archive can then
-be imported to the source tree using the DKMSdkms command `dkms`
-`ldtarball` command.
+be imported to the source tree using the `dkms ldtarball` command.
 
 ##  Dracut
 
