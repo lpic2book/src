@@ -20,7 +20,7 @@ jobs:
         run: bin/inject_pdf.sh
       - name: Create PDF
         run: mkdocs build
-       - uses: actions/upload-artifact@v3
-         with:
-           name: pdf-version
-           path: ./site/pdf/lpic2book.pdf
+      - uses: actions/upload-artifact@v3
+        with:
+          name: pdf-version
+          path: ./site/pdf/lpic2book.pdf
