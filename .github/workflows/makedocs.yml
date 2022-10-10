@@ -5,7 +5,7 @@ on:
       - main
 
 jobs:
-  build:
+  build_publish:
     name: Deploy docs
     runs-on: ubuntu-latest
     steps:
@@ -16,9 +16,18 @@ jobs:
         with:
           python-version: 3.x
 
-      - name: Install requirements
-        run: pip install -r requirements.txt
+      - name: Install requirements with PDF
+        run: pip install -r requirements.txt -r pdf_requirements.txt
+      - name: Inject plugin
+        run: bin/inject_pdf.sh
+
       - name: Deploy docs
         run: mkdocs gh-deploy --force
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: pdf-version
+          path: ./site/pdf/lpic2book.pdf
+
