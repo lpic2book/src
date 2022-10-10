@@ -15,7 +15,7 @@ jobs:
           python-version: 3.x
 
       - name: Install weasyprint requirements
-        run: apt-get install libharfbuzz0b libpangoft2-1.0-0
+        run: sudo apt-get install libharfbuzz0b libpangoft2-1.0-0
       - name: Install requirements with PDF
         run: pip install -r requirements.txt -r pdf_requirements.txt
       - name: Create PDF
