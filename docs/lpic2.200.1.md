@@ -1,7 +1,7 @@
-##  Measure and Troubleshoot Resource Usage 
+##  Measure and Troubleshoot Resource Usage
 
 
-###   Objectives 
+###   Objectives
 
 
 Candidates should be able to measure hardware resource and network
@@ -25,7 +25,7 @@ bandwidth, identify and troubleshoot resource problems.
 
 -   Estimate throughput and identify bottlenecks in a system including
     networking
-    
+
 ###     Terms and utilities:
 
 
@@ -75,7 +75,7 @@ like `iostat`, `sar`, `mpstat`, etc. The Debian `procps` package contains
 utilities like `free`, `uptime`, `vmstat`, `w`, `sysctl` etc.
 
 The `iostat` command is used for monitoring system input/output
-(I/O) device load. This is done by observing the *time* the 
+(I/O) device load. This is done by observing the *time* the
 devices are active in relation to their *average* transfer
 rates. Without any options, the `iostat` command displays
 statistics since the last system reboot. When interval and count
@@ -85,8 +85,8 @@ used to suppress statistics since the last reboot.
 
 Usage:
 
-        $ iostat options interval count 
-                
+        $ iostat options interval count
+
 
 Examples:
 
@@ -125,7 +125,7 @@ Examples:
 
         avg-cpu:  %user   %nice %system %iowait  %steal   %idle
         9.16    0.05   17.01    1.37    0.00   72.42
-                
+
 
 ##  iotop
 
@@ -144,7 +144,7 @@ sampling period is displayed at the top of the interface.
 Usage:
 
         $ iotop options
-                
+
 
 Example:
 
@@ -159,18 +159,18 @@ Example:
         2 be/4 root        0.00 B/s    0.00 B/s  0.00 %  0.00 % [kthreadd]
         3 be/4 root        0.00 B/s    0.00 B/s  0.00 %  0.00 % [ksoftirqd/0]
         5 be/0 root        0.00 B/s    0.00 B/s  0.00 %  0.00 % [kworker/0:0H]
-                
+
 
 ##  vmstat
 
 
-The `vmstat` command reports virtual memory statistics about processes, memory, paging, 
+The `vmstat` command reports virtual memory statistics about processes, memory, paging,
 block I/O, traps, and CPU utilization.
 
 Usage:
 
         $ vmstat options delay count
-                
+
 
 Example:
 
@@ -179,7 +179,7 @@ Example:
         r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa
         0  0      0 109112  33824 242204    0    0   603    26  196  516  7 11 81  1
         0  0      0 109152  33824 242204    0    0     0     2  124  239  0  1 98  0
-                
+
 
 Please beware that the first row will always show average measurements
 since the machine has booted, and should therefore be neglected. Values
@@ -285,7 +285,7 @@ The results are dependant on the first argument:
 -   `--statistics, -s` - lists a summary of statistics for each
     protocol, similar to SNMP output
 
--   `--masquerade, -M` - lists masqueraded connections on pre-2.4 kernels. 
+-   `--masquerade, -M` - lists masqueraded connections on pre-2.4 kernels.
     On newer kernels, use `cat /proc/net/ip_conntrack` instead. In order for
     this to work, the *ipt\_MASQUERADE* kernel module has to be loaded.
     This applies to 2.x and 3.x kernels.
@@ -293,7 +293,7 @@ The results are dependant on the first argument:
 Usage:
 
         $ netstat address_family_options options
-                
+
 
 Examples:
 
@@ -320,7 +320,7 @@ Examples:
         tcp6       0      0 [::]:ssh                [::]:*                  LISTEN
         tcp6       0      0 localhost:smtp          [::]:*                  LISTEN
         tcp6       0      0 [::]:32831              [::]:*                  LISTEN
-                
+
 
 ##  ss
 
@@ -338,17 +338,17 @@ sockets and helps you find the possible causes of a performance problem.
 Usage:
 
         $ ss options filter
-                
+
 
 Example:
 
         $ ss -t -a
-        State      Recv-Q Send-Q              Local Address:Port             Peer Address:Port                
-        LISTEN     0      5                   192.168.122.1:domain                  *:*                    
-        LISTEN     0      128                             *:ssh                     *:*                    
-        LISTEN     0      128                     127.0.0.1:ipp                     *:*                    
-        LISTEN     0      100                     127.0.0.1:smtp                    *:*                    
-                
+        State      Recv-Q Send-Q              Local Address:Port             Peer Address:Port
+        LISTEN     0      5                   192.168.122.1:domain                  *:*
+        LISTEN     0      128                             *:ssh                     *:*
+        LISTEN     0      128                     127.0.0.1:ipp                     *:*
+        LISTEN     0      100                     127.0.0.1:smtp                    *:*
+
 
 ##  iptraf
 
@@ -367,12 +367,12 @@ packet warnings.
 Usage:
 
         $ iptraf options
-                
+
 
 Example:
 
         $ iptraf
-                
+
 
 ![ The `iptraf` window. ](images/200-iptraf.jpg)
 
@@ -382,7 +382,7 @@ Example:
 Usage:
 
         $ ps options
-                
+
 
 The `ps` command shows a list of the processes currently running. These
 are the same processes which are being shown by the `top` command. The
@@ -416,7 +416,7 @@ Examples:
         root         4     2  0 02:02 ?        00:00:01 [kworker/0:0]
         root         6     2  0 02:02 ?        00:00:00 [migration/0]
         root         7     2  0 02:02 ?        00:00:00 [watchdog/0]
-                
+
 
 ##  pstree
 
@@ -436,7 +436,7 @@ for a given process.
 Usage:
 
         $ pstree options pid|username
-                
+
 
 Example:
 
@@ -445,7 +445,7 @@ Example:
                        |-bash---man---pager
                        |-gnome-pty-helpe
                        `-3*[{gnome-terminal}]
-                
+
 
 ##  w
 
@@ -457,7 +457,7 @@ by the `uptime` command.
 Usage:
 
         $ w options user
-                
+
 
 Example:
 
@@ -466,7 +466,7 @@ Example:
         USER     TTY      FROM              IDLE WHAT
         user     tty9     :0                49:51  gdm-session-worker [pam/gdm3]
         user     pts/0    :0                0.00s w -s
-                
+
 
 Option `-s` stands for "short format".
 
@@ -486,7 +486,7 @@ manpages for detailed usage and the possibilities.
 Usage:
 
         $ lsof options names
-                
+
 
 The names argument acts as a filter here. Without options, `lsof` will
 display *all* open files belonging to *all* active processes.
@@ -507,7 +507,7 @@ Examples:
         rsyslogd 2039 root    8w   REG    8,1    68368 271271 /var/log/debug
         rsyslogd 2039 root    9w   REG    8,1     7888 271270 /var/log/user.log
         Xorg     4041 root    0r   REG    8,1    31030 262393 /var/log/Xorg.0.log
-                
+
 
 This last example causes `lsof` to search for all open instances of
 directory `/var/log` and the files and directory it contains at its top
@@ -526,7 +526,7 @@ display the memory used for tmpfs (shmem in /proc/meminfo)
 Usage:
 
         $ free  options
-                
+
 
 Example:
 
@@ -535,7 +535,7 @@ Example:
         Mem:          502M       489M        13M        50B        44M       290M
         -/+ buffers/cache:       154M       347M
         Swap:         382M       3.9M       379M
-                
+
 
 ##  top
 
@@ -545,7 +545,7 @@ The `top` command provides a "dynamic real-time view" of a running system.
 Usage:
 
                     $ top options
-                
+
 
 Example:
 
@@ -559,7 +559,7 @@ Example:
           PID USER      PR  NI  VIRT  RES  SHR S  %CPU %MEM    TIME+  COMMAND
          4041 root      20   0  106m  31m 9556 R  30.4  6.3   3:05.58 Xorg
          4262 user      20   0  527m  71m  36m S  18.2 14.3   2:04.42 gnome-shell
-                
+
 
 Because of its interactive mode, the most important keys while operating
 `top` are the *help* keys `h` or `?` and the *quit* key `q`. The
@@ -575,14 +575,14 @@ keys and their equivalent alternatives:
         PgDn     alt + Down   or  alt + ctrl + j
         Home     alt + Left   or  alt + ctrl + h
         End      alt + Right  or  alt + ctrl + l
-                
+
 
 ##  htop
 
 Usage:
 
         $ htop options
-                
+
 
 The `htop` command is similar to the `top` command, but allows you to
 scroll vertically and horizontally, so you can see all the processes
@@ -593,7 +593,7 @@ their PIDs.
 Example:
 
         $ htop
-                
+
 
 ![ The `htop` window. ](images/200-htop.jpg)
 
@@ -608,13 +608,13 @@ version information.
 Usage:
 
         $ uptime options
-                
+
 
 Example:
 
         $ uptime
         03:03:12 up  1:00,  2 users,  load average: 0.17, 0.18, 0.16
-                
+
 
 ##  sar
 
@@ -623,8 +623,8 @@ The `sar` command collects, reports or saves system activity information.
 
 Usage:
 
-        $ sar options interval count 
-                
+        $ sar options interval count
+
 
 Examples:
 
@@ -641,7 +641,7 @@ Examples:
         02:55:01    all      0.66      0.00      4.64      0.03      0.00     94.67
         03:05:02    all      0.66      0.00      5.57      0.01      0.00     93.76
         Average:    all      0.64      0.14      4.19      0.06      0.00     94.98
-                
+
 
 Without options, sar will output the statistics above.
 
@@ -653,7 +653,7 @@ Using the `-d` option sar will output disk statistics.
         07:05:01  dev8-0     2.08     17.73     17.78     17.06     0.00    2.19    0.94    0.20
         07:15:01  dev8-0     1.50     12.16     12.96     16.69     0.00    1.35    0.68    0.10
         Average:  dev8-0     3.49     85.63     30.14     33.15     0.01    2.36    1.19    0.42
-                
+
 
 The `-b` option switch shows output related to I/O and transfer rate
 statistics:
@@ -664,7 +664,7 @@ statistics:
         07:05:01     2.08      0.95      1.13     17.73     17.78
         07:15:01     1.50      0.50      1.00     12.16     12.96
         Average:     3.49      1.99      1.50     85.63     30.14
-                
+
 
 Some of the most important options to be used with `sar` are:
 
@@ -736,7 +736,7 @@ Examples:
         $ vmstat
         $ iostat
         $ netstat
-                
+
 
 Identifying bottlenecks in a networking environment requires several
 steps. A best practice approach could be outlined as follows:
