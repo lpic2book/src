@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# https://github.com/lpic2book/src/issues/30
 cd docs &&
 pandoc --pdf-engine=xelatex \
   -V lang="en-us" -V babel-lang=english \
