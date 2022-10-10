@@ -17,10 +17,8 @@ jobs:
       - name: Install requirements with PDF
         run: pip install -r requirements.txt -r pdf_requirements.txt
       - name: Inject plugin
-        run: sed -i 's/#  - with-pdf/  - with-pdf/' mkdocs.yml 
+        run: sed -i 's/^plugins:/plugins:\n  - with-pdf:\n    output_path: site\/lpic2book.pdf/' mkdocs.yml 
       - name: Create PDF
         run: mkdocs build
-      - uses: actions/upload-artifact@v3
-        with:
-          name: my-artifact
-          path: site/pdf/document.pdf
+      - name: Debug
+        run: find site -name "*.pdf"

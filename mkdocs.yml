@@ -8,20 +8,22 @@ markdown_extensions:
   - admonition
   - codehilite:
       guess_lang: false
+# Plugins
+# 
+# Do not include "- with-pdf" unless using locally
+# Github action will inject this
 plugins:
   - search:
       separator: '[\s\-\.]+'
       lang:
         - nl
         - en
+  - minify:
+      minifi_html: true
 # Not supported by mkdocs action
 #  - git-revision-date-localized:
 #      type: timeago
 #  - awesome-pages
-  - minify:
-      minifi_html: true
-# Leave with-pdf uncommented, action will take care of this
-#  - with-pdf
 markdown_extensions:
   - admonition
   - attr_list
