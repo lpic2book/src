@@ -1,0 +1,123 @@
+site_name: The LPIC2 Exam Prep
+site_author: Sue B.V., The Netherlands
+copyright: Copyright &copy; 1997-2021 Sue B.V., The Netherlands - Open Sourced 2021
+markdown_extensions:
+  - toc:
+      permalink: True
+      toc_depth: 4
+  - admonition
+  - codehilite:
+      guess_lang: false
+plugins:
+  - search:
+      separator: '[\s\-\.]+'
+      lang:
+        - nl
+        - en
+# Not supported by mkdocs action
+#  - git-revision-date-localized:
+#      type: timeago
+#  - awesome-pages
+  - minify:
+      minifi_html: true
+markdown_extensions:
+  - admonition
+  - attr_list
+  - codehilite:
+      linenums: true
+  - footnotes
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+theme:
+  name: 'material'
+  features:
+    - search.highlight
+    - tabs
+    - instant
+  language: 'en'
+  icon:
+    logo: material/book
+  palette:
+    primary: light blue
+    accent: light blue
+  font:
+    text: Nunito
+    code: Anonymous Pro
+  language: 'en'
+repo_url: https://github.com/lpic2book/src
+repo_name: LPIC2Book
+edit_uri: edit/main/docs
+nav: 
+  - The LPIC2 Exam Prep: 'index.md'
+  - About this book: 'lpicbook_about.md'
+  - 200 Capacity Planning (200): 'lpic2.200.0.md'
+  - Measure and Troubleshoot Resource Usage (200.1) : 'lpic2.200.1.md'
+  - Predict Future Resource Needs (200.2) : 'lpic2.200.2.md'
+  - Linux Kernel (201) : 'lpic2.201.0.md'
+  - Kernel Components (201.1): 'lpic2.201.1.md'
+  - Compiling a Linux kernel (201.2) : 'lpic2.201.2.md'
+  - Kernel runtime management and troubleshooting (201.3): 'lpic2.201.3.md'
+  - System Startup (202): 'lpic2.202.0.md'
+  - Customizing system startup (202.1): 'lpic2.202.1.md'
+  - System recovery (202.2): 'lpic2.202.2.md'
+  - Alternate Bootloaders (202.3): 'lpic2.202.3.md'
+  - Filesystem and Devices (203): 'lpic2.203.0.md'
+  - Operating The Linux Filesystem (203.1): 'lpic2.203.1.md'
+  - Maintaining a Linux Filesystem (203.2): 'lpic2.203.2.md'
+  - Creating And Configuring Filesystem Options (203.3): 'lpic2.203.3.md'
+  - Advanced Storage Device Administration (204): 'lpic2.204.0.md'
+  - Configuring RAID (204.1): 'lpic2.204.1.md'
+  - Adjusting Storage Device Access (204.2): 'lpic2.204.2.md'
+  - Logical Volume Manager (204.3): 'lpic2.204.3.md'
+  - Configuring PCMCIA Devices (204.4): 'lpic2.204.4.md'
+  - Networking Configuration (205): 'lpic2.205.0.md'
+  - Basic Networking Configuration (205.1): 'lpic2.205.1.md'
+  - Advanced Network Configuration and Troubleshooting (205.2): 'lpic2.205.2.md'
+  - Troubleshooting network issues (205.3): 'lpic2.205.3.md'
+  - System Maintenance (206): 'lpic2.206.0.md'
+  - Make and install programs from source (206.1): 'lpic2.206.1.md'
+  - Backup Operations (206.2): 'lpic2.206.2.md'
+  - Notifying users on system-related issues (206.3): 'lpic2.206.3.md'
+  - Domain Name Server (207): 'lpic2.207.0.md'
+  - Basic DNS server configuration (207.1): 'lpic2.207.1.md'
+  - Create and maintain DNS zones (207.2): 'lpic2.207.2.md'
+  - Securing a DNS Server (207.3): 'lpic2.207.3.md'
+  - HTTP Services (208): 'lpic2.208.0.md'
+  - Basic Apache Configuration (208.1): 'lpic2.208.1.md'
+  - Apache configuration for HTTPS (208.2): 'lpic2.208.2.md'
+  - Implementing Squid as a caching proxy (208.3): 'lpic2.208.3.md'
+  - Implementing Nginx as a web server and a reverse proxy (208.4): 'lpic2.208.4.md'
+  - File Sharing (209): 'lpic2.209.0.md'
+  - SAMBA Server Configuration (209.1): 'lpic2.209.1.md'
+  - Configuring an NFS Server (209.2): 'lpic2.209.2.md'
+  - Network Client Management (210): 'lpic2.210.0.md'
+  - DHCP Configuration (210.1): 'lpic2.210.1.md'
+  - PAM authentication (210.2): 'lpic2.210.2.md'
+  - LDAP client usage (210.3): 'lpic2.210.3.md'
+  - Configuring an OpenLDAP server (210.4): 'lpic2.210.4.md'
+  - E-Mail services (211): 'lpic2.211.0.md'
+  - Using e-mail servers (211.1): 'lpic2.211.1.md'
+  - Managing E-Mail Delivery (211.2): 'lpic2.211.2.md'
+  - Managing Mailbox Access (211.3): 'lpic2.211.3.md'
+  - System Security (212): 'lpic2.212.0.md'
+  - Configuring a router (212.1): 'lpic2.212.1.md'
+  - Managing FTP servers (212.2): 'lpic2.212.2.md'
+  - Secure shell (SSH) (212.3): 'lpic2.212.3.md'
+  - Security tasks (212.4): 'lpic2.212.4.md'
+  - OpenVPN (212.5): 'lpic2.212.5.md'
