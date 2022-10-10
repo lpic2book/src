@@ -8,4 +8,4 @@ pandoc --pdf-engine=xelatex \
          -V 'monofont:DejaVuSansMono.ttf' \
          -V 'mathfont:texgyredejavu-math.otf' \
          --include-before-body cover.tex \
---toc -s *.md   -t pdf -o  ../dist/lpic2.pdf && open ../dist/lpic2.pdf
+         --toc -s *.md   -t pdf -o  ../dist/lpic2.pdf
