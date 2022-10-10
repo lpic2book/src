@@ -19,7 +19,7 @@ jobs:
       - name: Install yq
         run: sudo apt install yq
       - name: Inject plugin
-        run: yq e -i '.plugins += {"with-pdf": {"output_path": "./site/lpic2book.pdf"}}' mkdocs.yaml
+        run: bin/inject_pdf.sh
       - name: Create PDF
         run: mkdocs build
       - name: Debug
