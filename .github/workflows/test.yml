@@ -14,10 +14,10 @@ jobs:
         with:
           python-version: 3.x
 
-      - name: Install weasyprint requirements
-        run: sudo apt-get install libharfbuzz0b libpangoft2-1.0-0
       - name: Install requirements with PDF
         run: pip install -r requirements.txt -r pdf_requirements.txt
+      - name: Inject plugin
+        run: sed -i '.sedbck' 's/^plugins:/plugins:\n  - with-pdf/' mkdocs.yml 
       - name: Create PDF
         run: mkdocs build
       - name: Debug
