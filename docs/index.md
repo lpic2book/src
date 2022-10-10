@@ -16,6 +16,9 @@ output:
 !!! warning "Update your bookmark!"
     "The former `https://lpic2...` URL might no longer be available."
 
+!!! info "A PDF version is also available"
+    [https://lpic2book.github.io/src/pdf/lpic2book.pdf](https://lpic2book.github.io/src/pdf/lpic2book.pdf)
+
 Written, updated and reviewed by many past and present colleagues @ Sue B.V., Geldermalsen, The Netherlands.
 
 Donated in 2021 to the community for many more updates and reviews.
