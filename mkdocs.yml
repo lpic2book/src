@@ -12,6 +12,7 @@ markdown_extensions:
 # 
 # Do not include "- with-pdf" unless using locally
 # Github action will inject this
+# not pre-setting with-pdf as this requires additional resources
 plugins:
   - search:
       separator: '[\s\-\.]+'
