@@ -1,0 +1,38 @@
+name: Test book generation
+
+on:
+  push:
+
+jobs:
+  verify:
+    name: Verify docs and PDF generation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v2
+      - name: Python setup
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+
+      - name: Install requirements
+        run: pip install -r requirements.txt
+
+      - name: Test generate docs
+        run: mkdocs build
+
+      - name: Install PDF requirements
+        run: pip install -r pdf_requirements.txt
+
+      - name: Inject plugin
+        run: bin/inject_pdf.sh
+
+      - name: Test generate PDF & docs
+        run: mkdocs build
+
+      - name: Provide PDF as artefact of build
+        uses: actions/upload-artifact@v3
+        with:
+          name: pdf-version
+          path: ./site/pdf/lpic2book.pdf
+
