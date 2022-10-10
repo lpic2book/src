@@ -16,8 +16,10 @@ jobs:
 
       - name: Install requirements with PDF
         run: pip install -r requirements.txt -r pdf_requirements.txt
+      - name: Install yq
+        run: sudo apt install yq
       - name: Inject plugin
-        run: sed -i 's/^plugins:/plugins:\n  - with-pdf:\n    output_path: site\/lpic2book.pdf/' mkdocs.yml 
+        run: yq e -i '.plugins += {"with-pdf": {"output_path": "./site/lpic2book.pdf"}}' mkdocs.yaml
       - name: Create PDF
         run: mkdocs build
       - name: Debug
