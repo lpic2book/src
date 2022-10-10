@@ -20,9 +20,7 @@ jobs:
         run: sed -i 's/#  - with-pdf/  - with-pdf/' mkdocs.yml 
       - name: Create PDF
         run: mkdocs build
-      - name: Debug
-        run: ls -Ralrt
-#      - uses: actions/upload-artifact@v3
-#        with:
-#          name: my-artifact
-#          path: path/to/pdf/
+      - uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact
+          path: site/pdf/document.pdf
