@@ -1,0 +1,28 @@
+name: Publish docs via GitHub Pages
+on:
+  push:
+
+jobs:
+  build_artefact_pdf:
+    name: Build and artefact PDF
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v2
+      - name: Python setup
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+
+      - name: Install weasyprint requirements
+        run: apt-get install libharfbuzz0b libpangoft2-1.0-0
+      - name: Install requirements with PDF
+        run: pip install -r requirements.txt -r pdf_requirements.txt
+      - name: Create PDF
+        run: mkdocs build
+      - name: Debug
+        run: ls -alrt
+#      - uses: actions/upload-artifact@v3
+#        with:
+#          name: my-artifact
+#          path: path/to/pdf/
