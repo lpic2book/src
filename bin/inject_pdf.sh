@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-yq e -i '.plugins += {"with-pdf": {"output_path": "./site/lpic2book.pdf"}}' mkdocs.yaml
+sed -i 's/^plugins:/plugins:\n  - with-pdf:\n    output_path: ./site\/pdf\/lpic2book.pdf/' mkdocs.yml 
