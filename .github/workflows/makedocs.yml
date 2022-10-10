@@ -16,33 +16,18 @@ jobs:
         with:
           python-version: 3.x
 
-      - name: Install requirements
-        run: pip install -r requirements.txt
+      - name: Install requirements with PDF
+        run: pip install -r requirements.txt -r pdf_requirements.txt
+      - name: Inject plugin
+        run: bin/inject_pdf.sh
+
       - name: Deploy docs
         run: mkdocs gh-deploy --force
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  build_artefact_pdf:
-    name: Build and artefact PDF
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout main
-        uses: actions/checkout@v2
-      - name: Python setup
-        uses: actions/setup-python@v2
+      - uses: actions/upload-artifact@v3
         with:
-          python-version: 3.x
+          name: pdf-version
+          path: ./site/pdf/lpic2book.pdf
 
-      - name: Install weasyprint requirements
-        run: apt-get install libharfbuzz0b libpangoft2-1.0-0
-      - name: Install requirements with PDF
-        run: pip install -r requirements.txt -r pdf_requirements.txt
-      - name: Create PDF
-        run: mkdocs build
-      - name: Debug
-        run: ls -alrt
-#      - uses: actions/upload-artifact@v3
-#        with:
-#          name: my-artifact
-#          path: path/to/pdf/
