@@ -95,7 +95,7 @@ LDIF
             <attrtype>: <attrvalue>
                                 
 
-    Each entry can contain as many \<attrtype\>: \<attrvalue\> pairs as
+    Each entry can contain as many `<attrtype>: <attrvalue>` pairs as
     needed. A blank line indicates the end of an entry. A line may be
     broken and continued (folded) by indenting the continued portion of
     the line. For example, the following two statements are identical:
@@ -107,12 +107,12 @@ LDIF
              c=com
 
     **Note**
-    All \<attrtype\> and \<attrvalue\> pairs must be defined in a
+    All `<attrtype>` and `<attrvalue>` pairs must be defined in a
     corresponding schema file to use this information.
 
-    Any value enclosed within a \"\<\" and a \"\>\" is a variable and
+    Any value enclosed within a `<` and a `>` is a variable and
     can be set whenever a new LDAP entry is created. This rule does not
-    apply, however, to \<id\>. The \<id\> is a number determined by the
+    apply, however, to `<id>`. The `<id>` is a number determined by the
     application used to edit the entry.
 
 ldapsearch
