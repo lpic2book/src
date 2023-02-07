@@ -1,3 +1,2 @@
 mkdocs-with-pdf==0.9.3
 weasyprint==57.2
-pango==0.7.6
