@@ -4,14 +4,17 @@
   "packageRules": [
     {
       "matchManagers": ["github-actions"],
+      "addLabels": ["dependencies", "github-actions"],
       "automerge": true
     },
     {
       "matchManagers": ["pip_requirements", "poetry", "setup-cfg"],
+      "addLabels": ["dependencies", "python"],
       "automerge": true
     },
     {
       "matchManagers": ["pre-commit"],
+      "addLabels": ["dependencies"],
       "automerge": true
     }
   ],
