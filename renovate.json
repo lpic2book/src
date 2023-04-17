@@ -1,0 +1,19 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:base", ":dependencyDashboard", "schedule:daily"],
+  "packageRules": [
+    {
+      "matchManagers": ["github-actions"],
+      "automerge": true
+    },
+    {
+      "matchManagers": ["pip_requirements", "poetry", "setup-cfg"],
+      "automerge": true
+    },
+    {
+      "matchManagers": ["pre-commit"],
+      "automerge": true
+    }
+  ],
+  "timezone": "Europe/Amsterdam"
+}
