@@ -63,7 +63,7 @@ bandwidth, identify and troubleshoot resource problems.
 
 -   blocks out
 
--   networknetwork
+-   network
 
 ##  iostat
 
@@ -72,7 +72,7 @@ bandwidth, identify and troubleshoot resource problems.
 Depending on the version of your Linux distribution it may
 be necessary to install a package like Debian `sysstat` to access tools
 like `iostat`, `sar`, `mpstat`, etc. The Debian `procps` package contains
-utilities like `free`, `uptime`, `vmstat`, `w`, `sysctl` etc.
+utilities like `free`, `uptime`, `vmstat`, `w`, `sysctl`, etc.
 
 The `iostat` command is used for monitoring system input/output
 (I/O) device load. This is done by observing the *time* the
@@ -187,7 +187,7 @@ which are related to memory and I/O are expressed in kilobytes (1024
 bytes). Old (pre-2.6) kernels might report blocks as 512, 2048 or 4096
 bytes instead. Values related to CPU measurements are expressed as a
 percent of *total* CPU time. Keep this in mind when interpreting
-measurements from a multi-CPU system. - on these systems `vmstat`
+measurements from a multi-CPU system, as on these systems `vmstat`
 averages the number of CPUs into the output. All five CPU fields should
 add up to a total of 100% for each interval shown. This is independent
 of the number of processors or cores. In other words: `vmstat` can NOT
@@ -544,12 +544,12 @@ The `top` command provides a "dynamic real-time view" of a running system.
 
 Usage:
 
-                    $ top options
+        $ top options
 
 
 Example:
 
-                    $ top
+        $ top
         top - 03:01:24 up 59 min,  2 users,  load average: 0.15, 0.19, 0.16
         Tasks: 117 total,   2 running, 115 sleeping,   0 stopped,   0 zombie
         %Cpu(s):  0.9 us,  4.5 sy,  0.1 ni, 94.3 id,  0.1 wa,  0.0 hi,  0.1 si,  0.0 st
@@ -682,7 +682,7 @@ Some of the most important options to be used with `sar` are:
 To troubleshoot a given problem, one must first be able to distinguish
 *normal* system behaviour from *abnormal* system behaviour.
 
-In the [previous section](#lpic2.200.1), a number of very specific
+In the [previous section](#terms-and-utilities), a number of very specific
 system utilities as well as their utilization is explained. In this
 section, the focus lies on correlating these measurements and being able
 to detect anomalies, which in turn can be tied to abnormal system
