@@ -4,7 +4,7 @@ Book originally available through lpic2.unix.nl written and copyrighted by [Sue 
 
 Donated and open-sourced in 2021 for community maintenance.
 
-Start learning at [https://lpic2book.github.io/src](/https://lpic2book.github.io/src/)
+Start learning at [https://lpic2book.github.io/src](https://lpic2book.github.io/src/)
 
 ## Initial open-source release (mid 2021)
 
