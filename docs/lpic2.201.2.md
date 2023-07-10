@@ -72,7 +72,7 @@ The used version numbering convention for the 3.0 and 4.0 kernel is
 
 -   C is the patch number
 
-See the paragraph on [Kernel Versioning](lpic2.201.1/#overview-of-numbering-schemes-for-kernels-and-patches) to learn more about the
+See the paragraph on [Kernel Versioning](../lpic2.201.1/#overview-of-numbering-schemes-for-kernels-and-patches) to learn more about the
 various conventions that are and have been in use.
 
 A common location to store and unpack kernel sources is `/usr/src`. You
@@ -341,7 +341,7 @@ others.
 
 The `zImage` and `bzImage` arguments both effectively build the kernel.
 The difference between these two is explained in
-[Different types of kernel images](lpic2.201.1/#different-types-of-kernel-images).
+[Different types of kernel images](../lpic2.201.1/#different-types-of-kernel-images).
 
 After the compile process the kernel image can be found in the
 `/usr/src/linux/arch/i386/boot` directory (on i386 systems).
@@ -380,7 +380,7 @@ configure the bootmanager (GRUB) so it will be able to boot the new
 kernel.
 
 For more specific information on GRUB, please refer to
-[grub](lpic2.202.2/#grub-explained).
+[grub](../lpic2.202.2/#grub-explained).
 
 ##  The initial ram disk (`initrd`)
 
