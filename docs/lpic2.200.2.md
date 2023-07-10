@@ -33,7 +33,7 @@ The following is a partial list of used files, terms and utilities:
 
 Using the tools and knowledge presented in the previous two chapters, it
 should be possible to diagnose the usage of resources for specific
-components or processes. One of the tools mentioned was [`sar`](https://lpic2book.github.io/src/lpic2.200.1/#sar),
+components or processes. One of the tools mentioned was [`sar`](lpic2.200.1/#sar),
 which is capable of recording measurements over a longer period of time.
 Being able to use the recorded data for trend analysis is one of the
 advantages of using a tool that is able to log measurements.
