@@ -121,7 +121,7 @@ fourth release candidate of the `3.2` kernel.
 
 In April 2015 kernel version 4.0.0 was released. The versioning system
 didn't change this time. At the time of this writing, kernel version
-`4.9.2` is the latest stable version available through
+`6.4.2` is the latest stable version available through
 <https://kernel.org>. The 4.x kernel did however introduce a couple of
 new features. The possibility to perform "Live Patching" being one of
 the more noteworthy ones. Live patching offers the possibility to
