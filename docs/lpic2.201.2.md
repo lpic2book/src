@@ -72,7 +72,7 @@ The used version numbering convention for the 3.0 and 4.0 kernel is
 
 -   C is the patch number
 
-See the paragraph on [???](#KernelVersioning) to learn more about the
+See the paragraph on [Kernel Versioning](../lpic2.201.1/#overview-of-numbering-schemes-for-kernels-and-patches) to learn more about the
 various conventions that are and have been in use.
 
 A common location to store and unpack kernel sources is `/usr/src`. You
@@ -341,7 +341,7 @@ others.
 
 The `zImage` and `bzImage` arguments both effectively build the kernel.
 The difference between these two is explained in
-[Different types of kernel images](https://lpic2book.github.io/src/lpic2.201.1/#different-types-of-kernel-images).
+[Different types of kernel images](../lpic2.201.1/#different-types-of-kernel-images).
 
 After the compile process the kernel image can be found in the
 `/usr/src/linux/arch/i386/boot` directory (on i386 systems).
@@ -380,7 +380,7 @@ configure the bootmanager (GRUB) so it will be able to boot the new
 kernel.
 
 For more specific information on GRUB, please refer to
-[grub](#lpic2.202.grub).
+[grub](../lpic2.202.2/#grub-explained).
 
 ##  The initial ram disk (`initrd`)
 
@@ -501,9 +501,7 @@ the device node that will be used when the `initrd` is active.
                 
 
 Next, copy all files you think are necessary to the image; modules,
-scripts, binaries, it does not matter. Refer to
-[???](#minimal.dirs.needed) for an example of the directories and files
-needed at minimum. One of the most important files to copy over is
+scripts, binaries, it does not matter. One of the most important files to copy over is
 `/linuxrc`. Whenever the kernel is set up to use a `initrd` image it
 will search for a file `/linuxrc` and execute it. It can be a
 script or a compiled binary. Hence, what will happen after mounting your
@@ -604,7 +602,7 @@ The common options for the `patch` utility: patch
 
 -p`number`; `--strip=number`
 
--   patch-p patch\--strip Strip the smallest prefix containing `number`
+-   Strip the smallest prefix containing `number`
     leading slashes from each file name found in the patch file. A
     sequence of one or more adjacent slashes is counted as a single
     slash. This controls how file names found in the patch file are
@@ -616,15 +614,14 @@ The common options for the `patch` utility: patch
 
 `-s`; `--silent`; `--quiet`
 
--   patch-s patch\--silent patch\--quiet Work silently (suppress
-    output), unless an error occurs.
+-   Work silently (suppress output), unless an error occurs.
 
 `-E`; `--remove-empty-files`
 
--   patch-E patch\--remove-empty-files Remove output files that are
-    empty after the patches have been applied. Normally this option is
-    unnecessary, since patch can examine the time stamps on the header
-    to determine whether a file should exist after patching. However, if
+-   Remove output files that are empty after the patches have been
+    applied. Normally this option is unnecessary, since patch
+    can examine the time stamps on the header to determine
+    whether a file should exist after patching. However, if
     the input is not a context diff or if patch conforms to the POSIX
     specification, patch does not remove empty patched files unless this
     option is given. When patch removes a file, it also attempts to
@@ -632,8 +629,8 @@ The common options for the `patch` utility: patch
 
 `-R`; `--reverse`
 
--   patch-R patch\--reverse Assume that this patch was created with the
-    old and new files reversed, so that you are basically applying the
+-   Assume that this patch was created with the old and new
+    files reversed, so that you are basically applying the
     patch to the file which already contains the modifications in the
     patch file. The `patch` will attempt to swap each hunk around before
     applying it and rejects will come out in the swapped format. The
@@ -651,14 +648,11 @@ The common options for the `patch` utility: patch
     null context matches anywhere. Luckily, most patches add or change
     lines rather than delete them, so most reversed normal diffs begin
     with a delete, which fails, triggering the heuristic.
-    :::
 
 For more information consult the man-pages of the `diff` command and the
 `patch` command.
 
-Removing a kernel patch from a production kernel
-
-removing a patch
+### Removing a kernel patch from a production kernel
 
 A kernel patch can be removed from a production kernel by removing it
 from the production kernel source tree and compiling a new kernel. In
@@ -673,7 +667,7 @@ parameter:
 
 # DKMS
 
-\$ DKMS (Dynamic Kernel Module Support) was developed by Dell in 2003.
+DKMS (Dynamic Kernel Module Support) was developed by Dell in 2003.
 DKMS was created as a solution to combat software problems caused by the
 dependencies between kernels and kernel modules. As a vendor of computer
 systems running (amongst others) Linux operating systems, Dell offered
@@ -707,7 +701,7 @@ On Red Hat based Linux distributions:
 
 On Debian-based Linux distributions:
 
-                    $ apt-get install linux-headers-$(uname -r)
+        $ apt-get install linux-headers-$(uname -r)
                 
 
 Due to the adoption of DKMS amongst major Linux distributions, many
