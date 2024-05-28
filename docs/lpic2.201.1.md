@@ -174,7 +174,7 @@ Subdirectories that contain modules of a particular type exist under the
 for administrators, but also enables important functionality within the
 `modprobe` command.
 
-###   Typical mudule types 
+###   Typical module types 
 
 - block
 
