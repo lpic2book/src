@@ -12,3 +12,8 @@ Start learning at [https://lpic2book.github.io/src](https://lpic2book.github.io/
  - [x] Github actions for publication on github pages 
  - [x] Release on Github for community
  - [x] Include PDF release
+
+## Additional tools used
+
+- Github Actions
+- [![CodeRabbit.ai is Awesome](https://img.shields.io/badge/AI-orange?label=CodeRabbit&color=orange&link=https%3A%2F%2Fcoderabbit.ai)](https://coderabbit.ai)
