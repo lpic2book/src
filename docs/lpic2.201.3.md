@@ -123,7 +123,6 @@ card. To verify that this specific module exists, in this case
 `sym53c8xx.ko` exists, look for the file `sym53c8xx.ko` in the
 `/lib/modules/kernel-version/kernel/drivers/scsi/` directory:
 
-unresolved symbol
 
         # insmod sym53c8xx.ko
         # echo $?
