@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout main
-        uses: actions/checkout@v4.2.0
+        uses: actions/checkout@v4.2.1
       - name: Python setup
         uses: actions/setup-python@v5
         with:
