@@ -325,7 +325,7 @@ format a RAID drive:
     factors which may not allow the action to be performed truly online
     (i.e will require downtime).
 
-2.  create the array raidset using `mdadm`
+2.  Create the array raidset using `mdadm`
 
     To create an array for the first time, we need to have identified
     the partitions that will be used to form the RAIDset, and verify
@@ -345,7 +345,7 @@ format a RAID drive:
     using the `/dev/md0` device file, and formatted and mounted as
     normal. For example: `mkfs.ext3` `/dev/md0`.
 
-4.  create the `/etc/mdadm.conf` using the `mdadm` command.
+4.  Create the `/etc/mdadm.conf` using the `mdadm` command.
 
     Creating the `/etc/mdadm.conf` file is pleasantly simple, requiring
     only that `mdadm` be called with the `--scan`, `--verbose`, and
