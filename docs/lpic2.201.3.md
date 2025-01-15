@@ -914,13 +914,13 @@ highly dependant on the kernel verions, it is advisable to read both
 documentation and source before actually making adjustments. See also
 [the section on the `/proc` filesystem](#procfs).
 
-Some files are quit harmless and can safely be used to obtain
+Some files are quite harmless and can safely be used to obtain
 information, for instance to show the version of the running kernel:
 
      
         debian-601a:~$ cat /proc/sys/kernel/osrelease
 
-panic Some files can be used to *set* information in the kernel. For
+Some files can be used to *set* information in the kernel. For
 instance, the following will tell the kernel not to loop on a panic, but
 to auto-reboot after 20 seconds:
 
