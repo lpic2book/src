@@ -101,7 +101,7 @@ daemon. If you have several devices running under control of the same
 automount daemon - which is legit - but one of the devices fails, the
 daemon may hang or be suspended and other devices it controls might not
 be mounted properly either. Hence it is good practice to have every
-device under control ofits own automount daemon and so there should be
+device under control of its own automount daemon and so there should be
 just one device per supplementary file per entry in the
 `/etc/auto.master` file.
 

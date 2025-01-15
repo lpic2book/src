@@ -220,7 +220,7 @@ If none of these succeed, the kernel will panic.
 
 ###   The `init` process
 
-init` is the parent of all processes, it reads the file
+`init` is the parent of all processes, it reads the file
 `/etc/inittab` and creates processes based on its contents. One of the
 things it usually does is spawn `gettys` allowing users to log in. It
 also defines "runlevels".
@@ -238,12 +238,11 @@ a selected group of processes to exist. runlevel
 
 ####  runlevel 2-5
 
--   Runlevels 2,3,4 and 5 are multi-user runlevels. runlevel 2-5
-    multi-user runlevels
+-   Runlevels 2,3,4 and 5 are multi-user runlevels.
 
 ####  runlevel 6
 
--   Runlevel 6 is used to reboot the system. runlevel 6 reboot
+-   Runlevel 6 is used to reboot the system.
 
 ####  runlevel 7-9
 
@@ -270,7 +269,7 @@ a selected group of processes to exist. runlevel
 
 ###   Configuring `/etc/inittab`
 
-As mentioned before `init` reads the file /etc/inittab `/etc/inittab` to
+As mentioned before `init` reads the file `/etc/inittab` to
 determine what it should do. An entry in this file has the following
 format:
 
@@ -333,12 +332,12 @@ Included below is an example `/etc/inittab` file.
 
     - respawn
 
-       The process will be restarted whenever it terminates, respawn
+        - The process will be restarted whenever it terminates, respawn
         (e.g. getty). getty
 
     - wait
  
-      The process will be started once when the specified wait
+        - The process will be started once when the specified wait
         runlevel is entered and `init` will wait for its termination.
 
     - once
@@ -350,7 +349,7 @@ Included below is an example `/etc/inittab` file.
         - The process will be executed during system boot. The boot
         runlevels field is ignored.
 
-   - bootwait
+    - bootwait
 
         - The process will be executed during system boot, while bootwait
         `init` waits for its termination (e.g. `/etc/rc)`. The runlevels
@@ -452,7 +451,7 @@ in `/etc/init.d/`. Those directories are:
         /etc/rc0.d    /etc/rc2.d  /etc/rc4.d  /etc/rc6.d
                     
 
-As you can see, there also is a `/etc/rc.boot` /etc/rc.boot directory.
+As you can see, there also is a `/etc/rc.boot` directory.
 This directory is obsolete and has been replaced by the /etc/rcN.d
 directory `/etc/rcS.d`. At boot time, the directory `/etc/rcS.d` is
 scanned first and then, for backwards compatibility, the `/etc/rc.boot`.

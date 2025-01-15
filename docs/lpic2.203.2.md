@@ -43,7 +43,7 @@ Resources: [???](#bandel97); [???](#btrfs); the `man` pages for
 ###   Disk Checks
 
 Good disk maintenance requires periodic disk checks. Your best tool is
-`fsck`, and should be run at least fsck monthly. Default checks will
+`fsck`, and should be run at least monthly. Default checks will
 normally be run after 20 system reboots, but if your system stays up for
 weeks or months at a time, you'll want to force a check from time to
 time. Your best bet is performing routine system backups and checking
