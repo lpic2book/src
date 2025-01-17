@@ -733,7 +733,7 @@ variables and configurations files used by an executable.
             ...]]
 
 
-troubleshootingltrace Similar to the `strace`, that intercepts and
+Similar to the `strace`, that intercepts and
 records system calls, `ltrace` intercepts and records the dynamic
 library calls which are called by the executed process and the signals
 which are received by that process. The program to be traced need not be
@@ -778,10 +778,7 @@ When using an `initrd`, the system goes through the following steps:
 
 3.  The `initrd` image is mounted read-write as root
 
-4.  linuxrc
-    Linux
-    init
-    The `linuxrc` is executed (this can be any valid executable,
+4.  The `linuxrc` is executed (this can be any valid executable,
     including shell scripts; it is run with uid 0 and can do everything
     `init` can do)
 
@@ -790,8 +787,7 @@ When using an `initrd`, the system goes through the following steps:
 6.  If a directory `/initrd` exists, the `initrd` image is moved there,
     otherwise, `initrd` image is unmounted
 
-7.  boot sequence
-    The usual boot sequence (e.g. invocation of the `/sbin/init`) is
+7.  The usual boot sequence (e.g. invocation of the `/sbin/init`) is
     performed on the root filesystem
 
 As moving the `initrd` from `/` to `/initrd` does not require to unmount
@@ -910,7 +906,7 @@ Example:
 
 ###   /proc/stys/kernel
 
-/proc/sys/kernel/` is a directory in the `/proc`
+`/proc/sys/kernel/` is a directory in the `/proc`
 pseudo filesystem. It contains files that allow you to tune and monitor
 the Linux kernel. Be careful, as modification of some of the files may
 lead to a hanging or dysfunctional system. As these parameters are
@@ -918,13 +914,13 @@ highly dependant on the kernel verions, it is advisable to read both
 documentation and source before actually making adjustments. See also
 [the section on the `/proc` filesystem](#procfs).
 
-Some files are quit harmless and can safely be used to obtain
+Some files are quite harmless and can safely be used to obtain
 information, for instance to show the version of the running kernel:
 
      
         debian-601a:~$ cat /proc/sys/kernel/osrelease
 
-panic Some files can be used to *set* information in the kernel. For
+Some files can be used to *set* information in the kernel. For
 instance, the following will tell the kernel not to loop on a panic, but
 to auto-reboot after 20 seconds:
 
@@ -1026,8 +1022,6 @@ Example of `lsdev` output on a Debian based system:
         timer1                       0050-0053
         vboxguest                 9
         vga+                         03c0-03df
-            
-
 **Note**
 
 On some systems `lsdev` is missing, use `procinfo` instead.
@@ -1066,9 +1060,9 @@ Key Knowledge Areas:
 by taking device handling out of system space into userspace.
 
 `udev` consists of a userspace daemon (`udevd`) which receives
-\"uevents\" from the kernel. Communication between the userspace daemon
+"uevents" from the kernel. Communication between the userspace daemon
 and the kernel is done through the `sysfs` pseudo filesystem. The kernel
-sends the aforementioned \"uevents\" when it detects addition or removal
+sends the aforementioned "uevents" when it detects addition or removal
 of hardware, for example when you plug in your camera or USB disk. Based
 on a set of rules to match these uevents the kernel provides a dynamic
 device directory containing only device files for devices that are
@@ -1123,7 +1117,7 @@ incompatibilities. You have power, use it wisely.
 
 `udevmonitor`
 
-udevmonitor udevadm `udevmonitor` will print `udev` and kernel uevents
+`udevmonitor` will print `udev` and kernel uevents
 to standard output. You can use it to analyze event timing by comparing
 the timestamps of the kernel uevent and the `udev` event. Usually
 `udevmonitor` is a symbolic link to `udevadm`. In some distributions,
