@@ -819,6 +819,6 @@ send ICMP packets indefinitely by default. Useful options are:
 
 -   Send count number of probe packets, then stop
 
-###   op
+###   ip
 
 The `ip` command has already been discussed in the previous chapter.
