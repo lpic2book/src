@@ -326,11 +326,11 @@ input file: for the input file/disk/partition
 
 of
 
-output file:
+output file: for the output file/disk/partition
 
 bs
 
-, block size: size of blocks used for transfer, can be optimised
+block size: size of blocks used for transfer, can be optimised
 depending on used hardware
 
 count
