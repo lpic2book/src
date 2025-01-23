@@ -354,7 +354,7 @@ destination directory. The file list is read from `stdin` and is often
 provided by `find`. An example of compressing a directory into a cpio
 archive:
 
-        %cd /sue; find . | cpio -o > sue.cpio
+        cd /sue; find . | cpio -o > sue.cpio
                     
 
 ###   Backup solutions

@@ -156,7 +156,7 @@ If you not sure if a service can reload it's configuration you can also
 use the `reload-or-restart` command. This will reload is configuration
 if it is available, else it will restart the application:
 
-        $systemctl reload-or-restart application.service
+        $ systemctl reload-or-restart application.service
                     
 
 #### Enabling and disabling service
@@ -295,14 +295,14 @@ flag. You will have to keep the `--all` flag so that systemctl allows
 non-active units to be disaplayed. For example, if you wish to see all
 inactive units you can issue the following command:
 
-        $ systemctl --list-units --all --state=inactive
+        $ systemctl list-units --all --state=inactive
                     
 
 Another filter you can use is the `--type=` flag. You can tell systemctl
 to only show the unit types you are interested in. For example, to only
 show active service units you can use the following command:
 
-        $ systemctl --list-units --type=service
+        $ systemctl list-units --type=service
                     
 
 #### Listing unit files
