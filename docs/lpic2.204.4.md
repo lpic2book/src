@@ -128,39 +128,19 @@ The `cardctl` command can be used to check the status of a socket or to
 see how it is configured. It can also be used to alter the cardctl
 cardinfo configuration status of a card.
 
-  -------------------- --------------------------------------------------------
-  statusPCMCIAstatus   Display the current socket status flags.
+`cardctl` commands:
 
-  config               Display the socket configuration, including power
-                       PCMCIAconfig settings, interrupt and I/O window settings
-                       and configuration registers.
-
-  ident                Display card identification information, including
-                       PCMCIAident product identification strings, manufacturer
-                       ID codes and function ID codes.
-
-  suspend              Shut down and then disable power for a socket.
-                       PCMCIAsuspend
-
-  resume               Restore power to a socket and re-configure for use.
-                       PCMCIAresume
-
-  reset                Send a reset signal to a socket, subject to approval
-                       PCMCIAreset by any drivers already bound to the socket.
-
-  eject                Notify all client drivers that this card will be
-                       PCMCIAeject ejected, then cut power to the socket.
-
-  insert               Notify all client drivers that this card has
-                       PCMCIAinsert just been inserted.
-
-  scheme               If no scheme name is given, cardctl will display the
-                       PCMCIAscheme current PCMCIA configuration scheme. If a
-                       scheme name is given, cardctl will de-configure all
-                       PCMCIA devices, and reconfigure for the new scheme.
-  -------------------- --------------------------------------------------------
-
-  : `cardctl` commands
+|command|description|
+|---|---|
+|status|Display the current socket status flags.|
+|config|Display the socket configuration, including power settings, interrupt and I/O window settings and configuration registers.|
+|ident|Display card identification information, including product identification strings, manufacturer ID codes and function ID codes.|
+|suspend|Shut down and then disable power for a socket.|
+|resume|Restore power to a socket and re-configure for use.|
+|reset|Send a reset signal to a socket, subject to approval by any drivers already bound to the socket.|
+|eject|Notify all client drivers that this card will be ejected, then cut power to the socket.|
+|insert|Notify all client drivers that this card has just been inserted.|
+|scheme|If no scheme name is given, cardctl will display the current PCMCIA configuration scheme. If a scheme name is given, cardctl will de-configure all PCMCIA devices, and reconfigure for the new scheme.|
 
 If you are running X, the `cardinfo` utility produces a graphical
 interface to most `cardctl` functions.
