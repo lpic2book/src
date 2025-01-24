@@ -269,7 +269,7 @@ configuring a network interface (p8p1):
 
 can be replaced by:
 
-                    ip addr add 192.168.123.15/24 broadcast 192.168.123.255 dev p8p1
+        # ip addr add 192.168.123.15/24 broadcast 192.168.123.255 dev p8p1
                 
 
 The `ip` can also be used as alternative for the `route` command:
