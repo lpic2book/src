@@ -76,7 +76,7 @@ distributions.
 | `/usr/sbin/rndc` |             name daemon control program |
 |`/usr/sbin/named-checkconf`  | program to check named.conf file for errors 
 `named.conf` |                    BIND configuration file |
-|/etc/init.d/bind` |           distribution specific start script |
+|`/etc/init.d/bind` |           distribution specific start script |
 |`/var/named`|                working directory for `named` |
 
 
@@ -392,18 +392,16 @@ Once it finds an answer in its own cache or database or receives an
 answer from another nameserver, it sends the answer back to the name
 server that sent the query in the first place.
 
-Table [table\_title](#namedctl) lists ways to control the `named` name
+Table [Controlling named](#namedctl) lists ways to control the `named` name
 server.
 
-  Method                      See
-  --------------------------- ---------------------------------------------------------
-  The `rndc` program          [The program](#rndc)
-  Sending signals             [Sending signals to ](#namedsigs)
-  Using a start/stop script   [Controlling with a start/stop script](#namedstartstop)
+| Method {#namedctl} | See |
+| --- | --- |
+| The `rdnc` program | [The program](#rndc) |
+| Sending signals | [Sending signals to named](#namedsigs)
+| Using a start/stop script | [Controlling with a start/stop script](#namedstartstop)
 
-  : Controlling `named`
-
-The `rndc` program {#rndc}
+#### The `rndc` program {#rndc}
 
 The `rndc` (Remote Name Daemon Control) program rndc can be used to
 control the `named` name server daemon, locally as well as remotely. It
@@ -454,10 +452,10 @@ understood by the name daemon. The help command presents a list of
 commands understood by the name server.
 
 While not discussed here `rndc` may be used to manage several name
-servers remotely. Consult the man pages and the \"BIND 9 Administrator
-Reference Manual\" for more information on rndc and BIND.
+servers remotely. Consult the man pages and the "BIND 9 Administrator
+Reference Manual" for more information on rndc and BIND.
 
-The `named-checkconf` utility {#named-checkconf}
+#### The `named-checkconf` utility {#named-checkconf}
 
 `named-checkconf` is a very useful utility that checks the `named.conf`
 file for errors. If the `named.conf` file is located in the regular
@@ -493,9 +491,9 @@ for example the `include` statement will not be checked automatically.
 It it possible to check them manually by adding their path and file name
 when executing the `named.checkconf` utility.
 
-Sending signals to `named` {#namedsigs}
+#### Sending signals to `named` {#namedsigs}
 
-kill It is possible to send signals to the `named` process to control
+kill: It is possible to send signals to the `named` process to control
 its behaviour. A full list of signals can be found in the `named`
 manpage. One example is the bindSIGHUP `SIGHUP` signal, that causes
 `named` to reload `named.conf` and the database files.
@@ -508,7 +506,7 @@ Signals are sent to named with the kill command, e.g.,
 This sends a `SIGHUP` signal to a `named` process with process id `217`,
 which triggers a reload.
 
-Controlling `named` with a start/stop script {#namedstartstop}
+#### Controlling `named` with a start/stop script {#namedstartstop}
 
 Most distributions will come with a start/stop script that allows you to
 bindstart bindstop bindreload start, stop or control `named` manually,
@@ -522,20 +520,19 @@ example, say:
         # service named reload
                     
 
-Table [table\_title](#etcInit.dBindArgs) lists parameters which a
+[Table below](#etcInit.dBindArgs) below lists parameters which a
 current version of `/etc/init.d/bind` accepts.
 
-  Parameter        Description
-  ---------------- ----------------------------
-  `start`          starts `named`
-  `stop`           stops `named`
-  `restart`        stops and restarts `named`
-  `reload`         reloads configuration
-  `force-reload`   same as `restart`
+|Parameter {#etcInit.dBindArgs}|Description|
+|---|---|
+|`start`|starts `named`|
+|`stop`|stops `named`|
+|`reload`|reloads configuration|
+|`force-reload`|same as `restart`|
 
   : `/etc/init.d/bind` parameters
 
-dnsmasq {#alternatedns}
+## dnsmasq {#alternatedns}
 
 `dnsmasq` is both a lightweight DNS forwarder and DHCP server. `dnsmasq`
 supports static and dynamic DHCP leases and supports BOOTP/TFTP/PXE
@@ -546,7 +543,7 @@ network boot protocols.
         dnsmasq-base - Small caching DNS proxy and DHCP/TFTP server
         dnsmasq-utils - Utilities for manipulating DHCP leases
                 
-###   djbdns
+##   djbdns
 
 `djbdns` - Daniel J. Bernstein DNS - was build due to frustrations with
 repeated BIND security holes. Besides holding a DNS cache, DNS server
@@ -554,7 +551,7 @@ and DNS client `djbdns` also includes several DNS debugging tools. The
 source code was released into the public domain in 2007. There have been
 several forks, one of which is `dbndns`, the fork of the Debian Project.
 
-###   PowerDNS
+##   PowerDNS
 
 PowerDNS is a Dutch supplier of DNS software and services. The PowerDNS
 software is open source (GPL), and comes packaged with many
@@ -727,7 +724,7 @@ similar:
         ;; MSG SIZE  rcvd: 115
                 
 
-`$` `man dig`
+`$ man dig`
 
         NAME
                dig - DNS lookup utility
@@ -803,4 +800,3 @@ of both commands for the explanation of the other options.)
         ;; SERVER: 8.8.8.8#53(8.8.8.8)
         ;; WHEN: Tue Oct 20 10:02:01 2015
         ;; MSG SIZE  rcvd: 64
-                
