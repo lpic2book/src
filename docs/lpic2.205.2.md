@@ -120,7 +120,7 @@ connection, for example encryption keys need to be exchanged between the
 end-points before an encrypted tunnel can be set up. It was decided to
 handle this over a higher-level protocol, the Internet Key Exchange
 protocol IKE (IKE). After IKE has done its work, the IP level services
-ESP and AH know which keys to use to do their work. ESPAH
+ESP and AH know which keys to use to do their work.
 
 The full names of the three protocols that are used in an IPSEC
 implementation are:
@@ -819,6 +819,6 @@ send ICMP packets indefinitely by default. Useful options are:
 
 -   Send count number of probe packets, then stop
 
-###   op
+###   ip
 
 The `ip` command has already been discussed in the previous chapter.

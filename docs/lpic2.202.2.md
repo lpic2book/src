@@ -288,7 +288,7 @@ current set up and modify it. To start it up (as `root`) simply type
             
 ```
 
-**Note*
+**Note**
 Note that the grub shell is not available for GRUB 2. Instead, you can
 install the Grub Emulator, `grub-emu`.
 
