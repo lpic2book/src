@@ -1,2 +1,2 @@
 mkdocs-with-pdf==0.9.3
-weasyprint==65.0
+weasyprint==65.1
