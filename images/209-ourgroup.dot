@@ -1,0 +1,22 @@
+digraph G {
+	node [shape=record];
+	edge [arrowhead=none];
+	
+	sambaclient[label="sambaclient"];
+	lan[label="LAN|192.168.2.0/24"];
+	sambaserver[label="sambaserver"];
+	windows[label="windows"];
+
+	sambaclient -> lan
+	lan -> sambaserver
+	lan -> windows
+	sambaserver -> "Printer_1"
+	sambaserver -> "Printer_2"
+	sambaserver -> share1
+	sambaserver -> share2
+	sambaserver -> public
+	sambaserver -> homedirs
+	windows -> winshare1
+	windows -> winshare2
+
+}
