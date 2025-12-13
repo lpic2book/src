@@ -34,7 +34,7 @@ jobs:
         run: mkdocs build
 
       - name: Provide PDF as artefact of build
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: pdf-version
           path: ./site/pdf/lpic2book.pdf
