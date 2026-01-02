@@ -1,0 +1,3133 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Sue B.V., The Netherlands">
+      
+      
+      
+        <link rel="prev" href="../lpic2.206.2/">
+      
+      
+        <link rel="next" href="../lpic2.207.0/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Notifying users on system-related issues (206.3) - The LPIC2 Exam Prep</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:300,300i,400,400i,700,700i%7CAnonymous+Pro:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Nunito";--md-code-font:"Anonymous Pro"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#notifying-users-on-system-related-issues-2063" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="The LPIC2 Exam Prep" class="md-header__button md-logo" aria-label="The LPIC2 Exam Prep" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            The LPIC2 Exam Prep
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Notifying users on system-related issues (206.3)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/lpic2book/src" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    LPIC2Book
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="The LPIC2 Exam Prep" class="md-nav__button md-logo" aria-label="The LPIC2 Exam Prep" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/></svg>
+
+    </a>
+    The LPIC2 Exam Prep
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/lpic2book/src" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    LPIC2Book
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The LPIC2 Exam Prep
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpicbook_about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About this book
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    200 Capacity Planning (200)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Measure and Troubleshoot Resource Usage (200.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Predict Future Resource Needs (200.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Kernel (201)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel Components (201.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compiling a Linux kernel (201.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel runtime management and troubleshooting (201.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Startup (202)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customizing system startup (202.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System recovery (202.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Alternate Bootloaders (202.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Filesystem and Devices (203)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operating The Linux Filesystem (203.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maintaining a Linux Filesystem (203.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Creating And Configuring Filesystem Options (203.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Storage Device Administration (204)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring RAID (204.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adjusting Storage Device Access (204.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logical Volume Manager (204.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring PCMCIA Devices (204.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Networking Configuration (205)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Networking Configuration (205.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Network Configuration and Troubleshooting (205.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting network issues (205.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Maintenance (206)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Make and install programs from source (206.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup Operations (206.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifying users on system-related issues (206.3)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifying users on system-related issues (206.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#notifying-users-on-system-related-issues-2063" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notifying users on system-related issues (206.3)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Notifying users on system-related issues (206.3)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-knowledge-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Knowledge Areas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terms-and-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terms and Utilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-etcissue-etcissuenet-and-etcmotd-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The /etc/issue, /etc/issue.net, and /etc/motd files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-wall-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The wall command
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-shutdown-command-communication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The shutdown command communication.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-systemctl-command-communication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The systemctl command communication,
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The systemctl command communication,">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#managing-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Managing services
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#starting-and-stopping-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Starting and stopping services
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restarting-and-reloading-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Restarting and reloading services
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enabling-and-disabling-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enabling and disabling service
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checking-the-status-of-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checking the status of services
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-state-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System state overview
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listing-current-units" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Listing current units
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listing-unit-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Listing unit files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unit-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unit management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#displaying-a-unit-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Displaying a unit file
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#displaying-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Displaying dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checking-unit-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checking unit properties
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#masking-and-unmasking-units" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Masking and unmasking units
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#editing-unit-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Editing unit files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adjusting-the-system-start-runlevel-with-targets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adjusting the system start (runlevel) with targets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getting-and-setting-the-default-target" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Getting and setting the default target
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listing-available-targets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Listing available targets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#isolating-targets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Isolating targets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-shortcuts-for-important-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using shortcuts for important events
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domain Name Server (207)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic DNS server configuration (207.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Create and maintain DNS zones (207.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Securing a DNS Server (207.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTTP Services (208)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Apache Configuration (208.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Apache configuration for HTTPS (208.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementing Squid as a caching proxy (208.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementing Nginx as a web server and a reverse proxy (208.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File Sharing (209)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAMBA Server Configuration (209.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring an NFS Server (209.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Client Management (210)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DHCP Configuration (210.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PAM authentication (210.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LDAP client usage (210.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring an OpenLDAP server (210.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    E-Mail services (211)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using e-mail servers (211.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing E-Mail Delivery (211.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing Mailbox Access (211.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Security (212)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring a router (212.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing FTP servers (212.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secure shell (SSH) (212.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security tasks (212.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenVPN (212.5)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#notifying-users-on-system-related-issues-2063" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notifying users on system-related issues (206.3)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Notifying users on system-related issues (206.3)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-knowledge-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Knowledge Areas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terms-and-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terms and Utilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-etcissue-etcissuenet-and-etcmotd-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The /etc/issue, /etc/issue.net, and /etc/motd files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-wall-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The wall command
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-shutdown-command-communication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The shutdown command communication.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-systemctl-command-communication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The systemctl command communication,
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The systemctl command communication,">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#managing-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Managing services
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#starting-and-stopping-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Starting and stopping services
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restarting-and-reloading-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Restarting and reloading services
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enabling-and-disabling-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enabling and disabling service
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checking-the-status-of-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checking the status of services
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-state-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System state overview
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listing-current-units" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Listing current units
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listing-unit-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Listing unit files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unit-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unit management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#displaying-a-unit-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Displaying a unit file
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#displaying-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Displaying dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checking-unit-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checking unit properties
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#masking-and-unmasking-units" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Masking and unmasking units
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#editing-unit-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Editing unit files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adjusting-the-system-start-runlevel-with-targets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adjusting the system start (runlevel) with targets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getting-and-setting-the-default-target" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Getting and setting the default target
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listing-available-targets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Listing available targets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#isolating-targets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Isolating targets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-shortcuts-for-important-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using shortcuts for important events
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>Notifying users on system-related issues (206.3)</h1>
+
+<h2 id="notifying-users-on-system-related-issues-2063">Notifying users on system-related issues (206.3)<a class="headerlink" href="#notifying-users-on-system-related-issues-2063" title="Permanent link">&para;</a></h2>
+<p>Candidates should be able to notify the users about current issues
+related to the system.</p>
+<h3 id="key-knowledge-areas">Key Knowledge Areas<a class="headerlink" href="#key-knowledge-areas" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Automate communication with users through logon messages</p>
+</li>
+<li>
+<p>Inform active users of system maintenance</p>
+</li>
+</ul>
+<h3 id="terms-and-utilities">Terms and Utilities<a class="headerlink" href="#terms-and-utilities" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><code>/etc/issue</code></p>
+</li>
+<li>
+<p><code>/etc/issue.net</code></p>
+</li>
+<li>
+<p><code>/etc/motd</code></p>
+</li>
+<li>
+<p><code>wall</code></p>
+</li>
+<li>
+<p><code>/sbin/shutdown</code></p>
+</li>
+<li>
+<p><code>/bin/systemctl</code></p>
+</li>
+</ul>
+<h3 id="the-etcissue-etcissuenet-and-etcmotd-files">The <code>/etc/issue</code>, <code>/etc/issue.net</code>, and <code>/etc/motd</code> files<a class="headerlink" href="#the-etcissue-etcissuenet-and-etcmotd-files" title="Permanent link">&para;</a></h3>
+<p>The <code>/etc/issue</code>, <code>/etc/issue.net</code> and <code>/etc/motd</code> files are used to
+send simple messages to users that log in to the system. The <code>/etc/motd</code>
+is used to display a message after the user has authenticated
+successfully. The <code>/etc/issue</code> on the other hand is used to send a
+message to the user before they login. This message is only displayed to
+users that log in using the console and will often contain some
+information about the system like kernel version and architecture. The
+<code>/etc/issue.net</code> file has the same purpose as the <code>/etc/issue</code> file but
+is used for insecure logins using <code>telnet</code>. It is possible to use the
+<code>/etc/issue.net</code> file for <code>ssh</code> as well. For this to work you need to
+add or modify the following line in <code>/etc/ssh/sshd_config</code>:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    Banner /etc/issue.net
+</code></pre></div></td></tr></table></div>
+
+<p>When using <code>/etc/issue.net</code> with ssh you should note that the special
+sequences may not work.</p>
+<h3 id="the-wall-command">The <code>wall</code> command<a class="headerlink" href="#the-wall-command" title="Permanent link">&para;</a></h3>
+<p>wall <code>wall</code> is used to broadcast a message of at most 22 lines to all
+interactive terminals. By default the command can be used by any user,
+but often is reconfigured so only root can use it. A user not wishing to
+receive broadcast messages may use the <code>mesg</code> to write disable their
+terminals. The broadcaster may use the <code>finger</code> command to see which
+terminals are write disabled.</p>
+<p>You can specify two options with the <code>wall</code> command: the <code>-n</code> option,
+which only works for the root user and the message itself. The <code>-n</code>
+suppresses the standard broadcast banner and replaces it with a remote
+broadcast banner. This option has meaning only when <code>wall</code> is used over
+the <code>rpc.walld</code> daemon. The second argument, the message itself can also
+be typed on <code>stdin</code>, in which case it must be terminated with an EOF
+(end of file, in most cases [Ctrl+D]{.keycombo}).</p>
+<h3 id="the-shutdown-command-communication">The <code>shutdown</code> command communication.<a class="headerlink" href="#the-shutdown-command-communication" title="Permanent link">&para;</a></h3>
+<p>shutdown As its name suggests, the <code>shutdown</code> command is used to
+shutdown a server gracefully, stepping down through the run level kill
+scripts, and optionally halting, or rebooting the server. The shutdown
+command itself is not discussed here, and this small section explains
+only the communicative steps that <code>shutdown</code> takes before, and during
+the system shutdown.</p>
+<p>The last argument to the <code>shutdown</code> may optionally be used to broadcast
+some custom message explaining the purpose of the shutdown, and when it
+is expected to be returned to production. For example:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span>#<span class="w"> </span><span class="nv">shutdown</span><span class="w"> </span><span class="o">-</span><span class="nv">H</span><span class="w"> </span><span class="o">+</span><span class="mi">10</span><span class="w"> </span><span class="nv">Server</span><span class="w"> </span><span class="nv">halting</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="nv">minutes</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">change</span><span class="w"> </span><span class="nv">change</span><span class="w"> </span><span class="nv">number</span>.<span class="w"> </span><span class="nv">Expected</span><span class="w"> </span><span class="nv">up</span><span class="w"> </span><span class="nv">at</span><span class="w"> </span><span class="mi">00</span>:<span class="mi">00</span>:<span class="mi">00</span>.
+</code></pre></div></td></tr></table></div>
+
+<p>Shutdown can be used with the <code>-k</code>. This makes <code>shutdown</code> do a
+'dry-run': it emulates the shutdown, but does NOT shut down the
+system.</p>
+<p>When you use the <code>-k</code> options you can append broadcast messages as part
+of the command line too, like in a "real" <code>shutdown</code>.</p>
+<p><strong>Note</strong>
+Please note that <code>shutdown</code> <code>-k</code> will still temporarily disallow user
+logins as it will create the <code>/etc/nologin</code> file. It will be removed
+after the 'dry run' but your users will not be able to log in into the
+system as long as it is there.</p>
+<p>In the event that a running <code>shutdown</code> needs to be cancelled, the
+<code>shutdown</code> may be called with the <code>-c</code> option, and again a broadcast
+message added to the command line to inform the users of the U-turn. As
+with all forms of message broadcasts, the receiving terminals must be
+write enabled.</p>
+<h3 id="the-systemctl-command-communication">The <code>systemctl</code> command communication,<a class="headerlink" href="#the-systemctl-command-communication" title="Permanent link">&para;</a></h3>
+<p>systemctl The <code>systemctl</code> the central management tool for the systemd
+init system. <code>systemctl</code> can be used to manage services, system states
+(runlevels) and config files.</p>
+<h4 id="managing-services">Managing services<a class="headerlink" href="#managing-services" title="Permanent link">&para;</a></h4>
+<h4 id="starting-and-stopping-services">Starting and stopping services<a class="headerlink" href="#starting-and-stopping-services" title="Permanent link">&para;</a></h4>
+<p>Where you used the <code>service</code> command in sysVinit you will now use the
+systemctl command to manage services. If you are using a non-root user
+to run the command you will have to use sudo. The following example
+shows starting a service using the <code>start</code> command:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ systemctl start application.service
+</code></pre></div></td></tr></table></div>
+
+<p>Because systemd knows you are running the system management commands on
+services you can also leave the .service suffix. For clarity we will
+keep using the suffix in the commands.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ systemctl start application
+</code></pre></div></td></tr></table></div>
+
+<p>For some programs it is possible to start the application multiple times
+with different configuration files. In this case you can pass the name
+of the config file to the command using the @-sign. For example, to
+start the openvpn service twice with different configuration files you
+can use the following commands:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="err">$</span><span class="w"> </span><span class="n">systemctl</span><span class="w"> </span><span class="k">start</span><span class="w"> </span><span class="n">openvpn</span><span class="nv">@config1</span><span class="p">.</span><span class="n">service</span>
+<span class="w">    </span><span class="err">$</span><span class="w"> </span><span class="n">systemctl</span><span class="w"> </span><span class="k">start</span><span class="w"> </span><span class="n">openvpn</span><span class="nv">@config2</span><span class="p">.</span><span class="n">service</span>
+</code></pre></div></td></tr></table></div>
+
+<p>Because they changed the order of the parameters for the systemctl
+command you can also start and stop multiple services at once: The
+following example show stopping multiple services using the <code>stop</code>
+command:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ systemctl stop application1.service application2.service
+</code></pre></div></td></tr></table></div>
+
+<h4 id="restarting-and-reloading-services">Restarting and reloading services<a class="headerlink" href="#restarting-and-reloading-services" title="Permanent link">&para;</a></h4>
+<p>For restarting a service you can use the <code>restart</code> command:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ systemctl restart application.service
+</code></pre></div></td></tr></table></div>
+
+<p>If an application is able to reload it's configuration you can also use
+the <code>reload</code> command:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="o">$</span><span class="w"> </span><span class="n">systemctl</span><span class="w"> </span><span class="n">reload</span><span class="w"> </span><span class="n">application</span><span class="o">.</span><span class="n">server</span>
+</code></pre></div></td></tr></table></div>
+
+<p>If you not sure if a service can reload it's configuration you can also
+use the <code>reload-or-restart</code> command. This will reload is configuration
+if it is available, else it will restart the application:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="o">$</span><span class="w"> </span><span class="n">systemctl</span><span class="w"> </span><span class="n">reload</span><span class="o">-</span><span class="ow">or</span><span class="o">-</span><span class="n">restart</span><span class="w"> </span><span class="n">application</span><span class="o">.</span><span class="n">service</span>
+</code></pre></div></td></tr></table></div>
+
+<h4 id="enabling-and-disabling-service">Enabling and disabling service<a class="headerlink" href="#enabling-and-disabling-service" title="Permanent link">&para;</a></h4>
+<p>The previous commands are useful for starting and stopping services in
+the current session. If you want a service to start at boot, for which
+sysVinit use the <code>chkconfig</code> command, you have to enable them using
+<code>systemctl</code>:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ systemctl enable application.service
+</code></pre></div></td></tr></table></div>
+
+<p>This <code>enable</code> command will create a symbolic link from this systems copy
+of the service file (which is usually found in /lib/systemd/system or
+/etc/systemd/system) to the directory where systemd looks for autostart
+files (usually /etc/systemd/system/some_target.target.wants). To
+disable a service from start at boot you use the <code>disable</code> command:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ systemctl disable application.service
+</code></pre></div></td></tr></table></div>
+
+<p>This will remove the symbolic link that indicate that the service should
+start at boot.</p>
+<p><strong>Note</strong>
+Remember that enabling a service will not start it in the current
+session. To start and enable a service you will need to issue both the
+start and enable command</p>
+<h4 id="checking-the-status-of-services">Checking the status of services<a class="headerlink" href="#checking-the-status-of-services" title="Permanent link">&para;</a></h4>
+<p>To check the current status of a service you can use the <code>status</code>
+command:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ systemctl status application.service
+</code></pre></div></td></tr></table></div>
+
+<p>This command will give you the current state of the service, the cgroup
+hierarchy, and the first few log lines. It gives you a nice overview of
+the current status, and notifying you of any problems. For example the
+following output for the sshd service:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="o">$</span><span class="w"> </span><span class="n">systemctl</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="n">sshd</span><span class="o">.</span><span class="n">service</span>
+<span class="w">      </span><span class="o">-</span><span class="w"> </span><span class="n">sshd</span><span class="o">.</span><span class="n">service</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">OpenSSH</span><span class="w"> </span><span class="n">server</span><span class="w"> </span><span class="n">daemon</span>
+<span class="w">         </span><span class="n">Loaded</span><span class="p">:</span><span class="w"> </span><span class="n">loaded</span><span class="w"> </span><span class="p">(</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">systemd</span><span class="o">/</span><span class="n">system</span><span class="o">/</span><span class="n">sshd</span><span class="o">.</span><span class="n">service</span><span class="p">;</span><span class="w"> </span><span class="n">enabled</span><span class="p">;</span><span class="w"> </span><span class="n">vendor</span><span class="w"> </span><span class="n">preset</span><span class="p">:</span><span class="w"> </span><span class="n">enabled</span><span class="p">)</span>
+<span class="w">         </span><span class="n">Active</span><span class="p">:</span><span class="w"> </span><span class="n">active</span><span class="w"> </span><span class="p">(</span><span class="n">running</span><span class="p">)</span><span class="w"> </span><span class="n">since</span><span class="w"> </span><span class="n">Fri</span><span class="w"> </span><span class="mi">2016</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">16</span><span class="w"> </span><span class="mi">08</span><span class="p">:</span><span class="mi">18</span><span class="p">:</span><span class="mi">17</span><span class="w"> </span><span class="n">CET</span><span class="p">;</span><span class="w"> </span><span class="mi">4</span><span class="n">h</span><span class="w"> </span><span class="mi">58</span><span class="nb">min</span><span class="w"> </span><span class="n">ago</span>
+<span class="w">           </span><span class="n">Docs</span><span class="p">:</span><span class="w"> </span><span class="n">man</span><span class="p">:</span><span class="n">sshd</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+<span class="w">                 </span><span class="n">man</span><span class="p">:</span><span class="n">sshd_config</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="w">        </span><span class="n">Process</span><span class="p">:</span><span class="w"> </span><span class="mi">1033</span><span class="w"> </span><span class="n">ExecStart</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">sbin</span><span class="o">/</span><span class="n">sshd</span><span class="w"> </span><span class="o">$</span><span class="n">OPTIONS</span><span class="w"> </span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="n">exited</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="o">=</span><span class="mi">0</span><span class="o">/</span><span class="n">SUCCESS</span><span class="p">)</span>
+<span class="w">       </span><span class="n">Main</span><span class="w"> </span><span class="n">PID</span><span class="p">:</span><span class="w"> </span><span class="mi">1067</span><span class="w"> </span><span class="p">(</span><span class="n">sshd</span><span class="p">)</span>
+<span class="w">          </span><span class="n">Tasks</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">(</span><span class="n">limit</span><span class="p">:</span><span class="w"> </span><span class="mi">4915</span><span class="p">)</span>
+<span class="w">         </span><span class="n">CGroup</span><span class="p">:</span><span class="w"> </span><span class="o">/</span><span class="n">system</span><span class="o">.</span><span class="n">slice</span><span class="o">/</span><span class="n">sshd</span><span class="o">.</span><span class="n">service</span>
+<span class="w">                 </span><span class="err">`</span><span class="o">-</span><span class="mi">1067</span><span class="w"> </span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">sbin</span><span class="o">/</span><span class="n">sshd</span>
+
+<span class="w">      </span><span class="n">Dec</span><span class="w"> </span><span class="mi">16</span><span class="w"> </span><span class="mi">08</span><span class="p">:</span><span class="mi">18</span><span class="p">:</span><span class="mi">17</span><span class="w"> </span><span class="n">localhost</span><span class="o">.</span><span class="n">localdomain</span><span class="w"> </span><span class="n">systemd</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span><span class="w"> </span><span class="n">Starting</span><span class="w"> </span><span class="n">OpenSSH</span><span class="w"> </span><span class="n">server</span><span class="w"> </span><span class="n">daemon</span><span class="o">...</span>
+<span class="w">      </span><span class="n">Dec</span><span class="w"> </span><span class="mi">16</span><span class="w"> </span><span class="mi">08</span><span class="p">:</span><span class="mi">18</span><span class="p">:</span><span class="mi">17</span><span class="w"> </span><span class="n">localhost</span><span class="o">.</span><span class="n">localdomain</span><span class="w"> </span><span class="n">systemd</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span><span class="w"> </span><span class="n">sshd</span><span class="o">.</span><span class="n">service</span><span class="p">:</span><span class="w"> </span><span class="n">PID</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">sshd</span><span class="o">.</span><span class="n">pid</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">readable</span><span class="w"> </span><span class="p">(</span><span class="n">yet</span><span class="err">?</span><span class="p">)</span><span class="w"> </span><span class="n">after</span><span class="w"> </span><span class="n">start</span><span class="p">:</span><span class="w"> </span><span class="n">No</span><span class="w"> </span><span class="n">such</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">directory</span>
+<span class="w">      </span><span class="n">Dec</span><span class="w"> </span><span class="mi">16</span><span class="w"> </span><span class="mi">08</span><span class="p">:</span><span class="mi">18</span><span class="p">:</span><span class="mi">17</span><span class="w"> </span><span class="n">localhost</span><span class="o">.</span><span class="n">localdomain</span><span class="w"> </span><span class="n">sshd</span><span class="p">[</span><span class="mi">1067</span><span class="p">]:</span><span class="w"> </span><span class="n">Server</span><span class="w"> </span><span class="n">listening</span><span class="w"> </span><span class="n">on</span><span class="w"> </span><span class="mf">0.0</span><span class="o">.</span><span class="mf">0.0</span><span class="w"> </span><span class="n">port</span><span class="w"> </span><span class="mf">22.</span>
+<span class="w">      </span><span class="n">Dec</span><span class="w"> </span><span class="mi">16</span><span class="w"> </span><span class="mi">08</span><span class="p">:</span><span class="mi">18</span><span class="p">:</span><span class="mi">17</span><span class="w"> </span><span class="n">localhost</span><span class="o">.</span><span class="n">localdomain</span><span class="w"> </span><span class="n">sshd</span><span class="p">[</span><span class="mi">1067</span><span class="p">]:</span><span class="w"> </span><span class="n">Server</span><span class="w"> </span><span class="n">listening</span><span class="w"> </span><span class="n">on</span><span class="w"> </span><span class="p">::</span><span class="w"> </span><span class="n">port</span><span class="w"> </span><span class="mf">22.</span>
+<span class="w">      </span><span class="n">Dec</span><span class="w"> </span><span class="mi">16</span><span class="w"> </span><span class="mi">08</span><span class="p">:</span><span class="mi">18</span><span class="p">:</span><span class="mi">17</span><span class="w"> </span><span class="n">localhost</span><span class="o">.</span><span class="n">localdomain</span><span class="w"> </span><span class="n">systemd</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span><span class="w"> </span><span class="n">Started</span><span class="w"> </span><span class="n">OpenSSH</span><span class="w"> </span><span class="n">server</span><span class="w"> </span><span class="n">daemon</span><span class="o">.</span>
+</code></pre></div></td></tr></table></div>
+
+<p>There are also commands available for checking specific states which can
+be particularly useful for using them in scripts. For example to check
+if as service is currently active you can use the <code>is-active</code> command:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ systemctl is-active application.service
+</code></pre></div></td></tr></table></div>
+
+<p>This command will show if the application is active or inactive. If the
+application is active it will return an exit code of "0". To see if an
+application is enabled you can use the <code>is-enabled</code> command:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ systemctl is-enabled application.service
+</code></pre></div></td></tr></table></div>
+
+<p>This command will return wheter the application is enbled or disable and
+will return an exit code of "0" if the application is enabled. To check
+if an application has failed you can use the <code>is-failed</code> command:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ systemctl is-failed application.service
+</code></pre></div></td></tr></table></div>
+
+<p>This command wil return active if the application is running, failed if
+an error has occured, and inactive or unknown the the service was
+intentionally stopped. It will return an exit code of "0" if the service
+has failed.</p>
+<h4 id="system-state-overview">System state overview<a class="headerlink" href="#system-state-overview" title="Permanent link">&para;</a></h4>
+<p>The commands so far have been useful for managing single services. For
+exploring the the current state of the system there ar a number of
+systemctl commands that provide more information.</p>
+<h4 id="listing-current-units">Listing current units<a class="headerlink" href="#listing-current-units" title="Permanent link">&para;</a></h4>
+<p>To get a list of all the active units that systemd knows about you can
+use the <code>list-units</code> command:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ systemctl list-units
+</code></pre></div></td></tr></table></div>
+
+<p>This command only shows a list of the currently active units. Then
+output has the following columns:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="n">UNIT</span><span class="p">:</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">systemd</span><span class="w"> </span><span class="n">unit</span><span class="w"> </span><span class="n">name</span>
+<span class="w">    </span><span class="n">LOAD</span><span class="p">:</span><span class="w"> </span><span class="n">Whether</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">unit</span><span class="s1">&#39;s configuration has been parsed by systemd. The</span>
+<span class="w">          </span><span class="n">configuration</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">loaded</span><span class="w"> </span><span class="n">units</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">kept</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">memory</span><span class="o">.</span>
+<span class="w">    </span><span class="n">ACTIVE</span><span class="p">:</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">summary</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="n">about</span><span class="w"> </span><span class="n">whether</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">unit</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">active</span><span class="o">.</span><span class="w"> </span><span class="n">This</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">usually</span><span class="w"> </span><span class="n">a</span>
+<span class="w">            </span><span class="n">fairly</span><span class="w"> </span><span class="n">basic</span><span class="w"> </span><span class="n">way</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">tell</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">unit</span><span class="w"> </span><span class="n">has</span><span class="w"> </span><span class="n">started</span><span class="w"> </span><span class="n">successfully</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="ow">not</span><span class="o">.</span>
+<span class="w">    </span><span class="n">SUB</span><span class="p">:</span><span class="w"> </span><span class="n">This</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">lower</span><span class="o">-</span><span class="n">level</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">indicates</span><span class="w"> </span><span class="n">more</span><span class="w"> </span><span class="n">detailed</span><span class="w"> </span><span class="n">information</span>
+<span class="w">         </span><span class="n">about</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">unit</span><span class="w"> </span><span class="n">This</span><span class="w"> </span><span class="n">often</span><span class="w"> </span><span class="n">varies</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="n">unit</span><span class="w"> </span><span class="n">type</span><span class="p">,</span><span class="w"> </span><span class="n">state</span><span class="p">,</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">actual</span>
+<span class="w">         </span><span class="n">method</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">which</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">unit</span><span class="w"> </span><span class="n">runs</span><span class="o">.</span>
+<span class="w">    </span><span class="n">DESCRIPTION</span><span class="p">:</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">short</span><span class="w"> </span><span class="n">textual</span><span class="w"> </span><span class="n">description</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">what</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">unit</span><span class="w"> </span><span class="k">is</span><span class="o">/</span><span class="n">does</span><span class="o">/</span>
+</code></pre></div></td></tr></table></div>
+
+<p>Because the <code>list-units</code> command only shows the active units by default,
+all of the entries above will show "loaded" in the LOAD colymn and
+"active" in the ACTIVE column. This is also the default behaviour of
+systemctl when called without additional commands, so you will see the
+same output if you call systemctl without arguments.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ systemctl
+</code></pre></div></td></tr></table></div>
+
+<p>You can also tell systemctl to output different information by adding
+additional flags. For instance, to show all units that systemd has
+loaded, whether they are active or not, you can use the <code>--all</code> flag:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ systemctl list-units --all
+</code></pre></div></td></tr></table></div>
+
+<p>This will show all units that systemd loaded or attempted to load,
+regardless of it's current state on the system. It is also possible to
+filter units by the current state, for this you can use the <code>--state=</code>
+flag. You will have to keep the <code>--all</code> flag so that systemctl allows
+non-active units to be disaplayed. For example, if you wish to see all
+inactive units you can issue the following command:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ systemctl list-units --all --state=inactive
+</code></pre></div></td></tr></table></div>
+
+<p>Another filter you can use is the <code>--type=</code> flag. You can tell systemctl
+to only show the unit types you are interested in. For example, to only
+show active service units you can use the following command:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="err">$</span><span class="w"> </span><span class="nx">systemctl</span><span class="w"> </span><span class="nx">list</span><span class="o">-</span><span class="nx">units</span><span class="w"> </span><span class="o">--</span><span class="k">type</span><span class="p">=</span><span class="nx">service</span>
+</code></pre></div></td></tr></table></div>
+
+<h4 id="listing-unit-files">Listing unit files<a class="headerlink" href="#listing-unit-files" title="Permanent link">&para;</a></h4>
+<p>The <code>list-units</code> command we just used only shows units that systemd has
+attempted to load into memory. Systemd will only read units that it
+thinks it need so this will not necessarily include all availble units
+on the system. To see every unit file that is available in the systemd
+paths you can use the <code>list-unit-files</code> command instead:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ systemctl list-unit-files
+</code></pre></div></td></tr></table></div>
+
+<p>Units are representations of resources that systemd knows about. Because
+systemd has not necessarily read all of the unit definitions in this
+view it only presents information about hte files themselves. The output
+of this command shows two columns, the UNIT FILE and the STATE. The
+STATE column will usually be "enabled","disabled","static" or "masked".
+For this command static means that the unit file doesn't contain an
+"install" section which is necessary to enable a service. A unit that
+has a state of static can't be enable will run a one-off action or is
+only used as a dependency of another unit. We will cover what "masked"
+means later.</p>
+<h4 id="unit-management">Unit management<a class="headerlink" href="#unit-management" title="Permanent link">&para;</a></h4>
+<p>So far we have been working with services an displaying information
+about the unit files that systemd knows about. With some additional
+commands we can get more specific information about units.</p>
+<h4 id="displaying-a-unit-file">Displaying a unit file<a class="headerlink" href="#displaying-a-unit-file" title="Permanent link">&para;</a></h4>
+<p>To display the unit file that systemd has loaded into it's memory you
+can use the <code>cat</code> command (which was added in systemd version 209). To
+see the unit file of the atd scheduling daemon you can use to following
+command:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="err">$</span><span class="w"> </span><span class="n">systemctl</span><span class="w"> </span><span class="n">cat</span><span class="w"> </span><span class="n">atd</span><span class="p">.</span><span class="n">service</span>
+
+<span class="w">    </span><span class="o">[</span><span class="n">Unit</span><span class="o">]</span>
+<span class="w">    </span><span class="n">Description</span><span class="o">=</span><span class="n">ATD</span><span class="w"> </span><span class="n">daemon</span>
+
+<span class="w">    </span><span class="o">[</span><span class="n">Service</span><span class="o">]</span>
+<span class="w">    </span><span class="n">Type</span><span class="o">=</span><span class="n">forking</span>
+<span class="w">    </span><span class="n">ExecStart</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">atd</span>
+
+<span class="w">    </span><span class="o">[</span><span class="n">Install</span><span class="o">]</span>
+<span class="w">    </span><span class="n">WantedBy</span><span class="o">=</span><span class="n">multi</span><span class="o">-</span><span class="k">user</span><span class="p">.</span><span class="n">target</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The output of this command is the unit file as it's known by the
+current systemd process. This is important to know if you've recently
+modified the unit files or if you're overriding certain options.</p>
+<h4 id="displaying-dependencies">Displaying dependencies<a class="headerlink" href="#displaying-dependencies" title="Permanent link">&para;</a></h4>
+<p>If we want to see the dependency tree of a service we can use the
+<code>list-dependencies</code> command:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ systemctl list-dependencies sshd.service
+</code></pre></div></td></tr></table></div>
+
+<p>This command wil show a hierarchical view of the dependencies that must
+be dealt with in order to start the unit. Dependencies, in this context,
+are the units that are required or wanted by the units above it.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="n">sshd</span><span class="o">.</span><span class="n">service</span>
+<span class="w">    </span><span class="o">|-</span><span class="n">system</span><span class="o">.</span><span class="n">slice</span>
+<span class="w">    </span><span class="err">`</span><span class="o">-</span><span class="n">basic</span><span class="o">.</span><span class="n">target</span>
+<span class="w">      </span><span class="o">|-</span><span class="n">microcode</span><span class="o">.</span><span class="n">service</span>
+<span class="w">      </span><span class="o">|-</span><span class="n">rhel</span><span class="o">-</span><span class="n">autorelabel</span><span class="o">-</span><span class="n">mark</span><span class="o">.</span><span class="n">service</span>
+<span class="w">      </span><span class="o">|-</span><span class="n">rhel</span><span class="o">-</span><span class="n">autorelabel</span><span class="o">.</span><span class="n">service</span>
+<span class="w">      </span><span class="o">|-</span><span class="n">rhel</span><span class="o">-</span><span class="n">configure</span><span class="o">.</span><span class="n">service</span>
+<span class="w">      </span><span class="o">|-</span><span class="n">rhel</span><span class="o">-</span><span class="n">dmesg</span><span class="o">.</span><span class="n">service</span>
+<span class="w">      </span><span class="o">|-</span><span class="n">rhel</span><span class="o">-</span><span class="n">loadmodules</span><span class="o">.</span><span class="n">service</span>
+<span class="w">      </span><span class="o">|-</span><span class="n">paths</span><span class="o">.</span><span class="n">target</span>
+<span class="w">      </span><span class="o">|-</span><span class="n">slices</span><span class="o">.</span><span class="n">target</span>
+
+<span class="w">    </span><span class="o">.</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">.</span>
+</code></pre></div></td></tr></table></div>
+
+<p>Recursive dependencies are only displayed for target units which
+indicate system states. To list all dependencies you can include the
+<code>--all</code> flag.</p>
+<p>To get the reverse dependencies you can add the <code>--reverse</code> flag to the
+command. Other useful flags are the <code>--before</code> and <code>--after</code> flags which
+can be used to show units to depend on the specified unit to start
+before or after them respectivly.</p>
+<h4 id="checking-unit-properties">Checking unit properties<a class="headerlink" href="#checking-unit-properties" title="Permanent link">&para;</a></h4>
+<p>To get the low-level properties of a unit you can use the <code>show</code>. This
+will display a list of properties in a key=value format:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span>$<span class="w"> </span><span class="nv">systemctl</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="nv">sshd</span>.<span class="nv">service</span>
+
+<span class="w">    </span><span class="nv">Id</span><span class="o">=</span><span class="nv">sshd</span>.<span class="nv">service</span>
+<span class="w">    </span><span class="nv">Names</span><span class="o">=</span><span class="nv">sshd</span>.<span class="nv">service</span>
+<span class="w">    </span><span class="nv">Requires</span><span class="o">=</span><span class="nv">basic</span>.<span class="nv">target</span>
+<span class="w">    </span><span class="nv">Wants</span><span class="o">=</span><span class="nv">system</span>.<span class="nv">slice</span>
+<span class="w">    </span><span class="nv">WantedBy</span><span class="o">=</span><span class="nv">multi</span><span class="o">-</span><span class="nv">user</span>.<span class="nv">target</span>
+<span class="w">    </span><span class="nv">Conflicts</span><span class="o">=</span><span class="nv">shutdown</span>.<span class="nv">target</span>
+<span class="w">    </span><span class="nv">Before</span><span class="o">=</span><span class="nv">shutdown</span>.<span class="nv">target</span><span class="w"> </span><span class="nv">multi</span><span class="o">-</span><span class="nv">user</span>.<span class="nv">target</span>
+<span class="w">    </span><span class="nv">After</span><span class="o">=</span><span class="nv">syslog</span>.<span class="nv">target</span><span class="w"> </span><span class="nv">network</span>.<span class="nv">target</span><span class="w"> </span><span class="nv">auditd</span>.<span class="nv">service</span><span class="w"> </span><span class="nv">systemd</span><span class="o">-</span><span class="nv">journald</span>.<span class="nv">socket</span><span class="w"> </span><span class="nv">basic</span>.<span class="nv">target</span><span class="w"> </span><span class="nv">system</span>.<span class="nv">slice</span>
+<span class="w">    </span><span class="nv">Description</span><span class="o">=</span><span class="nv">OpenSSH</span><span class="w"> </span><span class="nv">server</span><span class="w"> </span><span class="nv">daemon</span>
+
+<span class="w">    </span>.<span class="w"> </span>.<span class="w"> </span>.
+</code></pre></div></td></tr></table></div>
+
+<p>To get a single property you can pass the <code>-p</code> flag with the property
+name. For example, to see the conflicts that the sshd.service unit has
+you can use the following command:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span>$<span class="w"> </span><span class="nv">systemctl</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="nv">sshd</span>.<span class="nv">service</span><span class="w"> </span><span class="o">-</span><span class="nv">p</span><span class="w"> </span><span class="nv">Conflicts</span>
+
+<span class="w">    </span><span class="nv">Conflicts</span><span class="o">=</span><span class="nv">shutdown</span>.<span class="nv">target</span>
+</code></pre></div></td></tr></table></div>
+
+<h4 id="masking-and-unmasking-units">Masking and unmasking units<a class="headerlink" href="#masking-and-unmasking-units" title="Permanent link">&para;</a></h4>
+<p>In the service management section we showed how to stop or disable a
+service, but systemd also has the ability to mark a unit as completely
+unstartable. To do this it creates a symbolic link to <code>/dev/null</code> which
+is called masking a unit. To do this you can use the <code>mask</code> command:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ systemctl mask nginx.service
+</code></pre></div></td></tr></table></div>
+
+<p>This wil prevent the Nginx service from being start manually or
+automatically for as long as it's masked. If you check with the
+<code>list-unit-files</code> command you will see that the service is now listed as
+masked:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ systemctl list-unit-files
+
+    . . .
+
+    kmod-static-nodes.service              static
+    ldconfig.service                       static
+    mandb.service                          static
+    messagebus.service                     static
+    nginx.service                          masked
+    quotaon.service                        static
+    rc-local.service                       static
+    rdisc.service                          disabled
+    rescue.service                         static
+
+    . . .
+</code></pre></div></td></tr></table></div>
+
+<p>If you try to start the service you will see a message like this:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ systemctl start nginx.service
+
+    Failed to start nginx.service: Unit nginx.service is masked.
+</code></pre></div></td></tr></table></div>
+
+<p>To unmask a service you can use the <code>unmask</code> command:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ systemctl unmask nginx.service
+</code></pre></div></td></tr></table></div>
+
+<p>This will return the unit to it's previous start allowing the service
+to be started or enabled.</p>
+<h4 id="editing-unit-files">Editing unit files<a class="headerlink" href="#editing-unit-files" title="Permanent link">&para;</a></h4>
+<p>The systemctl command also has the possibility to edit unit files if you
+need to make adjustments. This functionality was added in systemd
+version 218.</p>
+<p>The <code>edit</code> will open a unit file snipper by default:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ systemctl edit nginx.service
+</code></pre></div></td></tr></table></div>
+
+<p>This will be a blank file that can be used to override or add properties
+to the unit definition. A directory will be created within the
+<code>/etc/systemd/system</code> directory which will have the name of the unit
+with .d appended. For example, for the nginx.service, a directory
+callend nginx.service.d will be created.</p>
+<p>If you want to edit the full unit file, instead of adding a snippet, you
+can pass the <code>--full</code> flag:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ systemctl edit --full nginx.service
+</code></pre></div></td></tr></table></div>
+
+<p>This will load the current unit file into the editor where you can
+modify it. When the editor exits the changes will be written to
+<code>/etc/systemd/system</code>. This new file will take precedence over the
+system unit definition (usually found somewhere in
+<code>/lib/systemd/system</code>).</p>
+<p>To remove any additions you have meid you can either remove the units .d
+configuration directory or the modiefied service file from
+<code>/etc/systemd/system</code>. For instance, to remove a snipper, you can type:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ rm -r /etc/systemd/system/nginx.service.d
+</code></pre></div></td></tr></table></div>
+
+<p>To remove a full modified unit file you can type:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ rm /etc/systemd/system/nginx.service
+</code></pre></div></td></tr></table></div>
+
+<p>After remove thile file or directory you should reload the systemd
+process so that it no longer attempts to reference the file and reverts
+back to using the system copies. You can do this by using the
+<code>daemon-reload</code> command:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="o">$</span><span class="w"> </span><span class="n">systemctl</span><span class="w"> </span><span class="n">daemon</span><span class="o">-</span><span class="n">reload</span>
+</code></pre></div></td></tr></table></div>
+
+<h4 id="adjusting-the-system-start-runlevel-with-targets">Adjusting the system start (runlevel) with targets<a class="headerlink" href="#adjusting-the-system-start-runlevel-with-targets" title="Permanent link">&para;</a></h4>
+<p>Targets are special unit files that describe a system state. Like other
+units the files that define targets can be identified by their suffix
+which in this case is <code>.target</code>. Targets don't do much themselves but
+ar used to group other units together.</p>
+<p>These targets can be used to bring the system to a certain state, much
+like other init systems use runlevels. They are used as a reference for
+when certain functions are available allowing you to specify the desired
+state instead of the individual units needed to produce the same state.</p>
+<p>For instance, there is a <code>swap.target</code> which is used to indicate that
+swap is ready for use. Units that are part of this process can sync with
+this target by indicating in their configuration files that they are
+wanted by or required by the <code>swap.target</code>. Unit that require swap to be
+available can specify this condition by using the wants, requires, and
+after properties to indicate the natur of their relationship.</p>
+<h4 id="getting-and-setting-the-default-target">Getting and setting the default target<a class="headerlink" href="#getting-and-setting-the-default-target" title="Permanent link">&para;</a></h4>
+<p>Systemd has a default target that is used when booting the system.
+Satisfying the cascade of dependencies from that target will bring the
+system into the desired state. To get the default target of your system
+you can use the <code>get-default</code> command:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ sytemctl get-default
+
+    multi-user.target
+</code></pre></div></td></tr></table></div>
+
+<p>If you want to set another target as the default you can use the
+<code>set-default</code> command. For example, if you want to use the graphical
+desktop as default you can change this with the following command:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ systemctl set-default graphical.target
+</code></pre></div></td></tr></table></div>
+
+<h4 id="listing-available-targets">Listing available targets<a class="headerlink" href="#listing-available-targets" title="Permanent link">&para;</a></h4>
+<p>You can get a list of the available targets using the <code>list-unit-files</code>
+command in combination with the <code>--type=target</code> filter:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="err">$</span><span class="w"> </span><span class="nx">systemctl</span><span class="w"> </span><span class="nx">list</span><span class="o">-</span><span class="nx">unit</span><span class="o">-</span><span class="nx">files</span><span class="w"> </span><span class="o">--</span><span class="k">type</span><span class="p">=</span><span class="nx">target</span>
+</code></pre></div></td></tr></table></div>
+
+<p>Unlike with runlevels it's possible to have multiple targets active at
+the same time. An active target indicates that systemd has attempted to
+start all of the units tied to the target and has not tried to tear them
+down again. To see all active targets use the following command:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="err">$</span><span class="w"> </span><span class="nx">systemctl</span><span class="w"> </span><span class="nx">list</span><span class="o">-</span><span class="nx">units</span><span class="w"> </span><span class="o">--</span><span class="k">type</span><span class="p">=</span><span class="nx">target</span>
+</code></pre></div></td></tr></table></div>
+
+<h4 id="isolating-targets">Isolating targets<a class="headerlink" href="#isolating-targets" title="Permanent link">&para;</a></h4>
+<p>It's possible to start all the units that are associated with a target
+and to stop all units that are not part of the dependency tree. The
+command we can use for this is the <code>isolate</code> command. This is similar to
+changing the runlevel in other init systems.</p>
+<p>For example, if you are working in a graphical environment with
+graphical.target active, you can shutdown the graphical system by
+isolating the multi-user.target. Since multi-user.target is a dependency
+of graphical.target and not the other way around, the isolate command
+will stop all the graphical units.</p>
+<p>You may wish to take a look at the dependencies of the target you're
+isolating to make sure you don't stop any services that are vital to
+you:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ systemctl list-dependencies multi-user.target
+</code></pre></div></td></tr></table></div>
+
+<p>When you're satisfied with the units that will be kept alive you can
+isolate the target:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ systemctl isolate multi-user.target
+</code></pre></div></td></tr></table></div>
+
+<h4 id="using-shortcuts-for-important-events">Using shortcuts for important events<a class="headerlink" href="#using-shortcuts-for-important-events" title="Permanent link">&para;</a></h4>
+<p>Some targets are defined for important events like powering off or
+rebooting. However <code>systemctl</code> also has some shortcuts that add a bit of
+additional functionality.</p>
+<p>For instance, to put the system into rescue (single-user in System V
+init terms) mode you can just use the <code>rescue</code> instead of
+<code>isolate rescue.target</code>:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ systemctl rescue
+</code></pre></div></td></tr></table></div>
+
+<p>This command will also provide the additional functionallity of alerting
+all logged in users about the event in comparison with the isolate
+command. To halt the system you can use the <code>halt</code> command:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ systemctl halt
+</code></pre></div></td></tr></table></div>
+
+<p>To initiate a full shutdown you can use the <code>poweroff</code> command:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ systemctl poweroff
+</code></pre></div></td></tr></table></div>
+
+<p>To reboot the system you can use the <code>reboot</code> command:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ systemctl reboot
+</code></pre></div></td></tr></table></div>
+
+<p>Not that most systems will link the shorter, more conventional, commands
+for these operations so they will work properly with systemd. For
+example, to reboot a system you can usually type:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ reboot
+</code></pre></div></td></tr></table></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 1997-2021 Sue B.V., The Netherlands - Open Sourced 2021
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["search.highlight", "tabs", "instant"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

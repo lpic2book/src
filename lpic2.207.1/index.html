@@ -1,0 +1,3344 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Sue B.V., The Netherlands">
+      
+      
+      
+        <link rel="prev" href="../lpic2.207.0/">
+      
+      
+        <link rel="next" href="../lpic2.207.2/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Basic DNS server configuration (207.1) - The LPIC2 Exam Prep</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:300,300i,400,400i,700,700i%7CAnonymous+Pro:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Nunito";--md-code-font:"Anonymous Pro"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#basic-dns-server-configuration-2071" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="The LPIC2 Exam Prep" class="md-header__button md-logo" aria-label="The LPIC2 Exam Prep" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            The LPIC2 Exam Prep
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Basic DNS server configuration (207.1)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/lpic2book/src" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    LPIC2Book
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="The LPIC2 Exam Prep" class="md-nav__button md-logo" aria-label="The LPIC2 Exam Prep" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/></svg>
+
+    </a>
+    The LPIC2 Exam Prep
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/lpic2book/src" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    LPIC2Book
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The LPIC2 Exam Prep
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpicbook_about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About this book
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    200 Capacity Planning (200)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Measure and Troubleshoot Resource Usage (200.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Predict Future Resource Needs (200.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Kernel (201)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel Components (201.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compiling a Linux kernel (201.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel runtime management and troubleshooting (201.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Startup (202)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customizing system startup (202.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System recovery (202.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Alternate Bootloaders (202.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Filesystem and Devices (203)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operating The Linux Filesystem (203.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maintaining a Linux Filesystem (203.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Creating And Configuring Filesystem Options (203.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Storage Device Administration (204)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring RAID (204.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adjusting Storage Device Access (204.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logical Volume Manager (204.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring PCMCIA Devices (204.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Networking Configuration (205)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Networking Configuration (205.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Network Configuration and Troubleshooting (205.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting network issues (205.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Maintenance (206)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Make and install programs from source (206.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup Operations (206.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifying users on system-related issues (206.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domain Name Server (207)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic DNS server configuration (207.1)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic DNS server configuration (207.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#basic-dns-server-configuration-2071" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic DNS server configuration (207.1)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic DNS server configuration (207.1)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-knowledge-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Knowledge Areas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terms-and-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terms and Utilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#name-server-components-in-bind" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Name-server components in BIND
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Name-server components in BIND">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-namedconf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The named.conf
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The named.conf">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#location-of-namedconf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Location of named.conf
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-caching-only-name-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A caching-only name server
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="A caching-only name server">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Syntax
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-options-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The options statement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-logging-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The logging statement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#predefined-zone-statements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Predefined zone statements
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#djbdns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        djbdns
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#powerdns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PowerDNS
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-dig-and-host-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The dig and host utilities
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Create and maintain DNS zones (207.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Securing a DNS Server (207.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTTP Services (208)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Apache Configuration (208.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Apache configuration for HTTPS (208.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementing Squid as a caching proxy (208.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementing Nginx as a web server and a reverse proxy (208.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File Sharing (209)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAMBA Server Configuration (209.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring an NFS Server (209.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Client Management (210)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DHCP Configuration (210.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PAM authentication (210.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LDAP client usage (210.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring an OpenLDAP server (210.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    E-Mail services (211)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using e-mail servers (211.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing E-Mail Delivery (211.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing Mailbox Access (211.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Security (212)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring a router (212.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing FTP servers (212.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secure shell (SSH) (212.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security tasks (212.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenVPN (212.5)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#basic-dns-server-configuration-2071" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic DNS server configuration (207.1)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic DNS server configuration (207.1)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-knowledge-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Knowledge Areas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terms-and-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terms and Utilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#name-server-components-in-bind" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Name-server components in BIND
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Name-server components in BIND">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-namedconf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The named.conf
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The named.conf">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#location-of-namedconf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Location of named.conf
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-caching-only-name-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A caching-only name server
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="A caching-only name server">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Syntax
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-options-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The options statement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-logging-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The logging statement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#predefined-zone-statements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Predefined zone statements
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#djbdns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        djbdns
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#powerdns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PowerDNS
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-dig-and-host-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The dig and host utilities
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>Basic DNS server configuration (207.1)</h1>
+
+<h2 id="basic-dns-server-configuration-2071">Basic DNS server configuration (207.1)<a class="headerlink" href="#basic-dns-server-configuration-2071" title="Permanent link">&para;</a></h2>
+<p>Candidates should be able to configure BIND to function as an
+authoritive and as a recursive, caching-only DNS server. This objective
+includes the ability to manage a running server and configure logging.</p>
+<h3 id="key-knowledge-areas">Key Knowledge Areas<a class="headerlink" href="#key-knowledge-areas" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>BIND 9.x configuration files, terms and utilities.</p>
+</li>
+<li>
+<p>Defining the location of the BIND zone files in BIND configuration
+    files.</p>
+</li>
+<li>
+<p>Reloading modified configuration and zone file.</p>
+</li>
+<li>
+<p>Awareness of dnsmasq, djbdns and PowerDNS as alternate name servers.</p>
+</li>
+</ul>
+<h3 id="terms-and-utilities">Terms and Utilities<a class="headerlink" href="#terms-and-utilities" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><code>/etc/named.conf</code></p>
+</li>
+<li>
+<p><code>/var/named/</code></p>
+</li>
+<li>
+<p><code>/usr/sbin/rndc</code></p>
+</li>
+<li>
+<p><code>/usr/sbin/named-checkconf</code></p>
+</li>
+<li>
+<p><code>kill</code></p>
+</li>
+<li>
+<p><code>dig</code></p>
+</li>
+<li>
+<p><code>host</code></p>
+</li>
+</ul>
+<h2 id="name-server-components-in-bind">Name-server components in BIND<a class="headerlink" href="#name-server-components-in-bind" title="Permanent link">&para;</a></h2>
+<p>Name servers like BIND (Berkeley Internet Name Domain system) are part
+of a worldwide DNS system that resolves machine names to IP addresses.</p>
+<p>In the early days of the Internet, host name to IP address mappings were
+maintained by the Network Information Center (NIC) in a single file
+called <code>HOSTS.TXT</code>. This file was then distributed by FTP to other
+Internet connected hosts.</p>
+<p>Due to the vast amount of hosts being connected to the Internet over
+time, another name resolving system was developed known as Domain Names.
+This system incorporated design goals like distributed updates and local
+caching, to increase resolving performance. Because of these features,
+every nameserver needs to be specifically configured for it's purpose.
+The following terms are apparent when configuring nameserver software
+like BIND:</p>
+<p><em>Zones</em> are the equivalent of domains. Zone configuration files consist
+of hostnames and IP address information. <em>Nameserver</em> software responds
+to requests on port <code>53</code>, and translates DNS (host- or domain-)names to
+IP addresses. It can also translate IP addresses into DNS names, this is
+called a "reverse DNS lookup" (rDNS). In order for rDNS to work, a so
+called pointer DNS record (PTR record) has to exist for the host being
+queried.</p>
+<p>We distinguish <em>authoritive</em> nameservers, <em>recursive</em> nameservers and so
+called <em>resolvers</em>. The authoritive nameserver for a zone is the
+nameserver which administrates the zone configuration. It is therefore
+sometimes also referred to as the zone <em>master</em>. A recursive nameserver
+is a nameserver that resolves zones for which it is not authoritive for
+at other nameservers. The resolver is the part of the nameserver and DNS
+client software which performs the actual queries. In general, these are
+libraries as part of DNS software.</p>
+<p>Table <a href="#BINDparts">Major BIND components</a> lists the most relevant parts
+of BIND software on a system. Note that directories may vary across
+distributions.</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/usr/sbin/named</code></td>
+<td>the real name server</td>
+</tr>
+<tr>
+<td><code>/usr/sbin/rndc</code></td>
+<td>name daemon control program</td>
+</tr>
+<tr>
+<td><code>/usr/sbin/named-checkconf</code></td>
+<td>program to check named.conf file for errors</td>
+</tr>
+<tr>
+<td><code>named.conf</code></td>
+<td>BIND configuration file</td>
+</tr>
+<tr>
+<td>/etc/init.d/bind`</td>
+<td>distribution specific start script</td>
+</tr>
+<tr>
+<td><code>/var/named</code></td>
+<td>working directory for <code>named</code></td>
+</tr>
+</tbody>
+</table>
+<p>Resolving is controlled by the file <code>nsswitch.conf</code> which
+is mentioned in <a href="#c2.210">???</a>.</p>
+<p>BIND components will be discussed below.</p>
+<h3 id="the-namedconf">The <code>named.conf</code><a class="headerlink" href="#the-namedconf" title="Permanent link">&para;</a></h3>
+<p>The file <code>named.conf</code> is the main configuration file of BIND.
+bindnamed.conf It is the first configuration file read by <code>named</code>, the
+DNS name daemon.</p>
+<h4 id="location-of-namedconf">Location of <code>named.conf</code><a class="headerlink" href="#location-of-namedconf" title="Permanent link">&para;</a></h4>
+<p>According to LPI the location of the file <code>named.conf</code> is in the <code>/etc</code>
+directory. However, the location may vary across distributions. For
+example in the Debian Linux distribution <code>named.conf</code> is located in the
+<code>/etc/bind</code> directory.</p>
+<h3 id="a-caching-only-name-server">A <em>caching-only</em> name server<a class="headerlink" href="#a-caching-only-name-server" title="Permanent link">&para;</a></h3>
+<p>caching-only nameserver A caching-only name server resolves names, which
+are also stored in a cache, so that they can be accessed faster when the
+nameserver is asked to resolve these names again. But this is what
+<em>every</em> name server does. The difference is that this is the <em>only</em> task
+a <em>caching-only</em> name server performs. It does not serve out zones,
+except for a few internal ones.</p>
+<p>This is an example of a <em>caching-only</em> <code>named.conf</code> file. The version
+below is taken from the Debian bind package (some comments removed).</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="nx">options</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">directory</span><span class="w"> </span><span class="s">&quot;/var/named&quot;</span><span class="p">;</span>
+
+<span class="w">            </span><span class="c1">// query-source address * port 53;</span>
+
+<span class="w">            </span><span class="c1">// forwarders {</span>
+<span class="w">            </span><span class="c1">//      0.0.0.0;</span>
+<span class="w">            </span><span class="c1">// };</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="w">    </span><span class="c1">// reduce log verbosity on issues outside our control</span>
+<span class="w">    </span><span class="nx">logging</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">category</span><span class="w"> </span><span class="nx">lame</span><span class="o">-</span><span class="nx">servers</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">null</span><span class="p">;</span><span class="w"> </span><span class="p">};</span>
+<span class="w">            </span><span class="nx">category</span><span class="w"> </span><span class="nx">cname</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">null</span><span class="p">;</span><span class="w"> </span><span class="p">};</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="w">    </span><span class="c1">// prime the server with knowledge of the root servers</span>
+<span class="w">    </span><span class="nx">zone</span><span class="w"> </span><span class="s">&quot;.&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">type</span><span class="w"> </span><span class="nx">hint</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">file</span><span class="w"> </span><span class="s">&quot;/etc/bind/db.root&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="w">    </span><span class="c1">// be authoritative for the localhost forward and reverse zones, and for</span>
+<span class="w">    </span><span class="c1">// broadcast zones as per RFC 1912</span>
+
+<span class="w">    </span><span class="nx">zone</span><span class="w"> </span><span class="s">&quot;localhost&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">type</span><span class="w"> </span><span class="nx">master</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">file</span><span class="w"> </span><span class="s">&quot;/etc/bind/db.local&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="w">    </span><span class="nx">zone</span><span class="w"> </span><span class="s">&quot;127.in-addr.arpa&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">type</span><span class="w"> </span><span class="nx">master</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">file</span><span class="w"> </span><span class="s">&quot;/etc/bind/db.127&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="w">    </span><span class="nx">zone</span><span class="w"> </span><span class="s">&quot;0.in-addr.arpa&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">type</span><span class="w"> </span><span class="nx">master</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">file</span><span class="w"> </span><span class="s">&quot;/etc/bind/db.0&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="w">    </span><span class="nx">zone</span><span class="w"> </span><span class="s">&quot;255.in-addr.arpa&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">type</span><span class="w"> </span><span class="nx">master</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">file</span><span class="w"> </span><span class="s">&quot;/etc/bind/db.255&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="w">    </span><span class="c1">// add entries for other zones below here</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The Debian bind package that contains this file, will provide a fully
+functional <em>caching-only</em> name server. BIND packages of other
+manufacturers will provide the same functionality.</p>
+<h4 id="syntax">Syntax<a class="headerlink" href="#syntax" title="Permanent link">&para;</a></h4>
+<p>The <code>named.conf</code> file contains <em>statements</em> that start with a keyword
+plus an bind{ bind} opening curly brace "{" and end with a closing curly
+brace "}". A statement may contain other statements. The <code>forwarders</code>
+statement is an example of this. bindforwarders A statement may also
+contain IP addresses or the <code>file</code> word followed by a filename. These
+simple statements bindfile <em>must</em> be terminated by a semi-colon (<code>;</code>).</p>
+<p>All kinds of comments are allowed, e.g., <code>//</code> and <code>#</code> as end of line
+comments. See the bind// bind# named.conf 5 manual page for details.</p>
+<p><strong>Note</strong>
+The ";" is NOT valid as a comment sign in <code>named.conf</code>. However, it is a
+comment sign in BIND zone bind; files, like the file
+<code>/etc/bind/db.local</code> from the <code>named.conf</code> example above. An example
+BIND zone file can be found in <a href="#db.local-file">???</a></p>
+<h4 id="the-options-statement">The <code>options</code> statement<a class="headerlink" href="#the-options-statement" title="Permanent link">&para;</a></h4>
+<p>Of the many possible entries (see named.confbindoptions 5) inside an
+<code>options</code> statement, only <code>directory</code>, <code>forwarders</code>, <code>forward</code>,
+<code>version</code> and <code>dialup</code> will be discussed below.</p>
+<p><strong>Note</strong>
+There can be only <em>one</em> <code>options</code> statement in a <code>named.conf</code> file.</p>
+<p><code>directory</code></p>
+<ul>
+<li>
+<p>Specifies the working directory for the name daemon. binddirectory A
+    common value is <code>/var/named</code>. Also, zone files without a directory
+    part are looked up in this directory.</p>
+<p>Recent distributions separate the configuration directory from the
+working directory. In a recent Debian Linux distribution, for
+example, the working directory is specified as <code>/var/cache/bind</code>,
+but all the configuration files can be found in <code>/etc/bind</code>. All
+zone files can also be found in the latter directory and must be
+specified with their directory part, as can be seen in the
+<code>named.conf</code> example above.</p>
+</li>
+</ul>
+<p><code>forwarders</code></p>
+<ul>
+<li>
+<p>The <code>forwarders</code> statement contains one or more IP addresses of name
+    servers to query. bindforwarders How these IP addresses are used is
+    specified by the <code>forward</code> statement described below.</p>
+<p>The default is no forwarders. Resolving is done through the
+worldwide (or company local) DNS system.</p>
+<p>Usually the specified name servers are the same the Service Provider
+uses.</p>
+</li>
+</ul>
+<p><code>forward</code></p>
+<ul>
+<li>
+<p>The <code>forward</code> works only when bindforward <code>forwarders</code> are
+    specified.</p>
+<p>Two values can be specified: <code>forward first;</code> (default) and
+<code>forward only;</code>. With <code>forward first</code>, the query is sent first to
+the bindforward first; bindforward only; specified name-server IP
+addresses and if this fails it should perform lookups elsewhere.
+With <code>forward only</code>, queries are limited only to the specified
+name-server IP addresses.</p>
+<p>An example with both <code>forwarders</code> and <code>forward</code>:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code>    options {
+        // ...
+
+        forwarders {
+            123.12.134.2;
+            123.12.134.3;
+        }
+
+        forward only;
+
+        // ...
+    };
+</code></pre></div></td></tr></table></div>
+
+<p>In this example bind is told to query <em>only</em> the name servers
+<code>123.12.134.2</code> and <code>123.12.134.3</code>.</p>
+</li>
+</ul>
+<p><code>version</code></p>
+<ul>
+<li>
+<p>It is possible to query the version from a running name server:
+    bindversion</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="err">$</span><span class="w"> </span><span class="n">dig</span><span class="w"> </span><span class="nv">@ns12</span><span class="p">.</span><span class="n">zoneedit</span><span class="p">.</span><span class="n">com</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">bind</span><span class="w"> </span><span class="n">chaos</span><span class="w"> </span><span class="n">txt</span>
+
+<span class="w">    </span><span class="p">;</span><span class="w"> </span><span class="o">&lt;&lt;&gt;&gt;</span><span class="w"> </span><span class="n">DiG</span><span class="w"> </span><span class="mf">9.8.3</span><span class="o">-</span><span class="n">P1</span><span class="w"> </span><span class="o">&lt;&lt;&gt;&gt;</span><span class="w"> </span><span class="nv">@ns12</span><span class="p">.</span><span class="n">zoneedit</span><span class="p">.</span><span class="n">com</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">bind</span><span class="w"> </span><span class="n">chaos</span><span class="w"> </span><span class="n">txt</span>
+<span class="w">    </span><span class="p">;</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="n">server</span><span class="w"> </span><span class="k">found</span><span class="p">)</span>
+<span class="w">    </span><span class="p">;;</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="nl">options</span><span class="p">:</span><span class="w"> </span><span class="o">+</span><span class="n">cmd</span>
+<span class="w">    </span><span class="p">;;</span><span class="w"> </span><span class="n">Got</span><span class="w"> </span><span class="nl">answer</span><span class="p">:</span>
+<span class="w">    </span><span class="p">;;</span><span class="w"> </span><span class="o">-&gt;&gt;</span><span class="n">HEADER</span><span class="o">&lt;&lt;-</span><span class="w"> </span><span class="nl">opcode</span><span class="p">:</span><span class="w"> </span><span class="n">QUERY</span><span class="p">,</span><span class="w"> </span><span class="nl">status</span><span class="p">:</span><span class="w"> </span><span class="n">NOERROR</span><span class="p">,</span><span class="w"> </span><span class="nl">id</span><span class="p">:</span><span class="w"> </span><span class="mi">59790</span>
+<span class="w">    </span><span class="p">;;</span><span class="w"> </span><span class="nl">flags</span><span class="p">:</span><span class="w"> </span><span class="n">qr</span><span class="w"> </span><span class="n">aa</span><span class="w"> </span><span class="n">rd</span><span class="p">;</span><span class="w"> </span><span class="nl">QUERY</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nl">ANSWER</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nl">AUTHORITY</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nl">ADDITIONAL</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="p">;;</span><span class="w"> </span><span class="nl">WARNING</span><span class="p">:</span><span class="w"> </span><span class="n">recursion</span><span class="w"> </span><span class="n">requested</span><span class="w"> </span><span class="n">but</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">available</span>
+
+<span class="w">    </span><span class="p">;;</span><span class="w"> </span><span class="n">QUESTION</span><span class="w"> </span><span class="k">SECTION</span><span class="err">:</span>
+<span class="w">    </span><span class="p">;</span><span class="n">version</span><span class="p">.</span><span class="n">bind</span><span class="p">.</span><span class="w">          </span><span class="n">CH</span><span class="w">  </span><span class="n">TXT</span>
+
+<span class="w">    </span><span class="p">;;</span><span class="w"> </span><span class="n">ANSWER</span><span class="w"> </span><span class="k">SECTION</span><span class="err">:</span>
+<span class="w">    </span><span class="n">VERSION</span><span class="p">.</span><span class="n">BIND</span><span class="p">.</span><span class="w">       </span><span class="mi">0</span><span class="w">   </span><span class="n">CH</span><span class="w">  </span><span class="n">TXT</span><span class="w"> </span><span class="ss">&quot;8.4.X&quot;</span>
+
+<span class="w">    </span><span class="p">;;</span><span class="w"> </span><span class="n">Query</span><span class="w"> </span><span class="nc">time</span><span class="err">:</span><span class="w"> </span><span class="mi">169</span><span class="w"> </span><span class="n">msec</span>
+<span class="w">    </span><span class="p">;;</span><span class="w"> </span><span class="nl">SERVER</span><span class="p">:</span><span class="w"> </span><span class="mf">209.62.64.46</span><span class="n">#53</span><span class="p">(</span><span class="mf">209.62.64.46</span><span class="p">)</span>
+<span class="w">    </span><span class="p">;;</span><span class="w"> </span><span class="k">WHEN</span><span class="err">:</span><span class="w"> </span><span class="n">Tue</span><span class="w"> </span><span class="n">Jun</span><span class="w"> </span><span class="mi">25</span><span class="w"> </span><span class="mi">11</span><span class="err">:</span><span class="mi">38</span><span class="err">:</span><span class="mi">48</span><span class="w"> </span><span class="mi">2013</span>
+<span class="w">    </span><span class="p">;;</span><span class="w"> </span><span class="n">MSG</span><span class="w"> </span><span class="k">SIZE</span><span class="w">  </span><span class="nl">rcvd</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span>
+</code></pre></div></td></tr></table></div>
+
+<p>Note that the BIND version is shown in the output. Because some BIND
+versions have known exploits, the BIND version is sometimes kept
+hidden. The <code>version</code> specification:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    version &quot;not revealed&quot;;
+</code></pre></div></td></tr></table></div>
+
+<p>or</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    version none;
+</code></pre></div></td></tr></table></div>
+
+<p>inside the <code>options</code> statement leads to <code>not revealed</code> responses on
+version queries.</p>
+</li>
+</ul>
+<p><code>dialup</code></p>
+<ul>
+<li>
+<p>When a name server sits behind a firewall, that connects to the
+    binddialup outside world through a dialup connection, some
+    maintenance normally done by name servers might be unwanted.
+    Examples of unwanted actions are: sending heartbeat packets, zone
+    transfers with a nameserver on the other side of the firewall.</p>
+<p>The following example, also inside the <code>options</code> part, stops
+external zone maintenance:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>    heartbeat-interval 0;
+    dialup yes; // NOTE: This actually <span class="gs">*stops*</span> dialups!
+</code></pre></div></td></tr></table></div>
+
+</li>
+</ul>
+<p>Many more options can be placed inside the options block. Refer to the
+manual pages for details.</p>
+<p>Depending on the distribution used, a seperate <code>bind.conf.options</code> file
+might be used which holds all the options for the BIND configuration.
+The main configuration file <code>named.conf</code> has to include this separate
+file though, which can be accomplished by adding the following line to
+<code>named.conf</code>:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="k">include</span><span class="w"> </span><span class="s2">&quot;/etc/bind/named.conf.options&quot;</span><span class="c1">;</span>
+</code></pre></div></td></tr></table></div>
+
+<p>Other separate configuration files like <code>named.conf.log</code> or
+<code>named.conf.default-zones</code> may be nested this way as well.</p>
+<h4 id="the-logging-statement">The <code>logging</code> statement<a class="headerlink" href="#the-logging-statement" title="Permanent link">&para;</a></h4>
+<p>The BIND (version 8 and 9) logging system is too elaborate to discuss in
+detail here. An important difference between the two has to do with
+parsing the log configuration. BIND 8 used to parse the <code>logging</code>
+statement and start the logging configuration right away. BIND 9 only
+establishes the logging configuration <em>after</em> the entire configuration
+file has been parsed. While starting up, the server sends all logging
+messages regarding syntax errors in the configuration file to the
+default channels. These errors may be redirected to standard error
+output if the <code>-g</code> option has been given during startup.</p>
+<p>The distinction between <em>categories</em> and bindcategory <em>channels</em> is an
+important part of logging.</p>
+<p>A <em>channel</em> is an output specification. The <code>null</code> channel, for example,
+dismisses any output sent to the channel.</p>
+<p>A <em>category</em> is a type of data. The category <code>security</code> is one of many
+categories. To log messages of type (<em>category</em>) <code>security</code>, for
+example, to the <code>default_syslog</code> channel, use the following:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>    logging {
+        category security { default_syslog; };
+        // ...
+    };
+</code></pre></div></td></tr></table></div>
+
+<p>To turn off logging for certain types of data, send it to the <code>null</code>
+channel, as is done in the example <code>named.conf</code> shown earlier:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>    logging {
+            category lame-servers { null; };
+            category cname { null; };
+    };
+</code></pre></div></td></tr></table></div>
+
+<p>This means that messages of types <code>lame-servers</code> and <code>cname</code> are being
+discarded.</p>
+<p>There are <em>reasonable defaults</em> for logging. This means that a
+<code>named.conf</code> without <code>logging</code> statement is possible.</p>
+<p><strong>Note</strong>
+A maximum of <em>one</em> <code>logging</code> statement is allowed in a <code>named.conf</code>
+file.</p>
+<h4 id="predefined-zone-statements">Predefined <code>zone</code> statements<a class="headerlink" href="#predefined-zone-statements" title="Permanent link">&para;</a></h4>
+<p>A zone defined in <code>named.conf</code> can be referred to using the "@" symbol
+inside the corresponding zone file. bind@ The "@" is called the <em>current
+origin</em>. For example,</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="nx">zone</span><span class="w"> </span><span class="s">&quot;127.in-addr.arpa&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">type</span><span class="w"> </span><span class="nx">master</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">file</span><span class="w"> </span><span class="s">&quot;/etc/bind/db.127&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
+</code></pre></div></td></tr></table></div>
+
+<p>will result in a <em>current origin</em> of <code>127.in-addr.arpa</code> that is
+available as "@" in file <code>/etc/bind/db.127</code>.</p>
+<p>Details about zone files, as well as how to create your bindzone file
+own <code>zone</code> files and statements will be covered in <a href="#c2.207.2">???</a>.</p>
+<p>The <code>named</code> name server daemon</p>
+<p>The <code>named</code> name server daemon is the program that communicates with
+other name servers to resolve names. It accepts queries, looks in its
+cache and queries other name servers if it does not yet have the answer.
+Once it finds an answer in its own cache or database or receives an
+answer from another nameserver, it sends the answer back to the name
+server that sent the query in the first place.</p>
+<p>Table <a href="#namedctl">table_title</a> lists ways to control the <code>named</code> name
+server.</p>
+<p>Method                      See</p>
+<hr />
+<p>The <code>rndc</code> program          <a href="#rndc">The program</a>
+  Sending signals             <a href="#namedsigs">Sending signals to </a>
+  Using a start/stop script   <a href="#namedstartstop">Controlling with a start/stop script</a></p>
+<p>: Controlling <code>named</code></p>
+<p>The <code>rndc</code> program {#rndc}</p>
+<p>The <code>rndc</code> (Remote Name Daemon Control) program rndc can be used to
+control the <code>named</code> name server daemon, locally as well as remotely. It
+requires a <code>/etc/rndc.key</code> file which contains a key.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code>    key &quot;rndc-key&quot; {
+        algorithm hmac-md5;
+        secret &quot;tyZqsLtPHCNna5SFBLT0Eg==&quot;;
+    };
+
+    options {
+        default-key &quot;rndc-key&quot;;
+        default-server 127.0.0.1;
+        default-port 953;
+    };
+</code></pre></div></td></tr></table></div>
+
+<p>The name server configuration file <code>/etc/named.conf</code> needs to contain
+the same key to allow a host to control the name server. The relevant
+part of that file is shown below.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code>    key &quot;rndc-key&quot; {
+        algorithm hmac-md5;
+        secret &quot;tyZqsLtPHCNna5SFBLT0Eg==&quot;;
+    };
+
+    controls {
+        inet 127.0.0.1 port 953
+            allow { 127.0.0.1; } keys { &quot;rndc-key&quot;; };
+    };
+</code></pre></div></td></tr></table></div>
+
+<p>The secret itself will never be transmitted over the network. Both ends
+calculate a hash using the algorithm declared after the <code>algorithm</code>
+keyword and compare hashes.</p>
+<p>Depending on the distribution used, the configuration files might also
+be stored in <code>/etc/bind/*</code>. The <code>rndc.key</code> file should be owned by
+root:bind and have a mode of 640. The main bind configuration file,
+<code>named.conf</code> should have a line that includes the keyfile. Running the
+program <code>rndc-confgen</code> will create a key in case none is available on
+the system.</p>
+<p>A command to the name server can be given as a parameter to rndc, e.g.:
+<code>rndc reload</code>. This will request the name server to reload its
+configuration and zone files. All commands specified in this way are
+understood by the name daemon. The help command presents a list of
+commands understood by the name server.</p>
+<p>While not discussed here <code>rndc</code> may be used to manage several name
+servers remotely. Consult the man pages and the \"BIND 9 Administrator
+Reference Manual\" for more information on rndc and BIND.</p>
+<p>The <code>named-checkconf</code> utility {#named-checkconf}</p>
+<p><code>named-checkconf</code> is a very useful utility that checks the <code>named.conf</code>
+file for errors. If the <code>named.conf</code> file is located in the regular
+<code>/etc/named.conf</code> location on your distribution you only have to type in
+the command to check the file.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    # named-checkconf
+</code></pre></div></td></tr></table></div>
+
+<p>The location of the named.conf file can be different however (depending
+on the distribution you are using). In some cases for example the file
+is located at <code>/etc/bind/named.conf</code>. The <code>named-checkconf</code> utility wil
+not automatically recognize locations other than <code>/etc/named.conf</code> in
+these cases you will have to include path and filename after the
+command.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    # named-checkconf /etc/bind/named.conf
+</code></pre></div></td></tr></table></div>
+
+<p>When the prompt returns without giving any messages it means that
+<code>named-checkconf</code> didn't find anything wrong with it. The example below
+will show what happens when it dit find something wrong. In this case I
+made an error by forgetting to add the letter <code>i</code> on an <code>include</code>
+statement.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="o">[</span><span class="n">root@localhost etc</span><span class="o">]</span><span class="err">#</span><span class="w"> </span><span class="n">named</span><span class="o">-</span><span class="n">checkconf</span>
+<span class="w">    </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">named</span><span class="p">.</span><span class="nl">conf</span><span class="p">:</span><span class="mi">56</span><span class="err">:</span><span class="w"> </span><span class="k">unknown</span><span class="w"> </span><span class="k">option</span><span class="w"> </span><span class="s1">&#39;nclude&#39;</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The <code>named-checkconf</code> utility will only check the <code>named.conf</code> file.
+Other configuration files called from within the <code>named.conf</code> file using
+for example the <code>include</code> statement will not be checked automatically.
+It it possible to check them manually by adding their path and file name
+when executing the <code>named.checkconf</code> utility.</p>
+<p>Sending signals to <code>named</code> {#namedsigs}</p>
+<p>kill It is possible to send signals to the <code>named</code> process to control
+its behaviour. A full list of signals can be found in the <code>named</code>
+manpage. One example is the bindSIGHUP <code>SIGHUP</code> signal, that causes
+<code>named</code> to reload <code>named.conf</code> and the database files.</p>
+<p>Signals are sent to named with the kill command, e.g.,</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    kill -HUP 217
+</code></pre></div></td></tr></table></div>
+
+<p>This sends a <code>SIGHUP</code> signal to a <code>named</code> process with process id <code>217</code>,
+which triggers a reload.</p>
+<p>Controlling <code>named</code> with a start/stop script {#namedstartstop}</p>
+<p>Most distributions will come with a start/stop script that allows you to
+bindstart bindstop bindreload start, stop or control <code>named</code> manually,
+e.g., <code>/etc/init.d/bind</code> in Debian or <code>/etc/init.d/named</code> in Red Hat.</p>
+<p><strong>Note</strong>
+Red Hat (based) systems have the <code>service</code> command which can be used
+instead. <code>service</code> uses the same set of parameters, so you might, for
+example, say:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="c1"># service named reload</span>
+</code></pre></div></td></tr></table></div>
+
+<p>Table <a href="#etcInit.dBindArgs">table_title</a> lists parameters which a
+current version of <code>/etc/init.d/bind</code> accepts.</p>
+<p>Parameter        Description</p>
+<hr />
+<p><code>start</code>          starts <code>named</code>
+  <code>stop</code>           stops <code>named</code>
+  <code>restart</code>        stops and restarts <code>named</code>
+  <code>reload</code>         reloads configuration
+  <code>force-reload</code>   same as <code>restart</code></p>
+<p>: <code>/etc/init.d/bind</code> parameters</p>
+<p>dnsmasq {#alternatedns}</p>
+<p><code>dnsmasq</code> is both a lightweight DNS forwarder and DHCP server. <code>dnsmasq</code>
+supports static and dynamic DHCP leases and supports BOOTP/TFTP/PXE
+network boot protocols.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span>$<span class="w"> </span><span class="nv">apt</span><span class="o">-</span><span class="nv">cache</span><span class="w"> </span><span class="nv">search</span><span class="w"> </span><span class="nv">dnsmasq</span>
+<span class="w">    </span><span class="nv">dnsmasq</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">Small</span><span class="w"> </span><span class="nv">caching</span><span class="w"> </span><span class="nv">DNS</span><span class="w"> </span><span class="nv">proxy</span><span class="w"> </span><span class="nv">and</span><span class="w"> </span><span class="nv">DHCP</span><span class="o">/</span><span class="nv">TFTP</span><span class="w"> </span><span class="nv">server</span>
+<span class="w">    </span><span class="nv">dnsmasq</span><span class="o">-</span><span class="nv">base</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">Small</span><span class="w"> </span><span class="nv">caching</span><span class="w"> </span><span class="nv">DNS</span><span class="w"> </span><span class="nv">proxy</span><span class="w"> </span><span class="nv">and</span><span class="w"> </span><span class="nv">DHCP</span><span class="o">/</span><span class="nv">TFTP</span><span class="w"> </span><span class="nv">server</span>
+<span class="w">    </span><span class="nv">dnsmasq</span><span class="o">-</span><span class="nv">utils</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">Utilities</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">manipulating</span><span class="w"> </span><span class="nv">DHCP</span><span class="w"> </span><span class="nv">leases</span>
+</code></pre></div></td></tr></table></div>
+
+<h3 id="djbdns">djbdns<a class="headerlink" href="#djbdns" title="Permanent link">&para;</a></h3>
+<p><code>djbdns</code> - Daniel J. Bernstein DNS - was build due to frustrations with
+repeated BIND security holes. Besides holding a DNS cache, DNS server
+and DNS client <code>djbdns</code> also includes several DNS debugging tools. The
+source code was released into the public domain in 2007. There have been
+several forks, one of which is <code>dbndns</code>, the fork of the Debian Project.</p>
+<h3 id="powerdns">PowerDNS<a class="headerlink" href="#powerdns" title="Permanent link">&para;</a></h3>
+<p>PowerDNS is a Dutch supplier of DNS software and services. The PowerDNS
+software is open source (GPL), and comes packaged with many
+distributions as <code>pdns</code>, <code>powerdns-server</code> or <code>pdns-server</code>. The system
+allows multiple backends to allow access to DNS configuration data,
+including a simple backend that accepts BIND style files.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span>$<span class="w"> </span><span class="nv">apt</span><span class="o">-</span><span class="nv">cache</span><span class="w"> </span><span class="nv">search</span><span class="w"> </span><span class="nv">pdns</span>
+<span class="w">    </span><span class="nv">pdns</span><span class="o">-</span><span class="nv">backend</span><span class="o">-</span><span class="nv">geo</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">geo</span><span class="w"> </span><span class="nv">backend</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">PowerDNS</span>
+<span class="w">    </span><span class="nv">pdns</span><span class="o">-</span><span class="nv">backend</span><span class="o">-</span><span class="nv">ldap</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">LDAP</span><span class="w"> </span><span class="nv">backend</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">PowerDNS</span>
+<span class="w">    </span><span class="nv">pdns</span><span class="o">-</span><span class="nv">backend</span><span class="o">-</span><span class="nv">lua</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">lua</span><span class="w"> </span><span class="nv">backend</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">PowerDNS</span>
+<span class="w">    </span><span class="nv">pdns</span><span class="o">-</span><span class="nv">backend</span><span class="o">-</span><span class="nv">mysql</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">generic</span><span class="w"> </span><span class="nv">MySQL</span><span class="w"> </span><span class="nv">backend</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">PowerDNS</span>
+<span class="w">    </span><span class="nv">pdns</span><span class="o">-</span><span class="nv">backend</span><span class="o">-</span><span class="nv">pgsql</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">generic</span><span class="w"> </span><span class="nv">PostgreSQL</span><span class="w"> </span><span class="nv">backend</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">PowerDNS</span>
+<span class="w">    </span><span class="nv">pdns</span><span class="o">-</span><span class="nv">backend</span><span class="o">-</span><span class="nv">pipe</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">pipe</span><span class="o">/</span><span class="nv">coprocess</span><span class="w"> </span><span class="nv">backend</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">PowerDNS</span>
+<span class="w">    </span><span class="nv">pdns</span><span class="o">-</span><span class="nv">backend</span><span class="o">-</span><span class="nv">sqlite</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">sqlite</span><span class="w"> </span><span class="nv">backend</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">PowerDNS</span>
+<span class="w">    </span><span class="nv">pdns</span><span class="o">-</span><span class="nv">backend</span><span class="o">-</span><span class="nv">sqlite3</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">sqlite</span><span class="w"> </span><span class="nv">backend</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">PowerDNS</span>
+<span class="w">    </span><span class="nv">pdns</span><span class="o">-</span><span class="nv">server</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">extremely</span><span class="w"> </span><span class="nv">powerful</span><span class="w"> </span><span class="nv">and</span><span class="w"> </span><span class="nv">versatile</span><span class="w"> </span><span class="nv">nameserver</span>
+<span class="w">    </span><span class="nv">pdns</span><span class="o">-</span><span class="nv">server</span><span class="o">-</span><span class="nv">dbg</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">debugging</span><span class="w"> </span><span class="nv">symbols</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">PowerDNS</span>
+<span class="w">    </span><span class="nv">pdns</span><span class="o">-</span><span class="nv">recursor</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">PowerDNS</span><span class="w"> </span><span class="nv">recursor</span>
+<span class="w">    </span><span class="nv">pdns</span><span class="o">-</span><span class="nv">recursor</span><span class="o">-</span><span class="nv">dbg</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">debugging</span><span class="w"> </span><span class="nv">symbols</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">PowerDNS</span><span class="w"> </span><span class="nv">recursor</span>
+<span class="w">    </span><span class="nv">pdnsd</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">Proxy</span><span class="w"> </span><span class="nv">DNS</span><span class="w"> </span><span class="nv">Server</span>
+</code></pre></div></td></tr></table></div>
+
+<h2 id="the-dig-and-host-utilities">The <code>dig</code> and <code>host</code> utilities<a class="headerlink" href="#the-dig-and-host-utilities" title="Permanent link">&para;</a></h2>
+<p>The Internet Systems Consortium (ICS) has deprecated <code>nslookup</code> in
+favor of <code>host</code> and <code>dig</code>. However, <code>nslookup</code> is still widely used due
+to longevity of older Unix releases. It remains part of most Linux
+distributions too.</p>
+<p>Both <code>dig</code> and <code>host</code> commands can be used to query nameservers,
+it's a matter of preference which one to use for which occasion. <code>dig</code>
+has far more options and provides a more elaborate output by default.
+The <code>help</code> for both commands should give some insights in the
+differences:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span>
+<span class="normal">88</span>
+<span class="normal">89</span>
+<span class="normal">90</span>
+<span class="normal">91</span>
+<span class="normal">92</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="err">$</span><span class="w"> </span><span class="k">host</span>
+<span class="w">    </span><span class="k">Usage</span><span class="err">:</span><span class="w"> </span><span class="k">host</span><span class="w"> </span><span class="o">[</span><span class="n">-aCdlriTwv</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">-c class</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">-N ndots</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">-t type</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">-W time</span><span class="o">]</span>
+<span class="w">                </span><span class="o">[</span><span class="n">-R number</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">-m flag</span><span class="o">]</span><span class="w"> </span><span class="n">hostname</span><span class="w"> </span><span class="o">[</span><span class="n">server</span><span class="o">]</span>
+<span class="w">           </span><span class="o">-</span><span class="n">a</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">equivalent</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="o">-</span><span class="n">t</span><span class="w"> </span><span class="ow">ANY</span>
+<span class="w">           </span><span class="o">-</span><span class="n">c</span><span class="w"> </span><span class="n">specifies</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">non</span><span class="o">-</span><span class="ow">IN</span><span class="w"> </span><span class="k">data</span>
+<span class="w">           </span><span class="o">-</span><span class="n">C</span><span class="w"> </span><span class="n">compares</span><span class="w"> </span><span class="n">SOA</span><span class="w"> </span><span class="n">records</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">authoritative</span><span class="w"> </span><span class="n">nameservers</span>
+<span class="w">           </span><span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">equivalent</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="o">-</span><span class="n">v</span>
+<span class="w">           </span><span class="o">-</span><span class="n">l</span><span class="w"> </span><span class="n">lists</span><span class="w"> </span><span class="ow">all</span><span class="w"> </span><span class="n">hosts</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">domain</span><span class="p">,</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="n">AXFR</span>
+<span class="w">           </span><span class="o">-</span><span class="n">i</span><span class="w"> </span><span class="n">IP6</span><span class="p">.</span><span class="nc">INT</span><span class="w"> </span><span class="nf">reverse</span><span class="w"> </span><span class="n">lookups</span>
+<span class="w">           </span><span class="o">-</span><span class="n">N</span><span class="w"> </span><span class="n">changes</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">dots</span><span class="w"> </span><span class="n">allowed</span><span class="w"> </span><span class="k">before</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="n">lookup</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">done</span>
+<span class="w">           </span><span class="o">-</span><span class="n">r</span><span class="w"> </span><span class="n">disables</span><span class="w"> </span><span class="k">recursive</span><span class="w"> </span><span class="n">processing</span>
+<span class="w">           </span><span class="o">-</span><span class="n">R</span><span class="w"> </span><span class="n">specifies</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">retries</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">UDP</span><span class="w"> </span><span class="n">packets</span>
+<span class="w">           </span><span class="o">-</span><span class="n">s</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">SERVFAIL</span><span class="w"> </span><span class="n">response</span><span class="w"> </span><span class="n">should</span><span class="w"> </span><span class="n">stop</span><span class="w"> </span><span class="n">query</span>
+<span class="w">           </span><span class="o">-</span><span class="n">t</span><span class="w"> </span><span class="n">specifies</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="n">type</span>
+<span class="w">           </span><span class="o">-</span><span class="n">T</span><span class="w"> </span><span class="n">enables</span><span class="w"> </span><span class="n">TCP</span><span class="o">/</span><span class="n">IP</span><span class="w"> </span><span class="n">mode</span>
+<span class="w">           </span><span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="n">enables</span><span class="w"> </span><span class="n">verbose</span><span class="w"> </span><span class="k">output</span>
+<span class="w">           </span><span class="o">-</span><span class="n">w</span><span class="w"> </span><span class="n">specifies</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">wait</span><span class="w"> </span><span class="n">forever</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">reply</span>
+<span class="w">           </span><span class="o">-</span><span class="n">W</span><span class="w"> </span><span class="n">specifies</span><span class="w"> </span><span class="n">how</span><span class="w"> </span><span class="n">long</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">wait</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">reply</span>
+<span class="w">           </span><span class="o">-</span><span class="mi">4</span><span class="w"> </span><span class="k">use</span><span class="w"> </span><span class="n">IPv4</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="n">transport</span><span class="w"> </span><span class="k">only</span>
+<span class="w">           </span><span class="o">-</span><span class="mi">6</span><span class="w"> </span><span class="k">use</span><span class="w"> </span><span class="n">IPv6</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="n">transport</span><span class="w"> </span><span class="k">only</span>
+<span class="w">           </span><span class="o">-</span><span class="n">m</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">memory</span><span class="w"> </span><span class="n">debugging</span><span class="w"> </span><span class="n">flag</span><span class="w"> </span><span class="p">(</span><span class="n">trace</span><span class="o">|</span><span class="n">record</span><span class="o">|</span><span class="k">usage</span><span class="p">)</span>
+
+
+<span class="w">    </span><span class="err">$</span><span class="w"> </span><span class="n">dig</span><span class="w"> </span><span class="o">-</span><span class="n">h</span>
+<span class="w">    </span><span class="k">Usage</span><span class="err">:</span><span class="w">  </span><span class="n">dig</span><span class="w"> </span><span class="o">[</span><span class="n">@global-server</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">domain</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">q-type</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">q-class</span><span class="o">]</span><span class="w"> </span><span class="err">{</span><span class="n">q</span><span class="o">-</span><span class="n">opt</span><span class="err">}</span>
+<span class="w">                </span><span class="err">{</span><span class="k">global</span><span class="o">-</span><span class="n">d</span><span class="o">-</span><span class="n">opt</span><span class="err">}</span><span class="w"> </span><span class="k">host</span><span class="w"> </span><span class="o">[</span><span class="n">@local-server</span><span class="o">]</span><span class="w"> </span><span class="err">{</span><span class="k">local</span><span class="o">-</span><span class="n">d</span><span class="o">-</span><span class="n">opt</span><span class="err">}</span>
+<span class="w">                </span><span class="o">[</span><span class="n"> host [@local-server</span><span class="o">]</span><span class="w"> </span><span class="err">{</span><span class="k">local</span><span class="o">-</span><span class="n">d</span><span class="o">-</span><span class="n">opt</span><span class="err">}</span><span class="w"> </span><span class="o">[</span><span class="n">...</span><span class="o">]</span><span class="err">]</span>
+<span class="w">    </span><span class="k">Where</span><span class="err">:</span><span class="w">  </span><span class="k">domain</span><span class="w">    </span><span class="k">is</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">Domain</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="k">System</span>
+<span class="w">            </span><span class="n">q</span><span class="o">-</span><span class="k">class</span><span class="w">  </span><span class="k">is</span><span class="w"> </span><span class="n">one</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="p">(</span><span class="ow">in</span><span class="p">,</span><span class="n">hs</span><span class="p">,</span><span class="n">ch</span><span class="p">,...)</span><span class="w"> </span><span class="o">[</span><span class="n">default: in</span><span class="o">]</span>
+<span class="w">            </span><span class="n">q</span><span class="o">-</span><span class="n">type</span><span class="w">   </span><span class="k">is</span><span class="w"> </span><span class="n">one</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="ow">any</span><span class="p">,</span><span class="n">mx</span><span class="p">,</span><span class="n">ns</span><span class="p">,</span><span class="n">soa</span><span class="p">,</span><span class="n">hinfo</span><span class="p">,</span><span class="n">axfr</span><span class="p">,</span><span class="n">txt</span><span class="p">,...)</span><span class="w"> </span><span class="o">[</span><span class="n">default:a</span><span class="o">]</span>
+<span class="w">                     </span><span class="p">(</span><span class="k">Use</span><span class="w"> </span><span class="n">ixfr</span><span class="o">=</span><span class="n">version</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="n">ixfr</span><span class="p">)</span>
+<span class="w">            </span><span class="n">q</span><span class="o">-</span><span class="n">opt</span><span class="w">    </span><span class="k">is</span><span class="w"> </span><span class="n">one</span><span class="w"> </span><span class="k">of</span><span class="err">:</span>
+<span class="w">                     </span><span class="o">-</span><span class="n">x</span><span class="w"> </span><span class="n">dot</span><span class="o">-</span><span class="n">notation</span><span class="w">     </span><span class="p">(</span><span class="n">shortcut</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nf">reverse</span><span class="w"> </span><span class="n">lookups</span><span class="p">)</span>
+<span class="w">                     </span><span class="o">-</span><span class="n">i</span><span class="w">                  </span><span class="p">(</span><span class="k">use</span><span class="w"> </span><span class="n">IP6</span><span class="p">.</span><span class="nc">INT</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">IPv6</span><span class="w"> </span><span class="nf">reverse</span><span class="w"> </span><span class="n">lookups</span><span class="p">)</span>
+<span class="w">                     </span><span class="o">-</span><span class="n">f</span><span class="w"> </span><span class="n">filename</span><span class="w">         </span><span class="p">(</span><span class="n">batch</span><span class="w"> </span><span class="n">mode</span><span class="p">)</span>
+<span class="w">                     </span><span class="o">-</span><span class="n">b</span><span class="w"> </span><span class="n">address</span><span class="o">[</span><span class="n">#port</span><span class="o">]</span><span class="w">   </span><span class="p">(</span><span class="n">bind</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">source</span><span class="w"> </span><span class="n">address</span><span class="o">/</span><span class="n">port</span><span class="p">)</span>
+<span class="w">                     </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="n">port</span><span class="w">             </span><span class="p">(</span><span class="n">specify</span><span class="w"> </span><span class="n">port</span><span class="w"> </span><span class="n">number</span><span class="p">)</span>
+<span class="w">                     </span><span class="o">-</span><span class="n">q</span><span class="w"> </span><span class="n">name</span><span class="w">             </span><span class="p">(</span><span class="n">specify</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="n">name</span><span class="p">)</span>
+<span class="w">                     </span><span class="o">-</span><span class="n">t</span><span class="w"> </span><span class="n">type</span><span class="w">             </span><span class="p">(</span><span class="n">specify</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="n">type</span><span class="p">)</span>
+<span class="w">                     </span><span class="o">-</span><span class="n">c</span><span class="w"> </span><span class="k">class</span><span class="w">            </span><span class="p">(</span><span class="n">specify</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="k">class</span><span class="p">)</span>
+<span class="w">                     </span><span class="o">-</span><span class="n">k</span><span class="w"> </span><span class="n">keyfile</span><span class="w">          </span><span class="p">(</span><span class="n">specify</span><span class="w"> </span><span class="n">tsig</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="k">file</span><span class="p">)</span>
+<span class="w">                     </span><span class="o">-</span><span class="n">y</span><span class="w"> </span><span class="o">[</span><span class="n">hmac:</span><span class="o">]</span><span class="nl">name</span><span class="p">:</span><span class="k">key</span><span class="w">  </span><span class="p">(</span><span class="n">specify</span><span class="w"> </span><span class="n">named</span><span class="w"> </span><span class="n">base64</span><span class="w"> </span><span class="n">tsig</span><span class="w"> </span><span class="k">key</span><span class="p">)</span>
+<span class="w">                     </span><span class="o">-</span><span class="mi">4</span><span class="w">                  </span><span class="p">(</span><span class="k">use</span><span class="w"> </span><span class="n">IPv4</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="n">transport</span><span class="w"> </span><span class="k">only</span><span class="p">)</span>
+<span class="w">                     </span><span class="o">-</span><span class="mi">6</span><span class="w">                  </span><span class="p">(</span><span class="k">use</span><span class="w"> </span><span class="n">IPv6</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="n">transport</span><span class="w"> </span><span class="k">only</span><span class="p">)</span>
+<span class="w">                     </span><span class="o">-</span><span class="n">m</span><span class="w">                  </span><span class="p">(</span><span class="n">enable</span><span class="w"> </span><span class="n">memory</span><span class="w"> </span><span class="k">usage</span><span class="w"> </span><span class="n">debugging</span><span class="p">)</span>
+<span class="w">            </span><span class="n">d</span><span class="o">-</span><span class="n">opt</span><span class="w">    </span><span class="k">is</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">form</span><span class="w"> </span><span class="o">+</span><span class="n">keyword</span><span class="o">[</span><span class="n">=value</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">keyword</span><span class="w"> </span><span class="k">is</span><span class="err">:</span>
+<span class="w">                     </span><span class="o">+[</span><span class="n">no</span><span class="o">]</span><span class="n">vc</span><span class="w">             </span><span class="p">(</span><span class="n">TCP</span><span class="w"> </span><span class="n">mode</span><span class="p">)</span>
+<span class="w">                     </span><span class="o">+[</span><span class="n">no</span><span class="o">]</span><span class="n">tcp</span><span class="w">            </span><span class="p">(</span><span class="n">TCP</span><span class="w"> </span><span class="n">mode</span><span class="p">,</span><span class="w"> </span><span class="n">alternate</span><span class="w"> </span><span class="n">syntax</span><span class="p">)</span>
+<span class="w">                     </span><span class="o">+</span><span class="nc">time</span><span class="o">=</span><span class="err">###</span><span class="w">             </span><span class="p">(</span><span class="k">Set</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="n">timeout</span><span class="p">)</span><span class="w"> </span><span class="o">[</span><span class="n">5</span><span class="o">]</span>
+<span class="w">                     </span><span class="o">+</span><span class="n">tries</span><span class="o">=</span><span class="err">###</span><span class="w">            </span><span class="p">(</span><span class="k">Set</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">UDP</span><span class="w"> </span><span class="n">attempts</span><span class="p">)</span><span class="w"> </span><span class="o">[</span><span class="n">3</span><span class="o">]</span>
+<span class="w">                     </span><span class="o">+</span><span class="n">retry</span><span class="o">=</span><span class="err">###</span><span class="w">            </span><span class="p">(</span><span class="k">Set</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">UDP</span><span class="w"> </span><span class="n">retries</span><span class="p">)</span><span class="w"> </span><span class="o">[</span><span class="n">2</span><span class="o">]</span>
+<span class="w">                     </span><span class="o">+</span><span class="k">domain</span><span class="o">=</span><span class="err">###</span><span class="w">           </span><span class="p">(</span><span class="k">Set</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="n">domainname</span><span class="p">)</span>
+<span class="w">                     </span><span class="o">+</span><span class="n">bufsize</span><span class="o">=</span><span class="err">###</span><span class="w">          </span><span class="p">(</span><span class="k">Set</span><span class="w"> </span><span class="n">EDNS0</span><span class="w"> </span><span class="nf">Max</span><span class="w"> </span><span class="n">UDP</span><span class="w"> </span><span class="n">packet</span><span class="w"> </span><span class="k">size</span><span class="p">)</span>
+<span class="w">                     </span><span class="o">+</span><span class="n">ndots</span><span class="o">=</span><span class="err">###</span><span class="w">            </span><span class="p">(</span><span class="k">Set</span><span class="w"> </span><span class="n">NDOTS</span><span class="w"> </span><span class="k">value</span><span class="p">)</span>
+<span class="w">                     </span><span class="o">+</span><span class="n">edns</span><span class="o">=</span><span class="err">###</span><span class="w">             </span><span class="p">(</span><span class="k">Set</span><span class="w"> </span><span class="n">EDNS</span><span class="w"> </span><span class="n">version</span><span class="p">)</span>
+<span class="w">                     </span><span class="o">+[</span><span class="n">no</span><span class="o">]</span><span class="k">search</span><span class="w">         </span><span class="p">(</span><span class="k">Set</span><span class="w"> </span><span class="n">whether</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">use</span><span class="w"> </span><span class="n">searchlist</span><span class="p">)</span>
+<span class="w">                     </span><span class="o">+[</span><span class="n">no</span><span class="o">]</span><span class="n">showsearch</span><span class="w">     </span><span class="p">(</span><span class="k">Search</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">intermediate</span><span class="w"> </span><span class="n">results</span><span class="p">)</span>
+<span class="w">                     </span><span class="o">+[</span><span class="n">no</span><span class="o">]</span><span class="n">defname</span><span class="w">        </span><span class="p">(</span><span class="n">Ditto</span><span class="p">)</span>
+<span class="w">                     </span><span class="o">+[</span><span class="n">no</span><span class="o">]</span><span class="n">recurse</span><span class="w">        </span><span class="p">(</span><span class="k">Recursive</span><span class="w"> </span><span class="n">mode</span><span class="p">)</span>
+<span class="w">                     </span><span class="o">+[</span><span class="n">no</span><span class="o">]</span><span class="k">ignore</span><span class="w">         </span><span class="p">(</span><span class="n">Don</span><span class="s1">&#39;t revert to TCP for TC responses.)</span>
+<span class="s1">                     +[no]fail           (Don&#39;</span><span class="n">t</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="k">next</span><span class="w"> </span><span class="n">server</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">SERVFAIL</span><span class="p">)</span>
+<span class="w">                     </span><span class="o">+[</span><span class="n">no</span><span class="o">]</span><span class="n">besteffort</span><span class="w">     </span><span class="p">(</span><span class="k">Try</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="nf">parse</span><span class="w"> </span><span class="n">even</span><span class="w"> </span><span class="n">illegal</span><span class="w"> </span><span class="n">messages</span><span class="p">)</span>
+<span class="w">                     </span><span class="o">+[</span><span class="n">no</span><span class="o">]</span><span class="n">aaonly</span><span class="w">         </span><span class="p">(</span><span class="k">Set</span><span class="w"> </span><span class="n">AA</span><span class="w"> </span><span class="n">flag</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="p">(</span><span class="o">+[</span><span class="n">no</span><span class="o">]</span><span class="n">aaflag</span><span class="p">))</span>
+<span class="w">                     </span><span class="o">+[</span><span class="n">no</span><span class="o">]</span><span class="n">adflag</span><span class="w">         </span><span class="p">(</span><span class="k">Set</span><span class="w"> </span><span class="n">AD</span><span class="w"> </span><span class="n">flag</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">query</span><span class="p">)</span>
+<span class="w">                     </span><span class="o">+[</span><span class="n">no</span><span class="o">]</span><span class="n">cdflag</span><span class="w">         </span><span class="p">(</span><span class="k">Set</span><span class="w"> </span><span class="n">CD</span><span class="w"> </span><span class="n">flag</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">query</span><span class="p">)</span>
+<span class="w">                     </span><span class="o">+[</span><span class="n">no</span><span class="o">]</span><span class="n">cl</span><span class="w">             </span><span class="p">(</span><span class="n">Control</span><span class="w"> </span><span class="n">display</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">records</span><span class="p">)</span>
+<span class="w">                     </span><span class="o">+[</span><span class="n">no</span><span class="o">]</span><span class="n">cmd</span><span class="w">            </span><span class="p">(</span><span class="n">Control</span><span class="w"> </span><span class="n">display</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">command</span><span class="w"> </span><span class="n">line</span><span class="p">)</span>
+<span class="w">                     </span><span class="o">+[</span><span class="n">no</span><span class="o">]</span><span class="n">comments</span><span class="w">       </span><span class="p">(</span><span class="n">Control</span><span class="w"> </span><span class="n">display</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">comment</span><span class="w"> </span><span class="n">lines</span><span class="p">)</span>
+<span class="w">                     </span><span class="o">+[</span><span class="n">no</span><span class="o">]</span><span class="n">question</span><span class="w">       </span><span class="p">(</span><span class="n">Control</span><span class="w"> </span><span class="n">display</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">question</span><span class="p">)</span>
+<span class="w">                     </span><span class="o">+[</span><span class="n">no</span><span class="o">]</span><span class="n">answer</span><span class="w">         </span><span class="p">(</span><span class="n">Control</span><span class="w"> </span><span class="n">display</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">answer</span><span class="p">)</span>
+<span class="w">                     </span><span class="o">+[</span><span class="n">no</span><span class="o">]</span><span class="n">authority</span><span class="w">      </span><span class="p">(</span><span class="n">Control</span><span class="w"> </span><span class="n">display</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">authority</span><span class="p">)</span>
+<span class="w">                     </span><span class="o">+[</span><span class="n">no</span><span class="o">]</span><span class="n">additional</span><span class="w">     </span><span class="p">(</span><span class="n">Control</span><span class="w"> </span><span class="n">display</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">additional</span><span class="p">)</span>
+<span class="w">                     </span><span class="o">+[</span><span class="n">no</span><span class="o">]</span><span class="n">stats</span><span class="w">          </span><span class="p">(</span><span class="n">Control</span><span class="w"> </span><span class="n">display</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="k">statistics</span><span class="p">)</span>
+<span class="w">                     </span><span class="o">+[</span><span class="n">no</span><span class="o">]</span><span class="n">short</span><span class="w">          </span><span class="p">(</span><span class="n">Disable</span><span class="w"> </span><span class="n">everything</span><span class="w"> </span><span class="ow">except</span><span class="w"> </span><span class="n">short</span>
+<span class="w">                                          </span><span class="n">form</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">answer</span><span class="p">)</span>
+<span class="w">                     </span><span class="o">+[</span><span class="n">no</span><span class="o">]</span><span class="n">ttlid</span><span class="w">          </span><span class="p">(</span><span class="n">Control</span><span class="w"> </span><span class="n">display</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">ttls</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">records</span><span class="p">)</span>
+<span class="w">                     </span><span class="o">+[</span><span class="n">no</span><span class="o">]</span><span class="ow">all</span><span class="w">            </span><span class="p">(</span><span class="k">Set</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">clear</span><span class="w"> </span><span class="ow">all</span><span class="w"> </span><span class="n">display</span><span class="w"> </span><span class="n">flags</span><span class="p">)</span>
+<span class="w">                     </span><span class="o">+[</span><span class="n">no</span><span class="o">]</span><span class="n">qr</span><span class="w">             </span><span class="p">(</span><span class="k">Print</span><span class="w"> </span><span class="n">question</span><span class="w"> </span><span class="k">before</span><span class="w"> </span><span class="n">sending</span><span class="p">)</span>
+<span class="w">                     </span><span class="o">+[</span><span class="n">no</span><span class="o">]</span><span class="n">nssearch</span><span class="w">       </span><span class="p">(</span><span class="k">Search</span><span class="w"> </span><span class="ow">all</span><span class="w"> </span><span class="n">authoritative</span><span class="w"> </span><span class="n">nameservers</span><span class="p">)</span>
+<span class="w">                     </span><span class="o">+[</span><span class="n">no</span><span class="o">]</span><span class="n">identify</span><span class="w">       </span><span class="p">(</span><span class="n">ID</span><span class="w"> </span><span class="n">responders</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">short</span><span class="w"> </span><span class="n">answers</span><span class="p">)</span>
+<span class="w">                     </span><span class="o">+[</span><span class="n">no</span><span class="o">]</span><span class="n">trace</span><span class="w">          </span><span class="p">(</span><span class="n">Trace</span><span class="w"> </span><span class="n">delegation</span><span class="w"> </span><span class="n">down</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">root</span><span class="p">)</span>
+<span class="w">                     </span><span class="o">+[</span><span class="n">no</span><span class="o">]</span><span class="n">dnssec</span><span class="w">         </span><span class="p">(</span><span class="n">Request</span><span class="w"> </span><span class="n">DNSSEC</span><span class="w"> </span><span class="n">records</span><span class="p">)</span>
+<span class="w">                     </span><span class="o">+[</span><span class="n">no</span><span class="o">]</span><span class="n">nsid</span><span class="w">           </span><span class="p">(</span><span class="n">Request</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="n">Server</span><span class="w"> </span><span class="n">ID</span><span class="p">)</span>
+<span class="w">                     </span><span class="o">+[</span><span class="n">no</span><span class="o">]</span><span class="n">sigchase</span><span class="w">       </span><span class="p">(</span><span class="n">Chase</span><span class="w"> </span><span class="n">DNSSEC</span><span class="w"> </span><span class="n">signatures</span><span class="p">)</span>
+<span class="w">                     </span><span class="o">+</span><span class="n">trusted</span><span class="o">-</span><span class="k">key</span><span class="o">=</span><span class="err">####</span><span class="w">    </span><span class="p">(</span><span class="n">Trusted</span><span class="w"> </span><span class="k">Key</span><span class="w"> </span><span class="k">when</span><span class="w"> </span><span class="n">chasing</span><span class="w"> </span><span class="n">DNSSEC</span><span class="w"> </span><span class="n">sigs</span><span class="p">)</span>
+<span class="w">                     </span><span class="o">+[</span><span class="n">no</span><span class="o">]</span><span class="n">topdown</span><span class="w">        </span><span class="p">(</span><span class="n">Do</span><span class="w"> </span><span class="n">DNSSEC</span><span class="w"> </span><span class="n">validation</span><span class="w"> </span><span class="k">top</span><span class="w"> </span><span class="n">down</span><span class="w"> </span><span class="n">mode</span><span class="p">)</span>
+<span class="w">                     </span><span class="o">+[</span><span class="n">no</span><span class="o">]</span><span class="n">multiline</span><span class="w">      </span><span class="p">(</span><span class="k">Print</span><span class="w"> </span><span class="n">records</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">expanded</span><span class="w"> </span><span class="nf">format</span><span class="p">)</span>
+<span class="w">                     </span><span class="o">+[</span><span class="n">no</span><span class="o">]</span><span class="n">onesoa</span><span class="w">         </span><span class="p">(</span><span class="n">AXFR</span><span class="w"> </span><span class="n">prints</span><span class="w"> </span><span class="k">only</span><span class="w"> </span><span class="n">one</span><span class="w"> </span><span class="n">soa</span><span class="w"> </span><span class="n">record</span><span class="p">)</span>
+<span class="w">            </span><span class="k">global</span><span class="w"> </span><span class="n">d</span><span class="o">-</span><span class="n">opts</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">servers</span><span class="w"> </span><span class="p">(</span><span class="k">before</span><span class="w"> </span><span class="k">host</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="n">affect</span><span class="w"> </span><span class="ow">all</span><span class="w"> </span><span class="n">queries</span><span class="p">.</span>
+<span class="w">            </span><span class="k">local</span><span class="w"> </span><span class="n">d</span><span class="o">-</span><span class="n">opts</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">servers</span><span class="w"> </span><span class="p">(</span><span class="k">after</span><span class="w"> </span><span class="k">host</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="n">affect</span><span class="w"> </span><span class="k">only</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">lookup</span><span class="p">.</span>
+<span class="w">            </span><span class="o">-</span><span class="n">h</span><span class="w">                           </span><span class="p">(</span><span class="k">print</span><span class="w"> </span><span class="n">help</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="k">exit</span><span class="p">)</span>
+<span class="w">            </span><span class="o">-</span><span class="n">v</span><span class="w">                           </span><span class="p">(</span><span class="k">print</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="k">exit</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+
+<p>As demonstrated, the <code>dig</code> command provides the broader range of
+options. Without options though, the provided information is quite
+similar:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="err">$</span><span class="w"> </span><span class="nx">host</span><span class="w"> </span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span>
+<span class="w">    </span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="w"> </span><span class="nx">has</span><span class="w"> </span><span class="nx">address</span><span class="w"> </span><span class="m m-Double">217.147.180.162</span>
+<span class="w">    </span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="w"> </span><span class="nx">mail</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="nx">handled</span><span class="w"> </span><span class="nx">by</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="nx">ASPMX2</span><span class="p">.</span><span class="nx">GOOGLEMAIL</span><span class="p">.</span><span class="nx">COM</span><span class="p">.</span>
+<span class="w">    </span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="w"> </span><span class="nx">mail</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="nx">handled</span><span class="w"> </span><span class="nx">by</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="nx">ASPMX3</span><span class="p">.</span><span class="nx">GOOGLEMAIL</span><span class="p">.</span><span class="nx">COM</span><span class="p">.</span>
+<span class="w">    </span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="w"> </span><span class="nx">mail</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="nx">handled</span><span class="w"> </span><span class="nx">by</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="nx">ASPMX4</span><span class="p">.</span><span class="nx">GOOGLEMAIL</span><span class="p">.</span><span class="nx">COM</span><span class="p">.</span>
+<span class="w">    </span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="w"> </span><span class="nx">mail</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="nx">handled</span><span class="w"> </span><span class="nx">by</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="nx">ASPMX5</span><span class="p">.</span><span class="nx">GOOGLEMAIL</span><span class="p">.</span><span class="nx">COM</span><span class="p">.</span>
+<span class="w">    </span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="w"> </span><span class="nx">mail</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="nx">handled</span><span class="w"> </span><span class="nx">by</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="nx">ASPMX</span><span class="p">.</span><span class="nx">L</span><span class="p">.</span><span class="nx">GOOGLE</span><span class="p">.</span><span class="nx">COM</span><span class="p">.</span>
+<span class="w">    </span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="w"> </span><span class="nx">mail</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="nx">handled</span><span class="w"> </span><span class="nx">by</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="nx">ALT1</span><span class="p">.</span><span class="nx">ASPMX</span><span class="p">.</span><span class="nx">L</span><span class="p">.</span><span class="nx">GOOGLE</span><span class="p">.</span><span class="nx">COM</span><span class="p">.</span>
+<span class="w">    </span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="w"> </span><span class="nx">mail</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="nx">handled</span><span class="w"> </span><span class="nx">by</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="nx">ALT2</span><span class="p">.</span><span class="nx">ASPMX</span><span class="p">.</span><span class="nx">L</span><span class="p">.</span><span class="nx">GOOGLE</span><span class="p">.</span><span class="nx">COM</span><span class="p">.</span>
+
+
+<span class="w">    </span><span class="err">$</span><span class="w"> </span><span class="nx">dig</span><span class="w"> </span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span>
+
+<span class="w">    </span><span class="p">;</span><span class="w"> </span><span class="o">&lt;&lt;&gt;&gt;</span><span class="w"> </span><span class="nx">DiG</span><span class="w"> </span><span class="m m-Double">9.8.4</span><span class="o">-</span><span class="nx">rpz2</span><span class="o">+</span><span class="nx">rl005</span><span class="m m-Double">.12</span><span class="o">-</span><span class="nx">P1</span><span class="w"> </span><span class="o">&lt;&lt;&gt;&gt;</span><span class="w"> </span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span>
+<span class="w">    </span><span class="p">;;</span><span class="w"> </span><span class="nx">global</span><span class="w"> </span><span class="nx">options</span><span class="p">:</span><span class="w"> </span><span class="o">+</span><span class="nx">cmd</span>
+<span class="w">    </span><span class="p">;;</span><span class="w"> </span><span class="nx">Got</span><span class="w"> </span><span class="nx">answer</span><span class="p">:</span>
+<span class="w">    </span><span class="p">;;</span><span class="w"> </span><span class="o">-&gt;</span><span class="p">&gt;</span><span class="nx">HEADER</span><span class="o">&lt;&lt;-</span><span class="w"> </span><span class="nx">opcode</span><span class="p">:</span><span class="w"> </span><span class="nx">QUERY</span><span class="p">,</span><span class="w"> </span><span class="nx">status</span><span class="p">:</span><span class="w"> </span><span class="nx">NOERROR</span><span class="p">,</span><span class="w"> </span><span class="nx">id</span><span class="p">:</span><span class="w"> </span><span class="mi">31395</span>
+<span class="w">    </span><span class="p">;;</span><span class="w"> </span><span class="nx">flags</span><span class="p">:</span><span class="w"> </span><span class="nx">qr</span><span class="w"> </span><span class="nx">rd</span><span class="w"> </span><span class="nx">ra</span><span class="p">;</span><span class="w"> </span><span class="nx">QUERY</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nx">ANSWER</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nx">AUTHORITY</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nx">ADDITIONAL</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+
+<span class="w">    </span><span class="p">;;</span><span class="w"> </span><span class="nx">QUESTION</span><span class="w"> </span><span class="nx">SECTION</span><span class="p">:</span>
+<span class="w">    </span><span class="p">;</span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span><span class="w">       </span><span class="nx">IN</span><span class="w">  </span><span class="nx">A</span>
+
+<span class="w">    </span><span class="p">;;</span><span class="w"> </span><span class="nx">ANSWER</span><span class="w"> </span><span class="nx">SECTION</span><span class="p">:</span>
+<span class="w">    </span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span><span class="w">    </span><span class="mi">7193</span><span class="w">    </span><span class="nx">IN</span><span class="w">  </span><span class="nx">A</span><span class="w">   </span><span class="m m-Double">217.147.180.162</span>
+
+<span class="w">    </span><span class="p">;;</span><span class="w"> </span><span class="nx">AUTHORITY</span><span class="w"> </span><span class="nx">SECTION</span><span class="p">:</span>
+<span class="w">    </span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span><span class="w">    </span><span class="mi">7193</span><span class="w">    </span><span class="nx">IN</span><span class="w">  </span><span class="nx">NS</span><span class="w">  </span><span class="nx">ns12</span><span class="p">.</span><span class="nx">zoneedit</span><span class="p">.</span><span class="nx">com</span><span class="p">.</span>
+<span class="w">    </span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span><span class="w">    </span><span class="mi">7193</span><span class="w">    </span><span class="nx">IN</span><span class="w">  </span><span class="nx">NS</span><span class="w">  </span><span class="nx">ns16</span><span class="p">.</span><span class="nx">zoneedit</span><span class="p">.</span><span class="nx">com</span><span class="p">.</span>
+
+<span class="w">    </span><span class="p">;;</span><span class="w"> </span><span class="nx">ADDITIONAL</span><span class="w"> </span><span class="nx">SECTION</span><span class="p">:</span>
+<span class="w">    </span><span class="nx">ns12</span><span class="p">.</span><span class="nx">zoneedit</span><span class="p">.</span><span class="nx">com</span><span class="p">.</span><span class="w">  </span><span class="mi">1077</span><span class="w">    </span><span class="nx">IN</span><span class="w">  </span><span class="nx">A</span><span class="w">   </span><span class="m m-Double">209.62.64.46</span>
+
+<span class="w">    </span><span class="p">;;</span><span class="w"> </span><span class="nx">Query</span><span class="w"> </span><span class="nx">time</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="nx">msec</span>
+<span class="w">    </span><span class="p">;;</span><span class="w"> </span><span class="nx">SERVER</span><span class="p">:</span><span class="w"> </span><span class="m m-Double">213.154.248.156</span><span class="err">#</span><span class="mi">53</span><span class="p">(</span><span class="m m-Double">213.154.248.156</span><span class="p">)</span>
+<span class="w">    </span><span class="p">;;</span><span class="w"> </span><span class="nx">WHEN</span><span class="p">:</span><span class="w"> </span><span class="nx">Thu</span><span class="w"> </span><span class="nx">Jun</span><span class="w"> </span><span class="mi">27</span><span class="w"> </span><span class="mi">07</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">36</span><span class="w"> </span><span class="mi">2013</span>
+<span class="w">    </span><span class="p">;;</span><span class="w"> </span><span class="nx">MSG</span><span class="w"> </span><span class="nx">SIZE</span><span class="w">  </span><span class="nx">rcvd</span><span class="p">:</span><span class="w"> </span><span class="mi">115</span>
+</code></pre></div></td></tr></table></div>
+
+<p><code>$</code> <code>man dig</code></p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="n">NAME</span>
+<span class="w">           </span><span class="n">dig</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">DNS</span><span class="w"> </span><span class="n">lookup</span><span class="w"> </span><span class="n">utility</span>
+
+<span class="w">    </span><span class="n">SYNOPSIS</span>
+<span class="w">           </span><span class="n">dig</span><span class="w"> </span><span class="o">[</span><span class="n">@server</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">-b address</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">-c class</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">-f filename</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">-k filename</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">-m</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">-p port#</span><span class="o">]</span>
+<span class="w">               </span><span class="o">[</span><span class="n">-q name</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">-t type</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">-x addr</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">-y [hmac:</span><span class="o">]</span><span class="nl">name</span><span class="p">:</span><span class="k">key</span><span class="err">]</span><span class="w"> </span><span class="o">[</span><span class="n">-4</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">-6</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">name</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">type</span><span class="o">]</span>
+<span class="w">               </span><span class="o">[</span><span class="n">class</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">queryopt...</span><span class="o">]</span>
+</code></pre></div></td></tr></table></div>
+
+<p>An important option is <code>-t</code> to query for example only the MX or NS
+records. This option works for <code>dig</code> and <code>host</code>. (Look at the man pages
+of both commands for the explanation of the other options.)</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="o">$</span><span class="w"> </span><span class="nt">dig</span><span class="w"> </span><span class="nt">sue</span><span class="p">.</span><span class="nc">nl</span>
+
+<span class="w">    </span><span class="o">;</span><span class="w"> </span><span class="o">&lt;&lt;&gt;&gt;</span><span class="w"> </span><span class="nt">DiG</span><span class="w"> </span><span class="nt">9</span><span class="p">.</span><span class="nc">8</span><span class="p">.</span><span class="nc">3-P1</span><span class="w"> </span><span class="o">&lt;&lt;&gt;&gt;</span><span class="w"> </span><span class="nt">sue</span><span class="p">.</span><span class="nc">nl</span>
+<span class="w">    </span><span class="o">;;</span><span class="w"> </span><span class="nt">global</span><span class="w"> </span><span class="nt">options</span><span class="o">:</span><span class="w"> </span><span class="o">+</span><span class="nt">cmd</span>
+<span class="w">    </span><span class="o">;;</span><span class="w"> </span><span class="nt">Got</span><span class="w"> </span><span class="nt">answer</span><span class="o">:</span>
+<span class="w">    </span><span class="o">;;</span><span class="w"> </span><span class="nt">-</span><span class="o">&gt;&gt;</span><span class="nt">HEADER</span><span class="o">&lt;&lt;</span><span class="nt">-</span><span class="w"> </span><span class="nt">opcode</span><span class="o">:</span><span class="w"> </span><span class="nt">QUERY</span><span class="o">,</span><span class="w"> </span><span class="nt">status</span><span class="o">:</span><span class="w"> </span><span class="nt">NOERROR</span><span class="o">,</span><span class="w"> </span><span class="nt">id</span><span class="o">:</span><span class="w"> </span><span class="nt">60605</span>
+<span class="w">    </span><span class="o">;;</span><span class="w"> </span><span class="nt">flags</span><span class="o">:</span><span class="w"> </span><span class="nt">qr</span><span class="w"> </span><span class="nt">rd</span><span class="w"> </span><span class="nt">ra</span><span class="o">;</span><span class="w"> </span><span class="nt">QUERY</span><span class="o">:</span><span class="w"> </span><span class="nt">1</span><span class="o">,</span><span class="w"> </span><span class="nt">ANSWER</span><span class="o">:</span><span class="w"> </span><span class="nt">1</span><span class="o">,</span><span class="w"> </span><span class="nt">AUTHORITY</span><span class="o">:</span><span class="w"> </span><span class="nt">0</span><span class="o">,</span><span class="w"> </span><span class="nt">ADDITIONAL</span><span class="o">:</span><span class="w"> </span><span class="nt">0</span>
+
+<span class="w">    </span><span class="o">;;</span><span class="w"> </span><span class="nt">QUESTION</span><span class="w"> </span><span class="nt">SECTION</span><span class="o">:</span>
+<span class="w">    </span><span class="o">;</span><span class="nt">sue</span><span class="p">.</span><span class="nc">nl</span><span class="o">.</span><span class="w">            </span><span class="nt">IN</span><span class="w">  </span><span class="nt">A</span>
+
+<span class="w">    </span><span class="o">;;</span><span class="w"> </span><span class="nt">ANSWER</span><span class="w"> </span><span class="nt">SECTION</span><span class="o">:</span>
+<span class="w">    </span><span class="nt">sue</span><span class="p">.</span><span class="nc">nl</span><span class="o">.</span><span class="w">     </span><span class="nt">299</span><span class="w"> </span><span class="nt">IN</span><span class="w">  </span><span class="nt">A</span><span class="w">   </span><span class="nt">213</span><span class="p">.</span><span class="nc">154</span><span class="p">.</span><span class="nc">248</span><span class="p">.</span><span class="nc">202</span>
+
+<span class="w">    </span><span class="o">;;</span><span class="w"> </span><span class="nt">Query</span><span class="w"> </span><span class="nt">time</span><span class="o">:</span><span class="w"> </span><span class="nt">52</span><span class="w"> </span><span class="nt">msec</span>
+<span class="w">    </span><span class="o">;;</span><span class="w"> </span><span class="nt">SERVER</span><span class="o">:</span><span class="w"> </span><span class="nt">8</span><span class="p">.</span><span class="nc">8</span><span class="p">.</span><span class="nc">8</span><span class="p">.</span><span class="nc">8</span><span class="p">#</span><span class="nn">53</span><span class="o">(</span><span class="nt">8</span><span class="p">.</span><span class="nc">8</span><span class="p">.</span><span class="nc">8</span><span class="p">.</span><span class="nc">8</span><span class="o">)</span>
+<span class="w">    </span><span class="o">;;</span><span class="w"> </span><span class="nt">WHEN</span><span class="o">:</span><span class="w"> </span><span class="nt">Tue</span><span class="w"> </span><span class="nt">Oct</span><span class="w"> </span><span class="nt">20</span><span class="w"> </span><span class="nt">09</span><span class="p">:</span><span class="nd">55</span><span class="p">:</span><span class="nd">13</span><span class="w"> </span><span class="nt">2015</span>
+<span class="w">    </span><span class="o">;;</span><span class="w"> </span><span class="nt">MSG</span><span class="w"> </span><span class="nt">SIZE</span><span class="w">  </span><span class="nt">rcvd</span><span class="o">:</span><span class="w"> </span><span class="nt">41</span>
+
+
+<span class="w">    </span><span class="o">$</span><span class="w"> </span><span class="nt">dig</span><span class="w"> </span><span class="nt">-t</span><span class="w"> </span><span class="nt">NS</span><span class="w"> </span><span class="nt">sue</span><span class="p">.</span><span class="nc">nl</span>
+
+<span class="w">    </span><span class="o">;</span><span class="w"> </span><span class="o">&lt;&lt;&gt;&gt;</span><span class="w"> </span><span class="nt">DiG</span><span class="w"> </span><span class="nt">9</span><span class="p">.</span><span class="nc">8</span><span class="p">.</span><span class="nc">3-P1</span><span class="w"> </span><span class="o">&lt;&lt;&gt;&gt;</span><span class="w"> </span><span class="nt">-t</span><span class="w"> </span><span class="nt">NS</span><span class="w"> </span><span class="nt">sue</span><span class="p">.</span><span class="nc">nl</span>
+<span class="w">    </span><span class="o">;;</span><span class="w"> </span><span class="nt">global</span><span class="w"> </span><span class="nt">options</span><span class="o">:</span><span class="w"> </span><span class="o">+</span><span class="nt">cmd</span>
+<span class="w">    </span><span class="o">;;</span><span class="w"> </span><span class="nt">Got</span><span class="w"> </span><span class="nt">answer</span><span class="o">:</span>
+<span class="w">    </span><span class="o">;;</span><span class="w"> </span><span class="nt">-</span><span class="o">&gt;&gt;</span><span class="nt">HEADER</span><span class="o">&lt;&lt;</span><span class="nt">-</span><span class="w"> </span><span class="nt">opcode</span><span class="o">:</span><span class="w"> </span><span class="nt">QUERY</span><span class="o">,</span><span class="w"> </span><span class="nt">status</span><span class="o">:</span><span class="w"> </span><span class="nt">NOERROR</span><span class="o">,</span><span class="w"> </span><span class="nt">id</span><span class="o">:</span><span class="w"> </span><span class="nt">26099</span>
+<span class="w">    </span><span class="o">;;</span><span class="w"> </span><span class="nt">flags</span><span class="o">:</span><span class="w"> </span><span class="nt">qr</span><span class="w"> </span><span class="nt">rd</span><span class="w"> </span><span class="nt">ra</span><span class="o">;</span><span class="w"> </span><span class="nt">QUERY</span><span class="o">:</span><span class="w"> </span><span class="nt">1</span><span class="o">,</span><span class="w"> </span><span class="nt">ANSWER</span><span class="o">:</span><span class="w"> </span><span class="nt">3</span><span class="o">,</span><span class="w"> </span><span class="nt">AUTHORITY</span><span class="o">:</span><span class="w"> </span><span class="nt">0</span><span class="o">,</span><span class="w"> </span><span class="nt">ADDITIONAL</span><span class="o">:</span><span class="w"> </span><span class="nt">0</span>
+
+<span class="w">    </span><span class="o">;;</span><span class="w"> </span><span class="nt">QUESTION</span><span class="w"> </span><span class="nt">SECTION</span><span class="o">:</span>
+<span class="w">    </span><span class="o">;</span><span class="nt">sue</span><span class="p">.</span><span class="nc">nl</span><span class="o">.</span><span class="w">            </span><span class="nt">IN</span><span class="w">  </span><span class="nt">NS</span>
+
+<span class="w">    </span><span class="o">;;</span><span class="w"> </span><span class="nt">ANSWER</span><span class="w"> </span><span class="nt">SECTION</span><span class="o">:</span>
+<span class="w">    </span><span class="nt">sue</span><span class="p">.</span><span class="nc">nl</span><span class="o">.</span><span class="w">     </span><span class="nt">20361</span><span class="w">   </span><span class="nt">IN</span><span class="w">  </span><span class="nt">NS</span><span class="w">  </span><span class="nt">ns1</span><span class="p">.</span><span class="nc">transip</span><span class="p">.</span><span class="nc">nl</span><span class="o">.</span>
+<span class="w">    </span><span class="nt">sue</span><span class="p">.</span><span class="nc">nl</span><span class="o">.</span><span class="w">     </span><span class="nt">20361</span><span class="w">   </span><span class="nt">IN</span><span class="w">  </span><span class="nt">NS</span><span class="w">  </span><span class="nt">ns2</span><span class="p">.</span><span class="nc">transip</span><span class="p">.</span><span class="nc">eu</span><span class="o">.</span>
+<span class="w">    </span><span class="nt">sue</span><span class="p">.</span><span class="nc">nl</span><span class="o">.</span><span class="w">     </span><span class="nt">20361</span><span class="w">   </span><span class="nt">IN</span><span class="w">  </span><span class="nt">NS</span><span class="w">  </span><span class="nt">ns0</span><span class="p">.</span><span class="nc">transip</span><span class="p">.</span><span class="nc">net</span><span class="o">.</span>
+
+<span class="w">    </span><span class="o">;;</span><span class="w"> </span><span class="nt">Query</span><span class="w"> </span><span class="nt">time</span><span class="o">:</span><span class="w"> </span><span class="nt">59</span><span class="w"> </span><span class="nt">msec</span>
+<span class="w">    </span><span class="o">;;</span><span class="w"> </span><span class="nt">SERVER</span><span class="o">:</span><span class="w"> </span><span class="nt">8</span><span class="p">.</span><span class="nc">8</span><span class="p">.</span><span class="nc">8</span><span class="p">.</span><span class="nc">8</span><span class="p">#</span><span class="nn">53</span><span class="o">(</span><span class="nt">8</span><span class="p">.</span><span class="nc">8</span><span class="p">.</span><span class="nc">8</span><span class="p">.</span><span class="nc">8</span><span class="o">)</span>
+<span class="w">    </span><span class="o">;;</span><span class="w"> </span><span class="nt">WHEN</span><span class="o">:</span><span class="w"> </span><span class="nt">Tue</span><span class="w"> </span><span class="nt">Oct</span><span class="w"> </span><span class="nt">20</span><span class="w"> </span><span class="nt">10</span><span class="p">:</span><span class="nd">00</span><span class="p">:</span><span class="nd">24</span><span class="w"> </span><span class="nt">2015</span>
+<span class="w">    </span><span class="o">;;</span><span class="w"> </span><span class="nt">MSG</span><span class="w"> </span><span class="nt">SIZE</span><span class="w">  </span><span class="nt">rcvd</span><span class="o">:</span><span class="w"> </span><span class="nt">108</span>
+
+
+<span class="w">    </span><span class="o">$</span><span class="w"> </span><span class="nt">dig</span><span class="w"> </span><span class="nt">-t</span><span class="w"> </span><span class="nt">MX</span><span class="w"> </span><span class="nt">sue</span><span class="p">.</span><span class="nc">nl</span>
+
+<span class="w">    </span><span class="o">;</span><span class="w"> </span><span class="o">&lt;&lt;&gt;&gt;</span><span class="w"> </span><span class="nt">DiG</span><span class="w"> </span><span class="nt">9</span><span class="p">.</span><span class="nc">8</span><span class="p">.</span><span class="nc">3-P1</span><span class="w"> </span><span class="o">&lt;&lt;&gt;&gt;</span><span class="w"> </span><span class="nt">-t</span><span class="w"> </span><span class="nt">MX</span><span class="w"> </span><span class="nt">sue</span><span class="p">.</span><span class="nc">nl</span>
+<span class="w">    </span><span class="o">;;</span><span class="w"> </span><span class="nt">global</span><span class="w"> </span><span class="nt">options</span><span class="o">:</span><span class="w"> </span><span class="o">+</span><span class="nt">cmd</span>
+<span class="w">    </span><span class="o">;;</span><span class="w"> </span><span class="nt">Got</span><span class="w"> </span><span class="nt">answer</span><span class="o">:</span>
+<span class="w">    </span><span class="o">;;</span><span class="w"> </span><span class="nt">-</span><span class="o">&gt;&gt;</span><span class="nt">HEADER</span><span class="o">&lt;&lt;</span><span class="nt">-</span><span class="w"> </span><span class="nt">opcode</span><span class="o">:</span><span class="w"> </span><span class="nt">QUERY</span><span class="o">,</span><span class="w"> </span><span class="nt">status</span><span class="o">:</span><span class="w"> </span><span class="nt">NOERROR</span><span class="o">,</span><span class="w"> </span><span class="nt">id</span><span class="o">:</span><span class="w"> </span><span class="nt">36671</span>
+<span class="w">    </span><span class="o">;;</span><span class="w"> </span><span class="nt">flags</span><span class="o">:</span><span class="w"> </span><span class="nt">qr</span><span class="w"> </span><span class="nt">rd</span><span class="w"> </span><span class="nt">ra</span><span class="o">;</span><span class="w"> </span><span class="nt">QUERY</span><span class="o">:</span><span class="w"> </span><span class="nt">1</span><span class="o">,</span><span class="w"> </span><span class="nt">ANSWER</span><span class="o">:</span><span class="w"> </span><span class="nt">2</span><span class="o">,</span><span class="w"> </span><span class="nt">AUTHORITY</span><span class="o">:</span><span class="w"> </span><span class="nt">0</span><span class="o">,</span><span class="w"> </span><span class="nt">ADDITIONAL</span><span class="o">:</span><span class="w"> </span><span class="nt">0</span>
+
+<span class="w">    </span><span class="o">;;</span><span class="w"> </span><span class="nt">QUESTION</span><span class="w"> </span><span class="nt">SECTION</span><span class="o">:</span>
+<span class="w">    </span><span class="o">;</span><span class="nt">sue</span><span class="p">.</span><span class="nc">nl</span><span class="o">.</span><span class="w">            </span><span class="nt">IN</span><span class="w">  </span><span class="nt">MX</span>
+
+<span class="w">    </span><span class="o">;;</span><span class="w"> </span><span class="nt">ANSWER</span><span class="w"> </span><span class="nt">SECTION</span><span class="o">:</span>
+<span class="w">    </span><span class="nt">sue</span><span class="p">.</span><span class="nc">nl</span><span class="o">.</span><span class="w">     </span><span class="nt">299</span><span class="w"> </span><span class="nt">IN</span><span class="w">  </span><span class="nt">MX</span><span class="w">  </span><span class="nt">10</span><span class="w"> </span><span class="nt">mc</span><span class="p">.</span><span class="nc">sue</span><span class="p">.</span><span class="nc">nl</span><span class="o">.</span>
+<span class="w">    </span><span class="nt">sue</span><span class="p">.</span><span class="nc">nl</span><span class="o">.</span><span class="w">     </span><span class="nt">299</span><span class="w"> </span><span class="nt">IN</span><span class="w">  </span><span class="nt">MX</span><span class="w">  </span><span class="nt">20</span><span class="w"> </span><span class="nt">mx1</span><span class="p">.</span><span class="nc">sue</span><span class="p">.</span><span class="nc">nl</span><span class="o">.</span>
+
+<span class="w">    </span><span class="o">;;</span><span class="w"> </span><span class="nt">Query</span><span class="w"> </span><span class="nt">time</span><span class="o">:</span><span class="w"> </span><span class="nt">61</span><span class="w"> </span><span class="nt">msec</span>
+<span class="w">    </span><span class="o">;;</span><span class="w"> </span><span class="nt">SERVER</span><span class="o">:</span><span class="w"> </span><span class="nt">8</span><span class="p">.</span><span class="nc">8</span><span class="p">.</span><span class="nc">8</span><span class="p">.</span><span class="nc">8</span><span class="p">#</span><span class="nn">53</span><span class="o">(</span><span class="nt">8</span><span class="p">.</span><span class="nc">8</span><span class="p">.</span><span class="nc">8</span><span class="p">.</span><span class="nc">8</span><span class="o">)</span>
+<span class="w">    </span><span class="o">;;</span><span class="w"> </span><span class="nt">WHEN</span><span class="o">:</span><span class="w"> </span><span class="nt">Tue</span><span class="w"> </span><span class="nt">Oct</span><span class="w"> </span><span class="nt">20</span><span class="w"> </span><span class="nt">10</span><span class="p">:</span><span class="nd">02</span><span class="p">:</span><span class="nd">01</span><span class="w"> </span><span class="nt">2015</span>
+<span class="w">    </span><span class="o">;;</span><span class="w"> </span><span class="nt">MSG</span><span class="w"> </span><span class="nt">SIZE</span><span class="w">  </span><span class="nt">rcvd</span><span class="o">:</span><span class="w"> </span><span class="nt">64</span>
+</code></pre></div></td></tr></table></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 1997-2021 Sue B.V., The Netherlands - Open Sourced 2021
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["search.highlight", "tabs", "instant"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,3393 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Sue B.V., The Netherlands">
+      
+      
+      
+        <link rel="prev" href="../lpic2.208.1/">
+      
+      
+        <link rel="next" href="../lpic2.208.3/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Apache configuration for HTTPS (208.2) - The LPIC2 Exam Prep</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:300,300i,400,400i,700,700i%7CAnonymous+Pro:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Nunito";--md-code-font:"Anonymous Pro"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#apache-configuration-for-https-2082" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="The LPIC2 Exam Prep" class="md-header__button md-logo" aria-label="The LPIC2 Exam Prep" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            The LPIC2 Exam Prep
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Apache configuration for HTTPS (208.2)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/lpic2book/src" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    LPIC2Book
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="The LPIC2 Exam Prep" class="md-nav__button md-logo" aria-label="The LPIC2 Exam Prep" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/></svg>
+
+    </a>
+    The LPIC2 Exam Prep
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/lpic2book/src" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    LPIC2Book
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The LPIC2 Exam Prep
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpicbook_about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About this book
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    200 Capacity Planning (200)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Measure and Troubleshoot Resource Usage (200.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Predict Future Resource Needs (200.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Kernel (201)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel Components (201.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compiling a Linux kernel (201.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel runtime management and troubleshooting (201.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Startup (202)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customizing system startup (202.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System recovery (202.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Alternate Bootloaders (202.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Filesystem and Devices (203)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operating The Linux Filesystem (203.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maintaining a Linux Filesystem (203.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Creating And Configuring Filesystem Options (203.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Storage Device Administration (204)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring RAID (204.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adjusting Storage Device Access (204.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logical Volume Manager (204.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring PCMCIA Devices (204.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Networking Configuration (205)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Networking Configuration (205.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Network Configuration and Troubleshooting (205.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting network issues (205.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Maintenance (206)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Make and install programs from source (206.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup Operations (206.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifying users on system-related issues (206.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domain Name Server (207)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic DNS server configuration (207.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Create and maintain DNS zones (207.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Securing a DNS Server (207.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTTP Services (208)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Apache Configuration (208.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Apache configuration for HTTPS (208.2)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Apache configuration for HTTPS (208.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#apache-configuration-for-https-2082" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Apache configuration for HTTPS (208.2)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-knowledge-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Knowledge Areas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#terms-and-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terms and Utilities:
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#apache2-configuration-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Apache2 configuration files
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Apache2 configuration files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#encrypted-webservers-ssl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Encrypted webservers: SSL
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Encrypted webservers: SSL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#public-key-cryptography" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public key cryptography
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apache-with-mod_ssl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Apache with mod_ssl
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-apache-directives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Other Apache Directives
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sslvhost" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SSL with Apache Virtual Hosts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SSL with Apache Virtual Hosts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ssl-security-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SSL Security Issues
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disabling-of-insecure-protocols-and-ciphers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disabling of insecure protocols and ciphers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementing Squid as a caching proxy (208.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementing Nginx as a web server and a reverse proxy (208.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File Sharing (209)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAMBA Server Configuration (209.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring an NFS Server (209.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Client Management (210)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DHCP Configuration (210.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PAM authentication (210.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LDAP client usage (210.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring an OpenLDAP server (210.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    E-Mail services (211)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using e-mail servers (211.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing E-Mail Delivery (211.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing Mailbox Access (211.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Security (212)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring a router (212.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing FTP servers (212.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secure shell (SSH) (212.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security tasks (212.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenVPN (212.5)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#apache-configuration-for-https-2082" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Apache configuration for HTTPS (208.2)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-knowledge-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Knowledge Areas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#terms-and-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terms and Utilities:
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#apache2-configuration-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Apache2 configuration files
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Apache2 configuration files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#encrypted-webservers-ssl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Encrypted webservers: SSL
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Encrypted webservers: SSL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#public-key-cryptography" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public key cryptography
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apache-with-mod_ssl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Apache with mod_ssl
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-apache-directives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Other Apache Directives
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sslvhost" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SSL with Apache Virtual Hosts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SSL with Apache Virtual Hosts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ssl-security-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SSL Security Issues
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disabling-of-insecure-protocols-and-ciphers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disabling of insecure protocols and ciphers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>Apache configuration for HTTPS (208.2)</h1>
+
+<h2 id="apache-configuration-for-https-2082">Apache configuration for HTTPS (208.2)<a class="headerlink" href="#apache-configuration-for-https-2082" title="Permanent link">&para;</a></h2>
+<p>Candidates should be able to configure a web server to provide HTTPS.</p>
+<h2 id="key-knowledge-areas">Key Knowledge Areas<a class="headerlink" href="#key-knowledge-areas" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>SSL configuration files, tools and utilities</p>
+</li>
+<li>
+<p>Ability to generate a server private key and CSR for a commercial CA</p>
+</li>
+<li>
+<p>Ability to generate a self-signed Certificate from private CA</p>
+</li>
+<li>
+<p>Ability to install the key and Certificate</p>
+</li>
+<li>
+<p>Awareness of the issues with Virtual Hosting and use of SSL</p>
+</li>
+<li>
+<p>Security issues in SSL use</p>
+</li>
+<li>
+<p>Virtual Hosting and use of SSL through Server Name Indicator (SNI)</p>
+</li>
+<li>
+<p>Disabling insecure protocols and ciphers</p>
+</li>
+</ul>
+<h2 id="terms-and-utilities">Terms and Utilities:<a class="headerlink" href="#terms-and-utilities" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><code>Apache2 configuration files</code></p>
+</li>
+<li>
+<p><code>/etc/ssl/, /etc/pki/</code></p>
+</li>
+<li>
+<p><code>openssl, CA.pl</code></p>
+</li>
+<li>
+<p><code>SSLEngine, SSLCertificateKeyFile, SSLCertificateFile</code></p>
+</li>
+<li>
+<p><code>SSLCACertificateFile, SSLCACertificatePath</code></p>
+</li>
+<li>
+<p><code>SSLProtocol, SSLCipherSuite, ServerTokens, ServerSignature, TraceEnable</code></p>
+</li>
+</ul>
+<h2 id="apache2-configuration-files">Apache2 configuration files<a class="headerlink" href="#apache2-configuration-files" title="Permanent link">&para;</a></h2>
+<p>Depending on the Linux distribution in use, the following files and
+directories may be used for configuration of Apache 2.x when Apache is
+installed from packages: <code>httpd.conf</code>, <code>apache.conf</code>, <code>apache2.conf</code>,
+<code>/etc/httpd/</code>, <code>/etc/httpd/conf</code>, <code>/etc/httpd/conf.d</code>, <code>/etc/apache2/</code></p>
+<p>Configuration files are expected to contain predefined directives. If a
+directive is not explicitly defined, Apache will use a default setting.
+This default may vary per Linux distribution, so consult your
+distribution's Apache documentation. <code>/usr/share/doc</code> is a good place to start. Configuration files can be
+checked for syntax errors using either of the following commands:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ sudo apachectl configtest
+    $ sudo service httpd configtest
+</code></pre></div></td></tr></table></div>
+
+<p>Because Apache usually serves a daemon that listens to ports below 1024,
+sudo or a root shell should be used to invoke all Apache related
+commands. Refer to your system documentation to check for the
+availability of the <code>apachectl</code> or <code>apache2ctl</code> command. If both exist,
+they might be symlinked. The naming difference for this command has a
+historical reason. <code>apachectl</code> was used for Apache 1.x and when Apache2
+was released the command was hence renamed match the new name. Now that
+Apache2.x has become the standard, either <code>apache2ctl</code> has been renamed to <code>apachectl</code> or both commands are
+available for compatibility reasons. When available, the <code>service</code>
+facility may point to httpd on Red Hat based systems, or to apache2 on
+Debian-based systems: The <code>apachectl</code> command has many useful options.
+It is in fact a shell script that functions as a wrapper for the httpd
+binary. Consult the man page for all available arguments and options.
+Just two more examples to get you started: To show all configured
+virtual hosts, use:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ sudo apachectl -t -D DUMP_VHOSTS
+</code></pre></div></td></tr></table></div>
+
+<p>To show all currently running websites, use:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ sudo apachectl -S
+</code></pre></div></td></tr></table></div>
+
+<p>Be careful interpreting the output from the command above. That output
+shows the configuration of the currently <em>running</em> websites. There is no
+guarantee that the website configuration on disk has changed since these
+websites were brought online. In other words: The output from the
+running processes does not necessarily have to match the contents of the
+configuration files (anymore).</p>
+<p>In regards to the Apache configuration files, it is important to know
+about the different ways Apache may be installed and configured.
+Depending on the Linux distribution and Apache2.x version in use,
+configuration files may be located and even named differently across
+otherwise similar systems. As we will see further down this chapter,
+Apache often uses one main configuration file. Within this file, other
+configuration files may be included using the
+<code>INCLUDE /path/to/other/config</code> directive. The configuration file syntax may be checked
+for errors by invoking the <code>apachectl</code> script as shown previously. Each configuration
+file that is included from the main configuration file in use will be
+checked for consistency and syntax. Consistency here means that if a
+dependant configuration file, certificate file or key file can not be
+accessed properly by the user the httpd binary runs as, a warning will
+be shown. If <code>apachectl</code> does not appear in your <code>$PATH</code>, use the
+<code>sudo find</code> command with <code>apachectl</code> or <code>apache2ctl</code> as an argument. Depending on the size of your storage
+volumes, it may be wiser to narrow this search down to specific
+directories. You have been warned. If the <code>service</code> command is not
+available on your system, the Apache daemon may be started, checked and
+stopped by a SysV script instead. Look within the <code>/etc/init.d/</code> directory for a script called <code>httpd</code>,
+<code>apache2</code> or equivalent. This script may be then called upon as follows,
+to reveal the available arguments:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ sudo /etc/init.d/apache2
+</code></pre></div></td></tr></table></div>
+
+<h3 id="encrypted-webservers-ssl">Encrypted webservers: SSL<a class="headerlink" href="#encrypted-webservers-ssl" title="Permanent link">&para;</a></h3>
+<p>Apache can support <em>SSL/TLS</em> for (reasonably) secure SSL/TLS online
+communication. While TLS in version 1.2 is actually the currently
+favourable option, TLS encrypted HTTPS sessions are still referred to as
+'SSL' encrypted sessions. TLS could in fact be seen as the successor
+to SSL (v3.0). So, just as with Apache versus Apache2, whenever
+Apache/SSL is mentioned in this chapter, TLS is implied as well. Unless
+otherwise specified. We will cover the strengths and weaknesses of both
+protocols further down this chapter.</p>
+<p>The Secure Sockets Layer protocol (SSL) is a protocol which may be
+placed between a reliable connection-oriented network layer protocol
+(e.g., TCP/IP) and the application layer protocol (e.g., HTTP). SSL
+provides secure communication between client and server by allowing
+mutual authentication and the use of digital signatures for integrity
+and encryption for privacy. Currently there are two versions of SSL
+still in use: version 2 and version 3. Additionally, the successor to
+SSL, TLS (version 1.0, 1.1 and 1.2, which are based on SSL), TLS were
+designed by the IETF organisation.</p>
+<h4 id="public-key-cryptography">Public key cryptography<a class="headerlink" href="#public-key-cryptography" title="Permanent link">&para;</a></h4>
+<p>SSL/TLS uses Public Key Cryptography (PKC), also known as asymmetric PKC
+CryptographyPublic Key cryptography. Public key cryptography is used in
+situations where the sender and receiver do not share a common secret,
+e.g., between browsers and web servers, but wish to establish a trusted
+channel for their communication.</p>
+<p>PKC defines an algorithm which uses two keys, each of which may be used
+to encrypt a message. If one key is used to encrypt a message, then the
+other must be used to decrypt it. This makes it possible to receive
+secure messages by simply publishing one key (the public key) and
+keeping the other key secret (the private key). Anyone may encrypt a
+message using the public key, but only the owner of the private key will
+be able to read it. For example, Alice may send private messages to the
+owner of a key-pair (e.g., your web server), by encrypting the messages
+using the public key your server publishes. Only the server will be able
+to decrypt it using the corresponding private key.</p>
+<p><img alt="" src="../images/208-pubkey.dot.svg.jpg" /></p>
+<p>A secure web server (e.g., Apache/SSL) uses HTTP over SSL/TLS, https
+Apache443 using port 443 by default. The SSL/TLS port can be configured
+by defining the <code>Listen</code> directive inside the main configuration file.
+There should already be a listener configured for port 80 (HTTP). On
+Debian-based systems, there is a dedicated file for defining the active
+listeners. This file is called <code>ports.conf</code> and is included from the
+main configuration file. Apart from this file, individual websites
+should specify the listening host at the end of the <code>ServerName</code> or
+<code>NameVirtualHost</code> declaration. Starting from Apache v2.4, <code>NameVirtualHost</code> has been deprecated in favour of
+<code>VirtualHost</code>. A declaration like that could look as follows:
+<code>&lt;VirtualHost *:443&gt;</code>. Within the browser, the use of HTTPS is signified
+by the use of the https:// scheme in the URL. The public key is
+exchanged during the set-up of the communication between server and
+client (browser). That public key should be signed (it contains a
+digital signature e.g., a message digest) by a so-called valid CA
+(Certificate Authority). Each browser contains a number of so-called
+Certificate Authority <em>root</em>-certificates: these can be used to
+determine the validity of the CA's that signed the key. Not every
+certificate out there is signed by one of these valid CA's. Especially
+for testing purposes, it is common to sign certificates without the
+intervention of a valid CA. This is done in order to save both
+(validation) time and (registration fee) money. As of 2015, it has
+become easier to maintain valid CA signed certificate. An organisation
+called Let's Encrypt is willing to sign certificates for free, as long
+as you play by the rules. Use your favourite web search engine to find
+out more about Let's Encrypt, <em>after</em> reading this chapter.</p>
+<h4 id="apache-with-mod_ssl">Apache with <code>mod_ssl</code><a class="headerlink" href="#apache-with-mod_ssl" title="Permanent link">&para;</a></h4>
+<p>The Apache Software Foundation provides excellent documentation
+regarding the use of <code>mod_ssl,</code>. We urge you to take the time to read
+through the resources collected at the following URL:
+<a href="https://httpd.apache.org/docs/current/ssl/">https://httpd.apache.org/docs/current/ssl/</a></p>
+<p>The subject of encryption is so vast and complicated that entire books
+have been written around about it. The added confidentiality and
+integrity only provide their value when encryption is implemented
+correctly. So called 'best practices' in regards to encryption may
+change overnight. In addition to the collection of resources listed at
+the URL above, we want to add the following URL:
+<a href="http://httpd.apache.org/docs/trunk/ssl/ssl_howto.html">http://httpd.apache.org/docs/trunk/ssl/ssl_howto.html</a></p>
+<p>As you can see, this URL does not point to the <em>current</em> version of the
+documentation. Instead, it points to the <em>trunk</em> version. At the time of
+this writing, this corresponds to the Apache 2.5 documentation. The
+<em>trunk</em> documentation will always point towards the most recent Apache
+version in development. And while the <em>trunk</em> Apache code may not be
+recommended to use, the documentation may be more recently updated than
+elsewhere. In regards to the subject of SSL/TLS, this results in more
+up-to-date best practices than the 2.4 documentation provides.</p>
+<p>The documentation provided by The Apache Software Foundation is
+vendor-neutral. So when the Apache documentation states that the
+following directives should be present in the Apache main configuration
+file:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span>LoadModule<span class="w"> </span>mod_ssl<span class="w"> </span>modules/mod_ssl.so
+<span class="w">    </span>Listen<span class="w"> </span>443
+<span class="w">    </span><span class="nt">&lt;Vhost&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/Vhost&gt;</span>
+</code></pre></div></td></tr></table></div>
+
+<p>It can very well be that these directives are configured amongst several
+configuration files. This depends on your Linux distribution. In
+addition to the documentation provided by The Apache Software
+Foundation, we will try to point out the configuration differences
+between Red Hat and Debian based distributions.</p>
+<p>To use <code>mod_ssl</code> you will need to install the Apache and mod_ssl
+package. Apachemod_ssl On Red Hat based systems, this is done using the
+following command:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ sudo yum install httpd mod_ssl
+</code></pre></div></td></tr></table></div>
+
+<p>On Debian-based systems, this is done using the following command:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ sudo apt-get install apache2 openssl
+</code></pre></div></td></tr></table></div>
+
+<p>After installation, make sure the OpenSSL module is enabled within
+Apache. The module should be available to the Apache daemon, and
+included to be loaded during daemon start-up. Again, there are several
+ways this can be achieved. A common way is similar to the <code>websites-available</code> and <code>websites-enabled</code> strategy. However, now we are dealing
+with <code>modules-available</code> and <code>modules-
+                enabled</code> directories instead. As a plus, Debian-based
+systems come with a utility called <code>a2enmod</code>. By invoking this command
+as follows:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ sudo a2enmod enable ssl
+</code></pre></div></td></tr></table></div>
+
+<p><code>a2enmod</code> will create symlinks within the <code>mods-enabled 
+                directory, pointing to respectively 
+                mods-available/ssl.conf</code> and <code>mods-available/ssl.load</code>.
+When Apache is reloaded, these symlinks will ensure the SSL module will
+be loaded as well.</p>
+<p>Red Hat based systems use the <code>LoadModule</code> directive instead. This directive should be declared
+so it will be read during the start of the Apache daemon. On a Red Hat
+based system, this could be achieved by a <code>/etc/httpd/conf/httpd.conf</code> that holds the following
+INCLUDE directive:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    Include conf.d/*conf
+</code></pre></div></td></tr></table></div>
+
+<p>The default file <code>/etc/httpd/conf.d/ssl.conf</code> could then contain the following <code>LoadModule</code> and
+<code>Listen</code> statements:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>    LoadModule ssl_module modules/mod_ssl.so
+    Listen 443
+</code></pre></div></td></tr></table></div>
+
+<p>After reloading Apache, the SSL module should be loaded together with
+the Apache daemon. It is always a good practice to check for
+configuration errors before restarting the Apache daemon. This can be
+done using the <code>apachectl configtest</code> command and has been covered
+earlier. The output should be clear to interpret whether Apache will
+encounter errors or not, and why (it will).</p>
+<p>Then, generate a key and Certificate Signing Request (CSR). Either sign
+the csr file yourself, thus creating a 'self-signed' certificate, or
+have it signed by a valid Certificate Authority (CA). Depending on who
+you are, a self-signed certificate might cause browser-warnings when
+presented via HTTPS. Having the csr signed by a valid CA might prevent
+this from happening.</p>
+<p>Some additional directives should be used to configure the secure server
+- for example the location of the key-files. It's beyond the scope of
+this book to document all of these directives. However, you should be
+familiar with most of the mod_ssl directives. You can find best
+practices by searching the web and should also refer to your
+distribution's specific mod_ssl documentation. The generic mod_ssl
+documentation can be found on the <code>mod_ssl</code> <a href="http://www.modssl.org/"><code>mod_ssl</code>
+web-site</a>.</p>
+<p><code>mod_ssl</code> can also be used to authenticate clients using client
+certificates. These client certificates can be signed by your own CA and
+<code>mod_ssl</code> will validate the certificates against this CA. To enable this
+functionality set the <code>SSLVerifyClient</code> to <code>require</code>. Use the value <code>none</code> to
+turn it off.</p>
+<p>Certificates that are installed as part of your Linux distribution are
+usually installed in <code>/etc/ssl/certs</code> on Debian-based systems, and in
+<code>/etc/pki/tls/certs</code> on Red Hat based systems. The Red Hat based systems
+may have a symlink in place that points <code>/etc/ssl/certs</code> to
+<code>/etc/pki/tls/certs</code> for convenience and compatibility.</p>
+<p>Keys or key-files that are installed as part of your Linux distribution
+are in turn usually installed in <code>/etc/ssl/private</code> on Debian-based systems and in <code>/etc/pki/tls/private</code> on Red Hat based systems. Other directories within
+<code>/etc/ssl</code> and <code>/etc/pki</code> may also contain specific key files.</p>
+<p>It is often considered a best practice to create subdirectories when
+working with specific keys and/or certificates. Especially because
+specific cryptographic keys and certificates belong to each other. By
+devoting a dedicated subdirectory to each keypair, structure will be
+maintained within both the filesystem and configuration files pointing
+to these files. These subdirecties may be created as part of the
+<code>/etc/ssl</code> or <code>/etc/pki</code> hierarchy. But creating subdirectories below
+<code>/etc/apache2</code> or <code>/etc/httpd</code> can be done as well.</p>
+<p>Directory /etc/ssl/ {#apachessl}</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>                /etc/ssl$ ls -l
+                total 32
+                drwxr-xr-x 3 root root     16384 2011-03-06 15:31 certs
+                -rw-r--r-- 1 root root      9374 2010-09-24 22:05 openssl.cnf
+                drwx--x--- 2 root ssl-cert  4096 2011-03-06 13:19 private
+</code></pre></div></td></tr></table></div>
+
+<p>openssl The <code>openssl</code> program is a command line interface to the OpenSSL
+crypto library. You can use it to generate certificates, encrypt and
+decrypt files, create hashes and much more. It is generally seen as "the
+Swiss Army knife" of cryptography. One of the more common usages is to
+generate (self-signed) certificates for use on a secured webserver (to
+support the <code>https</code> protocol). <code>/etc/ssl/openssl.cnf</code> is the standard
+location for its configuration file, where you can set defaults for the
+name of your organization, the address etc.</p>
+<p><strong>Note</strong>
+If you generate a certificate for a webserver you start by creating a
+Certificate Signing Request (.csr). The <code>openssl</code> tool will prompt you for information it needs to
+create the request, using defaults it fetches from the configuration
+file. When you generate such a signing request, make sure you enter the
+FQDN (\"Fully Qualified Domain Name\") of the server when <code>openssl</code>
+Fully Qualified Domain Name prompts you for the "Common Name" or CN
+(which is part of the "Distinguished Name"). For example when you
+generate a CSR for the web-site Common Name <code>https://www.foo.example/</code>,
+enter <code>www.foo.example</code> as the CN. Be aware that a certificate providing
+<code>foo.example</code> would not be valid for the website accessed via
+<code>https://www.foo.example</code>. Neither would this certificate be valid for the
+website behind the URL <code>https://webmail.foo.example</code>. Seperate
+certificates for each domain should be put in place. To combat this
+necessity, many organizations choose to use <em>wilcard</em>- certificates.
+Especially for internal hosted websites. When issuing a CSR for a
+certificate that could be used to serve any of the <code>.foo.example</code> websites, the request should be done for
+the CN value <code>*.foo.example</code>. Browsers will understand this wildcard
+certificate when presented, and decide accordingly. <code>www.foo.example</code>
+and <code>webmail.foo.example</code> could be configured to use this
+certificate. <code>https://foo.example</code> on the other hand, would issue a
+browser warning with this certificate.</p>
+<p>How to create a SSL server Certificate {#apachesslcert}</p>
+<p>While installing OpenSSL, the program <code>openssl</code> is installed CreatingSSL
+Server Certificate on your system. This command can be used to create
+the necessary files that implement a (self-signed) server certificate.</p>
+<p>More specifically:</p>
+<ul>
+<li>
+<p>RSA You start by generating the <em>RSA key file</em>. It contains a pair
+    of related keys, used to encrypt and decrypt messages to and from
+    you. One half of the keypair will be used to encrypt messages that
+    will be sent to you using the <em>public key</em>. The other half is used
+    to decrypt these received messages using the <em>private key</em>. The
+    <em>public key</em> will be made part of your <em>digital certificate</em>. This
+    allows client systems to sent encrypted messages to your webserver
+    that only this webserver can decrypt, as it holds the related
+    private key;</p>
+</li>
+<li>
+<p>Next you will create a <em>Certificate Signing Request (CSR)</em>.
+    Certificate Signing Request This is a file which contains the public
+    key and identifying information like the name of your company,
+    location etc;</p>
+</li>
+<li>
+<p>The CSR is sent to a <em>Certificate Authority (CA)</em> which should
+    verify the correctness of the information you provided and generate
+    the <em>certificate</em>. This <em>certificate</em> contains a digital signature
+    that allows verification that the CA has approved of the contents of
+    the certificate. The certificate will contain the data you provided
+    (including your public key) and it is signed by the CA using its
+    private key. A <em>certificate</em> contains your RSA public key, your
+    name, the name of the CA and is digitally signed by your CA.
+    Browsers that know the CA can verify the Certificate Authority
+    signature on that certificate, thereby obtaining your RSA public
+    key. That enables them to send messages which only you can decrypt.</p>
+</li>
+</ul>
+<p><strong>Note</strong>
+You can create a signing request and then sign it yourself. In fact,
+that is what Certificate Authorities do when they create their
+<code>root certificate</code>. A <code>root 
+                certificate</code> is simply a certificate that says that they
+say they are whom they say they are. So, anybody can create a root
+certificate and put any credentials on it just as they please. The root
+certificate itself is no proof of anything. You will need to ensure that
+it really was issued by a party you trust yourself. Either you visit
+them and get a copy directly from them, or fetch it using another method
+you trust or you rely on others you trust to have done this for you. One
+of the ways you implicitly "trust" a large number of CAs is by relying
+on their root certificates that are made part of your browser.</p>
+<p>Triple-DES PEM As an example: to create an RSA private key that has a
+keysize of 2048 bits, and which will be triple-des (3DES) encrypted,
+stored in a file named <code>server.key</code> in the default format (which is
+known as PEM), type:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ openssl genrsa -des3 -out server.key 2048
+</code></pre></div></td></tr></table></div>
+
+<p>RSA keysizes below 1024 bits are considered out-of-date. 1024 bits seems
+to be a best practice today, with 2048, 3072, 4096 and onwards being
+valid options if all involved components are able to handle these
+keysizes without overexceeding thresholds.</p>
+<p>openssl <code>openssl</code> will ask for a pass-phrase, which will be used as the
+key to encrypt the private key. Please store this file in a secure
+backup location and remember the pass-phrase. If you loose the
+pass-phrase you will not be able to recover the key.</p>
+<p>For testing purposes, it might be preferable to strip the password from
+the key file. This can accomplished by reading the key and exporting it
+as follows:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ openssl rsa -in server.key -out stripped.key
+</code></pre></div></td></tr></table></div>
+
+<p>The <code>server.key</code> file still holds the encrypted private key information
+in ciphertext. The <code>stripped.key</code> file is a plain text file with the
+unencrypted private key information as its contents. Handle with care.</p>
+<p>To create a Certificate Signing Request (CSR) with the server RSA
+private key (output will be PEM formatted), execute the following:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ openssl req -new -key server.key -out server.csr
+</code></pre></div></td></tr></table></div>
+
+<p>The signing request can now either be sent to a real CA, which will sign
+the request and create a digital certificate, or you can create your own
+CA and do it yourself. Note that if you do it yourself, you will also
+need to install the root certificate of your CA into your clients (e.g.
+browser) to signal them that a certificate signed by your own CA can be
+trusted. If you omit this step, you will be getting a lot of disturbing
+warnings about missing trust and insecurity.</p>
+<p>CA.pl You can provide the <code>openssl</code> parameters yourself, but that can be
+a daunting task for less experienced users. Hence, for conveniences sake
+the OpenSSL software suite provides a perl script (<code>CA.pl</code>) to handle
+most CA related tasks a lot easier. It has a simplified syntax and
+supplies the more complex command line arguments to the underlying
+<code>openssl</code> command.</p>
+<p><code>CA.pl</code> will default use values it reads from the standard OpenSSL
+configuration file <code>/etc/ssl/openssl.cnf</code>. To create your own CA, find the <code>CA</code> shellscript or
+<code>CA.pl</code> perlscript that should be part of the OpenSSL package. On Red
+Hat based systems, this script is located in the <code>/etc/pki/tls/misc</code>
+directory. Depending on your distribution, the script might not
+interpret filenames for arguments. The script then instead looks for
+predifined values for the key file and csr file. Page the script source
+using a command like <code>less</code> or <code>more</code> and look for clues. The STDERR
+output might also show some valueable pointers. In the following
+example, <code>newkey.pem</code> and <code>newreq.pem</code> are used as file names by the
+<code>CA.pl</code> script:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">ssl</span><span class="o">/</span><span class="n">misc</span><span class="o">/</span><span class="n">CA</span><span class="p">.</span><span class="n">pl</span><span class="w"> </span><span class="o">-</span><span class="n">newca</span>
+<span class="w">    </span><span class="n">CA</span><span class="w"> </span><span class="n">certificate</span><span class="w"> </span><span class="n">filename</span><span class="w"> </span><span class="p">(</span><span class="ow">or</span><span class="w"> </span><span class="n">enter</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">create</span><span class="p">)</span>
+
+<span class="w">    </span><span class="n">Making</span><span class="w"> </span><span class="n">CA</span><span class="w"> </span><span class="n">certificate</span><span class="w"> </span><span class="p">...</span>
+<span class="w">    </span><span class="n">Generating</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="mi">2048</span><span class="w"> </span><span class="nc">bit</span><span class="w"> </span><span class="n">RSA</span><span class="w"> </span><span class="n">private</span><span class="w"> </span><span class="k">key</span>
+<span class="w">    </span><span class="p">........................</span><span class="o">+++</span>
+<span class="w">    </span><span class="p">..................................</span><span class="o">+++</span>
+<span class="w">    </span><span class="n">writing</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">private</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="s1">&#39;./demoCA/private/cakey.pem&#39;</span>
+<span class="w">    </span><span class="n">Enter</span><span class="w"> </span><span class="n">PEM</span><span class="w"> </span><span class="n">pass</span><span class="w"> </span><span class="nl">phrase</span><span class="p">:</span><span class="w"> </span><span class="o">********</span>
+<span class="w">    </span><span class="n">Verifying</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Enter</span><span class="w"> </span><span class="n">PEM</span><span class="w"> </span><span class="n">pass</span><span class="w"> </span><span class="nl">phrase</span><span class="p">:</span><span class="w"> </span><span class="o">********</span>
+<span class="w">    </span><span class="n">You</span><span class="w"> </span><span class="k">are</span><span class="w"> </span><span class="n">about</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">asked</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">enter</span><span class="w"> </span><span class="n">information</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">incorporated</span>
+<span class="w">    </span><span class="k">into</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">certificate</span><span class="w"> </span><span class="n">request</span><span class="p">.</span>
+<span class="w">    </span><span class="n">What</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="k">are</span><span class="w"> </span><span class="n">about</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">enter</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">what</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">called</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">Distinguished</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">DN</span><span class="p">.</span>
+<span class="w">    </span><span class="n">There</span><span class="w"> </span><span class="k">are</span><span class="w"> </span><span class="n">quite</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">few</span><span class="w"> </span><span class="n">fields</span><span class="w"> </span><span class="n">but</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">leave</span><span class="w"> </span><span class="ow">some</span><span class="w"> </span><span class="n">blank</span>
+<span class="w">    </span><span class="k">For</span><span class="w"> </span><span class="ow">some</span><span class="w"> </span><span class="n">fields</span><span class="w"> </span><span class="n">there</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="k">value</span><span class="p">,</span>
+<span class="w">    </span><span class="k">If</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">enter</span><span class="w"> </span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">field</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="nf">left</span><span class="w"> </span><span class="n">blank</span><span class="p">.</span>
+<span class="w">    </span><span class="c1">-----</span>
+<span class="w">    </span><span class="n">Country</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="n">letter</span><span class="w"> </span><span class="n">code</span><span class="p">)</span><span class="w"> </span><span class="o">[</span><span class="n">NL</span><span class="o">]</span><span class="err">:</span>
+<span class="w">    </span><span class="k">State</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">Province</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="p">(</span><span class="k">full</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="o">[</span><span class="n">None</span><span class="o">]</span><span class="err">:</span>
+<span class="w">    </span><span class="n">Locality</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="p">(</span><span class="n">eg</span><span class="p">,</span><span class="w"> </span><span class="n">city</span><span class="p">)</span><span class="w"> </span><span class="err">[]:</span>
+<span class="w">    </span><span class="n">Organization</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="p">(</span><span class="n">eg</span><span class="p">,</span><span class="w"> </span><span class="n">company</span><span class="p">)</span><span class="w"> </span><span class="o">[</span><span class="n">Sue B.V.</span><span class="o">]</span><span class="err">:</span>
+<span class="w">    </span><span class="n">Organizational</span><span class="w"> </span><span class="n">Unit</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="p">(</span><span class="n">eg</span><span class="p">,</span><span class="w"> </span><span class="k">section</span><span class="p">)</span><span class="w"> </span><span class="err">[]:</span>
+<span class="w">    </span><span class="n">Common</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">g</span><span class="p">.</span><span class="w"> </span><span class="n">server</span><span class="w"> </span><span class="n">FQDN</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">YOUR</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="err">[]:</span><span class="n">ssltest</span><span class="p">.</span><span class="n">sue</span><span class="p">.</span><span class="n">nl</span>
+<span class="w">    </span><span class="n">Email</span><span class="w"> </span><span class="n">Address</span><span class="w"> </span><span class="err">[]:</span>
+
+<span class="w">    </span><span class="n">Please</span><span class="w"> </span><span class="n">enter</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">following</span><span class="w"> </span><span class="s1">&#39;extra&#39;</span><span class="w"> </span><span class="n">attributes</span>
+<span class="w">    </span><span class="k">to</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">sent</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">certificate</span><span class="w"> </span><span class="n">request</span>
+<span class="w">    </span><span class="n">A</span><span class="w"> </span><span class="n">challenge</span><span class="w"> </span><span class="n">password</span><span class="w"> </span><span class="err">[]:</span>
+<span class="w">    </span><span class="n">An</span><span class="w"> </span><span class="n">optional</span><span class="w"> </span><span class="n">company</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="err">[]:</span>
+<span class="w">    </span><span class="k">Using</span><span class="w"> </span><span class="n">configuration</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">ssl</span><span class="o">/</span><span class="n">openssl</span><span class="p">.</span><span class="n">cnf</span>
+<span class="w">    </span><span class="n">Enter</span><span class="w"> </span><span class="n">pass</span><span class="w"> </span><span class="n">phrase</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="p">.</span><span class="o">/</span><span class="n">demoCA</span><span class="o">/</span><span class="n">private</span><span class="o">/</span><span class="n">cakey</span><span class="p">.</span><span class="nl">pem</span><span class="p">:</span>
+<span class="w">    </span><span class="k">Check</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">request</span><span class="w"> </span><span class="n">matches</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">signature</span>
+<span class="w">    </span><span class="n">Signature</span><span class="w"> </span><span class="n">ok</span>
+<span class="w">    </span><span class="n">Certificate</span><span class="w"> </span><span class="nl">Details</span><span class="p">:</span>
+<span class="w">    </span><span class="n">Serial</span><span class="w"> </span><span class="nl">Number</span><span class="p">:</span>
+<span class="w">    </span><span class="nl">ca</span><span class="p">:</span><span class="nl">d8</span><span class="p">:</span><span class="mi">22</span><span class="err">:</span><span class="mi">43</span><span class="err">:</span><span class="mi">94</span><span class="err">:</span><span class="mi">6</span><span class="nl">d</span><span class="p">:</span><span class="nl">ca</span><span class="p">:</span><span class="mi">6</span><span class="n">c</span>
+<span class="w">    </span><span class="n">Validity</span>
+<span class="w">    </span><span class="ow">Not</span><span class="w"> </span><span class="k">Before</span><span class="err">:</span><span class="w"> </span><span class="n">Jul</span><span class="w">  </span><span class="mi">9</span><span class="w"> </span><span class="mi">13</span><span class="err">:</span><span class="mi">49</span><span class="err">:</span><span class="mi">38</span><span class="w"> </span><span class="mi">2019</span><span class="w"> </span><span class="n">GMT</span>
+<span class="w">    </span><span class="ow">Not</span><span class="w"> </span><span class="k">After</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="n">Jul</span><span class="w">  </span><span class="mi">8</span><span class="w"> </span><span class="mi">13</span><span class="err">:</span><span class="mi">49</span><span class="err">:</span><span class="mi">38</span><span class="w"> </span><span class="mi">2020</span><span class="w">  </span><span class="n">GMT</span>
+<span class="w">    </span><span class="nl">Subject</span><span class="p">:</span>
+<span class="w">    </span><span class="n">countryName</span><span class="w">               </span><span class="o">=</span><span class="w"> </span><span class="n">NL</span>
+<span class="w">    </span><span class="n">stateOrProvinceName</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="k">None</span>
+<span class="w">    </span><span class="n">organizationName</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="n">Sue</span><span class="w"> </span><span class="n">B</span><span class="p">.</span><span class="n">V</span><span class="p">.</span>
+<span class="w">    </span><span class="n">commonName</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="n">ssltest</span><span class="p">.</span><span class="n">sue</span><span class="p">.</span><span class="n">nl</span>
+<span class="w">    </span><span class="n">X509v3</span><span class="w"> </span><span class="nl">extensions</span><span class="p">:</span>
+<span class="w">    </span><span class="n">X509v3</span><span class="w"> </span><span class="n">Subject</span><span class="w"> </span><span class="k">Key</span><span class="w"> </span><span class="nl">Identifier</span><span class="p">:</span><span class="w"> </span>
+<span class="w">    </span><span class="mi">83</span><span class="err">:</span><span class="nl">F3</span><span class="p">:</span><span class="mi">99</span><span class="err">:</span><span class="mi">4</span><span class="nl">B</span><span class="p">:</span><span class="mi">98</span><span class="err">:</span><span class="nl">E0</span><span class="p">:</span><span class="nl">F1</span><span class="p">:</span><span class="mi">37</span><span class="err">:</span><span class="mi">78</span><span class="err">:</span><span class="mi">67</span><span class="err">:</span><span class="nl">DC</span><span class="p">:</span><span class="mi">04</span><span class="err">:</span><span class="nl">AC</span><span class="p">:</span><span class="mi">04</span><span class="err">:</span><span class="mi">65</span><span class="err">:</span><span class="mi">03</span><span class="err">:</span><span class="mi">48</span><span class="err">:</span><span class="nl">BB</span><span class="p">:</span><span class="mi">31</span><span class="err">:</span><span class="n">FB</span>
+<span class="w">    </span><span class="n">X509v3</span><span class="w"> </span><span class="n">Authority</span><span class="w"> </span><span class="k">Key</span><span class="w"> </span><span class="nl">Identifier</span><span class="p">:</span><span class="w"> </span>
+<span class="w">    </span><span class="nl">keyid</span><span class="p">:</span><span class="mi">83</span><span class="err">:</span><span class="nl">F3</span><span class="p">:</span><span class="mi">99</span><span class="err">:</span><span class="mi">4</span><span class="nl">B</span><span class="p">:</span><span class="mi">98</span><span class="err">:</span><span class="nl">E0</span><span class="p">:</span><span class="nl">F1</span><span class="p">:</span><span class="mi">37</span><span class="err">:</span><span class="mi">78</span><span class="err">:</span><span class="mi">67</span><span class="err">:</span><span class="nl">DC</span><span class="p">:</span><span class="mi">04</span><span class="err">:</span><span class="nl">AC</span><span class="p">:</span><span class="mi">04</span><span class="err">:</span><span class="mi">65</span><span class="err">:</span><span class="mi">03</span><span class="err">:</span><span class="mi">48</span><span class="err">:</span><span class="nl">BB</span><span class="p">:</span><span class="mi">31</span><span class="err">:</span><span class="n">FB</span>
+
+<span class="w">    </span><span class="n">X509v3</span><span class="w"> </span><span class="n">Basic</span><span class="w"> </span><span class="k">Constraints</span><span class="err">:</span><span class="w"> </span>
+<span class="w">    </span><span class="nl">CA</span><span class="p">:</span><span class="k">TRUE</span>
+<span class="w">    </span><span class="n">Certificate</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">certified</span><span class="w"> </span><span class="n">until</span><span class="w"> </span><span class="n">Jul</span><span class="w">  </span><span class="mi">8</span><span class="w"> </span><span class="mi">13</span><span class="err">:</span><span class="mi">49</span><span class="err">:</span><span class="mi">38</span><span class="w"> </span><span class="mi">2016</span><span class="w"> </span><span class="n">GMT</span><span class="w"> </span><span class="p">(</span><span class="mi">1095</span><span class="w"> </span><span class="n">days</span><span class="p">)</span>
+
+<span class="w">    </span><span class="k">Write</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">entries</span>
+<span class="w">    </span><span class="k">Data</span><span class="w"> </span><span class="n">Base</span><span class="w"> </span><span class="n">Updated</span>
+</code></pre></div></td></tr></table></div>
+
+<p>Next create a signing request:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">ssl</span><span class="o">/</span><span class="n">misc</span><span class="o">/</span><span class="n">CA</span><span class="p">.</span><span class="n">pl</span><span class="w"> </span><span class="o">-</span><span class="n">newreq</span>
+<span class="w">    </span><span class="n">Generating</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="mi">2048</span><span class="w"> </span><span class="nc">bit</span><span class="w"> </span><span class="n">RSA</span><span class="w"> </span><span class="n">private</span><span class="w"> </span><span class="k">key</span>
+<span class="w">    </span><span class="p">...........................</span><span class="o">+++</span>
+<span class="w">    </span><span class="p">...........................</span><span class="o">+++</span>
+<span class="w">    </span><span class="n">writing</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">private</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="s1">&#39;newkey.pem&#39;</span>
+<span class="w">    </span><span class="n">Enter</span><span class="w"> </span><span class="n">PEM</span><span class="w"> </span><span class="n">pass</span><span class="w"> </span><span class="nl">phrase</span><span class="p">:</span>
+<span class="w">    </span><span class="n">Verifying</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Enter</span><span class="w"> </span><span class="n">PEM</span><span class="w"> </span><span class="n">pass</span><span class="w"> </span><span class="nl">phrase</span><span class="p">:</span>
+<span class="w">    </span><span class="c1">-----</span>
+<span class="w">    </span><span class="n">You</span><span class="w"> </span><span class="k">are</span><span class="w"> </span><span class="n">about</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">asked</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">enter</span><span class="w"> </span><span class="n">information</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">incorporated</span>
+<span class="w">    </span><span class="k">into</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">certificate</span><span class="w"> </span><span class="n">request</span><span class="p">.</span>
+<span class="w">    </span><span class="n">What</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="k">are</span><span class="w"> </span><span class="n">about</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">enter</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">what</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">called</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">Distinguished</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">DN</span><span class="p">.</span>
+<span class="w">    </span><span class="n">There</span><span class="w"> </span><span class="k">are</span><span class="w"> </span><span class="n">quite</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">few</span><span class="w"> </span><span class="n">fields</span><span class="w"> </span><span class="n">but</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">leave</span><span class="w"> </span><span class="ow">some</span><span class="w"> </span><span class="n">blank</span>
+<span class="w">    </span><span class="k">For</span><span class="w"> </span><span class="ow">some</span><span class="w"> </span><span class="n">fields</span><span class="w"> </span><span class="n">there</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="k">value</span><span class="p">,</span>
+<span class="w">    </span><span class="k">If</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">enter</span><span class="w"> </span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">field</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="nf">left</span><span class="w"> </span><span class="n">blank</span><span class="p">.</span>
+<span class="w">    </span><span class="c1">-----</span>
+<span class="w">    </span><span class="n">Country</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="n">letter</span><span class="w"> </span><span class="n">code</span><span class="p">)</span><span class="w"> </span><span class="o">[</span><span class="n">NL</span><span class="o">]</span><span class="err">:</span>
+<span class="w">    </span><span class="k">State</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">Province</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="p">(</span><span class="k">full</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="err">[]:</span><span class="k">None</span>
+<span class="w">    </span><span class="n">Locality</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="p">(</span><span class="n">eg</span><span class="p">,</span><span class="w"> </span><span class="n">city</span><span class="p">)</span><span class="w"> </span><span class="err">[]:</span>
+<span class="w">    </span><span class="n">Organization</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="p">(</span><span class="n">eg</span><span class="p">,</span><span class="w"> </span><span class="n">company</span><span class="p">)</span><span class="w"> </span><span class="err">[]:</span><span class="n">Sue</span><span class="w"> </span><span class="n">B</span><span class="p">.</span><span class="n">V</span><span class="p">.</span>
+<span class="w">    </span><span class="n">Organizational</span><span class="w"> </span><span class="n">Unit</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="p">(</span><span class="n">eg</span><span class="p">,</span><span class="w"> </span><span class="k">section</span><span class="p">)</span><span class="w"> </span><span class="err">[]:</span>
+<span class="w">    </span><span class="n">Common</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">g</span><span class="p">.</span><span class="w"> </span><span class="n">server</span><span class="w"> </span><span class="n">FQDN</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">YOUR</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="err">[]:</span><span class="n">ssltest</span><span class="p">.</span><span class="n">sue</span><span class="p">.</span><span class="n">nl</span>
+<span class="w">    </span><span class="n">Email</span><span class="w"> </span><span class="n">Address</span><span class="w"> </span><span class="err">[]:</span>
+
+<span class="w">    </span><span class="n">Please</span><span class="w"> </span><span class="n">enter</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">following</span><span class="w"> </span><span class="s1">&#39;extra&#39;</span><span class="w"> </span><span class="n">attributes</span>
+<span class="w">    </span><span class="k">to</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">sent</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">certificate</span><span class="w"> </span><span class="n">request</span>
+<span class="w">    </span><span class="n">A</span><span class="w"> </span><span class="n">challenge</span><span class="w"> </span><span class="n">password</span><span class="w"> </span><span class="err">[]:</span>
+<span class="w">    </span><span class="n">An</span><span class="w"> </span><span class="n">optional</span><span class="w"> </span><span class="n">company</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="err">[]:</span>
+<span class="w">    </span><span class="n">Request</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">newreq</span><span class="p">.</span><span class="n">pem</span><span class="p">,</span><span class="w"> </span><span class="n">private</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">newkey</span><span class="p">.</span><span class="n">pem</span>
+</code></pre></div></td></tr></table></div>
+
+<p>Then, we sign the request:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span>#<span class="w"> </span><span class="o">/</span><span class="nv">usr</span><span class="o">/</span><span class="nv">lib</span><span class="o">/</span><span class="nv">ssl</span><span class="o">/</span><span class="nv">misc</span><span class="o">/</span><span class="nv">CA</span>.<span class="nv">pl</span><span class="w"> </span><span class="o">-</span><span class="nv">signreq</span>
+<span class="w">    </span><span class="nv">Using</span><span class="w"> </span><span class="nv">configuration</span><span class="w"> </span><span class="nv">from</span><span class="w"> </span><span class="o">/</span><span class="nv">usr</span><span class="o">/</span><span class="nv">lib</span><span class="o">/</span><span class="nv">ssl</span><span class="o">/</span><span class="nv">openssl</span>.<span class="nv">cnf</span>
+<span class="w">    </span><span class="nv">Enter</span><span class="w"> </span><span class="nv">pass</span><span class="w"> </span><span class="nv">phrase</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>.<span class="o">/</span><span class="nv">demoCA</span><span class="o">/</span><span class="nv">private</span><span class="o">/</span><span class="nv">cakey</span>.<span class="nv">pem</span>:
+<span class="w">    </span><span class="nv">Check</span><span class="w"> </span><span class="nv">that</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">request</span><span class="w"> </span><span class="nv">matches</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">signature</span>
+<span class="w">    </span><span class="nv">Signature</span><span class="w"> </span><span class="nv">ok</span>
+<span class="w">    </span><span class="nv">Certificate</span><span class="w"> </span><span class="nv">Details</span>:
+<span class="w">    </span><span class="nv">Serial</span><span class="w"> </span><span class="nv">Number</span>:
+<span class="w">    </span><span class="nv">ca</span>:<span class="nv">d8</span>:<span class="mi">22</span>:<span class="mi">43</span>:<span class="mi">94</span>:<span class="mi">6</span><span class="nv">d</span>:<span class="nv">ca</span>:<span class="mi">6</span><span class="nv">d</span>
+<span class="w">    </span><span class="nv">Validity</span>
+<span class="w">    </span><span class="nv">Not</span><span class="w"> </span><span class="nv">Before</span>:<span class="w"> </span><span class="nv">Jul</span><span class="w">  </span><span class="mi">9</span><span class="w"> </span><span class="mi">13</span>:<span class="mi">53</span>:<span class="mi">53</span><span class="w"> </span><span class="mi">2013</span><span class="w"> </span><span class="nv">GMT</span>
+<span class="w">    </span><span class="nv">Not</span><span class="w"> </span><span class="nv">After</span><span class="w"> </span>:<span class="w"> </span><span class="nv">Jul</span><span class="w">  </span><span class="mi">9</span><span class="w"> </span><span class="mi">13</span>:<span class="mi">53</span>:<span class="mi">53</span><span class="w"> </span><span class="mi">2014</span><span class="w"> </span><span class="nv">GMT</span>
+<span class="w">    </span><span class="nv">Subject</span>:
+<span class="w">    </span><span class="nv">countryName</span><span class="w">               </span><span class="o">=</span><span class="w"> </span><span class="nv">NL</span>
+<span class="w">    </span><span class="nv">stateOrProvinceName</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="nv">None</span>
+<span class="w">    </span><span class="nv">organizationName</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="nv">Sue</span><span class="w"> </span><span class="nv">B</span>.<span class="nv">V</span>.
+<span class="w">    </span><span class="nv">commonName</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="nv">ssltest</span>.<span class="nv">sue</span>.<span class="nv">nl</span>
+<span class="w">    </span><span class="nv">X509v3</span><span class="w"> </span><span class="nv">extensions</span>:
+<span class="w">    </span><span class="nv">X509v3</span><span class="w"> </span><span class="nv">Basic</span><span class="w"> </span><span class="nv">Constraints</span>:<span class="w"> </span>
+<span class="w">    </span><span class="nv">CA</span>:<span class="nv">FALSE</span>
+<span class="w">    </span><span class="nv">Netscape</span><span class="w"> </span><span class="nv">Comment</span>:<span class="w"> </span>
+<span class="w">    </span><span class="nv">OpenSSL</span><span class="w"> </span><span class="nv">Generated</span><span class="w"> </span><span class="nv">Certificate</span>
+<span class="w">    </span><span class="nv">X509v3</span><span class="w"> </span><span class="nv">Subject</span><span class="w"> </span><span class="nv">Key</span><span class="w"> </span><span class="nv">Identifier</span>:<span class="w"> </span>
+<span class="w">    </span><span class="mi">21</span>:<span class="nv">A4</span>:<span class="mi">61</span>:<span class="mi">83</span>:<span class="nv">B4</span>:<span class="nv">E7</span>:<span class="nv">C3</span>:<span class="nv">E9</span>:<span class="mi">2</span><span class="nv">B</span>:<span class="mi">2</span><span class="nv">C</span>:<span class="mi">0</span><span class="nv">A</span>:<span class="nv">DD</span>:<span class="mi">36</span>:<span class="nv">FA</span>:<span class="mi">82</span>:<span class="nv">D0</span>:<span class="mi">77</span>:<span class="mi">3</span><span class="nv">A</span>:<span class="nv">E2</span>:<span class="mi">01</span>
+<span class="w">    </span><span class="nv">X509v3</span><span class="w"> </span><span class="nv">Authority</span><span class="w"> </span><span class="nv">Key</span><span class="w"> </span><span class="nv">Identifier</span>:<span class="w"> </span>
+<span class="w">    </span><span class="nv">keyid</span>:<span class="mi">83</span>:<span class="nv">F3</span>:<span class="mi">99</span>:<span class="mi">4</span><span class="nv">B</span>:<span class="mi">98</span>:<span class="nv">E0</span>:<span class="nv">F1</span>:<span class="mi">37</span>:<span class="mi">78</span>:<span class="mi">67</span>:<span class="nv">DC</span>:<span class="mi">04</span>:<span class="nv">AC</span>:<span class="mi">04</span>:<span class="mi">65</span>:<span class="mi">03</span>:<span class="mi">48</span>:<span class="nv">BB</span>:<span class="mi">31</span>:<span class="nv">FB</span>
+
+<span class="w">    </span><span class="nv">Certificate</span><span class="w"> </span><span class="nv">is</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="nv">be</span><span class="w"> </span><span class="nv">certified</span><span class="w"> </span><span class="k">until</span><span class="w"> </span><span class="nv">Jul</span><span class="w">  </span><span class="mi">9</span><span class="w"> </span><span class="mi">13</span>:<span class="mi">53</span>:<span class="mi">53</span><span class="w"> </span><span class="mi">2014</span><span class="w"> </span><span class="nv">GMT</span><span class="w"> </span><span class="ss">(</span><span class="mi">365</span><span class="w"> </span><span class="nv">days</span><span class="ss">)</span>
+<span class="w">    </span><span class="nv">Sign</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">certificate</span>?<span class="w"> </span>[<span class="nv">y</span><span class="o">/</span><span class="nv">n</span>]:<span class="nv">y</span>
+
+
+<span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="nv">out</span><span class="w"> </span><span class="nv">of</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="nv">certificate</span><span class="w"> </span><span class="nv">requests</span><span class="w"> </span><span class="nv">certified</span>,<span class="w"> </span><span class="nv">commit</span>?<span class="w"> </span>[<span class="nv">y</span><span class="o">/</span><span class="nv">n</span>]<span class="nv">y</span>
+<span class="w">    </span><span class="nv">Write</span><span class="w"> </span><span class="nv">out</span><span class="w"> </span><span class="nv">database</span><span class="w"> </span><span class="nv">with</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="nv">new</span><span class="w"> </span><span class="nv">entries</span>
+<span class="w">    </span><span class="nv">Data</span><span class="w"> </span><span class="nv">Base</span><span class="w"> </span><span class="nv">Updated</span>
+<span class="w">    </span><span class="nv">Signed</span><span class="w"> </span><span class="nv">certificate</span><span class="w"> </span><span class="nv">is</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span><span class="nv">newcert</span>.<span class="nv">pem</span>
+</code></pre></div></td></tr></table></div>
+
+<p>You now created a certificate signed by your own CA (<code>newcert.pem</code>). You
+might want to rename the file to something more distinguishable, e.g
+<code>Certificate:ssltest.sue.nl</code>. While at it, rename the server key file
+too, for example <code>PrivateKey:ssltest.sue.nl</code>. Especially if you maintain a lot of keys and certificates
+on a lot of servers, it really helps to be able to learn from the name
+of a file what is in it.</p>
+<p>The Certificate Signing Request (CSR) could have been sent to an
+external Certificate Authority (CA) instead. You usually have to post
+the CSR into a web form, pay for the signing and await a signed
+Certificate. There are non-profit CA's that will perform similar tasks
+free of charge, for example <code>CAcert</code>. However, their root certificate is not yet included
+into most browsers so you will need to do that yourself if you are going
+to use their services.</p>
+<p>The <code>server.csr</code> file is no longer needed. Now you have two files:
+ApacheSSLCertificateFile ApacheSSLCertificateKeyFile <code>server.key</code> and <code>newcert.pem</code>. In your Apache's <code>httpd.conf</code> file you should
+refer to them using lines like these:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>    SSLCertificateFile    /path/to/Certificate:ssltest.sue.nl
+    SSLCertificateKeyFile /path/to/PrivateKey:ssltest.sue.nl
+</code></pre></div></td></tr></table></div>
+
+<p>It is considered a best practice to follow the 'least privilege'
+principle when managing key and certificate files. These files should
+preferebly be stored in a way that only the user account that runs the
+web server can access them.</p>
+<p>Apache SSL Directives {#ssldir}</p>
+<p>The following Apache SSL configuration directives should be familiar to
+you:</p>
+<p><code>SSLEngine</code></p>
+<ul>
+<li>This directive toggles the usage of the SSL/TLS Protocol Engine.
+    This should be used inside a <em>\&lt;VirtualHost&gt;</em> section to enable
+    SSL/TLS for a that virtual host. By default the SSL/TLS Protocol
+    Engine is disabled for both the main server and all configured
+    virtual hosts.</li>
+</ul>
+<p><code>SSLCertificateKeyFile</code></p>
+<ul>
+<li>This directive points to the PEM-encoded private key file for the
+    server. If the contained private key is encrypted, the pass phrase
+    dialog is forced at startup time. This directive can be used up to
+    three times (referencing different filenames) when an RSA, a DSA,
+    and an ECC based private key is used in parallel. For each
+    SSLCertificateKeyFile directive, there must be a matching
+    <em>SSLCertificateFile</em> directive.</li>
+</ul>
+<p><code>SSLCertificateFile</code></p>
+<ul>
+<li>This directive points to a file with certificate data in PEM format.
+    At a minimum, the file must include an end-entity (leaf)
+    certificate. This directive can be used up to three times
+    (referencing different filenames) when an RSA, a DSA, and an ECC
+    based server certificate is used in parallel.</li>
+</ul>
+<p>Creating and installing a self-signed certificate for Apache {#ssssl}</p>
+<p>Sometimes, it might be acceptable to use a self-signed SSL certificate
+with Apache. The following steps explain how to accomplish this on a
+Debian based system. First, create a directory to hold the SSL keys. On
+the system we use as an example, all system-wide SSL certificates are
+stored in the directory <code>/etc/ssl/certs</code>. For our purpose, we create a
+new directory called <code>/etc/ssl/webserver</code> and use it to store our new
+keypair:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code>    # mkdir /etc/ssl/webserver
+    # openssl req -new -x509 -days 365 -nodes \
+    &gt; -out /etc/ssl/webserver/apache.pem -keyout /etc/ssl/webserver/apache.key
+    Generating a 2048 bit RSA private key
+    ...............................+++
+    .......+++
+    writing new private key to &#39;/etc/ssl/webserver/apache.key&#39;
+    # ls /etc/ssl/webserver/
+    apache.key  apache.pem
+</code></pre></div></td></tr></table></div>
+
+<p><strong>Note</strong>
+During creation, openssl wil use the contents of <code>/etc/ssl/openssl/cnf</code>
+to fill in some variables. Other values will be asked by an interactive
+script. Be sure to use the proper FQDN here to distinguish this
+certificate from certificates with another purpose later on.</p>
+<p>In order to be able to use SSL with Apache, a module called <code>mod_ssl</code>
+has to be loaded. On this system, we can check the enabled modules by
+listing the contents of the <code>/etc/apache2/mods-enabled</code> directory. All
+currently available modules can be checked by listing the contents of
+the <code>/etc/apache2/mods-available</code> directory:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="c1"># ls /etc/apache2/mods-enabled/</span>
+<span class="w">    </span><span class="n">alias</span><span class="o">.</span><span class="n">conf</span><span class="w">            </span><span class="n">autoindex</span><span class="o">.</span><span class="n">conf</span><span class="w">  </span><span class="n">mime</span><span class="o">.</span><span class="n">conf</span><span class="w">         </span><span class="n">reqtimeout</span><span class="o">.</span><span class="n">load</span>
+<span class="w">    </span><span class="n">alias</span><span class="o">.</span><span class="n">load</span><span class="w">            </span><span class="n">autoindex</span><span class="o">.</span><span class="n">load</span><span class="w">  </span><span class="n">mime</span><span class="o">.</span><span class="n">load</span><span class="w">         </span><span class="n">setenvif</span><span class="o">.</span><span class="n">conf</span>
+<span class="w">    </span><span class="n">auth_basic</span><span class="o">.</span><span class="n">load</span><span class="w">       </span><span class="n">cgi</span><span class="o">.</span><span class="n">load</span><span class="w">        </span><span class="n">negotiation</span><span class="o">.</span><span class="n">conf</span><span class="w">  </span><span class="n">setenvif</span><span class="o">.</span><span class="n">load</span>
+<span class="w">    </span><span class="n">authn_file</span><span class="o">.</span><span class="n">load</span><span class="w">       </span><span class="n">deflate</span><span class="o">.</span><span class="n">conf</span><span class="w">    </span><span class="n">negotiation</span><span class="o">.</span><span class="n">load</span><span class="w">  </span><span class="n">status</span><span class="o">.</span><span class="n">conf</span>
+<span class="w">    </span><span class="n">authz_default</span><span class="o">.</span><span class="n">load</span><span class="w">    </span><span class="n">deflate</span><span class="o">.</span><span class="n">load</span><span class="w">    </span><span class="n">perl</span><span class="o">.</span><span class="n">load</span><span class="w">         </span><span class="n">status</span><span class="o">.</span><span class="n">load</span>
+<span class="w">    </span><span class="n">authz_groupfile</span><span class="o">.</span><span class="n">load</span><span class="w">  </span><span class="n">dir</span><span class="o">.</span><span class="n">conf</span><span class="w">        </span><span class="n">php5</span><span class="o">.</span><span class="n">conf</span>
+<span class="w">    </span><span class="n">authz_host</span><span class="o">.</span><span class="n">load</span><span class="w">       </span><span class="n">dir</span><span class="o">.</span><span class="n">load</span><span class="w">        </span><span class="n">php5</span><span class="o">.</span><span class="n">load</span>
+<span class="w">    </span><span class="n">authz_user</span><span class="o">.</span><span class="n">load</span><span class="w">       </span><span class="n">env</span><span class="o">.</span><span class="n">load</span><span class="w">        </span><span class="n">reqtimeout</span><span class="o">.</span><span class="n">conf</span>
+
+<span class="w">    </span><span class="c1"># ls /etc/apache2/mods-available/</span>
+<span class="w">    </span><span class="n">actions</span><span class="o">.</span><span class="n">conf</span><span class="w">          </span><span class="n">cgid</span><span class="o">.</span><span class="n">conf</span><span class="w">          </span><span class="n">include</span><span class="o">.</span><span class="n">load</span><span class="w">         </span><span class="n">proxy_ftp</span><span class="o">.</span><span class="n">conf</span>
+<span class="w">    </span><span class="n">actions</span><span class="o">.</span><span class="n">load</span><span class="w">          </span><span class="n">cgid</span><span class="o">.</span><span class="n">load</span><span class="w">          </span><span class="n">info</span><span class="o">.</span><span class="n">conf</span><span class="w">            </span><span class="n">proxy_ftp</span><span class="o">.</span><span class="n">load</span>
+<span class="w">    </span><span class="n">alias</span><span class="o">.</span><span class="n">conf</span><span class="w">            </span><span class="n">cgi</span><span class="o">.</span><span class="n">load</span><span class="w">           </span><span class="n">info</span><span class="o">.</span><span class="n">load</span><span class="w">            </span><span class="n">proxy_http</span><span class="o">.</span><span class="n">load</span>
+<span class="w">    </span><span class="n">alias</span><span class="o">.</span><span class="n">load</span><span class="w">            </span><span class="n">charset_lite</span><span class="o">.</span><span class="n">load</span><span class="w">  </span><span class="n">ldap</span><span class="o">.</span><span class="n">conf</span><span class="w">            </span><span class="n">proxy</span><span class="o">.</span><span class="n">load</span>
+<span class="w">    </span><span class="n">asis</span><span class="o">.</span><span class="n">load</span><span class="w">             </span><span class="n">dav_fs</span><span class="o">.</span><span class="n">conf</span><span class="w">        </span><span class="n">ldap</span><span class="o">.</span><span class="n">load</span><span class="w">            </span><span class="n">proxy_scgi</span><span class="o">.</span><span class="n">load</span>
+<span class="w">    </span><span class="n">auth_basic</span><span class="o">.</span><span class="n">load</span><span class="w">       </span><span class="n">dav_fs</span><span class="o">.</span><span class="n">load</span><span class="w">        </span><span class="n">log_forensic</span><span class="o">.</span><span class="n">load</span><span class="w">    </span><span class="n">reqtimeout</span><span class="o">.</span><span class="n">conf</span>
+<span class="w">    </span><span class="n">auth_digest</span><span class="o">.</span><span class="n">load</span><span class="w">      </span><span class="n">dav</span><span class="o">.</span><span class="n">load</span><span class="w">           </span><span class="n">mem_cache</span><span class="o">.</span><span class="n">conf</span><span class="w">       </span><span class="n">reqtimeout</span><span class="o">.</span><span class="n">load</span>
+<span class="w">    </span><span class="n">authn_alias</span><span class="o">.</span><span class="n">load</span><span class="w">      </span><span class="n">dav_lock</span><span class="o">.</span><span class="n">load</span><span class="w">      </span><span class="n">mem_cache</span><span class="o">.</span><span class="n">load</span><span class="w">       </span><span class="n">rewrite</span><span class="o">.</span><span class="n">load</span>
+<span class="w">    </span><span class="n">authn_anon</span><span class="o">.</span><span class="n">load</span><span class="w">       </span><span class="n">dbd</span><span class="o">.</span><span class="n">load</span><span class="w">           </span><span class="n">mime</span><span class="o">.</span><span class="n">conf</span><span class="w">            </span><span class="n">setenvif</span><span class="o">.</span><span class="n">conf</span>
+<span class="w">    </span><span class="n">authn_dbd</span><span class="o">.</span><span class="n">load</span><span class="w">        </span><span class="n">deflate</span><span class="o">.</span><span class="n">conf</span><span class="w">       </span><span class="n">mime</span><span class="o">.</span><span class="n">load</span><span class="w">            </span><span class="n">setenvif</span><span class="o">.</span><span class="n">load</span>
+<span class="w">    </span><span class="n">authn_dbm</span><span class="o">.</span><span class="n">load</span><span class="w">        </span><span class="n">deflate</span><span class="o">.</span><span class="n">load</span><span class="w">       </span><span class="n">mime_magic</span><span class="o">.</span><span class="n">conf</span><span class="w">      </span><span class="n">speling</span><span class="o">.</span><span class="n">load</span>
+<span class="w">    </span><span class="n">authn_default</span><span class="o">.</span><span class="n">load</span><span class="w">    </span><span class="n">dir</span><span class="o">.</span><span class="n">conf</span><span class="w">           </span><span class="n">mime_magic</span><span class="o">.</span><span class="n">load</span><span class="w">      </span><span class="n">ssl</span><span class="o">.</span><span class="n">conf</span>
+<span class="w">    </span><span class="n">authn_file</span><span class="o">.</span><span class="n">load</span><span class="w">       </span><span class="n">dir</span><span class="o">.</span><span class="n">load</span><span class="w">           </span><span class="n">mod</span><span class="o">-</span><span class="n">dnssd</span><span class="o">.</span><span class="n">conf</span><span class="w">       </span><span class="n">ssl</span><span class="o">.</span><span class="n">load</span>
+<span class="w">    </span><span class="n">authnz_ldap</span><span class="o">.</span><span class="n">load</span><span class="w">      </span><span class="n">disk_cache</span><span class="o">.</span><span class="n">conf</span><span class="w">    </span><span class="n">mod</span><span class="o">-</span><span class="n">dnssd</span><span class="o">.</span><span class="n">load</span><span class="w">       </span><span class="n">status</span><span class="o">.</span><span class="n">conf</span>
+<span class="w">    </span><span class="n">authz_dbm</span><span class="o">.</span><span class="n">load</span><span class="w">        </span><span class="n">disk_cache</span><span class="o">.</span><span class="n">load</span><span class="w">    </span><span class="n">negotiation</span><span class="o">.</span><span class="n">conf</span><span class="w">     </span><span class="n">status</span><span class="o">.</span><span class="n">load</span>
+<span class="w">    </span><span class="n">authz_default</span><span class="o">.</span><span class="n">load</span><span class="w">    </span><span class="n">dump_io</span><span class="o">.</span><span class="n">load</span><span class="w">       </span><span class="n">negotiation</span><span class="o">.</span><span class="n">load</span><span class="w">     </span><span class="n">substitute</span><span class="o">.</span><span class="n">load</span>
+<span class="w">    </span><span class="n">authz_groupfile</span><span class="o">.</span><span class="n">load</span><span class="w">  </span><span class="n">env</span><span class="o">.</span><span class="n">load</span><span class="w">           </span><span class="n">perl</span><span class="o">.</span><span class="n">load</span><span class="w">            </span><span class="n">suexec</span><span class="o">.</span><span class="n">load</span>
+<span class="w">    </span><span class="n">authz_host</span><span class="o">.</span><span class="n">load</span><span class="w">       </span><span class="n">expires</span><span class="o">.</span><span class="n">load</span><span class="w">       </span><span class="n">php5</span><span class="o">.</span><span class="n">conf</span><span class="w">            </span><span class="n">unique_id</span><span class="o">.</span><span class="n">load</span>
+<span class="w">    </span><span class="n">authz_owner</span><span class="o">.</span><span class="n">load</span><span class="w">      </span><span class="n">ext_filter</span><span class="o">.</span><span class="n">load</span><span class="w">    </span><span class="n">php5</span><span class="o">.</span><span class="n">load</span><span class="w">            </span><span class="n">userdir</span><span class="o">.</span><span class="n">conf</span>
+<span class="w">    </span><span class="n">authz_user</span><span class="o">.</span><span class="n">load</span><span class="w">       </span><span class="n">file_cache</span><span class="o">.</span><span class="n">load</span><span class="w">    </span><span class="n">proxy_ajp</span><span class="o">.</span><span class="n">load</span><span class="w">       </span><span class="n">userdir</span><span class="o">.</span><span class="n">load</span>
+<span class="w">    </span><span class="n">autoindex</span><span class="o">.</span><span class="n">conf</span><span class="w">        </span><span class="n">filter</span><span class="o">.</span><span class="n">load</span><span class="w">        </span><span class="n">proxy_balancer</span><span class="o">.</span><span class="n">conf</span><span class="w">  </span><span class="n">usertrack</span><span class="o">.</span><span class="n">load</span>
+<span class="w">    </span><span class="n">autoindex</span><span class="o">.</span><span class="n">load</span><span class="w">        </span><span class="n">headers</span><span class="o">.</span><span class="n">load</span><span class="w">       </span><span class="n">proxy_balancer</span><span class="o">.</span><span class="n">load</span><span class="w">  </span><span class="n">vhost_alias</span><span class="o">.</span><span class="n">load</span>
+<span class="w">    </span><span class="n">cache</span><span class="o">.</span><span class="n">load</span><span class="w">            </span><span class="n">ident</span><span class="o">.</span><span class="n">load</span><span class="w">         </span><span class="n">proxy</span><span class="o">.</span><span class="n">conf</span>
+<span class="w">    </span><span class="n">cern_meta</span><span class="o">.</span><span class="n">load</span><span class="w">        </span><span class="n">imagemap</span><span class="o">.</span><span class="n">load</span><span class="w">      </span><span class="n">proxy_connect</span><span class="o">.</span><span class="n">load</span>
+</code></pre></div></td></tr></table></div>
+
+<p><code>ssl</code> appears to be available but has not been enabled yet because both
+ssl files, <code>ssl.load</code> and <code>ssl.conf</code>, are still present in the
+<code>/etc/apache2/mods-available/</code> directory and not in the
+<code>/etc/apache2/mods-enabled/</code> directory. We could create a symlink to
+activate support for ssl ourselves, but Debian provides a utility
+written in perl called <code>a2enmod</code> that takes care of this. Consult the
+<code>A2ENMOD(8)</code> manpage for more information. It's counterpart,
+conveniently called <code>a2dismod</code>, does the opposite and disables Apache
+modules by removing the symlinks from <code>/etc/apache2/mods-enabled/</code>.</p>
+<p>Let's enable SSL:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code>    # a2enmod ssl
+    Enabling module ssl.
+    See /usr/share/doc/apache2.2-common/README.Debian.gz on how to configure SSL \
+        and create self-signed certificates.
+    To activate the new configuration, you need to run:
+    service apache2 restart
+    # service apache2 restart
+    [ ok ] Restarting web server: apache2 ... waiting .
+    # apachectl status |grep -i ssl
+    Server Version: Apache/2.2.22 (Debian) PHP/5.4.4-15.1 mod_ssl/2.2.22 OpenSSL/
+</code></pre></div></td></tr></table></div>
+
+<p>SSL has now been enabled on the Apache HTTP server. In order for a site
+to actually use SSL, it's configuration has to be properly configured.
+HTTPS uses tcp port 443 by default, so we want to specify this in the
+apache config of Debian. Add the following line to your
+<code>/etc/apache2/ports.conf</code> file:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    Listen 443
+</code></pre></div></td></tr></table></div>
+
+<p>Now, all sites that want to make use of SSL need to have their
+configuration files reconfigured. The following lines need to be added
+to each "enabled" site that should serve it's content by HTTPS:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>    SSLEngine On
+    SSLCertificateFile /etc/ssl/webserver/apache.pem
+    SSLCertificateKeyFile /etc/ssl/webserver/apache.key
+</code></pre></div></td></tr></table></div>
+
+<p>An example site configuration file for both a HTTP and HTTPS enabled
+site could be like the following:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span>NameVirtualHost<span class="w"> </span>*:80
+<span class="w">    </span>NameVirtualHost<span class="w"> </span>*:443
+
+<span class="w">    </span><span class="nt">&lt;VirtualHost</span><span class="w"> </span><span class="err">*:80</span><span class="nt">&gt;</span>
+<span class="w">    </span>Servername<span class="w">  </span>webserver.intranet
+<span class="w">    </span>DocumentRoot<span class="w">    </span>/srv/http
+<span class="w">    </span>ErrorLog<span class="w">    </span>/var/log/apache2/error.log
+<span class="w">    </span><span class="nt">&lt;/VirtualHost&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;VirtualHost</span><span class="w"> </span><span class="err">*:443</span><span class="nt">&gt;</span>
+<span class="w">    </span>SSLEngine<span class="w">   </span>On
+<span class="w">    </span>SSLCertificateFile<span class="w"> </span>/etc/ssl/webserver/apache.pem
+<span class="w">    </span>SSLCertificateKeyFile<span class="w"> </span>/etc/ssl/webserver/apache.key
+<span class="w">    </span>Servername<span class="w">  </span>webserver.intranet
+<span class="w">    </span>DocumentRoot<span class="w">    </span>/srv/http
+<span class="w">    </span>ErrorLog<span class="w">    </span>/var/log/apache2/error.log
+<span class="w">    </span><span class="nt">&lt;/VirtualHost&gt;</span>
+</code></pre></div></td></tr></table></div>
+
+<p>Now, use <code>apachectl configtest</code> to test your site configuration and if
+no errors occur restart the Apache HTTP server. The SSL enabled sites
+should now be accessible by using the <code>https</code> URL instead of <code>http</code>.</p>
+<h4 id="other-apache-directives">Other Apache Directives<a class="headerlink" href="#other-apache-directives" title="Permanent link">&para;</a></h4>
+<p>Apart from the directives used above, the following Apache configuration
+directives should be familiar to you:</p>
+<p><code>SSLCACertificateFile</code></p>
+<ul>
+<li>This directive sets the all-in-one file where you can assemble the
+    certificates of Certification Authorities (CA) whose <em>clients</em> you
+    deal with. These are used for Client Authentication. Such a file is
+    simply the concatenation of the various PEM-encoded certificate
+    files, in order of preference.</li>
+</ul>
+<p><code>SSLCACertificatePath</code></p>
+<ul>
+<li>Sets the directory where you keep the certificates of Certification
+    Authorities (CAs) whose clients you deal with. These are used to
+    verify the client certificate on Client Authentication.</li>
+</ul>
+<p><code>SSLCipherSuite</code></p>
+<ul>
+<li>This complex directive uses a colon-separated cipher-spec string
+    consisting of OpenSSL cipher specifications to configure the Cipher
+    Suite the client is permitted to negotiate in the SSL handshake
+    phase. Notice that this directive can be used both in per-server and
+    per-directory context. In per-server context it applies to the
+    standard SSL handshake when a connection is established. In
+    per-directory context it forces a SSL renegotiation with the
+    reconfigured Cipher Suite after the HTTP request was read but before
+    the HTTP response is sent.</li>
+</ul>
+<p><code>SSLProtocol</code></p>
+<ul>
+<li>This directive can be used to control the SSL protocol flavors
+    mod_ssl should use when establishing its server environment.
+    Clients then can only connect with one of the provided protocols.</li>
+</ul>
+<p><code>ServerSignature</code></p>
+<ul>
+<li>The <code>ServerSignature</code> directive allows the configuration of a
+    trailing footer line under server-generated documents (error
+    messages, mod_proxy ftp directory listings, mod_info output,
+    ...). The reason why you would want to enable such a footer line is
+    that in a chain of proxies, the user often has no possibility to
+    tell which of the chained servers actually produced a returned error
+    message.</li>
+</ul>
+<p><code>ServerTokens</code></p>
+<ul>
+<li>This directive controls whether the Server response header field
+    which is sent back to clients includes minimal information,
+    everything worth mentioning or somewhere in between. By default, the
+    <code>ServerTokens</code> directive is set to <code>Full</code>. By declaring this
+    (global) directive and setting it to <code>Prod</code>, the supplied
+    information will be reduced to the bare minimum. During the first
+    chapter of this subject the necessity for compiling Apache from
+    source is mentioned. Modifying the Apache Server response header
+    field values could be a scenario that requires modification of
+    source code. This could very well be part of a server hardening
+    process. As a result, the Apache server could provide different
+    values as response header fields.</li>
+</ul>
+<p><code>TraceEnable</code></p>
+<ul>
+<li>This directive overrides the behavior of <code>TRACE</code> for both the core
+    server and mod_proxy. The default <code>TraceEnable on</code> permits <code>TRACE</code>
+    requests per RFC 2616, which disallows any request body to accompany
+    the request. <code>TraceEnable off</code> causes the core server and mod_proxy
+    to return a <code>405</code> (method not allowed) error to the client. There is
+    also the <em>non-compliant</em> setting <code>extended</code> which will allow message
+    bodies to accompany the trace requests. This setting should only be
+    used for debugging purposes. Despite what a security scan may say,
+    the <code>TRACE</code> method is part of the HTTP/1.1 RFC 2616 specification
+    and should therefore not be disabled without a specific reason.</li>
+</ul>
+<h3 id="sslvhost">SSL with Apache Virtual Hosts<a class="headerlink" href="#sslvhost" title="Permanent link">&para;</a></h3>
+<p>As we saw before, the FQDN plays an important part in SSL. It has to
+match the CN value of the certificate. This certificate is presented to
+the browser when initiating the connection to the HTTPS server. Only
+when the certificate is valid, issued by a known, trusted and registered
+party, and matches the hostname will the browser iniate the connection
+without warnings. Otherwise, the browser should present a warning about
+an invalid or expired certificate, an unknown issuer, or an invalid
+hostname. With IP-based virtual hosts we have a different IP/port
+combination for every virtual host, which means we can configure an SSL
+certificate for every virtual host. The HTTPS connection will be
+initiated on a dedicated IP address after all.</p>
+<p>When working with name based virtual hosts however, we have no unique
+identifier for the resource being requested except for the hostname. So
+the Apache HTTP server receives all requests for the virtual hosts it
+serves on the same IP/port combination. It isn't until <em>after</em> the SSL
+connection has been established that the HTTP server knows which virtual
+host is actually being requested based on the URL. The URL discloses the
+hostname for the virtual host. But, by then it might be too late; the
+client could have been offered a certificate with a different CN value
+due to the nature of the HTTP within SSL/TLS transaction.</p>
+<p>Currently, an extension called SNI (Server Name Indication) can be used
+to circumvent this name based issue. Using this extension, the browser
+includes the requested hostname in the first message of its SSL
+handshake as an UTF-8 encoded byte-string value representing the
+<code>server_name</code> attribute of the client hello message. This value should
+only consist of host and/or domain names. No IPv4 or IPv6 IP addresses
+should be used. Both the browser and Apache need to support SNI in order
+for the SNI mechanism to work. If SNI is used on the server and the
+browser doesn't support SNI the browser could show a "untrusted
+certificate" warning. This depends on the certificate that is presented
+for the "default" website of the HTTP server. As of this writing, most
+browsers do support SNI. Exceptions are the Android 2.x default browser,
+MS Internet Explorer on MS Windows XP before SP3 and versions of Oracle
+Java before 1.7 on any operating system.</p>
+<p>To use SNI on the Apache server and prevent "untrusted certificate"
+warnings due to non-SNI capable browsers, it is possible to use a
+multidomain certificate. This certificate should contain all the
+necessary domain names and should be used in the Apache configuration in
+a separate virtual host. In this virtual host no servername should be
+configured and because of this it will match all requests without a
+hostname and therefore serving all browsers without SNI support. Apache
+will show the content of the right requested (SNI) site due to the
+requested website being extracted from the URL. This extraction takes
+place after the encrypted session has been created, using the
+multidomain certificate. This solution will probably never receive an
+award for it's looks, but the science behind it at least works.</p>
+<p>Without SNI, a web server <em>can</em> serve multiple name based virtual hosts
+over HTTPS without browser warnings. With the requirement (or
+restriction) that the SSL certificate being used will be the same for
+all virtual hosts. The virtual hosts also have to be part of the same
+domain, e.g.: <code>virtual01.example.com</code> and <code>virtual02.example.com</code>. The
+SSL certificate has to be configured in such a way that the CN (Common
+Name) points to a wildcard for the domain being used, e.g.:
+<code>*.example.com</code>.</p>
+<h4 id="ssl-security-issues">SSL Security Issues<a class="headerlink" href="#ssl-security-issues" title="Permanent link">&para;</a></h4>
+<p>The cryptographic security aspect of SSL is entirely based on trust.
+Mid-2013, there were about 650 Certificate Authorities. Every one of
+these authorities may pose as the "weakest link", and therefore the
+security of your SSL certificate only goes as far as your trust in it's
+CA.</p>
+<p>The <code>SSLCertificateChainFile</code>
+ directive has been removed from the LPIC-2 objectives.
+This directive is good to know nevertheless. It is an addition to the
+<code>SSLCertificateFile</code> and <code>SSLCertificateKeyFile</code> directives. The impact
+of self signed certificates for HTTPS sessions has been pointed out
+earlier. But even if you send a CSR to a known CA and receive a
+validated certificate in return, set up your server correctly using this
+certificate and the correct key file used to generate the CSR, this does
+not mean every browser will validate a session using this certificate as
+valid. This is often due to the involved CA having signed the CSR using
+a certificate that is not known to your browser. This might for instance
+be the case if the signing certificate is newer than your browser. But
+also because many CA's offer different types of certificates from their
+product portfolio. Browsers recognize the validity of HTTPS certificates
+based on the availability of so called root-certificates. These could be
+seen as the top level within the certificate chain. The CSR's on the
+other hand are often signed using a so called <em>intermediate
+certificate</em>. These intermediate certificates are relatable to the root
+certificate, but exist on a lower level in the certificate chain. To
+restrict the amount of certificates being shipped with browser software,
+not all certificates being used to sign CSR's are included by default .
+This could result in browser warnings about an <em>incomplete certificate
+chain</em>. To remedy these warnings (actually errors) , one or more
+intermediate certificates may be needed to reassemble the certificate
+chain for completeness. In order to facilitate this, CA's using
+intermediate certificates usually offer these intermediate certificates
+for download. The website of the CA and/or the email holding the signed
+certificate information should point to the appropriate intermediate
+certificate(s). The different levels are often referred to as G*n*-level
+certificates, where <em>n</em> represents a certain number. These intermediate
+certicates fill the gap between your signed certificate, and the root
+certificates known to all major browsers. By using the <code>SSLCertificateChainFile</code> directive, you may point Apache to
+a file that holds two or more concatenated certificates. By
+concatenating the missing certificates in the right order, the
+certificate chain gap will be closed and the certificate chain will be
+complete again.</p>
+<h4 id="disabling-of-insecure-protocols-and-ciphers">Disabling of insecure protocols and ciphers<a class="headerlink" href="#disabling-of-insecure-protocols-and-ciphers" title="Permanent link">&para;</a></h4>
+<p>When Apache is configured as a Secure Server to serve content via the
+HTTPS protocol, the client and server negotiate upon encryption
+initiation which <em>ciphers</em> can be used to secure the connection. Both
+the Apache server and the browser then offer a list of their available
+encryption algorithms to each other. Depending on which settings are
+enforced, the server and browser then initiate a secure channel using an
+overlapping encryption algorithm from the list of available ciphers. By
+setting the <code>SSLHonorCipherOrder</code> directive to a value of <code>on</code>, the
+server will honor the order of ciphers as specified by the
+<code>SSLCipherSuite</code> directive. Otherwise, the client will have the upper
+hand when deciding which ciphers will be used. This secure channel then
+is used to transmit the encryption keys that will be used to secure the
+communication from here on forward. Those encryption keys must also be
+in a cipher format that both the server and client can handle. As is
+often the case, trade-offs have to be made between compatibility and
+security. Maximizing the amount of ciphers offered (and therefore
+browser compatibility) also increases the possibility that one or more
+of the ciphers in use may be susceptible to attack vectors. The term
+'weak ciphers' is often used to refer to these vulnerable encryption
+algorithms. The list of (de)recommended ciphers, is heavily dependant on
+the publication of known vulnerabilities to abuse these ciphers. This
+leads to opinions that may change over time. It is therefore recommended
+to stay up to date about known vulnerabilities. Currently, use of so
+called <em>Cipher Block Code</em> ciphers is not recommended. These ciphers may
+be identified by a "CBC" part in their name. Neither is Arcfour (or RC4
+in short) a recommended cipher to be used. As far as protocols go, SSL
+v2 and SSL v3 are known to be vulnerable to a plethora of attack
+vectors. TLS v1.0 and v1.1 also have their weaknesses. TLS v1.2 is
+currently the recommended protocol to use if security is a concern. With
+TLS v1.3 being almost visible on the horizon. Apache allows for
+configuration of the ciphers being offered to clients. By using the
+following directives, the list of ciphers that Apache offers to client
+software can be limited:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>    SSLCipherSuite
+    SSLProtocol
+</code></pre></div></td></tr></table></div>
+
+<p>The following section shows an example configuration on how these
+directives may be used. The <code>SSLCipherSuite</code> is configured to use strong
+ciphersuites only, while explicitly disabling <code>RC4</code>. The <code>SSLProtocol</code>
+directive disables support for <code>All</code> protocols, while explicitly
+enabling <code>TLSv1.2</code> support. The order in which the ciphers should be
+evaluated for mutual support by both the server and the client is
+determined by the server through use of the <code>SSLHonorCipherOrder</code>
+directive. Finally, the <code>SSLCompression</code> directive is configured to
+disable SSL/TLS compression. Disabling this compression mitigates the
+known CRIME (Compression Ratio Info-leak Made Easy) attack vector.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>    SSLCipherSuite EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH:!RC4
+    SSLProtocol -All +TLSv1.2
+    SSLHonorCipherOrder On
+    SSLCompression Off
+</code></pre></div></td></tr></table></div>
+
+<p>From Apache 2.4 on, <code>mod_ssl</code> dropped support for SSLv2. Only SSLv3 and
+TLS are supported. Be aware that support for recent TLS versions depends
+on the availability of recent OpenSSL libraries.</p>
+<p>A good reference before configuring a secure Apache server, is the
+Mozilla TLS Server project at Github. This website has example
+configuration strings for various major HTTP servers, including Apache.
+The project team members should keep the example configurations up to
+date according to the latest recommendations. Another good reference is
+<a href="https://cipherli.st">https://cipherli.st</a>. This website also offers <em>example</em>
+configurations.</p>
+<p>Regarding every example configuration is it always important not to
+copy/paste configurations without validating the content. As explained
+earlier, a trade-off has to be made in most cases. Configuring Apache to
+strictly serve a modern cipher like TLS 1.2 will mitigate most known
+attack vectors in regards to SSL and TLS connections. But not every
+browser on every operating system will be able to adhere to this
+requirement. The adoption of TLS v1.2 in client software requires the
+availability of recent SSL libraries. Not all software vendors keep
+these libraries on track. The trade-off here is therefore security in
+favor of compatibility. Using older ciphers like SSL v2 and SSL v3 will
+probably increase the chances of encrypted connections being vulnerable
+to known attacks. But at the same time this will maximize the
+compatibility of clients that will be able to set up these connections.
+Another trade off.</p>
+<p>Apart from explicitly specifying which protocols and ciphers _can_ be
+used, the <em>preference</em> for using a certain protocol or cipher may vary.
+The order in which the directives are specified has influence, but gives
+no guarantees. Servers and clients often use a technique called
+<em>opportunistic encryption</em> to decide which of the protocols and ciphers
+will be used. At the same time, it is possible for client software to
+specify exactly what protocol and ciphers should be used. Depending on
+the server configuration, the server will respect these demands by the
+client. It is this very functionality that is the basis for a category
+of known attacks called <em>downgrade attacks</em>.</p>
+<p>After having set up your server, it is regarded as a best practice to
+periodicly scan the system for known vulnerabilities. This can be done
+in multiple ways. An easy way is to use a public web service like Qualys
+SSLabs: <a href="https://ssllabs.com">https://ssllabs.com</a>. The output will show you in detail
+whether and if so, which weak protocols and/or ciphers were detected.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 1997-2021 Sue B.V., The Netherlands - Open Sourced 2021
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["search.highlight", "tabs", "instant"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,3230 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Sue B.V., The Netherlands">
+      
+      
+      
+        <link rel="prev" href="../lpic2.200.0/">
+      
+      
+        <link rel="next" href="../lpic2.200.2/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Measure and Troubleshoot Resource Usage (200.1) - The LPIC2 Exam Prep</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:300,300i,400,400i,700,700i%7CAnonymous+Pro:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Nunito";--md-code-font:"Anonymous Pro"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#measure-and-troubleshoot-resource-usage" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="The LPIC2 Exam Prep" class="md-header__button md-logo" aria-label="The LPIC2 Exam Prep" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            The LPIC2 Exam Prep
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Measure and Troubleshoot Resource Usage (200.1)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/lpic2book/src" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    LPIC2Book
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="The LPIC2 Exam Prep" class="md-nav__button md-logo" aria-label="The LPIC2 Exam Prep" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/></svg>
+
+    </a>
+    The LPIC2 Exam Prep
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/lpic2book/src" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    LPIC2Book
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The LPIC2 Exam Prep
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpicbook_about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About this book
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    200 Capacity Planning (200)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Measure and Troubleshoot Resource Usage (200.1)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Measure and Troubleshoot Resource Usage (200.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#measure-and-troubleshoot-resource-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Measure and Troubleshoot Resource Usage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Measure and Troubleshoot Resource Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objectives
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-knowledge-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Knowledge Areas:
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key Knowledge Areas:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#terms-and-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terms and utilities:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iostat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        iostat
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iotop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        iotop
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vmstat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vmstat
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#netstat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        netstat
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ss" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ss
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iptraf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        iptraf
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pstree" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pstree
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#w" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        w
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lsof" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lsof
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#free" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        free
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#top" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        top
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#htop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        htop
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uptime" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        uptime
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sar
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#match-correlate-system-symptoms-with-likely-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Match / correlate system symptoms with likely problems
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#estimate-throughput-and-identify-bottlenecks-in-a-system-including-networking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estimate throughput and identify bottlenecks in a system including networking
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Predict Future Resource Needs (200.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Kernel (201)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel Components (201.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compiling a Linux kernel (201.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel runtime management and troubleshooting (201.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Startup (202)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customizing system startup (202.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System recovery (202.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Alternate Bootloaders (202.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Filesystem and Devices (203)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operating The Linux Filesystem (203.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maintaining a Linux Filesystem (203.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Creating And Configuring Filesystem Options (203.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Storage Device Administration (204)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring RAID (204.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adjusting Storage Device Access (204.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logical Volume Manager (204.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring PCMCIA Devices (204.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Networking Configuration (205)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Networking Configuration (205.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Network Configuration and Troubleshooting (205.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting network issues (205.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Maintenance (206)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Make and install programs from source (206.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup Operations (206.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifying users on system-related issues (206.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domain Name Server (207)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic DNS server configuration (207.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Create and maintain DNS zones (207.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Securing a DNS Server (207.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTTP Services (208)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Apache Configuration (208.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Apache configuration for HTTPS (208.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementing Squid as a caching proxy (208.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementing Nginx as a web server and a reverse proxy (208.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File Sharing (209)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAMBA Server Configuration (209.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring an NFS Server (209.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Client Management (210)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DHCP Configuration (210.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PAM authentication (210.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LDAP client usage (210.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring an OpenLDAP server (210.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    E-Mail services (211)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using e-mail servers (211.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing E-Mail Delivery (211.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing Mailbox Access (211.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Security (212)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring a router (212.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing FTP servers (212.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secure shell (SSH) (212.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security tasks (212.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenVPN (212.5)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#measure-and-troubleshoot-resource-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Measure and Troubleshoot Resource Usage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Measure and Troubleshoot Resource Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objectives
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-knowledge-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Knowledge Areas:
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key Knowledge Areas:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#terms-and-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terms and utilities:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iostat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        iostat
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iotop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        iotop
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vmstat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vmstat
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#netstat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        netstat
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ss" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ss
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iptraf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        iptraf
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pstree" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pstree
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#w" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        w
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lsof" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lsof
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#free" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        free
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#top" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        top
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#htop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        htop
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uptime" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        uptime
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sar
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#match-correlate-system-symptoms-with-likely-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Match / correlate system symptoms with likely problems
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#estimate-throughput-and-identify-bottlenecks-in-a-system-including-networking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estimate throughput and identify bottlenecks in a system including networking
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>Measure and Troubleshoot Resource Usage (200.1)</h1>
+
+<h2 id="measure-and-troubleshoot-resource-usage">Measure and Troubleshoot Resource Usage<a class="headerlink" href="#measure-and-troubleshoot-resource-usage" title="Permanent link">&para;</a></h2>
+<h3 id="objectives">Objectives<a class="headerlink" href="#objectives" title="Permanent link">&para;</a></h3>
+<p>Candidates should be able to measure hardware resource and network
+bandwidth, identify and troubleshoot resource problems.</p>
+<h2 id="key-knowledge-areas">Key Knowledge Areas:<a class="headerlink" href="#key-knowledge-areas" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Measure CPU usage</p>
+</li>
+<li>
+<p>Measure memory usage</p>
+</li>
+<li>
+<p>Measure disk I/O</p>
+</li>
+<li>
+<p>Measure network I/O</p>
+</li>
+<li>
+<p>Measure firewalling and routing throughput</p>
+</li>
+<li>
+<p>Map client bandwith usage</p>
+</li>
+<li>
+<p>Match / correlate system symptoms with likely problems</p>
+</li>
+<li>
+<p>Estimate throughput and identify bottlenecks in a system including
+    networking</p>
+</li>
+</ul>
+<h3 id="terms-and-utilities">Terms and utilities:<a class="headerlink" href="#terms-and-utilities" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><code>iostat</code></p>
+</li>
+<li>
+<p><code>iotop</code></p>
+</li>
+<li>
+<p><code>vmstat</code></p>
+</li>
+<li>
+<p><code>netstat</code></p>
+</li>
+<li>
+<p><code>ss</code></p>
+</li>
+<li>
+<p><code>iptraf</code></p>
+</li>
+<li>
+<p><code>pstree, ps</code></p>
+</li>
+<li>
+<p><code>w</code></p>
+</li>
+<li>
+<p><code>lsof</code></p>
+</li>
+<li>
+<p><code>top</code></p>
+</li>
+<li>
+<p><code>htop</code></p>
+</li>
+<li>
+<p><code>uptime</code></p>
+</li>
+<li>
+<p><code>sar</code></p>
+</li>
+<li>
+<p>swap</p>
+</li>
+<li>
+<p>processes blocked on I/O</p>
+</li>
+<li>
+<p>blocks in</p>
+</li>
+<li>
+<p>blocks out</p>
+</li>
+<li>
+<p>network</p>
+</li>
+</ul>
+<h2 id="iostat">iostat<a class="headerlink" href="#iostat" title="Permanent link">&para;</a></h2>
+<p><strong>Note</strong>
+Depending on the version of your Linux distribution it may
+be necessary to install a package like Debian <code>sysstat</code> to access tools
+like <code>iostat</code>, <code>sar</code>, <code>mpstat</code>, etc. The Debian <code>procps</code> package contains
+utilities like <code>free</code>, <code>uptime</code>, <code>vmstat</code>, <code>w</code>, <code>sysctl</code>, etc.</p>
+<p>The <code>iostat</code> command is used for monitoring system input/output
+(I/O) device load. This is done by observing the <em>time</em> the
+devices are active in relation to their <em>average</em> transfer
+rates. Without any options, the <code>iostat</code> command displays
+statistics since the last system reboot. When interval and count
+arguments are passed to <code>iostat</code>, statistics for each specified time
+interval are added to the output. The <code>-y</code> option can also be
+used to suppress statistics since the last reboot.</p>
+<p>Usage:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ iostat options interval count
+</code></pre></div></td></tr></table></div>
+
+<p>Examples:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ iostat
+    Linux 3.2.0-4-686-pae (debian)  05/07/2013  <span class="ge">_i686_</span>  (2 CPU)
+
+    avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+    1.25    0.32    3.76    0.20    0.00   94.46
+
+    Device:            tps    kB_read/s    kB_wrtn/s    kB_read    kB_wrtn
+    sda              12.21       214.81        17.38     333479      26980
+
+    $ iostat 1 3
+    Linux 3.2.0-4-686-pae (debian)  05/07/2013  <span class="ge">_i686_</span>  (2 CPU)
+
+    avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+    24.24    1.51    7.49    4.97    0.00   61.79
+
+    Device:            tps   Blk_read/s   Blk_wrtn/s   Blk_read   Blk_wrtn
+    sda              14.06       249.94       121.22    1337998     648912
+
+    avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+    13.13    0.00    6.21    0.60    0.00   80.06
+
+    Device:            tps   Blk_read/s   Blk_wrtn/s   Blk_read   Blk_wrtn
+    sda               2.51         4.01        28.86         40        288
+
+    avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+    11.11    0.00    5.71    0.00    0.00   83.18
+
+    Device:            tps   Blk_read/s   Blk_wrtn/s   Blk_read   Blk_wrtn
+    sda               0.30         0.00         3.20          0         32
+
+    $ iostat -c
+    Linux 3.2.0-4-686-pae (debian)  05/07/2013  <span class="ge">_i686_</span>  (2 CPU)
+
+    avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+    9.16    0.05   17.01    1.37    0.00   72.42
+</code></pre></div></td></tr></table></div>
+
+<h2 id="iotop">iotop<a class="headerlink" href="#iotop" title="Permanent link">&para;</a></h2>
+<p>The <code>iotop</code> command is similar to the <code>top</code> command. It shows I/O
+usage information output by the Linux kernel and displays a table of
+current I/O usage by processes or threads on the system.</p>
+<p><code>iotop</code> displays columns for the I/O bandwidth read and written by each
+process/thread during the sampling period. It also displays the
+percentage of time the thread/process spent while swapping in and while
+waiting on I/O. For each process, its I/O priority (class/level) is
+shown. In addition, the total I/O bandwidth read and written during the
+sampling period is displayed at the top of the interface.</p>
+<p>Usage:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ iotop options
+</code></pre></div></td></tr></table></div>
+
+<p>Example:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="err">$</span><span class="w"> </span><span class="n">iotop</span><span class="w"> </span><span class="o">-</span><span class="n">b</span><span class="w"> </span><span class="o">|</span><span class="n">head</span>
+<span class="n">Total</span><span class="w"> </span><span class="k">DISK</span><span class="w"> </span><span class="k">READ</span><span class="w"> </span><span class="err">:</span><span class="w">       </span><span class="mf">0.00</span><span class="w"> </span><span class="n">B</span><span class="o">/</span><span class="n">s</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Total</span><span class="w"> </span><span class="k">DISK</span><span class="w"> </span><span class="k">WRITE</span><span class="w"> </span><span class="err">:</span><span class="w">     </span><span class="mf">213.38</span><span class="w"> </span><span class="n">M</span><span class="o">/</span><span class="n">s</span>
+<span class="n">Actual</span><span class="w"> </span><span class="k">DISK</span><span class="w"> </span><span class="k">READ</span><span class="err">:</span><span class="w">       </span><span class="mf">0.00</span><span class="w"> </span><span class="n">B</span><span class="o">/</span><span class="n">s</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Actual</span><span class="w"> </span><span class="k">DISK</span><span class="w"> </span><span class="k">WRITE</span><span class="err">:</span><span class="w">       </span><span class="mf">0.00</span><span class="w"> </span><span class="n">B</span><span class="o">/</span><span class="n">s</span>
+<span class="w">  </span><span class="n">TID</span><span class="w">  </span><span class="n">PRIO</span><span class="w">  </span><span class="k">USER</span><span class="w">     </span><span class="k">DISK</span><span class="w"> </span><span class="k">READ</span><span class="w">  </span><span class="k">DISK</span><span class="w"> </span><span class="k">WRITE</span><span class="w">  </span><span class="n">SWAPIN</span><span class="w">      </span><span class="n">IO</span><span class="w">    </span><span class="n">COMMAND</span>
+<span class="w">    </span><span class="mi">6</span><span class="w"> </span><span class="n">be</span><span class="o">/</span><span class="mi">4</span><span class="w"> </span><span class="n">root</span><span class="w">        </span><span class="mf">0.00</span><span class="w"> </span><span class="n">B</span><span class="o">/</span><span class="n">s</span><span class="w">    </span><span class="mf">0.00</span><span class="w"> </span><span class="n">B</span><span class="o">/</span><span class="n">s</span><span class="w">  </span><span class="mf">0.00</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mf">99.99</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="o">[</span><span class="n">kworker/u8:0</span><span class="o">]</span>
+<span class="w">  </span><span class="mi">191</span><span class="w"> </span><span class="n">be</span><span class="o">/</span><span class="mi">3</span><span class="w"> </span><span class="n">root</span><span class="w">        </span><span class="mf">0.00</span><span class="w"> </span><span class="n">B</span><span class="o">/</span><span class="n">s</span><span class="w">    </span><span class="mf">0.00</span><span class="w"> </span><span class="n">B</span><span class="o">/</span><span class="n">s</span><span class="w">  </span><span class="mf">0.00</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mf">94.14</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="o">[</span><span class="n">jbd2/sda1-8</span><span class="o">]</span>
+<span class="w"> </span><span class="mi">2976</span><span class="w"> </span><span class="n">be</span><span class="o">/</span><span class="mi">4</span><span class="w"> </span><span class="n">root</span><span class="w">        </span><span class="mf">0.00</span><span class="w"> </span><span class="n">B</span><span class="o">/</span><span class="n">s</span><span class="w">  </span><span class="mf">213.38</span><span class="w"> </span><span class="n">M</span><span class="o">/</span><span class="n">s</span><span class="w">  </span><span class="mf">0.00</span><span class="w"> </span><span class="o">%</span><span class="w">  </span><span class="mf">0.00</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">dd</span><span class="w"> </span><span class="k">if</span><span class="o">=/</span><span class="n">dev</span><span class="o">/</span><span class="n">zero</span><span class="w"> </span><span class="k">of</span><span class="o">=/</span><span class="n">tmp</span><span class="o">/</span><span class="n">foo</span>
+<span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="n">be</span><span class="o">/</span><span class="mi">4</span><span class="w"> </span><span class="n">root</span><span class="w">        </span><span class="mf">0.00</span><span class="w"> </span><span class="n">B</span><span class="o">/</span><span class="n">s</span><span class="w">    </span><span class="mf">0.00</span><span class="w"> </span><span class="n">B</span><span class="o">/</span><span class="n">s</span><span class="w">  </span><span class="mf">0.00</span><span class="w"> </span><span class="o">%</span><span class="w">  </span><span class="mf">0.00</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">init</span>
+<span class="w">    </span><span class="mi">2</span><span class="w"> </span><span class="n">be</span><span class="o">/</span><span class="mi">4</span><span class="w"> </span><span class="n">root</span><span class="w">        </span><span class="mf">0.00</span><span class="w"> </span><span class="n">B</span><span class="o">/</span><span class="n">s</span><span class="w">    </span><span class="mf">0.00</span><span class="w"> </span><span class="n">B</span><span class="o">/</span><span class="n">s</span><span class="w">  </span><span class="mf">0.00</span><span class="w"> </span><span class="o">%</span><span class="w">  </span><span class="mf">0.00</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="o">[</span><span class="n">kthreadd</span><span class="o">]</span>
+<span class="w">    </span><span class="mi">3</span><span class="w"> </span><span class="n">be</span><span class="o">/</span><span class="mi">4</span><span class="w"> </span><span class="n">root</span><span class="w">        </span><span class="mf">0.00</span><span class="w"> </span><span class="n">B</span><span class="o">/</span><span class="n">s</span><span class="w">    </span><span class="mf">0.00</span><span class="w"> </span><span class="n">B</span><span class="o">/</span><span class="n">s</span><span class="w">  </span><span class="mf">0.00</span><span class="w"> </span><span class="o">%</span><span class="w">  </span><span class="mf">0.00</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="o">[</span><span class="n">ksoftirqd/0</span><span class="o">]</span>
+<span class="w">    </span><span class="mi">5</span><span class="w"> </span><span class="n">be</span><span class="o">/</span><span class="mi">0</span><span class="w"> </span><span class="n">root</span><span class="w">        </span><span class="mf">0.00</span><span class="w"> </span><span class="n">B</span><span class="o">/</span><span class="n">s</span><span class="w">    </span><span class="mf">0.00</span><span class="w"> </span><span class="n">B</span><span class="o">/</span><span class="n">s</span><span class="w">  </span><span class="mf">0.00</span><span class="w"> </span><span class="o">%</span><span class="w">  </span><span class="mf">0.00</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="o">[</span><span class="n">kworker/0:0H</span><span class="o">]</span>
+</code></pre></div></td></tr></table></div>
+
+<h2 id="vmstat">vmstat<a class="headerlink" href="#vmstat" title="Permanent link">&para;</a></h2>
+<p>The <code>vmstat</code> command reports virtual memory statistics about processes, memory, paging,
+block I/O, traps, and CPU utilization.</p>
+<p>Usage:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ vmstat options delay count
+</code></pre></div></td></tr></table></div>
+
+<p>Example:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ vmstat 2 2
+    procs ---memory-- ---swap-- -----io---- -system-- ----cpu----
+    r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa
+    0  0      0 109112  33824 242204    0    0   603    26  196  516  7 11 81  1
+    0  0      0 109152  33824 242204    0    0     0     2  124  239  0  1 98  0
+</code></pre></div></td></tr></table></div>
+
+<p>Please beware that the first row will always show average measurements
+since the machine has booted, and should therefore be neglected. Values
+which are related to memory and I/O are expressed in kilobytes (1024
+bytes). Old (pre-2.6) kernels might report blocks as 512, 2048 or 4096
+bytes instead. Values related to CPU measurements are expressed as a
+percent of <em>total</em> CPU time. Keep this in mind when interpreting
+measurements from a multi-CPU system, as on these systems <code>vmstat</code>
+averages the number of CPUs into the output. All five CPU fields should
+add up to a total of 100% for each interval shown. This is independent
+of the number of processors or cores. In other words: <code>vmstat</code> can NOT
+be used to show statistics per processor or core (<code>mpstat</code> or <code>ps</code>
+should be used in that case). <code>vmstat</code> will accept delay in seconds and
+a number of counts (repetitions) as an argument, but the process and
+memory measurement results will always remain to be instantaneous.</p>
+<p>The first process column, "r" lists the number of processes currently
+allocated to the processor <em>run</em> queue. These processes are waiting for
+processor run time, also known as CPU time.</p>
+<p>The second process column, "b" lists the number of processes currently
+allocated to the <em>block</em> queue. These processes are listed as being in
+<em>uninterruptable sleep</em>, which means they are waiting for a device to
+return either input or output (I/O).</p>
+<p>The first memory column, "swpd" lists the amount of virtual memory
+being used expressed in kilobytes (1024 bytes). Virtual memory consists
+of swap space from disk, which is considerably slower than physical
+memory allocated inside memory chips.</p>
+<p>The second memory column, "free" lists the amount of memory currently
+not in use, not cached and not buffered expressed.</p>
+<p>The third memory column, "buff" lists the amount of memory currently
+allocated to buffers. Buffered memory contains raw disk blocks.</p>
+<p>The fourth memory column, "cache" lists the amount of memory currently
+allocated to caching. Cached memory contains files.</p>
+<p>The fifth memory column, "inact" lists the amount of inactive memory.
+This is only shown using the <code>-a</code> option.</p>
+<p>The sixth memory column, "active" lists the amount of active memory.
+This is only shown using the <code>-a</code> option.</p>
+<p>The first swap column, "si" lists the amount of memory being swapped
+<em>in</em> from disk (per second).</p>
+<p>The second swap column, "so" lists the amount of memory being swapped
+<em>out</em> to disk (per second).</p>
+<p>The first io column, "bi" lists the amount of blocks per second being
+received from a block device.</p>
+<p>The second io column, "bo" lists the amount of blocks per second being
+sent to a block device.</p>
+<p>The first system column, "in" lists the number of interrupts per second
+(including the clock).</p>
+<p>The second system column, "cs" lists the number of context switches per
+second.</p>
+<p>The cpu columns are expressed as percentages of total CPU time.</p>
+<p>The first cpu column, "us" (user code) shows the percentage of time
+spent running non-kernel code.</p>
+<p>The second cpu column, "sy" (system code) shows the percentage of time
+spent running kernel code.</p>
+<p>The third cpu column, "id" shows the percentage of idle time.</p>
+<p>The fourth cpu column, "wa" shows the percentage of time spent waiting
+for I/O (Input/Output).</p>
+<p>The fifth cpu column, "st" (steal time) shows the percentage of time
+stolen from a virtual machine. This is the amount of real CPU time the
+virtual machine (hypervisor or VirtualBox) has allocated to tasks other
+than running your virtual machine.</p>
+<h2 id="netstat">netstat<a class="headerlink" href="#netstat" title="Permanent link">&para;</a></h2>
+<p>The <code>netstat</code> command shows network connections, routing tables,
+interface statistics, masquerade connections and multicast memberships.
+The results are dependant on the first argument:</p>
+<ul>
+<li>
+<p><code>(no argument given)</code> - all active sockets of all configured address
+    families will be listed.</p>
+</li>
+<li>
+<p><code>--route, -r</code> - the kernel routing tables are
+    shown, output is identical to <code>route -e</code> (note: in order to use
+    <code>route</code>, elevated privileges might be needed whereas <code>netstat -r</code>
+    can be run with user privileges instead).</p>
+</li>
+<li>
+<p><code>--groups, -g</code> - lists multicast group membership information for
+    IPv4 and IPv6</p>
+</li>
+<li>
+<p><code>--interfaces, -i</code> - lists all network interfaces and certain
+    specific properties</p>
+</li>
+<li>
+<p><code>--statistics, -s</code> - lists a summary of statistics for each
+    protocol, similar to SNMP output</p>
+</li>
+<li>
+<p><code>--masquerade, -M</code> - lists masqueraded connections on pre-2.4 kernels.
+    On newer kernels, use <code>cat /proc/net/ip_conntrack</code> instead. In order for
+    this to work, the <em>ipt_MASQUERADE</em> kernel module has to be loaded.
+    This applies to 2.x and 3.x kernels.</p>
+</li>
+</ul>
+<p>Usage:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="err">$</span><span class="w"> </span><span class="nx">netstat</span><span class="w"> </span><span class="nx">address_family_options</span><span class="w"> </span><span class="nx">options</span>
+</code></pre></div></td></tr></table></div>
+
+<p>Examples:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ netstat -aln --tcp
+    Active Internet connections (servers and established)
+    Proto Recv-Q Send-Q Local Address           Foreign Address         State
+    tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN
+    tcp        0      0 127.0.0.1:25            0.0.0.0:*               LISTEN
+    tcp        0      0 0.0.0.0:34236           0.0.0.0:*               LISTEN
+    tcp        0      0 0.0.0.0:389             0.0.0.0:*               LISTEN
+    tcp        0      0 0.0.0.0:111             0.0.0.0:*               LISTEN
+    tcp6       0      0 :::22                   :::*                    LISTEN
+    tcp6       0      0 ::1:25                  :::*                    LISTEN
+    tcp6       0      0 :::32831                :::*                    LISTEN
+
+    $ netstat -al --tcp
+    Active Internet connections (servers and established)
+    Proto Recv-Q Send-Q Local Address           Foreign Address         State
+    tcp        0      0 <span class="gs">*:ssh                   *</span>:*                     LISTEN
+    tcp        0      0 localhost:smtp          <span class="gs">*:*</span>                     LISTEN
+    tcp        0      0 <span class="gs">*:34236                 *</span>:*                     LISTEN
+    tcp        0      0 <span class="gs">*:ldap                  *</span>:*                     LISTEN
+    tcp        0      0 <span class="gs">*:sunrpc                *</span>:*                     LISTEN
+    tcp6       0      0 [::]:ssh                [::]:*                  LISTEN
+    tcp6       0      0 localhost:smtp          [::]:*                  LISTEN
+    tcp6       0      0 [::]:32831              [::]:*                  LISTEN
+</code></pre></div></td></tr></table></div>
+
+<h2 id="ss">ss<a class="headerlink" href="#ss" title="Permanent link">&para;</a></h2>
+<p>The <code>ss</code> command is used to show socket statistics. It can display
+stats for PACKET sockets, TCP sockets, UDP sockets, DCCP sockets, RAW
+sockets, Unix domain sockets, and more. It allows showing information
+similar to the <code>netstat</code> command, but it can display more TCP and state
+information.</p>
+<p>Most Linux distributions are shipped with <code>ss</code>. Being familiar with this
+tool helps enhance your understand of what's going on in the system
+sockets and helps you find the possible causes of a performance problem.</p>
+<p>Usage:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ ss options filter
+</code></pre></div></td></tr></table></div>
+
+<p>Example:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ ss -t -a
+    State      Recv-Q Send-Q              Local Address:Port             Peer Address:Port
+    LISTEN     0      5                   192.168.122.1:domain                  <span class="gs">*:*</span>
+    LISTEN     0      128                             <span class="gs">*:ssh                     *</span>:*
+    LISTEN     0      128                     127.0.0.1:ipp                     <span class="gs">*:*</span>
+    LISTEN     0      100                     127.0.0.1:smtp                    <span class="gs">*:*</span>
+</code></pre></div></td></tr></table></div>
+
+<h2 id="iptraf">iptraf<a class="headerlink" href="#iptraf" title="Permanent link">&para;</a></h2>
+<p>The <code>iptraf</code> tool is a network monitoring utility for IP networks and can
+be used to monitor the load on an IP network. It intercepts packets on
+the network and displays information about the current traffic over it.</p>
+<p><code>iptraf</code> gathers data like TCP connection packet and byte counts,
+interface statistics and activity indicators, TCP/UDP traffic
+breakdowns, and LAN station packet and byte counts. IPTraf features
+include an IP traffic monitor which shows TCP flag information, packet
+and byte counts, ICMP details, OSPF packet types, and oversized IP
+packet warnings.</p>
+<p>Usage:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ iptraf options
+</code></pre></div></td></tr></table></div>
+
+<p>Example:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ iptraf
+</code></pre></div></td></tr></table></div>
+
+<p><img alt=" The iptraf window. " src="../images/200-iptraf.jpg" /></p>
+<h2 id="ps">ps<a class="headerlink" href="#ps" title="Permanent link">&para;</a></h2>
+<p>Usage:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ ps options
+</code></pre></div></td></tr></table></div>
+
+<p>The <code>ps</code> command shows a list of the processes currently running. These
+are the same processes which are being shown by the <code>top</code> command. The
+GNU version of <code>ps</code> accepts three different <em>kind</em> of options:</p>
+<ol>
+<li>
+<p>UNIX options - these may be grouped and <em>must</em> be preceded by a single dash</p>
+</li>
+<li>
+<p>BSD options - these may be grouped and must be used <em>without</em> a dash</p>
+</li>
+<li>
+<p>GNU long options - these are preceded by <em>two</em> dashes</p>
+</li>
+</ol>
+<p>These options may be mixed on GNU <code>ps</code> up to some extent, but bear in
+mind that depending on the version of Linux you are working on you might
+encounter a less flexible variant of <code>ps</code>. The <code>ps</code> manpage can be,
+depending on the distribution being questioned, nearly 900 lines
+long. Because of its versatile nature, you are encouraged to read
+through the manpage and try out some of the options <code>ps</code> has to offer.</p>
+<p>Examples:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="err">$</span><span class="w"> </span><span class="n">ps</span><span class="w"> </span><span class="n">ef</span>
+<span class="w">    </span><span class="n">PID</span><span class="w"> </span><span class="n">TTY</span><span class="w">      </span><span class="n">STAT</span><span class="w">   </span><span class="nc">TIME</span><span class="w"> </span><span class="n">COMMAND</span>
+<span class="w">    </span><span class="mi">4417</span><span class="w"> </span><span class="n">pts</span><span class="o">/</span><span class="mi">0</span><span class="w">    </span><span class="n">Ss</span><span class="w">     </span><span class="mi">0</span><span class="err">:</span><span class="mi">00</span><span class="w"> </span><span class="n">bashDISPLAY</span><span class="o">=</span><span class="err">:</span><span class="mi">0</span><span class="w"> </span><span class="n">PWD</span><span class="o">=/</span><span class="n">home</span><span class="o">/</span><span class="k">user</span><span class="w"> </span><span class="n">HOME</span><span class="o">=/</span><span class="n">home</span><span class="o">/</span><span class="k">user</span><span class="w"> </span><span class="n">SESSI</span>
+<span class="w">    </span><span class="mi">4522</span><span class="w"> </span><span class="n">pts</span><span class="o">/</span><span class="mi">0</span><span class="w">    </span><span class="n">R</span><span class="o">+</span><span class="w">     </span><span class="mi">0</span><span class="err">:</span><span class="mi">00</span><span class="w">  </span><span class="err">\</span><span class="n">_</span><span class="w"> </span><span class="n">ps</span><span class="w"> </span><span class="n">efSSH_AGENT_PID</span><span class="o">=</span><span class="mi">4206</span><span class="w"> </span><span class="n">GPG_AGENT_INFO</span><span class="o">=/</span><span class="n">home</span><span class="o">/</span><span class="k">user</span><span class="o">/</span>
+
+<span class="w">    </span><span class="err">$</span><span class="w"> </span><span class="n">ps</span><span class="w"> </span><span class="o">-</span><span class="n">ef</span>
+<span class="w">    </span><span class="n">UID</span><span class="w">        </span><span class="n">PID</span><span class="w">  </span><span class="n">PPID</span><span class="w">  </span><span class="n">C</span><span class="w"> </span><span class="n">STIME</span><span class="w"> </span><span class="n">TTY</span><span class="w">          </span><span class="nc">TIME</span><span class="w"> </span><span class="n">CMD</span>
+<span class="w">    </span><span class="n">root</span><span class="w">         </span><span class="mi">1</span><span class="w">     </span><span class="mi">0</span><span class="w">  </span><span class="mi">0</span><span class="w"> </span><span class="mi">02</span><span class="err">:</span><span class="mi">02</span><span class="w"> </span><span class="vm">?</span><span class="w">        </span><span class="mi">00</span><span class="err">:</span><span class="mi">00</span><span class="err">:</span><span class="mi">01</span><span class="w"> </span><span class="n">init</span><span class="w"> </span><span class="o">[</span><span class="n">2</span><span class="o">]</span>
+<span class="w">    </span><span class="n">root</span><span class="w">         </span><span class="mi">2</span><span class="w">     </span><span class="mi">0</span><span class="w">  </span><span class="mi">0</span><span class="w"> </span><span class="mi">02</span><span class="err">:</span><span class="mi">02</span><span class="w"> </span><span class="vm">?</span><span class="w">        </span><span class="mi">00</span><span class="err">:</span><span class="mi">00</span><span class="err">:</span><span class="mi">00</span><span class="w"> </span><span class="o">[</span><span class="n">kthreadd</span><span class="o">]</span>
+<span class="w">    </span><span class="n">root</span><span class="w">         </span><span class="mi">3</span><span class="w">     </span><span class="mi">2</span><span class="w">  </span><span class="mi">0</span><span class="w"> </span><span class="mi">02</span><span class="err">:</span><span class="mi">02</span><span class="w"> </span><span class="vm">?</span><span class="w">        </span><span class="mi">00</span><span class="err">:</span><span class="mi">00</span><span class="err">:</span><span class="mi">01</span><span class="w"> </span><span class="o">[</span><span class="n">ksoftirqd/0</span><span class="o">]</span>
+<span class="w">    </span><span class="n">root</span><span class="w">         </span><span class="mi">4</span><span class="w">     </span><span class="mi">2</span><span class="w">  </span><span class="mi">0</span><span class="w"> </span><span class="mi">02</span><span class="err">:</span><span class="mi">02</span><span class="w"> </span><span class="vm">?</span><span class="w">        </span><span class="mi">00</span><span class="err">:</span><span class="mi">00</span><span class="err">:</span><span class="mi">01</span><span class="w"> </span><span class="o">[</span><span class="n">kworker/0:0</span><span class="o">]</span>
+<span class="w">    </span><span class="n">root</span><span class="w">         </span><span class="mi">6</span><span class="w">     </span><span class="mi">2</span><span class="w">  </span><span class="mi">0</span><span class="w"> </span><span class="mi">02</span><span class="err">:</span><span class="mi">02</span><span class="w"> </span><span class="vm">?</span><span class="w">        </span><span class="mi">00</span><span class="err">:</span><span class="mi">00</span><span class="err">:</span><span class="mi">00</span><span class="w"> </span><span class="o">[</span><span class="n">migration/0</span><span class="o">]</span>
+<span class="w">    </span><span class="n">root</span><span class="w">         </span><span class="mi">7</span><span class="w">     </span><span class="mi">2</span><span class="w">  </span><span class="mi">0</span><span class="w"> </span><span class="mi">02</span><span class="err">:</span><span class="mi">02</span><span class="w"> </span><span class="vm">?</span><span class="w">        </span><span class="mi">00</span><span class="err">:</span><span class="mi">00</span><span class="err">:</span><span class="mi">00</span><span class="w"> </span><span class="o">[</span><span class="n">watchdog/0</span><span class="o">]</span>
+</code></pre></div></td></tr></table></div>
+
+<h2 id="pstree">pstree<a class="headerlink" href="#pstree" title="Permanent link">&para;</a></h2>
+<p>The <code>pstree</code> command displays the same processes as <code>ps</code> and <code>top</code>,
+but the output is presented in a tree-like structure. The tree is rooted
+at pid (or <code>init</code> if pid is omitted), and if a username is specified the
+tree will root at all processes owned by that username. <code>pstree</code> provides
+an easy way to track back a process to its parent process id (PPID).
+Output between square brackets prefixed by a number are identical branches
+of processes grouped together, the prefixed number represents the
+repetition count. Grouped child threads are shown between square
+brackets as well but the process name will be shown between curly braces
+as an addition. The last line of the output shows the number of children
+for a given process.</p>
+<p>Usage:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ pstree options pid|username
+</code></pre></div></td></tr></table></div>
+
+<p>Example:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ pstree 3655
+    gnome-terminal---bash---pstree
+                   |-bash---man---pager
+                   |-gnome-pty-helpe
+                   `-3*[{gnome-terminal}]
+</code></pre></div></td></tr></table></div>
+
+<h2 id="w">w<a class="headerlink" href="#w" title="Permanent link">&para;</a></h2>
+<p>The <code>w</code> command displays information about the users currently logged
+on to the machine, their processes and the same statistics as provided
+by the <code>uptime</code> command.</p>
+<p>Usage:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ w options user
+</code></pre></div></td></tr></table></div>
+
+<p>Example:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="o">$</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">-</span><span class="n">s</span>
+<span class="w">    </span><span class="mi">02</span><span class="p">:</span><span class="mi">52</span><span class="p">:</span><span class="mi">10</span><span class="w"> </span><span class="n">up</span><span class="w"> </span><span class="mi">49</span><span class="w"> </span><span class="nb">min</span><span class="p">,</span><span class="w">  </span><span class="mi">2</span><span class="w"> </span><span class="n">users</span><span class="p">,</span><span class="w">  </span><span class="nb">load</span><span class="w"> </span><span class="n">average</span><span class="p">:</span><span class="w"> </span><span class="mf">0.11</span><span class="p">,</span><span class="w"> </span><span class="mf">0.10</span><span class="p">,</span><span class="w"> </span><span class="mf">0.13</span>
+<span class="w">    </span><span class="n">USER</span><span class="w">     </span><span class="n">TTY</span><span class="w">      </span><span class="n">FROM</span><span class="w">              </span><span class="n">IDLE</span><span class="w"> </span><span class="n">WHAT</span>
+<span class="w">    </span><span class="n">user</span><span class="w">     </span><span class="n">tty9</span><span class="w">     </span><span class="p">:</span><span class="mi">0</span><span class="w">                </span><span class="mi">49</span><span class="p">:</span><span class="mi">51</span><span class="w">  </span><span class="n">gdm</span><span class="o">-</span><span class="n">session</span><span class="o">-</span><span class="n">worker</span><span class="w"> </span><span class="p">[</span><span class="n">pam</span><span class="o">/</span><span class="n">gdm3</span><span class="p">]</span>
+<span class="w">    </span><span class="n">user</span><span class="w">     </span><span class="n">pts</span><span class="o">/</span><span class="mi">0</span><span class="w">    </span><span class="p">:</span><span class="mi">0</span><span class="w">                </span><span class="mf">0.00</span><span class="n">s</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">-</span><span class="n">s</span>
+</code></pre></div></td></tr></table></div>
+
+<p>Option <code>-s</code> stands for "short format".</p>
+<h2 id="lsof">lsof<a class="headerlink" href="#lsof" title="Permanent link">&para;</a></h2>
+<p>The <code>lsof</code> command is used to list information about
+<em>open files</em> and their corresponding processes. <code>lsof</code> will handle
+regular files, directories, block special files, character special
+files, executing text references, libraries, streams or network files.
+By default, lsof will show unformatted output which might be hard to
+read but is very suitable to be interpreted by other programs. The <code>-F</code>
+option plays an important role here. The <code>-F</code> option is used to get
+output that can be used by programs like C, Perl and awk. Read the
+manpages for detailed usage and the possibilities.</p>
+<p>Usage:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ lsof options names
+</code></pre></div></td></tr></table></div>
+
+<p>The names argument acts as a filter here. Without options, <code>lsof</code> will
+display <em>all</em> open files belonging to <em>all</em> active processes.</p>
+<p>Examples:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="o">$</span><span class="w"> </span><span class="n">sudo</span><span class="w"> </span><span class="n">lsof</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">utmp</span>
+<span class="w">    </span><span class="n">COMMAND</span><span class="w">    </span><span class="n">PID</span><span class="w"> </span><span class="n">USER</span><span class="w">   </span><span class="n">FD</span><span class="w">   </span><span class="n">TYPE</span><span class="w"> </span><span class="n">DEVICE</span><span class="w"> </span><span class="n">SIZE</span><span class="o">/</span><span class="n">OFF</span><span class="w"> </span><span class="n">NODE</span><span class="w"> </span><span class="n">NAME</span>
+<span class="w">    </span><span class="n">gdm</span><span class="o">-</span><span class="n">simpl</span><span class="w"> </span><span class="mi">4040</span><span class="w"> </span><span class="n">root</span><span class="w">   </span><span class="mi">10</span><span class="n">u</span><span class="w">   </span><span class="n">REG</span><span class="w">   </span><span class="mi">0</span><span class="p">,</span><span class="mi">14</span><span class="w">     </span><span class="mi">5376</span><span class="w">  </span><span class="mi">636</span><span class="w"> </span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">utmp</span>
+
+<span class="w">    </span><span class="o">$</span><span class="w"> </span><span class="n">sudo</span><span class="w"> </span><span class="n">lsof</span><span class="w"> </span><span class="o">+</span><span class="n">d</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span>
+<span class="w">    </span><span class="n">COMMAND</span><span class="w">   </span><span class="n">PID</span><span class="w"> </span><span class="n">USER</span><span class="w">   </span><span class="n">FD</span><span class="w">   </span><span class="n">TYPE</span><span class="w"> </span><span class="n">DEVICE</span><span class="w"> </span><span class="n">SIZE</span><span class="o">/</span><span class="n">OFF</span><span class="w">   </span><span class="n">NODE</span><span class="w"> </span><span class="n">NAME</span>
+<span class="w">    </span><span class="n">rsyslogd</span><span class="w"> </span><span class="mi">2039</span><span class="w"> </span><span class="n">root</span><span class="w">    </span><span class="mi">1</span><span class="n">w</span><span class="w">   </span><span class="n">REG</span><span class="w">    </span><span class="mi">8</span><span class="p">,</span><span class="mi">1</span><span class="w">    </span><span class="mi">44399</span><span class="w"> </span><span class="mi">262162</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">syslog</span>
+<span class="w">    </span><span class="n">rsyslogd</span><span class="w"> </span><span class="mi">2039</span><span class="w"> </span><span class="n">root</span><span class="w">    </span><span class="mi">2</span><span class="n">w</span><span class="w">   </span><span class="n">REG</span><span class="w">    </span><span class="mi">8</span><span class="p">,</span><span class="mi">1</span><span class="w">   </span><span class="mi">180069</span><span class="w"> </span><span class="mi">271272</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">messages</span>
+<span class="w">    </span><span class="n">rsyslogd</span><span class="w"> </span><span class="mi">2039</span><span class="w"> </span><span class="n">root</span><span class="w">    </span><span class="mi">3</span><span class="n">w</span><span class="w">   </span><span class="n">REG</span><span class="w">    </span><span class="mi">8</span><span class="p">,</span><span class="mi">1</span><span class="w">    </span><span class="mi">54012</span><span class="w"> </span><span class="mi">271269</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">auth</span><span class="o">.</span><span class="n">log</span>
+<span class="w">    </span><span class="n">rsyslogd</span><span class="w"> </span><span class="mi">2039</span><span class="w"> </span><span class="n">root</span><span class="w">    </span><span class="mi">6</span><span class="n">w</span><span class="w">   </span><span class="n">REG</span><span class="w">    </span><span class="mi">8</span><span class="p">,</span><span class="mi">1</span><span class="w">   </span><span class="mi">232316</span><span class="w"> </span><span class="mi">271268</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">kern</span><span class="o">.</span><span class="n">log</span>
+<span class="w">    </span><span class="n">rsyslogd</span><span class="w"> </span><span class="mi">2039</span><span class="w"> </span><span class="n">root</span><span class="w">    </span><span class="mi">7</span><span class="n">w</span><span class="w">   </span><span class="n">REG</span><span class="w">    </span><span class="mi">8</span><span class="p">,</span><span class="mi">1</span><span class="w">   </span><span class="mi">447350</span><span class="w"> </span><span class="mi">271267</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">daemon</span><span class="o">.</span><span class="n">log</span>
+<span class="w">    </span><span class="n">rsyslogd</span><span class="w"> </span><span class="mi">2039</span><span class="w"> </span><span class="n">root</span><span class="w">    </span><span class="mi">8</span><span class="n">w</span><span class="w">   </span><span class="n">REG</span><span class="w">    </span><span class="mi">8</span><span class="p">,</span><span class="mi">1</span><span class="w">    </span><span class="mi">68368</span><span class="w"> </span><span class="mi">271271</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">debug</span>
+<span class="w">    </span><span class="n">rsyslogd</span><span class="w"> </span><span class="mi">2039</span><span class="w"> </span><span class="n">root</span><span class="w">    </span><span class="mi">9</span><span class="n">w</span><span class="w">   </span><span class="n">REG</span><span class="w">    </span><span class="mi">8</span><span class="p">,</span><span class="mi">1</span><span class="w">     </span><span class="mi">7888</span><span class="w"> </span><span class="mi">271270</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">user</span><span class="o">.</span><span class="n">log</span>
+<span class="w">    </span><span class="n">Xorg</span><span class="w">     </span><span class="mi">4041</span><span class="w"> </span><span class="n">root</span><span class="w">    </span><span class="mi">0</span><span class="n">r</span><span class="w">   </span><span class="n">REG</span><span class="w">    </span><span class="mi">8</span><span class="p">,</span><span class="mi">1</span><span class="w">    </span><span class="mi">31030</span><span class="w"> </span><span class="mi">262393</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">Xorg</span><span class="o">.</span><span class="mf">0.</span><span class="n">log</span>
+</code></pre></div></td></tr></table></div>
+
+<p>This last example causes <code>lsof</code> to search for all open instances of
+directory <code>/var/log</code> and the files and directory it contains at its top
+level.</p>
+<h2 id="free">free<a class="headerlink" href="#free" title="Permanent link">&para;</a></h2>
+<p>The <code>free</code> command displays a current overview of the total amount of both
+physical and swap memory on a system, as well as the amount of free
+memory, memory in use and buffers used by the kernel.</p>
+<p>The fourth column, called <em>shared</em> has been obsolete but is now used to
+display the memory used for tmpfs (shmem in /proc/meminfo)</p>
+<p>Usage:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ free  options
+</code></pre></div></td></tr></table></div>
+
+<p>Example:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ free -h
+                 total       used       free     shared    buffers     cached
+    Mem:          502M       489M        13M        50B        44M       290M
+    -/+ buffers/cache:       154M       347M
+    Swap:         382M       3.9M       379M
+</code></pre></div></td></tr></table></div>
+
+<h2 id="top">top<a class="headerlink" href="#top" title="Permanent link">&para;</a></h2>
+<p>The <code>top</code> command provides a "dynamic real-time view" of a running system.</p>
+<p>Usage:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ top options
+</code></pre></div></td></tr></table></div>
+
+<p>Example:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="o">$</span><span class="w"> </span><span class="n">top</span>
+<span class="w">    </span><span class="n">top</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">03</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">24</span><span class="w"> </span><span class="n">up</span><span class="w"> </span><span class="mi">59</span><span class="w"> </span><span class="nb">min</span><span class="p">,</span><span class="w">  </span><span class="mi">2</span><span class="w"> </span><span class="n">users</span><span class="p">,</span><span class="w">  </span><span class="nb">load</span><span class="w"> </span><span class="n">average</span><span class="p">:</span><span class="w"> </span><span class="mf">0.15</span><span class="p">,</span><span class="w"> </span><span class="mf">0.19</span><span class="p">,</span><span class="w"> </span><span class="mf">0.16</span>
+<span class="w">    </span><span class="n">Tasks</span><span class="p">:</span><span class="w"> </span><span class="mi">117</span><span class="w"> </span><span class="n">total</span><span class="p">,</span><span class="w">   </span><span class="mi">2</span><span class="w"> </span><span class="n">running</span><span class="p">,</span><span class="w"> </span><span class="mi">115</span><span class="w"> </span><span class="n">sleeping</span><span class="p">,</span><span class="w">   </span><span class="mi">0</span><span class="w"> </span><span class="n">stopped</span><span class="p">,</span><span class="w">   </span><span class="mi">0</span><span class="w"> </span><span class="n">zombie</span>
+<span class="w">    </span><span class="o">%</span><span class="n">Cpu</span><span class="p">(</span><span class="n">s</span><span class="p">):</span><span class="w">  </span><span class="mf">0.9</span><span class="w"> </span><span class="n">us</span><span class="p">,</span><span class="w">  </span><span class="mf">4.5</span><span class="w"> </span><span class="n">sy</span><span class="p">,</span><span class="w">  </span><span class="mf">0.1</span><span class="w"> </span><span class="n">ni</span><span class="p">,</span><span class="w"> </span><span class="mf">94.3</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w">  </span><span class="mf">0.1</span><span class="w"> </span><span class="n">wa</span><span class="p">,</span><span class="w">  </span><span class="mf">0.0</span><span class="w"> </span><span class="n">hi</span><span class="p">,</span><span class="w">  </span><span class="mf">0.1</span><span class="w"> </span><span class="n">si</span><span class="p">,</span><span class="w">  </span><span class="mf">0.0</span><span class="w"> </span><span class="n">st</span>
+<span class="w">    </span><span class="n">KiB</span><span class="w"> </span><span class="n">Mem</span><span class="p">:</span><span class="w">    </span><span class="mi">514332</span><span class="w"> </span><span class="n">total</span><span class="p">,</span><span class="w">   </span><span class="mi">497828</span><span class="w"> </span><span class="n">used</span><span class="p">,</span><span class="w">    </span><span class="mi">16504</span><span class="w"> </span><span class="n">free</span><span class="p">,</span><span class="w">    </span><span class="mi">63132</span><span class="w"> </span><span class="n">buffers</span>
+<span class="w">    </span><span class="n">KiB</span><span class="w"> </span><span class="n">Swap</span><span class="p">:</span><span class="w">   </span><span class="mi">392188</span><span class="w"> </span><span class="n">total</span><span class="p">,</span><span class="w">        </span><span class="mi">0</span><span class="w"> </span><span class="n">used</span><span class="p">,</span><span class="w">   </span><span class="mi">392188</span><span class="w"> </span><span class="n">free</span><span class="p">,</span><span class="w">   </span><span class="mi">270552</span><span class="w"> </span><span class="n">cached</span>
+
+<span class="w">      </span><span class="n">PID</span><span class="w"> </span><span class="n">USER</span><span class="w">      </span><span class="n">PR</span><span class="w">  </span><span class="n">NI</span><span class="w">  </span><span class="n">VIRT</span><span class="w">  </span><span class="n">RES</span><span class="w">  </span><span class="n">SHR</span><span class="w"> </span><span class="n">S</span><span class="w">  </span><span class="o">%</span><span class="n">CPU</span><span class="w"> </span><span class="o">%</span><span class="n">MEM</span><span class="w">    </span><span class="n">TIME</span><span class="o">+</span><span class="w">  </span><span class="n">COMMAND</span>
+<span class="w">     </span><span class="mi">4041</span><span class="w"> </span><span class="n">root</span><span class="w">      </span><span class="mi">20</span><span class="w">   </span><span class="mi">0</span><span class="w">  </span><span class="mi">106</span><span class="n">m</span><span class="w">  </span><span class="mi">31</span><span class="n">m</span><span class="w"> </span><span class="mi">9556</span><span class="w"> </span><span class="n">R</span><span class="w">  </span><span class="mf">30.4</span><span class="w">  </span><span class="mf">6.3</span><span class="w">   </span><span class="mi">3</span><span class="p">:</span><span class="mf">05.58</span><span class="w"> </span><span class="n">Xorg</span>
+<span class="w">     </span><span class="mi">4262</span><span class="w"> </span><span class="n">user</span><span class="w">      </span><span class="mi">20</span><span class="w">   </span><span class="mi">0</span><span class="w">  </span><span class="mi">527</span><span class="n">m</span><span class="w">  </span><span class="mi">71</span><span class="n">m</span><span class="w">  </span><span class="mi">36</span><span class="n">m</span><span class="w"> </span><span class="n">S</span><span class="w">  </span><span class="mf">18.2</span><span class="w"> </span><span class="mf">14.3</span><span class="w">   </span><span class="mi">2</span><span class="p">:</span><span class="mf">04.42</span><span class="w"> </span><span class="n">gnome</span><span class="o">-</span><span class="n">shell</span>
+</code></pre></div></td></tr></table></div>
+
+<p>Because of its interactive mode, the most important keys while operating
+<code>top</code> are the <em>help</em> keys <code>h</code> or <code>?</code> and the <em>quit</em> key <code>q</code>. The
+following scheme provides an overview of the most important function
+keys and their equivalent alternatives:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="nv">key</span><span class="w">      </span><span class="nv">equivalent</span><span class="o">-</span><span class="nv">key</span><span class="o">-</span><span class="nv">combinations</span>
+<span class="w">    </span><span class="nv">Up</span><span class="w">       </span><span class="nv">alt</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>\<span class="w">      </span><span class="nv">or</span><span class="w">  </span><span class="nv">alt</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">k</span>
+<span class="w">    </span><span class="nv">Down</span><span class="w">     </span><span class="nv">alt</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="o">/</span><span class="w">      </span><span class="nv">or</span><span class="w">  </span><span class="nv">alt</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">j</span>
+<span class="w">    </span><span class="nv">Left</span><span class="w">     </span><span class="nv">alt</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="o">&lt;</span><span class="w">      </span><span class="nv">or</span><span class="w">  </span><span class="nv">alt</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">h</span>
+<span class="w">    </span><span class="nv">Right</span><span class="w">    </span><span class="nv">alt</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="o">&gt;</span><span class="w">      </span><span class="nv">or</span><span class="w">  </span><span class="nv">alt</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">l</span><span class="w"> </span><span class="ss">(</span><span class="nv">lower</span><span class="w"> </span><span class="nv">case</span><span class="w"> </span><span class="nv">L</span><span class="ss">)</span>
+<span class="w">    </span><span class="nv">PgUp</span><span class="w">     </span><span class="nv">alt</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">Up</span><span class="w">     </span><span class="nv">or</span><span class="w">  </span><span class="nv">alt</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">ctrl</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">k</span>
+<span class="w">    </span><span class="nv">PgDn</span><span class="w">     </span><span class="nv">alt</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">Down</span><span class="w">   </span><span class="nv">or</span><span class="w">  </span><span class="nv">alt</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">ctrl</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">j</span>
+<span class="w">    </span><span class="nv">Home</span><span class="w">     </span><span class="nv">alt</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">Left</span><span class="w">   </span><span class="nv">or</span><span class="w">  </span><span class="nv">alt</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">ctrl</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">h</span>
+<span class="w">    </span><span class="k">End</span><span class="w">      </span><span class="nv">alt</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">Right</span><span class="w">  </span><span class="nv">or</span><span class="w">  </span><span class="nv">alt</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">ctrl</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">l</span>
+</code></pre></div></td></tr></table></div>
+
+<h2 id="htop">htop<a class="headerlink" href="#htop" title="Permanent link">&para;</a></h2>
+<p>Usage:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ htop options
+</code></pre></div></td></tr></table></div>
+
+<p>The <code>htop</code> command is similar to the <code>top</code> command, but allows you to
+scroll vertically and horizontally, so you can see all the processes
+running on the system, along with their full command lines. Tasks
+related to processes (killing, renicing) can be done without entering
+their PIDs.</p>
+<p>Example:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ htop
+</code></pre></div></td></tr></table></div>
+
+<p><img alt=" The htop window. " src="../images/200-htop.jpg" /></p>
+<h2 id="uptime">uptime<a class="headerlink" href="#uptime" title="Permanent link">&para;</a></h2>
+<p>The <code>uptime</code> command shows how long the system has been running,
+how many users are logged on, the system load averages for the past 1, 5
+and 15 minutes and the current time. It support the <code>-V</code> option for
+version information.</p>
+<p>Usage:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span>$<span class="w"> </span><span class="k">uptime</span><span class="w"> </span><span class="nv">options</span>
+</code></pre></div></td></tr></table></div>
+
+<p>Example:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="o">$</span><span class="w"> </span><span class="n">uptime</span>
+<span class="w">    </span><span class="mi">03</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mi">12</span><span class="w"> </span><span class="n">up</span><span class="w">  </span><span class="mi">1</span><span class="p">:</span><span class="mi">00</span><span class="p">,</span><span class="w">  </span><span class="mi">2</span><span class="w"> </span><span class="n">users</span><span class="p">,</span><span class="w">  </span><span class="nb">load</span><span class="w"> </span><span class="n">average</span><span class="p">:</span><span class="w"> </span><span class="mf">0.17</span><span class="p">,</span><span class="w"> </span><span class="mf">0.18</span><span class="p">,</span><span class="w"> </span><span class="mf">0.16</span>
+</code></pre></div></td></tr></table></div>
+
+<h2 id="sar">sar<a class="headerlink" href="#sar" title="Permanent link">&para;</a></h2>
+<p>The <code>sar</code> command collects, reports or saves system activity information.</p>
+<p>Usage:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ sar options interval count
+</code></pre></div></td></tr></table></div>
+
+<p>Examples:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ sar
+    Linux 3.2.0-4-686-pae (debian)  05/07/2013  <span class="ge">_i686_</span>  (2 CPU)
+
+    02:02:34      LINUX RESTART
+
+    02:05:01    CPU     %user     %nice   %system   %iowait    %steal     %idle
+    02:15:01    all      0.15      0.00      1.06      0.23      0.00     98.56
+    02:25:01    all      0.98      0.83      3.84      0.04      0.00     94.31
+    02:35:01    all      0.46      0.00      4.84      0.04      0.00     94.66
+    02:45:01    all      0.90      0.00      5.29      0.01      0.00     93.80
+    02:55:01    all      0.66      0.00      4.64      0.03      0.00     94.67
+    03:05:02    all      0.66      0.00      5.57      0.01      0.00     93.76
+    Average:    all      0.64      0.14      4.19      0.06      0.00     94.98
+</code></pre></div></td></tr></table></div>
+
+<p>Without options, sar will output the statistics above.</p>
+<p>Using the <code>-d</code> option sar will output disk statistics.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ sar -d
+    06:45:01     DEV      tps  rd_sec/s  wr_sec/s  avgrq-sz avgqu-sz   await   svctm   %util
+    06:55:01  dev8-0     6.89    227.01     59.67     41.59     0.02    2.63    1.38    0.95
+    07:05:01  dev8-0     2.08     17.73     17.78     17.06     0.00    2.19    0.94    0.20
+    07:15:01  dev8-0     1.50     12.16     12.96     16.69     0.00    1.35    0.68    0.10
+    Average:  dev8-0     3.49     85.63     30.14     33.15     0.01    2.36    1.19    0.42
+</code></pre></div></td></tr></table></div>
+
+<p>The <code>-b</code> option switch shows output related to I/O and transfer rate
+statistics:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ sar -b
+    06:45:01      tps      rtps      wtps   bread/s   bwrtn/s
+    06:55:01     6.89      4.52      2.38    227.01     59.67
+    07:05:01     2.08      0.95      1.13     17.73     17.78
+    07:15:01     1.50      0.50      1.00     12.16     12.96
+    Average:     3.49      1.99      1.50     85.63     30.14
+</code></pre></div></td></tr></table></div>
+
+<p>Some of the most important options to be used with <code>sar</code> are:</p>
+<ul>
+<li>
+<p><code>-c</code> System calls</p>
+</li>
+<li>
+<p><code>-p and -w</code> Paging and swapping activity</p>
+</li>
+<li>
+<p><code>-q</code> Run queue</p>
+</li>
+<li>
+<p><code>-r</code> Free memory and swap over time</p>
+</li>
+</ul>
+<h2 id="match-correlate-system-symptoms-with-likely-problems">Match / correlate system symptoms with likely problems<a class="headerlink" href="#match-correlate-system-symptoms-with-likely-problems" title="Permanent link">&para;</a></h2>
+<p>To troubleshoot a given problem, one must first be able to distinguish
+<em>normal</em> system behaviour from <em>abnormal</em> system behaviour.</p>
+<p>In the <a href="#terms-and-utilities">previous section</a>, a number of very specific
+system utilities as well as their utilization is explained. In this
+section, the focus lies on correlating these measurements and being able
+to detect anomalies, which in turn can be tied to abnormal system
+behaviour. Resource related problems have a very distinguishable factor
+in common:</p>
+<p>They are the result of one or more resources not being able to cope with
+the demand during certain circumstances.</p>
+<p>These resources might be related, but are not limited to: the CPU,
+physical or virtual memory, storage, network interfaces and connections,
+or the input/output between one or more of these components.</p>
+<h2 id="estimate-throughput-and-identify-bottlenecks-in-a-system-including-networking">Estimate throughput and identify bottlenecks in a system including networking<a class="headerlink" href="#estimate-throughput-and-identify-bottlenecks-in-a-system-including-networking" title="Permanent link">&para;</a></h2>
+<p>To determine whether or not a certain problem is related to a lack of
+resources, the problem itself has to be properly formulated first. Then,
+this formulated "deviated" behaviour has to be compared to the expected
+behaviour which would result from a trouble-free operating system.</p>
+<p>If possible, historical data from <code>sar</code> or other tools should be
+investigated and compared to real-time tools like <code>top</code>,
+<code>vmstat</code>, <code>netstat</code> and <code>iostat</code>.</p>
+<p>Problems reported by either users or reporting tools are often related
+to availability: either resources aren't available in an orderly fashion
+or are unavailable altogether. Orderly fashion may be interpreted as
+"within an acceptable period of time" here. These kinds of issues are
+often reported because they are easily noticeable to users&mdash;i.e., it
+affects the <em>user experience</em>.</p>
+<p>Examples of these kinds of issues might be certain files or (web)
+applications which aren't accessible or responding within a reasonable
+period of time. To adequately analyse such a situation, it may be useful
+to establish a <em>baseline</em> which dictates the "expected behaviour" of the
+program. This baseline should be established on a properly behaving system,
+and providing a threshold should also be considered.</p>
+<p>If there is no baseline, resource measurements themselves may help
+to determine the root cause of a resource-related problem. If one of
+the resources mentioned above is at 100% of its capacity, for example,
+the existence of abnormal system behaviour should be easy to explain;
+finding the precise <em>source</em> of the issue, however, may require a bit more
+effort. The utilities presented in the previous chapter should be helpful
+here as well.</p>
+<p>Examples:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ top
+    $ vmstat
+    $ iostat
+    $ netstat
+</code></pre></div></td></tr></table></div>
+
+<p>Identifying bottlenecks in a networking environment requires several
+steps. A best practice approach could be outlined as follows:</p>
+<ul>
+<li>
+<p>Create a map of the network</p>
+</li>
+<li>
+<p>Identify time-dependent behaviour</p>
+</li>
+<li>
+<p>Identify the problem</p>
+</li>
+<li>
+<p>Identify deviating behaviour</p>
+</li>
+<li>
+<p>Identify the cause</p>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 1997-2021 Sue B.V., The Netherlands - Open Sourced 2021
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["search.highlight", "tabs", "instant"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

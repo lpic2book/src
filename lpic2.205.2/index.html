@@ -1,0 +1,3341 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Sue B.V., The Netherlands">
+      
+      
+      
+        <link rel="prev" href="../lpic2.205.1/">
+      
+      
+        <link rel="next" href="../lpic2.205.3/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Advanced Network Configuration and Troubleshooting (205.2) - The LPIC2 Exam Prep</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:300,300i,400,400i,700,700i%7CAnonymous+Pro:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Nunito";--md-code-font:"Anonymous Pro"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#advanced-network-configuration-and-troubleshooting-2052" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="The LPIC2 Exam Prep" class="md-header__button md-logo" aria-label="The LPIC2 Exam Prep" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            The LPIC2 Exam Prep
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Advanced Network Configuration and Troubleshooting (205.2)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/lpic2book/src" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    LPIC2Book
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="The LPIC2 Exam Prep" class="md-nav__button md-logo" aria-label="The LPIC2 Exam Prep" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/></svg>
+
+    </a>
+    The LPIC2 Exam Prep
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/lpic2book/src" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    LPIC2Book
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The LPIC2 Exam Prep
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpicbook_about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About this book
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    200 Capacity Planning (200)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Measure and Troubleshoot Resource Usage (200.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Predict Future Resource Needs (200.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Kernel (201)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel Components (201.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compiling a Linux kernel (201.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel runtime management and troubleshooting (201.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Startup (202)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customizing system startup (202.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System recovery (202.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Alternate Bootloaders (202.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Filesystem and Devices (203)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operating The Linux Filesystem (203.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maintaining a Linux Filesystem (203.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Creating And Configuring Filesystem Options (203.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Storage Device Administration (204)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring RAID (204.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adjusting Storage Device Access (204.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logical Volume Manager (204.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring PCMCIA Devices (204.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Networking Configuration (205)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Networking Configuration (205.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Network Configuration and Troubleshooting (205.2)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Network Configuration and Troubleshooting (205.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-network-configuration-and-troubleshooting-2052" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced Network Configuration and Troubleshooting (205.2)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Network Configuration and Troubleshooting (205.2)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-knowledge-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Knowledge Areas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key Knowledge Areas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#terms-and-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terms and Utilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#virtual-private-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Virtual Private Network
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Virtual Private Network">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-a-vpn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Is A VPN
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpn-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VPN Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipsec" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IPSEC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-config-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The config file
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ifconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ifconfig
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ping-and-ping6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ping and ping6
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#route" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        route
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#traceroute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        traceroute
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arp-and-arpwatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        arp and arpwatch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tcpdump" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        tcpdump
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        nmap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wireshark" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        wireshark
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lsof" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lsof
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ss" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ss
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#netstat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        netstat
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        nc
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mtr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mtr
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ip
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting network issues (205.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Maintenance (206)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Make and install programs from source (206.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup Operations (206.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifying users on system-related issues (206.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domain Name Server (207)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic DNS server configuration (207.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Create and maintain DNS zones (207.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Securing a DNS Server (207.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTTP Services (208)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Apache Configuration (208.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Apache configuration for HTTPS (208.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementing Squid as a caching proxy (208.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementing Nginx as a web server and a reverse proxy (208.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File Sharing (209)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAMBA Server Configuration (209.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring an NFS Server (209.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Client Management (210)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DHCP Configuration (210.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PAM authentication (210.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LDAP client usage (210.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring an OpenLDAP server (210.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    E-Mail services (211)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using e-mail servers (211.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing E-Mail Delivery (211.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing Mailbox Access (211.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Security (212)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring a router (212.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing FTP servers (212.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secure shell (SSH) (212.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security tasks (212.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenVPN (212.5)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-network-configuration-and-troubleshooting-2052" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced Network Configuration and Troubleshooting (205.2)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Network Configuration and Troubleshooting (205.2)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-knowledge-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Knowledge Areas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key Knowledge Areas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#terms-and-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terms and Utilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#virtual-private-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Virtual Private Network
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Virtual Private Network">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-a-vpn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Is A VPN
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vpn-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VPN Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipsec" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IPSEC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-config-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The config file
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ifconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ifconfig
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ping-and-ping6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ping and ping6
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#route" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        route
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#traceroute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        traceroute
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arp-and-arpwatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        arp and arpwatch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tcpdump" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        tcpdump
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        nmap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wireshark" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        wireshark
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lsof" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lsof
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ss" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ss
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#netstat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        netstat
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        nc
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mtr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mtr
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ip
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>Advanced Network Configuration and Troubleshooting (205.2)</h1>
+
+<h2 id="advanced-network-configuration-and-troubleshooting-2052">Advanced Network Configuration and Troubleshooting (205.2)<a class="headerlink" href="#advanced-network-configuration-and-troubleshooting-2052" title="Permanent link">&para;</a></h2>
+<p>The candidate should be able to configure a network device to implement
+various network authentication schemes. This objective includes
+configuring a multi-homed network device, configuring a virtual private
+network and resolving networking and communication problems.</p>
+<h3 id="key-knowledge-areas">Key Knowledge Areas<a class="headerlink" href="#key-knowledge-areas" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Utilities to manipulate routing tables</p>
+</li>
+<li>
+<p>Utilities to configure and manipulate ethernet network interfaces</p>
+</li>
+<li>
+<p>Utilities to analyse the status of the network devices</p>
+</li>
+<li>
+<p>Utilities to monitor and analyse the TCP/IP traffic</p>
+</li>
+</ul>
+<h4 id="terms-and-utilities">Terms and Utilities<a class="headerlink" href="#terms-and-utilities" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p><code>/sbin/route</code></p>
+</li>
+<li>
+<p><code>/sbin/ifconfig</code></p>
+</li>
+<li>
+<p><code>/bin/netstat</code></p>
+</li>
+<li>
+<p><code>/bin/ping</code></p>
+</li>
+<li>
+<p><code>/bin/ping6</code></p>
+</li>
+<li>
+<p><code>/usr/sbin/traceroute</code></p>
+</li>
+<li>
+<p><code>/usr/sbin/traceroute6</code></p>
+</li>
+<li>
+<p><code>/usr/sbin/arp</code></p>
+</li>
+<li>
+<p><code>/usr/sbin/tcpdump</code></p>
+</li>
+<li>
+<p><code>/usr/sbin/lsof</code></p>
+</li>
+<li>
+<p><code>/usr/sbin/ss</code></p>
+</li>
+<li>
+<p><code>/usr/bin/nc</code></p>
+</li>
+<li>
+<p><code>/usr/bin/mtr</code></p>
+</li>
+<li>
+<p><code>/sbin/ip</code></p>
+</li>
+<li>
+<p><code>nmap</code></p>
+</li>
+<li>
+<p><code>wireshark</code></p>
+</li>
+</ul>
+<h3 id="virtual-private-network">Virtual Private Network<a class="headerlink" href="#virtual-private-network" title="Permanent link">&para;</a></h3>
+<h4 id="what-is-a-vpn">What Is A VPN<a class="headerlink" href="#what-is-a-vpn" title="Permanent link">&para;</a></h4>
+<p>A VPN (Virtual Private Network) allows you to connect VPN two or more
+remote networks securely over an insecure connection, for example over
+the public Internet. To do this an encrypted <em>secure tunnel</em> is created:
+all data will be encrypted before being tunnel sent over the insecure
+network. The resulting network connection acts and feels like a physical
+connection, but actually may traverse many physical networks and
+systems. Hence its name: \"virtual\".</p>
+<p>VPNs are frequently used to save costs. In olden days physical
+connections had to be leased from telecom providers or you had to use
+POTS or ISDN lines. This was a costly business. Nowadays the Internet is
+omnipresent, and almost always available at a low fixed monthly price.
+However, the Internet can be sniffed and intruders might inspect and/or
+intercept your traffic. A VPN shields you from most of the problems you
+might have otherwise.</p>
+<p>A use case might be to integrate LANs in several offices or branches. A
+user that works in the Los Angeles office hence can access the network
+services of the department in New York vice versa. In most cases,
+offices already have an Internet connection, so no additional
+investments need to be made.</p>
+<h4 id="vpn-types">VPN Types<a class="headerlink" href="#vpn-types" title="Permanent link">&para;</a></h4>
+<p>There are many ways to implement a VPN, although most solutions either
+use IPSEC or SSL/TLS as their basis for encryption. Some companies use
+proprietary software implementations. Many routers have IPSEC based VPN
+support built in. A usable VPN can be built using a simple SSH SSH
+tunnel or by using a more sophisticated dedicated solution. Some VPN
+implementations include:</p>
+<ul>
+<li>
+<p>IPSEC</p>
+</li>
+<li>
+<p>VPND</p>
+</li>
+<li>
+<p>SSH</p>
+</li>
+<li>
+<p>Many Cisco Routers (or other proprietary implementations)</p>
+</li>
+<li>
+<p>SSL/TLS</p>
+</li>
+</ul>
+<p>This book will outline the implementations of OpenVPN and IPSEC.
+<a href="#openvpn">???</a> is covered separately in the chapter on System Security.
+IPSEC</p>
+<h4 id="ipsec">IPSEC<a class="headerlink" href="#ipsec" title="Permanent link">&para;</a></h4>
+<p>IPSEC provides encryption and authentication services at the IP
+(Internet Protocol) level of the IPSEC network protocol stack. It
+replaces/enhances the regular level 3 IP layer so all packets are
+encrypted, including for example UDP packets. The IPSEC layer has been
+standardized by the IETF in RFCs 2401--2412. Implementing IPSEC is an
+option for IPv4 but is mandatory in IPv6 stacks.</p>
+<p>In a regular IPv4 network you might set up dedicated IPSEC gateway
+machines to provide encrypted IP network connections when needed. IPSEC
+can run on routers, firewall machines, various application servers and
+on end-user desktop or laptop machines - any system that has an IP
+stack.</p>
+<p>Using IPSEC is simple, as the protocol is built-in into the IP stack.
+But there are additional tasks in comparison with a regular IPv4
+connection, for example encryption keys need to be exchanged between the
+end-points before an encrypted tunnel can be set up. It was decided to
+handle this over a higher-level protocol, the Internet Key Exchange
+protocol IKE (IKE). After IKE has done its work, the IP level services
+ESP and AH know which keys to use to do their work.</p>
+<p>The full names of the three protocols that are used in an IPSEC
+implementation are:</p>
+<p>ESP, Encapsulating Security Payload</p>
+<ul>
+<li>Encrypts and/or authenticates data;</li>
+</ul>
+<p>AH, Authentication Header</p>
+<ul>
+<li>Provides a packet authentication service;</li>
+</ul>
+<p>IKE, Internet Key Exchange</p>
+<ul>
+<li>Negotiates connection parameters, including keys, for the protocols
+    mentioned above. The IKE protocol ensures authentication of the
+    peers and exchange of their symmetric keys. The IKE protocol is
+    usually implemented by a user space daemon that uses port 500/udp.</li>
+</ul>
+<p><strong>Note</strong>
+IPSEC standards define all three protocols, but in some contexts people
+use the term IPSEC to refer to just AH and ESP.</p>
+<p>OpenSwan, formerly known as FreeS/WAN, is a complete IPSEC
+implementation for Linux 2.0 - 2.6 kernels. StrongSwan (also derived
+from FreeS/WAN) is another implementation that also supports the 3.x
+kernel. Both OpenSwan and FreeSwan implement all three protocols
+mentioned earlier. The Openswan Openswan implementation has several main
+parts:</p>
+<ul>
+<li>
+<p>KLIPS (KerneL IPSec) which implements generic IPSEC packet handling,
+    AH and ESP on the kernel level, for all kernels before version
+    2.5.47. KLIPS has been superseded by native IPSEC kernel support
+    (NETKEY).</p>
+</li>
+<li>
+<p>NETKEY is the Kernel IPSec implementation included with the 2.6
+    kernel.</p>
+</li>
+<li>
+<p>Pluto (an IKE daemon) implements IKE, negotiating connections with
+    other systems.</p>
+</li>
+<li>
+<p>various scripts provide an administrator interface to the machinery.</p>
+</li>
+</ul>
+<!-- FIXME: path to config file -->
+
+<h4 id="the-config-file">The config file<a class="headerlink" href="#the-config-file" title="Permanent link">&para;</a></h4>
+<p>The config file contains three parts:</p>
+<ul>
+<li>
+<p>one or more connection specifications</p>
+<ul>
+<li>Each connection section starts with <code>conn ident</code>, where <code>ident</code> is
+an arbitrary name which is used to identify the connection.</li>
+</ul>
+</li>
+<li>
+<p>connection defaults</p>
+<ul>
+<li>This section starts with <code>conn %default</code>. For each parameter in it,
+any section which does not have a parameter of the same name gets a
+copy of the one from the <code>%default</code> section. There may be multiple
+%default sections, but only one default may be supplied for any
+specific parameter name and all <code>%default</code> sections must precede all
+non-<code>%default</code> sections of that type.</li>
+</ul>
+</li>
+<li>
+<p>the config section</p>
+<ul>
+<li>The config section starts with <code>config 
+                                    setup</code> and contains information
+used Configuring Openswan when starting the software.</li>
+</ul>
+</li>
+</ul>
+<p>A sample configuration file is shown below:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="c1"># basic configuration</span>
+<span class="w">    </span><span class="n">config</span><span class="w"> </span><span class="n">setup</span>
+<span class="w">            </span><span class="n">interfaces</span><span class="o">=</span><span class="s2">&quot;ipsec0=eth0&quot;</span>
+<span class="w">            </span><span class="n">klipsdebug</span><span class="o">=</span><span class="n">none</span>
+<span class="w">            </span><span class="n">plutodebug</span><span class="o">=</span><span class="n">none</span>
+<span class="w">            </span><span class="n">plutoload</span><span class="o">=%</span><span class="n">search</span>
+<span class="w">            </span><span class="n">plutostart</span><span class="o">=%</span><span class="n">search</span>
+<span class="w">            </span><span class="c1"># Close down old connection when new one using same ID shows up.</span>
+<span class="w">            </span><span class="n">uniqueids</span><span class="o">=</span><span class="n">yes</span>
+
+<span class="w">    </span><span class="c1"># defaults that apply to all connection descriptions</span>
+<span class="w">    </span><span class="n">conn</span><span class="w"> </span><span class="o">%</span><span class="n">default</span>
+<span class="w">            </span><span class="c1"># How persistent to be in (re)keying negotiations (0 means very).</span>
+<span class="w">            </span><span class="n">keyingtries</span><span class="o">=</span><span class="mi">0</span>
+<span class="w">            </span><span class="c1"># How to authenticate gateways</span>
+<span class="w">            </span><span class="n">authby</span><span class="o">=</span><span class="n">rsasig</span>
+
+<span class="w">    </span><span class="c1"># VPN connection for head office and branch office</span>
+<span class="w">    </span><span class="n">conn</span><span class="w"> </span><span class="n">head</span><span class="o">-</span><span class="n">branch</span>
+<span class="w">            </span><span class="c1"># identity we use in authentication exchanges</span>
+<span class="w">            </span><span class="n">leftid</span><span class="o">=</span><span class="err">@</span><span class="n">head</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span>
+<span class="w">            </span><span class="n">leftrsasigkey</span><span class="o">=</span><span class="mh">0x175cffc641f</span><span class="o">...</span>
+<span class="w">            </span><span class="n">left</span><span class="o">=</span><span class="mf">45.66</span><span class="o">.</span><span class="mf">9.170</span>
+<span class="w">            </span><span class="n">leftnexthop</span><span class="o">=</span><span class="mf">45.66</span><span class="o">.</span><span class="mf">11.254</span>
+<span class="w">            </span><span class="n">leftsubnet</span><span class="o">=</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">11.0</span><span class="o">/</span><span class="mi">24</span>
+<span class="w">            </span><span class="c1"># right s.g., subnet behind it, and next hop to reach left</span>
+<span class="w">            </span><span class="n">rightid</span><span class="o">=</span><span class="err">@</span><span class="n">branch</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span>
+<span class="w">            </span><span class="n">rightrsasigkey</span><span class="o">=</span><span class="mh">0xfc641fd6d9a24</span><span class="o">...</span>
+<span class="w">            </span><span class="n">right</span><span class="o">=</span><span class="mf">17.120</span><span class="o">.</span><span class="mf">138.134</span>
+<span class="w">            </span><span class="n">rightnexthop</span><span class="o">=</span><span class="mf">17.120</span><span class="o">.</span><span class="mf">138.1</span>
+<span class="w">            </span><span class="n">rightsubnet</span><span class="o">=</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">0.0</span><span class="o">/</span><span class="mi">24</span>
+<span class="w">            </span><span class="c1"># start automatically when ipsec is loaded</span>
+<span class="w">            </span><span class="n">auto</span><span class="o">=</span><span class="n">start</span>
+</code></pre></div></td></tr></table></div>
+
+<p>In a typical setup you have two interconnected gateways that both run
+IPSEC and route packets. One of these gateways can be seen as 'the one
+on the left', the other as 'the one on the right'. Hence
+specifications are written in terms of <code>left</code> and <code>right</code> participants.
+There is no special meaning attached to either name, they are just
+labels - you might have defined the 'left' host to be the 'right'
+host and vice versa.</p>
+<p>Normally, you would use the exact same configuration file on both sides.
+Interpretation of that file is done by checking the local configuration.
+For example if it was stated in the configuration file that the IP
+address for 'left' is 1.2.3.4, the software assumes that it runs on
+the left node if it finds that IP address configured on one of its
+network devices. The same file is interpreted differently on the other
+node, as that hosts configuration differs.</p>
+<p>The <code>left</code>, <code>leftsubnet</code> and <code>leftnexthop</code> (and the <code>right...</code>
+counterparts) determine the layout of the connection:</p>
+<p><img alt="" src="../images/205-vpnhops.dot.svg.jpg" /></p>
+<p>The <code>leftid</code> and <code>leftrsasigkey</code> are used in authenticating the left
+participant. The <code>leftrsasigkey</code> is the public key of the left
+participant (in the example above the RSA keys are shortened for easy
+display). The private key is stored in the <code>/etc/ipsec.secrets</code> file and
+should be kept secure.</p>
+<p>The keys can be generated on both client and server with the command:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    # ipsec rsasigkey --verbose 2048 &gt; rsa.key
+</code></pre></div></td></tr></table></div>
+
+<p>The IKE-daemon of IPSEC is called <code>pluto</code>. It will authenticate and
+negotiate the secure tunnels. Once the connections is set up, the kernel
+implementation of IPSEC routes traffic through the tunnel if need be.</p>
+<p><code>plutoload=%search</code> and <code>plutostart=%search</code> tell the <code>pluto</code> daemon to
+search the configuration file for <code>auto=</code> statements. All connections
+with <code>auto=add</code> will be loaded in the pluto database. Connections with
+<code>auto=start</code> will also be started.</p>
+<p>Troubleshooting</p>
+<p>Network troubleshooting is a very broad subject with thousands of tools
+available. There are some very good books available on this topic, so we
+will limit our discussion to an overview of some of the tools which can
+be used to solve or detect network problems.</p>
+<h3 id="ifconfig">ifconfig<a class="headerlink" href="#ifconfig" title="Permanent link">&para;</a></h3>
+<p>Typing <code>ifconfig</code> without additional parameters displays the
+configuration for all network interfaces ifconfig on the system. You
+might use this command to verify the configuration of an interface if
+the user experiences connectivity problems, particularly when their
+system has just been (re)configured.</p>
+<p>When <code>ifconfig</code> is entered with an interface name and no other
+arguments, it displays the current values assigned to that particular
+interface. For example, checking interface <code>eth0</code> system gives this
+report:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="err">$</span><span class="w"> </span><span class="nx">ifconfig</span><span class="w"> </span><span class="nx">eth0</span>
+<span class="w">    </span><span class="nx">eth0</span><span class="w">      </span><span class="nx">Link</span><span class="w"> </span><span class="nx">encap</span><span class="p">:</span><span class="nx">Ethernet</span><span class="w">  </span><span class="nx">HWaddr</span><span class="w"> </span><span class="mi">00</span><span class="p">:</span><span class="mi">10</span><span class="p">:</span><span class="mi">60</span><span class="p">:</span><span class="mi">58</span><span class="p">:</span><span class="mi">05</span><span class="p">:</span><span class="mi">36</span><span class="w">  </span>
+<span class="w">              </span><span class="nx">inet</span><span class="w"> </span><span class="kd">addr</span><span class="p">:</span><span class="m m-Double">192.168.2.3</span><span class="w">  </span><span class="nx">Bcast</span><span class="p">:</span><span class="m m-Double">192.168.2.255</span><span class="w">  </span><span class="nx">Mask</span><span class="p">:</span><span class="m m-Double">255.255.255.0</span>
+<span class="w">              </span><span class="nx">UP</span><span class="w"> </span><span class="nx">BROADCAST</span><span class="w"> </span><span class="nx">RUNNING</span><span class="w"> </span><span class="nx">MULTICAST</span><span class="w">  </span><span class="nx">MTU</span><span class="p">:</span><span class="mi">1500</span><span class="w">  </span><span class="nx">Metric</span><span class="p">:</span><span class="mi">1</span>
+<span class="w">              </span><span class="nx">RX</span><span class="w"> </span><span class="nx">packets</span><span class="p">:</span><span class="mi">1398185</span><span class="w"> </span><span class="nx">errors</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">dropped</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">overruns</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">frame</span><span class="p">:</span><span class="mi">0</span>
+<span class="w">              </span><span class="nx">TX</span><span class="w"> </span><span class="nx">packets</span><span class="p">:</span><span class="mi">1411351</span><span class="w"> </span><span class="nx">errors</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">dropped</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">overruns</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">carrier</span><span class="p">:</span><span class="mi">0</span>
+<span class="w">              </span><span class="nx">collisions</span><span class="p">:</span><span class="mi">829</span><span class="w"> </span><span class="nx">txqueuelen</span><span class="p">:</span><span class="mi">100</span><span class="w"> </span>
+<span class="w">              </span><span class="nx">RX</span><span class="w"> </span><span class="nx">bytes</span><span class="p">:</span><span class="mi">903174205</span><span class="w"> </span><span class="p">(</span><span class="m m-Double">861.3</span><span class="w"> </span><span class="nx">Mb</span><span class="p">)</span><span class="w">  </span><span class="nx">TX</span><span class="w"> </span><span class="nx">bytes</span><span class="p">:</span><span class="mi">201042106</span><span class="w"> </span><span class="p">(</span><span class="m m-Double">191.7</span><span class="w"> </span><span class="nx">Mb</span><span class="p">)</span>
+<span class="w">              </span><span class="nx">Interrupt</span><span class="p">:</span><span class="mi">11</span><span class="w"> </span><span class="nx">Base</span><span class="w"> </span><span class="nx">address</span><span class="p">:</span><span class="mh">0xa000</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The ifconfig command displays a few lines of output. The third line of
+the display shows the characteristics of the interface. Check for these
+characteristics:</p>
+<p>UP</p>
+<ul>
+<li>The interface is enabled for use. If the interface is "down", bring
+    the interface "up" with the <code>ifconfig</code> command (e.g.
+    <code>ifconfig eth0 up</code>).</li>
+</ul>
+<p>RUNNING</p>
+<ul>
+<li>This interface is operational. If the interface is not "running",
+    the driver for this interface may not be properly installed.</li>
+</ul>
+<p>The second line of <code>ifconfig</code> output shows the IP address, the subnet
+mask and the broadcast address. Check these three fields to make sure
+the network interface is properly configured.</p>
+<p>Two common interface configuration problems are misconfigured subnet
+masks and incorrect IP addresses. A bad subnet mask may be the case when
+the host can reach some hosts on its local subnet but is unable to reach
+other hosts, even if they are on the same subnet. <code>ifconfig</code> quickly
+reveals if a bad subnet mask is set.</p>
+<p>An incorrectly set IP address can be a subtle problem. If the network
+part of the address is incorrect, every <code>ping</code> will fail with the "no
+answer" ping error; because the IP address is unfamiliar to the other
+hosts on the network, return packets will be directed to their default
+gateway (often leading to the internet) or even dropped. In this case,
+using <code>ifconfig</code> may reveal the incorrect address. However, if the host
+part of the address is wrong, the problem can be more difficult to
+detect. A small system, such as a PC that only connects out to other
+systems and never accepts incoming connections, can run for a long time
+with the wrong address without its user noticing the problem.
+Additionally, the system that suffers the ill effects may not be the one
+that is misconfigured. It is possible for someone to accidentally use
+your IP address on his own system and for his mistake to cause
+intermittent communication problems to your system. This type of
+configuration error cannot be discovered by <code>ifconfig</code>, because the
+error is on a remote host. IP conflicts like this can be discovered
+using the <code>arp</code> command, which will show two alternating MAC addresses
+for the same IP address. arp</p>
+<p>The <code>ifconfig</code> command can be used to set up multihomed network device.
+There are two ways a host can be multihomed.</p>
+<ul>
+<li>
+<p>Two Or More Interfaces To The Same Network</p>
+<ul>
+<li>Devices such as servers or
+high-powered workstations may be equipped with two physical interfaces
+to the same network for performance and/or reliability reasons. They
+will have two IP addresses on the same network with the same network ID.</li>
+</ul>
+</li>
+<li>
+<p>Interfaces To Two Or More Different Networks</p>
+<ul>
+<li>Devices may have multiple
+interfaces to different networks. The IP addresses will typically have
+different network IDs in them.</li>
+</ul>
+</li>
+</ul>
+<h3 id="ping-and-ping6">ping and ping6<a class="headerlink" href="#ping-and-ping6" title="Permanent link">&para;</a></h3>
+<p>ping6 The basic format of the ping or ping6 command on a Linux system
+is:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ ping [-c count] host
+    $ ping6 [-c count] host
+</code></pre></div></td></tr></table></div>
+
+<p>host</p>
+<ul>
+<li>The hostname or IP address of the remote host being tested. Note
+    that you cannot ping from an IPv4 host to an IPv6 host or vice
+    versa. Both ends need to use the same IP version.</li>
+</ul>
+<p>count</p>
+<ul>
+<li>The number of packets to be sent in the test. Use the count field
+    and set the value low. Otherwise, the ping command will continue to
+    send test packets until you interrupt it, usually by pressing
+    [CTRL+C]{.keycombo} (^C).</li>
+</ul>
+<p>To check that <a href="http://www.sue.nl">www.sue.nl</a> can be reached from your workstation, send four
+packets with the following command.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ ping -c 4 www.sue.nl
+    PING home.NL.net (193.67.79.250): 56 data bytes
+    64 bytes from 193.67.79.250: icmp_seq=0 ttl=245 time=32.1 ms
+    64 bytes from 193.67.79.250: icmp_seq=1 ttl=245 time=32.1 ms
+    64 bytes from 193.67.79.250: icmp_seq=2 ttl=245 time=37.6 ms
+    64 bytes from 193.67.79.250: icmp_seq=3 ttl=245 time=34.1 ms
+
+    --- home.NL.net ping statistics ---
+    4 packets transmitted, 4 packets received, 0% packet loss
+    round-trip min/avg/max = 32.1/33.9/37.6 ms
+</code></pre></div></td></tr></table></div>
+
+<p>This test shows a good wide-area network link to <a href="http://www.sue.nl">www.sue.nl</a> with no
+packet loss and fast response. A small packet loss, and a round-trip
+time an order of magnitude higher, would not be abnormal for a
+connection made across a wide-area network. The statistics displayed by
+the ping command can indicate a low-level network problem. The key
+statistics are:</p>
+<ul>
+<li>
+<p>The sequence in which the packets are arriving, as shown by the ICMP
+    sequence number (icmp_seq) displayed ICMP for each packet;</p>
+</li>
+<li>
+<p>How long it takes a packet to make the round trip, displayed in
+    milliseconds after the string time=;</p>
+</li>
+<li>
+<p>The percentage of packets lost, displayed in a summary line at the
+    end of the ping output.</p>
+</li>
+</ul>
+<p>If the packet loss is high, the response time is very high or packets
+are arriving out of order, there could be a network hardware or link
+problem. If you see these conditions when communicating over great
+distances on a wide area network, there is nothing to worry about.
+TCP/IP was designed to deal with unreliable networks, and some wide-area
+networks suffer from a moderate level of packet loss. But if these
+problems are seen on a local-area network, they indicate trouble.</p>
+<p>On a local-network cable segment, the round-trip time should be close to
+zero; there should be little or no packet loss and the packets should
+arrive in order. If these conditions are not met, there is a problem
+with the network hardware or with the links connecting them. On an
+Ethernet, the problem could be improper cable termination, a bad cable
+segment or a bad piece of "active" hardware, such as a hub, switch or
+transceiver.</p>
+<p>The results of a simple ping test, even if the ping is successful, can
+help direct you to further testing toward the most likely causes of the
+problem. But other diagnostic tools are needed to examine the problem
+more closely and find the underlying cause.</p>
+<h3 id="route">route<a class="headerlink" href="#route" title="Permanent link">&para;</a></h3>
+<p>To check the routing of a linux box, the <code>route</code> command is usually
+entered with no route parameters or with <code>-n</code> to turn off ip-address to
+name resolution. For example <code>route -n</code> might show:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ route -n
+    Kernel IP routing table
+    Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+    192.168.11.0    0.0.0.0         255.255.255.0   U     0      0        0 eth0
+    145.66.8.0      0.0.0.0         255.255.252.0   U     0      0        0 eth1
+    0.0.0.0         145.66.11.254   0.0.0.0         UG    0      0        0 eth1
+</code></pre></div></td></tr></table></div>
+
+<p>This host has two interfaces, one on subnet 192.168.11.0/24 the other on
+subnet 145.66.8.0/22. There is also a default route out on <code>eth1</code> to
+145.66.11.254 (denoted by the <code>G</code> under "Flags" and a "Destination" and
+"Genmask" of 0.0.0.0).</p>
+<p>To be able to troubleshoot this information you need to know what the
+routing should be, perhaps by saving the routing information when the
+system is known to work.</p>
+<p>The two most common mistakes are:</p>
+<ul>
+<li>
+<p>No network entry for an interface. When a network interface is
+    configured a routing entry should be automatically added. This
+    informs the kernel about the network that can be reached through the
+    interface.</p>
+</li>
+<li>
+<p>No default route (or two default routes). There should be exactly
+    one default route. Note that two default gateways can go undetected
+    for a long time because the routing could "accidentally" use the
+    proper gateway.</p>
+</li>
+</ul>
+<p>In general, if there is a routing problem, it is better to first locate
+the part of the network where the problem originates, e.g. with <code>ping</code>
+or <code id="tracertmc">traceroute</code> and then use traceroute <code>route</code> as part of
+the diagnostics.</p>
+<h3 id="traceroute">traceroute<a class="headerlink" href="#traceroute" title="Permanent link">&para;</a></h3>
+<p><code>traceroute</code> and <code>traceroute6</code> are tools used to discover the gateways
+along a path. Path discovery is an essential step in diagnosing routing
+problems. Note that <code>traceroute6</code> is equivalent to <code>traceroute -6</code></p>
+<p>The <code>traceroute</code> command is based on a clever use of the Time-To-Live
+(TTL) field in the IP packet's TTL header. The TTL field is used to
+limit the lifetime of a packet. When a router fails or is misconfigured,
+a routing loop or circular path may result. The TTL field prevents
+packets from remaining on a network indefinitely should such a routing
+loop occur. A packet's TTL field is decremented each time the packet
+crosses a router on its way through a network. When its value reaches 0,
+the packet is discarded rather than forwarded. When discarded, an ICMP
+TIME_EXCEEDED TIME_EXCEEDED message is sent back to the packet's
+source to inform the source that the packet was discarded. By
+manipulating the TTL field of the original packet, the program
+<code>traceroute</code> uses information from these ICMP messages to discover paths
+through a network.</p>
+<p><code>traceroute</code> sends a series of UDP packets with the destination address
+of the device you want a path to. By default, <code>traceroute</code> sends sets of
+three packets to discover each hop. traceroute sets the TTL field in the
+first three packets to a value of 1 so that they are discarded by the
+first router on the path. When the ICMP TIME_EXCEEDED messages are
+returned by that router, <code>traceroute</code> records the source IP address of
+these ICMP messages. This is the IP address of the first hop on the
+route to the destination.</p>
+<p>Next, three packets are sent with their TTL field set to 2. These will
+be discarded by the second router on the path. The ICMP messages
+returned by this router reveal the IP address of the second router on
+the path. The program proceeds in this manner until a set of packets
+finally has a TTL value large enough so that the packets reach their
+destination. Most implementations of <code>traceroute</code> default to trying only
+30 hops before halting.</p>
+<p>An example traceroute on linux looks like this:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ traceroute vhost2.cistron.net
+    traceroute to vhost2.cistron.net (195.64.68.36), 30 hops max, 38 byte packets
+     1  gateway.kabel.netvisit.nl (145.66.11.254)  56.013 ms  19.120 ms  12.642 ms
+     2  145.66.3.45 (145.66.3.45)  138.138 ms  28.482 ms  28.788 ms
+     3  asd-dc2-ias-ar10.nl.kpn.net (194.151.226.2)  102.338 ms  240.596 ms  253.462 ms
+     4  asd-dc2-ipc-dr03.nl.kpn.net (195.190.227.242)  95.325 ms  76.738 ms  97.651 ms
+     5  asd-dc2-ipc-cr01.nl.kpn.net (195.190.232.206)  61.378 ms  60.673 ms  75.867 ms
+     6  asd-sara-ipc-dr01.nl.kpn.net (195.190.233.74)  111.493 ms  96.631 ms  77.398 ms
+     7  asd-sara-ias-pr10.nl.kpn.net (195.190.227.6)  78.721 ms  95.029 ms  82.613 ms
+     8  ams-icr-02.carrier1.net (212.4.192.60)  90.179 ms  80.634 ms  112.130 ms
+     9  212.4.192.21 (212.4.192.21)  49.521 ms  80.354 ms  63.503 ms
+    10  212.4.194.42 (212.4.194.42)  94.528 ms  60.698 ms  103.550 ms
+    11  vhost2.cistron.net (195.64.68.36)  102.057 ms  62.515 ms  66.637 ms
+</code></pre></div></td></tr></table></div>
+
+<p>Again, knowing what the route through your network should be helps to
+localize the problem. Note that not all network problems can be detected
+with a <code>traceroute</code>, because of some complicating factors. First, the
+router at some hop may not return ICMP TIME_EXCEEDED messages. Second,
+some older routers may incorrectly forward packets even though the TTL
+is 0. A third possibility is that ICMP messages may be given low
+priority and may not be returned in a timely manner. Finally, beyond
+some point of the path, ICMP packets may be filtered by a firewall.</p>
+<p>The <code>traceroute</code> command is a great tool to narrow down the possible
+causes of a network problem.</p>
+<h3 id="arp-and-arpwatch">arp and arpwatch<a class="headerlink" href="#arp-and-arpwatch" title="Permanent link">&para;</a></h3>
+<p><code>arp</code> is used to manipulate the kernel's arp arpwatch ARP cache. The
+primary options are clearing an address mapping entry and manually
+setting one up. For debugging purposes, the <code>arp</code> program also allows a
+complete dump of the ARP cache. ARPcache</p>
+<p>If you know what the MAC address of a specific host should be, the dump
+may be used to determine a duplicate IP-address, but running <code>arpwatch</code>
+on a central system might prove more effective.</p>
+<p>IP address conflicts are often the result of configuration errors
+including:</p>
+<ul>
+<li>
+<p>assignment of the same static IP address by a network administrator</p>
+</li>
+<li>
+<p>assignment of a static IP address within a DHCP range (dynamic
+    range) resulting in the same address being automatically assigned by
+    the local DHCP server</p>
+</li>
+<li>
+<p>an error in the DHCP server</p>
+</li>
+<li>
+<p>a system coming back online after an extended period in stand-by or
+    hibernate mode with an IP address that has been reassigned and is in
+    use on the network.</p>
+</li>
+</ul>
+<p>Detection of duplicate IP addresses can be very hard even with
+<code>arpwatch</code>. IP address conflicts occur when two devices on a network are
+assigned the same IP address, resulting in one or both being disabled
+and losing connectivity until the conflict is resolved.</p>
+<p>If, for example, a rogue host rogue host uses the IP address of the host
+running the <code>arpwatch</code> program or never communicates with it, a
+duplicate IP address will go unnoticed. Still, <code>arpwatch</code> is a very
+useful tool in detecting networking problems.</p>
+<p><code>arpwatch</code> keeps track of ethernet/IP address pairings. Changes are
+reported via syslog and e-mail.</p>
+<p><code>arpwatch</code> will report a "changed ethernet address" when a known IP
+address shows up with a new ethernet address. When the old ethernet
+address suddenly shows up again, a "flip flop" is reported.</p>
+<h3 id="tcpdump">tcpdump<a class="headerlink" href="#tcpdump" title="Permanent link">&para;</a></h3>
+<p><code>tcpdump</code> is a program that enables network tcpdump administrators to
+inspect every packet going through the network in real-time. This tool
+is typically used to monitor active connections or troubleshoot
+occasional network connectivity problems. In order to see traffic,
+however, the host running <code>tcpdump</code> must be somewhere along the path
+between two (or more) hosts exchanging traffic. This may prove to be
+difficult in a fully switched network. An easy solution is to run
+tcpdump on the host that needs to send or receive traffic. Another
+option is to configure a port on one of the switches where a copy of
+traffic from certain source and destination ports is sent; this is
+called a SPAN port.</p>
+<p><code>tcpdump</code> can generate a lot of output, so it is useful to narrow the
+scope of packets captured by specifying the interface you want to listen
+on using <code>-i</code>. In addition, you can specify the source, destination,
+protocol type and/or port number of the traffic you want to see joined
+by boolean AND and OR statements if necessary. An example command could
+be: <code>tcpdump -i eth0 src 10.10.0.1 and dst 10.10.0.254
+                and tcp port 80</code>). Other useful options are <code>-n</code> to turn
+of name resolution and <code>-w</code> to write captured packets to a file for
+later inspection (e.g. in Wireshark).</p>
+<h3 id="nmap">nmap<a class="headerlink" href="#nmap" title="Permanent link">&para;</a></h3>
+<p><code>nmap</code> is a versatile tool for network exploration and security
+auditing. Its main use is as a portscanner, which also can identify
+running services, versions of the running services and OS types.</p>
+<p>An example of this command and output is:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="err">$</span><span class="w"> </span><span class="nx">nmap</span><span class="w"> </span><span class="o">-</span><span class="nx">A</span><span class="w"> </span><span class="nx">localhost</span>
+
+<span class="w">        </span><span class="nx">Starting</span><span class="w"> </span><span class="nx">Nmap</span><span class="w"> </span><span class="m m-Double">7.60</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="nx">https</span><span class="p">:</span><span class="c1">//nmap.org ) at 2020-05-08 12:56 CEST</span>
+<span class="nx">Nmap</span><span class="w"> </span><span class="nx">scan</span><span class="w"> </span><span class="nx">report</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nx">localhost</span><span class="w"> </span><span class="p">(</span><span class="m m-Double">127.0.0.1</span><span class="p">)</span>
+<span class="nx">Host</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="nx">up</span><span class="w"> </span><span class="p">(</span><span class="m m-Double">0.00015</span><span class="nx">s</span><span class="w"> </span><span class="nx">latency</span><span class="p">).</span>
+<span class="nx">Other</span><span class="w"> </span><span class="nx">addresses</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nx">localhost</span><span class="w"> </span><span class="p">(</span><span class="k">not</span><span class="w"> </span><span class="nx">scanned</span><span class="p">):</span><span class="w"> </span><span class="o">::</span><span class="mi">1</span>
+<span class="nx">Not</span><span class="w"> </span><span class="nx">shown</span><span class="p">:</span><span class="w"> </span><span class="mi">994</span><span class="w"> </span><span class="nx">closed</span><span class="w"> </span><span class="nx">ports</span>
+<span class="nx">PORT</span><span class="w">     </span><span class="nx">STATE</span><span class="w"> </span><span class="nx">SERVICE</span><span class="w">  </span><span class="nx">VERSION</span>
+<span class="mi">22</span><span class="o">/</span><span class="nx">tcp</span><span class="w">   </span><span class="nx">open</span><span class="w">  </span><span class="nx">ssh</span><span class="w">      </span><span class="nx">OpenSSH</span><span class="w"> </span><span class="m m-Double">7.6</span><span class="nx">p1</span><span class="w"> </span><span class="nx">Ubuntu</span><span class="w"> </span><span class="mi">4</span><span class="nx">ubuntu0</span><span class="m m-Double">.3</span><span class="w"> </span><span class="p">(</span><span class="nx">Ubuntu</span><span class="w"> </span><span class="nx">Linux</span><span class="p">;</span><span class="w"> </span><span class="nx">protocol</span><span class="w"> </span><span class="m m-Double">2.0</span><span class="p">)</span>
+<span class="o">|</span><span class="w"> </span><span class="nx">ssh</span><span class="o">-</span><span class="nx">hostkey</span><span class="p">:</span>
+<span class="o">|</span><span class="w">   </span><span class="mi">2048</span><span class="w"> </span><span class="nx">fc</span><span class="p">:</span><span class="mi">4</span><span class="nx">c</span><span class="p">:</span><span class="mi">2</span><span class="nx">d</span><span class="p">:</span><span class="mi">44</span><span class="p">:</span><span class="mi">51</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">9</span><span class="nx">e</span><span class="p">:</span><span class="mi">8</span><span class="nx">a</span><span class="p">:</span><span class="mi">56</span><span class="p">:</span><span class="mi">0</span><span class="nx">b</span><span class="p">:</span><span class="nx">a9</span><span class="p">:</span><span class="mi">29</span><span class="p">:</span><span class="nx">fa</span><span class="p">:</span><span class="nx">e3</span><span class="p">:</span><span class="nx">d7</span><span class="p">:</span><span class="mi">21</span><span class="w"> </span><span class="p">(</span><span class="nx">RSA</span><span class="p">)</span>
+<span class="o">|</span><span class="w">   </span><span class="mi">256</span><span class="w"> </span><span class="mi">83</span><span class="p">:</span><span class="nx">bb</span><span class="p">:</span><span class="mi">46</span><span class="p">:</span><span class="mi">7</span><span class="nx">c</span><span class="p">:</span><span class="nx">fc</span><span class="p">:</span><span class="mi">61</span><span class="p">:</span><span class="mi">9</span><span class="nx">a</span><span class="p">:</span><span class="mi">61</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mi">25</span><span class="p">:</span><span class="mi">87</span><span class="p">:</span><span class="mi">89</span><span class="p">:</span><span class="mi">1</span><span class="nx">c</span><span class="p">:</span><span class="mi">43</span><span class="p">:</span><span class="nx">a6</span><span class="p">:</span><span class="mi">6</span><span class="nx">c</span><span class="w"> </span><span class="p">(</span><span class="nx">ECDSA</span><span class="p">)</span>
+<span class="o">|</span><span class="nx">_</span><span class="w">  </span><span class="mi">256</span><span class="w"> </span><span class="nx">bd</span><span class="p">:</span><span class="mi">16</span><span class="p">:</span><span class="nx">c8</span><span class="p">:</span><span class="mi">7</span><span class="nx">c</span><span class="p">:</span><span class="mi">3</span><span class="nx">e</span><span class="p">:</span><span class="mi">29</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">6</span><span class="nx">d</span><span class="p">:</span><span class="nx">cc</span><span class="p">:</span><span class="mi">79</span><span class="p">:</span><span class="nx">d8</span><span class="p">:</span><span class="mi">80</span><span class="p">:</span><span class="mi">4</span><span class="nx">a</span><span class="p">:</span><span class="mi">92</span><span class="p">:</span><span class="mi">0</span><span class="nx">b</span><span class="p">:</span><span class="nx">d7</span><span class="w"> </span><span class="p">(</span><span class="nx">EdDSA</span><span class="p">)</span>
+<span class="mi">25</span><span class="o">/</span><span class="nx">tcp</span><span class="w">   </span><span class="nx">open</span><span class="w">  </span><span class="nx">smtp</span><span class="w">     </span><span class="nx">Postfix</span><span class="w"> </span><span class="nx">smtpd</span>
+<span class="o">|</span><span class="nx">_smtp</span><span class="o">-</span><span class="nx">commands</span><span class="p">:</span><span class="w"> </span><span class="nx">oeboe</span><span class="p">.</span><span class="nx">udonix</span><span class="p">.</span><span class="nx">nl</span><span class="p">,</span><span class="w"> </span><span class="nx">PIPELINING</span><span class="p">,</span><span class="w"> </span><span class="nx">SIZE</span><span class="w"> </span><span class="mi">10240000</span><span class="p">,</span><span class="w"> </span><span class="nx">ETRN</span><span class="p">,</span><span class="w"> </span><span class="nx">AUTH</span><span class="w"> </span><span class="nx">DIGEST</span><span class="o">-</span><span class="nx">MD5</span><span class="w"> </span><span class="nx">NTLM</span><span class="w"> </span><span class="nx">CRAM</span><span class="o">-</span><span class="nx">MD5</span><span class="w"> </span><span class="nx">LOGIN</span><span class="w"> </span><span class="nx">PLAIN</span><span class="p">,</span><span class="w"> </span><span class="nx">AUTH</span><span class="p">=</span><span class="nx">DIGEST</span><span class="o">-</span><span class="nx">MD5</span><span class="w"> </span><span class="nx">NTLM</span><span class="w"> </span><span class="nx">CRAM</span><span class="o">-</span><span class="nx">MD5</span><span class="w"> </span><span class="nx">LOGIN</span><span class="w"> </span><span class="nx">PLAIN</span><span class="p">,</span><span class="w"> </span><span class="nx">ENHANCEDSTATUSCODES</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="nx">BITMIME</span><span class="p">,</span><span class="w"> </span><span class="nx">DSN</span><span class="p">,</span><span class="w"> </span><span class="nx">SMTPUTF8</span><span class="p">,</span>
+<span class="o">|</span><span class="w"> </span><span class="nx">smtp</span><span class="o">-</span><span class="nx">ntlm</span><span class="o">-</span><span class="nx">info</span><span class="p">:</span>
+<span class="o">|</span><span class="nx">_</span><span class="w">  </span><span class="nx">Target_Name</span><span class="p">:</span><span class="w"> </span><span class="nx">OEBOE</span><span class="p">.</span><span class="nx">UDONIX</span><span class="p">.</span><span class="nx">NL</span>
+<span class="mi">111</span><span class="o">/</span><span class="nx">tcp</span><span class="w">  </span><span class="nx">open</span><span class="w">  </span><span class="nx">rpcbind</span><span class="w">  </span><span class="mi">2</span><span class="o">-</span><span class="mi">4</span><span class="w"> </span><span class="p">(</span><span class="nx">RPC</span><span class="w"> </span><span class="err">#</span><span class="mi">100000</span><span class="p">)</span>
+<span class="o">|</span><span class="w"> </span><span class="nx">rpcinfo</span><span class="p">:</span>
+<span class="o">|</span><span class="w">   </span><span class="nx">program</span><span class="w"> </span><span class="nx">version</span><span class="w">   </span><span class="nx">port</span><span class="o">/</span><span class="nx">proto</span><span class="w">  </span><span class="nx">service</span>
+<span class="o">|</span><span class="w">   </span><span class="mi">100000</span><span class="w">  </span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="w">        </span><span class="mi">111</span><span class="o">/</span><span class="nx">tcp</span><span class="w">  </span><span class="nx">rpcbind</span>
+<span class="o">|</span><span class="w">   </span><span class="mi">100000</span><span class="w">  </span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="w">        </span><span class="mi">111</span><span class="o">/</span><span class="nx">udp</span><span class="w">  </span><span class="nx">rpcbind</span>
+<span class="o">|</span><span class="w">   </span><span class="mi">100003</span><span class="w">  </span><span class="mi">3</span><span class="w">           </span><span class="mi">2049</span><span class="o">/</span><span class="nx">udp</span><span class="w">  </span><span class="nx">nfs</span>
+<span class="o">|</span><span class="w">   </span><span class="mi">100003</span><span class="w">  </span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="w">         </span><span class="mi">2049</span><span class="o">/</span><span class="nx">tcp</span><span class="w">  </span><span class="nx">nfs</span>
+<span class="o">|</span><span class="w">   </span><span class="mi">100005</span><span class="w">  </span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="w">      </span><span class="mi">42208</span><span class="o">/</span><span class="nx">udp</span><span class="w">  </span><span class="nx">mountd</span>
+<span class="o">|</span><span class="w">   </span><span class="mi">100005</span><span class="w">  </span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="w">      </span><span class="mi">48465</span><span class="o">/</span><span class="nx">tcp</span><span class="w">  </span><span class="nx">mountd</span>
+<span class="o">|</span><span class="w">   </span><span class="mi">100021</span><span class="w">  </span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="w">      </span><span class="mi">37657</span><span class="o">/</span><span class="nx">tcp</span><span class="w">  </span><span class="nx">nlockmgr</span>
+<span class="o">|</span><span class="w">   </span><span class="mi">100021</span><span class="w">  </span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="w">      </span><span class="mi">38288</span><span class="o">/</span><span class="nx">udp</span><span class="w">  </span><span class="nx">nlockmgr</span>
+<span class="o">|</span><span class="w">   </span><span class="mi">100227</span><span class="w">  </span><span class="mi">3</span><span class="w">           </span><span class="mi">2049</span><span class="o">/</span><span class="nx">tcp</span><span class="w">  </span><span class="nx">nfs_acl</span>
+<span class="o">|</span><span class="nx">_</span><span class="w">  </span><span class="mi">100227</span><span class="w">  </span><span class="mi">3</span><span class="w">           </span><span class="mi">2049</span><span class="o">/</span><span class="nx">udp</span><span class="w">  </span><span class="nx">nfs_acl</span>
+<span class="mi">143</span><span class="o">/</span><span class="nx">tcp</span><span class="w">  </span><span class="nx">open</span><span class="w">  </span><span class="nx">imap</span><span class="w">     </span><span class="nx">Dovecot</span><span class="w"> </span><span class="nx">imapd</span><span class="w"> </span><span class="p">(</span><span class="nx">Ubuntu</span><span class="p">)</span>
+<span class="o">|</span><span class="nx">_imap</span><span class="o">-</span><span class="nx">capabilities</span><span class="p">:</span><span class="w"> </span><span class="nx">SASL</span><span class="o">-</span><span class="nx">IR</span><span class="w"> </span><span class="nx">more</span><span class="w"> </span><span class="nx">Pre</span><span class="o">-</span><span class="nx">login</span><span class="w"> </span><span class="nx">post</span><span class="o">-</span><span class="nx">login</span><span class="w"> </span><span class="nx">LITERAL</span><span class="o">+</span><span class="w"> </span><span class="nx">IDLE</span><span class="w"> </span><span class="nx">listed</span><span class="w"> </span><span class="nx">capabilities</span><span class="w"> </span><span class="nx">ID</span><span class="w"> </span><span class="nx">have</span><span class="w"> </span><span class="nx">LOGIN</span><span class="o">-</span><span class="nx">REFERRALS</span><span class="w"> </span><span class="nx">OK</span><span class="w"> </span><span class="nx">IMAP4rev1</span><span class="w"> </span><span class="nx">AUTH</span><span class="p">=</span><span class="nx">PLAINA0001</span><span class="w"> </span><span class="nx">STARTTLS</span><span class="w"> </span><span class="nx">ENABLE</span>
+<span class="o">|</span><span class="w"> </span><span class="nx">ssl</span><span class="o">-</span><span class="nx">cert</span><span class="p">:</span><span class="w"> </span><span class="nx">Subject</span><span class="p">:</span><span class="w"> </span><span class="nx">commonName</span><span class="p">=</span><span class="nx">oeboe</span><span class="p">.</span><span class="nx">udonix</span><span class="p">.</span><span class="nx">nl</span>
+<span class="o">|</span><span class="w"> </span><span class="nx">Not</span><span class="w"> </span><span class="nx">valid</span><span class="w"> </span><span class="nx">before</span><span class="p">:</span><span class="w"> </span><span class="mi">2018</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="mi">23</span><span class="nx">T13</span><span class="p">:</span><span class="mi">16</span><span class="p">:</span><span class="mi">13</span>
+<span class="o">|</span><span class="nx">_Not</span><span class="w"> </span><span class="nx">valid</span><span class="w"> </span><span class="nx">after</span><span class="p">:</span><span class="w">  </span><span class="mi">2028</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="mi">20</span><span class="nx">T13</span><span class="p">:</span><span class="mi">16</span><span class="p">:</span><span class="mi">13</span>
+<span class="o">|</span><span class="nx">_ssl</span><span class="o">-</span><span class="nx">date</span><span class="p">:</span><span class="w"> </span><span class="nx">TLS</span><span class="w"> </span><span class="nx">randomness</span><span class="w"> </span><span class="nx">does</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="nx">represent</span><span class="w"> </span><span class="nx">time</span>
+<span class="mi">993</span><span class="o">/</span><span class="nx">tcp</span><span class="w">  </span><span class="nx">open</span><span class="w">  </span><span class="nx">ssl</span><span class="o">/</span><span class="nx">imap</span><span class="w"> </span><span class="nx">Dovecot</span><span class="w"> </span><span class="nx">imapd</span><span class="w"> </span><span class="p">(</span><span class="nx">Ubuntu</span><span class="p">)</span>
+<span class="o">|</span><span class="nx">_imap</span><span class="o">-</span><span class="nx">capabilities</span><span class="p">:</span><span class="w"> </span><span class="nx">SASL</span><span class="o">-</span><span class="nx">IR</span><span class="w"> </span><span class="nx">more</span><span class="w"> </span><span class="nx">IMAP4rev1</span><span class="w"> </span><span class="nx">LITERAL</span><span class="o">+</span><span class="w"> </span><span class="nx">IDLE</span><span class="w"> </span><span class="nx">post</span><span class="o">-</span><span class="nx">login</span><span class="w"> </span><span class="nx">listed</span><span class="w"> </span><span class="nx">ID</span><span class="w"> </span><span class="nx">have</span><span class="w"> </span><span class="nx">LOGIN</span><span class="o">-</span><span class="nx">REFERRALS</span><span class="w"> </span><span class="nx">Pre</span><span class="o">-</span><span class="nx">login</span><span class="w"> </span><span class="nx">OK</span><span class="w"> </span><span class="nx">AUTH</span><span class="p">=</span><span class="nx">PLAINA0001</span><span class="w"> </span><span class="nx">capabilities</span><span class="w"> </span><span class="nx">ENABLE</span>
+<span class="o">|</span><span class="w"> </span><span class="nx">ssl</span><span class="o">-</span><span class="nx">cert</span><span class="p">:</span><span class="w"> </span><span class="nx">Subject</span><span class="p">:</span><span class="w"> </span><span class="nx">commonName</span><span class="p">=</span><span class="nx">oeboe</span><span class="p">.</span><span class="nx">udonix</span><span class="p">.</span><span class="nx">nl</span>
+<span class="o">|</span><span class="w"> </span><span class="nx">Not</span><span class="w"> </span><span class="nx">valid</span><span class="w"> </span><span class="nx">before</span><span class="p">:</span><span class="w"> </span><span class="mi">2018</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="mi">23</span><span class="nx">T13</span><span class="p">:</span><span class="mi">16</span><span class="p">:</span><span class="mi">13</span>
+<span class="o">|</span><span class="nx">_Not</span><span class="w"> </span><span class="nx">valid</span><span class="w"> </span><span class="nx">after</span><span class="p">:</span><span class="w">  </span><span class="mi">2028</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="mi">20</span><span class="nx">T13</span><span class="p">:</span><span class="mi">16</span><span class="p">:</span><span class="mi">13</span>
+<span class="o">|</span><span class="nx">_ssl</span><span class="o">-</span><span class="nx">date</span><span class="p">:</span><span class="w"> </span><span class="nx">TLS</span><span class="w"> </span><span class="nx">randomness</span><span class="w"> </span><span class="nx">does</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="nx">represent</span><span class="w"> </span><span class="nx">time</span>
+<span class="mi">2049</span><span class="o">/</span><span class="nx">tcp</span><span class="w"> </span><span class="nx">open</span><span class="w">  </span><span class="nx">nfs_acl</span><span class="w">  </span><span class="mi">3</span><span class="w"> </span><span class="p">(</span><span class="nx">RPC</span><span class="w"> </span><span class="err">#</span><span class="mi">100227</span><span class="p">)</span>
+<span class="nx">Service</span><span class="w"> </span><span class="nx">Info</span><span class="p">:</span><span class="w"> </span><span class="nx">Host</span><span class="p">:</span><span class="w"> </span><span class="nx">no</span><span class="p">;</span><span class="w"> </span><span class="nx">OS</span><span class="p">:</span><span class="w"> </span><span class="nx">Linux</span><span class="p">;</span><span class="w"> </span><span class="nx">CPE</span><span class="p">:</span><span class="w"> </span><span class="nx">cpe</span><span class="p">:</span><span class="o">/</span><span class="nx">o</span><span class="p">:</span><span class="nx">linux</span><span class="p">:</span><span class="nx">linux_kernel</span>
+
+<span class="nx">Service</span><span class="w"> </span><span class="nx">detection</span><span class="w"> </span><span class="nx">performed</span><span class="p">.</span><span class="w"> </span><span class="nx">Please</span><span class="w"> </span><span class="nx">report</span><span class="w"> </span><span class="nx">any</span><span class="w"> </span><span class="nx">incorrect</span><span class="w"> </span><span class="nx">results</span><span class="w"> </span><span class="nx">at</span><span class="w"> </span><span class="nx">https</span><span class="p">:</span><span class="c1">//nmap.org/submit/ .</span>
+<span class="nx">Nmap</span><span class="w"> </span><span class="nx">done</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="nx">IP</span><span class="w"> </span><span class="nx">address</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="nx">host</span><span class="w"> </span><span class="nx">up</span><span class="p">)</span><span class="w"> </span><span class="nx">scanned</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m m-Double">14.54</span><span class="w"> </span><span class="nx">seconds</span>
+</code></pre></div></td></tr></table></div>
+
+<p><strong>Note</strong>
+Some of the <code>nmap</code> command options require root privileges, consult the
+<code>NMAP(1)</code> manpage for more information</p>
+<h3 id="wireshark">wireshark<a class="headerlink" href="#wireshark" title="Permanent link">&para;</a></h3>
+<p>Wireshark is an open source network protocol analyzer. It allows you to
+examine data from a live network or from a capture file on disk. You can
+interactively browse the capture data, delving down into just that level
+of packet detail you need.</p>
+<p>Wireshark has several powerful features, including a rich display filter
+language and the ability to view the reconstructed stream of a TCP
+session. It also supports hundreds of protocols and media types. A
+tcpdump-like console version named tethereal is also included. One word
+of caution is that Ethereal has suffered from dozens of remotely
+exploitable security holes, so stay up-to-date and be wary of running it
+with root privileges on untrusted or hostile networks (such as security
+conferences).</p>
+<h3 id="lsof">lsof<a class="headerlink" href="#lsof" title="Permanent link">&para;</a></h3>
+<p>The <code>lsof</code> command lists all open files on a system. Since Linux
+treats everything as a file, it also shows open network sockets. It can
+be used to find open ports on a system as well as determining the origin
+of a network connection.</p>
+<p>Options of the <code>lsof</code> used for network troubleshooting.</p>
+<p>-i</p>
+<ul>
+<li>List IP sockets. The <code>-i</code> option also takes arguments to restrict
+    the sockets listed, like <code>-i</code> <code>tcp</code> or <code>-i</code> <code>192.168.1.2</code>.</li>
+</ul>
+<p>-n</p>
+<ul>
+<li>Do not resolve hostnames; can make <code>lsof</code> run faster.</li>
+</ul>
+<p>-P</p>
+<ul>
+<li>Do not resolve port names; can make <code>lsof</code> run faster.</li>
+</ul>
+<p>+P</p>
+<ul>
+<li>Resolve port name to protocol; default behaviour.</li>
+</ul>
+<h3 id="ss">ss<a class="headerlink" href="#ss" title="Permanent link">&para;</a></h3>
+<p>The <code>ss</code> command can be used to investigate network sockets on a
+system, similar to netstat.</p>
+<p>Useful options of the <code>ss</code> for network troubleshooting include:</p>
+<p>-a</p>
+<ul>
+<li>List all sockets. This includes sockets in listening state.</li>
+</ul>
+<p>-n</p>
+<ul>
+<li>Do not resolve port names.</li>
+</ul>
+<p>-l</p>
+<ul>
+<li>Only display listening sockets.</li>
+</ul>
+<p>-p</p>
+<ul>
+<li>Show processes using the sockets</li>
+</ul>
+<p>-t</p>
+<ul>
+<li>Restrict output to TCP sockets</li>
+</ul>
+<p>-u</p>
+<ul>
+<li>Restrict output to UDP sockets</li>
+</ul>
+<h3 id="netstat">netstat<a class="headerlink" href="#netstat" title="Permanent link">&para;</a></h3>
+<p>Like <code>lsof</code>, <code>netstat</code> is a program to list open ports on a
+system. It looks for the standard ports, but it also finds custom ports
+opened by applications, for instance <code>netcat</code>.</p>
+<p>Frequently used options are:</p>
+<p>-a</p>
+<ul>
+<li>List all sockets.</li>
+</ul>
+<p>-e</p>
+<ul>
+<li>Extended mode.</li>
+</ul>
+<p>-inet</p>
+<ul>
+<li>List only IP connections</li>
+</ul>
+<p>-l</p>
+<ul>
+<li>Only show listening sockets</li>
+</ul>
+<p>-n</p>
+<ul>
+<li>Show IP numbers instead of resolving them to hostnames.</li>
+</ul>
+<p>-p</p>
+<ul>
+<li>Show the PID number and name of the process that is holding the
+    socket.</li>
+</ul>
+<p>-r</p>
+<ul>
+<li>Show the kernel routing table. Is the same as the <code>route</code> command.</li>
+</ul>
+<h3 id="nc">nc<a class="headerlink" href="#nc" title="Permanent link">&para;</a></h3>
+<p><code>nc</code> is used for establishing TCP and UDP connections between
+arbitrary ports on either end. After opening a port, it can listen for
+input, which can be passed through to another command for further
+processing. Note that you need to have administrative privileges on the
+system you're running this command on for opening a listening port
+below 1024. The command allows the user to set up, analyze and read
+connections between systems. It is a very useful tool in the
+troubleshooting toolbox. <code>nc</code> can be used to open up any port.</p>
+<p>Because <code>nc</code> is capable of connecting and listening to any port it can
+be used to transfer files between systems that lack Samba, FTP or SSH
+etc.</p>
+<p>if <code>nmap</code> is not available the <code>nc</code> command can be used to check for
+open ports: Run nc command with -z flag. You need to specify host name /
+ip along with the port range to limit and speedup operation. eg.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    # nc -z localhost 1-1023
+</code></pre></div></td></tr></table></div>
+
+<h3 id="mtr">mtr<a class="headerlink" href="#mtr" title="Permanent link">&para;</a></h3>
+<p>The <code>mtr</code> command is extremely helpful for troubleshooting network problems,
+because it combines the functionality of ping and traceroute. Rather
+than provide a simple outline of the route that traffic takes across the
+internet like traceroute, mtr collects additional information regarding
+the state, connection, and responsiveness of the intermediate hosts.</p>
+<p><code>mtr</code> can be used without any options. Just type: <code>mtr&gt;
+                host</code> to get a visual display of the path between you
+and the host and per-hop statistics. Like <code>ping</code>, <code>mtr</code> will continue to
+send ICMP packets indefinitely by default. Useful options are:</p>
+<p>-n</p>
+<ul>
+<li>Do not reverse resolve IP addresses to hostnames</li>
+</ul>
+<p>-c count</p>
+<ul>
+<li>Send count number of probe packets, then stop</li>
+</ul>
+<h3 id="ip">ip<a class="headerlink" href="#ip" title="Permanent link">&para;</a></h3>
+<p>The <code>ip</code> command has already been discussed in the previous chapter.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 1997-2021 Sue B.V., The Netherlands - Open Sourced 2021
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["search.highlight", "tabs", "instant"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,4428 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Sue B.V., The Netherlands">
+      
+      
+      
+        <link rel="prev" href="../lpic2.207.2/">
+      
+      
+        <link rel="next" href="../lpic2.208.0/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Securing a DNS Server (207.3) - The LPIC2 Exam Prep</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:300,300i,400,400i,700,700i%7CAnonymous+Pro:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Nunito";--md-code-font:"Anonymous Pro"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#securing-a-dns-server-2073" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="The LPIC2 Exam Prep" class="md-header__button md-logo" aria-label="The LPIC2 Exam Prep" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            The LPIC2 Exam Prep
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Securing a DNS Server (207.3)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/lpic2book/src" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    LPIC2Book
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="The LPIC2 Exam Prep" class="md-nav__button md-logo" aria-label="The LPIC2 Exam Prep" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/></svg>
+
+    </a>
+    The LPIC2 Exam Prep
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/lpic2book/src" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    LPIC2Book
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The LPIC2 Exam Prep
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpicbook_about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About this book
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    200 Capacity Planning (200)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Measure and Troubleshoot Resource Usage (200.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Predict Future Resource Needs (200.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Kernel (201)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel Components (201.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compiling a Linux kernel (201.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel runtime management and troubleshooting (201.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Startup (202)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customizing system startup (202.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System recovery (202.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Alternate Bootloaders (202.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Filesystem and Devices (203)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operating The Linux Filesystem (203.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maintaining a Linux Filesystem (203.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Creating And Configuring Filesystem Options (203.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Storage Device Administration (204)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring RAID (204.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adjusting Storage Device Access (204.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logical Volume Manager (204.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring PCMCIA Devices (204.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Networking Configuration (205)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Networking Configuration (205.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Network Configuration and Troubleshooting (205.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting network issues (205.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Maintenance (206)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Make and install programs from source (206.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup Operations (206.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifying users on system-related issues (206.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domain Name Server (207)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic DNS server configuration (207.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Create and maintain DNS zones (207.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Securing a DNS Server (207.3)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Securing a DNS Server (207.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#securing-a-dns-server-2073" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Securing a DNS Server (207.3)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Securing a DNS Server (207.3)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-knowledge-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Knowledge Areas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terms-and-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terms and Utilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dns-security-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DNS Security Strategies
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="DNS Security Strategies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#making-information-harder-to-get" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Making information harder to get
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hiding-the-version-number" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hiding the version number
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limiting-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limiting access
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#normal-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        normal queries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zone-transfers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        zone transfers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limiting-zone-transfers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limiting zone transfers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limiting-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limiting queries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controlling-requests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Controlling requests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limiting-effects-of-an-intrusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limiting effects of an intrusion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-bind-with-less-privileges" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running BIND with less privileges
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Running BIND with less privileges">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#running-bind-in-a-chroot-jail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running BIND in a chroot jail
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preparing-a-chroot-jail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preparing a chroot jail
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-bind-chrooted" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running BIND chrooted
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-for-a-chrooted-bind" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration for a chrooted BIND
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#combining-special-user-and-chroot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Combining special user and chroot
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#securing-nameserver-connections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Securing nameserver connections
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Securing nameserver connections">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#CCC" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A cryptography crash course
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-the-dnssec-keygen-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using the dnssec-keygen command
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#format-of-the-key-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Format of the key files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-the-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using the key
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dane" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DANE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#internal-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Internal DNS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limiting-negotiations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limiting negotiations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#split-dns-stand-alone-internal-master" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Split DNS: stand-alone internal master
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#DNSinternalMaster" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring the master on privdns
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-dns-on-liongate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring DNS on liongate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alternatives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alternatives
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#split-dns-two-dns-servers-on-one-machine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Split DNS: two DNS servers on one machine
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#two-nameservers-on-one-host" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Two nameservers on one host
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-the-internal-nameserver" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring the internal nameserver
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-the-visible-nameserver" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring the visible nameserver
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A problem
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tsig" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TSIG
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="TSIG">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuring-tsig-for-bind" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring TSIG for BIND
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTTP Services (208)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Apache Configuration (208.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Apache configuration for HTTPS (208.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementing Squid as a caching proxy (208.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementing Nginx as a web server and a reverse proxy (208.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File Sharing (209)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAMBA Server Configuration (209.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring an NFS Server (209.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Client Management (210)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DHCP Configuration (210.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PAM authentication (210.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LDAP client usage (210.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring an OpenLDAP server (210.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    E-Mail services (211)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using e-mail servers (211.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing E-Mail Delivery (211.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing Mailbox Access (211.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Security (212)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring a router (212.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing FTP servers (212.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secure shell (SSH) (212.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security tasks (212.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenVPN (212.5)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#securing-a-dns-server-2073" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Securing a DNS Server (207.3)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Securing a DNS Server (207.3)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-knowledge-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Knowledge Areas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terms-and-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terms and Utilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dns-security-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DNS Security Strategies
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="DNS Security Strategies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#making-information-harder-to-get" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Making information harder to get
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hiding-the-version-number" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hiding the version number
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limiting-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limiting access
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#normal-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        normal queries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zone-transfers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        zone transfers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limiting-zone-transfers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limiting zone transfers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limiting-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limiting queries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controlling-requests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Controlling requests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limiting-effects-of-an-intrusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limiting effects of an intrusion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-bind-with-less-privileges" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running BIND with less privileges
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Running BIND with less privileges">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#running-bind-in-a-chroot-jail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running BIND in a chroot jail
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preparing-a-chroot-jail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preparing a chroot jail
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-bind-chrooted" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running BIND chrooted
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-for-a-chrooted-bind" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration for a chrooted BIND
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#combining-special-user-and-chroot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Combining special user and chroot
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#securing-nameserver-connections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Securing nameserver connections
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Securing nameserver connections">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#CCC" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A cryptography crash course
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-the-dnssec-keygen-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using the dnssec-keygen command
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#format-of-the-key-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Format of the key files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-the-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using the key
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dane" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DANE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#internal-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Internal DNS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limiting-negotiations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limiting negotiations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#split-dns-stand-alone-internal-master" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Split DNS: stand-alone internal master
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#DNSinternalMaster" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring the master on privdns
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-dns-on-liongate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring DNS on liongate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alternatives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alternatives
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#split-dns-two-dns-servers-on-one-machine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Split DNS: two DNS servers on one machine
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#two-nameservers-on-one-host" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Two nameservers on one host
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-the-internal-nameserver" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring the internal nameserver
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-the-visible-nameserver" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring the visible nameserver
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A problem
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tsig" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TSIG
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="TSIG">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuring-tsig-for-bind" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring TSIG for BIND
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>Securing a DNS Server (207.3)</h1>
+
+<h2 id="securing-a-dns-server-2073">Securing a DNS Server (207.3)<a class="headerlink" href="#securing-a-dns-server-2073" title="Permanent link">&para;</a></h2>
+<p>Candidates should be able to configure a DNS server to run as a non-root
+user and run in a chroot jail. This objective includes secure exchange
+of data between DNS servers.</p>
+<h3 id="key-knowledge-areas">Key Knowledge Areas<a class="headerlink" href="#key-knowledge-areas" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>BIND 9 configuration files</p>
+</li>
+<li>
+<p>Configuring BIND to run in a chroot jail</p>
+</li>
+<li>
+<p>Split configuration of BIND using the forwarders statement</p>
+</li>
+<li>
+<p>Configuring and using transaction signatures (TSIG)</p>
+</li>
+<li>
+<p>Awareness of DNSSEC and basic tools</p>
+</li>
+<li>
+<p>Awareness of DANE and related records</p>
+</li>
+</ul>
+<h3 id="terms-and-utilities">Terms and Utilities<a class="headerlink" href="#terms-and-utilities" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><code>/etc/named.conf</code></p>
+</li>
+<li>
+<p><code>/etc/passwd</code></p>
+</li>
+<li>
+<p>DNSSEC</p>
+</li>
+<li>
+<p><code>dnssec-keygen</code></p>
+</li>
+<li>
+<p><code>dnssec-signzone</code></p>
+</li>
+</ul>
+<h2 id="dns-security-strategies">DNS Security Strategies<a class="headerlink" href="#dns-security-strategies" title="Permanent link">&para;</a></h2>
+<p>There are several strategies possible to make DNS more secure.</p>
+<p>When a security bug is discovered in the BIND nameserver, it will often
+be fixed within a few hours. This results in a new BIND release. Hence,
+older versions of BIND may have security related bugs. BIND users should
+frequently visit <a href="http://www.isc.org/downloads/bind/">the BIND source site
+(http://www.isc.org/downloads/bind/)</a>
+to check for new updates. You may consider subscribing to a security
+announcement list; most Linux distributions have one. For instance, the
+Debian <code>debian-security-announce</code>. To subscribe to that list visit
+<a href="https://lists.debian.org">https://lists.debian.org</a>.</p>
+<h4 id="making-information-harder-to-get">Making information harder to get<a class="headerlink" href="#making-information-harder-to-get" title="Permanent link">&para;</a></h4>
+<p>Like all other programs, the BIND nameserver has features and security
+holes that can be misused. Criminal hackers (crackers) are well aware of
+this and keep track of versions and their security related issues. It is
+wise not to advertise your vulnerabilities so you may want to disable
+version number reporting in BIND.</p>
+<p>Also, bulk nameserver data can be used to disclose details about your
+infrastructure. Hence restrictions can be installed to prevent a user
+from obtaining a large amount of nameserver data or at least to get it
+in a short timeframe. Another reason to do so is that nameservers are
+built to answer a large number of short queries in a short timeframe.
+Having to serve large blobs of data unexpectedly might disrupt services.</p>
+<p>It is important to remember that hiding information is <em>security through
+obscurity</em>. Doing so, the easy way to get information has been blocked
+but there may be other ways to get it. <em>Security through obscurity</em>
+makes it harder, but not impossible to get the information. It does
+however introduce a longer timeframe in which you may be able to detect
+break-in attempts and act accordingly, for example by blocking the
+requestors IP address in your firewalls.</p>
+<h4 id="hiding-the-version-number">Hiding the version number<a class="headerlink" href="#hiding-the-version-number" title="Permanent link">&para;</a></h4>
+<p>The command</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="n">dig</span><span class="w"> </span><span class="nv">@target</span><span class="w"> </span><span class="n">chaos</span><span class="w"> </span><span class="n">version</span><span class="p">.</span><span class="n">bind</span><span class="w"> </span><span class="n">txt</span>
+</code></pre></div></td></tr></table></div>
+
+<p>will show the version of the BIND nameserver on host <em>target</em>.</p>
+<p>The BIND version can be hidden by entering a <code>version</code> statement inside
+the <code>options</code> statement in <code>named.conf</code>. In the following example, the
+version will be set to the string <code>hidden</code>.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code>    options {
+        // ...
+
+        // hide bind version
+        version &quot;hidden&quot;;
+    };
+</code></pre></div></td></tr></table></div>
+
+<p>The CERT article (<a href="#nijssen99">???</a>) shows a way to limit access to the
+<code>bind</code> zone. This an alternative to replacing the BIND version.</p>
+<h4 id="limiting-access">Limiting access<a class="headerlink" href="#limiting-access" title="Permanent link">&para;</a></h4>
+<p>There are several ways to limit access to nameserver data. First, an
+<em>access control list</em> must be defined. This is done with the <code>acl</code>
+statement.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>    acl &quot;trusted&quot; {
+        localhost;
+        192.168.1.0/24;
+    };
+</code></pre></div></td></tr></table></div>
+
+<p>This <code>acl</code> defines an <em>access control list</em> with label <code>trusted</code>. ACL
+labels are used to simplify administration: you only need to update your
+ACLs in one place, after that each reference to a label will
+automatically point to the updated data.</p>
+<p>A nameserver supports queries by resolvers and zone transfers by other
+nameservers.</p>
+<h4 id="normal-queries">normal queries<a class="headerlink" href="#normal-queries" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Normal queries occur when a resolver needs data only on a very
+    limited subset of the data. For example it wants to know which IP
+    address is associated with a hostname. The <code>allow-query</code> statement
+    controls from which hosts these queries are accepted.</li>
+</ul>
+<h4 id="zone-transfers">zone transfers<a class="headerlink" href="#zone-transfers" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p>The internet name space is built on the idea of a hierarchy of
+    domains. To find the IP address of a host, you need its fully
+    qualified domain name (<em>FQDN</em>). It consists of a series of
+    subdomains separated by dots, for example: <code>www.example.com</code>. The
+    first section is the hostname, i.e. "www". Next is the "example"
+    domain, which in turn is a subdivision of the "com" domain. Data on
+    a single domain is called a "zone". Slave (backup) nameservers must
+    be allowed to get the information from a master of the same zone. It
+    is important to restrict these "zone transfers" to the servers that
+    need the data only - no more.</p>
+<p>Zone transfers are controlled by the <code>allow-transfer</code> statement.
+This statement may also be specified in the <code>zone</code> statement,
+thereby overriding the global <code>options allow-transfer</code> statement.
+Traditionally zone transfers can be initiated by anybody.</p>
+</li>
+</ul>
+<p>The <code>allow-query</code> statement can be used inside a <code>zone</code> statement or an
+<code>options</code> statement as well. It can contain either an acl label (like
+<code>trusted</code>), <code>none</code>, or one or more IP addresses or IP ranges. Use labels
+whenever you can: keeping track of permissions is much easier that way
+and it makes you less vulnerable to accidental oversights that may cause
+security holes.</p>
+<h4 id="limiting-zone-transfers">Limiting zone transfers<a class="headerlink" href="#limiting-zone-transfers" title="Permanent link">&para;</a></h4>
+<p>Both <code>dig</code> and <code>host</code> can initiate a <em>zone transfer</em>. By default, both
+master and slave servers are allowed to send all zone information. An
+example using the <code>dig</code> command:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="err">$</span><span class="w"> </span><span class="nx">dig</span><span class="w"> </span><span class="nx">axfr</span><span class="w"> </span><span class="err">@</span><span class="nx">ns12</span><span class="p">.</span><span class="nx">zoneedit</span><span class="p">.</span><span class="nx">com</span><span class="w"> </span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span>
+
+<span class="w">    </span><span class="p">;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="p">&gt;</span><span class="w"> </span><span class="nx">DiG</span><span class="w"> </span><span class="m m-Double">9.8.3</span><span class="o">-</span><span class="nx">P1</span><span class="w"> </span><span class="o">&lt;&lt;&gt;&gt;</span><span class="w"> </span><span class="nx">axfr</span><span class="w"> </span><span class="err">@</span><span class="nx">ns12</span><span class="p">.</span><span class="nx">zoneedit</span><span class="p">.</span><span class="nx">com</span><span class="w"> </span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span>
+<span class="w">    </span><span class="p">;</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="nx">server</span><span class="w"> </span><span class="nx">found</span><span class="p">)</span>
+<span class="w">    </span><span class="p">;;</span><span class="w"> </span><span class="nx">global</span><span class="w"> </span><span class="nx">options</span><span class="p">:</span><span class="w"> </span><span class="o">+</span><span class="nx">cmd</span>
+<span class="w">    </span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span><span class="w">    </span><span class="mi">7200</span><span class="w">    </span><span class="nx">IN</span><span class="w">  </span><span class="nx">SOA</span><span class="w"> </span><span class="nx">ns16</span><span class="p">.</span><span class="nx">zoneedit</span><span class="p">.</span><span class="nx">com</span><span class="p">.</span><span class="w"> </span><span class="nx">soacontact</span><span class="p">.</span><span class="nx">zoneedit</span><span class="p">.</span><span class="nx">com</span><span class="p">.</span><span class="w"> </span>\
+<span class="w">        </span><span class="mi">2013064418</span><span class="w"> </span><span class="mi">2400</span><span class="w"> </span><span class="mi">360</span><span class="w"> </span><span class="mi">1209600</span><span class="w"> </span><span class="mi">300</span>
+<span class="w">    </span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span><span class="w">    </span><span class="mi">7200</span><span class="w">    </span><span class="nx">IN</span><span class="w">  </span><span class="nx">NS</span><span class="w">  </span><span class="nx">ns16</span><span class="p">.</span><span class="nx">zoneedit</span><span class="p">.</span><span class="nx">com</span><span class="p">.</span>
+<span class="w">    </span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span><span class="w">    </span><span class="mi">7200</span><span class="w">    </span><span class="nx">IN</span><span class="w">  </span><span class="nx">NS</span><span class="w">  </span><span class="nx">ns12</span><span class="p">.</span><span class="nx">zoneedit</span><span class="p">.</span><span class="nx">com</span><span class="p">.</span>
+<span class="w">    </span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span><span class="w">    </span><span class="mi">7200</span><span class="w">    </span><span class="nx">IN</span><span class="w">  </span><span class="nx">A</span><span class="w">   </span><span class="m m-Double">217.147.180.162</span>
+<span class="w">    </span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span><span class="w">    </span><span class="mi">7200</span><span class="w">    </span><span class="nx">IN</span><span class="w">  </span><span class="nx">MX</span><span class="w">  </span><span class="mi">0</span><span class="w"> </span><span class="nx">ASPMX</span><span class="p">.</span><span class="nx">L</span><span class="p">.</span><span class="nx">GOOGLE</span><span class="p">.</span><span class="nx">COM</span><span class="p">.</span>
+<span class="w">    </span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span><span class="w">    </span><span class="mi">7200</span><span class="w">    </span><span class="nx">IN</span><span class="w">  </span><span class="nx">MX</span><span class="w">  </span><span class="mi">10</span><span class="w"> </span><span class="nx">ALT1</span><span class="p">.</span><span class="nx">ASPMX</span><span class="p">.</span><span class="nx">L</span><span class="p">.</span><span class="nx">GOOGLE</span><span class="p">.</span><span class="nx">COM</span><span class="p">.</span>
+<span class="w">    </span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span><span class="w">    </span><span class="mi">7200</span><span class="w">    </span><span class="nx">IN</span><span class="w">  </span><span class="nx">MX</span><span class="w">  </span><span class="mi">10</span><span class="w"> </span><span class="nx">ALT2</span><span class="p">.</span><span class="nx">ASPMX</span><span class="p">.</span><span class="nx">L</span><span class="p">.</span><span class="nx">GOOGLE</span><span class="p">.</span><span class="nx">COM</span><span class="p">.</span>
+<span class="w">    </span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span><span class="w">    </span><span class="mi">7200</span><span class="w">    </span><span class="nx">IN</span><span class="w">  </span><span class="nx">MX</span><span class="w">  </span><span class="mi">20</span><span class="w"> </span><span class="nx">ASPMX2</span><span class="p">.</span><span class="nx">GOOGLEMAIL</span><span class="p">.</span><span class="nx">COM</span><span class="p">.</span>
+<span class="w">    </span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span><span class="w">    </span><span class="mi">7200</span><span class="w">    </span><span class="nx">IN</span><span class="w">  </span><span class="nx">MX</span><span class="w">  </span><span class="mi">20</span><span class="w"> </span><span class="nx">ASPMX3</span><span class="p">.</span><span class="nx">GOOGLEMAIL</span><span class="p">.</span><span class="nx">COM</span><span class="p">.</span>
+<span class="w">    </span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span><span class="w">    </span><span class="mi">7200</span><span class="w">    </span><span class="nx">IN</span><span class="w">  </span><span class="nx">MX</span><span class="w">  </span><span class="mi">20</span><span class="w"> </span><span class="nx">ASPMX4</span><span class="p">.</span><span class="nx">GOOGLEMAIL</span><span class="p">.</span><span class="nx">COM</span><span class="p">.</span>
+<span class="w">    </span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span><span class="w">    </span><span class="mi">7200</span><span class="w">    </span><span class="nx">IN</span><span class="w">  </span><span class="nx">MX</span><span class="w">  </span><span class="mi">20</span><span class="w"> </span><span class="nx">ASPMX5</span><span class="p">.</span><span class="nx">GOOGLEMAIL</span><span class="p">.</span><span class="nx">COM</span><span class="p">.</span>
+<span class="w">    </span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span><span class="w">    </span><span class="mi">301</span><span class="w"> </span><span class="nx">IN</span><span class="w">  </span><span class="nx">TXT</span><span class="w"> </span><span class="s">&quot;Remember to call or email Pippa on +44 123 4567890 \</span>
+<span class="s">        or pippa@zonetransfer.me when making DNS changes&quot;</span>
+<span class="w">    </span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span><span class="w">    </span><span class="mi">301</span><span class="w"> </span><span class="nx">IN</span><span class="w">  </span><span class="nx">TXT</span><span class="w"> </span><span class="s">&quot;google-site-verification=tyP28J7JAUHA9fw2sHXMgcCC0I6XBmmoVi04VlMewxA&quot;</span>
+<span class="w">    </span><span class="nx">testing</span><span class="p">.</span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span><span class="w"> </span><span class="mi">301</span><span class="w">    </span><span class="nx">IN</span><span class="w">  </span><span class="nx">CNAME</span><span class="w">   </span><span class="nx">www</span><span class="p">.</span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span>
+<span class="w">    </span><span class="m m-Double">164.180.147.217</span><span class="p">.</span><span class="k">in</span><span class="o">-</span><span class="kd">addr</span><span class="p">.</span><span class="nx">arpa</span><span class="p">.</span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span><span class="w"> </span><span class="mi">7200</span><span class="w"> </span><span class="nx">IN</span><span class="w"> </span><span class="nx">PTR</span><span class="w"> </span><span class="nx">www</span><span class="p">.</span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span>
+<span class="w">    </span><span class="nx">ipv6actnow</span><span class="p">.</span><span class="nx">org</span><span class="p">.</span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span><span class="w"> </span><span class="mi">7200</span><span class="w"> </span><span class="nx">IN</span><span class="w"> </span><span class="nx">AAAA</span><span class="w">    </span><span class="mi">2001</span><span class="p">:</span><span class="mi">67</span><span class="nx">c</span><span class="p">:</span><span class="mi">2</span><span class="nx">e8</span><span class="p">:</span><span class="mi">11</span><span class="o">::</span><span class="nx">c100</span><span class="p">:</span><span class="mi">1332</span>
+<span class="w">    </span><span class="nx">asfdbauthdns</span><span class="p">.</span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span><span class="w"> </span><span class="mi">7900</span><span class="w"> </span><span class="nx">IN</span><span class="w">   </span><span class="nx">AFSDB</span><span class="w">   </span><span class="mi">1</span><span class="w"> </span><span class="nx">asfdbbox</span><span class="p">.</span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span>
+<span class="w">    </span><span class="nx">office</span><span class="p">.</span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span><span class="w"> </span><span class="mi">7200</span><span class="w">    </span><span class="nx">IN</span><span class="w">  </span><span class="nx">A</span><span class="w">   </span><span class="m m-Double">4.23.39.254</span>
+<span class="w">    </span><span class="nx">owa</span><span class="p">.</span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span><span class="w">    </span><span class="mi">7200</span><span class="w">    </span><span class="nx">IN</span><span class="w">  </span><span class="nx">A</span><span class="w">   </span><span class="m m-Double">207.46.197.32</span>
+<span class="w">    </span><span class="nx">info</span><span class="p">.</span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span><span class="w">   </span><span class="mi">7200</span><span class="w">    </span><span class="nx">IN</span><span class="w">  </span><span class="nx">TXT</span><span class="w"> </span><span class="s">&quot;ZoneTransfer.me service provided by Robin \</span>
+<span class="s">        Wood - robin@digininja.org. See www.digininja.org/projects/zonetransferme.php for more information.&quot;</span>
+<span class="w">    </span><span class="nx">asfdbbox</span><span class="p">.</span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span><span class="w"> </span><span class="mi">7200</span><span class="w">  </span><span class="nx">IN</span><span class="w">  </span><span class="nx">A</span><span class="w">   </span><span class="m m-Double">127.0.0.1</span>
+<span class="w">    </span><span class="nx">canberra_office</span><span class="p">.</span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span><span class="w"> </span><span class="mi">7200</span><span class="w"> </span><span class="nx">IN</span><span class="w"> </span><span class="nx">A</span><span class="w">  </span><span class="m m-Double">202.14.81.230</span>
+<span class="w">    </span><span class="nx">asfdbvolume</span><span class="p">.</span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span><span class="w"> </span><span class="mi">7800</span><span class="w"> </span><span class="nx">IN</span><span class="w">    </span><span class="nx">AFSDB</span><span class="w">   </span><span class="mi">1</span><span class="w"> </span><span class="nx">asfdbbox</span><span class="p">.</span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span>
+<span class="w">    </span><span class="nx">email</span><span class="p">.</span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span><span class="w">  </span><span class="mi">2222</span><span class="w">    </span><span class="nx">IN</span><span class="w">  </span><span class="nx">NAPTR</span><span class="w">   </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="s">&quot;E2U+email&quot;</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="nx">email</span><span class="p">.</span><span class="nx">zoneedit</span><span class="p">.</span><span class="nx">com</span><span class="p">.</span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span>
+<span class="w">    </span><span class="nx">dzc</span><span class="p">.</span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span><span class="w">    </span><span class="mi">7200</span><span class="w">    </span><span class="nx">IN</span><span class="w">  </span><span class="nx">TXT</span><span class="w"> </span><span class="s">&quot;AbCdEfG&quot;</span>
+<span class="w">    </span><span class="nx">dr</span><span class="p">.</span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span><span class="w"> </span><span class="mi">300</span><span class="w"> </span><span class="nx">IN</span><span class="w">  </span><span class="nx">LOC</span><span class="w"> </span><span class="mi">53</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="m m-Double">56.558</span><span class="w"> </span><span class="nx">N</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">38</span><span class="w"> </span><span class="m m-Double">33.526</span><span class="w"> </span><span class="nx">W</span><span class="w"> </span><span class="m m-Double">0.00</span><span class="nx">m</span><span class="w"> </span><span class="mi">1</span><span class="nx">m</span><span class="w"> </span><span class="mi">10000</span><span class="nx">m</span><span class="w"> </span><span class="mi">10</span><span class="nx">m</span>
+<span class="w">    </span><span class="nx">rp</span><span class="p">.</span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span><span class="w"> </span><span class="mi">321</span><span class="w"> </span><span class="nx">IN</span><span class="w">  </span><span class="nx">RP</span><span class="w">  </span><span class="nx">robin</span><span class="p">.</span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span><span class="w"> </span><span class="nx">robinwood</span><span class="p">.</span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span>
+<span class="w">    </span><span class="nx">sip</span><span class="p">.</span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span><span class="w">    </span><span class="mi">3333</span><span class="w">    </span><span class="nx">IN</span><span class="w">  </span><span class="nx">NAPTR</span><span class="w">   </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="s">&quot;au&quot;</span><span class="w"> </span><span class="s">&quot;E2U+sip&quot;</span><span class="w"> </span><span class="s">&quot;!^.*$!sip:customer-service@zonetransfer.me!&quot;</span><span class="p">.</span>
+<span class="w">    </span><span class="nx">alltcpportsopen</span><span class="p">.</span><span class="nx">firewall</span><span class="p">.</span><span class="nx">test</span><span class="p">.</span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span><span class="w"> </span><span class="mi">301</span><span class="w"> </span><span class="nx">IN</span><span class="w"> </span><span class="nx">A</span><span class="w"> </span><span class="m m-Double">127.0.0.1</span>
+<span class="w">    </span><span class="nx">www</span><span class="p">.</span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span><span class="w">    </span><span class="mi">7200</span><span class="w">    </span><span class="nx">IN</span><span class="w">  </span><span class="nx">A</span><span class="w">   </span><span class="m m-Double">217.147.180.162</span>
+<span class="w">    </span><span class="nx">staging</span><span class="p">.</span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span><span class="w"> </span><span class="mi">7200</span><span class="w">   </span><span class="nx">IN</span><span class="w">  </span><span class="nx">CNAME</span><span class="w">   </span><span class="nx">www</span><span class="p">.</span><span class="nx">sydneyoperahouse</span><span class="p">.</span><span class="nx">com</span><span class="p">.</span>
+<span class="w">    </span><span class="nx">deadbeef</span><span class="p">.</span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span><span class="w"> </span><span class="mi">7201</span><span class="w">  </span><span class="nx">IN</span><span class="w">  </span><span class="nx">AAAA</span><span class="w">    </span><span class="nx">dead</span><span class="p">:</span><span class="nx">beaf</span><span class="o">::</span>
+<span class="w">    </span><span class="nx">robinwood</span><span class="p">.</span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span><span class="w"> </span><span class="mi">302</span><span class="w">  </span><span class="nx">IN</span><span class="w">  </span><span class="nx">TXT</span><span class="w"> </span><span class="s">&quot;Robin Wood&quot;</span>
+<span class="w">    </span><span class="nx">vpn</span><span class="p">.</span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span><span class="w">    </span><span class="mi">4000</span><span class="w">    </span><span class="nx">IN</span><span class="w">  </span><span class="nx">A</span><span class="w">   </span><span class="m m-Double">174.36.59.154</span>
+<span class="w">    </span><span class="nx">_sip</span><span class="p">.</span><span class="nx">_tcp</span><span class="p">.</span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span><span class="w"> </span><span class="mi">14000</span><span class="w"> </span><span class="nx">IN</span><span class="w"> </span><span class="nx">SRV</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">5060</span><span class="w"> </span><span class="nx">www</span><span class="p">.</span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span>
+<span class="w">    </span><span class="nx">dc_office</span><span class="p">.</span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span><span class="w"> </span><span class="mi">7200</span><span class="w"> </span><span class="nx">IN</span><span class="w">  </span><span class="nx">A</span><span class="w">   </span><span class="m m-Double">143.228.181.132</span>
+<span class="w">    </span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span><span class="w">    </span><span class="mi">7200</span><span class="w">    </span><span class="nx">IN</span><span class="w">  </span><span class="nx">SOA</span><span class="w"> </span><span class="nx">ns16</span><span class="p">.</span><span class="nx">zoneedit</span><span class="p">.</span><span class="nx">com</span><span class="p">.</span><span class="w"> </span><span class="nx">soacontact</span><span class="p">.</span><span class="nx">zoneedit</span><span class="p">.</span><span class="nx">com</span><span class="p">.</span><span class="w"> </span>\
+<span class="w">        </span><span class="mi">2013064418</span><span class="w"> </span><span class="mi">2400</span><span class="w"> </span><span class="mi">360</span><span class="w"> </span><span class="mi">1209600</span><span class="w"> </span><span class="mi">300</span>
+<span class="w">    </span><span class="p">;;</span><span class="w"> </span><span class="nx">Query</span><span class="w"> </span><span class="nx">time</span><span class="p">:</span><span class="w"> </span><span class="mi">334</span><span class="w"> </span><span class="nx">msec</span>
+<span class="w">    </span><span class="p">;;</span><span class="w"> </span><span class="nx">SERVER</span><span class="p">:</span><span class="w"> </span><span class="m m-Double">209.62.64.46</span><span class="err">#</span><span class="mi">53</span><span class="p">(</span><span class="m m-Double">209.62.64.46</span><span class="p">)</span>
+<span class="w">    </span><span class="p">;;</span><span class="w"> </span><span class="nx">WHEN</span><span class="p">:</span><span class="w"> </span><span class="nx">Fri</span><span class="w"> </span><span class="nx">Jun</span><span class="w"> </span><span class="mi">28</span><span class="w"> </span><span class="mi">12</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">16</span><span class="w"> </span><span class="mi">2013</span>
+<span class="w">    </span><span class="p">;;</span><span class="w"> </span><span class="nx">XFR</span><span class="w"> </span><span class="nx">size</span><span class="p">:</span><span class="w"> </span><span class="mi">37</span><span class="w"> </span><span class="nx">records</span><span class="w"> </span><span class="p">(</span><span class="nx">messages</span><span class="w"> </span><span class="mi">37</span><span class="p">,</span><span class="w"> </span><span class="nx">bytes</span><span class="w"> </span><span class="mi">2673</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The previous example shows the complete information about
+<code>zonetransfer.me</code>. The command <code>host -l</code> does the same but formats its
+output differently:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="err">$</span><span class="w"> </span><span class="nx">host</span><span class="w"> </span><span class="o">-</span><span class="nx">l</span><span class="w"> </span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="w"> </span><span class="nx">ns16</span><span class="p">.</span><span class="nx">zoneedit</span><span class="p">.</span><span class="nx">com</span>
+<span class="w">    </span><span class="nx">Using</span><span class="w"> </span><span class="nx">domain</span><span class="w"> </span><span class="nx">server</span><span class="p">:</span>
+<span class="w">    </span><span class="nx">Name</span><span class="p">:</span><span class="w"> </span><span class="nx">ns16</span><span class="p">.</span><span class="nx">zoneedit</span><span class="p">.</span><span class="nx">com</span>
+<span class="w">    </span><span class="nx">Address</span><span class="p">:</span><span class="w"> </span><span class="m m-Double">69.64.68.41</span><span class="err">#</span><span class="mi">53</span>
+<span class="w">    </span><span class="nx">Aliases</span><span class="p">:</span>
+
+<span class="w">    </span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="w"> </span><span class="nx">nameserver</span><span class="w"> </span><span class="nx">ns16</span><span class="p">.</span><span class="nx">zoneedit</span><span class="p">.</span><span class="nx">com</span><span class="p">.</span>
+<span class="w">    </span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="w"> </span><span class="nx">nameserver</span><span class="w"> </span><span class="nx">ns12</span><span class="p">.</span><span class="nx">zoneedit</span><span class="p">.</span><span class="nx">com</span><span class="p">.</span>
+<span class="w">    </span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="w"> </span><span class="nx">has</span><span class="w"> </span><span class="nx">address</span><span class="w"> </span><span class="m m-Double">217.147.180.162</span>
+<span class="w">    </span><span class="m m-Double">164.180.147.217</span><span class="p">.</span><span class="k">in</span><span class="o">-</span><span class="kd">addr</span><span class="p">.</span><span class="nx">arpa</span><span class="p">.</span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="w"> </span><span class="nx">domain</span><span class="w"> </span><span class="nx">name</span><span class="w"> </span><span class="nx">pointer</span><span class="w"> </span><span class="nx">www</span><span class="p">.</span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="p">.</span>
+<span class="w">    </span><span class="nx">ipv6actnow</span><span class="p">.</span><span class="nx">org</span><span class="p">.</span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="w"> </span><span class="nx">has</span><span class="w"> </span><span class="nx">IPv6</span><span class="w"> </span><span class="nx">address</span><span class="w"> </span><span class="mi">2001</span><span class="p">:</span><span class="mi">67</span><span class="nx">c</span><span class="p">:</span><span class="mi">2</span><span class="nx">e8</span><span class="p">:</span><span class="mi">11</span><span class="o">::</span><span class="nx">c100</span><span class="p">:</span><span class="mi">1332</span>
+<span class="w">    </span><span class="nx">office</span><span class="p">.</span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="w"> </span><span class="nx">has</span><span class="w"> </span><span class="nx">address</span><span class="w"> </span><span class="m m-Double">4.23.39.254</span>
+<span class="w">    </span><span class="nx">owa</span><span class="p">.</span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="w"> </span><span class="nx">has</span><span class="w"> </span><span class="nx">address</span><span class="w"> </span><span class="m m-Double">207.46.197.32</span>
+<span class="w">    </span><span class="nx">asfdbbox</span><span class="p">.</span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="w"> </span><span class="nx">has</span><span class="w"> </span><span class="nx">address</span><span class="w"> </span><span class="m m-Double">127.0.0.1</span>
+<span class="w">    </span><span class="nx">canberra_office</span><span class="p">.</span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="w"> </span><span class="nx">has</span><span class="w"> </span><span class="nx">address</span><span class="w"> </span><span class="m m-Double">202.14.81.230</span>
+<span class="w">    </span><span class="nx">alltcpportsopen</span><span class="p">.</span><span class="nx">firewall</span><span class="p">.</span><span class="nx">test</span><span class="p">.</span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="w"> </span><span class="nx">has</span><span class="w"> </span><span class="nx">address</span><span class="w"> </span><span class="m m-Double">127.0.0.1</span>
+<span class="w">    </span><span class="nx">www</span><span class="p">.</span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="w"> </span><span class="nx">has</span><span class="w"> </span><span class="nx">address</span><span class="w"> </span><span class="m m-Double">217.147.180.162</span>
+<span class="w">    </span><span class="nx">deadbeef</span><span class="p">.</span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="w"> </span><span class="nx">has</span><span class="w"> </span><span class="nx">IPv6</span><span class="w"> </span><span class="nx">address</span><span class="w"> </span><span class="nx">dead</span><span class="p">:</span><span class="nx">beaf</span><span class="o">::</span>
+<span class="w">    </span><span class="nx">vpn</span><span class="p">.</span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="w"> </span><span class="nx">has</span><span class="w"> </span><span class="nx">address</span><span class="w"> </span><span class="m m-Double">174.36.59.154</span>
+<span class="w">    </span><span class="nx">dc_office</span><span class="p">.</span><span class="nx">zonetransfer</span><span class="p">.</span><span class="nx">me</span><span class="w"> </span><span class="nx">has</span><span class="w"> </span><span class="nx">address</span><span class="w"> </span><span class="m m-Double">143.228.181.132</span>
+</code></pre></div></td></tr></table></div>
+
+<p>Only validated slave nameservers should be allowed to issue a <em>zone
+transfer</em> request. This can be done by making adjustments to the
+configuration files (<code>named.conf</code>) of both the master and all slaves of
+a particular zone. For example:</p>
+<p><strong>On master nameservers.</strong></p>
+<p>On the master nameserver you should use the <code>allow-transfer</code> statement
+to limit zone transfers to a list of known slave servers.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="nx">acl</span><span class="w"> </span><span class="s">&quot;my_slave_servers&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="m m-Double">224.123.240.3</span><span class="p">;</span><span class="w">  </span><span class="c1">// cat.example.org</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="w">    </span><span class="c1">// ...</span>
+
+<span class="w">    </span><span class="nx">zone</span><span class="w"> </span><span class="s">&quot;example.org&quot;</span><span class="w"> </span><span class="nx">IN</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">type</span><span class="w"> </span><span class="nx">master</span><span class="p">;</span>
+<span class="w">        </span><span class="c1">// ....</span>
+
+<span class="w">        </span><span class="nx">allow</span><span class="o">-</span><span class="nx">transfer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">my_slave_servers</span><span class="p">;</span>
+<span class="w">        </span><span class="p">};</span>
+<span class="w">    </span><span class="p">};</span>
+</code></pre></div></td></tr></table></div>
+
+<p>Now only the slaves (only the host <code>cat</code> in the example) can request a
+<em>zone transfer</em> from this master nameserver.</p>
+<p><strong>On slave nameservers.</strong></p>
+<p>On a <em>slave</em> nameserver you should never allow any zone transfers. This
+can be achieved by setting the <code>allow-transfer</code> clause to 'none':</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="nx">zone</span><span class="w"> </span><span class="s">&quot;example.org&quot;</span><span class="w"> </span><span class="nx">IN</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">type</span><span class="w"> </span><span class="nx">slave</span><span class="p">;</span>
+<span class="w">        </span><span class="c1">// ....</span>
+
+<span class="w">        </span><span class="nx">allow</span><span class="o">-</span><span class="nx">transfer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">none</span><span class="p">;</span>
+<span class="w">        </span><span class="p">};</span>
+<span class="w">    </span><span class="p">};</span>
+</code></pre></div></td></tr></table></div>
+
+<p><strong>Note</strong>
+<em>IMPORTANT:*Don't forget to protect the *reverse zone</em> as well!</p>
+<h4 id="limiting-queries">Limiting queries<a class="headerlink" href="#limiting-queries" title="Permanent link">&para;</a></h4>
+<p>Though strictly spoken any client should be allowed to query a
+nameserver, in practice you may want to limit queries to a range of
+hosts, for example the hosts in your own networks. This can be done as
+follows:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code>    acl &quot;myhosts&quot; {
+        224.123.240.0/24;
+    };
+
+    // ...
+
+    zone &quot;example.org&quot; IN {
+        // ...
+
+        allow-queries {
+            myhosts;
+        };
+    };
+</code></pre></div></td></tr></table></div>
+
+<p>This limits queries to hosts with an IP address that starts with
+<code>224.123.240</code>.</p>
+<h4 id="controlling-requests">Controlling requests<a class="headerlink" href="#controlling-requests" title="Permanent link">&para;</a></h4>
+<p>There are more security controls that can be used.</p>
+<p><em>Spoofing</em> is when a malicious nameserver answers a client request with
+false data. As nameserver data is extensively cached for performance
+reasons, cached data can get infected with the falsified data.
+<em>Spoofing</em> is quite difficult to achieve, but it is wise to take
+precautions against it. Many older spoofing methods have already been
+eliminated by patches in the software but BIND can be configured to
+further enhance spoofing protection.</p>
+<h4 id="limiting-effects-of-an-intrusion">Limiting effects of an intrusion<a class="headerlink" href="#limiting-effects-of-an-intrusion" title="Permanent link">&para;</a></h4>
+<p>Even when you are prepared to implement DNS fixes as soon as they
+appear, it may be too late - even if by only a couple of hours: your
+system could be compromised anyway. Therefore it is advisable to take
+precautions to minimize the impact.</p>
+<h3 id="running-bind-with-less-privileges">Running BIND with less privileges<a class="headerlink" href="#running-bind-with-less-privileges" title="Permanent link">&para;</a></h3>
+<p>In some distributions, BIND runs as <code>root</code>. If BIND is compromised, the
+attacker might have root access. This can be prevented by running BIND
+under a non-privileged user and group.</p>
+<p>It might be tempting to employ the user <code>nobody</code> and group <code>nogroup</code>.
+But since many services already do this another security issue arises:
+these services may be able to communicate in one way or another.</p>
+<p>Best practice is to create a special user, e.g. <code>named</code>, and a
+corresponding group (which could also be called <code>named</code>), and run the
+nameserver under this user/group combination.</p>
+<p>Use the <code>-u</code> and <code>-g</code> options to run <code>named</code> as <code>named</code>/<code>named</code>:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    named -u named -g named
+</code></pre></div></td></tr></table></div>
+
+<p>On a Debian system the start line in <code>/etc/init.d/bind</code> would be:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="nv">start</span><span class="o">-</span><span class="nv">stop</span><span class="o">-</span><span class="nv">daemon</span><span class="w"> </span>...<span class="w"> </span><span class="o">--</span><span class="k">exec</span><span class="w"> </span><span class="o">/</span><span class="nv">usr</span><span class="o">/</span><span class="nv">sbin</span><span class="o">/</span><span class="nv">named</span><span class="w"> </span><span class="o">--</span><span class="w"> </span><span class="o">-</span><span class="nv">u</span><span class="w"> </span><span class="nv">named</span><span class="w"> </span><span class="o">-</span><span class="nv">g</span><span class="w"> </span><span class="nv">named</span>
+</code></pre></div></td></tr></table></div>
+
+<p>(For clarity other options were replaced by dots). The extra <code>--</code> tells
+the <code>start-stop-daemon</code> where its options end, all other options will be
+passed on to the <code>named</code> program.</p>
+<p>On a Red Hat (or compatible) system, the startup file can be found in
+<code>/etc/rc.d/init.d/named</code>. On RHEL systems the service is already
+configured to run under the user 'named'. You can set additional
+options in <code>/etc/sysconfig/named</code>, for example you can add <code>-u named</code>
+there. To start the service on Red Hat (compatible) systems, use the
+<code>service</code> command:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>    # service named start
+    Generating /etc/rndc.key:                                  [  OK  ]
+    Starting named:                                            [  OK  ]
+</code></pre></div></td></tr></table></div>
+
+<p>To make <code>named</code> start up in the proper runlevels on Red Hat (compatible)
+systems run <code>chkconfig named on</code>.</p>
+<p><strong>Note</strong>
+Make sure the nameserver has write access in the directory specified by
+the <code>directory</code> option in <code>named.conf</code>.</p>
+<h4 id="running-bind-in-a-chroot-jail">Running BIND in a <em>chroot jail</em><a class="headerlink" href="#running-bind-in-a-chroot-jail" title="Permanent link">&para;</a></h4>
+<p>Another way to prevent damage from a compromised name-server process is
+to put the process in a <em>chroot jail</em>. On startup the process will set a
+directory (e.g. <code>/var/cache/bind</code>) as its root directory. Since no
+process is ever capable of accessing anything above its set root, this
+prevents the named process access to anything outside <code>/var/cache/bind</code>.</p>
+<h4 id="preparing-a-chroot-jail">Preparing a chroot jail<a class="headerlink" href="#preparing-a-chroot-jail" title="Permanent link">&para;</a></h4>
+<p>All files that BIND needs must be copied to the new root directory. Full
+details can be found here: <a href="#chrootbind9">???</a>.</p>
+<p>In short:</p>
+<ul>
+<li>
+<p>You will need to copy the <code>/etc</code>, <code>/dev</code>, <code>/lib</code>, <code>/sbin</code> or
+    <code>/usr/sbin</code>, and <code>/var/run</code> directories to the chroot.</p>
+</li>
+<li>
+<p>You'll probably need the <code>/dev/null</code> device under the new root. The
+    next command will create it:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="n">mknod</span><span class="w"> </span><span class="o">-</span><span class="n">m</span><span class="w"> </span><span class="mi">666</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">cache</span><span class="o">/</span><span class="n">bind</span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="nb nb-Type">null</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">3</span>
+</code></pre></div></td></tr></table></div>
+
+</li>
+<li>
+<p>You will need a <code>passwd</code> and a <code>group</code> file in the new <code>/etc</code>:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="n">cd</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">cache</span><span class="o">/</span><span class="n">bind</span><span class="o">/</span><span class="n">etc</span>
+<span class="w">    </span><span class="n">cp</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="p">{</span><span class="n">passwd</span><span class="p">,</span><span class="n">group</span><span class="p">}</span><span class="w"> </span><span class="o">.</span>
+</code></pre></div></td></tr></table></div>
+
+<p>This copies the literal passwd and group files. An alternative is to
+create special <code>passwd</code> and <code>group</code> files, as will be shown in
+<a href="#DNSchrootAndUser">Combining special user and chroot</a>.</p>
+<p>You may also need to copy <code>ld.so.cache</code> and <code>localtime</code>:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="n">cd</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">cache</span><span class="o">/</span><span class="n">bind</span><span class="o">/</span><span class="n">etc</span>
+<span class="w">    </span><span class="n">cp</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">ld</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="n">cache</span><span class="w"> </span><span class="o">.</span>
+<span class="w">    </span><span class="n">cp</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">localtime</span><span class="w"> </span><span class="o">.</span>
+</code></pre></div></td></tr></table></div>
+
+</li>
+<li>
+<p>The BIND configuration should also be placed under the new root, as
+    <code>named</code> might need it when you reload the server. Given that your
+    new root is set to <code>/var/cache/bind</code> you should copy the file over
+    to <code>/var/cache/bind/etc/bind</code>.</p>
+<p>Note that all directories in the new <code>named.conf</code> - as specified
+with the <code>directory</code> option - are relative to the new root
+directory, so you do not need (or should) include the prefix
+<code>/var/cache/bind</code> there.</p>
+</li>
+<li>
+<p>The new <code>lib</code> directory must contain at least all the shared
+    libraries used by BIND. You can list these with the <code>ldd</code> command.
+    For instance, suppose the command:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    ldd /usr/sbin/named
+</code></pre></div></td></tr></table></div>
+
+<p>yields</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>    libc.so.6 =&gt; /lib/libc.so.6 (0x40015000)
+    /lib/ld-linux.so.2 =&gt; /lib/ld-linux.so.2 (0x40000000)
+</code></pre></div></td></tr></table></div>
+
+<p>In the (real) <code>/lib</code> directory, <code>libc.so.6</code> is a symlink to
+<code>libc-2.1.3.so</code> and <code>ld-linux.so.2</code> is a symlink to <code>ld-2.1.3.so</code>.
+Both the symlinks and the files they point to must be copied to the
+<code>lib</code> directory under the new root:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="n">cd</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">cache</span><span class="o">/</span><span class="n">bind</span><span class="o">/</span><span class="n">lib</span>
+<span class="w">    </span><span class="n">cp</span><span class="w"> </span><span class="o">-</span><span class="n">pd</span><span class="w"> </span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="p">{</span><span class="n">libc</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">6</span><span class="p">,</span><span class="n">libc</span><span class="o">-</span><span class="mf">2.1</span><span class="o">.</span><span class="mf">3.</span><span class="n">so</span><span class="p">,</span><span class="n">ld</span><span class="o">-</span><span class="n">linux</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">2</span><span class="p">,</span><span class="n">ld</span><span class="o">-</span><span class="mf">2.1</span><span class="o">.</span><span class="mf">3.</span><span class="n">so</span><span class="p">}</span><span class="w"> </span><span class="o">.</span>
+</code></pre></div></td></tr></table></div>
+
+</li>
+<li>
+<p>Both the <code>named</code> and the <code>named-xfer</code> programs must be present under
+    the new root. The <code>rndc</code> program might be useful too. For example:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="n">cp</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">sbin</span><span class="o">/</span><span class="n">named</span><span class="p">{,</span><span class="o">-</span><span class="n">xfer</span><span class="p">}</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">cache</span><span class="o">/</span><span class="n">bind</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">sbin</span>
+<span class="w">    </span><span class="n">cp</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">sbin</span><span class="o">/</span><span class="n">rndc</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">cache</span><span class="o">/</span><span class="n">bind</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">sbin</span>
+</code></pre></div></td></tr></table></div>
+
+</li>
+</ul>
+<h4 id="running-bind-chrooted">Running BIND chrooted<a class="headerlink" href="#running-bind-chrooted" title="Permanent link">&para;</a></h4>
+<p>To start the BIND nameserver in a <em>chroot jail</em>, simply add the <code>-t</code>
+option followed by a directory name, either on the command line, in the
+startup script, or in the <code>sysconfig</code> file.</p>
+<p><strong>Note</strong>
+The <code>-t</code> option actually runs the <code>chroot</code> command to start the
+nameserver. Read the manual pages on the <code>chroot</code> command to learn more.</p>
+<p>In some systems you may need to add the option to the startup file. For
+example:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="n">start</span><span class="o">-</span><span class="n">stop</span><span class="o">-</span><span class="n">daemon</span><span class="w"> </span><span class="o">...</span><span class="w"> </span><span class="o">--</span><span class="n">exec</span><span class="w"> </span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">sbin</span><span class="o">/</span><span class="n">named</span><span class="w"> </span><span class="o">--</span><span class="w"> </span><span class="o">-</span><span class="n">t</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">cache</span><span class="o">/</span><span class="n">bind</span>
+</code></pre></div></td></tr></table></div>
+
+<p>or</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="n">daemon</span><span class="w"> </span><span class="o">...</span><span class="w"> </span><span class="o">/</span><span class="n">sbin</span><span class="o">/</span><span class="n">named</span><span class="w"> </span><span class="o">-</span><span class="n">t</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">cache</span><span class="o">/</span><span class="n">bind</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The BIND nameserver switches to the chroot immediately after command
+line argument parsing, so before configuration files are read. All paths
+in the configuration file should be relative to the new root.</p>
+<h4 id="configuration-for-a-chrooted-bind">Configuration for a chrooted BIND<a class="headerlink" href="#configuration-for-a-chrooted-bind" title="Permanent link">&para;</a></h4>
+<p>As a consequence of a chrooted jail, all configuration files (e.g. zone
+files and <code>named.conf</code>) must be present in a directory (e.g.,
+<code>/etc/bind</code>) under the chroot directory.</p>
+<p>Logging to syslog will not work either as the chrooted process has no
+access to the Unix socket located outside the jail (no access to
+<code>/dev/log</code>). There are various workarounds but the simplest is to use an
+alternative logfile inside the chrooted environment. See this fragment
+of a <code>named.conf</code> file you could use:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code>    logging {
+        channel some_log { 
+            file &quot;bind.log&quot; versions 3;
+            severity info;
+        };
+
+        category default { some_log; };
+
+        // ...
+    };
+</code></pre></div></td></tr></table></div>
+
+<p>This will write logging information to the file
+<code>/var/cache/bind/var/cache/bind/bind.log</code>.</p>
+<p>Zone files, if any, should also be put inside the chroot environment.
+For instance, if <code>named.conf</code> contains a definition of a master zone
+like this:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="nx">zone</span><span class="w"> </span><span class="s">&quot;example.com&quot;</span><span class="w"> </span><span class="nx">IN</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">type</span><span class="w"> </span><span class="nx">master</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">file</span><span class="w"> </span><span class="s">&quot;/etc/bind/example.com.zone&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
+</code></pre></div></td></tr></table></div>
+
+<p>Then the <code>example.com.zone</code> file needs to be located in
+<code>/var/cache/bind/etc/bind</code>, again assuming your chroot directory is
+<code>/var/cache/bind</code>.</p>
+<h4 id="combining-special-user-and-chroot">Combining special user and chroot<a class="headerlink" href="#combining-special-user-and-chroot" title="Permanent link">&para;</a></h4>
+<p>More technical security can be obtained by using a combination of a
+chrooted environment and running the nameserver under a special
+non-privileged user and group. Note that these users will have to be
+available in the copies of <code>/etc/passwd</code> and <code>/etc/group</code> that were
+created in the chrooted environment. Finally, set permissions on the
+chrooted zone and configuration files to make them read-only for the
+named user and group.</p>
+<p><strong>Note</strong>
+Inspecting the source for BIND reveals the order of things:</p>
+<ul>
+<li>
+<p>parsing of command line options</p>
+</li>
+<li>
+<p>chrooting</p>
+</li>
+<li>
+<p>become a background process and write pid file</p>
+</li>
+<li>
+<p>change to new user and group</p>
+</li>
+</ul>
+<p>The pid file is still written by the <code>root</code> user, after that the less
+privileged 'named' user will be used.</p>
+<p>The <code>/etc/passwd</code>, <code>/etc/shadow</code>, and <code>/etc/group</code> files in the chroot
+environment may differ from the ones used by the rest of the system. The
+special user and group for the nameserver may not even exist outside the
+jail.</p>
+<h3 id="securing-nameserver-connections">Securing nameserver connections<a class="headerlink" href="#securing-nameserver-connections" title="Permanent link">&para;</a></h3>
+<p>Restricting access to trusted hosts can be done using the
+<code>allow-transfer</code> and <code>allow-query</code> statements in <code>named.conf</code> and may
+help limit risks. Since the restrictions are IP address based, there is
+still a residual risk that a villain use spoofing techniques. This could
+still lead to the misuse of your system.</p>
+<p><em>Signing</em> data could help prevent this. When the server and client use a
+shared secret to sign the data between them we can be quite sure that
+both parties are whom they say they are.</p>
+<p>To further secure nameserver connections a set of protocols called
+<em>DNSSEC</em> (Domain Name System Security Extensions) can be used as an
+extra security layer.</p>
+<h4 id="CCC">A cryptography crash course<a class="headerlink" href="#CCC" title="Permanent link">&para;</a></h4>
+<p>To understand how DNSSEC works you need to be aware of the concepts of
+message authentication codes, hashes and asymmetrical encryption.</p>
+<p>You are probably aware of the concept of symmetrical encryption. Using a
+key and some algorithm a cleartext message is scrambled into something
+incomprehensible. To restore the message, you need the same key. This
+works fine to shield a message from prying eyes, but it is not usable to
+prove that a message was sent by a given party. Either party could write
+a message, encrypt it with the private key and say it was the other
+party that wrote the message. There is no way you can tell if this is
+actually true.</p>
+<p>The related concept of asymmetrical encryption also allows enciphering
+and deciphering of messages. But instead of one shared key there are two
+separate but related ones: one is used to encipher a message, the other
+to decipher it. After generating such a key pair the owner hands out
+only one of these keys to the other party or parties, the <em>public</em> key.
+The other half of the key pair is kept secret (the <em>private</em> key).
+Whomever has access to the public key can use it to encrypt a message.
+The owner of the corresponding private key will be the only person that
+can decipher it. Hence the sender can be sure that he alone can read the
+message. Moreover he can send an encrypted message, using the private
+key to encipher it. Everyone with access to the public key will be able
+decipher it, and can be sure that it really was the owner of the
+corresponding private key that sent the message.</p>
+<p>Either private, public, or symmetric keys may be used to compute a MAC
+(Message Authentication Code). The algorithm to compute a MAC uses two
+inputs: the key and the message. The output is a fixed length string of
+hexadecimal digits. The MAC is computed using the key (or half of a key
+pair) and both the MAC and the message are subsequently sent. The
+receiving party will also use the message to calculate the MAC with the
+shared key or the other half of the key pair. If both hashes match there
+is a very high certainty the message has not been altered and that it
+originates from the sender. Note that when you use a MAC the message
+itself will <em>not</em> be encrypted, it can be read by anybody.</p>
+<p>DNSSEC signs its messages with a MAC. It uses a private key that is only
+known to DNSSEC. The corresponding public key is published on the
+nameservers of the next level zone. It can be obtained by querying the
+parent domain nameservers (the 'trust anchor'). So the public key for
+example of the <code>sidn.nl</code> domain will be available on the 'nl'
+nameservers. The public key itself in turn will be signed using a
+private key whose public key will be available on the next level above.
+So for the domain a.b.c the public keys of "a" can be found on the zone
+server for "b". The public keys are signed with the private key whose
+public key is published on the nameservers of "c" (You may want to read
+that sentence again ;-) ).</p>
+<p>Eventually the verification chain ends at the root servers. To obtain
+the keys used to sign the top level domains the <code>dig</code> could be used but
+of course, the query might be also be spoofed. Therefore serious
+validating resolvers obtain the keys by other means. For instance by
+retrieving them from a signed software package, similarly to the
+built-in SSL root certificates in browsers.</p>
+<h4 id="using-the-dnssec-keygen-command">Using the <code>dnssec-keygen</code> command<a class="headerlink" href="#using-the-dnssec-keygen-command" title="Permanent link">&para;</a></h4>
+<p>According to the lpic2 objective you must be able to use BIND 9's
+<code>dnssec-keygen</code>.</p>
+<p><strong>Note</strong>
+The <code>dnssec-keygen</code> command is part of the DNSSEC security extension for
+DNS (fully described in <a href="#Albitz01">???</a>).</p>
+<p>DNSSEC was not fully implemented in BIND versions older than 9.2.</p>
+<p>The 13 authoritive root servers use DNSSEC since May 6<sup>th</sup> 2010.</p>
+<p>The <code>dnssec-keygen</code> may be used to generate public/private and symmetric
+keys. See <a href="#CCC">CrashCryptoCourse</a>. The key pairs are meant to be used
+to authenticate zone data. The symmetric keys are for
+Request/Transaction signatures.</p>
+<p>The required parameters for generating a key:</p>
+<p>a <em>algorithm</em> (<code>-a</code> option)</p>
+<ul>
+<li>RSA | RSAMD5 | DH | DSA | RSASHA1 | HMAC-MD5</li>
+</ul>
+<p>a <em>key size</em> (<code>-b</code> option)</p>
+<ul>
+<li>Depends on chosen algorithm: RSAMD5: [512..4096], RSASHA1:
+    [512..4096], DH: [128..4096], DSA: [512..1024] and a multiple
+    of 64, HMAC-MD5: [1..512]</li>
+</ul>
+<p>a <em>nametype</em> (<code>-n</code> option)</p>
+<ul>
+<li>ZONE | HOST | ENTITY | USER | OTHER</li>
+</ul>
+<h4 id="format-of-the-key-files">Format of the key files<a class="headerlink" href="#format-of-the-key-files" title="Permanent link">&para;</a></h4>
+<p><code>dnssec-keygen</code> creates two files: <code>K</code><em>name</em><code>+</code><em>algorithm</em><code>+</code><em>footprint</em><code>.private</code> and <code>K</code><em>name</em><code>+</code><em>algorithm</em><code>+</code><em>footprint</em><code>.key</code>.</p>
+<p>As an example, say we typed this command:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ dnssec-keygen -a DSA -b 768 -n ZONE example.com.
+</code></pre></div></td></tr></table></div>
+
+<p>After completion there will be two files, which have names similar to
+<code>Kexample.com.+003+58649.key</code> and <code>Kexample.com.+003+58649.private</code>.</p>
+<p>The private key file <code>Kkey.example.com.+003+58649.private</code> will have
+contents similar to this:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code>    Private-key-format: v1.2
+    Algorithm: 3 (DSA)
+    Prime(p): ww4 ..
+    Subprime(q): qHwn .. 
+    Base(g): ncWqWFJ ... 
+    Private_value(x): YuO ...
+    Public_value(y): JKvGZ ...
+</code></pre></div></td></tr></table></div>
+
+<p>Note that lines that have been truncated for better readability end in
+an ellipsis.</p>
+<p>The contents of <code>Kkey.example.com.+003+58649.key</code> will be similar to
+this:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    example.com. IN DNSKEY 256 3 3 BKh8J+a ...
+</code></pre></div></td></tr></table></div>
+
+<p>Please note that generation of a HMAC-MD5 generates two files too, but
+both will contain the exact same 'key':</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ dnssec-keygen -a HMAC-MD5 -b 512 -n HOST peek.a.boo
+    Kpeek.a.boo.+157+39506
+
+    $ ls Kpeek.a.boo.+157+39506.*
+    Kpeek.a.boo.+157+39506.key  Kpeek.a.boo.+157+39506.private
+
+    $ cat Kpeek.a.boo.+157+39506.key
+    peek.a.boo. IN KEY 512 3 157 HUcmGO7VZ ...
+
+    $ cat Kpeek.a.boo.+157+39506.private
+    Private-key-format: v1.2
+    Algorithm: 157 (HMAC_MD5)
+    Key: HUcmGO7VZ ...
+</code></pre></div></td></tr></table></div>
+
+<h4 id="using-the-key">Using the key<a class="headerlink" href="#using-the-key" title="Permanent link">&para;</a></h4>
+<p>You can refer to a key by adding a <code>key</code> statement in <code>named.conf</code>, and
+copy and paste the key you generated in that section:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>    key key.example.com. {
+        algorithm &quot;hmac-md5&quot;;
+        secret &quot;5HUcmGO7VZ ...&quot;;
+    };
+</code></pre></div></td></tr></table></div>
+
+<p>The key can be read (and possibly misused) by anybody who has access
+rights to the <code>named.conf</code> file. Make sure it can not be read by anybody
+but the nameserver user.</p>
+<p>You can also put the key statement in a separate file and include that
+file using the <code>include</code> statement. In this case the same warning
+applies with regard to permissions.</p>
+<p>To allow a client to use the key to connect to us we need to add a
+<code>server</code> clause in our configuration. Say we are on a server which has
+IP address <code>224.123.400.2</code> and want to allow access for a server with IP
+address <code>224.123.400.1</code> we may use:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>    server 224.123.400.1 {
+        keys key.example.com.;
+    };
+</code></pre></div></td></tr></table></div>
+
+<p>On the other server (<code>224.123.400.1</code>) we need to do the same for server
+<code>224.123.400.2</code>: add the <code>key</code> statement and copy in the key and allow
+the other host to connect to us.</p>
+<p>You can now configure the types of access that are allowed when one has
+a key. As an example, to limit zone-transfers to hosts that have the
+proper keys installed, use:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="nx">zone</span><span class="w"> </span><span class="s">&quot;example.com&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">type</span><span class="w"> </span><span class="nx">master</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">file</span><span class="w"> </span><span class="s">&quot;example.com.zone&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">allow</span><span class="o">-</span><span class="nx">transfer</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">key</span><span class="w"> </span><span class="nx">key</span><span class="p">.</span><span class="nx">example</span><span class="p">.</span><span class="nx">com</span><span class="p">.;</span><span class="w"> </span><span class="p">};</span>
+<span class="w">    </span><span class="p">};</span>
+</code></pre></div></td></tr></table></div>
+
+<p>See the <code>named.conf(5)</code> manual page for additional use cases.</p>
+<p>dnssec-signzone {#dnssecsignzone}</p>
+<p>DNSdnssec-keygen DNSdnssec-signzone Similar to the <code>dnssec-keygen</code>
+command, BIND 9 includes the <code>dnssec-signzone</code> utility. As its name
+implies <code>dnssec-signzone</code> can be used to sign a zone. We already saw how
+keys are used to <em>authorize</em> servers. Signing a zone helps a client to
+verify the <em>integrity</em> of the data.</p>
+<p>DNS RRSIG When using DNSSEC, so called <code>RRSIG</code> records store the actual
+digital signatures that were created while signing the resource records
+for a domain using a <code>dnskey</code>.</p>
+<p>The <code>dnssec-signzone</code> utility can be used to add RRSIG records to zones.</p>
+<p>DNSNSEC <code>NSEC</code> records (<code>Next SECure</code>) are used to specify a range of
+<em>non-existing domains</em>. NSEC records were invented to solve a problem:
+if you queried a secured nameserver (one that signs the results of a
+query) and you would ask for a non-existing name, it would simply return
+- nothing. As you can't sign 'nothing' you would never know if the
+anwer you got - nothing - really is what you should have gotten. Hence
+NSEC records. A NSEC record (Next SECure) states a range of names that
+do not exist. As NSEC records can be signed the answer can be trusted
+again.</p>
+<p>An Example of an NSEC record for the dnssec-tools.org domain:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    adonis.zonetransfer.me.       10800   IN      NSEC   helena.zonetransfer.me.
+</code></pre></div></td></tr></table></div>
+
+<p>The record specifies that no DNS records exist between
+<code>adonis.zonetransfer.me.</code> and <code>helena.zonetransfer.me.</code>, which would exclude <code>brutus.zonetransfer.me.</code> from being an existing and therefore valid domain.</p>
+<p>Use of NSEC records solves one problem, but introduces the next: it
+allows easy retrieval of all zone data by simply asking for a random
+name. This works because NSEC records assume alphabetical ordering of
+domain names. An example: if you would request 'a.example.com' and the
+answer would be 'do not have it, but the next valid record is
+joe.example.com', you know that joe.example.com exists and nothing
+before it does. So, then you might try jof.example.com, as 'f' is the
+next letter in the alphabet, etc. A solution to solve this problem is
+the NSEC3 record. The NSEC3 record is actually a NSEC record too but it
+will not return the next <em>name</em>, but <em>the hash of the next name</em>. If you
+ask for a.example.com you will get a record that says 'not here, and
+this is the hash of the next valid domain name'. There are no known
+methods - other than brute force - to find a name that matches that
+hash. If you already know the next valid domain name, you can calculate
+its hash and verify the answer. If you do not, the data will not help
+you to find out.</p>
+<h4 id="dane">DANE<a class="headerlink" href="#dane" title="Permanent link">&para;</a></h4>
+<p>After having set up DNSSEC for a certain domain, it is possible to make
+use of DNS Authenticated Named Entities: DANE. In order to understand
+the advantage of DANE, we need to look at the problem DANE is trying to
+address. And this problem involves Certificate Authorities, or CA's in
+short.</p>
+<p>The problem with CA-dependant encryption solutions lies in the
+implementation. When visiting a SSL/TLS Encrypted website via HTTPS, the
+browser software will gladly accept ANY certificate that uses a matching
+CN value AND is considered as being issued by a valid Certificate
+Authority. The CN value is dependent on DNS, and luckily we just set up
+DNSSEC to have some assurence regarding that. But, modern browsers come
+with over 1000 <em>trusted</em> root certificates. Every certificate being
+presented to the browser by a webserver, will be validated using these
+root certificates. If the presented certificate can be correlated to one
+of the root certificates, the science matches and the browser will not
+complain. And that's a problem.</p>
+<p>In a perfect world, this system could provide some assurance.
+Unfortunately, every chain is only as strong as it's weakest link. Many
+known attack vectors exist in regards to integrity and confidentiality
+of HTTPS sessions. The Certificate Authorities are in a league of their
+own though. Just as every CA needs to be in control of their security
+100% of the time, an attacker only needs one moment one CA is not. If an
+attacker gets hold of one of the keys used to sign certificates, it is
+Game Over[tm]. This has happened in the past, and there is no
+assurence it will not happen again in the future.</p>
+<p>The problem consists of browsers accepting any <em>valid</em> certificate for
+any domain. And lack of control about exactly which certificates are
+valid for exactly what domain. There are a couple of workarounds out
+there like <em>Certificate Transparency</em> and <em>Certificate Pinning</em>. But for
+now, these remain to be workarounds for a flawed system. After all, the
+problem is not limited to your Desktop. The provided trust in CA-issued
+certificates becomes a problem when that CA cannot be trusted anymore.
+This has happened.</p>
+<p>The infamous "Black Tulip" case describes a breach that has occured at a
+Dutch CA called DigiNotar. Attackers gained access to systems and
+generated fake certificates for major websites. Except, these
+certificates were not recognized as fake since they had been generated
+by a <em>trusted</em> CA. The <em>certificate chain</em> could be backtraced to
+DigiNotar and seemed valid. Despite DigiNotar never having received the
+order or permission to generate certificates for the affected domains.
+After it was discovered that attackers had issued multiple DigiNotar
+certificates, the trust in DigiNotar as a CA could not be maintained.
+The affected CA root certificate was removed from the list of trusted
+certificates by many software vendors. DigiNotar filed for bankcrupcy
+within weeks.</p>
+<p>If that already sounds bad, consider the total impact of this data
+breach. Because certificates issued by DigiNotar were blacklisted as a
+result, software depending on valid certificates could no longer
+function properly. This had real-world consequences, since DigiNotar
+also issued certificates to government and trading related customers.
+The tulips could not be shipped and went black, so to say. For this
+reason, some large corporations that depend on their online presence for
+core business get their certificates from more than one CA. This way, if
+one CA gets compromised and all related certificates have to be revoked,
+that will not be a Single Point Of Failure to the business. Good for the
+business, not good for transparency in regards to certificates.</p>
+<p>This is where DANE comes in; While depending on the assurance provided
+by DNSSEC, DNS records are provided with <em>certificate associating</em>
+information. This mitigates the dependency regarding static root
+certificates for certain types of SSL/TLS connections. These records
+have come to be known as <em>TLSA</em> records. As with HTTPS, DANE should be
+implemented either correctly or better yet not at all. When implemented
+correctly, DANE will provide added integrity regarding the certificates
+being used for encryption. By doing so, the confidentiality aspect of
+the session gets a boost as well.</p>
+<p>The TLSA <em>Resource Record</em> syntax is described in RFC 6698 sections 2
+and 7. An example of a SHA-256 hashed association of a PKIX CA
+Certificate taken from RFC 6698 looks as follows:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>    _443._tcp.www.example.com. IN TLSA (
+          0 0 1 d2abde240d7cd3ee6b4b28c54df034b9
+                7983a1d16e8a410e4561cb106618e971 )
+</code></pre></div></td></tr></table></div>
+
+<p>Each TLSA Resource Record (RR) specifies the following fields in order
+to create the <em>certificate association</em>: <em>Certificate Usage</em>,
+<em>Selector</em>, <em>Matching Type</em> and <em>Certificate Association Data</em>. The
+Certificate Association Data Field in the example above is represented
+by the SHA-256 hash string value. The contents of this Data Field are
+dependent on the values preceeding from the previous three RR fields.
+These three fields are represented by <code>'0 0 1'</code> in the example above. We
+will explain these fields in reverse order. This makes sense if you look
+at the hash value and then read the values from right to left as
+<code>'1 0 0'</code>.</p>
+<p>The value <code>'1'</code> in the third field from the example above represents the
+<em>Matching Type</em> field. This field can have a value between <code>'0'</code> and
+<code>'2'</code>. It specifies whether the <em>Certification Association Data</em> field
+contents are NOT hashed (value <code>0</code>), hashed using SHA-256 (value <code>1</code>) or
+hashed using SHA-512 (value <code>2</code>). In the example above, the contents of
+the Certificate Association Data field represent a SHA-256 hash string.</p>
+<p>The second field represented by a <code>'0'</code> represents the <em>Selector Field</em>.
+The TLSA Selectors are represented by either a <code>'0'</code> or a <code>'1'</code>. A field
+value of <code>'0'</code> indicates that the Certificate Association Data field
+contents are based on a full certificate. A value of <code>'1'</code> indicates
+that the contents of the Certificate Association Data Field are based on
+the Public Key of a certificate. In the example above, the Selector
+field indicates that the SHA-256 hash string from the Certificate
+Association Data field is based on a full certificate.</p>
+<p>The first field represented by a '0' in the example above represents
+the <em>Certificate Usage</em> field. This field may hold a value between '0'
+and '3'. A value of <code>'0'</code> (PKIX-TA) specifies that the Certificate
+Association Data field value is related to a public Certificate
+Authority from the X.509 tree. A value of <code>'1'</code> (PKIX-EE) specifies that
+the Certificate Association Data field value is related to the
+certificate on the endpoint you are connecting to, using X.509
+validation. A value of <code>'2'</code> (DANE-TA) specifies that the Certificate
+Association Data field value is related to a private CA from the X.509
+tree. And a value of <code>'3'</code> (DANE-EE) specifies that the Certificate
+Association Data field value is related to the certificate on the
+endpoint you are connecting to. In the example above, the Certificate
+Usage field indicates that the certificate the SHA-256 string is based
+on belongs to a public Certificate Authority from the X.509 tree. Those
+are the same Certificate authorities that your browser uses. Field
+values of <code>'0'</code>, <code>'1'</code> or <code>'2'</code> still depend on these CA root
+certificates. The true benefit of TLSA records gets unleashed when
+DNSSEC is properly configured and using a value of <code>'3'</code> as a value for
+the Certificate Usage Field.</p>
+<p>Looking back at the very start of the TLSA Resource Record example
+above, the syntax clearly follows the <code>_port._protocol.subject</code> syntax.
+The TLSA Resource Record always starts with an underscore '_'. Then
+the service port is defined (443 for HTTPS) and a transport protocol is
+specified. This can be either tcp, udp, or sctp according to RFC 6698.
+When generating TLSA records, it is also possible to specify dccp as a
+transport protocol. RFC 6698 does not explicitly mention dccp though.
+The subject field usually equals the servername and should match the CN
+value of the certificate.</p>
+<p>It is not mandatory for the LPIC-2 exam to know all these details by
+heart. But, it is good to have an understanding about the different
+options and their impact. Just as using a value of <code>'3'</code> as the
+Certificate Usage can have some security advantages, a value of <code>'0'</code> as
+the Matching Type field can result in fragmented DNS replies when
+complete certificates end up in TLSA Resource Records. The success of
+security comes with usability.</p>
+<p>To generate your own TLSA records, a page like the following can be used
+and should provide some insight in to the used parameters and values:
+<a href="https://www.huque.com/bin/gen_tlsa">www.huque.com/bin/gen_tlsa</a></p>
+<p>As much as the previously mentioned website is suitable for creating
+occasional TLSA records, there are circumstances when custom tooling is
+more appropriate. The <code>hashslinger</code> command-line tool has been developed
+to ease the creation of TLSA records.</p>
+<p>When implemented correctly and supported widely, DANE has the potential
+to secure certificate based encryption for a variety of services.</p>
+<h4 id="internal-dns">Internal DNS<a class="headerlink" href="#internal-dns" title="Permanent link">&para;</a></h4>
+<p>If your organization uses TCP/IP on its internal networks NDASH a very
+common situation nowadays NDASH they will also need a method to locally
+resolve hostnames into IP addresses and vice versa. In smaller
+organizations whose infrastructure typically does not change much over
+time they might use static files (hostfiles), but given the low
+break-even point between the costs of maintaining such an infrastructure
+and the costs of installing and maintaining your own DNS most
+organizations run an internal DNS system.</p>
+<p>In simpler setups, only one nameserver may suffice, though given the low
+costs involved nameservers will often be installed in pairs. Resolvers
+aware of more than one nameserver will query the other server if the
+primary server does not respond. If you have a number of divisions and
+various interconnected networks your setup will start resembling the
+Internet. But there are important differences.</p>
+<p>Suppose your division is located outside the firm's main building. The
+workgroup will have its own nameservers. Internally, hosts will be
+members of the <code>exworks</code> (short for bindexworks <em>exampleworks</em>) domain,
+that is, directly under the root (<code>.</code>) domain. To prevent accidental
+routing on the Internet the company chooses the use of one of the
+non-routable (private) IP networks: <code>192.168.72</code>. This implies we need
+to maintain both the domain zone and the reverse lookup zone
+<code>72.168.192.in-addr.arpa</code>.</p>
+<p>We can't use the Internet infrastructure as their root nameservers
+don't know anything about the <code>exworks</code> and <code>72.168.192.in-addr.arpa</code>
+zones, nor should they: we chose to use a private network after all. If
+we also like to be able to resolve real Internet hostnames and
+addresses, we can use what is known as a <em>split-level</em> DNS setup.
+split-level DNS Two split-level DNS setups will be shown.</p>
+<h4 id="limiting-negotiations">Limiting negotiations<a class="headerlink" href="#limiting-negotiations" title="Permanent link">&para;</a></h4>
+<p>We can use a feature introduced into BIND in the days of dial-up
+connections. BIND behind a dial-up connection can be a nuisance: every
+time a DNS wants to communicate with a root nameserver, an automatic
+dialer sets up a connection. This is expensive. You can stop BIND from
+doing this by putting bindheartbeat-interval</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="c1">// prevent dialup access</span>
+<span class="w">    </span><span class="n">heartbeat</span><span class="o">-</span><span class="n">interval</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">dialup</span><span class="w"> </span><span class="n">yes</span><span class="p">;</span><span class="w"> </span><span class="c1">// Actually disables dialup!</span>
+</code></pre></div></td></tr></table></div>
+
+<p>inside the <code>options</code> statement of the <code>named.conf</code> file. It is a bit
+counterintuitive to have to put <code>dialup yes</code> in a configuration actually
+meant to prevent dialups, but that's the way to do it.</p>
+<p>This trick can also be used to limit communication from an internal zone
+like <code>exworks</code>. The <code>exworks</code> and <code>72.168.192.in-addr.arpa</code> zones are
+implemented as conventional master zones as described earlier in this
+chapter. The fundamental problem with this is that the real root servers
+still don't delegate the <code>exworks</code> (and corresponding reverse) domain.</p>
+<p>Therefore we should pull the internal zones together with the root
+nameserver definition into a separate DNS implementation. This requires
+at least two independent nameservers, and they can be set up in two
+different ways, as will be described below.</p>
+<h4 id="split-dns-stand-alone-internal-master">Split DNS: stand-alone internal master<a class="headerlink" href="#split-dns-stand-alone-internal-master" title="Permanent link">&para;</a></h4>
+<p>The first approach consists of a stand-alone nameserver (that is, bind
+stand-alone master master for the internal zones) and another nameserver
+on another host that can be used to resolve names from both the outside
+world and the internal zones.</p>
+<p>The figure below presents the <code>exworks</code> domain that is used as an
+example. </p>
+<p><img alt="" src="../images/207-exwrks.dot.svg.jpg" /></p>
+<p>The <code>exworks</code> network.</p>
+<p>The two nameservers in this example will be on different hosts. The
+first nameserver runs on <code>privdns</code> and will provide internal zone
+information. The other nameserver is on <code>liongate</code>, which will be a
+forwarding nameserver for both the internal zones and the outside world.</p>
+<p>The host <code>privdns</code> (for <em>private DNS</em>) will contain the DNS for both the
+<code>exworks</code> and <code>72.168.192.in-addr.arpa</code> zones. This nameserver will have
+the following characteristics:</p>
+<ul>
+<li>
+<p>it will be master for the root domain, but no DNS except itself will
+    be able to access this information</p>
+</li>
+<li>
+<p>it will be master for the the <code>exworks</code> and
+    <code>72.168.192.in-addr.arpa</code> domains. Only other nameservers inside the
+    building will be able to access this information</p>
+</li>
+</ul>
+<p>On the other hand, <code>liongate</code> will do the following:</p>
+<ul>
+<li>
+<p>do forwarding for the internal zones (this should be done <em>first</em>)</p>
+</li>
+<li>
+<p>do forwarding for the outside world</p>
+</li>
+</ul>
+<h4 id="DNSinternalMaster">Configuring the master on <code>privdns</code><a class="headerlink" href="#DNSinternalMaster" title="Permanent link">&para;</a></h4>
+<p>First, prepare a master file for the internal root zone. For example:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="err">$</span><span class="nx">TTL</span><span class="w"> </span><span class="mi">25</span><span class="nx">h</span>
+<span class="w">    </span><span class="p">.</span><span class="w">       </span><span class="nx">IN</span><span class="w">  </span><span class="nx">SOA</span><span class="w"> </span><span class="nx">privdns</span><span class="p">.</span><span class="nx">exworks</span><span class="p">.</span><span class="w"> </span><span class="nx">postmaster</span><span class="p">.</span><span class="nx">privdns</span><span class="p">.</span><span class="nx">exworks</span><span class="p">.</span><span class="w"> </span><span class="p">(</span>
+<span class="w">                </span><span class="mi">2001121000</span><span class="w">    </span><span class="p">;</span><span class="w"> </span><span class="nx">yyyymmhhee</span><span class="w"> </span><span class="p">(</span><span class="nx">ee</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nx">ser</span><span class="o">/</span><span class="nx">day</span><span class="w"> </span><span class="nx">start</span><span class="w"> </span><span class="mi">00</span><span class="p">)</span>
+<span class="w">                     </span><span class="mi">28800</span>
+<span class="w">                      </span><span class="mi">3600</span>
+<span class="w">                    </span><span class="mi">604800</span>
+<span class="w">                     </span><span class="mi">86400</span><span class="w"> </span><span class="p">)</span>
+<span class="w">            </span><span class="nx">IN</span><span class="w">  </span><span class="nx">NS</span><span class="w"> </span><span class="nx">privdns</span><span class="p">.</span><span class="nx">exworks</span><span class="p">.</span>
+<span class="w">    </span><span class="nx">privdns</span><span class="p">.</span><span class="nx">exworks</span><span class="p">.</span><span class="w"> </span><span class="nx">IN</span><span class="w">  </span><span class="nx">A</span><span class="w">  </span><span class="m m-Double">192.168.72.2</span>
+
+<span class="w">    </span><span class="p">;</span><span class="w"> </span><span class="nx">glue</span><span class="w"> </span><span class="nx">records</span>
+<span class="w">    </span><span class="nx">exworks</span><span class="p">.</span><span class="w">                 </span><span class="nx">IN</span><span class="w"> </span><span class="nx">NS</span><span class="w"> </span><span class="nx">privdns</span><span class="p">.</span><span class="nx">exworks</span><span class="p">.</span>
+<span class="w">    </span><span class="m m-Double">72.168.192</span><span class="p">.</span><span class="k">in</span><span class="o">-</span><span class="kd">addr</span><span class="p">.</span><span class="nx">arpa</span><span class="p">.</span><span class="w"> </span><span class="nx">IN</span><span class="w"> </span><span class="nx">NS</span><span class="w"> </span><span class="nx">privdns</span><span class="p">.</span><span class="nx">exworks</span><span class="p">.</span>
+</code></pre></div></td></tr></table></div>
+
+<p>Note the glue records that delegate the <code>exworks</code> and
+<code>72.168.192.in-addr.arpa</code> zones as being hosted on nameserver
+192.168.72.2.</p>
+<p>Next, add a <code>zone</code> statement in <code>named.conf</code> that points to the master
+file for the root zone:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="c1">// ROOT MASTER zone for internal DNS server</span>
+<span class="w">    </span><span class="nx">zone</span><span class="w"> </span><span class="s">&quot;.&quot;</span><span class="w"> </span><span class="nx">IN</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">type</span><span class="w"> </span><span class="nx">master</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">file</span><span class="w"> </span><span class="s">&quot;/etc/bind/internal.root.zone&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">allow</span><span class="o">-</span><span class="nx">transfer</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">none</span><span class="p">;</span><span class="w"> </span><span class="p">};</span>
+<span class="w">        </span><span class="nx">allow</span><span class="o">-</span><span class="nx">query</span><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">none</span><span class="p">;</span><span class="w"> </span><span class="p">};</span>
+<span class="w">    </span><span class="p">};</span>
+</code></pre></div></td></tr></table></div>
+
+<p>Using the type <code>master</code> tells the DNS that this really is a master
+server for the root zone. The root zone should not be known to any other
+nameservers, therefore the <code>allow-transfer</code> and bind allow-transfer bind
+allow-query <code>allow-query</code> are set to <code>none</code>.</p>
+<p><strong>Note</strong>
+The root zone definition type <code>hint</code>, as present in a default
+caching-only server, should be turned <em>off</em> (by not including it in the
+<code>named.conf</code> file).</p>
+<p>Now, prepare zone files for the <code>exworks</code> and <code>72.168.192.in-addr.arpa</code>
+zones, and add the corresponding <code>zone</code> entries in the <code>named.conf</code>
+file. The entry for <code>exworks</code> should look like this:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="nx">zone</span><span class="w"> </span><span class="s">&quot;exworks&quot;</span><span class="w"> </span><span class="nx">IN</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">type</span><span class="w"> </span><span class="nx">master</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">file</span><span class="w"> </span><span class="s">&quot;/etc/bind/exworks.zone&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">allow</span><span class="o">-</span><span class="nx">transfer</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">none</span><span class="p">;</span><span class="w"> </span><span class="p">};</span>
+<span class="w">        </span><span class="nx">allow</span><span class="o">-</span><span class="nx">query</span><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="m m-Double">192.168.72.1</span><span class="p">;</span><span class="w"> </span><span class="p">};</span><span class="w"> </span><span class="c1">// liongate</span>
+<span class="w">    </span><span class="p">};</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The nameserver on <code>liongate</code> is the one providing names to the other
+hosts, so the IP address of <code>liongate</code> must be listed in the
+<code>allow-query</code> field.</p>
+<p>The same must be done for the corresponding reverse zone.</p>
+<p>Make sure the <code>options</code> statement contains</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>    recursion no;
+    fetch-glue no;
+</code></pre></div></td></tr></table></div>
+
+<p>These statements tell the nameserver it should not accept queries for
+zones other than the ones it knows about.</p>
+<p>Hosts in the <code>exworks</code> zone should point their <code>resolv.conf</code> to
+<code>liongate</code>. bind resolv.conf That is, the file should contain the line:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    nameserver 192.168.72.1
+</code></pre></div></td></tr></table></div>
+
+<p>where <code>192.168.72.1</code> is the IP address of <code>liongate</code>. On <code>liongate</code>
+itself, however,</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    nameserver 127.0.0.1
+</code></pre></div></td></tr></table></div>
+
+<p>ensures that local queries are run over the local loop interface, which
+is more efficient than using the outside IP address.</p>
+<p><strong>Note</strong>
+The entries in <code>resolv.conf</code> on <code>privdns</code> should not point to the
+nameserver on <code>privdns</code> itself. If the host is to be used for purposes
+that require name resolving, it is better to point the entries to the
+nameserver on <code>liongate</code>.</p>
+<h4 id="configuring-dns-on-liongate">Configuring DNS on <code>liongate</code><a class="headerlink" href="#configuring-dns-on-liongate" title="Permanent link">&para;</a></h4>
+<p>The functionality of the DNS is twofold: first it should resolve names
+of the <code>exworks</code> zone (and corresponding reverse zone), secondly, it
+should resolve names from the outside world.</p>
+<p>With the following <code>forwarders</code> statement queries bind forwarders to
+this nameserver are being forwarded to one on the listed IP addresses
+(remember that <code>forwarders</code> is part of the <code>options</code> statement):</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>    forwarders {
+        192.168.72.2;   // privdns
+        224.121.121.99; // ISP&#39;s DNS
+    };
+</code></pre></div></td></tr></table></div>
+
+<p>The nameservers are tried in the order in which they are listed.
+Requests are forwarded to <code>privdns</code> first. If that one does not have the
+answer, the DNS of the ISP is contacted instead.</p>
+<p>Note that the IP address of <code>privdns</code> should be mentioned <em>first</em>: we
+don't want requests for internal names be sent to the ISP.</p>
+<p>Alternatively, the nameserver on <code>liongate</code> can be configured as <code>slave</code>
+for the <code>exworks</code> domain and corresponding reverse domain. We will
+discuss this in the next section.</p>
+<h4 id="alternatives">Alternatives<a class="headerlink" href="#alternatives" title="Permanent link">&para;</a></h4>
+<p>There are two alternatives to this setup. Both require two separate
+nameservers.</p>
+<p>The first alternative is to use <em>two</em> <code>nameserver</code> statements in
+<code>resolv.conf</code>:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>    nameserver 192.168.72.2
+    nameserver 192.168.72.1
+</code></pre></div></td></tr></table></div>
+
+<p>The first IP address points to <code>privdns</code>, the second to <code>liongate</code>. In
+this situation, <code>privdns</code> should also accept queries from
+<code>192.168.72.0/24</code> and the <code>forwarders</code> statement on <code>liongate</code> should
+not contain the <code>192.168.72.2</code> (the IP address of <code>privdns</code>). The
+downside of this is that there is no single nameserver entry-point.</p>
+<p>The second alternative is to use a <code>slave</code> setup bind slave for the
+<code>exworks</code> (plus corresponding reverse) domain. This situation is
+required when two nameservers are running on the same host. This will be
+elaborated below, so it will not be discussed here. For this to work,
+the <code>forwarders</code> statement on <code>liongate</code> should not contain the IP
+address of <code>privdns</code>.</p>
+<h4 id="split-dns-two-dns-servers-on-one-machine">Split DNS: two DNS servers on one machine<a class="headerlink" href="#split-dns-two-dns-servers-on-one-machine" title="Permanent link">&para;</a></h4>
+<p>We assume the same network again but with one important Split DNS
+difference: host <code>privdns</code> is <em>not</em> available. This implies that the
+<em>internal</em> nameserver must now run on one of the other hosts, which also
+needs access to the outside world.</p>
+<p>Both nameservers will run on the same host. At least one of the
+nameservers must run chrooted. bind chrooted</p>
+<h4 id="two-nameservers-on-one-host">Two nameservers on one host<a class="headerlink" href="#two-nameservers-on-one-host" title="Permanent link">&para;</a></h4>
+<p>The following settings must be made:</p>
+<ul>
+<li>
+<p><strong>The <em>internal</em> nameserver.</strong></p>
+<p>There is a master nameserver that serves the <code>exworks</code> and
+corresponding reverse domains. It runs chrooted, under its own
+uid/gid, listening at a special port. It will not do any other
+resolver work. This nameserver will be referred to as the <em>internal</em>
+nameserver.</p>
+</li>
+<li>
+<p><strong>The <em>visible</em> nameserver.</strong></p>
+<p>The other nameserver does not need to run chrooted, but it does have
+its own uid/gid. It serves as a <code>slave</code> for the <code>exworks</code> and
+<code>72.168.192.in-addr.arpa</code> domains. It also forwards other requests
+to the ISP. This nameserver will be referred to as the <em>visible</em>
+nameserver, since this is the nameserver that will be visible to
+other hosts.</p>
+</li>
+</ul>
+<p>The <code>nameserver</code> line in the <code>resolv.conf</code> file for the visible
+nameserver points to <code>127.0.0.1</code>; other hosts in the <code>exworks</code> domain
+point their resolver to <code>192.168.72.1</code> (the IP address of <code>liongate</code>).</p>
+<h4 id="configuring-the-internal-nameserver">Configuring the internal nameserver<a class="headerlink" href="#configuring-the-internal-nameserver" title="Permanent link">&para;</a></h4>
+<p>The nameserver is put into a chroot jail with his own user and group
+bind jail ID's. The nameserver will chroot to
+<code>/var/cache/bindInternal</code>. It will run, for example, as user <code>inamed</code>
+with UID <code>5301</code> and as group with the same name and GID <code>5301</code>.</p>
+<p>This chrooted nameserver should be able to write to some directories. To
+allow this, these directories should be owned by the <code>inamed</code> UID and
+GID. The directories (inside the chroot jail) that need this are
+<code>/var/run</code> (because it needs to write <code>named.pid</code>) and bind named.pid
+<code>/var/cache/bind</code> (because it needs to write e.g. a logfile).</p>
+<p>The configuration directory will be <code>/var/cache/bindInternal/etc/bind</code>,
+so that references from the <code>named.conf</code> file in that directory will be
+to <code>/etc/bind</code>. Files in that directory include the master file for the
+root zone and the zone files for both the <code>exworks</code> and
+<code>72.168.192.in-addr.arpa</code> domains.</p>
+<p>Here are the three master zone definitions:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="nx">options</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">directory</span><span class="w"> </span><span class="s">&quot;/var/cache/bind&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">listen</span><span class="o">-</span><span class="nx">on</span><span class="w"> </span><span class="nx">port</span><span class="w"> </span><span class="mi">5353</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="m m-Double">127.0.0.1</span><span class="p">;</span><span class="w"> </span><span class="p">};</span>
+<span class="w">        </span><span class="nx">recursion</span><span class="w"> </span><span class="nx">no</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">fetch</span><span class="o">-</span><span class="nx">glue</span><span class="w"> </span><span class="nx">no</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="w">    </span><span class="c1">// NOT SHOWN HERE, described elsewhere:</span>
+<span class="w">    </span><span class="c1">// - special chroot logging, see above</span>
+<span class="w">    </span><span class="c1">// - zones &quot;localhost&quot;, &quot;127.in-addr.arpa&quot;, &quot;0.in-addr.arpa&quot; and</span>
+<span class="w">    </span><span class="c1">//   &quot;255.in-addr.arpa&quot; as usual</span>
+
+<span class="w">    </span><span class="c1">// ROOT MASTER for internal DNS server</span>
+<span class="w">    </span><span class="nx">zone</span><span class="w"> </span><span class="s">&quot;.&quot;</span><span class="w"> </span><span class="nx">IN</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">type</span><span class="w"> </span><span class="nx">master</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">file</span><span class="w"> </span><span class="s">&quot;/etc/bind/internal.root.zone&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">allow</span><span class="o">-</span><span class="nx">transfer</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">none</span><span class="p">;</span><span class="w"> </span><span class="p">};</span>
+<span class="w">        </span><span class="nx">allow</span><span class="o">-</span><span class="nx">query</span><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">none</span><span class="p">;</span><span class="w"> </span><span class="p">};</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="w">    </span><span class="c1">// NO root zone, type hint definition!</span>
+
+<span class="w">    </span><span class="c1">// EXWORKS ZONES</span>
+<span class="w">    </span><span class="nx">zone</span><span class="w"> </span><span class="s">&quot;exworks&quot;</span><span class="w"> </span><span class="nx">IN</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">type</span><span class="w"> </span><span class="nx">master</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">file</span><span class="w"> </span><span class="s">&quot;/etc/bind/exworks.zone&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">allow</span><span class="o">-</span><span class="nx">transfer</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="m m-Double">127.0.0.1</span><span class="p">;</span><span class="w"> </span><span class="p">};</span>
+<span class="w">        </span><span class="nx">allow</span><span class="o">-</span><span class="nx">query</span><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="m m-Double">127.0.0.1</span><span class="p">;</span><span class="w"> </span><span class="p">};</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="w">    </span><span class="nx">zone</span><span class="w"> </span><span class="s">&quot;72.168.192.in-addr.arpa&quot;</span><span class="w"> </span><span class="nx">IN</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">type</span><span class="w"> </span><span class="nx">master</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">file</span><span class="w"> </span><span class="s">&quot;/etc/bind/exworks.rev&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">allow</span><span class="o">-</span><span class="nx">transfer</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="m m-Double">127.0.0.1</span><span class="p">;</span><span class="w"> </span><span class="p">};</span>
+<span class="w">        </span><span class="nx">allow</span><span class="o">-</span><span class="nx">query</span><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="m m-Double">127.0.0.1</span><span class="p">;</span><span class="w"> </span><span class="p">};</span>
+<span class="w">    </span><span class="p">};</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The <code>directory</code> refers to a location inside the chrooted tree. The
+<code>listen-on</code> specifies that this nameserver should only listen on port
+<code>5353</code> on the internal address <code>127.0.0.1</code>. The other two, <code>recursion</code>
+and <code>fetch-glue</code>, prevent resolving anything except bind fetch-glue bind
+recursion the zones that were defined here.</p>
+<p>The root zone should does not allow queries and transfers, as it is
+meant for local use only.</p>
+<p>The <code>exworks</code> and <code>72.168.192.in-addr.arpa</code> zone definitions allow zone
+transfers and queries originated from the other nameserver (the visible
+one). No other transfers and queries are allowed for these zones.</p>
+<h4 id="configuring-the-visible-nameserver">Configuring the visible nameserver<a class="headerlink" href="#configuring-the-visible-nameserver" title="Permanent link">&para;</a></h4>
+<p>This section will describe how to configure the <em>visible</em> nameserver (if
+in doubt read <a href="#DNSInternalVsVisible">Two nameservers on one host</a>
+again). Remember it does not run chrooted, nor does it use an alternate
+port. It does run under its own UID/GID though.</p>
+<p>The visible nameserver should be able to answer queries about both the
+inside and outside worlds.</p>
+<p><strong>Note</strong>
+The <em>visible</em> nameserver on <code>liongate</code> could use forwarding to connect
+to the internal nameserver, given the software allows you to specify a
+port.</p>
+<p>The <code>named.conf</code> for the visible nameserver, with common parts omitted,
+looks like this:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="c1">// /etc/bind/named.conf</span>
+<span class="w">    </span><span class="c1">// bind visible configuration on liongate</span>
+
+<span class="w">    </span><span class="nx">options</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">directory</span><span class="w"> </span><span class="s">&quot;/var/cache/bindVisible&quot;</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// point to the ISP&#39;s nameserver for outside world</span>
+<span class="w">        </span><span class="nx">forwarders</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="m m-Double">224.121.121.99</span><span class="p">;</span><span class="w"> </span><span class="c1">// ISP&#39;s DNS</span>
+<span class="w">        </span><span class="p">};</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="w">    </span><span class="c1">// NOT SHOWN HERE, described elsewhere:</span>
+<span class="w">    </span><span class="c1">// - logging as usual</span>
+<span class="w">    </span><span class="c1">// - root zone type hint as usual</span>
+<span class="w">    </span><span class="c1">// - zones &quot;localhost&quot;, &quot;127.in-addr.arpa&quot;, &quot;0.in-addr.arpa&quot; and</span>
+<span class="w">    </span><span class="c1">//   &quot;255.in-addr.arpa&quot; as usual</span>
+
+<span class="w">    </span><span class="c1">// point to port 5353 for these zones, be slave for both</span>
+<span class="w">    </span><span class="nx">zone</span><span class="w"> </span><span class="s">&quot;exworks&quot;</span><span class="w"> </span><span class="nx">IN</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">type</span><span class="w"> </span><span class="nx">slave</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">masters</span><span class="w"> </span><span class="nx">port</span><span class="w"> </span><span class="mi">5353</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="m m-Double">127.0.0.1</span><span class="p">;</span><span class="w"> </span><span class="p">};</span>
+<span class="w">        </span><span class="nx">file</span><span class="w"> </span><span class="s">&quot;exworks.slave&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">allow</span><span class="o">-</span><span class="nx">transfer</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">none</span><span class="p">;</span><span class="w"> </span><span class="p">};</span>
+<span class="w">        </span><span class="nx">allow</span><span class="o">-</span><span class="nx">query</span><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="m m-Double">127.0.0.1</span><span class="p">;</span><span class="w"> </span><span class="m m-Double">192.168.72.0</span><span class="o">/</span><span class="mi">24</span><span class="p">;</span><span class="w"> </span><span class="p">};</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="w">    </span><span class="nx">zone</span><span class="w"> </span><span class="s">&quot;72.168.192.in-addr.arpa&quot;</span><span class="w"> </span><span class="nx">IN</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">type</span><span class="w"> </span><span class="nx">slave</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">masters</span><span class="w"> </span><span class="nx">port</span><span class="w"> </span><span class="mi">5353</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="m m-Double">127.0.0.1</span><span class="p">;</span><span class="w"> </span><span class="p">};</span>
+<span class="w">        </span><span class="nx">file</span><span class="w"> </span><span class="s">&quot;72.168.192.in-addr.arpa.slave&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">allow</span><span class="o">-</span><span class="nx">transfer</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">none</span><span class="p">;</span><span class="w"> </span><span class="p">};</span>
+<span class="w">        </span><span class="nx">allow</span><span class="o">-</span><span class="nx">query</span><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="m m-Double">127.0.0.1</span><span class="p">;</span><span class="w"> </span><span class="m m-Double">192.168.72.0</span><span class="o">/</span><span class="mi">24</span><span class="p">;</span><span class="w"> </span><span class="p">};</span>
+<span class="w">    </span><span class="p">};</span>
+</code></pre></div></td></tr></table></div>
+
+<p>This implements:</p>
+<ul>
+<li>
+<p>a nameserver to perform slave resolving for the <code>exworks</code> and
+    <code>72.168.192.in-addr.arpa</code> zones.</p>
+</li>
+<li>
+<p>forwarding, to resolve names from the outside world.</p>
+</li>
+</ul>
+<p>The directory specified by the <code>directory</code> statement must be writable by
+the running nameserver. I.e. if the nameserver runs as user <code>vnamed</code> and
+group <code>vnamed</code>, the directory <code>/var/cache/bindVisible</code> must be owned by
+user <code>vnamed</code> and group <code>vnamed</code>. The slave files <code>exworks.slave</code> and
+<code>72.168.192.in-addr.arpa.slave</code> will be put there.</p>
+<p>Let's look at the slave zone definitions. Both refer to a master at
+port <code>5353</code> on the same host. Both definitions do not allow full zone
+transfers. The only zone transfers are from master (at port 5353) to
+slave (the configuration for the <em>master</em> allows this, see <a href="#DNSinternalMaster">Configuring
+the master on </a>). Normal queries are allowed for the
+localhost (<code>127.0.0.1</code>, i.e., internal connections on <code>liongate</code>), as
+well as all hosts in the <code>exworks</code> zone (<code>192.168.72.</code><em>x</em>).</p>
+<p>On <code>liongate</code> the <code>resolv.conf</code> file will contain</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    nameserver 127.0.0.1
+</code></pre></div></td></tr></table></div>
+
+<p>that is, it points to the <em>visible</em> nameserver which listens on port
+<code>53</code>. Other hosts in the <code>exworks</code> domain will have</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    nameserver 192.168.72.1
+</code></pre></div></td></tr></table></div>
+
+<p>(the IP address of <code>liongate</code>) in their <code>resolv.conf</code>.</p>
+<p><strong>Note</strong>
+It is not possible to specify a portnumber in <code>resolv.conf</code>. The
+specified nameserver(s) will be contacted at port <code>53</code>.</p>
+<h4 id="a-problem">A problem<a class="headerlink" href="#a-problem" title="Permanent link">&para;</a></h4>
+<p>A master nameserver will send a <em>notify</em> message to a slave nameserver
+whenever a zone definition changes. This causes the slave to initiate a
+zone transfer. But as both servers listen on the same IP address, the
+only thing to distinct them are their port numbers. Alas you can't
+specify a port number in a <code>also-notify</code> statement, so there is no way
+to notify the slave if the master data has changed.</p>
+<p>There is a simple solution to this problem: if the master zone changes
+and after the internal nameserver has reloaded the zone data, restart
+the visible nameserver too.</p>
+<p>Linux supports binding more than one IP address to a network interface.
+Another approach would be to give both servers a unique local IP
+address. This involves other configuration changes, which by now you
+should be able to manage. Therefore the exercise on how to do this is
+left to the reader.</p>
+<h3 id="tsig">TSIG<a class="headerlink" href="#tsig" title="Permanent link">&para;</a></h3>
+<p>TSIG (Transaction SIGnatures) provides a secured communication channel
+between nameservers for zone transfers. It is a resource friendly
+add-on, available in BIND version 8.2 and higher.</p>
+<p>TSIG uses shared keys and one-way hashing to provide authenticity and
+integrity. See <a href="#CCC">CrashCryptoCourse</a> for a short introduction to
+these concepts.</p>
+<h4 id="configuring-tsig-for-bind">Configuring TSIG for BIND<a class="headerlink" href="#configuring-tsig-for-bind" title="Permanent link">&para;</a></h4>
+<p>We need a HMAC-MD55 key pair, which can be generated using the now
+familiar <code>dnssec-keygen</code> command:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>    # dnssec-keygen -a HMAC-MD5 -b 512 -n HOST rndc-key
+    Krndc-key.+157+24876
+</code></pre></div></td></tr></table></div>
+
+<p>The utility will generate two output files. Note that the keys in both
+files will always be duplicates as we required a HMAC-MD5.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>    # ls -l Krndc-key.+157+24876*
+    -rw------- 1 root bind 117 Jul  5 05:28 Krndc-key.+157+24876.key
+    -rw------- 1 root bind 229 Jul  5 05:28 Krndc-key.+157+24876.private
+</code></pre></div></td></tr></table></div>
+
+<p>The contents of the private keyfile might be similar to this:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code>    # cat Krndc-key.+157+24876.private 
+    Private-key-format: v1.3
+    Algorithm: 157 (HMAC_MD5)
+    Key: XIQDYlGaIbWfyopYHS1vtFrlfJiiIkiEbiNj4kN8Ke+F0hEqA7KVwcJMR/6URez32XBEmKZf2W1GUzjpbI2KJQ==
+    Bits: AAA=
+    Created: 20130705102726
+    Publish: 20130705102726
+    Activate: 20130705102726
+</code></pre></div></td></tr></table></div>
+
+<p>Create a file to hold the secret you just generated and the IP addresses
+of slave nameservers. The name of the file can be freely chosen, in this
+example <code>tsig.key</code> will be used. The syntax of this file can be learned
+from this example:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><code>    key &quot;TRANSFER&quot; {
+        algorithm hmac-md5;
+        secret &quot;XIQDYlGaIbWfyopYHS1vtFrlfJiiIkiEbiNj4kN8Ke+F0hEqA7KVwcJMR/6URez32XBEmKZf2W1GUzjpbI2KJQ==&quot;;
+    };
+
+    # nameserver 2 (slave)
+    server 10.0.1.2 {
+        keys { TRANSFER; };
+    };
+
+    # nameserver 3 (slave)
+    server 10.0.1.3 {
+        keys { TRANSFER; };
+    };
+</code></pre></div></td></tr></table></div>
+
+<p>Note: the server option points to the slave nameserver.</p>
+<p>Edit the BIND main configuration file <code>named.conf</code> and include the file
+like this:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="k">include</span><span class="w"> </span><span class="s2">&quot;/etc/bind/tsig.key&quot;</span><span class="c1">;</span>
+</code></pre></div></td></tr></table></div>
+
+<p>Now, reload the BIND configuration:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="c1"># rndc reload</span>
+<span class="w">    </span><span class="n">server</span><span class="w"> </span><span class="n">reload</span><span class="w"> </span><span class="n">successful</span>
+</code></pre></div></td></tr></table></div>
+
+<p>Use <code>rndc tsig-list</code> to list the currently active TSIG keys. This
+completes the configuration on the master. Next we will need to
+configure the slaves.</p>
+<p>To setup the slave nameserver, create a similar <code>tsig.key</code> file there,
+that contains the same secret as used on the master nameserver. However,
+now make the <code>server</code> option point to the master nameserver:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code>    key &quot;TRANSFER&quot; {
+        algorithm hmac-sha1;
+        secret &quot;XIQDYlGaIbWfyopYHS1vtFrlfJiiIkiEbiNj4kN8Ke+F0hEqA7KVwcJMR/6URez32XBEmKZf2W1GUzjpbI2KJQ==&quot;;
+    };
+
+    # nameserver 1 (master)
+    server 10.0.1.1 {
+        keys { TRANSFER; };
+    };
+</code></pre></div></td></tr></table></div>
+
+<p>As before, include the path to the <code>tsig.key</code> file to the BIND main
+configuration file and reload the configuration. TSIG is now enabled.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 1997-2021 Sue B.V., The Netherlands - Open Sourced 2021
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["search.highlight", "tabs", "instant"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

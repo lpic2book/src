@@ -1,0 +1,2997 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Sue B.V., The Netherlands">
+      
+      
+      
+        <link rel="prev" href="../lpic2.204.0/">
+      
+      
+        <link rel="next" href="../lpic2.204.2/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Configuring RAID (204.1) - The LPIC2 Exam Prep</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:300,300i,400,400i,700,700i%7CAnonymous+Pro:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Nunito";--md-code-font:"Anonymous Pro"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#configuring-raid-2041" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="The LPIC2 Exam Prep" class="md-header__button md-logo" aria-label="The LPIC2 Exam Prep" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            The LPIC2 Exam Prep
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Configuring RAID (204.1)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/lpic2book/src" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    LPIC2Book
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="The LPIC2 Exam Prep" class="md-nav__button md-logo" aria-label="The LPIC2 Exam Prep" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/></svg>
+
+    </a>
+    The LPIC2 Exam Prep
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/lpic2book/src" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    LPIC2Book
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The LPIC2 Exam Prep
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpicbook_about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About this book
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    200 Capacity Planning (200)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Measure and Troubleshoot Resource Usage (200.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Predict Future Resource Needs (200.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Kernel (201)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel Components (201.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compiling a Linux kernel (201.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel runtime management and troubleshooting (201.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Startup (202)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customizing system startup (202.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System recovery (202.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Alternate Bootloaders (202.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Filesystem and Devices (203)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operating The Linux Filesystem (203.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maintaining a Linux Filesystem (203.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Creating And Configuring Filesystem Options (203.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Storage Device Administration (204)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring RAID (204.1)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring RAID (204.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-raid-2041" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring RAID (204.1)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring RAID (204.1)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-knowledge-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Knowledge Areas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terms-and-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terms and Utilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-raid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is RAID?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What is RAID?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#raid-levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RAID levels
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#level-0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Level 0
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#level-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Level 1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#level-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Level 4
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#level-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Level 5
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linear-raid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linear RAID
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hardware-raid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hardware RAID
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#software-raid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Software RAID
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recognizing-raid-on-your-linux-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recognizing RAID on your Linux system
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mdadm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring RAID (using mdadm)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assemble" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assemble
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Build">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#misc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Misc
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-software-raid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setting up software RAID
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initialize-partitions-to-be-used-in-the-raid-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Initialize partitions to be used in the RAID setup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-the-driver" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure the driver
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initialize-raid-drive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Initialize RAID drive
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-the-replication-using-procmdstat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Check the replication using /proc/mdstat
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#automate-raid-activation-after-reboot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automate RAID activation after reboot
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mount-the-filesystem-on-the-raid-drive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mount the filesystem on the RAID drive
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manual-raid-activation-and-mounting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manual RAID activation and mounting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-raid-alternative" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring RAID (alternative)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adjusting Storage Device Access (204.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logical Volume Manager (204.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring PCMCIA Devices (204.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Networking Configuration (205)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Networking Configuration (205.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Network Configuration and Troubleshooting (205.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting network issues (205.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Maintenance (206)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Make and install programs from source (206.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup Operations (206.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifying users on system-related issues (206.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domain Name Server (207)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic DNS server configuration (207.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Create and maintain DNS zones (207.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Securing a DNS Server (207.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTTP Services (208)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Apache Configuration (208.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Apache configuration for HTTPS (208.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementing Squid as a caching proxy (208.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementing Nginx as a web server and a reverse proxy (208.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File Sharing (209)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAMBA Server Configuration (209.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring an NFS Server (209.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Client Management (210)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DHCP Configuration (210.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PAM authentication (210.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LDAP client usage (210.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring an OpenLDAP server (210.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    E-Mail services (211)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using e-mail servers (211.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing E-Mail Delivery (211.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing Mailbox Access (211.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Security (212)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring a router (212.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing FTP servers (212.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secure shell (SSH) (212.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security tasks (212.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenVPN (212.5)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-raid-2041" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring RAID (204.1)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring RAID (204.1)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-knowledge-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Knowledge Areas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terms-and-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terms and Utilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-raid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is RAID?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What is RAID?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#raid-levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RAID levels
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#level-0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Level 0
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#level-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Level 1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#level-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Level 4
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#level-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Level 5
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linear-raid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linear RAID
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hardware-raid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hardware RAID
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#software-raid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Software RAID
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recognizing-raid-on-your-linux-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recognizing RAID on your Linux system
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mdadm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring RAID (using mdadm)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assemble" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assemble
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Build">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#misc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Misc
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-software-raid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setting up software RAID
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initialize-partitions-to-be-used-in-the-raid-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Initialize partitions to be used in the RAID setup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-the-driver" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure the driver
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initialize-raid-drive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Initialize RAID drive
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-the-replication-using-procmdstat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Check the replication using /proc/mdstat
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#automate-raid-activation-after-reboot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automate RAID activation after reboot
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mount-the-filesystem-on-the-raid-drive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mount the filesystem on the RAID drive
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manual-raid-activation-and-mounting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manual RAID activation and mounting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-raid-alternative" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring RAID (alternative)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>Configuring RAID (204.1)</h1>
+
+<h2 id="configuring-raid-2041">Configuring RAID (204.1)<a class="headerlink" href="#configuring-raid-2041" title="Permanent link">&para;</a></h2>
+<p>Candidates should be able to configure and implement software RAID. This
+objective includes using and configuring RAID 0, 1, and 5.</p>
+<h3 id="key-knowledge-areas">Key Knowledge Areas<a class="headerlink" href="#key-knowledge-areas" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Software raid configuration files and utilities</li>
+</ul>
+<h3 id="terms-and-utilities">Terms and Utilities<a class="headerlink" href="#terms-and-utilities" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><code>mdadm</code></p>
+</li>
+<li>
+<p><code>mdadm.conf</code></p>
+</li>
+<li>
+<p><code>fdisk</code></p>
+</li>
+<li>
+<p><code>/proc/mdstat</code></p>
+</li>
+</ul>
+<h3 id="what-is-raid">What is RAID?<a class="headerlink" href="#what-is-raid" title="Permanent link">&para;</a></h3>
+<p>RAID stands for "Redundant Array of Inexpensive Disks".</p>
+<p>The basic idea behind RAID is to combine multiple small, inexpensive
+disk drives into an array which yields performance exceeding that of one
+large and expensive drive. This array of drives will appear to the
+computer as a single logical storage unit or drive.</p>
+<p>Some of the concepts used in this chapter are important factors in
+deciding which level of RAID to use in a particular situation. Parity is
+a concept used to add redundancy to storage. A parity bit is a binary
+digit which is added to ensure that the number of bits with value of one
+in a given set of bits is always even or odd. By using part of the
+capacity of the RAID for storing parity bits in a clever way, single
+disk failures can happen without data-loss since the missing bit can be
+recalculated using the parity bit. I/O transactions are movements of
+data to or from a RAID device or its members. Each I/O transaction
+consists of one or more blocks of data. A single disc can handle a
+maximum random number of transactions per second, since the mechanism
+has a seek time before data can be read or written. Depending on the
+configuration of the RAID, a single I/O transaction to the RAID can
+trigger multiple I/O transactions to its members. This affects the
+performance of the RAID device in terms of maximum number of I/O
+transactions and data transfer rate. Data transfer rate is the amount of
+data a single disk or RAID device can handle per second. This value
+usually varies for read and write actions, random or sequential access
+etc.</p>
+<p>RAID is a method by which information is spread across several disks,
+using techniques such as disk striping (RAID Level 0), disk mirroring
+(RAID level 1), and striping with distributed parity (RAID Level 5), to
+achieve redundancy, lower latency and/or higher bandwidth for reading
+and/or writing to disk, and maximize recoverability from hard-disk
+crashes.</p>
+<p>The underlying concept in RAID is that data may be distributed across
+each drive in the array in a consistent manner. To do this, the data
+must first be broken into consistently-sized chunks (often 32K or 64K in
+size, although different sizes can be used). Each chunk is then written
+to each drive in turn. When the data is to be read, the process is
+reversed, giving the illusion that multiple drives are actually one
+large drive. Primary reasons to use RAID include:</p>
+<ul>
+<li>
+<p>enhanced transfer speed</p>
+</li>
+<li>
+<p>enhanced number of transactions per second</p>
+</li>
+<li>
+<p>increased single block device capacity</p>
+</li>
+<li>
+<p>greater efficiency in recovering from a single disk failure</p>
+</li>
+</ul>
+<h4 id="raid-levels">RAID levels<a class="headerlink" href="#raid-levels" title="Permanent link">&para;</a></h4>
+<p>There are a number of different ways to configure a RAID subsystem -
+some maximize performance, others maximize availability, while others
+provide a mixture of both. For the LPIC-2 exam the following are
+relevant:</p>
+<ul>
+<li>
+<p>RAID-0 (striping)</p>
+</li>
+<li>
+<p>RAID-1 (mirroring)</p>
+</li>
+<li>
+<p>RAID-&#8536;</p>
+</li>
+<li>
+<p>Linear mode</p>
+</li>
+</ul>
+<h4 id="level-0">Level 0<a class="headerlink" href="#level-0" title="Permanent link">&para;</a></h4>
+<p>RAID 0 striping RAID level 0, often called "striping", is a
+performance-oriented striped data mapping technique. This means the data
+being written to the array is broken down into strips and written across
+the member disks of the array. This allows high I/O performance at low
+inherent cost but provides no redundancy. Storage capacity of the array
+is equal to the sum of the capacity of the member disks. As a result,
+RAID 0 is primarily used in applications that require high performance
+and are able to tolerate lower reliability.</p>
+<h4 id="level-1">Level 1<a class="headerlink" href="#level-1" title="Permanent link">&para;</a></h4>
+<p>RAID 1 mirroring RAID level 1, or "mirroring", has been used longer than
+any other form of RAID. Level 1 provides redundancy by writing identical
+data to each member disk of the array, leaving a mirrored copy on each
+disk. Mirroring remains popular due to its simplicity and high level of
+data availability. Level 1 operates with two or more disks that may use
+parallel access for high data-transfer rates when reading, but more
+commonly operate independently to provide high I/O transaction rates.
+Level 1 provides very good data reliability and improves performance for
+read-intensive applications but at a relatively high cost. Array
+capacity is equal to the capacity of the smallest member disk.</p>
+<h4 id="level-4">Level 4<a class="headerlink" href="#level-4" title="Permanent link">&para;</a></h4>
+<p>RAID 4 RAID level 4 uses parity concentrated on a single disk drive to
+protect data. It is better suited to transaction I/O rather than large
+file transfers. Because the dedicated parity disk represents an inherent
+bottleneck, level 4 is seldom used without accompanying technologies
+such as write-back caching. Array capacity is equal to the capacity of
+member disks, minus the capacity of one member disk.</p>
+<h4 id="level-5">Level 5<a class="headerlink" href="#level-5" title="Permanent link">&para;</a></h4>
+<p>RAID 5 The most common type of RAID is level 5 RAID. By distributing
+parity across some or all of the member disk drives of an array, RAID
+level 5 eliminates the write bottleneck inherent in level 4. The only
+bottleneck is the parity calculation process. Because the widespread use
+of modern CPUs and software RAID that is not really an issue anymore. As
+with level 4, the result is asymmetrical performance, with reads
+substantially outperforming writes. Level 5 is often used with
+write-back caching to reduce the asymmetry. The capacity of the array is
+equal to the total capacity of all member disks, minus the capacity of
+one member disk. Upon failure of a single member disk, subsequent reads
+can be calculated from the distributed parity such that no data is lost.
+RAID 5 requires at least three disks.</p>
+<h4 id="linear-raid">Linear RAID<a class="headerlink" href="#linear-raid" title="Permanent link">&para;</a></h4>
+<p>Linear RAID is a simple grouping of drives to create a
+larger virtual drive. In linear RAID the chunks are allocated
+sequentially from one member drive, going to the next drive only when
+the first is completely filled. The difference with "striping" is that
+there is no performance gain for single process applications, mostly
+everything is written to one and the same disk. The disk(partition)s can
+have different sizes whereas "striping" requires them to be roughly the
+same size. If you have a larger number of mostly used disks in a linear
+RAID setup, multiple processes may benefit during reads as each process
+may access a different drive. Linear RAID also offers no redundancy, and
+in fact decreases reliability; if any one member drive fails, the entire
+array cannot be used. The capacity is the total of all member disks.</p>
+<p>RAID can be implemented either in <em>hardware</em> or in <em>software</em>; both
+scenarios are explained below.</p>
+<h4 id="hardware-raid">Hardware RAID<a class="headerlink" href="#hardware-raid" title="Permanent link">&para;</a></h4>
+<p>RAID hardware The hardware-based system manages the RAID subsystem
+independently from the host and presents to the host only a single disk
+per RAID array.</p>
+<p>A typical hardware RAID device might connect to a SCSI controller and
+present the RAID array(s) as a single SCSI drive. An external RAID
+system moves all RAID handling intelligence into a controller located in
+the external disk subsystem.</p>
+<p>SCSI RAID controllers also come in the form of cards that act like a
+SCSI controller to the operating system, but handle all of the actual
+drive communications themselves. In these cases, you plug the drives
+into the RAID controller just as you would a SCSI controller, but then
+you add them to the RAID controller's configuration, and the operating
+system never knows the difference.</p>
+<h4 id="software-raid">Software RAID<a class="headerlink" href="#software-raid" title="Permanent link">&para;</a></h4>
+<p>Software RAID implements the various RAID
+levels in the kernel disk (block device) code. It also offers the
+cheapest possible solution: Expensive disk controller cards or hot-swap
+chassis are not required, and software RAID works with cheaper SATA
+disks as well as SCSI disks. With today's fast CPUs, software RAID
+performance can excel in comparison with hardware RAID.</p>
+<p>MD Software RAID allows you to dramatically increase Linux disk I/O
+performance and reliability without having to buy expensive hardware
+RAID controllers or enclosures. The MD driver in the Linux kernel is an
+example of a RAID solution that is completely hardware independent. The
+performance of a software-based array is dependent on the server CPU
+performance and load. Also, the implementation and setup of the software
+RAID solution can significantly influence performance.</p>
+<p>The concept behind software RAID is simple - it allows you to combine
+two (three, at least, for RAID5) or more block devices (usually disk
+partitions) into a single RAID device. So if you have three empty
+partitions (for example: <code>hda3</code>, <code>hdb3</code>, and <code>hdc3</code>), using Software
+RAID you can combine these partitions and address them as a single RAID
+device, <code>/dev/md0</code>. <code>/dev/md0</code> can then be formatted to contain a
+filesystem and be used like any other partition.</p>
+<h4 id="recognizing-raid-on-your-linux-system">Recognizing RAID on your Linux system<a class="headerlink" href="#recognizing-raid-on-your-linux-system" title="Permanent link">&para;</a></h4>
+<p>Detecting hardware raid on a Linux system can be tricky and there is not
+one sure way to do this. Since hardware RAID tries to present itself to
+the operating system as a single block device, it often shows up as a
+single SCSI disc when querying the system. Often special vendor software
+or physical access to the equipment is required to adequately detect and
+identify hardware RAID equipment. Software raid can be easily identified
+by the name of the block device (/dev/mdn) and its major number 9.</p>
+<h4 id="mdadm">Configuring RAID (using <code>mdadm</code>)<a class="headerlink" href="#mdadm" title="Permanent link">&para;</a></h4>
+<p>Configuring software RAID using <code>mdadm</code>
+(Multiple Devices Admin) requires only that the md driver be configured
+into the kernel, or loaded as a kernel module. The optional <code>mdadm.conf</code>
+file may be used to direct <code>mdadm</code> in the simplification of common
+tasks, such as defining multiple arrays, and defining the devices used
+by them. The <code>mdadm.conf</code> has a number of possible options, described
+later in this document, but generally, the file details arrays and
+devices. It should be noted that, although not required, the
+<code>mdadm.conf</code> greatly reduces the burden on administrators to "remember"
+the desired array configuration when launching. The <code>mdadm</code> is used (as
+its acronym suggests) to configure and manage multiple devices.
+<em>Multiple</em> is key here. In order for RAID to provide any kind of
+redundancy to logical disks, there must obviously be at the very least
+two physical block devices (three for RAID5) in the array to establish
+redundancy, ergo protection. Since <code>mdadm</code> manages multiple devices, its
+application is not limited solely to RAID implementations, but may be
+also be used to establish multi-pathing. <code>mdadm</code> has a number of modes,
+listed below</p>
+<h4 id="assemble">Assemble<a class="headerlink" href="#assemble" title="Permanent link">&para;</a></h4>
+<p>"Rebuilds" a pre existing array. Typically used when
+migrating arrays to new hosts, but more often used from system startup
+to launch a pre existing array.</p>
+<h3 id="build">Build<a class="headerlink" href="#build" title="Permanent link">&para;</a></h3>
+<p>Does not create array
+superblocks, and therefore does not destroy any pre existing data. May
+be useful when attempting to recover or access stale data. (can not be
+used in combination with <code>mdadm.conf</code>). Typically used with legacy
+arrays, and rarely used.</p>
+<h4 id="create">Create<a class="headerlink" href="#create" title="Permanent link">&para;</a></h4>
+<p>Creates an array from scratch, using
+pre-existing block devices, and activates the array.</p>
+<h4 id="grow">Grow<a class="headerlink" href="#grow" title="Permanent link">&para;</a></h4>
+<p>Used to
+modify a existing array, for example adding, or removing devices.
+Capability is expected to be extended during the development lifecycle
+of the 2.6 kernel.</p>
+<h4 id="misc">Misc<a class="headerlink" href="#misc" title="Permanent link">&para;</a></h4>
+<p>Used for performing various loosely bundled
+housekeeping tasks. Can be used to generate the initial mdadm.conf file
+for an existing array, setting the array into read only, and read/write
+modes, and for checking the status of array devices. The more typical
+uses are described in more detail later on in this section.</p>
+<p>The
+Linux kernel provides a special driver, <code>/dev/md0</code>, to access separate
+disk partitions as a logical RAID unit. These partitions under RAID do
+not actually <em>need</em> to be different disks, but in order to eliminate
+risks it is better to use different disks. <code>mdadm</code> may also be used to
+establish multipathing, also over filesystem devices (since multipathing
+is established at the block level). However, as with establishing RAID
+over multiple filesystems on the same physical disk, multipathing on the
+same physical disk provides only the vague illusion of redundancy, and
+its use should probably be restricted to test purposes only or out of
+pure curiosity.</p>
+<h4 id="setting-up-software-raid">Setting up software RAID<a class="headerlink" href="#setting-up-software-raid" title="Permanent link">&para;</a></h4>
+<p>Follow these steps to set up software RAID in Linux:</p>
+<ol>
+<li>
+<p>Configure the RAID driver</p>
+</li>
+<li>
+<p>Initialise the RAID drive</p>
+</li>
+<li>
+<p>Check the replication using <code>/proc/mdstat</code></p>
+</li>
+<li>
+<p>Automate RAID activation after reboot</p>
+</li>
+<li>
+<p>Mount the filesystem on the RAID drive</p>
+</li>
+</ol>
+<p>Each of these steps is now described in detail:</p>
+<h4 id="initialize-partitions-to-be-used-in-the-raid-setup">Initialize partitions to be used in the RAID setup<a class="headerlink" href="#initialize-partitions-to-be-used-in-the-raid-setup" title="Permanent link">&para;</a></h4>
+<p>Create partitions using any disk partitioning tool.</p>
+<h4 id="configure-the-driver">Configure the driver<a class="headerlink" href="#configure-the-driver" title="Permanent link">&para;</a></h4>
+<p>A driver file for each independant array will be automatically created
+when <code>mdadm</code> creates the array, and will follow the convention
+<code>/dev/md[n]</code> for each increment. It may also be manually created using
+<code>mknod</code> and building a block device file, with a major number 9 (md
+device driver found in <code>/proc/devices</code>).</p>
+<h4 id="initialize-raid-drive">Initialize RAID drive<a class="headerlink" href="#initialize-raid-drive" title="Permanent link">&para;</a></h4>
+<p>Here is an example of the sequence of commands needed to create and
+format a RAID drive:</p>
+<ol>
+<li>
+<p>Prepare the partition for auto RAID detection using <code>fdisk</code></p>
+<p>In order for a partition to be automatically recognised as part of a
+RAID set, it must first have its partition type set to "fd". This
+may be achieved by using the <code>fdisk</code> command menu, and using the <code>t</code>
+option to change the setting. Available settings may be listed by
+using the <code>l</code> menu option. The description may vary accross
+implementations, but should clearly show the type to be a Linux auto
+raid. Once set, the settings <em>must</em> be saved back to the partition
+table using the <code>w</code> option.</p>
+<p>In working practice, it may be that a physical disk containing the
+chosen partition for use in a RAID set also contains partitions for
+local filesystems which are not intended for inclusion within the
+RAID set. In order for <code>fdisk</code> to write back the changed partition
+table, all of the partitions on the physical disk must not be in
+use. For this reason, RAID build planning should take into account
+factors which may not allow the action to be performed truly online
+(i.e will require downtime).</p>
+</li>
+<li>
+<p>Create the array raidset using <code>mdadm</code></p>
+<p>To create an array for the first time, we need to have identified
+the partitions that will be used to form the RAIDset, and verify
+with <code>fdisk -l</code> that the fd partition type has been set. Once this
+has been achieved, the array may be created as follows. <code>mdadm</code> -C
+/dev/md0 -l raid5 -n 3 /dev/partition1 /dev/partition2
+/dev/partition3</p>
+<p>This would create, and activate a raid5 array called md0,containing
+three devices, named /dev/partition1 /dev/partition2, and
+/dev/partiton3. Once created and running, the status of the array
+may be checked by <code>cat</code>'ing <code>/proc/mdstat</code>.</p>
+</li>
+<li>
+<p>Create filesystems on the newly created raidset</p>
+<p>The newly created RAID set may then be addressed as a single device
+using the <code>/dev/md0</code> device file, and formatted and mounted as
+normal. For example: <code>mkfs.ext3</code> <code>/dev/md0</code>.</p>
+</li>
+<li>
+<p>Create the <code>/etc/mdadm.conf</code> using the <code>mdadm</code> command.</p>
+<p>Creating the <code>/etc/mdadm.conf</code> file is pleasantly simple, requiring
+only that <code>mdadm</code> be called with the <code>--scan</code>, <code>--verbose</code>, and
+<code>--detail</code> options, and its standard output redirected. It may
+therefore also be used as a handy tool for determining any changes
+on the array simply by <code>diff</code>'ing the current and stored output.
+Create as follows:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>mdadm --detail --scan --verbose &gt; /etc/mdadm.conf
+</code></pre></div></td></tr></table></div>
+
+</li>
+<li>
+<p>Create mount points and edit <code>/etc/fstab</code></p>
+<p>Care must be taken that any recycled partitions used in the RAID set
+be removed from the <code>/etc/fstab</code> if they still exist.</p>
+</li>
+<li>
+<p>Mount filesystems using <code>mount</code></p>
+<p>If the array has been created online, and a reboot has not been
+executed, then the file systems will need to be manually mounted,
+either manually using the <code>mount</code> command, or simply using
+<code>mount -a</code></p>
+</li>
+</ol>
+<h4 id="check-the-replication-using-procmdstat">Check the replication using <code>/proc/mdstat</code><a class="headerlink" href="#check-the-replication-using-procmdstat" title="Permanent link">&para;</a></h4>
+<p>The <code>/proc/mdstat</code> file shows the state of the kernels RAID/md driver.</p>
+<h4 id="automate-raid-activation-after-reboot">Automate RAID activation after reboot<a class="headerlink" href="#automate-raid-activation-after-reboot" title="Permanent link">&para;</a></h4>
+<p>raidstart</p>
+<p>Run <code>mdadm --assemble</code> in one of the startup files (e.g.
+<code>/etc/rc.d/rc.sysinit</code> or <code>/etc/init.d/rcS</code>) When called with the <code>-s</code>
+option (scan) to <code>mdadm
+                --assemble</code>, instructs <code>mdadm</code> to use the
+<code>/etc/mdadm.conf</code> if it exists, and otherwise to fallback to
+<code>/proc/mdstat</code> for missing information. A typical system startup entry
+could be for example, <code>mdadm --assemble -s</code>.</p>
+<h4 id="mount-the-filesystem-on-the-raid-drive">Mount the filesystem on the RAID drive<a class="headerlink" href="#mount-the-filesystem-on-the-raid-drive" title="Permanent link">&para;</a></h4>
+<p>Edit <code>/etc/fstab</code> to automatically mount the filesystem on the RAID
+drive. The entry in <code>/etc/fstab</code> is identical to normal block devices
+containing file systems.</p>
+<h4 id="manual-raid-activation-and-mounting">Manual RAID activation and mounting<a class="headerlink" href="#manual-raid-activation-and-mounting" title="Permanent link">&para;</a></h4>
+<p>Run <code>mdadm --assemble</code> for each RAID block device you want to start
+manually. After starting the RAID device you can mount any filesystem
+present on the device using <code>mount</code> with the appropriate options.</p>
+<h4 id="configuring-raid-alternative">Configuring RAID (alternative)<a class="headerlink" href="#configuring-raid-alternative" title="Permanent link">&para;</a></h4>
+<p>Instead of managing RAID via <code>mdadm</code>, it can be configured via
+<code>/etc/raidtab</code> and controlled via the <code>mkraid</code>, <code>raidstart</code>, and
+<code>raidstop</code> utilities.</p>
+<p>Here's an example <code>/etc/raidtab</code>:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span></pre></div></td><td class="code"><div><pre><span></span><code>    #
+    # Sample /etc/raidtab configuration file
+    #
+    raiddev /dev/md0
+      raid-level              0
+      nr-raid-disks           2
+      persistent-superblock   0
+      chunk-size              8
+
+      device                  /dev/hda1
+      raid-disk               0
+      device                  /dev/hdb1
+      raid-disk               1
+
+    raiddev /dev/md1
+      raid-level              5
+      nr-raid-disks           3
+      nr-spare-disks          1
+      persistent-superblock   1
+      parity-algorithm        left-symmetric
+
+      device                  /dev/sda1
+      raid-disk               0
+      device                  /dev/sdb1
+      raid-disk               1
+      device                  /dev/sdc1
+      raid-disk               2
+      device                  /dev/sdd1
+      spare-disk              0
+</code></pre></div></td></tr></table></div>
+
+<p>The <code>mkraid</code>, <code>raidstart</code>, and <code>raidstop</code> utilities all use this file as
+input and respectively configure, activate (start) and unconfigure
+(stop) RAID devices. All of these tools work similiarly. If -a (or
+--all) is specified, the specified operation is performed on all of the
+RAID devices mentioned in the configuration file. Otherwise, one or more
+RAID devices must be specified on the command line.</p>
+<p>Refer to the manual pages for raidtab(8), mdstart(8) and raidstart,
+raidstop(8) for details.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 1997-2021 Sue B.V., The Netherlands - Open Sourced 2021
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["search.highlight", "tabs", "instant"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
