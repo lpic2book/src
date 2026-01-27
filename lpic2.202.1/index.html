@@ -1,0 +1,3564 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Sue B.V., The Netherlands">
+      
+      
+      
+        <link rel="prev" href="../lpic2.202.0/">
+      
+      
+        <link rel="next" href="../lpic2.202.2/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Customizing system startup (202.1) - The LPIC2 Exam Prep</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:300,300i,400,400i,700,700i%7CAnonymous+Pro:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Nunito";--md-code-font:"Anonymous Pro"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#customizing-system-startup-2021" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="The LPIC2 Exam Prep" class="md-header__button md-logo" aria-label="The LPIC2 Exam Prep" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            The LPIC2 Exam Prep
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Customizing system startup (202.1)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/lpic2book/src" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    LPIC2Book
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="The LPIC2 Exam Prep" class="md-nav__button md-logo" aria-label="The LPIC2 Exam Prep" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/></svg>
+
+    </a>
+    The LPIC2 Exam Prep
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/lpic2book/src" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    LPIC2Book
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The LPIC2 Exam Prep
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpicbook_about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About this book
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    200 Capacity Planning (200)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Measure and Troubleshoot Resource Usage (200.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Predict Future Resource Needs (200.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Kernel (201)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel Components (201.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compiling a Linux kernel (201.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel runtime management and troubleshooting (201.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Startup (202)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customizing system startup (202.1)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customizing system startup (202.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#customizing-system-startup-2021" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Customizing system startup (202.1)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Customizing system startup (202.1)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-knowledge-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Knowledge Areas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terms-and-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terms and Utilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-initrd-using-mkinitrd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create initrd using mkinitrd
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mkinitramfsmc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create initrd using mkinitramfs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setting-the-root-device" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setting the root device
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-linux-boot-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Linux Boot process
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-init-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The init process
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The init process">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#runlevel-0-reserved" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        runlevel 0 (reserved)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#runlevel-1-reserved" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        runlevel 1 (reserved)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#runlevel-2-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        runlevel 2-5
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#runlevel-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        runlevel 6
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#runlevel-7-9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        runlevel 7-9
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#runlevel-s-or-s" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        runlevel s or S
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#runlevels-a-b-and-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        runlevels A, B and C
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-etcinittab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring /etc/inittab
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring /etc/inittab">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-etcinitdrc-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The /etc/init.d/rc script
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-rcd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        update-rc.d
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-systemd-targets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using systemd targets
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Using systemd targets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-lsb-standard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The LSB standard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-bootscript-environment-and-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The bootscript environment and commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changing-and-configuring-runlevels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changing and configuring runlevels
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-chkconfig-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The chkconfig command
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System recovery (202.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Alternate Bootloaders (202.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Filesystem and Devices (203)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operating The Linux Filesystem (203.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maintaining a Linux Filesystem (203.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Creating And Configuring Filesystem Options (203.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Storage Device Administration (204)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring RAID (204.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adjusting Storage Device Access (204.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logical Volume Manager (204.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring PCMCIA Devices (204.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Networking Configuration (205)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Networking Configuration (205.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Network Configuration and Troubleshooting (205.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting network issues (205.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Maintenance (206)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Make and install programs from source (206.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup Operations (206.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifying users on system-related issues (206.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domain Name Server (207)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic DNS server configuration (207.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Create and maintain DNS zones (207.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Securing a DNS Server (207.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTTP Services (208)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Apache Configuration (208.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Apache configuration for HTTPS (208.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementing Squid as a caching proxy (208.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementing Nginx as a web server and a reverse proxy (208.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File Sharing (209)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAMBA Server Configuration (209.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring an NFS Server (209.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Client Management (210)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DHCP Configuration (210.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PAM authentication (210.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LDAP client usage (210.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring an OpenLDAP server (210.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    E-Mail services (211)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using e-mail servers (211.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing E-Mail Delivery (211.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing Mailbox Access (211.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Security (212)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring a router (212.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing FTP servers (212.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secure shell (SSH) (212.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security tasks (212.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenVPN (212.5)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#customizing-system-startup-2021" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Customizing system startup (202.1)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Customizing system startup (202.1)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-knowledge-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Knowledge Areas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terms-and-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terms and Utilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-initrd-using-mkinitrd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create initrd using mkinitrd
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mkinitramfsmc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create initrd using mkinitramfs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setting-the-root-device" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setting the root device
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-linux-boot-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Linux Boot process
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-init-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The init process
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The init process">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#runlevel-0-reserved" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        runlevel 0 (reserved)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#runlevel-1-reserved" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        runlevel 1 (reserved)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#runlevel-2-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        runlevel 2-5
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#runlevel-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        runlevel 6
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#runlevel-7-9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        runlevel 7-9
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#runlevel-s-or-s" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        runlevel s or S
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#runlevels-a-b-and-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        runlevels A, B and C
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-etcinittab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring /etc/inittab
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring /etc/inittab">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-etcinitdrc-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The /etc/init.d/rc script
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-rcd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        update-rc.d
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-systemd-targets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using systemd targets
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Using systemd targets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-lsb-standard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The LSB standard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-bootscript-environment-and-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The bootscript environment and commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changing-and-configuring-runlevels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changing and configuring runlevels
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-chkconfig-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The chkconfig command
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>Customizing system startup (202.1)</h1>
+
+<h2 id="customizing-system-startup-2021">Customizing system startup (202.1)<a class="headerlink" href="#customizing-system-startup-2021" title="Permanent link">&para;</a></h2>
+<p>Candidates should be able to query and modify the behaviour of system
+services at various targets / run levels. A thorough understanding of
+the systemd, SysV Init and the Linux boot proces is required. This
+objective includes interacting with systemd targets and SysV init run
+levels.</p>
+<h3 id="key-knowledge-areas">Key Knowledge Areas<a class="headerlink" href="#key-knowledge-areas" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Systemd</p>
+</li>
+<li>
+<p>SysV init</p>
+</li>
+<li>
+<p>Linux Standard Base Specification (LSB)</p>
+</li>
+</ul>
+<h3 id="terms-and-utilities">Terms and Utilities<a class="headerlink" href="#terms-and-utilities" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><code>/usr/lib/systemd/</code></p>
+</li>
+<li>
+<p><code>/etc/systemd/</code></p>
+</li>
+<li>
+<p><code>/run/systemd/</code></p>
+</li>
+<li>
+<p><code>systemctl</code></p>
+</li>
+<li>
+<p><code>systemd-delta</code></p>
+</li>
+<li>
+<p><code>/etc/inittab</code></p>
+</li>
+<li>
+<p><code>/etc/init.d/</code></p>
+</li>
+<li>
+<p><code>/etc/rc.d/</code></p>
+</li>
+<li>
+<p><code>chkconfig</code></p>
+</li>
+<li>
+<p><code>update-rc.d</code></p>
+</li>
+<li>
+<p><code>init and telinit</code></p>
+</li>
+</ul>
+<h3 id="create-initrd-using-mkinitrd">Create <code>initrd</code> using <code>mkinitrd</code><a class="headerlink" href="#create-initrd-using-mkinitrd" title="Permanent link">&para;</a></h3>
+<p><strong>Note</strong></p>
+<p><a href="#c2.201.mkinitrd"><code>mkinitrd</code> was discussed in a previous section</a>,
+which also discusses how to create such an image manually.</p>
+<p>To limit the size of the kernel, often initial ramdisk (initrd) images
+are used to preload any modules needed to access the root filesystem.</p>
+<p>The <code>mkinitrd</code> is a tool which is specific to RPM based distributions
+(such as Red Hat, SuSE, etc.). This tool automates the process of
+creating an <code>initrd</code> file, thereby making sure that the relatively
+complex process is followed correctly.</p>
+<p>In most of the larger Linux distributions the <code>initrd</code> image contains
+almost all necessary kernel modules; very few will be compiled directly
+into the kernel. This enables the deployment of easy fixes and patches
+to the kernel and its modules through RPM packages: an update of a
+single module will not require a recompilation or replacement of the
+whole kernel, but just the single module, or worst case a few dependent
+modules. Because these modules are contained within the <code>initrd</code> file,
+this file needs to be regenerated every time the kernel is (manually)
+recompiled, or a kernel (module) patch is installed. Generating a new
+<code>initrd</code> image is very simple if you use the standard tool provided on
+many distributions:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    # mkinitrd initrd-image kernel-version
+</code></pre></div></td></tr></table></div>
+
+<p>Useful options for <code>mkinitrd</code> include:</p>
+<p><code>--version</code></p>
+<ul>
+<li>This option displays the version number of the <code>mkinitrd</code> utility.</li>
+</ul>
+<p><code>-f</code></p>
+<ul>
+<li>By specifying this switch, the utility will overwrite any existing
+    image file with the same name.</li>
+</ul>
+<p><code>--builtin=</code></p>
+<ul>
+<li>This causes <code>mkinitrd</code> to assume the module specified was compiled
+    into the kernel. It will not look for the module and will not show
+    any errors if it does not exist.</li>
+</ul>
+<p><code>--omit-lvm-modules</code>, <code>--omit-raid-modules</code>, <code>--omit-scsi-modules</code></p>
+<ul>
+<li>Using these options it is possible to prevent inclusion of,
+    respectively, LVM, RAID or SCSI modules, even if they are present,
+    or the utility would normally include them based on the contents of
+    <code>/etc/fstab</code> and/or <code>/etc/raidtab</code>.</li>
+</ul>
+<h3 id="mkinitramfsmc">Create <code>initrd</code> using <code>mkinitramfs</code><a class="headerlink" href="#mkinitramfsmc" title="Permanent link">&para;</a></h3>
+<p>Dissatisfied with the tool the RPM based distributions use (<code>mkinitrd</code>),
+some Debian developers wrote another utility to generate an <code>initrd</code>
+file. This tool is called <code>mkinitramfs</code>. The <code>mkinitramfs</code> tool is a
+shell script which generates a gzipped cpio image. It was designed to be
+much simpler (in code as well as in usage) than <code>mkinitrd</code>. The script
+consists of around 380 lines of code.</p>
+<p>Configuration of mkinitramfs is done through a configuration file:
+<code>initramfs.conf</code>. This file is usually located in
+<code>/etc/initramfs-tools/initramfs.conf</code>. This configuration file is
+sourced by the script - it contains standard <code>bash</code> declarations.
+Comments are prefixed by a #. Variables are specified by:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="n">variable</span><span class="o">=</span><span class="n">value</span>
+</code></pre></div></td></tr></table></div>
+
+<p>Options which can be used with <code>mkinitramfs</code> include:</p>
+<p><code>-d confdir</code></p>
+<ul>
+<li>This option sets an alternate configuration directory.</li>
+</ul>
+<p><code>-k</code></p>
+<ul>
+<li>"Keep" the temporary directory used for creating the image.</li>
+</ul>
+<p><code>-o outfile</code></p>
+<ul>
+<li>Write the resulting image to <code>outfile</code>.</li>
+</ul>
+<p><code>-r root</code></p>
+<ul>
+<li>Override the <code>ROOT</code> setting in the <code>initramfs.conf</code> file.</li>
+</ul>
+<p><strong>Note</strong>
+On Debian(-based) distributions you should <em>always</em> use <code>mkinitramfs</code> as
+<code>mkinitrd</code> is broken there for more recent kernels.</p>
+<h3 id="setting-the-root-device">Setting the root device<a class="headerlink" href="#setting-the-root-device" title="Permanent link">&para;</a></h3>
+<p>Setting the root device is one of the many kernel settings. Kernel
+settings originate from or can be overwritten by:</p>
+<ul>
+<li>
+<p>defaults as set in the source code,</p>
+</li>
+<li>
+<p>defaults as set by the <code>rdev</code> command,</p>
+</li>
+<li>
+<p>values passed to the kernel at boot time, for example
+    <code>root=/dev/xyz</code></p>
+</li>
+<li>
+<p>values specified in the GRUB configuration file.</p>
+</li>
+</ul>
+<p>The most obvious to use are block devices like harddisks, SAN storage,
+CDs or DVDs. You can even have a NFS mounted root-disk, this requires
+usage of <code>initrd</code> and setting the <code>nfs_root_name</code> and <code>nfs_root_addrs</code>
+boot options. You can set or change the root device to almost anything
+from within the <code>initrd</code> environment. In order to do so, make sure that
+the <code>/proc</code> filesystem was mounted by the scripts in the <code>initrd</code> image.
+The following files are available in <code>/proc</code>:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="o">/</span><span class="nx">proc</span><span class="o">/</span><span class="nx">sys</span><span class="o">/</span><span class="nx">kernel</span><span class="o">/</span><span class="nx">real</span><span class="o">-</span><span class="nx">root</span><span class="o">-</span><span class="nx">dev</span>
+<span class="w">    </span><span class="o">/</span><span class="nx">proc</span><span class="o">/</span><span class="nx">sys</span><span class="o">/</span><span class="nx">kernel</span><span class="o">/</span><span class="nx">nfs</span><span class="o">-</span><span class="nx">root</span><span class="o">-</span><span class="nx">name</span>
+<span class="w">    </span><span class="o">/</span><span class="nx">proc</span><span class="o">/</span><span class="nx">sys</span><span class="o">/</span><span class="nx">kernel</span><span class="o">/</span><span class="nx">nfs</span><span class="o">-</span><span class="nx">root</span><span class="o">-</span><span class="nx">addrs</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The <code>real-root-dev</code> refers to the node number of the root file system
+device. It can be easily changed by writing the new number to it:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    # echo 0x301&gt;/proc/sys/kernel/real-root-dev
+</code></pre></div></td></tr></table></div>
+
+<p>This will change the real root to the filesystem on <code>/dev/hda1</code>. If you
+wish to use an NFS-mounted root, the files <code>nfs-root-name</code> and
+<code>nfs-root-addrs</code> have to be set using the appropriate values and the
+device number should be set to 0xff:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="c1"># echo /var/nfsroot &gt;/proc/sys/kernel/nfs-root-name</span>
+<span class="w">    </span><span class="c1"># echo 193.8.232.2:193.8.232.7::255.255.255.0:idefix \</span>
+<span class="w">      </span><span class="o">&gt;/</span><span class="n">proc</span><span class="o">/</span><span class="n">sys</span><span class="o">/</span><span class="n">kernel</span><span class="o">/</span><span class="n">nfs</span><span class="o">-</span><span class="n">root</span><span class="o">-</span><span class="n">addrs</span>
+<span class="w">    </span><span class="c1"># echo 255&gt;/proc/sys/kernel/real-root-dev</span>
+</code></pre></div></td></tr></table></div>
+
+<p><strong>Note</strong>
+If the root device is set to the RAM disk, the root filesystem is not
+moved to <code>/initrd</code>, but the boot procedure is simply continued by
+starting init on the initial RAM disk.</p>
+<h3 id="the-linux-boot-process">The Linux Boot process<a class="headerlink" href="#the-linux-boot-process" title="Permanent link">&para;</a></h3>
+<p>There are seven phases distinguishable during boot:</p>
+<ol>
+<li>
+<p>Kernel loader loading, setup and execution</p>
+</li>
+<li>
+<p>Register setup</p>
+</li>
+<li>
+<p>Kernel decompression</p>
+</li>
+<li>
+<p>Kernel and memory initialization</p>
+</li>
+<li>
+<p>Kernel setup</p>
+</li>
+<li>
+<p>Enabling of remaining CPU's</p>
+</li>
+<li>
+<p>Init process creation</p>
+</li>
+</ol>
+<p>The boot process is described in detail at <a href="http://duartes.org/gustavo/blog/post/kernel-boot-process">Gustavo Duarte's "The
+Kernel Boot
+Process"</a></p>
+<p>The kernel's final step in the boot process  tries to execute these
+commands in order, until one succeeds:</p>
+<ol>
+<li>
+<p>/sbin/init</p>
+</li>
+<li>
+<p>/etc/init</p>
+</li>
+<li>
+<p>/bin/init</p>
+</li>
+<li>
+<p>/bin/sh</p>
+</li>
+</ol>
+<p>If none of these succeed, the kernel will panic.</p>
+<h3 id="the-init-process">The <code>init</code> process<a class="headerlink" href="#the-init-process" title="Permanent link">&para;</a></h3>
+<p><code>init</code> is the parent of all processes, it reads the file
+<code>/etc/inittab</code> and creates processes based on its contents. One of the
+things it usually does is spawn <code>gettys</code> allowing users to log in. It
+also defines "runlevels".</p>
+<p>A "runlevel" is a software configuration of the system which allows only
+a selected group of processes to exist. runlevel</p>
+<h4 id="runlevel-0-reserved">runlevel 0 (reserved)<a class="headerlink" href="#runlevel-0-reserved" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Runlevel 0 is used to halt the system.</li>
+</ul>
+<h4 id="runlevel-1-reserved">runlevel 1 (reserved)<a class="headerlink" href="#runlevel-1-reserved" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Runlevel 1 is used to get the system in single user mode. runlevel 1</li>
+</ul>
+<h4 id="runlevel-2-5">runlevel 2-5<a class="headerlink" href="#runlevel-2-5" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Runlevels 2,3,4 and 5 are multi-user runlevels.</li>
+</ul>
+<h4 id="runlevel-6">runlevel 6<a class="headerlink" href="#runlevel-6" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Runlevel 6 is used to reboot the system.</li>
+</ul>
+<h4 id="runlevel-7-9">runlevel 7-9<a class="headerlink" href="#runlevel-7-9" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Runlevels 7, 8 and 9 can be used as you wish. Most of the
+    Unix(/Linux) variants don't use these runlevels. On a typical
+    Debian Linux System for instance, the <code>/etc/rc&lt;runlevel&gt;.d</code>
+    directories, which we will discuss later, are not available for
+    these runlevels, though that would be perfectly legal.</li>
+</ul>
+<h4 id="runlevel-s-or-s">runlevel s or S<a class="headerlink" href="#runlevel-s-or-s" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Runlevels s and S are internally the same. It brings runlevel s
+    runlevel S the system in "single-user mode". The scripts in the
+    <code>/etc/rcS.d</code> directory are executed when booting the system.
+    Although runlevel S is not meant to be activated by the user, it can
+    be.</li>
+</ul>
+<h4 id="runlevels-a-b-and-c">runlevels A, B and C<a class="headerlink" href="#runlevels-a-b-and-c" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Runlevels A, B and C are so called "on demand" runlevels. If the
+    current runlevel is "2" for instance, and an <code>init A</code> command is
+    executed, the scripts to start or stop processes within runlevel "A"
+    are executed but the actual runlevel remains "2".</li>
+</ul>
+<h3 id="configuring-etcinittab">Configuring <code>/etc/inittab</code><a class="headerlink" href="#configuring-etcinittab" title="Permanent link">&para;</a></h3>
+<p>As mentioned before <code>init</code> reads the file <code>/etc/inittab</code> to
+determine what it should do. An entry in this file has the following
+format:</p>
+<p>id:runlevels:action:process</p>
+<p>Included below is an example <code>/etc/inittab</code> file.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span>#<span class="w"> </span><span class="nv">The</span><span class="w"> </span><span class="nv">default</span><span class="w"> </span><span class="nv">runlevel</span>.
+<span class="w">    </span><span class="nv">id</span>:<span class="mi">2</span>:<span class="nv">initdefault</span>:
+
+<span class="w">    </span>#<span class="w"> </span><span class="nv">Boot</span><span class="o">-</span><span class="nv">time</span><span class="w"> </span><span class="nv">system</span><span class="w"> </span><span class="nv">configuration</span><span class="o">/</span><span class="nv">initialization</span><span class="w"> </span><span class="nv">script</span>.
+<span class="w">    </span>#<span class="w"> </span><span class="nv">This</span><span class="w"> </span><span class="nv">is</span><span class="w"> </span><span class="nv">run</span><span class="w"> </span><span class="nv">first</span><span class="w"> </span><span class="nv">except</span><span class="w"> </span><span class="nv">when</span><span class="w"> </span><span class="nv">booting</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span><span class="nv">emergency</span><span class="w"> </span><span class="ss">(</span><span class="o">-</span><span class="nv">b</span><span class="ss">)</span><span class="w"> </span><span class="nv">mode</span>.
+<span class="w">    </span><span class="nv">si</span>::<span class="nv">sysinit</span>:<span class="o">/</span><span class="nv">etc</span><span class="o">/</span><span class="nv">init</span>.<span class="nv">d</span><span class="o">/</span><span class="nv">rcS</span>
+
+<span class="w">    </span>#<span class="w"> </span><span class="nv">What</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span><span class="nv">single</span><span class="o">-</span><span class="nv">user</span><span class="w"> </span><span class="nv">mode</span>.
+<span class="w">    </span><span class="o">~~</span>:<span class="nv">S</span>:<span class="k">wait</span>:<span class="o">/</span><span class="nv">sbin</span><span class="o">/</span><span class="nv">sulogin</span>
+
+<span class="w">    </span>#<span class="w"> </span><span class="o">/</span><span class="nv">etc</span><span class="o">/</span><span class="nv">init</span>.<span class="nv">d</span><span class="w"> </span><span class="nv">executes</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">S</span><span class="w"> </span><span class="nv">and</span><span class="w"> </span><span class="nv">K</span><span class="w"> </span><span class="nv">scripts</span><span class="w"> </span><span class="nv">upon</span><span class="w"> </span><span class="nv">change</span>
+<span class="w">    </span>#<span class="w"> </span><span class="nv">of</span><span class="w"> </span><span class="nv">runlevel</span>.
+<span class="w">    </span>#
+<span class="w">    </span>#<span class="w"> </span><span class="nv">Runlevel</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="nv">is</span><span class="w"> </span><span class="nv">halt</span>.
+<span class="w">    </span>#<span class="w"> </span><span class="nv">Runlevel</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="nv">is</span><span class="w"> </span><span class="nv">single</span><span class="o">-</span><span class="nv">user</span>.
+<span class="w">    </span>#<span class="w"> </span><span class="nv">Runlevels</span><span class="w"> </span><span class="mi">2</span><span class="o">-</span><span class="mi">5</span><span class="w"> </span><span class="nv">are</span><span class="w"> </span><span class="nv">multi</span><span class="o">-</span><span class="nv">user</span>.
+<span class="w">    </span>#<span class="w"> </span><span class="nv">Runlevel</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="nv">is</span><span class="w"> </span><span class="nv">reboot</span>.
+
+<span class="w">    </span><span class="nv">l0</span>:<span class="mi">0</span>:<span class="k">wait</span>:<span class="o">/</span><span class="nv">etc</span><span class="o">/</span><span class="nv">init</span>.<span class="nv">d</span><span class="o">/</span><span class="nv">rc</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="nv">l1</span>:<span class="mi">1</span>:<span class="k">wait</span>:<span class="o">/</span><span class="nv">etc</span><span class="o">/</span><span class="nv">init</span>.<span class="nv">d</span><span class="o">/</span><span class="nv">rc</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="nv">l2</span>:<span class="mi">2</span>:<span class="k">wait</span>:<span class="o">/</span><span class="nv">etc</span><span class="o">/</span><span class="nv">init</span>.<span class="nv">d</span><span class="o">/</span><span class="nv">rc</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">    </span><span class="nv">l3</span>:<span class="mi">3</span>:<span class="k">wait</span>:<span class="o">/</span><span class="nv">etc</span><span class="o">/</span><span class="nv">init</span>.<span class="nv">d</span><span class="o">/</span><span class="nv">rc</span><span class="w"> </span><span class="mi">3</span>
+<span class="w">    </span><span class="nv">l4</span>:<span class="mi">4</span>:<span class="k">wait</span>:<span class="o">/</span><span class="nv">etc</span><span class="o">/</span><span class="nv">init</span>.<span class="nv">d</span><span class="o">/</span><span class="nv">rc</span><span class="w"> </span><span class="mi">4</span>
+<span class="w">    </span><span class="nv">l5</span>:<span class="mi">5</span>:<span class="k">wait</span>:<span class="o">/</span><span class="nv">etc</span><span class="o">/</span><span class="nv">init</span>.<span class="nv">d</span><span class="o">/</span><span class="nv">rc</span><span class="w"> </span><span class="mi">5</span>
+<span class="w">    </span><span class="nv">l6</span>:<span class="mi">6</span>:<span class="k">wait</span>:<span class="o">/</span><span class="nv">etc</span><span class="o">/</span><span class="nv">init</span>.<span class="nv">d</span><span class="o">/</span><span class="nv">rc</span><span class="w"> </span><span class="mi">6</span>
+<span class="w">    </span>#<span class="w"> </span><span class="nv">Normally</span><span class="w"> </span><span class="nv">not</span><span class="w"> </span><span class="nv">reached</span>,<span class="w"> </span><span class="nv">but</span><span class="w"> </span><span class="nv">fall</span><span class="w"> </span><span class="nv">through</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span><span class="nv">case</span><span class="w"> </span><span class="nv">of</span><span class="w"> </span><span class="nv">emergency</span>.
+<span class="w">    </span><span class="nv">z6</span>:<span class="mi">6</span>:<span class="nv">respawn</span>:<span class="o">/</span><span class="nv">sbin</span><span class="o">/</span><span class="nv">sulogin</span>
+
+<span class="w">    </span>#<span class="w"> </span><span class="o">/</span><span class="nv">sbin</span><span class="o">/</span><span class="nv">getty</span><span class="w"> </span><span class="nv">invocations</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">runlevels</span>.
+<span class="w">    </span>#
+<span class="w">    </span>#<span class="w"> </span><span class="nv">The</span><span class="w"> </span><span class="s2">&quot;id&quot;</span><span class="w"> </span><span class="nv">field</span><span class="w"> </span><span class="nv">MUST</span><span class="w"> </span><span class="nv">be</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">same</span><span class="w"> </span><span class="nv">as</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">last</span>
+<span class="w">    </span>#<span class="w"> </span><span class="nv">characters</span><span class="w"> </span><span class="nv">of</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">device</span><span class="w"> </span><span class="ss">(</span><span class="nv">after</span><span class="w"> </span><span class="s2">&quot;tty&quot;</span><span class="ss">)</span>.
+<span class="w">    </span>#
+<span class="w">    </span>#<span class="w"> </span><span class="nv">Format</span>:
+<span class="w">    </span>#<span class="w">  </span><span class="o">&lt;</span><span class="nv">id</span><span class="o">&gt;</span>:<span class="o">&lt;</span><span class="nv">runlevels</span><span class="o">&gt;</span>:<span class="o">&lt;</span><span class="nv">action</span><span class="o">&gt;</span>:<span class="o">&lt;</span><span class="nv">process</span><span class="o">&gt;</span>
+<span class="w">    </span><span class="mi">1</span>:<span class="mi">2345</span>:<span class="nv">respawn</span>:<span class="o">/</span><span class="nv">sbin</span><span class="o">/</span><span class="nv">getty</span><span class="w"> </span><span class="mi">38400</span><span class="w"> </span><span class="nv">tty1</span>
+<span class="w">    </span><span class="mi">2</span>:<span class="mi">23</span>:<span class="nv">respawn</span>:<span class="o">/</span><span class="nv">sbin</span><span class="o">/</span><span class="nv">getty</span><span class="w"> </span><span class="mi">38400</span><span class="w"> </span><span class="nv">tty2</span>
+</code></pre></div></td></tr></table></div>
+
+<ul>
+<li>
+<p>id</p>
+<ul>
+<li>The id-field uniquely identifies an entry in the file <code>/etc/inittab</code>
+and can be 1-4 characters in length. For gettys and other login
+processes however, the id field should contain the suffix of the
+corresponding tty, otherwise the login accounting might not work.</li>
+</ul>
+</li>
+<li>
+<p>runlevels</p>
+<ul>
+<li>This field contains the runlevels for which the specified action
+should be taken.</li>
+</ul>
+</li>
+<li>
+<p>action</p>
+<ul>
+<li>
+<p>respawn</p>
+<ul>
+<li>The process will be restarted whenever it terminates, respawn
+(e.g. getty). getty</li>
+</ul>
+</li>
+<li>
+<p>wait</p>
+<ul>
+<li>The process will be started once when the specified wait
+runlevel is entered and <code>init</code> will wait for its termination.</li>
+</ul>
+</li>
+<li>
+<p>once</p>
+<ul>
+<li>The process will be executed once when the specified once unlevel is entered.</li>
+</ul>
+</li>
+<li>
+<p>boot</p>
+<ul>
+<li>The process will be executed during system boot. The boot
+runlevels field is ignored.</li>
+</ul>
+</li>
+<li>
+<p>bootwait</p>
+<ul>
+<li>The process will be executed during system boot, while bootwait
+<code>init</code> waits for its termination (e.g. <code>/etc/rc)</code>. The runlevels
+field is ignored.</li>
+</ul>
+</li>
+<li>
+<p>off</p>
+<ul>
+<li>This does absolutely nothing.</li>
+</ul>
+</li>
+<li>
+<p>ondemand</p>
+<ul>
+<li>A process marked with an on demand runlevel will be ondemand
+executed whenever the specified ondemand runlevel is called.
+However, no runlevel change will occur (on demand runlevels are
+"a", "b", and "c").</li>
+</ul>
+</li>
+<li>
+<p>initdefault</p>
+<ul>
+<li>An initdefault entry specifies the runlevel which should
+initdefault be entered after system boot. If none exists, init
+will ask for a runlevel on the console. The process field is
+ignored. In the example above, the system will go to runlevel 2
+after boot.</li>
+</ul>
+</li>
+<li>
+<p>sysinit</p>
+<ul>
+<li>The process will be executed during system boot. It will sysinit
+be executed before any boot or bootwait entries. The runlevels
+field is ignored.</li>
+</ul>
+</li>
+<li>
+<p>powerwait</p>
+<ul>
+<li>The process will be executed when the power goes down. powerwait
+<code>init</code> is usually informed about this by a process talking to a
+UPS connected to the computer. UPS <code>init</code> will wait for the
+process to finish before continuing.</li>
+</ul>
+</li>
+<li>
+<p>powerfail</p>
+<ul>
+<li>As for powerwait, except that <code>init</code> does powerfail not wait for
+the process' completion.</li>
+</ul>
+</li>
+<li>
+<p>powerokwait</p>
+<ul>
+<li>This process will be executed as soon as <code>init 
+                                        powerokwait</code> is informed that the
+power has been restored.</li>
+</ul>
+</li>
+<li>
+<p>powerfailnow</p>
+<ul>
+<li>This process will be executed when <code>init</code> powerfailnow is told
+that the battery of the external UPS is almost empty and the
+power is failing (provided that the external UPS and the
+monitoring process are able to detect this condition).</li>
+</ul>
+</li>
+<li>
+<p>ctrlaltdel</p>
+<ul>
+<li>The process will be executed when <code>init</code> ctrlaltdel receives the
+SIGINT signal. This means that someone on the system console has
+pressed the CTRL-ALT-DEL key CTRL-ALT-DEL combination. Typically
+one wants to execute some sort of shutdown either to get into
+single-user level or to reboot the machine.</li>
+</ul>
+</li>
+<li>
+<p>kbdrequest</p>
+<ul>
+<li>The process will be executed when init receives a signal from
+the keyboard handler that a special key combination kbdrequest
+was pressed on the console keyboard. Basically you want to map
+some keyboard combination to the "KeyboardSignal" action. For
+example, to map Alt-Uparrow for this purpose use the following
+in your keymaps file: <code>alt keycode 103 = KeyboardSignal</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>process</p>
+<ul>
+<li>This field specifies the process that should be executed. If the
+process field starts with a "+", <code>init</code> will not do <code>utmp</code> and
+<code>wtmp</code> accounting. Some <code>getty</code>s insist on doing their own
+housekeeping.</li>
+</ul>
+</li>
+</ul>
+<h4 id="the-etcinitdrc-script">The <code>/etc/init.d/rc</code> script<a class="headerlink" href="#the-etcinitdrc-script" title="Permanent link">&para;</a></h4>
+<p>For each of the runlevels 0-6 there is an entry in <code>/etc/inittab</code> that
+executes <code>/etc/init.d/rc ?</code> where "?" is 0-6, as you can see in
+following line from /etc/init.d/rc the earlier example above:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="nv">l2</span>:<span class="mi">2</span>:<span class="k">wait</span>:<span class="o">/</span><span class="nv">etc</span><span class="o">/</span><span class="nv">init</span>.<span class="nv">d</span><span class="o">/</span><span class="nv">rc</span><span class="w"> </span><span class="mi">2</span>
+</code></pre></div></td></tr></table></div>
+
+<p>So, what actually happens is that <code>/etc/init.d/rc</code> is called with the
+runlevel as a parameter.</p>
+<p>The directory <code>/etc</code> contains several, runlevel specific, directories
+which in their turn contain runlevel specific symbolic links to scripts
+in <code>/etc/init.d/</code>. Those directories are:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ ls -d /etc/rc*
+    /etc/rc.boot  /etc/rc1.d  /etc/rc3.d  /etc/rc5.d  /etc/rcS.d
+    /etc/rc0.d    /etc/rc2.d  /etc/rc4.d  /etc/rc6.d
+</code></pre></div></td></tr></table></div>
+
+<p>As you can see, there also is a <code>/etc/rc.boot</code> directory.
+This directory is obsolete and has been replaced by the /etc/rcN.d
+directory <code>/etc/rcS.d</code>. At boot time, the directory <code>/etc/rcS.d</code> is
+scanned first and then, for backwards compatibility, the <code>/etc/rc.boot</code>.</p>
+<p>The name of the symbolic link either starts with an "S" or with a "K".
+Let's examine the <code>/etc/rc2.d</code> directory:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ ls /etc/rc2.d
+    K20gpm       S11pcmcia   S20logoutd  S20ssh      S89cron
+    S10ipchains  S12kerneld  S20lpd      S20xfs      S91apache
+    S10sysklogd  S14ppp      S20makedev  S22ntpdate  S99gdm
+    S11klogd     S20inetd    S20mysql    S89atd      S99rmnologin
+</code></pre></div></td></tr></table></div>
+
+<p>If the name of the symbolic link starts with a "K", the script is called
+with "stop" as a parameter to stop the process. This is the case for
+<code>K20gpm</code>, so the command becomes <code>K20gpm stop</code>. Let's find out what
+program or script is called:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="err">$</span><span class="w"> </span><span class="n">ls</span><span class="w"> </span><span class="o">-</span><span class="n">l</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">rc2</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">K20gpm</span>
+<span class="w">    </span><span class="n">lrwxrwxrwx</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="mi">13</span><span class="w"> </span><span class="n">Mar</span><span class="w"> </span><span class="mi">23</span><span class="w"> </span><span class="mi">2001</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">rc2</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">K20gpm</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">..</span><span class="o">/</span><span class="n">init</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">gpm</span>
+</code></pre></div></td></tr></table></div>
+
+<p>So, <code>K20gpm stop</code> results in <code>/etc/init.d/gpm stop</code>. Let's see what
+happens with the "stop" parameter by examining part of the script: init
+scripts</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="c1">#!/bin/sh</span>
+<span class="w">    </span><span class="c1">#</span>
+<span class="w">    </span><span class="c1"># Start Mouse event server</span>
+<span class="w">    </span><span class="o">...</span>
+<span class="w">    </span><span class="n">case</span><span class="w"> </span><span class="s2">&quot;$1&quot;</span><span class="w"> </span><span class="ow">in</span>
+<span class="w">    </span><span class="n">start</span><span class="p">)</span>
+<span class="w">       </span><span class="n">gpm_start</span>
+<span class="w">       </span><span class="p">;;</span>
+<span class="w">    </span><span class="n">stop</span><span class="p">)</span>
+<span class="w">       </span><span class="n">gpm_stop</span>
+<span class="w">       </span><span class="p">;;</span>
+<span class="w">    </span><span class="n">force</span><span class="o">-</span><span class="n">reload</span><span class="o">|</span><span class="n">restart</span><span class="p">)</span>
+<span class="w">       </span><span class="n">gpm_stop</span>
+<span class="w">       </span><span class="n">sleep</span><span class="w"> </span><span class="mi">3</span>
+<span class="w">       </span><span class="n">gpm_start</span>
+<span class="w">       </span><span class="p">;;</span>
+<span class="w">    </span><span class="o">*</span><span class="p">)</span>
+<span class="w">       </span><span class="n">echo</span><span class="w"> </span><span class="s2">&quot;Usage: /etc/init.d/gpm {start|stop|restart|force-reload}&quot;</span>
+<span class="w">       </span><span class="n">exit</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="n">esac</span>
+</code></pre></div></td></tr></table></div>
+
+<p>In the case..esac the first parameter, $1, is examined and in case its
+value is "stop", <code>gpm_stop</code> is executed.</p>
+<p>On the other hand, if the name of the symbolic link starts with an "S",
+the script is called with "start" as a parameter to start the process.</p>
+<p>The scripts are executed in a lexical sort order of the filenames.
+initorder of scripts</p>
+<p>Let's say we have a daemon <code>SomeDaemon</code>, an accompanying script
+<code>/etc/init.d/SDscript</code> and we want <code>SomeDaemon</code> to be running when the
+system is in runlevel 2 but not when the system is in runlevel 3.</p>
+<p>As you know by now this means we need a symbolic link, starting with an
+"S", for runlevel 2 and a symbolic link, starting with a "K", for
+runlevel 3. We've also determined that the daemon <code>SomeDaemon</code> is to be
+started after <code>S19someotherdaemon</code>, which implicates S20 and K80 since
+starting/stopping is symmetrical, i.e. that what is started first is
+stopped last. This is accomplished with the following set of commands:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>    # cd /etc/rc2.d
+    # ln -s ../init.d/SDscript S20SomeDaemon
+    # cd /etc/rc3.d
+    # ln -s ../init.d/SDscript K80SomeDaemon
+</code></pre></div></td></tr></table></div>
+
+<p>Should you wish to manually start, restart or stop a process, it is good
+practice to use the appropriate script in <code>/etc/init.d/</code>, e.g.
+<code>/etc/init.d/gpm restart</code> to initiate the restart of the process.</p>
+<p><code>update-rc.d</code> {#scupdatercd}</p>
+<h3 id="update-rcd">update-rc.d<a class="headerlink" href="#update-rcd" title="Permanent link">&para;</a></h3>
+<p><strong>Note</strong>
+This section only applies to Debian (based) distributions</p>
+<p>Debian-derived Linux distributions use the <code>update-rc.d</code> command to
+install and remove the init script links mentioned in the previous
+section.</p>
+<p>If you have a startup script called "foobar" in <code>/etc/init.d/</code> and want
+to add it to the default runlevels, you can use:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">update</span><span class="o">-</span><span class="n">rc</span><span class="p">.</span><span class="n">d</span><span class="w"> </span><span class="n">foobar</span><span class="w"> </span><span class="n">defaults</span>
+<span class="w">    </span><span class="n">Adding</span><span class="w"> </span><span class="n">system</span><span class="w"> </span><span class="n">startup</span><span class="w"> </span><span class="n">for</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">init</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">foobar</span><span class="w"> </span><span class="p">...</span>
+<span class="w">     </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">rc0</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">K20foobar</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">..</span><span class="o">/</span><span class="n">init</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">foobar</span>
+<span class="w">     </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">rc1</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">K20foobar</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">..</span><span class="o">/</span><span class="n">init</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">foobar</span>
+<span class="w">     </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">rc6</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">K20foobar</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">..</span><span class="o">/</span><span class="n">init</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">foobar</span>
+<span class="w">     </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">rc2</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">S20foobar</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">..</span><span class="o">/</span><span class="n">init</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">foobar</span>
+<span class="w">     </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">rc3</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">S20foobar</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">..</span><span class="o">/</span><span class="n">init</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">foobar</span>
+<span class="w">     </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">rc4</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">S20foobar</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">..</span><span class="o">/</span><span class="n">init</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">foobar</span>
+<span class="w">     </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">rc5</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">S20foobar</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">..</span><span class="o">/</span><span class="n">init</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">foobar</span>
+</code></pre></div></td></tr></table></div>
+
+<p><code>update-rc.d</code> will create K (stop) links in rc0.d, rc1.d and rc6.d, and
+S (start) links in rc2.d, rc3.d, rc4.d and rc5.d.</p>
+<p>If you do not want an installed package to start automatically, use
+<code>update-rc.d</code> to remove the startup links, for example to disable
+starting <code>dovecot</code> on boot:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span>#<span class="w"> </span><span class="nv">update</span><span class="o">-</span><span class="nv">rc</span>.<span class="nv">d</span><span class="w"> </span><span class="o">-</span><span class="nv">f</span><span class="w"> </span><span class="nv">dovecot</span><span class="w"> </span><span class="nv">remove</span>
+<span class="w">    </span><span class="nv">Removing</span><span class="w"> </span><span class="nv">any</span><span class="w"> </span><span class="nv">system</span><span class="w"> </span><span class="nv">startup</span><span class="w"> </span><span class="nv">links</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="o">/</span><span class="nv">etc</span><span class="o">/</span><span class="nv">init</span>.<span class="nv">d</span><span class="o">/</span><span class="nv">dovecot</span><span class="w"> </span>...
+<span class="w">     </span><span class="o">/</span><span class="nv">etc</span><span class="o">/</span><span class="nv">rc2</span>.<span class="nv">d</span><span class="o">/</span><span class="nv">S24dovecot</span>
+<span class="w">     </span><span class="o">/</span><span class="nv">etc</span><span class="o">/</span><span class="nv">rc3</span>.<span class="nv">d</span><span class="o">/</span><span class="nv">S24dovecot</span>
+<span class="w">     </span><span class="o">/</span><span class="nv">etc</span><span class="o">/</span><span class="nv">rc4</span>.<span class="nv">d</span><span class="o">/</span><span class="nv">S24dovecot</span>
+<span class="w">     </span><span class="o">/</span><span class="nv">etc</span><span class="o">/</span><span class="nv">rc5</span>.<span class="nv">d</span><span class="o">/</span><span class="nv">S24dovecot</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The <code>-f</code> (force) option is required if the rc script still exists. If
+you install an updated <code>dovecot</code> package, the links will be restored. To
+prevent this create "stop" links in the startup runlevel directories:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">update</span><span class="o">-</span><span class="n">rc</span><span class="p">.</span><span class="n">d</span><span class="w"> </span><span class="o">-</span><span class="n">f</span><span class="w"> </span><span class="n">dovecot</span><span class="w"> </span><span class="n">stop</span><span class="w"> </span><span class="mi">24</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="p">.</span>
+<span class="w">    </span><span class="n">Adding</span><span class="w"> </span><span class="n">system</span><span class="w"> </span><span class="n">startup</span><span class="w"> </span><span class="n">for</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">init</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">dovecot</span><span class="w"> </span><span class="p">...</span>
+<span class="w">     </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">rc2</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">K24dovecot</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">..</span><span class="o">/</span><span class="n">init</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">dovecot</span>
+<span class="w">     </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">rc3</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">K24dovecot</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">..</span><span class="o">/</span><span class="n">init</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">dovecot</span>
+<span class="w">     </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">rc4</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">K24dovecot</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">..</span><span class="o">/</span><span class="n">init</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">dovecot</span>
+<span class="w">     </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">rc5</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">K24dovecot</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">..</span><span class="o">/</span><span class="n">init</span><span class="p">.</span><span class="n">d</span><span class="o">/</span><span class="n">dovecot</span>
+</code></pre></div></td></tr></table></div>
+
+<p><strong>Note</strong>
+Don't forget the trailing . (dot).</p>
+<h3 id="using-systemd-targets">Using systemd targets<a class="headerlink" href="#using-systemd-targets" title="Permanent link">&para;</a></h3>
+<p>Instead of predefined runlevels, systemd uses targets to define the
+system state. These targets are represented by target units. Target
+units end with the <code>.target</code> file extensions and their only purpose is
+to group together other systemd units through a chain of dependencies.
+This also means that, in comparison to the init runlevels, multiple
+targets can be active at the same time.</p>
+<p>For example, the graphical.target unit, start services as the GNOME
+Display Manager but also depends on multi-user.target (which is the
+non-graphical system state) which in turn depends on basic.target.</p>
+<p>Before we will continue with managing and using the targets you should
+know which directories are used to store the default target files and
+how you can override them.</p>
+<p>As with all units the default target files are stored in
+<code>/usr/lib/systemd</code>, the files in this directory are created by the
+vendor of the software you've installed and these should never be
+changed except by installation scripts. The directory where you can
+store you custom targets and overrides is <code>/etc/systemd</code>, everything
+written in this directory takes precendence over the files in
+<code>/usr/lib/systemd</code>.</p>
+<p>There are multiple ways to override or append properties to
+unit files. You can create a completely new file with the same name, for
+example ssh.server, in the <code>/etc/systemd/system</code>. This will override the
+complete unit definition. If you only want to append or change some
+properties you can create a new directory in <code>/etc/systemd/system</code> with
+the name of the unit with <code>.d</code> appended, for example sshd.server.d. In
+this directory you can create files with a <code>.conf</code> extension in which
+you can place the properties you lik to append or override. Both of
+these ways can also be done by using the <code>systemctl</code> command, this is
+further described in chaper 206.3.</p>
+<p>There is also a third location available in which you can place files to
+override your unit definitions, this is the <code>/run/systemd</code> directory.
+Definitions in this directory take precedence over the files in
+<code>/usr/lib/systemd</code> but not over those in <code>/etc/systemd</code>. Overrides in
+<code>/run/systemd</code> will only be used until the system is rebooted since all
+files in <code>/run/systemd</code> will be deleted at a reboot of the system.</p>
+<p>systemd-delta To get an overview of all overrides active you can use the
+<code>systemd-delta</code> command. This command can return the following types:</p>
+<ul>
+<li>
+<p>masked</p>
+<ul>
+<li>Masked units, units that can't be started.</li>
+</ul>
+</li>
+<li>
+<p>equivalent</p>
+<ul>
+<li>Overridden files that do not differ in content.</li>
+</ul>
+</li>
+<li>
+<p>redirected</p>
+<ul>
+<li>Symbolic links to other unit files.</li>
+</ul>
+</li>
+<li>
+<p>overridden</p>
+<ul>
+<li>Overridden unit files.</li>
+</ul>
+</li>
+<li>
+<p>extended</p>
+<ul>
+<li>Extended unit files using a .conf file.</li>
+</ul>
+</li>
+</ul>
+<p>You can also filter by the types above using the <code>-t</code> of <code>--type=</code>
+flags, these take a list of the above types. If you also want to see
+unchanged files you can add <code>unchanged</code> as a type. Other options you can
+use are <code>--diff=false</code> if you don't want <code>systemd-delta</code> to show the
+diffs of overridden files, and <code>--no-pager</code> if you don't want the
+output piped to a pager.</p>
+<p>Now that we know where the unit files are stored and how we can override
+them we can take a look at changing system states.</p>
+<p>For getting and changing the (default) system state we use the
+<code>systemctl</code> command. A full explanation of the possibilities for this
+command can be found in chapter 206.3.</p>
+<p>If we want to get the default target we can run the following command:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ systemctl get-default
+</code></pre></div></td></tr></table></div>
+
+<p>This will output the current default target which is used at boot. To
+get a list of all currently loaded target units you can run the
+following commandL</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="err">$</span><span class="w"> </span><span class="nx">systemctl</span><span class="w"> </span><span class="nx">list</span><span class="o">-</span><span class="nx">units</span><span class="w"> </span><span class="o">--</span><span class="k">type</span><span class="p">=</span><span class="nx">target</span>
+</code></pre></div></td></tr></table></div>
+
+<p>This will give you a list of all currently active targets. To get all
+available target units you can run the following command:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="err">$</span><span class="w"> </span><span class="nx">systemctl</span><span class="w"> </span><span class="nx">list</span><span class="o">-</span><span class="nx">unit</span><span class="o">-</span><span class="nx">files</span><span class="w"> </span><span class="o">--</span><span class="k">type</span><span class="p">=</span><span class="nx">target</span>
+</code></pre></div></td></tr></table></div>
+
+<p>If you want to change the default target you can use the
+<code>systemctl set-default</code> command. For example, to set the default target
+to multi-user.target you can run the following command:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ systemctl set-default multi-user.target
+</code></pre></div></td></tr></table></div>
+
+<p>This command will create a symbolic link
+<code>/etc/systemd/system/default.target</code> which links to the target file in
+<code>/usr/lib/systemd/system</code>.</p>
+<p>A comparison between the init runlevels and the system targets:</p>
+<table>
+<thead>
+<tr>
+<th>Runlevel</th>
+<th>Target</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>runlevel0.target, poweroff.target</td>
+<td>Shutdown and poweroff the system.</td>
+</tr>
+<tr>
+<td>1</td>
+<td>runlevel1.target, rescue.target</td>
+<td>Set up a rescue shell.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>runlevel2.target, multi-user.target</td>
+<td>Set up a non-graphical multi-user system.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>runlevel3.target, multi-user.target</td>
+<td>Set up a non-graphical multi-user system.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>runlevel4.target, multi-user.target</td>
+<td>Set up a non-graphical multi-user system.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>runlevel5.target, graphical.target</td>
+<td>Set up a graphical multi-user system.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>runlevel6.target, reboot.target</td>
+<td>Shutdown and reboot the system.</td>
+</tr>
+</tbody>
+</table>
+<p>You can also change the system state at runtime, this can be done using
+the <code>systemctl isolate</code> command. This will stop all services not defined
+for the chosen target, and start all the services that are defined for
+the target.</p>
+<p>For example, to go to rescue mode, you can run the following command:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ systemctl isolate rescue.target
+</code></pre></div></td></tr></table></div>
+
+<p>This will stop all services except those defined for the rescue target.
+Note that this command will not notify any logged in users of the
+action.</p>
+<p>There are also some shortcuts available to change the system state,
+these have an added bonus that they will notify the logged in users of
+the action. For example, another way to get the system into rescue mode
+is the following:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ systemctl rescue
+</code></pre></div></td></tr></table></div>
+
+<p>This will first notify the logged in users of the action and then stop
+all services not defined in the target. If you don't want the users to
+get notified you can add the <code>--no-wall</code> flag.</p>
+<p>If your system is too broken to use rescue mode there is also an
+emergency mode available. This can be started by using the following
+command:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ systemctl emergency
+</code></pre></div></td></tr></table></div>
+
+<p>If you want to start certain services at boot you have to enable them.
+You can enable services using the <code>systemctl enable</code> command. For
+example, to enable sshd you run the following command:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ systemctl enable sshd.service
+</code></pre></div></td></tr></table></div>
+
+<p>To disable the service again you use <code>systemctl disable</code>. For example:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ systemctl disable sshd.service
+</code></pre></div></td></tr></table></div>
+
+<p>The unit file of the service defines at which system state the service
+will be running. This is configured by setting the <code>WantedBy=</code> option
+under the <code>[Install]</code> section. If this is set to <code>multi-user.target</code>
+than it will run in both non-graphical as graphical mode.</p>
+<h4 id="the-lsb-standard">The LSB standard<a class="headerlink" href="#the-lsb-standard" title="Permanent link">&para;</a></h4>
+<p>The Linux Standard Base (LSB) defines an interface for application
+programs that are compiled and packaged for LSB-conforming
+implementations. Hence, a program which was compiled in an LSB
+compatible environment will run on any distribution that supports the
+LSB standard. LSB compatible programs can rely on the availability of
+certain standard libraries. The standard also includes a list of
+mandatory utilities and scripts which define an environment suitable for
+installation of LSB-compatible binaries.</p>
+<p>The specification includes processor architecture specific information.
+This implies that the LSB is a <em>family</em> of specifications, rather than a
+single one. In other words: if your LSB compatible binary was compiled
+for an Intel based system, it will not run on, for example, an Alpha
+based LSB compatible system, but will install and run on any Intel based
+LSB compatible system. The LSB specifications therefore consist of a
+common and an architecture-specific part; "LSB-generic" or "generic LSB"
+and "LSB-arch" or "archLSB".</p>
+<p>The LSB standard lists which generic libraries should be available, e.g.
+<code>libdl</code>, <code>libcrypt</code>, <code>libpthread</code> and so on, and provides a list of
+processor specific libraries, like <code>libc</code> and <code>libm</code>. The standard also
+lists searchpaths for these libraries, their names and format (ELF).
+Another section handles the way dynamic linking should be implemented.
+For each standard library a list of functions is given, and data
+definitions and accompanying header files are listed.</p>
+<p>The LSB defines a list of 130+ commands that should be available on an
+LSB compatible system, and their calling conventions and behaviour. Some
+examples are <code>cp</code>, <code>tar</code>, <code>kill</code> and <code>gzip</code>, and the runtime languages
+<code>perl</code> and <code>python</code>.</p>
+<p>The expected behaviour of an LSB compatible system during system
+initialization is part of the LSB specification. So is a definition of
+the <code>cron</code> system, and are actions, functions and location of the <code>init</code>
+scripts. Any LSB compliant init script should be able to handle the
+following options: <code>start</code>, <code>stop</code>, <code>restart</code>, <code>force-reload</code> and
+<code>status</code>. The <code>reload</code> and <code>try-restart</code> options are optional. The
+standard also lists the definitions for runlevels and listings of user-
+and groupnames and their corresponding UID's/GID's.</p>
+<p>Though it is possible to install an LSB compatible program without the
+use of a package manager (by applying a script that contains only LSB
+compliant commands), the LSB specification contains a description for
+software packages and their naming conventions.</p>
+<p><strong>Note</strong>
+LSB employs the Red Hat Package Manager standard. Debian based LSB
+compatible distributions may read RPM packages by using the <code>alien</code>
+command.</p>
+<p>The LSB standards frequently refers to other well known standards, for
+example ISO/IEC 9945-2009 (Portable OS base, very Unix like). Any LSB
+conforming implementation needs to provide the mandatory portions of the
+file system hierarchy as specified in the <a href="http://www.pathname.com/fhs/">Filesystem Hierarchy Standard
+(FHS)</a>, and a number of LSB specific
+requirements. See also the section on <a href="#fhs">the FHS standard</a>.</p>
+<h4 id="the-bootscript-environment-and-commands">The bootscript environment and commands<a class="headerlink" href="#the-bootscript-environment-and-commands" title="Permanent link">&para;</a></h4>
+<p>Initially, Linux contained only a limited set of services and had a very
+simple boot environment. As Linux aged and the number of services in a
+distribution grew, the number of initscripts grew accordingly. After a
+while a set of standards emerged. Init scripts would routinely include
+some other script, which contained functions to start, stop and verify a
+process.</p>
+<p>The LSB standard lists a number of functions that should be made
+available for runlevel scripts. These functions should be listed in
+files in the directory <code>/lib/lsb/init-functions</code> and need to implement
+(at least) the following functions:</p>
+<ol>
+<li>
+<p><code>start_daemon</code> <code>[-f] [-n nicelevel] 
+                            [-p pidfile]</code> <code>pathname</code> <code>[args...]</code></p>
+<p>runs the specified program as a daemon. The <code>start_daemon</code> function
+will check whether the program is already running. If so, it will
+not start another copy of the daemon unless the <code>-f</code> option is
+given. The <code>-n</code> option specifies a nice level.</p>
+</li>
+<li>
+<p><code>killproc</code> <code>[-ppidfile]</code> <code>pathname</code> <code>[signal]</code></p>
+<p>will stop the specified program, trying to terminate it using the
+specified signal first. If that fails, the <code>SIGTERM</code> signal will be
+sent. If a program has been terminated, the <code>pidfile</code> should be
+removed if the terminated process has not already done so.</p>
+</li>
+<li>
+<p><code>pidofproc</code> <code>[-p pidfile]</code> <code>pathname</code></p>
+<p>returns one or more process identifiers for a particular daemon, as
+specified by the pathname. Multiple process identifiers are
+separated by a single space.</p>
+</li>
+</ol>
+<p>In some cases, these functions are provided as stand-alone commands and
+the scripts simply assure that the path to these scripts is set
+properly. Often some logging functions and function to display status
+lines are also included.</p>
+<h4 id="changing-and-configuring-runlevels">Changing and configuring runlevels<a class="headerlink" href="#changing-and-configuring-runlevels" title="Permanent link">&para;</a></h4>
+<p>Changing runlevels on a running machine requires comparison of the
+services running in the current runlevel with those that need to be run
+in the new runlevel. Subsequently, it is likely that some processes need
+to be stopped and others need to be started.</p>
+<p>Recall that the initscripts for a runlevel "X" are grouped in directory
+<code>/etc/rc.d/rcX.d</code> (or, on newer (LSB based) systems, in
+<code>/etc/init.d/rcX.d</code>). The filenames determine how the scripts are
+called: if the name starts with a "K", the script will be run with the
+<code>stop</code> option, if the name starts with a "S", the script will be run
+with the <code>start</code> option. The normal procedure during a runlevel change
+is to stop the superfluous processes first and then start the new ones.</p>
+<p>The actual init scripts are located in <code>/etc/init.d</code>. The files you find
+in the <code>rcX.d</code> directory are symbolic links which link to these. In many
+cases, the start- and stop-scripts are symbolic links to the same
+script. This implies that such init scripts should be able to handle at
+least the <code>start</code> and <code>stop</code> options.</p>
+<p>For example, the symbolic link named <code>S06syslog</code> in <code>/etc/init.d/rc3.d</code>
+might point to the script <code>/etc/init.d/syslog</code>, as may the symbolic link
+found in <code>/etc/init.d/rc2.d</code>, named <code>K17syslog</code>.</p>
+<p>The order in which services are stopped or started can be of great
+importance. Some services may be started simultaneously, others need to
+start in a strict order. For example your network needs to be up before
+you can start the <code>httpd</code>. The order is determined by the names of the
+symbolic links. The naming conventions dictate that the names of init
+scripts (the ones found in the <code>rcN.d</code> directories) include two digits,
+just after the initial letter. They are executed in alphabetical order.</p>
+<p>In the early days system administrators created these links by hand.
+Later most Linux distributors decided to provide Linux commands/scripts
+which allow the administrator to disable or enable certain scripts in
+certain runlevels and to check which systems (commands) would be started
+in which runlevel. These commands typically will manage both the
+aforementioned links and will name these in such a way that the scripts
+are run in the proper order.</p>
+<h4 id="the-chkconfig-command">The <code>chkconfig</code> command<a class="headerlink" href="#the-chkconfig-command" title="Permanent link">&para;</a></h4>
+<p>Another tool to manage the proper linking of start up (init)
+scripts is <code>chckconfig</code>. On some systems (e.g. SuSE/Novell) it serves as
+a front-end for <code>insserv</code> and uses the LSB standardized comment block to
+maintain its administration. On older systems it maintains its own
+special comment section, that has a much simpler and less flexible
+syntax. This older syntax consists of two lines, one of them is a
+description of the service, it starts with the keyword <code>description:</code>.
+The other line starts with the keyword <code>chkconfig:</code>, and lists the run
+levels for which to start the service and the priority (which determines
+in what order the scripts will be run while changing runlevels). For
+example:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span>#<span class="w"> </span><span class="nv">Init</span><span class="w"> </span><span class="nv">script</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">foo</span><span class="w"> </span><span class="nv">daemon</span>
+<span class="w">    </span>#
+<span class="w">    </span>#<span class="w"> </span><span class="nv">description</span>:<span class="w"> </span><span class="nv">food</span>,<span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">foo</span><span class="w"> </span><span class="nv">daemon</span>
+<span class="w">    </span>#<span class="w"> </span><span class="nv">chkconfig</span>:<span class="w"> </span><span class="mi">2345</span><span class="w"> </span><span class="mi">55</span><span class="w"> </span><span class="mi">25</span>
+<span class="w">    </span>#
+<span class="w">    </span>#
+</code></pre></div></td></tr></table></div>
+
+<p>This denotes that the <code>foo</code> daemon will start in runlevels 2, 3, 4 and
+5, will have priority 55 in the queue of initscripts that are run during
+startup and priority 25 in the queue of initscripts that are run if the
+daemon needs to be stopped.</p>
+<p>The <code>chkconfig</code> utility can be used to list which services will be
+started in which runlevels, to add a service to or to delete it from a
+runlevel and to add an entire service to or to delete it from the
+startup scripts.</p>
+<p><strong>Note</strong>
+We are providing some examples here, but be warned: there are various
+versions of <code>chkconfig</code> around. Please read the manual pages for the
+<code>chkconfig</code> command on your distribution first.</p>
+<p><code>chkconfig</code> does not automatically disable or enable a service
+immediately, but simply changes the symbolic links. If the <code>cron</code> daemon
+is running and you are on a Red Hat based system which is running in
+runlevel 2, the command</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    # chkconfig --levels 2345 crond off
+</code></pre></div></td></tr></table></div>
+
+<p>would change the administration but would not stop the <code>cron</code> daemon
+immediately. Also note that on a Red Hat system it is possible to
+specify more than one runlevel, as we did in our previous example. On
+Novell/SuSE systems, you may use:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    # chkconfig food 2345
+</code></pre></div></td></tr></table></div>
+
+<p>and to change this so it only will run in runlevel 1 simply use</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>    # chkconfig food 1
+
+
+    # chkconfig --list
+</code></pre></div></td></tr></table></div>
+
+<p>will list the current status of services and the runlevels in which they
+are active. For example, the following two lines may be part of the
+output:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>    xdm                       0:off   1:off   2:off   3:off   4:off   5:on    6:off
+    xfs                       0:off   1:off   2:off   3:off   4:off   5:off   6:off
+</code></pre></div></td></tr></table></div>
+
+<p>They indicate that the xfs service is not started in any runlevel and
+the xdm service only will be started while switching to runlevel 5.</p>
+<p>To add a new service, let's say the <code>foo</code> daemon, we create a new init
+script and name it after the service, in this case we might use <code>food</code>.
+This script is consecutively put into the <code>/etc/init.d</code> directory, after
+which we need to insert the proper header in that script (either the old
+<code>chkconfig</code> header, or the newer LSB compliant header) and then run</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    # chkconfig --add food
+</code></pre></div></td></tr></table></div>
+
+<p>To remove the <code>foo</code> service from all runlevels, you may type:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    # chkconfig --del food
+</code></pre></div></td></tr></table></div>
+
+<p>Note, that the <code>food</code> script will remain in the <code>/etc/init.d/</code>
+directory.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 1997-2021 Sue B.V., The Netherlands - Open Sourced 2021
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["search.highlight", "tabs", "instant"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

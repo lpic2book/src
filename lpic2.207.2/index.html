@@ -1,0 +1,3684 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Sue B.V., The Netherlands">
+      
+      
+      
+        <link rel="prev" href="../lpic2.207.1/">
+      
+      
+        <link rel="next" href="../lpic2.207.3/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Create and maintain DNS zones (207.2) - The LPIC2 Exam Prep</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:300,300i,400,400i,700,700i%7CAnonymous+Pro:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Nunito";--md-code-font:"Anonymous Pro"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#create-and-maintain-dns-zones-2072" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="The LPIC2 Exam Prep" class="md-header__button md-logo" aria-label="The LPIC2 Exam Prep" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            The LPIC2 Exam Prep
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Create and maintain DNS zones (207.2)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/lpic2book/src" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    LPIC2Book
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="The LPIC2 Exam Prep" class="md-nav__button md-logo" aria-label="The LPIC2 Exam Prep" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/></svg>
+
+    </a>
+    The LPIC2 Exam Prep
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/lpic2book/src" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    LPIC2Book
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The LPIC2 Exam Prep
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpicbook_about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About this book
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    200 Capacity Planning (200)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Measure and Troubleshoot Resource Usage (200.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Predict Future Resource Needs (200.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Kernel (201)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel Components (201.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compiling a Linux kernel (201.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel runtime management and troubleshooting (201.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Startup (202)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customizing system startup (202.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System recovery (202.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Alternate Bootloaders (202.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Filesystem and Devices (203)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operating The Linux Filesystem (203.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maintaining a Linux Filesystem (203.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Creating And Configuring Filesystem Options (203.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Storage Device Administration (204)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring RAID (204.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adjusting Storage Device Access (204.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logical Volume Manager (204.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring PCMCIA Devices (204.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Networking Configuration (205)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Networking Configuration (205.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Network Configuration and Troubleshooting (205.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting network issues (205.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Maintenance (206)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Make and install programs from source (206.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup Operations (206.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifying users on system-related issues (206.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domain Name Server (207)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic DNS server configuration (207.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Create and maintain DNS zones (207.2)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Create and maintain DNS zones (207.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#create-and-maintain-dns-zones-2072" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create and maintain DNS zones (207.2)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Create and maintain DNS zones (207.2)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-knowledge-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Knowledge Areas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terms-and-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terms and Utilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#zones-and-reverse-zones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Zones and reverse zones
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Zones and reverse zones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#db.local-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The db.local file
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-db127-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The db.127 file
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-hints-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The hints file
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zone-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Zone files
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Zone files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-ttl-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The $TTL statement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-soa-resource-record" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The SOA resource record
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-a-resource-record" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The A resource record
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-cname-resource-record" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The CNAME resource record
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-ns-resource-record" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The NS resource record
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-mx-resource-record" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The MX resource record
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mxing-a-domain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MXing a domain
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#DNSReverseZoneFiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reverse zone files
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reverse zone files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-ptr-record" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The PTR record
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipv6-records" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IPv6 records
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IPv6 records">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-ipv6-address-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The IPv6 address format
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-aaaa-record" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The AAAA record
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-ptr-record_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The PTR record
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#master-and-slave-servers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Master and slave servers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Master and slave servers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuring-a-master" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring a master
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-a-slave" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring a slave
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-stub-name-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A stub name server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#DNSdelegation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Delegating a DNS zone
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-dig-program" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The dig program
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-host-program" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The host program
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-nslookup-program" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The nslookup program
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dnswalk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DNSwalk
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Securing a DNS Server (207.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTTP Services (208)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Apache Configuration (208.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Apache configuration for HTTPS (208.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementing Squid as a caching proxy (208.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementing Nginx as a web server and a reverse proxy (208.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File Sharing (209)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAMBA Server Configuration (209.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring an NFS Server (209.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Client Management (210)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DHCP Configuration (210.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PAM authentication (210.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LDAP client usage (210.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring an OpenLDAP server (210.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    E-Mail services (211)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using e-mail servers (211.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing E-Mail Delivery (211.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing Mailbox Access (211.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Security (212)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring a router (212.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing FTP servers (212.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secure shell (SSH) (212.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security tasks (212.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenVPN (212.5)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#create-and-maintain-dns-zones-2072" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create and maintain DNS zones (207.2)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Create and maintain DNS zones (207.2)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-knowledge-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Knowledge Areas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terms-and-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terms and Utilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#zones-and-reverse-zones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Zones and reverse zones
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Zones and reverse zones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#db.local-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The db.local file
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-db127-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The db.127 file
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-hints-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The hints file
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zone-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Zone files
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Zone files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-ttl-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The $TTL statement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-soa-resource-record" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The SOA resource record
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-a-resource-record" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The A resource record
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-cname-resource-record" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The CNAME resource record
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-ns-resource-record" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The NS resource record
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-mx-resource-record" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The MX resource record
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mxing-a-domain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MXing a domain
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#DNSReverseZoneFiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reverse zone files
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reverse zone files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-ptr-record" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The PTR record
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipv6-records" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IPv6 records
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IPv6 records">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-ipv6-address-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The IPv6 address format
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-aaaa-record" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The AAAA record
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-ptr-record_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The PTR record
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#master-and-slave-servers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Master and slave servers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Master and slave servers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuring-a-master" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring a master
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-a-slave" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring a slave
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-stub-name-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A stub name server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#DNSdelegation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Delegating a DNS zone
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-dig-program" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The dig program
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-host-program" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The host program
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-nslookup-program" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The nslookup program
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dnswalk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DNSwalk
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>Create and maintain DNS zones (207.2)</h1>
+
+<h2 id="create-and-maintain-dns-zones-2072">Create and maintain DNS zones (207.2)<a class="headerlink" href="#create-and-maintain-dns-zones-2072" title="Permanent link">&para;</a></h2>
+<p>Candidates should be able to create a zone file for a forward or reverse
+zone and hints for root level servers. This objective includes setting
+appropriate values for records, adding hosts in zones and adding zones
+to the DNS. A candidate should also be able to delegate zones to another
+DNS server.</p>
+<h3 id="key-knowledge-areas">Key Knowledge Areas<a class="headerlink" href="#key-knowledge-areas" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>BIND 9 configuration files, terms and utilities</p>
+</li>
+<li>
+<p>Utilities to request information from the DNS server</p>
+</li>
+<li>
+<p>Layout, content and file location of the BIND zone files</p>
+</li>
+<li>
+<p>Various methods to add a new host in the zone files, including
+    reverse zones</p>
+</li>
+</ul>
+<h3 id="terms-and-utilities">Terms and Utilities<a class="headerlink" href="#terms-and-utilities" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><code>/var/named/*</code></p>
+</li>
+<li>
+<p>zone file syntax</p>
+</li>
+<li>
+<p>resource record formats</p>
+</li>
+<li>
+<p><code>named-checkzone</code></p>
+</li>
+<li>
+<p><code>named-compilezone</code></p>
+</li>
+<li>
+<p><code>masterfile-format</code></p>
+</li>
+<li>
+<p><code>dig</code></p>
+</li>
+<li>
+<p><code>nslookup</code></p>
+</li>
+<li>
+<p><code>host</code></p>
+</li>
+</ul>
+<h2 id="zones-and-reverse-zones">Zones and reverse zones<a class="headerlink" href="#zones-and-reverse-zones" title="Permanent link">&para;</a></h2>
+<p>There are <em>zones</em> and <em>reverse zone reverse zone zones</em>. Each
+<code>named.conf</code> will contain definitions for both.</p>
+<p>Examples of zones are <code>localhost</code> (used internally) and <code>example.com</code>
+(an external example which does not necessarily exist in reality).
+Examples of reverse zones are <code>127.in-addr.arpa</code> (used internally), and
+<code>240.123.224.in-addr.arpa</code> (a real-world example).</p>
+<p>How zones are related to reverse zones is shown below.</p>
+<h3 id="db.local-file">The <code>db.local</code> file<a class="headerlink" href="#db.local-file" title="Permanent link">&para;</a></h3>
+<p>A special domain, <code>localhost</code>, will be predefined in most
+cases.</p>
+<p>Here is the corresponding zone file <code>/etc/bind/db.local</code> called from the
+example <code>named.conf</code> shown earlier in this chapter.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="c1">;</span>
+<span class="w">    </span><span class="c1">; BIND data file for local loopback interface</span>
+<span class="w">    </span><span class="c1">;</span>
+<span class="w">    </span>$<span class="nv">TTL</span><span class="w">    </span><span class="mi">604800</span>
+<span class="w">    </span>@<span class="w">   </span><span class="nv">IN</span><span class="w">  </span><span class="nv">SOA</span><span class="w"> </span><span class="nv">localhost</span>.<span class="w"> </span><span class="nv">root</span>.<span class="nv">localhost</span>.<span class="w"> </span><span class="ss">(</span>
+<span class="w">                  </span><span class="mi">1</span><span class="w">     </span><span class="c1">; Serial</span>
+<span class="w">             </span><span class="mi">604800</span><span class="w">     </span><span class="c1">; Refresh</span>
+<span class="w">              </span><span class="mi">86400</span><span class="w">     </span><span class="c1">; Retry</span>
+<span class="w">            </span><span class="mi">2419200</span><span class="w">     </span><span class="c1">; Expire</span>
+<span class="w">             </span><span class="mi">604800</span><span class="w"> </span><span class="ss">)</span><span class="w">   </span><span class="c1">; Negative Cache TTL</span>
+<span class="w">    </span><span class="c1">;</span>
+<span class="w">    </span>@<span class="w">   </span><span class="nv">IN</span><span class="w">  </span><span class="nv">NS</span><span class="w">      </span><span class="nv">localhost</span>.
+<span class="w">    </span>@<span class="w">   </span><span class="nv">IN</span><span class="w">  </span><span class="nv">A</span><span class="w">       </span><span class="mi">127</span>.<span class="mi">0</span>.<span class="mi">0</span>.<span class="mi">1</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The <code>@</code> contains the name of the zone. It is called bind@ the <em>current
+origin</em>. A <code>zone</code> statement in <code>named.conf</code> defines that <em>current
+origin</em>, as is seen in this part of the named.conf file we saw earlier:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="nx">zone</span><span class="w"> </span><span class="s">&quot;localhost&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">type</span><span class="w"> </span><span class="nx">master</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">file</span><span class="w"> </span><span class="s">&quot;/etc/bind/db.local&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
+</code></pre></div></td></tr></table></div>
+
+<p>So in this case the zone is called <code>localhost</code> and all current origins
+in the zone file will become bindlocalhost <code>localhost</code>.</p>
+<p>Other parts of a zone file will be explained in <a href="#DNSZoneFiles">Zone
+files</a> below.</p>
+<h3 id="the-db127-file">The <code>db.127</code> file<a class="headerlink" href="#the-db127-file" title="Permanent link">&para;</a></h3>
+<p>To each IP range in a zone file, there is a corresponding binddb.127
+<em>reverse zone</em> that is described in a <em>reverse zone file</em>. Here is the
+file <code>/etc/bind/db.127</code>:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="c1">;</span>
+<span class="w">    </span><span class="c1">; BIND reverse data file for local loopback interface</span>
+<span class="w">    </span><span class="c1">;</span>
+<span class="w">    </span>$<span class="nv">TTL</span><span class="w">    </span><span class="mi">604800</span>
+<span class="w">    </span>@<span class="w">   </span><span class="nv">IN</span><span class="w">  </span><span class="nv">SOA</span><span class="w"> </span><span class="nv">localhost</span>.<span class="w"> </span><span class="nv">root</span>.<span class="nv">localhost</span>.<span class="w"> </span><span class="ss">(</span>
+<span class="w">                  </span><span class="mi">1</span><span class="w">     </span><span class="c1">; Serial</span>
+<span class="w">             </span><span class="mi">604800</span><span class="w">     </span><span class="c1">; Refresh</span>
+<span class="w">              </span><span class="mi">86400</span><span class="w">     </span><span class="c1">; Retry</span>
+<span class="w">            </span><span class="mi">2419200</span><span class="w">     </span><span class="c1">; Expire</span>
+<span class="w">             </span><span class="mi">604800</span><span class="w"> </span><span class="ss">)</span><span class="w">   </span><span class="c1">; Negative Cache TTL</span>
+<span class="w">    </span><span class="c1">;</span>
+<span class="w">    </span>@<span class="w">       </span><span class="nv">IN</span><span class="w">  </span><span class="nv">NS</span><span class="w">      </span><span class="nv">localhost</span>.
+<span class="w">    </span><span class="mi">1</span>.<span class="mi">0</span>.<span class="mi">0</span><span class="w">   </span><span class="nv">IN</span><span class="w">  </span><span class="nv">PTR</span><span class="w">     </span><span class="nv">localhost</span>.
+</code></pre></div></td></tr></table></div>
+
+<p>This is the calling part from <code>named.conf</code>:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="nx">zone</span><span class="w"> </span><span class="s">&quot;127.in-addr.arpa&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">type</span><span class="w"> </span><span class="nx">master</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">file</span><span class="w"> </span><span class="s">&quot;/etc/bind/db.127&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
+</code></pre></div></td></tr></table></div>
+
+<p>As can be seen, the <em>current origin</em> will be <code>127.in-addr.arpa</code>, so all
+<code>@</code>'s in the reverse zone file will be replaced by <code>127.in-addr.arpa</code>.</p>
+<p>But there is more: all host names that do not end in a dot get the
+current origin appended. This is <strong>important</strong>, so I repeat:</p>
+<blockquote>
+<p>all <em>host names that do not end in a dot</em> get the <em>current origin</em>
+appended. bindcurrent origin</p>
+</blockquote>
+<p>As an example: <code>1.0.0</code> will become <code>1.0.0.127.in-addr.arpa</code>.</p>
+<p>Normal IP addresses (e.g. 127.0.0.1) do not get the current origin
+appended.</p>
+<p>Again, details about the reverse zone file will be discussed below.</p>
+<h3 id="the-hints-file">The hints file<a class="headerlink" href="#the-hints-file" title="Permanent link">&para;</a></h3>
+<p>The <code>localhost</code> and <code>127.in-addr.arpa</code> zones are for internal use within
+a system.</p>
+<p>In the outside world, zones are hierarchically organized. The root zone
+(denoted with a dot: <code>.</code>) is listed in bindhint a special hints file.
+The following zone statement from <code>named.conf</code> reads a root zone file
+called <code>/etc/bind/db.root</code></p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="nx">zone</span><span class="w"> </span><span class="s">&quot;.&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">type</span><span class="w"> </span><span class="nx">hint</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">file</span><span class="w"> </span><span class="s">&quot;/etc/bind/db.root&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
+</code></pre></div></td></tr></table></div>
+
+<p>By the way, note the type: <code>hint</code>! It is a special type for the root
+zone. Nothing else is stored in this file, and it is not updated
+dynamically.</p>
+<p>Here is a part from the <code>db.root</code> file.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code>    ; formerly NS.INTERNIC.NET
+    ;
+    .                        3600000  IN  NS    A.ROOT-SERVERS.NET.
+    A.ROOT-SERVERS.NET.      3600000      A     198.41.0.4
+    ;
+    ; formerly NS1.ISI.EDU
+    ;
+    .                        3600000      NS    B.ROOT-SERVERS.NET.
+    B.ROOT-SERVERS.NET.      3600000      A     128.9.0.107
+</code></pre></div></td></tr></table></div>
+
+<p>Note the dot at the left, this is the root zone!</p>
+<p>Either your distribution or you personally must keep the root zone file
+current. You can look at <code>ftp.rs.internic.net</code> for a new version. Or,
+you could run something like</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="n">dig</span><span class="w"> </span><span class="nv">@a</span><span class="p">.</span><span class="n">root</span><span class="o">-</span><span class="n">servers</span><span class="p">.</span><span class="n">net</span><span class="w"> </span><span class="p">.</span><span class="w"> </span><span class="n">ns</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">roothints</span>
+</code></pre></div></td></tr></table></div>
+
+<p>This will create a new file.</p>
+<p>You can also run</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="n">dig</span><span class="w"> </span><span class="nv">@a</span><span class="p">.</span><span class="n">root</span><span class="o">-</span><span class="n">servers</span><span class="p">.</span><span class="n">net</span><span class="w"> </span><span class="p">.</span><span class="w"> </span><span class="n">SOA</span>
+</code></pre></div></td></tr></table></div>
+
+<p>You can do this periodically to see if the SOA version number (see
+below) has changed.</p>
+<h3 id="zone-files">Zone files<a class="headerlink" href="#zone-files" title="Permanent link">&para;</a></h3>
+<p>The root zone knows about all top-level domains directly under it, e.g.
+the <code>edu</code> and <code>org</code> domains as well as the country-specific domains like
+<code>uk</code> and <code>nl</code>.</p>
+<p>If the <code>example.org</code> domain (used here for illustration purposes) were a
+real domain, it would not be handled by the root name servers. Instead,
+the nameservers for the <code>org</code> domain would know all about it. This is
+called <em>delegation</em>: the root name servers have <em>delegated</em> authority
+for zones under <code>org</code> to the name servers for the <code>org</code> zone. Doing
+delegation yourself will be explained later in <a href="#DNSdelegation">Delegating a DNS
+zone</a>.</p>
+<p>A zone file is read from the <code>named.conf</code> file with a zone statement
+like</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="nx">zone</span><span class="w"> </span><span class="s">&quot;example.org&quot;</span><span class="w"> </span><span class="nx">IN</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">type</span><span class="w"> </span><span class="nx">master</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">file</span><span class="w"> </span><span class="s">&quot;/etc/bind/exampleorg.zone&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
+</code></pre></div></td></tr></table></div>
+
+<p>This is an example zone file for the zone <code>example.org</code>.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="o">$</span><span class="nt">TTL</span><span class="w"> </span><span class="nt">86400</span>
+<span class="w">    </span><span class="o">@</span><span class="w">      </span><span class="nt">IN</span><span class="w">  </span><span class="nt">SOA</span><span class="w"> </span><span class="nt">lion</span><span class="p">.</span><span class="nc">example</span><span class="p">.</span><span class="nc">org</span><span class="o">.</span><span class="w"> </span><span class="nt">dnsmaster</span><span class="p">.</span><span class="nc">lion</span><span class="p">.</span><span class="nc">example</span><span class="p">.</span><span class="nc">org</span><span class="o">.</span><span class="w"> </span><span class="o">(</span>
+<span class="w">               </span><span class="nt">2001110700</span><span class="w">    </span><span class="o">;</span><span class="w"> </span><span class="nt">Ser</span><span class="o">:</span><span class="w"> </span><span class="nt">yyyymmhhee</span><span class="w"> </span><span class="o">(</span><span class="nt">ee</span><span class="o">:</span><span class="w"> </span><span class="nt">ser</span><span class="o">/</span><span class="nt">day</span><span class="w"> </span><span class="nt">start</span><span class="w"> </span><span class="nt">00</span><span class="o">)</span>
+<span class="w">                    </span><span class="nt">28800</span><span class="w">    </span><span class="o">;</span><span class="w"> </span><span class="nt">Refresh</span>
+<span class="w">                     </span><span class="nt">3600</span><span class="w">    </span><span class="o">;</span><span class="w"> </span><span class="nt">Retry</span>
+<span class="w">                   </span><span class="nt">604800</span><span class="w">    </span><span class="o">;</span><span class="w"> </span><span class="nt">Expiration</span>
+<span class="w">                    </span><span class="nt">86400</span><span class="w"> </span><span class="o">)</span><span class="w">  </span><span class="o">;</span><span class="w"> </span><span class="nt">Negative</span><span class="w"> </span><span class="nt">caching</span>
+<span class="w">           </span><span class="nt">IN</span><span class="w">  </span><span class="nt">NS</span><span class="w">       </span><span class="nt">lion</span><span class="p">.</span><span class="nc">example</span><span class="p">.</span><span class="nc">org</span><span class="o">.</span>
+<span class="w">           </span><span class="nt">IN</span><span class="w">  </span><span class="nt">NS</span><span class="w">       </span><span class="nt">cat</span><span class="p">.</span><span class="nc">example</span><span class="p">.</span><span class="nc">org</span><span class="o">.</span>
+
+<span class="w">           </span><span class="nt">IN</span><span class="w">  </span><span class="nt">MX</span><span class="w">   </span><span class="nt">0</span><span class="w">   </span><span class="nt">lion</span><span class="p">.</span><span class="nc">example</span><span class="p">.</span><span class="nc">org</span><span class="o">.</span>
+<span class="w">           </span><span class="nt">IN</span><span class="w">  </span><span class="nt">MX</span><span class="w">  </span><span class="nt">10</span><span class="w">   </span><span class="nt">cat</span><span class="p">.</span><span class="nc">example</span><span class="p">.</span><span class="nc">org</span><span class="o">.</span>
+
+<span class="w">    </span><span class="nt">lion</span><span class="w">   </span><span class="nt">IN</span><span class="w">   </span><span class="nt">A</span><span class="w">       </span><span class="nt">224</span><span class="p">.</span><span class="nc">123</span><span class="p">.</span><span class="nc">240</span><span class="p">.</span><span class="nc">1</span>
+<span class="w">           </span><span class="nt">IN</span><span class="w">  </span><span class="nt">MX</span><span class="w">   </span><span class="nt">0</span><span class="w">   </span><span class="nt">lion</span><span class="p">.</span><span class="nc">example</span><span class="p">.</span><span class="nc">org</span><span class="o">.</span>
+<span class="w">           </span><span class="nt">IN</span><span class="w">  </span><span class="nt">MX</span><span class="w">  </span><span class="nt">10</span><span class="w">   </span><span class="nt">cat</span><span class="p">.</span><span class="nc">example</span><span class="p">.</span><span class="nc">org</span><span class="o">.</span>
+
+<span class="w">    </span><span class="nt">doggy</span><span class="w">  </span><span class="nt">IN</span><span class="w">   </span><span class="nt">A</span><span class="w">       </span><span class="nt">224</span><span class="p">.</span><span class="nc">123</span><span class="p">.</span><span class="nc">240</span><span class="p">.</span><span class="nc">2</span>
+<span class="w">    </span><span class="nt">cat</span><span class="w">    </span><span class="nt">IN</span><span class="w">   </span><span class="nt">A</span><span class="w">       </span><span class="nt">224</span><span class="p">.</span><span class="nc">123</span><span class="p">.</span><span class="nc">240</span><span class="p">.</span><span class="nc">3</span>
+
+<span class="w">    </span><span class="o">;</span><span class="w"> </span><span class="nt">our</span><span class="w"> </span><span class="nt">laptop</span>
+<span class="w">    </span><span class="nt">bird</span><span class="w">   </span><span class="nt">IN</span><span class="w">   </span><span class="nt">A</span><span class="w">       </span><span class="nt">224</span><span class="p">.</span><span class="nc">123</span><span class="p">.</span><span class="nc">240</span><span class="p">.</span><span class="nc">4</span>
+</code></pre></div></td></tr></table></div>
+
+<p>Let's examine this file in detail.</p>
+<h4 id="the-ttl-statement">The <code>$TTL</code> statement<a class="headerlink" href="#the-ttl-statement" title="Permanent link">&para;</a></h4>
+<p>The <code>$TTL</code> is the <em>default Time To Live</em> for the zone. When a name
+server requests information about this zone, it also gets the TTL. After
+the TTL is expired, it should renew the data in the cache.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $TTL 3h
+</code></pre></div></td></tr></table></div>
+
+<p>This sets the default TTL to 3 hours, and</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $TTL 86400
+</code></pre></div></td></tr></table></div>
+
+<p>this one to 86400 seconds (same as <code>1d</code> (1 day)).</p>
+<p><strong>Note</strong>
+Since BIND version 8.2 each zone file should start with a default TTL. A
+default value is substituted and a warning generated if the TTL is
+omitted. The change is defined in RFC2308.</p>
+<p>At the same time, the last SOA time field changed meaning. Now it is the
+negative caching value, which is explained below.</p>
+<h4 id="the-soa-resource-record">The <code>SOA</code> resource record<a class="headerlink" href="#the-soa-resource-record" title="Permanent link">&para;</a></h4>
+<p>The acronym SOA means <em>Start Of Authority</em>. It tells the outside world
+that this name server is the authoritative name server to query about
+this domain. The SOA record should contain the administrator contact
+address as well as a time-out setting for slave nameservers. Declaring a
+SOA record serves two aspects: first, the parent zone <code>org</code> has
+<em>delegated</em> (granted) the use of the <code>example.org</code> domain to us, the
+second is that we claim to be the authority over this zone.</p>
+<p>The SOA record is mandatory for every DNS zone file, and should be the
+first specified Resource Record (RR) of a zone file as well.</p>
+<p>Earlier we saw the following <code>SOA</code> record:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="o">@</span><span class="w">  </span><span class="nt">IN</span><span class="w">  </span><span class="nt">SOA</span><span class="w"> </span><span class="nt">lion</span><span class="p">.</span><span class="nc">example</span><span class="p">.</span><span class="nc">org</span><span class="o">.</span><span class="w"> </span><span class="nt">dnsmaster</span><span class="p">.</span><span class="nc">lion</span><span class="p">.</span><span class="nc">example</span><span class="p">.</span><span class="nc">org</span><span class="o">.</span><span class="w"> </span><span class="o">(</span>
+<span class="w">           </span><span class="nt">2001110700</span><span class="w">    </span><span class="o">;</span><span class="w"> </span><span class="nt">Ser</span><span class="o">:</span><span class="w"> </span><span class="nt">yyyymmhhee</span><span class="w"> </span><span class="o">(</span><span class="nt">ee</span><span class="o">:</span><span class="w"> </span><span class="nt">ser</span><span class="o">/</span><span class="nt">day</span><span class="w"> </span><span class="nt">start</span><span class="w"> </span><span class="nt">00</span><span class="o">)</span>
+<span class="w">                </span><span class="nt">28800</span><span class="w">    </span><span class="o">;</span><span class="w"> </span><span class="nt">Refresh</span>
+<span class="w">                 </span><span class="nt">3600</span><span class="w">    </span><span class="o">;</span><span class="w"> </span><span class="nt">Retry</span>
+<span class="w">               </span><span class="nt">604800</span><span class="w">    </span><span class="o">;</span><span class="w"> </span><span class="nt">Expiration</span>
+<span class="w">                 </span><span class="nt">3600</span><span class="w"> </span><span class="o">)</span><span class="w">  </span><span class="o">;</span><span class="w"> </span><span class="nt">Negative</span><span class="w"> </span><span class="nt">caching</span>
+</code></pre></div></td></tr></table></div>
+
+<p>Elements of these <code>SOA</code> lines are</p>
+<p><code>@</code></p>
+<ul>
+<li>the current origin, which expands to <code>example.org</code> (see the
+    named.conf file).</li>
+</ul>
+<p><code>IN</code></p>
+<ul>
+<li>the Internet data class. From rfc4343: <em>\"As described in [STD13]
+    and [RFC2929], DNS has an additional axis for data location called
+    CLASS. The only CLASS in global use at this time is the \"IN\"
+    (Internet) CLASS.\"</em></li>
+</ul>
+<p><code>SOA</code></p>
+<ul>
+<li>start of authority - that's what this section is about.</li>
+</ul>
+<p><code>lion.example.org.</code></p>
+<ul>
+<li>the name of the machine that has the master (see <a href="#DNSMasterVsSlave">Master and slave
+    servers</a>) name server for this domain.</li>
+</ul>
+<p>dnsmaster.lion.example.org.</p>
+<ul>
+<li>The email address of the person to mail in case of trouble, with the
+    commercial at symbol (<code>@</code>) normally in the email address replaced by
+    a dot. Uncovering the reason for this is left as an exercise for the
+    reader (something with current origin .....?)</li>
+</ul>
+<p><code>(</code><em>five numbers</em><code>)</code></p>
+<ul>
+<li>
+<ul>
+<li>
+<p>The first number is the serial number. For a zone definition
+        that never changes (e.g., the <code>localhost</code> zone) a single <code>1</code> is
+        enough.</p>
+<p>For zones that do change, however, another format is rather
+common: <em>yyyymmddee</em>. That is, 4 digits for the year, two for
+the month, two for the day, plus two digits that start with <code>00</code>
+and are incremented every time something is changed. For example
+a serial number of</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    2001110701
+</code></pre></div></td></tr></table></div>
+
+<p>corresponds to the second (!) change on the 7<sup>th</sup> of November in
+the year 2001. The next day, the first change will get the
+serial number <code>2001110800</code>.</p>
+<p><strong>Note</strong>
+Each time something is changed in a zone definition, the serial
+number must grow (by at least one). If the serial number does
+not grow, changes in the zone will go unnoticed.
+:::</p>
+</li>
+<li>
+<p>The second number is the refresh rate. This is how frequently a
+    slave server (see below) should check to see whether data has
+    been changed.</p>
+<p>Suggested value in rfc1537: <code>24h</code></p>
+</li>
+<li>
+<p>The third number is the retry value. This is the time a slave
+    server must wait before it can retry after a refresh or failure,
+    or between retries.</p>
+<p>Suggested value in rfc1537: <code>2h</code></p>
+</li>
+<li>
+<p>The fourth number is the expiration value. If a slave server
+    cannot contact the master server to refresh the information, the
+    zone information expires and the slave server will stop serving
+    data for this zone.</p>
+<p>Suggested value in rfc1537: <code>30d</code></p>
+</li>
+<li>
+<p>The fifth number is the negative caching value TTL. Negative
+    caching means that a DNS server remembers that it could not
+    resolve a specific domain. The number is the time that this
+    memory is kept.</p>
+<p>Reasonable value: <code>1h (3600s)</code></p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="the-a-resource-record">The <code>A</code> resource record<a class="headerlink" href="#the-a-resource-record" title="Permanent link">&para;</a></h4>
+<p>The <code>A</code> record is the <em>address</em> record. It connects an IP address to a
+hostname. An example record is</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    lion   IN   A       224.123.240.1
+</code></pre></div></td></tr></table></div>
+
+<p>This connects the name <code>lion.example.org</code> (remember that the current
+origin <code>example.org</code> is added to any name that does not end in a dot) to
+the IP address <code>224.123.240.1</code>.</p>
+<p><strong>Note</strong>
+Each <code>A</code> record should have a corresponding <code>PTR</code> record. This is
+described in <a href="#DNSReverseZoneFiles">Reverse zone files</a>.</p>
+<p>The A record is used by IPv4, the current version of the IP protocol.
+The next generation of the protocol, IPv6, has an <code>A6</code> record type. IPv6
+is not discussed here.</p>
+<h4 id="the-cname-resource-record">The <code>CNAME</code> resource record<a class="headerlink" href="#the-cname-resource-record" title="Permanent link">&para;</a></h4>
+<p>A <code>CNAME</code> (Canonical Name) record specifies another name for a host with
+an A record. BIND 8 used to allow multiple CNAME records, by accepting
+an option called <code>multiple-cnames</code>. From BIND 9.2 onward though, the
+CNAME rules are strictly enforced in compliance to the DNS standards. An
+example of a combined <code>A</code> and <code>CNAME</code> record is</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>    cat   IN  A     224.123.240.3
+    www   IN  CNAME cat.example.org.
+</code></pre></div></td></tr></table></div>
+
+<p>This makes <code>www.example.org</code> point to <code>cat.example.org</code>.</p>
+<h4 id="the-ns-resource-record">The <code>NS</code> resource record<a class="headerlink" href="#the-ns-resource-record" title="Permanent link">&para;</a></h4>
+<p>Specifies a name server for the zone. For example</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>    @    IN SOA .....
+
+         IN  NS    lion.example.org.
+         IN  NS    cat.example.org.
+</code></pre></div></td></tr></table></div>
+
+<p>The first thing that catches the eye is that there is nothing before the
+IN tag in the NS lines. In this case, the current origin that was
+specified earlier (here with the <code>SOA</code>) is still valid as the current
+origin.</p>
+<p><strong>Note</strong>
+There should be at least two independent name servers for each domain.
+Independent means connected to separate networks, separate power lines,
+etc. See <a href="#DNSMasterVsSlave">Master and slave servers</a> below.</p>
+<h4 id="the-mx-resource-record">The <code>MX</code> resource record<a class="headerlink" href="#the-mx-resource-record" title="Permanent link">&para;</a></h4>
+<p>The MX (Mail Exchanger) record system is used by the mail transfer
+system, e.g., the <code>sendmail</code> and <code>postfix</code> daemons. Multiple MX records
+may be provided for each domain. The number after the <code>MX</code> tag is the
+priority. A priority of 0 is the <em>highest</em> priority. The higher the
+number, the lower the priority. Priority 0 will be used for the host
+where the mail is destined to. If that host is down, another host with a
+lower priority (and therefore a higher number) will temporarily store
+the mail.</p>
+<p>Example entries:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>    lion   IN   A       224.123.240.1
+           IN  MX   0   lion.example.org.
+           IN  MX  10   cat.example.org.
+</code></pre></div></td></tr></table></div>
+
+<p>So this example specifies that mail for <code>lion.example.org</code> is first sent
+to <code>lion.example.org</code>. If that host is down, <code>cat.example.org</code> is used
+instead.</p>
+<p>To distribute mail equally among two hosts, give them the same priority.
+That is, if another host with priority <code>10</code> is added, they will both
+receive a share of mail when <code>lion.example.org</code> is down.</p>
+<h4 id="mxing-a-domain">MXing a domain<a class="headerlink" href="#mxing-a-domain" title="Permanent link">&para;</a></h4>
+<p>Mail can be delivered to a host, as was shown in the previous section.
+But the Mail Transfer Agent (MTA) and the DNS can be configured in such
+a way that a host accepts mail for a domain.</p>
+<p>Considering our example, host <code>lion.example.org</code> can be configured to
+accept mail for <code>example.org</code>.</p>
+<p>To implement this, place MX records for <code>example.org</code> in the
+<code>example.org</code> zone file, e.g.:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="c1">; accept mail for the domain too</span>
+<span class="w">    </span><span class="nv">example</span>.<span class="nv">org</span>.<span class="w">  </span><span class="nv">IN</span><span class="w">  </span><span class="nv">MX</span><span class="w">   </span><span class="mi">0</span><span class="w">   </span><span class="nv">lion</span>.<span class="nv">example</span>.<span class="nv">org</span>.
+<span class="w">    </span><span class="nv">example</span>.<span class="nv">org</span>.<span class="w">  </span><span class="nv">IN</span><span class="w">  </span><span class="nv">MX</span><span class="w">  </span><span class="mi">10</span><span class="w">   </span><span class="nv">cat</span>.<span class="nv">example</span>.<span class="nv">org</span>.
+</code></pre></div></td></tr></table></div>
+
+<p>Mail addressed to <code>example.org</code> will only be accepted by the MTA on
+<code>lion.example.org</code> host if the MTA is configured for this.</p>
+<h3 id="DNSReverseZoneFiles">Reverse zone files<a class="headerlink" href="#DNSReverseZoneFiles" title="Permanent link">&para;</a></h3>
+<p>Each IP range has a <em>reverse zone</em>, that consists of part of the IP
+numbers in reverse order, plus <code>in-addr.arpa</code>. This system is among
+other things used to check whether a host name belongs to a specific
+address.</p>
+<p>Our <code>example.org</code> domain uses the IP range <code>224.123.240.</code><em>x</em>. The
+corresponding <em>reverse zone</em> is called <code>240.123.224.in-addr.arpa</code>. In
+<code>named.conf</code> this could be the corresponding entry:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="nx">zone</span><span class="w"> </span><span class="s">&quot;240.123.224.in-addr.arpa&quot;</span><span class="w"> </span><span class="nx">IN</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">type</span><span class="w"> </span><span class="nx">master</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">file</span><span class="w"> </span><span class="s">&quot;/etc/bind/exampleorg.rev&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
+</code></pre></div></td></tr></table></div>
+
+<p>An example <code>/etc/bind/exampleorg.rev</code> (corresponding to the
+<code>example.org</code> domain we saw earlier) is:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="o">$</span><span class="nt">TTL</span><span class="w"> </span><span class="nt">86400</span>
+<span class="w">    </span><span class="o">@</span><span class="w">      </span><span class="nt">IN</span><span class="w">  </span><span class="nt">SOA</span><span class="w"> </span><span class="nt">lion</span><span class="p">.</span><span class="nc">example</span><span class="p">.</span><span class="nc">org</span><span class="o">.</span><span class="w"> </span><span class="nt">dnsmaster</span><span class="p">.</span><span class="nc">lion</span><span class="p">.</span><span class="nc">example</span><span class="p">.</span><span class="nc">org</span><span class="o">.</span><span class="w"> </span><span class="o">(</span>
+<span class="w">               </span><span class="nt">2001110700</span><span class="w">    </span><span class="o">;</span><span class="w"> </span><span class="nt">Ser</span><span class="o">:</span><span class="w"> </span><span class="nt">yyyymmhhee</span><span class="w"> </span><span class="o">(</span><span class="nt">ee</span><span class="o">:</span><span class="w"> </span><span class="nt">ser</span><span class="o">/</span><span class="nt">day</span><span class="w"> </span><span class="nt">start</span><span class="w"> </span><span class="nt">00</span><span class="o">)</span>
+<span class="w">                    </span><span class="nt">28800</span><span class="w">    </span><span class="o">;</span><span class="w"> </span><span class="nt">Refresh</span>
+<span class="w">                     </span><span class="nt">3600</span><span class="w">    </span><span class="o">;</span><span class="w"> </span><span class="nt">Retry</span>
+<span class="w">                   </span><span class="nt">604800</span><span class="w">    </span><span class="o">;</span><span class="w"> </span><span class="nt">Expiration</span>
+<span class="w">                     </span><span class="nt">3600</span><span class="w"> </span><span class="o">)</span><span class="w">  </span><span class="o">;</span><span class="w"> </span><span class="nt">Negative</span><span class="w"> </span><span class="nt">caching</span>
+<span class="w">           </span><span class="nt">IN</span><span class="w">  </span><span class="nt">NS</span><span class="w">       </span><span class="nt">lion</span><span class="p">.</span><span class="nc">example</span><span class="p">.</span><span class="nc">org</span><span class="o">.</span>
+<span class="w">           </span><span class="nt">IN</span><span class="w">  </span><span class="nt">NS</span><span class="w">       </span><span class="nt">cat</span><span class="p">.</span><span class="nc">example</span><span class="p">.</span><span class="nc">org</span><span class="o">.</span>
+
+<span class="w">    </span><span class="nt">1</span><span class="w">      </span><span class="nt">IN</span><span class="w">   </span><span class="nt">PTR</span><span class="w">     </span><span class="nt">lion</span><span class="p">.</span><span class="nc">example</span><span class="p">.</span><span class="nc">org</span><span class="o">.</span>
+<span class="w">    </span><span class="nt">2</span><span class="w">      </span><span class="nt">IN</span><span class="w">   </span><span class="nt">PTR</span><span class="w">     </span><span class="nt">doggy</span><span class="p">.</span><span class="nc">example</span><span class="p">.</span><span class="nc">org</span><span class="o">.</span>
+<span class="w">    </span><span class="nt">3</span><span class="w">      </span><span class="nt">IN</span><span class="w">   </span><span class="nt">PTR</span><span class="w">     </span><span class="nt">cat</span><span class="p">.</span><span class="nc">example</span><span class="p">.</span><span class="nc">org</span><span class="o">.</span>
+<span class="w">    </span><span class="nt">4</span><span class="w">      </span><span class="nt">IN</span><span class="w">   </span><span class="nt">PTR</span><span class="w">     </span><span class="nt">bird</span><span class="p">.</span><span class="nc">example</span><span class="p">.</span><span class="nc">org</span><span class="o">.</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The current origin is <code>240.123.224.in-addr.arpa</code>, so the entry for bird
+actually is</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="m m-Double">4.240.123.224</span><span class="p">.</span><span class="k">in</span><span class="o">-</span><span class="kd">addr</span><span class="p">.</span><span class="nx">arpa</span><span class="w"> </span><span class="nx">IN</span><span class="w"> </span><span class="nx">PTR</span><span class="w"> </span><span class="nx">bird</span><span class="p">.</span><span class="nx">example</span><span class="p">.</span><span class="nx">org</span><span class="p">.</span>
+</code></pre></div></td></tr></table></div>
+
+<h4 id="the-ptr-record">The <code>PTR</code> record<a class="headerlink" href="#the-ptr-record" title="Permanent link">&para;</a></h4>
+<p>The <code>PTR</code> record connects the reverse name
+(<code>4.240.123.224.in-addr.arpa</code>) to the name given by the A record
+(<code>bird.example.org</code>).</p>
+<h3 id="ipv6-records">IPv6 records<a class="headerlink" href="#ipv6-records" title="Permanent link">&para;</a></h3>
+<h4 id="the-ipv6-address-format">The IPv6 address format<a class="headerlink" href="#the-ipv6-address-format" title="Permanent link">&para;</a></h4>
+<p>IPv6 addresses are 128 bit addresses rather than IPv4's 32 bits. They
+are notated as 8 groups of 16-bit values, written in 4 hexadecimal
+numbers per part, separated by a colon. For the sake of readability
+leading zero's in every part may be omitted, and parts consisting of
+zero's only may be completely omitted. The latter may only be done once
+per address because multiple occurrences would create an ambiguous
+representation.</p>
+<p>For example: <code>2001:0db8:0000:0000:0000:ff00:0042:8329</code> can be rewritten
+to <code>2001:db8::ff00:42:8329</code>.</p>
+<p>The localhost (loopback) address <code>0:0:0:0:0:0:0:1</code> can be reduced to
+<code>::1</code></p>
+<h4 id="the-aaaa-record">The AAAA record<a class="headerlink" href="#the-aaaa-record" title="Permanent link">&para;</a></h4>
+<p>Where the <code>A</code> record is used for IPv4, the <code>AAAA</code> record is used for
+IPv6. It resolves a hostname to an IPv6 address in the same way as an
+<code>A</code> record does for IPv4.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    lion   IN   AAAA    2001:db8::ff00:42:8329
+</code></pre></div></td></tr></table></div>
+
+<p><strong>Note</strong>
+Note: Another format used to resolve IPv6 address records was the A6
+record. While supported by the current BIND versions it is considered
+\"historic\" by RFC6563</p>
+<h4 id="the-ptr-record_1">The PTR record<a class="headerlink" href="#the-ptr-record_1" title="Permanent link">&para;</a></h4>
+<p>For reverse resolution IPv6 address are represented in another format,
+with every hexadecimal digit separated by a dot. Our example above
+becomes:
+<code>2.0.0.1.0.d.b.8.0.0.0.0.0.0.0.0.0.0.0.0.f.f.0.0.0.0.4.2.8.3.2.9</code></p>
+<p>The IPv6 PTR record is that address in exact reverse order with the
+domain <code>ip6.arpa</code> appended. The above address becomes:
+<code>9.2.3.8.2.4.0.0.0.0.f.f.0.0.0.0.0.0.0.0.0.0.0.0.8.b.d.0.1.0.0.2.ip6.arpa</code></p>
+<p>Part of that domain may be delegated, just as IPv4 addresses. In
+<code>named.conf</code> this could be the corresponding entry:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="nx">zone</span><span class="w"> </span><span class="s">&quot;0.0.0.0.0.0.0.0.8.b.d.0.1.0.0.2.ip6.arpa&quot;</span><span class="w"> </span><span class="nx">IN</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">type</span><span class="w"> </span><span class="nx">master</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">file</span><span class="w"> </span><span class="s">&quot;/etc/bind/exampleorg-ip6.rev&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The corresponding file should look like the following file:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="o">$</span><span class="nt">TTL</span><span class="w"> </span><span class="nt">86400</span>
+<span class="w">    </span><span class="o">@</span><span class="w">      </span><span class="nt">IN</span><span class="w">  </span><span class="nt">SOA</span><span class="w"> </span><span class="nt">lion</span><span class="p">.</span><span class="nc">example</span><span class="p">.</span><span class="nc">org</span><span class="o">.</span><span class="w"> </span><span class="nt">dnsmaster</span><span class="p">.</span><span class="nc">lion</span><span class="p">.</span><span class="nc">example</span><span class="p">.</span><span class="nc">org</span><span class="o">.</span><span class="w"> </span><span class="o">(</span>
+<span class="w">               </span><span class="nt">2001110700</span><span class="w">    </span><span class="o">;</span><span class="w"> </span><span class="nt">Ser</span><span class="o">:</span><span class="w"> </span><span class="nt">yyyymmhhee</span><span class="w"> </span><span class="o">(</span><span class="nt">ee</span><span class="o">:</span><span class="w"> </span><span class="nt">ser</span><span class="o">/</span><span class="nt">day</span><span class="w"> </span><span class="nt">start</span><span class="w"> </span><span class="nt">00</span><span class="o">)</span>
+<span class="w">                    </span><span class="nt">28800</span><span class="w">    </span><span class="o">;</span><span class="w"> </span><span class="nt">Refresh</span>
+<span class="w">                     </span><span class="nt">3600</span><span class="w">    </span><span class="o">;</span><span class="w"> </span><span class="nt">Retry</span>
+<span class="w">                   </span><span class="nt">604800</span><span class="w">    </span><span class="o">;</span><span class="w"> </span><span class="nt">Expiration</span>
+<span class="w">                    </span><span class="nt">86400</span><span class="w"> </span><span class="o">)</span><span class="w">  </span><span class="o">;</span><span class="w"> </span><span class="nt">Negative</span><span class="w"> </span><span class="nt">caching</span>
+<span class="w">           </span><span class="nt">IN</span><span class="w">  </span><span class="nt">NS</span><span class="w">       </span><span class="nt">lion</span><span class="p">.</span><span class="nc">example</span><span class="p">.</span><span class="nc">org</span><span class="o">.</span>
+<span class="w">           </span><span class="nt">IN</span><span class="w">  </span><span class="nt">NS</span><span class="w">       </span><span class="nt">cat</span><span class="p">.</span><span class="nc">example</span><span class="p">.</span><span class="nc">org</span><span class="o">.</span>
+
+<span class="w">    </span><span class="nt">9</span><span class="p">.</span><span class="nc">2</span><span class="p">.</span><span class="nc">3</span><span class="p">.</span><span class="nc">8</span><span class="p">.</span><span class="nc">2</span><span class="p">.</span><span class="nc">4</span><span class="p">.</span><span class="nc">0</span><span class="p">.</span><span class="nc">0</span><span class="p">.</span><span class="nc">0</span><span class="p">.</span><span class="nc">0</span><span class="p">.</span><span class="nc">f</span><span class="p">.</span><span class="nc">f</span><span class="p">.</span><span class="nc">0</span><span class="p">.</span><span class="nc">0</span><span class="p">.</span><span class="nc">0</span><span class="p">.</span><span class="nc">0</span><span class="w">      </span><span class="nt">IN</span><span class="w">   </span><span class="nt">PTR</span><span class="w">     </span><span class="nt">lion</span><span class="p">.</span><span class="nc">example</span><span class="p">.</span><span class="nc">org</span><span class="o">.</span>
+</code></pre></div></td></tr></table></div>
+
+<p>As both IPv4 and IPv6 PTR records are in different zones (i.e.
+<code>in-addr.arpa</code> and <code>ip6.arpa</code>) they should be defined in separate zone
+files.</p>
+<h2 id="master-and-slave-servers">Master and slave servers<a class="headerlink" href="#master-and-slave-servers" title="Permanent link">&para;</a></h2>
+<p>Each zone (except the ones local to the machine, such as <code>localhost</code>)
+must have at least one <em>master</em> name server. It can be supported by one
+or more <em>slave</em> name servers.</p>
+<p>There should be two independent name servers for each zone. Independent
+means connected to a different network and other power supplies. If one
+power plant or network fails the resolving names from the zone must
+still be possible. A good solution for this is one master and one slave
+name server at different locations.</p>
+<p>Both <em>master</em> and <em>slave</em> name servers are <em>authoritative</em> for the zone
+(if the zone was delegated properly, see <a href="#DNSdelegation">Delegating a DNS
+zone</a>). That is, they both give the same answers about
+the zone.</p>
+<p>The data of a zone originates from a <em>master</em> name server for that zone.
+The <em>slave</em> name server copies the data from the master. <em>Other</em> name
+servers can contact either a master or a slave to resolve a name.</p>
+<p>This implies that the configuration must handle</p>
+<ul>
+<li>
+<p>slave name server access control on the master</p>
+</li>
+<li>
+<p>other name server access control on both master and slave name
+    servers</p>
+</li>
+</ul>
+<h3 id="configuring-a-master">Configuring a master<a class="headerlink" href="#configuring-a-master" title="Permanent link">&para;</a></h3>
+<p>A zone definition is defined as <em>master</em> by using the</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="k">type</span><span class="w"> </span><span class="nx">master</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+
+<p>statement inside a zone definition. See, for example, this zone
+statement (in <code>named.conf</code>) that defines the <code>example.org</code> master.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="nx">zone</span><span class="w"> </span><span class="s">&quot;example.org&quot;</span><span class="w"> </span><span class="nx">IN</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">type</span><span class="w"> </span><span class="nx">master</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">file</span><span class="w"> </span><span class="s">&quot;/etc/bind/exampleorg.zone&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
+</code></pre></div></td></tr></table></div>
+
+<p>Of course, the <code>exampleorg.zone</code> file must be created as discussed
+earlier.</p>
+<p>There can be multiple independent master name servers for the same zone.</p>
+<p>A <code>notify</code> statement controls whether or not the master sends DNS NOTIFY
+messages upon change of a master zone. The <code>notify</code> statement can be put
+in a <code>zone</code> statement as well as in an <code>options</code> statement. If one is
+present in both the <code>zone</code> and <code>options</code> statements, the former takes
+precedence. When a slave receives such a NOTIFY request (and supports
+it), it initiates a zone transfer to the master immediately to update
+the zone data. The default is <code>notify yes;</code>. To turn it off (e.g. when a
+zone is served by masters only) set <code>notify
+                no;</code>.</p>
+<p>How does the master know which slave servers serve the same zone? It
+inspects the <code>NS</code> records defined for the zone. In other words: the <code>NS</code>
+record for a zone should specify all slaves for that zone. Extra slave
+servers can be specified with the <code>also-notify</code> statement (see the
+named.conf(5) manpage).</p>
+<p><strong>Note</strong>
+Older versions of BIND used the term <em>primary</em> instead of <em>master</em>.</p>
+<h3 id="configuring-a-slave">Configuring a slave<a class="headerlink" href="#configuring-a-slave" title="Permanent link">&para;</a></h3>
+<p>A zone definition is defined as <em>slave</em> by using the</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="k">type</span><span class="w"> </span><span class="nx">slave</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+
+<p>statement inside a zone definition, accompanied by the IP address(es) of
+the master(s). Here, for example, is the zone statement (in
+<code>named.conf</code>), which defines a <code>example.org</code> slave:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="nx">zone</span><span class="w"> </span><span class="s">&quot;example.org&quot;</span><span class="w"> </span><span class="nx">IN</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">type</span><span class="w"> </span><span class="nx">slave</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">masters</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="m m-Double">224.123.240.1</span><span class="p">;</span><span class="w"> </span><span class="p">};</span><span class="w"> </span><span class="c1">// lion</span>
+<span class="w">        </span><span class="nx">file</span><span class="w"> </span><span class="s">&quot;db.example.org&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The file <code>db.example.org</code> is created by the slave name server itself.
+The slave has no data for <code>example.org</code>. Instead, a slave receives its
+data from a master name server and stores it in the specified file.</p>
+<p>Note that the filename has no directory component. Hence it will be
+written in the BIND working directory given by the <code>directory</code> option in
+<code>named.conf</code>. For instance, <code>/var/cache/bind</code> or <code>/var/named</code>. The name
+server must have write access to the file.</p>
+<p><strong>Note</strong>
+Older versions of BIND used the term <em>secondary</em> instead of <em>slave</em>.</p>
+<h3 id="a-stub-name-server">A <code>stub</code> name server<a class="headerlink" href="#a-stub-name-server" title="Permanent link">&para;</a></h3>
+<p>A stub zone is like a slave zone, except that it replicates only the
+<code>NS</code> records of a master zone instead of the entire zone. In other
+words, the DNS server hosting the stub zone is only a source of
+information on the authoritative name servers. This server must have
+network access to the remote DNS server in order to copy the
+authoritative name server information.</p>
+<p>The purpose of stub zones is two fold:</p>
+<ul>
+<li>
+<p><em>Keep delegated zone information current.</em> By updating a stub zone
+    for one of its child zones regularly, the DNS server that hosts the
+    stub zone will maintain a current list of authoritative DNS servers
+    for the child zone.</p>
+</li>
+<li>
+<p><em>Improve name resolution.</em> Stub zones make it possible for a DNS
+    server to perform name resolution using the stub zone's list of
+    name servers, without having to use forwarding or root hints.</p>
+</li>
+</ul>
+<p>Creating subdomains</p>
+<p>There are two ways to create a subdomain: inside a zone or as a
+delegated zone.</p>
+<p>The first is to put a subdomain inside a normal zone file. The subdomain
+will not have its own <code>SOA</code> and <code>NS</code> records. This method is not
+recommended - it is harder to maintain and may produce administrative
+problems, such as signing a zone.</p>
+<p>The other method is to <em>delegate</em> the subdomain to a separate zone. This
+is described in the next section.</p>
+<h3 id="DNSdelegation">Delegating a DNS zone<a class="headerlink" href="#DNSdelegation" title="Permanent link">&para;</a></h3>
+<p>A real, independent subdomain can be created by configuring the
+subdomain as an independent zone (having its own <code>SOA</code> and <code>NS</code> records)
+and delegating that domain from the parent domain.</p>
+<p>A zone will only be <em>authoritative</em> if the parent zone has delegated its
+authority to the zone. For example, the <code>example.org</code> domain was
+delegated by the <code>org</code> domain.</p>
+<p>Likewise, the <code>example.org</code> domain could delegate authority to an
+independent <code>scripts.example.org</code> domain. The latter will be independent
+of the former and have its own <code>SOA</code> and <code>NS</code> records.</p>
+<p>Let's look at an example file of the <code>scripts.example.org</code> zone:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="n">$ORIGIN</span><span class="w"> </span><span class="n">scripts</span><span class="p">.</span><span class="n">example</span><span class="p">.</span><span class="n">org</span><span class="p">.</span>
+<span class="w">    </span><span class="n">ctl</span><span class="w">  </span><span class="k">IN</span><span class="w">  </span><span class="n">A</span><span class="w">  </span><span class="mf">224.123.240.16</span>
+<span class="w">         </span><span class="k">IN</span><span class="w"> </span><span class="n">MX</span><span class="w">   </span><span class="mi">0</span><span class="w"> </span><span class="n">ctl</span>
+<span class="w">         </span><span class="k">IN</span><span class="w"> </span><span class="n">MX</span><span class="w">  </span><span class="mi">10</span><span class="w"> </span><span class="n">lion</span><span class="p">.</span><span class="n">example</span><span class="p">.</span><span class="n">org</span><span class="p">.</span>
+<span class="w">    </span><span class="n">www</span><span class="w">  </span><span class="k">IN</span><span class="w"> </span><span class="n">CNAME</span><span class="w"> </span><span class="n">ctl</span>
+<span class="w">    </span><span class="n">perl</span><span class="w"> </span><span class="k">IN</span><span class="w">  </span><span class="n">A</span><span class="w">  </span><span class="mf">224.123.240.17</span>
+<span class="w">         </span><span class="k">IN</span><span class="w"> </span><span class="n">MX</span><span class="w">   </span><span class="mi">0</span><span class="w"> </span><span class="n">perl</span>
+<span class="w">         </span><span class="k">IN</span><span class="w"> </span><span class="n">MX</span><span class="w">  </span><span class="mi">10</span><span class="w"> </span><span class="n">ctl</span>
+<span class="w">         </span><span class="k">IN</span><span class="w"> </span><span class="n">MX</span><span class="w">  </span><span class="mi">20</span><span class="w"> </span><span class="n">lion</span><span class="p">.</span><span class="n">example</span><span class="p">.</span><span class="n">org</span><span class="p">.</span>
+<span class="w">    </span><span class="n">bash</span><span class="w"> </span><span class="k">IN</span><span class="w">  </span><span class="n">A</span><span class="w">  </span><span class="mf">224.123.240.18</span>
+<span class="w">         </span><span class="k">IN</span><span class="w"> </span><span class="n">MX</span><span class="w">  </span><span class="mi">0</span><span class="w"> </span><span class="n">bash</span>
+<span class="w">         </span><span class="k">IN</span><span class="w"> </span><span class="n">MX</span><span class="w">  </span><span class="mi">10</span><span class="w"> </span><span class="n">ctl</span>
+<span class="w">         </span><span class="k">IN</span><span class="w"> </span><span class="n">MX</span><span class="w">  </span><span class="mi">20</span><span class="w"> </span><span class="n">lion</span><span class="p">.</span><span class="n">example</span><span class="p">.</span><span class="n">org</span><span class="p">.</span>
+<span class="w">    </span><span class="n">sh</span><span class="w">   </span><span class="k">IN</span><span class="w"> </span><span class="n">CNAME</span><span class="w"> </span><span class="n">bash</span>
+</code></pre></div></td></tr></table></div>
+
+<p>Nothing new, just a complete zone file.</p>
+<p>But, to get it authoritative, the parent domain, which is <code>example.org</code>
+in this case, must <em>delegate</em> its authority to the <code>scripts.example.org</code>
+zone. This is the way to delegate in the <code>example.org</code> zone file:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>    scripts  2d IN NS ctl.scripts.example.org.
+             2d IN NS bash.scripts.example.org.
+    ctl.scripts.example.org.  2d IN  A 224.123.240.16
+    bash.scripts.example.org. 2d IN  A 224.123.240.18
+</code></pre></div></td></tr></table></div>
+
+<p>That's all!</p>
+<p>The <code>NS</code> records for <code>scripts</code> do the actual delegation. The <code>A</code> records
+<em>must</em> be present, otherwise the name servers of <code>scripts</code> cannot be
+located.</p>
+<p><strong>Note</strong>
+It is advised to insert a TTL field (like the <code>2d</code> in the example).</p>
+<p>Checking zone files for syntax errors</p>
+<p>named-checkzone After creating or making changes to a zone file it is a
+good idea to check them for syntax errors. This can be done with the
+<code>named-checkzone</code> command. The way to do this is by entering the domain
+name after the command followed by the name of the zone file. See below
+for an example.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="c1"># named-checkzone test.com /var/named/test.com.zone</span>
+<span class="w">    </span><span class="n">zone</span><span class="w"> </span><span class="n">test</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">IN</span><span class="p">:</span><span class="w"> </span><span class="n">loaded</span><span class="w"> </span><span class="n">serial</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="n">OK</span>
+</code></pre></div></td></tr></table></div>
+
+<p>In this example I didn't put a dot at the end of the domain name but
+you can choose to do so. Both ways are correct and will give the same
+answer.</p>
+<p>As you can see in the example above, the utility gives an \"OK\" as a
+response this means the file is clear of any syntax errors. You maybe
+also want to consider checking the man page for <code>named-checkzone</code> for
+additional options.</p>
+<p>named-compilezone From version 9.9 of the BIND software secondary server
+zone files are by default saved in raw binary format instead of text
+format. Reading and checking these files can be a bit more challenging
+because of this. Luckily there is the tool <code>named-compilezone</code>. This
+tool is quite similair to the <code>named-checkzone</code> tool but makes it
+possible to change raw zone files to text format (and vice versa) so
+they are readable by normal human beings.</p>
+<p>masterfile-format It is possible to change to change this behaviour and
+change the default format back to text format. This can be done by
+adding the <code>masterfile-format</code> option to the zone statement in the
+named.conf files on the secondary name servers that you administer.
+Example below shows the correct syntax for this.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    masterfile-format text;
+</code></pre></div></td></tr></table></div>
+
+<p>DNS Utilities</p>
+<p>dig nslookup Four DNS utilities can help to resolve names and even debug
+a DNS zone. They are called <code>dig</code>, <code>host</code>, <code>nslookup</code> and <code>dnswalk</code>. The
+first three are part of the BIND source distribution.</p>
+<h3 id="the-dig-program">The <code>dig</code> program<a class="headerlink" href="#the-dig-program" title="Permanent link">&para;</a></h3>
+<p>The <code>dig</code> command lets you resolve names in a way that is close to the
+setup of a zone file. For instance, you can do</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    dig bird.example.org A
+</code></pre></div></td></tr></table></div>
+
+<p>This will do a lookup of the <code>A</code> record of <code>bird.example.org</code>. Part of
+the output looks like this:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="o">;;</span><span class="w"> </span><span class="nt">ANSWER</span><span class="w"> </span><span class="nt">SECTION</span><span class="o">:</span>
+<span class="w">    </span><span class="nt">bird</span><span class="p">.</span><span class="nc">example</span><span class="p">.</span><span class="nc">org</span><span class="o">.</span><span class="w"> </span><span class="nt">1D</span><span class="w"> </span><span class="nt">IN</span><span class="w"> </span><span class="nt">A</span><span class="w"> </span><span class="nt">224</span><span class="p">.</span><span class="nc">123</span><span class="p">.</span><span class="nc">240</span><span class="p">.</span><span class="nc">4</span>
+
+<span class="w">    </span><span class="o">;;</span><span class="w"> </span><span class="nt">AUTHORITY</span><span class="w"> </span><span class="nt">SECTION</span><span class="o">:</span>
+<span class="w">    </span><span class="nt">example</span><span class="p">.</span><span class="nc">org</span><span class="o">.</span><span class="w">      </span><span class="nt">1D</span><span class="w"> </span><span class="nt">IN</span><span class="w"> </span><span class="nt">NS</span><span class="w">  </span><span class="nt">lion</span><span class="p">.</span><span class="nc">example</span><span class="p">.</span><span class="nc">org</span><span class="o">.</span>
+
+<span class="w">    </span><span class="o">;;</span><span class="w"> </span><span class="nt">ADDITIONAL</span><span class="w"> </span><span class="nt">SECTION</span><span class="o">:</span>
+<span class="w">    </span><span class="nt">lion</span><span class="p">.</span><span class="nc">example</span><span class="p">.</span><span class="nc">org</span><span class="o">.</span><span class="w">  </span><span class="nt">1D</span><span class="w"> </span><span class="nt">IN</span><span class="w"> </span><span class="nt">A</span><span class="w"> </span><span class="nt">224</span><span class="p">.</span><span class="nc">123</span><span class="p">.</span><span class="nc">240</span><span class="p">.</span><span class="nc">1</span>
+</code></pre></div></td></tr></table></div>
+
+<p>If <code>dig</code> shows a <code>SOA</code> record instead of the requested <code>A</code> record, then
+the domain is ok, but the requested host does not exist.</p>
+<p>It is even possible to query another name server instead of the one(s)
+specified in <code>/etc/resolv.conf</code>:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="n">dig</span><span class="w"> </span><span class="nv">@cat</span><span class="p">.</span><span class="n">example</span><span class="p">.</span><span class="n">org</span><span class="w"> </span><span class="n">bird</span><span class="p">.</span><span class="n">example</span><span class="p">.</span><span class="n">org</span><span class="w"> </span><span class="n">A</span>
+</code></pre></div></td></tr></table></div>
+
+<p>This will query name server <code>cat.example.org</code> for the <code>A</code> record of host
+<code>bird</code>. The name server that was contacted for the query will be listed
+in the tail of the output.</p>
+<p>The <code>dig</code> command can be used to test or debug your reverse zone
+definitions. For instance,</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="nx">dig</span><span class="w"> </span><span class="m m-Double">4.240.123.224</span><span class="p">.</span><span class="k">in</span><span class="o">-</span><span class="kd">addr</span><span class="p">.</span><span class="nx">arpa</span><span class="w"> </span><span class="nx">PTR</span>
+</code></pre></div></td></tr></table></div>
+
+<p>will test the reverse entry for the <code>lion</code> host. You should expect
+something like this:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="p">;;</span><span class="w"> </span><span class="nx">ANSWER</span><span class="w"> </span><span class="nx">SECTION</span><span class="p">:</span>
+<span class="w">    </span><span class="m m-Double">4.240.123.224</span><span class="p">.</span><span class="k">in</span><span class="o">-</span><span class="kd">addr</span><span class="p">.</span><span class="nx">arpa</span><span class="p">.</span><span class="w">  </span><span class="mi">1</span><span class="nx">D</span><span class="w"> </span><span class="nx">IN</span><span class="w"> </span><span class="nx">PTR</span><span class="w"> </span><span class="nx">lion</span><span class="p">.</span><span class="nx">example</span><span class="p">.</span><span class="nx">org</span><span class="p">.</span>
+
+<span class="w">    </span><span class="p">;;</span><span class="w"> </span><span class="nx">AUTHORITY</span><span class="w"> </span><span class="nx">SECTION</span><span class="p">:</span>
+<span class="w">    </span><span class="m m-Double">240.123.224</span><span class="p">.</span><span class="k">in</span><span class="o">-</span><span class="kd">addr</span><span class="p">.</span><span class="nx">arpa</span><span class="p">.</span><span class="w">  </span><span class="mi">1</span><span class="nx">D</span><span class="w"> </span><span class="nx">IN</span><span class="w"> </span><span class="nx">NS</span><span class="w">  </span><span class="nx">lion</span><span class="p">.</span><span class="nx">example</span><span class="p">.</span><span class="nx">org</span><span class="p">.</span>
+
+<span class="w">    </span><span class="p">;;</span><span class="w"> </span><span class="nx">ADDITIONAL</span><span class="w"> </span><span class="nx">SECTION</span><span class="p">:</span>
+<span class="w">    </span><span class="nx">lion</span><span class="p">.</span><span class="nx">example</span><span class="p">.</span><span class="nx">org</span><span class="p">.</span><span class="w">      </span><span class="mi">1</span><span class="nx">D</span><span class="w"> </span><span class="nx">IN</span><span class="w"> </span><span class="nx">A</span><span class="w">       </span><span class="m m-Double">224.123.240.4</span>
+</code></pre></div></td></tr></table></div>
+
+<p>If you get something like</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="p">;;</span><span class="w"> </span><span class="nx">ANSWER</span><span class="w"> </span><span class="nx">SECTION</span><span class="p">:</span>
+<span class="w">    </span><span class="m m-Double">4.240.123.224</span><span class="p">.</span><span class="k">in</span><span class="o">-</span><span class="kd">addr</span><span class="p">.</span><span class="nx">arpa</span><span class="p">.</span><span class="w"> </span><span class="mi">1</span><span class="nx">D</span><span class="w"> </span><span class="nx">IN</span><span class="w"> </span><span class="nx">PTR</span><span class="w"> </span><span class="nx">lion</span><span class="p">.</span><span class="nx">example</span><span class="p">.</span><span class="nx">org</span><span class="m m-Double">.240.123.224</span><span class="p">.</span><span class="k">in</span><span class="o">-</span><span class="kd">addr</span><span class="p">.</span><span class="nx">arpa</span><span class="p">.</span>
+</code></pre></div></td></tr></table></div>
+
+<p>you've made an <em>error</em> in your zone file. Given a <em>current origin</em> of
+<code>240.123.224.in-addr.arpa.</code>, consider the line:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    4  IN PTR lion.example.org ; WRONG!
+</code></pre></div></td></tr></table></div>
+
+<p>The dot at the end was omitted, so the current origin is appended
+automatically. To correct this, add the trailing dot:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    4  IN PTR lion.example.org. ; RIGHT!
+</code></pre></div></td></tr></table></div>
+
+<p><strong>Note</strong>
+When specifying a hostname like <code>bird.example.org</code> or
+<code>4.240.123.224.in-addr.arpa</code> to <code>dig</code>, a trailing dot may be added.</p>
+<h3 id="the-host-program">The <code>host</code> program<a class="headerlink" href="#the-host-program" title="Permanent link">&para;</a></h3>
+<p>host</p>
+<p>The <code>host</code> program reports resolver information in a simple format.</p>
+<p>When a hostname is specified as a parameter, the corresponding <code>A</code>
+record will be shown. For example:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    host bird.example.org
+</code></pre></div></td></tr></table></div>
+
+<p>will result in output like</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    bird.example.org    A    224.123.240.4
+</code></pre></div></td></tr></table></div>
+
+<p>The <code>host</code> program is especially useful when a hostname is wanted and an
+IP address is given. For example:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    host 224.123.240.4
+</code></pre></div></td></tr></table></div>
+
+<p>from our example hosts shows output like:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>    Name: bird.example.org
+    Address: 224.123.240.4
+</code></pre></div></td></tr></table></div>
+
+<p>The following command is also possible:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="nx">host</span><span class="w"> </span><span class="m m-Double">4.240.123.224</span><span class="p">.</span><span class="k">in</span><span class="o">-</span><span class="kd">addr</span><span class="p">.</span><span class="nx">arpa</span>
+</code></pre></div></td></tr></table></div>
+
+<p>resolves the PTR record:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="m m-Double">4.240.123.224</span><span class="p">.</span><span class="k">in</span><span class="o">-</span><span class="kd">addr</span><span class="p">.</span><span class="nx">arpa</span><span class="w"> </span><span class="nx">PTR</span><span class="w"> </span><span class="nx">bird</span><span class="p">.</span><span class="nx">example</span><span class="p">.</span><span class="nx">org</span>
+</code></pre></div></td></tr></table></div>
+
+<p><strong>Note</strong>
+As is the case with <code>dig</code>, when specifying a hostname like
+<code>bird.example.org</code> or <code>4.240.123.224.in-addr.arpa</code> to <code>host</code>, a trailing
+dot may be added.</p>
+<h3 id="the-nslookup-program">The <code>nslookup</code> program<a class="headerlink" href="#the-nslookup-program" title="Permanent link">&para;</a></h3>
+<p>The <code>nslookup</code> program is yet another way to resolve names. As stated
+before the use of <code>nslookup</code> is deprecated, and the commands <code>host</code> and
+<code>dig</code> should be used instead. Despite this recommendation, you should
+have some knowledge of its usage.</p>
+<p>For instance, start the interactive mode by entering <code>nslookup</code> and
+typing:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    ls -d example.org.
+</code></pre></div></td></tr></table></div>
+
+<p>In result, the output will be shown in a zonefile-like format (beginning
+shown):</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code>    [lion.example.org]
+    $ORIGIN example.org.
+    @    1D IN SOA lion postmaster.lion (
+                    2001110800   ; serial
+                            8H   ; refresh
+                            1H   ; retry
+                            1W   ; expiry
+                            1D ) ; minimum
+
+                        1D IN NS   lion
+                        1D IN MX 0 lion
+</code></pre></div></td></tr></table></div>
+
+<p>The first line, in square brackets, contains the name of the name server
+that sent the answer.</p>
+<p><strong>Note</strong>
+The example shown requires a <em>zone transfer</em> from the connected name
+server. If this name server refuses zone transfers (as will be discussed
+in the next section), you will of course not see this output.</p>
+<p>A lot of commands can be given to <code>nslookup</code> in interactive mode: the
+<code>help</code> command will present a list.</p>
+<h3 id="dnswalk">DNSwalk<a class="headerlink" href="#dnswalk" title="Permanent link">&para;</a></h3>
+<p>DNSwalk is a DNS debugger. Use with caution, since it tries to perform
+zone transfers while checking DNS databases for consistency and
+accuracy. Example:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ dnswalk zoneedit.com.
+    Checking zoneedit.com.
+    Getting zone transfer of zoneedit.com. from ns2.zoneedit.com...done.
+    SOA=ns2.zoneedit.com    contact=soacontact.zoneedit.com
+    WARN: zoneedit.com A 64.85.73.107: no PTR record
+    WARN: golf.zoneedit.com A 69.72.176.186: no PTR record
+    WARN: zoneapp1.zoneedit.com A 64.85.73.104: no PTR record
+    WARN: dynamic1.zoneedit.com A 64.85.73.40: no PTR record
+    WARN: zoneapp2.zoneedit.com A 64.85.73.107: no PTR record
+    WARN: ezzi.zoneedit.com A 207.41.71.242: no PTR record
+    WARN: dynamic2.zoneedit.com A 64.85.73.40: no PTR record
+    WARN: legacyddns.zoneedit.com A 64.85.73.40: no PTR record
+    WARN: api2.zoneedit.com A 64.85.73.104: no PTR record
+    WARN: wfb.zoneedit.com A 69.72.142.98: no PTR record
+    WARN: new.zoneedit.com A 64.85.73.107: no PTR record
+    WARN: zebra.zoneedit.com A 69.72.240.114: no PTR record
+    WARN: api.zoneedit.com A 64.85.73.40: no PTR record
+    WARN: www.zoneedit.com A 64.85.73.107: no PTR record
+    WARN: newapi.zoneedit.com A 64.85.73.104: no PTR record
+    0 failures, 15 warnings, 0 errors.
+</code></pre></div></td></tr></table></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 1997-2021 Sue B.V., The Netherlands - Open Sourced 2021
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["search.highlight", "tabs", "instant"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

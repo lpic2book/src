@@ -1,0 +1,18 @@
+graph G {
+	node [shape=record];
+	edge [arrowhead=none];
+	rankdir="LR";
+	
+	subgraph cluster_0 {
+		disk[label="{filesystem|<f0>filesystem}|{logical volume|<f1>logical volume}|{||||physical extends||||<f2>}|<f3>physical volume|<f4>partition"]
+		disk
+		label="Volume Group"
+	}
+	
+	node [shape=ellipse]
+	disk:f0 -- mkfs
+	disk:f1 -- lvcreate
+	disk:f2 -- vgcreate
+	disk:f3 -- pvcreate
+	disk:f4 -- fdisk
+}

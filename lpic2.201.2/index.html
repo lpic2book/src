@@ -1,0 +1,3288 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Sue B.V., The Netherlands">
+      
+      
+      
+        <link rel="prev" href="../lpic2.201.1/">
+      
+      
+        <link rel="next" href="../lpic2.201.3/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Compiling a Linux kernel (201.2) - The LPIC2 Exam Prep</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:300,300i,400,400i,700,700i%7CAnonymous+Pro:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Nunito";--md-code-font:"Anonymous Pro"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#compiling-a-linux-kernel-2012" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="The LPIC2 Exam Prep" class="md-header__button md-logo" aria-label="The LPIC2 Exam Prep" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            The LPIC2 Exam Prep
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Compiling a Linux kernel (201.2)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/lpic2book/src" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    LPIC2Book
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="The LPIC2 Exam Prep" class="md-nav__button md-logo" aria-label="The LPIC2 Exam Prep" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/></svg>
+
+    </a>
+    The LPIC2 Exam Prep
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/lpic2book/src" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    LPIC2Book
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The LPIC2 Exam Prep
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpicbook_about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About this book
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    200 Capacity Planning (200)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Measure and Troubleshoot Resource Usage (200.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Predict Future Resource Needs (200.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Kernel (201)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel Components (201.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compiling a Linux kernel (201.2)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compiling a Linux kernel (201.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#compiling-a-linux-kernel-2012" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compiling a Linux kernel (201.2)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Compiling a Linux kernel (201.2)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-knowledge-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Knowledge Areas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terms-and-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terms and Utilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-the-kernel-sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Getting the kernel sources
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cleaning-the-kernel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cleaning the kernel
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-a-config-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating a .config file
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating a .config file">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#make-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        make config
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#make-menuconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        make menuconfig
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#make-xconfig-and-make-gconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        make xconfig and make gconfig
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#make-oldconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        make oldconfig
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#CompileKernel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compiling the kernel
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Compiling the kernel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#make-clean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        make clean
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#make-zimagebzimage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        make zImage/bzImage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#make-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        make modules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#make-modules_install" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        make modules_install
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-the-new-kernel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installing the new kernel
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-initial-ram-disk-initrd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The initial ram disk (initrd)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The initial ram disk (initrd)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#manual-initrd-creation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manual initrd creation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kernelpatching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Patching a Kernel
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Patching a Kernel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#removing-a-kernel-patch-from-a-production-kernel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Removing a kernel patch from a production kernel
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dkms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DKMS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="DKMS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dracut" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dracut
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel runtime management and troubleshooting (201.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Startup (202)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customizing system startup (202.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System recovery (202.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Alternate Bootloaders (202.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Filesystem and Devices (203)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operating The Linux Filesystem (203.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maintaining a Linux Filesystem (203.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Creating And Configuring Filesystem Options (203.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Storage Device Administration (204)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring RAID (204.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adjusting Storage Device Access (204.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logical Volume Manager (204.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring PCMCIA Devices (204.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Networking Configuration (205)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Networking Configuration (205.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Network Configuration and Troubleshooting (205.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting network issues (205.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Maintenance (206)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Make and install programs from source (206.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup Operations (206.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifying users on system-related issues (206.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domain Name Server (207)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic DNS server configuration (207.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Create and maintain DNS zones (207.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Securing a DNS Server (207.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTTP Services (208)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Apache Configuration (208.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Apache configuration for HTTPS (208.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementing Squid as a caching proxy (208.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementing Nginx as a web server and a reverse proxy (208.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File Sharing (209)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAMBA Server Configuration (209.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring an NFS Server (209.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Client Management (210)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DHCP Configuration (210.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PAM authentication (210.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LDAP client usage (210.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring an OpenLDAP server (210.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    E-Mail services (211)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using e-mail servers (211.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing E-Mail Delivery (211.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing Mailbox Access (211.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Security (212)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring a router (212.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing FTP servers (212.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secure shell (SSH) (212.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security tasks (212.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenVPN (212.5)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#compiling-a-linux-kernel-2012" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compiling a Linux kernel (201.2)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Compiling a Linux kernel (201.2)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-knowledge-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Knowledge Areas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terms-and-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terms and Utilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-the-kernel-sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Getting the kernel sources
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cleaning-the-kernel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cleaning the kernel
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-a-config-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating a .config file
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating a .config file">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#make-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        make config
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#make-menuconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        make menuconfig
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#make-xconfig-and-make-gconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        make xconfig and make gconfig
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#make-oldconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        make oldconfig
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#CompileKernel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compiling the kernel
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Compiling the kernel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#make-clean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        make clean
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#make-zimagebzimage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        make zImage/bzImage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#make-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        make modules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#make-modules_install" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        make modules_install
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-the-new-kernel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installing the new kernel
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-initial-ram-disk-initrd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The initial ram disk (initrd)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The initial ram disk (initrd)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#manual-initrd-creation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manual initrd creation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kernelpatching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Patching a Kernel
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Patching a Kernel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#removing-a-kernel-patch-from-a-production-kernel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Removing a kernel patch from a production kernel
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dkms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DKMS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="DKMS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dracut" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dracut
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h2 id="compiling-a-linux-kernel-2012">Compiling a Linux kernel (201.2)<a class="headerlink" href="#compiling-a-linux-kernel-2012" title="Permanent link">&para;</a></h2>
+<p>Candidates should be able to properly configure a kernel to include or
+disable specific features of the Linux kernel as necessary. This
+objective includes compiling and recompiling the Linux kernel as needed,
+updating and noting changes in a new kernel, creating an <code>initrd</code> image
+and installing new kernels.</p>
+<h3 id="key-knowledge-areas">Key Knowledge Areas<a class="headerlink" href="#key-knowledge-areas" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><code>/usr/src/linux/</code></p>
+</li>
+<li>
+<p>Kernel Makefiles</p>
+</li>
+<li>
+<p>Kernel 2.6.x, 3.x and 4.x make targets</p>
+</li>
+<li>
+<p>Customize the current kernel configuration</p>
+</li>
+<li>
+<p>Build a new kernel and appropriate kernel modules</p>
+</li>
+<li>
+<p>Install a new kernel and any modules</p>
+</li>
+<li>
+<p>Ensure that the boot manager can locate the new kernel and
+    associated files</p>
+</li>
+<li>
+<p>Module configuration files</p>
+</li>
+<li>
+<p>Use DKMS to compile kernel modules</p>
+</li>
+<li>
+<p>Awareness of <code>dracut</code></p>
+</li>
+</ul>
+<h3 id="terms-and-utilities">Terms and Utilities<a class="headerlink" href="#terms-and-utilities" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><code>mkinitrd</code></p>
+</li>
+<li>
+<p><code>mkinitramfs</code></p>
+</li>
+<li>
+<p><code>make</code></p>
+</li>
+<li>
+<p><code>make</code> targets (all, config, xconfig, menuconfig, gconfig,
+    oldconfig, mrproper, zImage, bzImage, modules, modules_install,
+    rpm-pkg, binrpm-pkg, deb-pkg)</p>
+</li>
+<li>
+<p><code>gzip</code></p>
+</li>
+<li>
+<p><code>bzip2</code></p>
+</li>
+<li>
+<p>module tools</p>
+</li>
+<li>
+<p><code>/usr/src/linux/.config</code></p>
+</li>
+<li>
+<p><code>/lib/modules/kernel-version/</code></p>
+</li>
+<li>
+<p><code>depmod</code></p>
+</li>
+</ul>
+<h2 id="getting-the-kernel-sources">Getting the kernel sources<a class="headerlink" href="#getting-the-kernel-sources" title="Permanent link">&para;</a></h2>
+<p>Kernel sources for almost all kernel versions can be found at <a href="https://www.kernel.org">The Linux Kernel Archives</a>.</p>
+<p>The filenames in the Linux Kernel Archive mimic the version numbering
+conventions for the kernel. For example: The filename format for kernel
+version 3.0 and 4.0 is <code>linux-</code><em>kernel-version</em><code>.tar.xz</code> Thus,
+<code>linux-3.18.43.tar.xz</code> is the kernel archive for version "3.18.43".</p>
+<p>The used version numbering convention for the 3.0 and 4.0 kernel is
+<code>linux-</code><em>A.B.C</em><code>.tar.xz</code> where:</p>
+<ul>
+<li>
+<p>A denotes the kernel version. It is only changed when major changes
+    in code and concept take place.</p>
+</li>
+<li>
+<p>B denotes the revision.</p>
+</li>
+<li>
+<p>C is the patch number</p>
+</li>
+</ul>
+<p>See the paragraph on <a href="../lpic2.201.1/#overview-of-numbering-schemes-for-kernels-and-patches">Kernel Versioning</a> to learn more about the
+various conventions that are and have been in use.</p>
+<p>A common location to store and unpack kernel sources is <code>/usr/src</code>. You
+can use another location as long as you create a symbolic link from your
+new source directory to <code>/usr/src/linux</code></p>
+<p>The source code for the kernel is available as a compressed tar archive
+in <code>xz</code> (<code>.xz</code> extention) format. Decompress the archive with <code>unxz</code>.
+The resulting <code>tar</code> archive can be unpacked with the <code>tar</code> utility, for
+example:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>    # unxz linux-3.18.43.tar.xz
+    # tar xvf linux-3.18.43.tar
+</code></pre></div></td></tr></table></div>
+
+<p>You can also uncompress and untar in one step <code>tar</code> using the <code>J</code>option:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    # tar Jxvf linux-3.18.43.tar.xz
+</code></pre></div></td></tr></table></div>
+
+<p>Refer to the man-pages on <code>tar</code> and, <code>xz</code> for more information.</p>
+<h2 id="cleaning-the-kernel">Cleaning the kernel<a class="headerlink" href="#cleaning-the-kernel" title="Permanent link">&para;</a></h2>
+<p>To make sure you start with a clean state you should "clean" the kernel
+first. When you compile a kernel into objects, the <code>make</code> utility
+keeps track of things and will not recompile any code it thinks has been
+correctly compiled before. In some cases, however, this may cause
+problems, especially when you change the kernel configuration. It is
+therefore customary to "clean" the source directory if you reconfigure
+the kernel.</p>
+<p>Cleaning can be done on three levels:</p>
+<p><code>make clean</code></p>
+<ul>
+<li>Deletes most generated files, but leaves enough to build external
+    modules.</li>
+</ul>
+<p><code>make mrproper</code></p>
+<ul>
+<li>Deletes the current configuration and all generated files.</li>
+</ul>
+<p><code>make distclean</code></p>
+<ul>
+<li>Removes editor backup files, patch leftover files and the like.</li>
+</ul>
+<p>Running <code>make mrproper</code> before configuring and building a
+kernel is generally a good idea.</p>
+<p><strong>Note</strong>
+Be warned that <code>make mrproper</code> deletes the main configuration file
+too. You may want to make a backup of it first for future reference.</p>
+<h2 id="creating-a-config-file">Creating a <code>.config</code> file<a class="headerlink" href="#creating-a-config-file" title="Permanent link">&para;</a></h2>
+<p>First you will need to configure the kernel. Configuration information
+is stored in the <code>.config</code> file. There are well over 500 options in that
+file, for example for filesystem, SCSI and networking support. Most of
+the options allow you to choose if you will have them compiled directly
+into the kernel or have them compiled as a module. Some selections imply
+a group of other selections. For example, when you indicate that you
+wish to include SCSI support, additional options become available for
+specific SCSI drivers and features.</p>
+<p>Some of the kernel support options <em>must</em> be compiled as a module, some
+can only be compiled as permanent part of the kernel and for some
+options you will be able to select either possibility.</p>
+<p>There are a number of methods to configure the kernel, but regardless
+which method you use, the results of your choices are always stored in
+the kernel configuration file <code>/usr/src/linux/.config</code>. It is a plain
+text file which lists all the options as shell variables.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span></pre></div></td><td class="code"><div><pre><span></span><code>    #
+    # Automatically generated make config: don&#39;t edit
+    # Linux kernel version: 2.6.28
+    # Sat Feb  6 18:16:23 2010
+    #
+    CONFIG_64BIT=y
+    # CONFIG_X86_32 is not set
+    CONFIG_X86_64=y
+    CONFIG_X86=y
+    CONFIG_ARCH_DEFCONFIG=&quot;arch/x86/configs/x86_64_defconfig&quot;
+    CONFIG_GENERIC_TIME=y
+    CONFIG_GENERIC_CMOS_UPDATE=y
+    CONFIG_CLOCKSOURCE_WATCHDOG=y
+    CONFIG_GENERIC_CLOCKEVENTS=y
+    CONFIG_GENERIC_CLOCKEVENTS_BROADCAST=y
+    CONFIG_LOCKDEP_SUPPORT=y
+    CONFIG_STACKTRACE_SUPPORT=y
+    CONFIG_HAVE_LATENCYTOP_SUPPORT=y
+    CONFIG_FAST_CMPXCHG_LOCAL=y
+    CONFIG_MMU=y
+    CONFIG_ZONE_DMA=y
+    CONFIG_GENERIC_ISA_DMA=y
+    CONFIG_GENERIC_IOMAP=y
+    CONFIG_GENERIC_BUG=y
+    CONFIG_GENERIC_HWEIGHT=y
+    ...
+</code></pre></div></td></tr></table></div>
+
+<p>To start configuration, change your current working directory to the top
+of the source tree:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    # cd /usr/src/linux
+</code></pre></div></td></tr></table></div>
+
+<p>As said, there are several ways to create or modify the <code>.config</code> file.
+It is strongly discouraged to edit this file manually. Instead you
+should use the <code>make</code> command with one of the four appropriate targets
+to configure your kernel.</p>
+<p>These four targets are:</p>
+<ul>
+<li>
+<p>config</p>
+</li>
+<li>
+<p>menuconfig</p>
+</li>
+<li>
+<p>xconfig|gconfig</p>
+</li>
+<li>
+<p>oldconfig</p>
+</li>
+</ul>
+<p>These targets will be explained below in more detail.</p>
+<h3 id="make-config">make config<a class="headerlink" href="#make-config" title="Permanent link">&para;</a></h3>
+<p>Running <code>make config</code> is the most rudimentary approach.</p>
+<p>It has clear advantages and disadvantages:</p>
+<ul>
+<li>
+<p>It does not depend on full-screen display capabilities. You can use
+    it on extremely slow links, or on systems with very limited display
+    capabilities.</p>
+</li>
+<li>
+<p>You will have to work your way through <em>all</em> possible questions
+    concerning kernel options. The system will present them sequentially
+    and without exception. Only when you have answered <em>all</em> questions
+    will you be allowed to save the configuration file. Given that,
+    there are many hundreds of options to go through so this method is
+    tedious. Because you cannot move back and forth through the various
+    questions you are forced to redo everything if you make a mistake.</p>
+</li>
+</ul>
+<p>An example session looks like this:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="nx">make</span><span class="w"> </span><span class="nx">config</span>
+<span class="w">      </span><span class="nx">HOSTCC</span><span class="w">  </span><span class="nx">scripts</span><span class="o">/</span><span class="nx">basic</span><span class="o">/</span><span class="nx">fixdep</span>
+<span class="w">      </span><span class="nx">HOSTCC</span><span class="w">  </span><span class="nx">scripts</span><span class="o">/</span><span class="nx">basic</span><span class="o">/</span><span class="nx">docproc</span>
+<span class="w">      </span><span class="nx">HOSTCC</span><span class="w">  </span><span class="nx">scripts</span><span class="o">/</span><span class="nx">basic</span><span class="o">/</span><span class="nx">hash</span>
+<span class="w">      </span><span class="nx">HOSTCC</span><span class="w">  </span><span class="nx">scripts</span><span class="o">/</span><span class="nx">kconfig</span><span class="o">/</span><span class="nx">conf</span><span class="p">.</span><span class="nx">o</span>
+<span class="w">    </span><span class="nx">scripts</span><span class="o">/</span><span class="nx">kconfig</span><span class="o">/</span><span class="nx">conf</span><span class="p">.</span><span class="nx">c</span><span class="p">:</span><span class="w"> </span><span class="nx">In</span><span class="w"> </span><span class="nx">function</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">conf_askvalue</span><span class="err">&#39;</span><span class="p">:</span>
+<span class="w">    </span><span class="nx">scripts</span><span class="o">/</span><span class="nx">kconfig</span><span class="o">/</span><span class="nx">conf</span><span class="p">.</span><span class="nx">c</span><span class="p">:</span><span class="mi">104</span><span class="p">:</span><span class="w"> </span><span class="nx">warning</span><span class="p">:</span><span class="w"> </span><span class="nx">ignoring</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">fgets</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span>\
+<span class="w">        </span><span class="nx">declared</span><span class="w"> </span><span class="nx">with</span><span class="w"> </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">warn_unused_result</span>
+<span class="w">    </span><span class="nx">scripts</span><span class="o">/</span><span class="nx">kconfig</span><span class="o">/</span><span class="nx">conf</span><span class="p">.</span><span class="nx">c</span><span class="p">:</span><span class="w"> </span><span class="nx">In</span><span class="w"> </span><span class="nx">function</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">conf_choice</span><span class="err">&#39;</span><span class="p">:</span>
+<span class="w">    </span><span class="nx">scripts</span><span class="o">/</span><span class="nx">kconfig</span><span class="o">/</span><span class="nx">conf</span><span class="p">.</span><span class="nx">c</span><span class="p">:</span><span class="mi">306</span><span class="p">:</span><span class="w"> </span><span class="nx">warning</span><span class="p">:</span><span class="w"> </span><span class="nx">ignoring</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">fgets</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span>\
+<span class="w">        </span><span class="nx">declared</span><span class="w"> </span><span class="nx">with</span><span class="w"> </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">warn_unused_result</span>
+<span class="w">      </span><span class="nx">HOSTCC</span><span class="w">  </span><span class="nx">scripts</span><span class="o">/</span><span class="nx">kconfig</span><span class="o">/</span><span class="nx">kxgettext</span><span class="p">.</span><span class="nx">o</span>
+<span class="w">      </span><span class="nx">HOSTCC</span><span class="w">  </span><span class="nx">scripts</span><span class="o">/</span><span class="nx">kconfig</span><span class="o">/</span><span class="nx">zconf</span><span class="p">.</span><span class="nx">tab</span><span class="p">.</span><span class="nx">o</span>
+<span class="w">    </span><span class="nx">In</span><span class="w"> </span><span class="nx">file</span><span class="w"> </span><span class="nx">included</span><span class="w"> </span><span class="nx">from</span><span class="w"> </span><span class="nx">scripts</span><span class="o">/</span><span class="nx">kconfig</span><span class="o">/</span><span class="nx">zconf</span><span class="p">.</span><span class="nx">tab</span><span class="p">.</span><span class="nx">c</span><span class="p">:</span><span class="mi">2486</span><span class="p">:</span>
+<span class="w">    </span><span class="nx">scripts</span><span class="o">/</span><span class="nx">kconfig</span><span class="o">/</span><span class="nx">confdata</span><span class="p">.</span><span class="nx">c</span><span class="p">:</span><span class="w"> </span><span class="nx">In</span><span class="w"> </span><span class="nx">function</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">conf_write</span><span class="err">&#39;</span><span class="p">:</span>
+<span class="w">    </span><span class="nx">scripts</span><span class="o">/</span><span class="nx">kconfig</span><span class="o">/</span><span class="nx">confdata</span><span class="p">.</span><span class="nx">c</span><span class="p">:</span><span class="mi">501</span><span class="p">:</span><span class="w"> </span><span class="nx">warning</span><span class="p">:</span><span class="w"> </span><span class="nx">ignoring</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">fwrite</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span>\
+<span class="w">        </span><span class="nx">declared</span><span class="w"> </span><span class="nx">with</span><span class="w"> </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">warn_unused_result</span>
+<span class="w">    </span><span class="nx">scripts</span><span class="o">/</span><span class="nx">kconfig</span><span class="o">/</span><span class="nx">confdata</span><span class="p">.</span><span class="nx">c</span><span class="p">:</span><span class="w"> </span><span class="nx">In</span><span class="w"> </span><span class="nx">function</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">conf_write_autoconf</span><span class="err">&#39;</span><span class="p">:</span>
+<span class="w">    </span><span class="nx">scripts</span><span class="o">/</span><span class="nx">kconfig</span><span class="o">/</span><span class="nx">confdata</span><span class="p">.</span><span class="nx">c</span><span class="p">:</span><span class="mi">739</span><span class="p">:</span><span class="w"> </span><span class="nx">warning</span><span class="p">:</span><span class="w"> </span><span class="nx">ignoring</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">fwrite</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span>\
+<span class="w">        </span><span class="nx">declared</span><span class="w"> </span><span class="nx">with</span><span class="w"> </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">warn_unused_result</span>
+<span class="w">    </span><span class="nx">scripts</span><span class="o">/</span><span class="nx">kconfig</span><span class="o">/</span><span class="nx">confdata</span><span class="p">.</span><span class="nx">c</span><span class="p">:</span><span class="mi">740</span><span class="p">:</span><span class="w"> </span><span class="nx">warning</span><span class="p">:</span><span class="w"> </span><span class="nx">ignoring</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">fwrite</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span>\
+<span class="w">        </span><span class="nx">declared</span><span class="w"> </span><span class="nx">with</span><span class="w"> </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">warn_unused_result</span>
+<span class="w">    </span><span class="nx">In</span><span class="w"> </span><span class="nx">file</span><span class="w"> </span><span class="nx">included</span><span class="w"> </span><span class="nx">from</span><span class="w"> </span><span class="nx">scripts</span><span class="o">/</span><span class="nx">kconfig</span><span class="o">/</span><span class="nx">zconf</span><span class="p">.</span><span class="nx">tab</span><span class="p">.</span><span class="nx">c</span><span class="p">:</span><span class="mi">2487</span><span class="p">:</span>
+<span class="w">    </span><span class="nx">scripts</span><span class="o">/</span><span class="nx">kconfig</span><span class="o">/</span><span class="nx">expr</span><span class="p">.</span><span class="nx">c</span><span class="p">:</span><span class="w"> </span><span class="nx">In</span><span class="w"> </span><span class="nx">function</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">expr_print_file_helper</span><span class="err">&#39;</span><span class="p">:</span>
+<span class="w">    </span><span class="nx">scripts</span><span class="o">/</span><span class="nx">kconfig</span><span class="o">/</span><span class="nx">expr</span><span class="p">.</span><span class="nx">c</span><span class="p">:</span><span class="mi">1090</span><span class="p">:</span><span class="w"> </span><span class="nx">warning</span><span class="p">:</span><span class="w"> </span><span class="nx">ignoring</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">fwrite</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span>\
+<span class="w">        </span><span class="nx">declared</span><span class="w"> </span><span class="nx">with</span><span class="w"> </span><span class="nx">attribute</span><span class="w"> </span><span class="nx">warn_unused_result</span>
+<span class="w">      </span><span class="nx">HOSTLD</span><span class="w">  </span><span class="nx">scripts</span><span class="o">/</span><span class="nx">kconfig</span><span class="o">/</span><span class="nx">conf</span>
+<span class="w">    </span><span class="nx">scripts</span><span class="o">/</span><span class="nx">kconfig</span><span class="o">/</span><span class="nx">conf</span><span class="w"> </span><span class="nx">arch</span><span class="o">/</span><span class="nx">x86</span><span class="o">/</span><span class="nx">Kconfig</span>
+<span class="w">    </span><span class="o">*</span>
+<span class="w">    </span><span class="o">*</span><span class="w"> </span><span class="nx">Linux</span><span class="w"> </span><span class="nx">Kernel</span><span class="w"> </span><span class="nx">Configuration</span>
+<span class="w">    </span><span class="o">*</span>
+<span class="w">    </span><span class="o">*</span>
+<span class="w">    </span><span class="o">*</span><span class="w"> </span><span class="nx">General</span><span class="w"> </span><span class="nx">setup</span>
+<span class="w">    </span><span class="o">*</span>
+<span class="w">    </span><span class="nx">Prompt</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nx">development</span><span class="w"> </span><span class="k">and</span><span class="o">/</span><span class="k">or</span><span class="w"> </span><span class="nx">incomplete</span><span class="w"> </span><span class="nx">code</span><span class="o">/</span><span class="nx">drivers</span><span class="w"> </span><span class="p">(</span><span class="nx">EXPERIMENTAL</span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="nx">Y</span><span class="o">/</span><span class="nx">n</span><span class="o">/</span><span class="p">?]</span>
+</code></pre></div></td></tr></table></div>
+
+<h3 id="make-menuconfig">make menuconfig<a class="headerlink" href="#make-menuconfig" title="Permanent link">&para;</a></h3>
+<p>The <code>make menuconfig</code> method is more intuitive and can be used as an
+alternative to <code>make config</code>. It creates a text-mode windowed
+environment based on the <code>ncurses</code> libraries. You can switch back and
+forth between options. The sections are laid out in a menu-like
+structure which is easy to navigate and you can save and quit whenever
+you want. If you prefer a darker color scheme, use <code>make nconfig</code>. The
+<code>make menuconfig</code> menu display.</p>
+<p>When done, use the arrow keys to select the <em>Exit</em> option at the bottom
+of the screen. If any changes were made you will be prompted if you
+would like to save the new configuration. You can also choose to save
+the configuration using another name and/or location in the filesystem.</p>
+<p><strong>Note</strong>
+If you choose another name or location you need to move the <code>.config</code>
+file into the <code>/usr/src/linux</code> directory to compile the kernel.</p>
+<h3 id="make-xconfig-and-make-gconfig"><code>make xconfig</code> and <code>make gconfig</code><a class="headerlink" href="#make-xconfig-and-make-gconfig" title="Permanent link">&para;</a></h3>
+<p>The <code>make xconfig</code> command presents a GUI menu to configure the
+kernel. It requires a working X Window System and the QT development
+libraries to work. It will provide a menu which can be navigated using a
+mouse. Use <code>make gconfig</code> to use Gnome instead of QT. This requires
+the GTK+ 2.x development libraries to be available. First, we show you
+how the top-level <code>make xconfig</code> window looks:</p>
+<p><img alt=" The make xconfig top-level window.
+" src="../images/201-xconfig.jpg" /></p>
+<p>As said, the command <code>make gconfig</code> does exactly the same, but uses
+GTK instead of QT:</p>
+<p><img alt=" The make gconfig top-level window.
+" src="../images/201-gconfig.jpg" /></p>
+<h3 id="make-oldconfig">make oldconfig<a class="headerlink" href="#make-oldconfig" title="Permanent link">&para;</a></h3>
+<p><code>make oldconfig</code> can be used to preserve options you choose during an
+earlier kernel build.</p>
+<p>Make sure the <code>.config</code> file that was the result of the earlier build is
+copied into <code>/usr/src/linux/</code>. When you run <code>make oldconfig</code>, the
+original <code>.config</code> file will be moved to <code>.config.old</code> and a new
+<code>.config</code> will be created. You will be prompted for answers that can not
+be found in the previous configuration file, for example when there are
+new options for the new kernel.</p>
+<p><strong>Note</strong>
+Be sure to make a backup of <code>.config</code> before upgrading the kernel
+source, because the distribution might contain a default <code>.config</code> file,
+overwriting your old file.</p>
+<p><strong>Note</strong>
+<code>make  xconfig</code>, <code>make 
+                gconfig</code> and <code>make 
+                menuconfig</code> will <em>automatically</em> use the old <code>.config</code>
+file (if available) to construct a new one, preserving as much options
+as possible while adding new options using their default values.</p>
+<h2 id="CompileKernel">Compiling the kernel<a class="headerlink" href="#CompileKernel" title="Permanent link">&para;</a></h2>
+<p>Use the following sequence of <code>make</code> commands to build and install the
+kernel and modules:</p>
+<ol>
+<li>
+<p><code>make clean</code></p>
+</li>
+<li>
+<p><code>make zImage/bzImage</code></p>
+</li>
+<li>
+<p><code>make modules</code></p>
+</li>
+<li>
+<p><code>make modules_install</code></p>
+</li>
+</ol>
+<h3 id="make-clean">make clean<a class="headerlink" href="#make-clean" title="Permanent link">&para;</a></h3>
+<p>The "clean" argument removes old output files that may exist from
+previous kernel builds. These include core files, system map files and
+others.</p>
+<h3 id="make-zimagebzimage">make zImage/bzImage<a class="headerlink" href="#make-zimagebzimage" title="Permanent link">&para;</a></h3>
+<p>The <code>zImage</code> and <code>bzImage</code> arguments both effectively build the kernel.
+The difference between these two is explained in
+<a href="../lpic2.201.1/#different-types-of-kernel-images">Different types of kernel images</a>.</p>
+<p>After the compile process the kernel image can be found in the
+<code>/usr/src/linux/arch/i386/boot</code> directory (on i386 systems).</p>
+<h3 id="make-modules">make modules<a class="headerlink" href="#make-modules" title="Permanent link">&para;</a></h3>
+<p>The <code>modules</code> argument builds the modules; the device drivers and other
+items that were configured as modules.</p>
+<h3 id="make-modules_install">make modules_install<a class="headerlink" href="#make-modules_install" title="Permanent link">&para;</a></h3>
+<p>The <code>modules_install</code> argument installs the modules you just compiled
+under <code>/lib/modules/</code><em>kernel-version</em>. The <em>kernel-version</em> directory
+will be created if nonexistent.</p>
+<h2 id="installing-the-new-kernel">Installing the new kernel<a class="headerlink" href="#installing-the-new-kernel" title="Permanent link">&para;</a></h2>
+<p>When the new kernel has been compiled the system can be configured to
+boot it.</p>
+<p>First you need to put a copy of the new <code>bzImage</code> in the boot directory
+(which should reside on its own boot partition). For clarity the name of
+the kernel file should contain the kernel-version number, for example:
+<code>vmlinuz-2.6.31</code>:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>    # cp /usr/src/linux/arch/x86_64/boot/bzImage
+    /boot/vmlinuz-2.6.31
+</code></pre></div></td></tr></table></div>
+
+<p>This also ensures that you can have more than one kernel version in the
+<code>/boot</code> directory, for example if you need to boot an older kernel due
+to problems with the new one.</p>
+<p>After moving the kernel file to the correct location, you will need to
+configure the bootmanager (GRUB) so it will be able to boot the new
+kernel.</p>
+<p>For more specific information on GRUB, please refer to
+<a href="../lpic2.202.2/#grub-explained">grub</a>.</p>
+<h2 id="the-initial-ram-disk-initrd">The initial ram disk (<code>initrd</code>)<a class="headerlink" href="#the-initial-ram-disk-initrd" title="Permanent link">&para;</a></h2>
+<p>Say your bootdisk has the bootloader, kernel and proper modules on it.
+Given the advantages of kernel modules you decided to use them. But if
+you also want to use them for the boot device drivers, you face a
+problem. GRUB will load the kernel, then execute it. The kernel will try
+to access the disk to obtain the modules. However, as it has not loaded
+the proper module yet, it can't access that disk and hangs.</p>
+<p>A perfectly good solution would be to build a kernel with the required
+disk-driver hardcoded into it. But if you have a larger number of
+differing systems to maintain, you either need a personalised
+configuration and kernel for each type of system or have to live with a
+bloated kernel. To circumvent all of these problems, the kernel
+developers came up with a solution: the <code>initrd</code> RAM disk.</p>
+<p>A RAM disk is a chunk of memory that the kernel sees as if it were a
+disk. It can be mounted like any other disk. The kernel supports RAM
+disks by default. GRUB and LILO can handle RAM disks too. You can
+instruct them to load the RAM disk from a file and when the kernel boots
+it has the RAM disk readily available. Such RAM disks are often used to
+hold scripts and modules to aid the boot process.</p>
+<p>By convention the name of the image that holds the initial RAM disk is
+<code>initrd</code>. The name is short for "initial ram disk".</p>
+<p>The bootloader loads the <code>initrd</code>, it is mounted by the kernel as its
+root filesystem. Once mounted as the root filesystem, programs can be
+run from it and kernel modules loaded from it. After this step a new
+root filesystem can be mounted from a different device. The previous
+root (from <code>initrd</code>) is then either moved to the directory <code>/initrd</code> or
+it is unmounted.</p>
+<p>There are a number of ways to create your own <code>initrd</code> file. A very
+convenient method, mainly used by Red Hat (based) distributions is by
+using the <code>mkinitrd</code> script. It is a shell script which you might want
+to inspect to see how it works. On Debian-based distributions a
+utility named mkinitramfs <code>mkinitramfs</code> can be used for the same
+purpose. You can also opt to build the file by hand, see the chapter
+below.</p>
+<h3 id="manual-initrd-creation">Manual <code>initrd</code> creation<a class="headerlink" href="#manual-initrd-creation" title="Permanent link">&para;</a></h3>
+<p><code>initrd</code> files are compressed archives that contain the files of a
+minimal root filesystem. This root filesystem normally contains modules,
+scripts and some additional binaries required to allow the kernel to
+properly continue its boot.</p>
+<p>As said, the <code>mkinitrd</code> script offers a convenient way to build the
+<code>initrd</code> file, however not all distributions provide it. If you want (or
+must) build one by hand the steps are: create a root filesystem,
+populate it with modules and files, create a <code>tar</code> or <code>cpio</code> archive
+from it and lastly <code>gzip</code> it.</p>
+<p>What type of archive to use depends on the distribution and kernel
+version. Older kernels employ <code>tar</code>, newer use <code>cpio</code>. If you are unsure
+and have a <code>initrd</code> at hand that came with your distribution, you may
+use a command sequence like the one below to check:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ sudo zcat /boot/initrd-2.6.18-348.6.1.el5.img |file -
+    /dev/stdin: ASCII cpio archive (SVR4 with no CRC)
+</code></pre></div></td></tr></table></div>
+
+<p>The example above shows the output of a CentOS 5 distribution that uses
+<code>cpio</code> as its archiving tool.</p>
+<p>To be able to work with the <code>initrd</code> images, the kernel has to be
+compiled with support for the RAM disk and configured such that it will
+use it. Whatever you put on the initial RAM disk, it should be
+compatible with the kernel and architecture you will use. For example,
+your boot kernel should be able to recognize the filesystem type used in
+the image and the modules you include should match the boot kernel
+version.</p>
+<p>The next step is to actually create the RAM disk image. First create a
+filesystem on a block device and then copy the files to that filesystem
+as needed. Suitable block devices to be used for this purpose are:</p>
+<ol>
+<li>
+<p>A RAM disk (fast, allocates physical memory)</p>
+</li>
+<li>
+<p>A loopback device (slightly slower, allocates disk space)</p>
+</li>
+</ol>
+<p>In the rest of this example we will use the RAM disk method, so we will
+need to make sure a RAM disk device node is present (there may be more
+than one):</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>    # ls -la /dev/ram0
+    brw-rw---- 1 root disk 1,  0 Feb 13 00:18 /dev/ram0
+</code></pre></div></td></tr></table></div>
+
+<p><strong>Note</strong>
+The number of RAM disks that is available by default on a system is an
+option in the kernel configuration: CONFIG_BLK_DEV_RAM_COUNT.</p>
+<p>Next an empty filesystem needs to be created of the appropriate size:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    # mke2fs -m0 /dev/ram0 300
+</code></pre></div></td></tr></table></div>
+
+<p><strong>Note</strong>
+If space is critical, you may wish to use a filesystem which is more
+efficient with space, such as the Minix FS. Remember that the
+boot-kernel will need built-in support for whatever filesystem you
+choose.</p>
+<p>After having created the filesystem, you need to mount it on the
+appropriate directory:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    # mount -t ext2 /dev/ram0 /mnt
+</code></pre></div></td></tr></table></div>
+
+<p>Now the stub for the console device needs to be created. This will be
+the device node that will be used when the <code>initrd</code> is active.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>    # mkdir /mnt/dev
+    # mknod /mnt/dev/tty1 c 4 1
+</code></pre></div></td></tr></table></div>
+
+<p>Next, copy all files you think are necessary to the image; modules,
+scripts, binaries, it does not matter. One of the most important files to copy over is
+<code>/linuxrc</code>. Whenever the kernel is set up to use a <code>initrd</code> image it
+will search for a file <code>/linuxrc</code> and execute it. It can be a
+script or a compiled binary. Hence, what will happen after mounting your
+image file is totally under your control. In this example we will make
+<code>/linuxrc</code> a link to <code>/bin/sh</code>. Make sure <code>/linuxrc</code> is given execute
+permissions.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    # ln -s /bin/sh /mnt/linuxrc
+</code></pre></div></td></tr></table></div>
+
+<p>After you have completed copying the files and have made sure that the
+<code>/linuxrc</code> has the correct attributes, you can unmount the RAM disk
+image:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    # umount /dev/ram0
+</code></pre></div></td></tr></table></div>
+
+<p>The RAM disk image can then be copied to a file:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span>#<span class="w"> </span><span class="nv">dd</span><span class="w"> </span><span class="k">if</span><span class="o">=/</span><span class="nv">dev</span><span class="o">/</span><span class="nv">ram0</span><span class="w"> </span><span class="nv">bs</span><span class="o">=</span><span class="mi">1</span><span class="nv">k</span><span class="w"> </span><span class="nv">count</span><span class="o">=</span><span class="mi">300</span><span class="w"> </span><span class="nv">of</span><span class="o">=/</span><span class="nv">boot</span><span class="o">/</span><span class="nv">initrd</span>
+</code></pre></div></td></tr></table></div>
+
+<p>Finally, if you have no more use for the RAM disk and you wish to
+reclaim the memory, deallocate the RAM disk:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    # freeramdisk /dev/ram0
+</code></pre></div></td></tr></table></div>
+
+<p>To test the newly created <code>initrd</code>, add a new section to your GRUB
+menufile, which refers to the <code>initrd</code> image you've just created:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>    title=initrd test entry
+    root (hd0,0)
+    kernel /vmlinuz-2.6.28
+    initrd /initrd
+</code></pre></div></td></tr></table></div>
+
+<p>If you have followed the steps above and have rebooted using this test
+entry from the bootloader menu, the system will continue to boot. After
+a few seconds you should find yourself at a command prompt, since
+<code>/linuxrc</code> refers to <code>/bin/sh</code>, a shell.</p>
+<p>Of course, real <code>initrd</code> files will contain a more complex <code>/linuxrc</code>
+boot file, that loads modules, mounts the real root filesystem etc.</p>
+<h1 id="kernelpatching">Patching a Kernel<a class="headerlink" href="#kernelpatching" title="Permanent link">&para;</a></h1>
+<p><strong>Note</strong>
+This section offers information on a subject that is no longer part of
+the LPIC-2 objectives. It is maintained because it still contains valid
+and valuable information.</p>
+<p>In older versions of the LPIC-2 objectives candidates were assumed to be
+able to properly patch the source code of a kernel to add support for
+new hardware. The objectives included being able to remove kernel
+patches from patched kernels.</p>
+<p>Key files, terms and utilities include:</p>
+<ul>
+<li>
+<p>Kernel Makefiles</p>
+</li>
+<li>
+<p><code>patch</code></p>
+</li>
+<li>
+<p><code>xz</code></p>
+</li>
+</ul>
+<p>A patch file contains a list of differences between two versions of a
+file. The standard command <code>diff</code> is capable of producing such lists.
+The command <code>patch</code> can be used to apply the contents of a patch file to
+update the file from the old version to a newer version.</p>
+<p>Patching the kernel is very straightforward:</p>
+<ol>
+<li>
+<p>Place patch file in the <code>/usr/src</code> directory.</p>
+</li>
+<li>
+<p>Change directory to <code>/usr/src</code>.</p>
+</li>
+<li>
+<p>Uncompress the patch file using <code>unxz</code></p>
+</li>
+<li>
+<p>Use the <code>patch</code> utility to apply the patch file to the kernel
+    source:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    # patch -p1 &lt;patchfile
+</code></pre></div></td></tr></table></div>
+
+</li>
+<li>
+<p>Check for failures.</p>
+</li>
+<li>
+<p>Build the kernel.</p>
+</li>
+</ol>
+<p>If the <code>patch</code> utility is unable to apply a part of a patch, it puts
+that part in a reject file. The name of a reject file is the name of the
+output file plus a <code>.rej</code> suffix, or a <code>#</code> if the addition of <code>.rej</code>
+would generate a filename that is too long. In case even the addition of
+a mere <code>#</code> would result in a filename that is too long, the last
+character of the filename is replaced with a <code>#</code>.</p>
+<p>The common options for the <code>patch</code> utility: patch</p>
+<p>-p<code>number</code>; <code>--strip=number</code></p>
+<ul>
+<li>Strip the smallest prefix containing <code>number</code>
+    leading slashes from each file name found in the patch file. A
+    sequence of one or more adjacent slashes is counted as a single
+    slash. This controls how file names found in the patch file are
+    treated, in case you keep your files in a different directory than
+    the person who sent out the patch. For example, supposing the file
+    name in the patch file was <code>/u/howard/src/blurfl/blurfl.c</code>, then
+    using <code>-p0</code> gives the entire file name unmodified, while using <code>-p1</code>
+    gives <code>u/howard/src/blurfl/blurfl.c</code>.</li>
+</ul>
+<p><code>-s</code>; <code>--silent</code>; <code>--quiet</code></p>
+<ul>
+<li>Work silently (suppress output), unless an error occurs.</li>
+</ul>
+<p><code>-E</code>; <code>--remove-empty-files</code></p>
+<ul>
+<li>Remove output files that are empty after the patches have been
+    applied. Normally this option is unnecessary, since patch
+    can examine the time stamps on the header to determine
+    whether a file should exist after patching. However, if
+    the input is not a context diff or if patch conforms to the POSIX
+    specification, patch does not remove empty patched files unless this
+    option is given. When patch removes a file, it also attempts to
+    remove any empty ancestor directories.</li>
+</ul>
+<p><code>-R</code>; <code>--reverse</code></p>
+<ul>
+<li>
+<p>Assume that this patch was created with the old and new
+    files reversed, so that you are basically applying the
+    patch to the file which already contains the modifications in the
+    patch file. The <code>patch</code> will attempt to swap each hunk around before
+    applying it and rejects will come out in the swapped format. The
+    <code>-R</code> option does not work with <code>ed</code> diff scripts because there is
+    too little information to reconstruct the reverse operation. If the
+    first hunk of a <code>patch</code> fails, <code>patch</code> reverses the hunk to see if
+    it can be applied that way. If it can, you are asked if you want to
+    have the <code>-R</code> option set. If it can't, the patch continues to be
+    applied normally.</p>
+<p><strong>Note</strong>
+This method cannot detect a reversed patch if it is a normal diff
+and if the first command is an append (i.e. it should have been a
+delete) since appends always succeed. This is due to the fact that a
+null context matches anywhere. Luckily, most patches add or change
+lines rather than delete them, so most reversed normal diffs begin
+with a delete, which fails, triggering the heuristic.</p>
+</li>
+</ul>
+<p>For more information consult the man-pages of the <code>diff</code> command and the
+<code>patch</code> command.</p>
+<h3 id="removing-a-kernel-patch-from-a-production-kernel">Removing a kernel patch from a production kernel<a class="headerlink" href="#removing-a-kernel-patch-from-a-production-kernel" title="Permanent link">&para;</a></h3>
+<p>A kernel patch can be removed from a production kernel by removing it
+from the production kernel source tree and compiling a new kernel. In
+the previous topic we've learned that to remove a patch from a file,
+you either need to apply it again, or run <code>patch</code> with the <code>-R</code>
+parameter:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">patch</span><span class="w"> </span><span class="o">-</span><span class="n">p1</span><span class="o">&lt;</span><span class="n">patch</span><span class="o">-</span><span class="mf">2.6.28</span>
+<span class="w">    </span><span class="n">patching</span><span class="w"> </span><span class="k">file</span><span class="w"> </span><span class="n">linux</span><span class="o">/</span><span class="n">Documentation</span><span class="o">/</span><span class="n">Configure</span><span class="p">.</span><span class="n">help</span>
+<span class="w">    </span><span class="n">Reversed</span><span class="w"> </span><span class="p">(</span><span class="ow">or</span><span class="w"> </span><span class="n">previously</span><span class="w"> </span><span class="n">applied</span><span class="p">)</span><span class="w"> </span><span class="n">patch</span><span class="w"> </span><span class="n">detected</span><span class="err">!</span><span class="w"> </span><span class="n">Assume</span><span class="w"> </span><span class="o">-</span><span class="n">R</span><span class="vm">?</span><span class="w"> </span><span class="o">[</span><span class="n">n</span><span class="o">]</span><span class="w"> </span><span class="n">y</span>
+</code></pre></div></td></tr></table></div>
+
+<h1 id="dkms">DKMS<a class="headerlink" href="#dkms" title="Permanent link">&para;</a></h1>
+<p>DKMS (Dynamic Kernel Module Support) was developed by Dell in 2003.
+DKMS was created as a solution to combat software problems caused by the
+dependencies between kernels and kernel modules. As a vendor of computer
+systems running (amongst others) Linux operating systems, Dell offered
+software support to customers. When customers would upgrade the Linux
+kernel, the kernel modules had to be upgraded as well. And whenever Dell
+released newer versions of kernel modules for hardware support, these
+modules had to match the Linux kernel in use.</p>
+<p>DKMS is a framework, capable of automatically compiling and/or
+installing kernel modules for every kernel version available on the
+system. DKMS achieves this functionality by seperating the kernel module
+files or sources from the actual kernel source tree. This way, both the
+kernel and kernel modules may be upgraded independent of each other.
+Major Linux distributions offer the DKMS framework through their package
+system. When the kernel is upgraded by the package manager software on a
+system running DKMS, a hook will take care of deciding whether any kernel
+modules need to be compiled and/or installed for the new kernel. The
+other way around, new kernel modules can be compiled and/or installed by
+DKMS without requirements towards the kernel version.</p>
+<p>DKMS does have a few requirements in order to function properly. The
+software dependencies are dependant on the Linux distribution in use.
+But one requirement that is uniform across all distributions is the
+necessity for kernel header files. The headers for the running kernel
+version can be installed using the following package manager commands:</p>
+<p>On Red Hat based Linux distributions:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $  yum install kernel-devel
+</code></pre></div></td></tr></table></div>
+
+<p>On Debian-based Linux distributions:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ apt-get install linux-headers-$(uname -r)
+</code></pre></div></td></tr></table></div>
+
+<p>Due to the adoption of DKMS amongst major Linux distributions, many
+kernel modules available through package managers are (also) available
+as DKMS-modules. On Debian-based Linux systems, these DKMS kernel
+modules can be identified by their naming convention. The package names
+for these files end in <code>-dkms</code>. For example: <code>oss4-dkms</code>. After
+installation of these packages, the kernel module source files are
+placed within a corresponding <code>/usr/src/module-version</code> directory
+together with a <code>dkms.conf</code> configuration file. Whenever a kernel or
+kernel module change triggers the DKMS system, the directory specified
+by the <code>source_tree</code> variable from <code>/etc/dkms/framework.conf</code> will be
+checked for the existence of subdirectories containing <code>dkms.conf</code>
+files. The contents of these <code>dkms.conf</code> files then determine what
+happens next. The following example comes from a Debian-based Linux
+system and should clarify this explanation:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ sudo apt-get install flashcache-dkms
+    $ ls /usr/src/
+    flashcache-3.1.1+git20140801  linux-headers-3.16.0-4-amd64  linux-headers-3.16.0-4-common  linux-kbuild-3.16 
+    $ ls /usr/src/flashcache-3.1.1+git20140801/
+    dkms.conf          flashcache.h        flashcache_ioctl.h  flashcache_procfs.c   flashcache_subr.c
+    flashcache_conf.c  flashcache_ioctl.c  flashcache_main.c   flashcache_reclaim.c  Makefile
+    $ cat /usr/src/flashcache-3.1.1+git20140801/dkms.conf 
+    BUILT_MODULE_NAME=&quot;flashcache&quot;
+    DEST_MODULE_LOCATION=&quot;/kernel/drivers/block&quot;
+    PACKAGE_NAME=&quot;flashcache&quot;
+    PACKAGE_VERSION=&quot;3.1.1+git20140801&quot;
+    AUTOINSTALL=&quot;yes&quot;
+    REMAKE_INITRD=&quot;yes&quot;
+    MAKE=&quot;COMMIT_REV=3.1.1+git20140801 KERNEL_TREE=$kernel_source_dir make modules&quot;
+</code></pre></div></td></tr></table></div>
+
+<p><code>BUILT_MODULE_NAME</code> determines the name of the compiled module. This
+directive is mandatory if the DKMS-module package contains more than one
+module. <code>DEST_MODULE_LOCATION</code> determines the location for the compiled
+module. The value for this directive should always start with "/kernel"
+which in turn redirects to <code>/lib/modules/kernelversion/kernel</code>. This
+value is mandatory except for the following Linux distributions which
+use a distribution specific directory: Fedora Core 6 and higher, RHEL 5
+and higher, Novell SuSE Linux ES 10 and higher and Ubuntu.
+<code>PACKAGE_NAME</code> determines the name associated with the entire package of
+modules. This directive is mandatory. <code>PACKAGE_VERSION</code> determines the
+version associated with the entire package of modules and is mandatory.
+<code>AUTOINSTALL</code> is a boolean value that determines whether or not the
+<code>dkms_autoinstaller</code> service will try to install this module for every
+kernel the system boots in to. <code>REMAKE_INITRD</code> determines whether the
+<code>initrd</code> image should be generated again after this module is installed.
+The value of this directive defaults to "no". When configuring a value,
+know that all characters after the first character are discared. The
+first character is only interpreted if it is a "y" or "Y". <code>MAKE</code> is one
+of many directives that stores its value in to an array. The <code>MAKE</code>
+value determines the build options. When not defined, DKMS will try to
+build the module using a generic <code>MAKE</code> command.</p>
+<p>On Debian-based Linux distributions, the directory
+<code>/usr/share/doc/dkms/examples</code> holds example configuration files. On Red
+Hat based Linux systems, example files can be found within the
+<code>/usr/share/doc/dkms</code> directory.</p>
+<p>After a module is built by DKMS, it is part of an extensible framework.
+DKMS provides several commands to issue on the module. Covering all
+these commands reaches beyond the scope of this book. But apart from
+<code>man dkms</code> the <code>dkms</code> command should be familiar. The <code>dkms</code> command
+makes it possible to <code>add</code> or <code>remove</code> modules to or from the source
+tree. Once part of the source tree, modules may be <code>build</code>. After
+building, a module may be installed onto the kernel it was build for
+using the <code>install</code> option. <code>uninstall</code> reverts this process. The
+<code>status</code> option prints information about added modules to standard
+output.</p>
+<p>The example above uses a module from the package manager. DKMS is also
+capable of accepting archive formats containing binary modules, module
+sources or both. When adding modules to DKMS this way it is important
+that the archive also contains a valid <code>dkms.conf</code> file. Using the
+<code>dkms mktarball</code> command, such an archive can be created based on
+modules extracted from the current system. This tarball archive can then
+be imported to the source tree using the <code>dkms ldtarball</code> command.</p>
+<h2 id="dracut">Dracut<a class="headerlink" href="#dracut" title="Permanent link">&para;</a></h2>
+<p>Just like DKMS may be configured to behave as an event-driven tool,
+<code>dracut</code> can behave in a similar way. Instead of compiling kernel
+modules, <code>dracut</code> can take care of generating a new <code>initramfs</code> image
+whenever there seems a need to do so.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 1997-2021 Sue B.V., The Netherlands - Open Sourced 2021
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["search.highlight", "tabs", "instant"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

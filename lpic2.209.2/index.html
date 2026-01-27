@@ -1,0 +1,4128 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Sue B.V., The Netherlands">
+      
+      
+      
+        <link rel="prev" href="../lpic2.209.1/">
+      
+      
+        <link rel="next" href="../lpic2.210.0/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Configuring an NFS Server (209.2) - The LPIC2 Exam Prep</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:300,300i,400,400i,700,700i%7CAnonymous+Pro:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Nunito";--md-code-font:"Anonymous Pro"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#configuring-an-nfs-server-2092" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="The LPIC2 Exam Prep" class="md-header__button md-logo" aria-label="The LPIC2 Exam Prep" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            The LPIC2 Exam Prep
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Configuring an NFS Server (209.2)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/lpic2book/src" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    LPIC2Book
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="The LPIC2 Exam Prep" class="md-nav__button md-logo" aria-label="The LPIC2 Exam Prep" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/></svg>
+
+    </a>
+    The LPIC2 Exam Prep
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/lpic2book/src" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    LPIC2Book
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The LPIC2 Exam Prep
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpicbook_about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About this book
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    200 Capacity Planning (200)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Measure and Troubleshoot Resource Usage (200.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Predict Future Resource Needs (200.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Kernel (201)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel Components (201.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compiling a Linux kernel (201.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel runtime management and troubleshooting (201.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Startup (202)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customizing system startup (202.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System recovery (202.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Alternate Bootloaders (202.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Filesystem and Devices (203)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operating The Linux Filesystem (203.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maintaining a Linux Filesystem (203.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Creating And Configuring Filesystem Options (203.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Storage Device Administration (204)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring RAID (204.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adjusting Storage Device Access (204.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logical Volume Manager (204.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring PCMCIA Devices (204.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Networking Configuration (205)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Networking Configuration (205.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Network Configuration and Troubleshooting (205.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting network issues (205.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Maintenance (206)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Make and install programs from source (206.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup Operations (206.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifying users on system-related issues (206.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domain Name Server (207)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic DNS server configuration (207.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Create and maintain DNS zones (207.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Securing a DNS Server (207.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTTP Services (208)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Apache Configuration (208.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Apache configuration for HTTPS (208.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementing Squid as a caching proxy (208.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementing Nginx as a web server and a reverse proxy (208.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File Sharing (209)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAMBA Server Configuration (209.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring an NFS Server (209.2)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring an NFS Server (209.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-an-nfs-server-2092" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring an NFS Server (209.2)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring an NFS Server (209.2)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-knowledge-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Knowledge Areas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terms-and-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terms and Utilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nfs-the-network-file-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NFS - The Network File System
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="NFS - The Network File System">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#client-server-or-both" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Client, Server or both?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-nfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setting up NFS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setting up NFS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#requirements-for-nfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Requirements for NFS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-the-kernel-for-nfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring the kernel for NFS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring the kernel for NFS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nfs-related-kernel-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NFS-related kernel options
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nfs-file-system-support-config_nfs_fs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NFS file system support (CONFIG_NFS_FS):
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#provide-nfsv3-client-support-config_nfs_v3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Provide NFSv3 client support (CONFIG_NFS_V3):
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nfs-server-support-config_nfsd-kernel-space-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NFS server support (CONFIG_NFSD): Kernel space only.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#provide-nfsv3-server-support-config_nfsd_v3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Provide NFSv3 server support (CONFIG_NFSD_V3):
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-portmapper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The portmapper
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The portmapper">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#securing-the-portmapper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Securing the portmapper
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#portmap-and-rpcbind" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        portmap and rpcbind
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        General NFS daemons
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="General NFS daemons">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-nfs-utils-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The nfs-utils package
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nfs-server-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NFS server software
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="NFS server software">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-nfs-daemon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The NFS daemon
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-mount-daemon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The mount daemon
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-lock-daemon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The lock daemon
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-status-daemon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The status daemon
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exportingNFS" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exporting filesystems
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exporting filesystems">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-file-etcexports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The file /etc/exports
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#export-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Export options
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-exportfs-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The exportfs command
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#activating-an-export-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Activating an export list
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deactivating-an-export-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deactivating an export list
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#showmount" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The showmount command
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nfs-client-software-and-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NFS client: software and configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-showmount-exports-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The showmount --exports command
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-procmounts-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The /proc/mounts file
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rpcinfo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        rpcinfo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="rpcinfo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rpcinfo-probing-a-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        rpcinfo: probing a system
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rpcinfo-making-null-requests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        rpcinfo: making null requests
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-nfsstat-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The nfsstat command
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#securing-nfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Securing NFS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Securing NFS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#limiting-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limiting access
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preventing-human-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preventing human error
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#best-nfs-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best NFS version
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nfs-protocol-versions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NFS protocol versions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nfsv4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NFSv4
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Client Management (210)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DHCP Configuration (210.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PAM authentication (210.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LDAP client usage (210.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring an OpenLDAP server (210.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    E-Mail services (211)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using e-mail servers (211.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing E-Mail Delivery (211.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing Mailbox Access (211.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Security (212)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring a router (212.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing FTP servers (212.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secure shell (SSH) (212.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security tasks (212.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenVPN (212.5)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-an-nfs-server-2092" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring an NFS Server (209.2)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring an NFS Server (209.2)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-knowledge-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Knowledge Areas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terms-and-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terms and Utilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nfs-the-network-file-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NFS - The Network File System
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="NFS - The Network File System">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#client-server-or-both" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Client, Server or both?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-nfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setting up NFS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setting up NFS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#requirements-for-nfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Requirements for NFS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-the-kernel-for-nfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring the kernel for NFS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring the kernel for NFS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nfs-related-kernel-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NFS-related kernel options
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nfs-file-system-support-config_nfs_fs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NFS file system support (CONFIG_NFS_FS):
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#provide-nfsv3-client-support-config_nfs_v3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Provide NFSv3 client support (CONFIG_NFS_V3):
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nfs-server-support-config_nfsd-kernel-space-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NFS server support (CONFIG_NFSD): Kernel space only.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#provide-nfsv3-server-support-config_nfsd_v3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Provide NFSv3 server support (CONFIG_NFSD_V3):
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-portmapper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The portmapper
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The portmapper">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#securing-the-portmapper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Securing the portmapper
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#portmap-and-rpcbind" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        portmap and rpcbind
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        General NFS daemons
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="General NFS daemons">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-nfs-utils-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The nfs-utils package
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nfs-server-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NFS server software
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="NFS server software">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-nfs-daemon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The NFS daemon
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-mount-daemon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The mount daemon
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-lock-daemon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The lock daemon
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-status-daemon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The status daemon
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exportingNFS" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exporting filesystems
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exporting filesystems">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-file-etcexports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The file /etc/exports
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#export-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Export options
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-exportfs-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The exportfs command
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#activating-an-export-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Activating an export list
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deactivating-an-export-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deactivating an export list
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#showmount" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The showmount command
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nfs-client-software-and-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NFS client: software and configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-showmount-exports-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The showmount --exports command
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-procmounts-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The /proc/mounts file
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rpcinfo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        rpcinfo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="rpcinfo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rpcinfo-probing-a-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        rpcinfo: probing a system
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rpcinfo-making-null-requests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        rpcinfo: making null requests
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-nfsstat-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The nfsstat command
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#securing-nfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Securing NFS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Securing NFS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#limiting-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limiting access
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preventing-human-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preventing human error
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#best-nfs-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best NFS version
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nfs-protocol-versions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NFS protocol versions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nfsv4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NFSv4
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>Configuring an NFS Server (209.2)</h1>
+
+<h2 id="configuring-an-nfs-server-2092">Configuring an NFS Server (209.2)<a class="headerlink" href="#configuring-an-nfs-server-2092" title="Permanent link">&para;</a></h2>
+<p>Candidates should be able to export filesystems using NFS. This
+objective includes access restrictions, mounting an NFS filesystem on a
+client and securing NFS.</p>
+<h3 id="key-knowledge-areas">Key Knowledge Areas<a class="headerlink" href="#key-knowledge-areas" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>NFS version 3 configuration files</p>
+</li>
+<li>
+<p>NFS tools and utilities</p>
+</li>
+<li>
+<p>Access restrictions to certain hosts and/or subnets</p>
+</li>
+<li>
+<p>Mount options on server and client</p>
+</li>
+<li>
+<p>TCP Wrappers</p>
+</li>
+</ul>
+<p>Awareness of NFSv4</p>
+<h3 id="terms-and-utilities">Terms and Utilities<a class="headerlink" href="#terms-and-utilities" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><code>/etc/exports</code></p>
+</li>
+<li>
+<p><code>exportfs</code></p>
+</li>
+<li>
+<p><code>showmount</code></p>
+</li>
+<li>
+<p><code>nfsstat</code></p>
+</li>
+<li>
+<p><code>/proc/mounts</code></p>
+</li>
+<li>
+<p><code>/etc/fstab</code></p>
+</li>
+<li>
+<p><code>rpcinfo</code></p>
+</li>
+<li>
+<p><code>mountd</code></p>
+</li>
+<li>
+<p><code>portmapper</code></p>
+</li>
+</ul>
+<h2 id="nfs-the-network-file-system">NFS - The Network File System<a class="headerlink" href="#nfs-the-network-file-system" title="Permanent link">&para;</a></h2>
+<p>The abbreviation NFS expands to <em>Network File System</em>. With NFS you can
+make a remote disk (or only some of Configuring SMB Server NFS it) part
+of your local filesystem.</p>
+<p>The NFS protocol is being adjusted, a process which has, so far, taken
+several years. This has consequences for those using NFS. Modern NFS
+daemons will currently run in <em>kernel space</em> (part of the running
+kernel) and support version 3 of the NFS protocol (version 2 will still
+be supported for compatibility with older clients). Older NFS daemons
+running in <em>user space</em> (which is almost independent of the kernel) and
+accepting only protocol version 2 NFS requests, will still be around.
+This section will primarily describe kernel-space NFS-servers supporting
+protocol version 3 and compatible clients. Differences from older
+versions will be pointed out when appropriate.</p>
+<p><strong>Note</strong>
+Details about this NFS work-in-progress are in [NFS protocol
+versions] below.</p>
+<h3 id="client-server-or-both">Client, Server or both?<a class="headerlink" href="#client-server-or-both" title="Permanent link">&para;</a></h3>
+<p>The system that makes filesystem(s) available to other systems is
+called a <em>server</em>. The system that connects to a
+server is called a <em>client</em>. Each system can be configured as server,
+client or both.</p>
+<h2 id="setting-up-nfs">Setting up NFS<a class="headerlink" href="#setting-up-nfs" title="Permanent link">&para;</a></h2>
+<p>This section describes NFS-related software and its configuration.</p>
+<h3 id="requirements-for-nfs">Requirements for NFS<a class="headerlink" href="#requirements-for-nfs" title="Permanent link">&para;</a></h3>
+<p>To run NFS, the following is needed:</p>
+<ul>
+<li>
+<p>support for NFS (several options) must be built into the 
+    <em>kernel</em></p>
+</li>
+<li>
+<p>a <em>portmapper</em> must be running </p>
+</li>
+<li>
+<p>on systems with NFS-server support, an <em>NFS daemon</em> and a <em>mount
+    daemon</em> must be active</p>
+</li>
+<li>
+<p>support daemons may be needed</p>
+</li>
+</ul>
+<p>Each point is discussed in detail below.</p>
+<h3 id="configuring-the-kernel-for-nfs">Configuring the kernel for NFS<a class="headerlink" href="#configuring-the-kernel-for-nfs" title="Permanent link">&para;</a></h3>
+<p>When configuring a kernel for NFS, it must be decided whether or not the
+system will be a client or a server. A system with a kernel that
+contains NFS-server support can also be used as an NFS client.</p>
+<p><strong>Note</strong>
+The situation described here is valid for the 2.4.<em>x</em> kernel series.
+Specifications described here may change in the future.</p>
+<p>FIXME new kernel versions</p>
+<h4 id="nfs-related-kernel-options">NFS-related kernel options<a class="headerlink" href="#nfs-related-kernel-options" title="Permanent link">&para;</a></h4>
+<p>See <a href="#NFSkernelTable">Kernel options for NFS</a>.</p>
+<h4 id="nfs-file-system-support-config_nfs_fs">NFS file system support (CONFIG_NFS_FS):<a class="headerlink" href="#nfs-file-system-support-config_nfs_fs" title="Permanent link">&para;</a></h4>
+<ul>
+<li>If you want to use NFS as a client, select this. LinuxNFS Client If
+    this is the only NFS option selected, the system will support NFS
+    protocol version 2 only. To use protocol version 3 you will also
+    need to select CONFIG_NFS_V3. When CONFIG_NFS_FS is selected,
+    support for an old-fashioned user-space NFS-<em>server</em> (protocol
+    version 2) is also present. You can do without this option when the
+    system is a kernel-space NFS-server server only (i.e., neither
+    client nor user-space NFS-server).</li>
+</ul>
+<h4 id="provide-nfsv3-client-support-config_nfs_v3">Provide NFSv3 client support (CONFIG_NFS_V3):<a class="headerlink" href="#provide-nfsv3-client-support-config_nfs_v3" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Select this if the client system should be able to make NFS LinuxNFS
+    Client v3 connections to an NFS version 3 server. This can only be
+    selected if NFS support (CONFIG_NFS_FS) is also selected.</li>
+</ul>
+<h4 id="nfs-server-support-config_nfsd-kernel-space-only">NFS server support (CONFIG_NFSD): Kernel space only.<a class="headerlink" href="#nfs-server-support-config_nfsd-kernel-space-only" title="Permanent link">&para;</a></h4>
+<ul>
+<li>When you select this, you get a LinuxNFS Server <em>kernel-space</em>
+    NFS-server supporting NFS protocol version 2. Additional software is
+    needed to control the kernel-space NFS-server (as will be shown
+    later). To run an old-fashioned user-space NFS-server this option is
+    not needed. Select CONFIG_NFS instead.</li>
+</ul>
+<h4 id="provide-nfsv3-server-support-config_nfsd_v3">Provide NFSv3 server support (CONFIG_NFSD_V3):<a class="headerlink" href="#provide-nfsv3-server-support-config_nfsd_v3" title="Permanent link">&para;</a></h4>
+<ul>
+<li>This option adds support for version 3 of the NFS LinuxNFS Server v3
+    protocol to the kernel-space NFS-server. The kernel-space NFS-server
+    will support both version 2 and 3 of the NFS protocol. You can only
+    select this if you also select NFS server support (CONFIG_NFSD).</li>
+</ul>
+<p>When configuring during a compiler build (i.e., make menuconfig, make
+xconfig, etc), the options listed above can be found in the <em>File
+Systems</em> section, subsection <em>Network File Systems</em>.</p>
+<p><a href="#NFSkernelTable">Kernel options for NFS</a> provides an overview of NFS
+support in the kernel.</p>
+<table>
+<thead>
+<tr>
+<th>Description</th>
+<th>option(s)</th>
+<th>allows / provides</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NFS file system support</td>
+<td>CONFIG_NFS_FS</td>
+<td>allows both NFS (v2) client and user space NFS (v2) server</td>
+</tr>
+<tr>
+<td>NFSv3 client support</td>
+<td>CONFIG_NFS_FS and CONFIG_NFS_V3</td>
+<td>allows NFS (v2 + v3) client</td>
+</tr>
+<tr>
+<td>NFS server support</td>
+<td>CONFIG_NFSD</td>
+<td>provides NFS (v2) kernel server</td>
+</tr>
+<tr>
+<td>NFSv3 server support</td>
+<td>CONFIG_NFSD and CONFIG_NFSD_V3</td>
+<td>provides NFS (v2 + v3) kernel server</td>
+</tr>
+</tbody>
+</table>
+<p>Selecting at least one of the NFS kernel options turns on Sun RPC
+(Remote Procedure Call) support automatically. RPC This results in a
+kernel space RPC input/output daemon. It can be recognised as <code>[rpciod]</code>in the process listing.</p>
+<h3 id="the-portmapper">The portmapper<a class="headerlink" href="#the-portmapper" title="Permanent link">&para;</a></h3>
+<p>The portmapper is used to interface TCP/IP connections to the
+appropriate RPC calls. It is needed for all NFS traffic because not only does it map (incoming) TCP connections to NFS (RPC) calls, it also
+can be used to map different NFS versions to different ports on which
+NFS is running. Most distributions will install the portmapper if NFS
+software (other than the kernel) is being installed.</p>
+<p>The portmapper itself need not be configured. Portmapper security,
+however, <em>is</em> an issue: you are strongly advised to limit access to the
+portmapper. This can be NFSportmapper security done using the tcp
+wrapper.</p>
+<h4 id="securing-the-portmapper">Securing the portmapper<a class="headerlink" href="#securing-the-portmapper" title="Permanent link">&para;</a></h4>
+<p>First, make sure the portmapper has support for the tcp wrapper built-in
+(since it isn't started through inetd, portmapper needs its own
+built-in tcpwrapper support). You can test this by running
+<code>ldd /sbin/portmap</code>. The result could be something like</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>    libwrap.so.0 =&gt; /lib/libwrap.so.0 (0x40018000)
+    libnsl.so.1 =&gt; /lib/libnsl.so.1 (0x40020000)
+    libc.so.6 =&gt; /lib/libc.so.6 (0x40036000)
+    /lib/ld-linux.so.2 =&gt; /lib/ld-linux.so.2 (0x40000000)
+</code></pre></div></td></tr></table></div>
+
+<p>The line with <code>libwrap.so.0</code> (libwrap belongs to the tcp wrapper) shows
+that this portmapper is tcp wrapper compiled with tcp-wrapper support.
+If that line is missing, get a better portmapper or compile one
+yourself.</p>
+<p>A common security strategy is blocking incoming portmapper requests by
+default, but allowing specific hosts to connect. This strategy will be
+described here.</p>
+<p>Start by editing the file <code>/etc/hosts.deny</code> and adding the following
+line:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    portmap: ALL
+</code></pre></div></td></tr></table></div>
+
+<p>This denies every system access to the portmapper. It can be extended
+with a command:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    portmap: ALL: (echo illegal rpc request from %h | mail root) &amp;
+</code></pre></div></td></tr></table></div>
+
+<p>Now all portmapper requests are denied. In the second example, requests
+are denied and reported to root.</p>
+<p>The next step is allowing only those systems access that <em>are</em> allowed
+to do so. This is done by putting a line in <code>/etc/hosts.allow</code>:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    portmap: 121.122.123.
+</code></pre></div></td></tr></table></div>
+
+<p>This allows each host with an IP address starting with the numbers shown
+to connect to the portmapper and, therefore, use NFS. Another
+possibility is specifying part of a hostname:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    portmap: .example.com
+</code></pre></div></td></tr></table></div>
+
+<p>This allows all hosts inside the example.com domain to connect. To allow
+all hosts of a NIS workgroup:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="nl">portmap</span><span class="p">:</span><span class="w"> </span><span class="nv">@workstations</span>
+</code></pre></div></td></tr></table></div>
+
+<p>To allow hosts with IP addresses in a subnet:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    portmap: 192.168.24.16/255.255.255.248
+</code></pre></div></td></tr></table></div>
+
+<p>This allows all hosts from 192.168.24.16 to 192.168.24.23 to connect
+(examples from <a href="#Zadok01">???</a>).</p>
+<h4 id="portmap-and-rpcbind">portmap and rpcbind<a class="headerlink" href="#portmap-and-rpcbind" title="Permanent link">&para;</a></h4>
+<p>Some linux distributions use portmap. Other linux distributions use
+rpcbind.</p>
+<p>The portmap daemon is replaced by rpcbind. Rpcbind has more features,
+like ipv6 support and nfs4 support.</p>
+<h3 id="nfs">General NFS daemons<a class="headerlink" href="#nfs" title="Permanent link">&para;</a></h3>
+<h4 id="the-nfs-utils-package">The <code>nfs-utils</code> package<a class="headerlink" href="#the-nfs-utils-package" title="Permanent link">&para;</a></h4>
+<p>NFS is implemented as a set of daemons. These NFSrpc.nfsd NFSrpc.mountd
+NFSrpc.lockd NFSrpc.statd can be recognized by their name: they all
+start with the <em>rpc.</em> prefix followed by the name of the daemon. Among
+these are: <code>rpc.nfsd</code> (only a support program in systems with a kernel
+NFS server), <code>rpc.mountd</code>, <code>rpc.lockd</code> and <code>rpc.statd</code>.</p>
+<p>The source for these daemons can be found in the <code>nfs-utils</code> package
+(see <a href="#nfs">NFS</a> for more information on nfs-utils). It will also
+contain the source of other support programs, such as <code>exportfs</code>,
+<code>showmount</code> and <code>nfsstat</code>. These will be discussed later in <a href="#exportingNFS">Exporting
+NFS</a> and <a href="#TestingNFS">Testing NFS</a>.</p>
+<p>Distributions may provide <code>nfs-utils</code> as a ready-to-use package,
+sometimes under different names. Debian, for example, provides lock and
+status daemons in a special <code>nfs-common</code> package, and the NFS and mount
+daemons in <code>nfs-*server</code> packages (which come in user-space and
+kernel-space versions).</p>
+<p>Each of the daemons mentioned here can also be secured using the tcp
+wrapper. Details in <a href="#SecuringNFS">Securing NFS</a>.</p>
+<h3 id="nfs-server-software">NFS server software<a class="headerlink" href="#nfs-server-software" title="Permanent link">&para;</a></h3>
+<h4 id="the-nfs-daemon">The NFS daemon<a class="headerlink" href="#the-nfs-daemon" title="Permanent link">&para;</a></h4>
+<p>When implementing an NFS server, you can install support for an
+<em>kernel-space</em> or an <em>user-space</em> NFS server, depending on the kernel
+NFSkernel space NFSuser space configuration. The <code>rpc.nfsd</code> command
+(sometimes called <code>nfsd</code>) <strong>is</strong> the complete NFS server in user space.
+In kernel space, however, it is just a support program that can start
+the NFS server in the kernel.</p>
+<p>The kernel-space NFS server</p>
+<ul>
+<li>
+<p>The kernel-space NFS server is part of the running kernel. A kernel
+    NFS server appears as <code>[nfsd]</code> in the process list.</p>
+<p>The version of <code>rpc.nfsd</code> that supports the NFS server inside the
+kernel is just a support program to control NFS kernel server(s).</p>
+</li>
+</ul>
+<p>The user-space NFS daemon</p>
+<ul>
+<li>The <code>rpc.nfsd</code> program can also contain an old-fashioned user-space
+    NFS server (version 2 only). A user-space NFS server <em>is</em> a complete
+    NFS server. It can be recognized as <code>rpc.nfsd</code> in the process list.</li>
+</ul>
+<h4 id="the-mount-daemon">The mount daemon<a class="headerlink" href="#the-mount-daemon" title="Permanent link">&para;</a></h4>
+<p>The <code>mountd</code> (or <code>rpc.mountd</code>) mount-daemon handles incoming NFS
+(mount) requests. It is required on a system that provides NFS server
+support.</p>
+<p>The configuration of the mount daemon includes <em>exporting</em> (making
+available) a filesystem to certain hosts and specifying how they can use
+this filesystem.</p>
+<p>Exporting filesystems, using the <code>/etc/exports</code> /etc/exports file and
+the <code>exportfs</code> command exportfs will be discussed in [Exporting
+NFS].</p>
+<h4 id="the-lock-daemon">The lock daemon<a class="headerlink" href="#the-lock-daemon" title="Permanent link">&para;</a></h4>
+<p>A lock daemon for NFS is implemented in <code>rpc.lockd</code>.</p>
+<p>You won't need lock-daemon support when using modern (2.4.x) kernels. FIXME modern kernels
+These kernels provide one internally, which can be recognized as
+<code>[lockd]</code> in Linuxlockd the process list. Since the internal kernel
+lock-daemon takes precedence, starting <code>rpc.lockd</code> accidentally will do
+no harm.</p>
+<p>There is no configuration for <code>rpc.lockd</code>.</p>
+<h4 id="the-status-daemon">The status daemon<a class="headerlink" href="#the-status-daemon" title="Permanent link">&para;</a></h4>
+<p>According to the manual page, the status daemon <code>rpc.statd</code> implements
+only a reboot notification service. It is a user-space daemon - even on
+systems with kernel-space NFS version 3 support. It can be recognized as
+<code>rpc.statd</code> in the process listing. It is used on systems with NFS
+client and NFS server support.</p>
+<p>There is no configuration for <code>rpc.statd</code>.</p>
+<h3 id="exportingNFS">Exporting filesystems<a class="headerlink" href="#exportingNFS" title="Permanent link">&para;</a></h3>
+<p>Exporting a filesystem, or part of it, makes it available for use by
+another system. A filesystem can be exported to a single host, a group
+of hosts or to everyone.</p>
+<p>Export definitions are configured in the file <code>/etc/exports</code> and will be
+activated by the /etc/exports <code>exportfs</code> command. The current export
+list can be queried with the command <code>showmount --exports</code>. showmount</p>
+<p><strong>Note</strong>
+In examples below the system called <code>nfsshop</code> will be the NFS server and
+the system called <code>clientN</code> one of the clients.</p>
+<h4 id="the-file-etcexports">The file <code>/etc/exports</code><a class="headerlink" href="#the-file-etcexports" title="Permanent link">&para;</a></h4>
+<p>The file <code>/etc/exports</code> contains the definition(s) of filesystem(s) to
+be exported, the name of the host that is allowed to access it and how
+the host can access it.</p>
+<p>Each line in <code>/etc/exports</code> has the following format:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>        /dir hostname(options) ...
+</code></pre></div></td></tr></table></div>
+
+<ul>
+<li>
+<p>Name of the directory to be exported</p>
+</li>
+<li>
+<p>The name of the system (host) that is allowed to access /dir (the
+    exported directory). If the name of the system is omitted <em>all</em>
+    hosts can connect. There are five possibilities to specify a system
+    name:</p>
+<p>single hostname</p>
+<ul>
+<li>The name of a host that is allowed to connect. Can be a name
+    (<code>clientN</code>) or an IP address.</li>
+</ul>
+<p>wildcard</p>
+<ul>
+<li>A group of systems is allowed. All systems in the <code>example.com</code>
+    domain will be allowed by the <code>*.example.com</code> wildcard.</li>
+</ul>
+<p>IP networks</p>
+<ul>
+<li>Ranges of ip numbers or address/subnetmask combinations.</li>
+</ul>
+<p>nothing</p>
+<ul>
+<li>Leaving the system part empty is mostly done by accident (see
+    the Caution below). It allows <em>all</em> hosts to connect. To prevent
+    this error, make sure that there is no spacing between the
+    system name and the opening brace that starts the options.</li>
+</ul>
+<p>@NISgroup</p>
+<ul>
+<li>NIS workgroups can be specified as a name starting with an <code>@</code>.</li>
+</ul>
+</li>
+<li>
+<p>Options between braces. Will be discussed further on.</p>
+</li>
+<li>
+<p>More than one system with options can be listed:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    /home/ftp/pub clientN(rw) *.example.com(ro)
+</code></pre></div></td></tr></table></div>
+
+<p>Explanation: system <code>clientN</code> is allowed to read and write in
+<code>/home/ftp/pub</code>. Systems in <code>example.com</code> are allowed to connect,
+but only to read.</p>
+</li>
+</ul>
+<p>Make sure there is <em>no space</em> (not even white) between the hostname and
+the specification between braces. There is a lot of difference between</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    /home/ftp/pub clientN(rw)
+</code></pre></div></td></tr></table></div>
+
+<p>and</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    /home/ftp/pub clientN (rw)
+</code></pre></div></td></tr></table></div>
+
+<p>The first allows <code>clientN</code> read and write access. The second allows
+<code>clientN</code> access with default options (see <code>man 5 exports</code>) and <em>all
+systems</em> read and write access!</p>
+<h4 id="export-options">Export options<a class="headerlink" href="#export-options" title="Permanent link">&para;</a></h4>
+<p>Several export options can be used in <code>/etc/exports</code>. Only the most
+important will be discussed here. See the exports(5) manual page for a
+full list. Two types of options will be listed here: general options and
+user/group id options.</p>
+<p><code>ro</code> (default)</p>
+<ul>
+<li>The client(s) has only read access. NFSro</li>
+</ul>
+<p><code>rw</code></p>
+<ul>
+<li>The client(s) has read and write access. Of course, the NFSrw client
+    may choose to mount read-only anyway.</li>
+</ul>
+<p>Also relevant is the way NFS handles user and group permissions across
+systems. NFS software considers users with the same UID and the same
+username as the same users. The same is true for GIDs.</p>
+<p>The user <code>root</code> is different. Because <code>root</code> can read (and write)
+everything, root permission over NFS is considered dangerous.</p>
+<p>A solution to this is called <em>squashing</em>: NFSsquashing all requests are
+done as user <code>nobody</code> (actually UID <code>65534</code>, often called <code>-2</code>) and
+group <code>nobody</code> (GID <code>65534</code>).</p>
+<p>At least four options are related to squashing: <code>root_squash</code>,
+NFSroot_squash <code>no_root_squash</code>, NFSno_root_squash <code>all_squash</code> and
+NFSall_squash <code>no_all_squash</code>. NFSno_all_squash Each will be
+discussed in detail.</p>
+<p><code>root_squash</code> (default)</p>
+<ul>
+<li>All requests by user <code>root</code> on <code>clientN</code> (the client) will be done
+    as user <code>nobody</code> on <code>nfsshop</code> (the server). This implies, for
+    instance, that user <code>root</code> on the client can only read files on the
+    server that are <em>world readable</em>.</li>
+</ul>
+<p><code>no_root_squash</code></p>
+<ul>
+<li>
+<p>All requests as <code>root</code> on the client will be done as <code>root</code> on the
+    server.</p>
+<p>This is necessary when, for instance, backups are to be made over
+NFS.</p>
+<p>This implies that root on <code>nfsshop</code> completely trusts user root on
+<code>clientN</code>.</p>
+</li>
+</ul>
+<p><code>all_squash</code></p>
+<ul>
+<li>
+<p>Requests of any user other than root on <code>clientN</code> are performed as
+    user <code>nobody</code> on <code>nfsshop</code>.</p>
+<p>Use this if you cannot map usernames and UID's easily.</p>
+</li>
+</ul>
+<p><code>no_all_squash</code> (default)</p>
+<ul>
+<li>All requests of a non-root user on <code>clientN</code> are attempted as the
+    same user on <code>nfsshop</code>.</li>
+</ul>
+<p>Example entry in <code>/etc/exports</code> on system <code>nfsshop</code> (the server system):</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    /    client5(ro,no_root_squash) *.example.com(ro)
+</code></pre></div></td></tr></table></div>
+
+<p>System <code>nfsshop</code> allows system <code>client5</code> <em>read-only</em> access to
+everything and reads by user root are done as root on <code>nfsshop</code>. Systems
+from the <code>example.com</code> domain are allowed <em>read-only</em> access, but
+requests from root are done as user <code>nobody</code>, because <code>root_squash</code> is
+true by default.</p>
+<p>Here is an example file:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="c1"># /etc/exports on nfsshop</span>
+<span class="w">    </span><span class="c1"># the access control list for filesystems which may be exported</span>
+<span class="w">    </span><span class="c1"># to NFS clients.  See exports(5).</span>
+
+<span class="w">    </span><span class="o">/</span><span class="w"> </span><span class="n">client2</span><span class="o">.</span><span class="n">exworks</span><span class="p">(</span><span class="n">ro</span><span class="p">,</span><span class="n">root_squash</span><span class="p">)</span>
+<span class="w">    </span><span class="o">/</span><span class="w"> </span><span class="n">client3</span><span class="o">.</span><span class="n">exworks</span><span class="p">(</span><span class="n">ro</span><span class="p">,</span><span class="n">root_squash</span><span class="p">)</span>
+<span class="w">    </span><span class="o">/</span><span class="w"> </span><span class="n">client4</span><span class="o">.</span><span class="n">exworks</span><span class="p">(</span><span class="n">ro</span><span class="p">,</span><span class="n">root_squash</span><span class="p">)</span>
+<span class="w">    </span><span class="o">/</span><span class="n">home</span><span class="w"> </span><span class="n">client9</span><span class="o">.</span><span class="n">exworks</span><span class="p">(</span><span class="n">ro</span><span class="p">,</span><span class="n">root_squash</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+
+<p>Explanation: <code>client2</code>, <code>client3</code> and <code>client4</code> are allowed to mount the
+complete filesystem (<code>/</code>: root). But they have read-only access and
+requests are done as user <code>nobody</code>. The host <code>client9</code> is only allowed
+to mount the <code>/home</code> directory with the same rights as the other three
+hosts.</p>
+<h4 id="the-exportfs-command">The <code>exportfs</code> command<a class="headerlink" href="#the-exportfs-command" title="Permanent link">&para;</a></h4>
+<p>Once <code>/etc/exports</code> is configured, the export exportfs list in it can be
+activated using the <code>exportfs</code> command. It can also be used to reload
+the list after a change or deactivate the export list. <a href="#exportfstab">Exportfs and
+fstab</a> shows some of the functionality of <code>exportfs</code>.</p>
+<p>Command          Description</p>
+<hr />
+<p><code>exportfs -r</code>    reexport all directories
+  <code>exportfs -a</code>    export or unexport all directories
+  <code>exportfs -ua</code>   de-activate the export list (unexport all)</p>
+<p>: Overview of <code>exportfs</code></p>
+<p><strong>Note</strong>
+Older (user-space) NFS systems may not have the <code>exportfs</code> command. On
+these systems the export list will be installed automatically by the
+mount daemon when it is started. Reloading after a change is done by
+sending a <code>SIGHUP</code> signal to the running mount-daemon NFSSIGHUP process.</p>
+<h4 id="activating-an-export-list">Activating an export list<a class="headerlink" href="#activating-an-export-list" title="Permanent link">&para;</a></h4>
+<p>The export list is activated (or reactivated) with the following
+command:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="n">exportfs</span><span class="w"> </span><span class="o">-</span><span class="n">r</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The <code>r</code> originates from the word NFS-r <em>re-exporting</em>.</p>
+<p>Before the <code>exportfs -r</code> is issued, no filesystems are exported and no
+other system can connect.</p>
+<p>When the export list is activated, the kernel export table will be
+filled. The following command will show the kernel export table:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="n">cat</span><span class="w"> </span><span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="n">fs</span><span class="o">/</span><span class="n">nfs</span><span class="o">/</span><span class="n">exports</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The output will look something like:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code>    # Version 1.1
+    # Path Client(Flags) # IPs
+    /   client4.exworks(ro,root_squash,async,wdelay) # 192.168.72.4
+    /home   client9.exworks(ro,root_squash,async,wdelay) # 192.168.72.9
+    /   client2.exworks(ro,root_squash,async,wdelay) # 192.168.72.2
+    /   client3.exworks(ro,root_squash,async,wdelay) # 192.168.72.3
+</code></pre></div></td></tr></table></div>
+
+<p>Explanation: all named hosts are allowed to mount the root directory
+(<code>client9</code>: <code>/home</code>) of this machine with the listed options. The IP
+addresses are listed for convenience.</p>
+<p>Also use <code>exportfs -r</code> after you have made changes to <code>/etc/exports</code> on
+a running system.</p>
+<p>When running <code>exportfs -r</code>, some things will be done in the directory
+<code>/var/lib/nfs</code>. Files there are easy to corrupt by human intervention
+with far-reaching consequences.</p>
+<h4 id="deactivating-an-export-list">Deactivating an export list<a class="headerlink" href="#deactivating-an-export-list" title="Permanent link">&para;</a></h4>
+<p>All active export entries are unexported with the command:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="n">exportfs</span><span class="w"> </span><span class="o">-</span><span class="n">ua</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The letters <code>ua</code> are an abbreviation for NFS-ua <em>unexport all</em>.</p>
+<p>After the <code>exportfs -ua</code> no exports are active anymore.</p>
+<h4 id="showmount">The <code>showmount</code> command<a class="headerlink" href="#showmount" title="Permanent link">&para;</a></h4>
+<p>The <code>showmount</code> command shows information about the exported file systems.</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>showmount --exports</code></td>
+<td>show active export list</td>
+</tr>
+<tr>
+<td>showmount`</td>
+<td>show names of clients with active mounts</td>
+</tr>
+<tr>
+<td><code>showmount --directories</code></td>
+<td>show directories that are mounted by remote clients</td>
+</tr>
+<tr>
+<td><code>showmount --all</code></td>
+<td>show both client-names and directories</td>
+</tr>
+</tbody>
+</table>
+<p><code>showmount</code> accepts a host name as its last argument. If present,
+<code>showmount</code> will query the NFS-server on that host. If omitted, the
+current host will be queried (as in the examples below, where the
+current host is called <code>nfsshop</code>).</p>
+<p><strong>With the <code>--exports</code> option.</strong></p>
+<p>showmount lists the currently active export list:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="c1"># showmount --exports</span>
+<span class="w">    </span><span class="n">Export</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">nfsshop</span><span class="p">:</span>
+<span class="w">    </span><span class="o">/</span><span class="w"> </span><span class="n">client2</span><span class="o">.</span><span class="n">exworks</span><span class="p">,</span><span class="n">client3</span><span class="o">.</span><span class="n">exworks</span><span class="p">,</span><span class="n">client4</span><span class="o">.</span><span class="n">exworks</span>
+<span class="w">    </span><span class="o">/</span><span class="n">home</span><span class="w"> </span><span class="n">client9</span><span class="o">.</span><span class="n">exworks</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The information is more sparse compared to the output of
+<code>cat /proc/fs/nfs/exports</code> shown earlier.</p>
+<p><strong>Without options.</strong></p>
+<p><code>showmount</code> will show names of hosts currently connected to the system:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>    # showmount
+    Hosts on nfsshop:
+    client9.exworks
+</code></pre></div></td></tr></table></div>
+
+<p><strong>With the <code>--directories</code> option.</strong></p>
+<p><code>showmount</code> will show NFS--directories names of directories that are
+currently mounted by a remote host:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>    # showmount --directories
+    Directories on nfsshop:
+    /home
+</code></pre></div></td></tr></table></div>
+
+<p><strong>With the <code>--all</code> option.</strong></p>
+<p>the <code>showmount</code> command lists both the remote client (hosts)
+and the mounted directories:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>    # showmount --all
+    All mount points on nfsshop:
+    client9.exworks:/home
+</code></pre></div></td></tr></table></div>
+
+<h3 id="nfs-client-software-and-configuration">NFS client: software and configuration<a class="headerlink" href="#nfs-client-software-and-configuration" title="Permanent link">&para;</a></h3>
+<p>An NFS <em>client</em> system is a system that does a mount-attempt, using the
+<code>mount</code> command. The <code>mount</code> needs to have support for NFS built-in.
+This will generally be the case.</p>
+<p>The NFS client-system needs to have appropriate NFS support in the
+kernel, as shown earlier (see <a href="#NFSkernel">Configuring NFS</a>). Next, it
+needs a running <em>portmapper</em>. Last, software is needed to perform the
+remote mounts attempt: the <code>mount</code> command.</p>
+<p><strong>Note</strong>
+Familiarity with the <code>mount</code> command and the file <code>/etc/fstab</code> is
+assumed in this paragraph. If in doubt, consult the appropriate manual
+pages.</p>
+<p>The <code>mount</code> command normally used NFSmount mount to mount a remote
+filesystem through NFS:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    mount -t nfs remote:/there  /here
+</code></pre></div></td></tr></table></div>
+
+<ul>
+<li>
+<p>This specifies the filesystem /there on the remote server remote.</p>
+</li>
+<li>
+<p>The mount point /here on the client, as usual.</p>
+</li>
+</ul>
+<p>Example: to mount the <code>/usr</code> filesystem, which is on server system
+<code>nfsshop</code>, onto the local mount-point <code>/usr</code>, use:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    mount -t nfs nfsshop:/usr /usr
+</code></pre></div></td></tr></table></div>
+
+<p>Fine-tuning of the mount request is done through <em>options</em>.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    mount -t nfs -o opts remote:/there /here
+</code></pre></div></td></tr></table></div>
+
+<ul>
+<li>Several options are possible after the <code>-o</code> option selector. These
+    options affect either mount attempts or active NFS connections.</li>
+</ul>
+<p><code>ro</code> versus <code>rw</code></p>
+<ul>
+<li>
+<p>If <code>ro</code> is specified the remote NFS filesystem will be mounted
+    <em>read-only</em>. With the <code>rw</code> option the remote filesystem will be made
+    available for both reading and writing (if the NFS server agrees).</p>
+<p>The default on the NFS server side (<code>/etc/exports</code>) is <code>ro</code>, but the
+default on the client side (<code>mount -t nfs</code>) is <code>rw</code>. The
+server-setting takes precedence, so mounts will be done <em>read-only</em>.</p>
+</li>
+</ul>
+<p><strong>Note</strong>
+    <code>-o ro</code> can also be written as <code>-r</code>; <code>-o rw</code> can also be written as
+    <code>-w</code>.</p>
+<p><code>rsize=nnn</code> and <code>wsize=nnn</code></p>
+<ul>
+<li>
+<p>The <code>rsize</code> option specifies the size for NFSrsize NFSwsize read
+    transfers (from server to client). The <code>wsize</code> option specifies the
+    opposite direction. A higher number makes data transfers faster on a
+    reliable network. On a network where many retries are needed,
+    transfers may become slower.</p>
+<p>Default values are either <code>1024</code> or and <code>4096</code>, depending on your
+kernel NFS1024 NFS4096 version. Current kernels accept a maximum of
+up to <code>8192</code>. NFS8192 NFS version 3 over <code>tcp</code>, which will probably
+production-ready by the time you read this, allows a maximum size of
+<code>32768</code>. This size is defined with <code>NFSSVC_MAXBLKSIZE</code> in the file
+NFSNFSSVC_MAXBLKSIZE <code>include/linux/nfsd/const.h</code> found in the
+kernel source-archive.</p>
+</li>
+</ul>
+<p><code>udp</code> and <code>tcp</code></p>
+<ul>
+<li>Specifies the transport-layer protocol for the NFS connection. Most
+    NFS version 2 implementations support only <code>udp</code>, but <code>tcp</code>
+    implementations do exist. NFSudp NFStcp NFS version 3 will allow
+    both <code>udp</code> and <code>tcp</code> (the latter is under active development).
+    Future version 4 will allow only <code>tcp</code>. See <a href="#NFSversions">NFS protocol
+    versions</a>.</li>
+</ul>
+<p><code>nfsvers=n</code></p>
+<ul>
+<li>Specifies the NFS version used for the transport (see <a href="#NFSversions">NFS protocol
+    versions</a>). Modern versions of <code>mount</code> will use
+    version <code>3</code> by default. Older implementations that NFSnfsvers= still
+    use version <code>2</code> are probably numerous.</li>
+</ul>
+<p><code>retry=</code>n</p>
+<ul>
+<li>The <code>retry</code> option specifies the number of NFSretry= minutes to keep
+    on retrying mount-attempts before giving up. The default is <code>10000</code>
+    minutes.</li>
+</ul>
+<p><code>timeo=</code>n</p>
+<ul>
+<li>The <code>timeo</code> option specifies after how much time a mount-attempt
+    times out. The time-out value is NFStimeo= specified in deci-seconds
+    (tenth of a second). The default is <code>7</code> deci-seconds (0.7 seconds).</li>
+</ul>
+<p><code>hard</code> (default) versus <code>soft</code></p>
+<ul>
+<li>
+<p>These options control how hard the system will try. NFShard</p>
+<p><code>hard</code></p>
+<p>:   The system will try indefinitely.</p>
+<p><code>soft</code></p>
+<p>:   The system will try until an RPC (portmapper) timeout NFSsoft
+    occurs.</p>
+</li>
+</ul>
+<p><code>intr</code> versus <code>nointr</code> (default)</p>
+<ul>
+<li>
+<p>With these options one is able to control whether the user NFSintr
+    NFSnointr is allowed to interrupt the mount-attempt.</p>
+<p><code>intr</code></p>
+<p>:   A mount-attempt can be interrupted by the user if <code>intr</code> is
+    specified.</p>
+<p><code>nointr</code></p>
+<p>:   A mount-attempt cannot be interrupted by a user if <code>nointr</code> is
+    set. The mount request can seem to hang for days if <code>retry</code> has
+    its default value (10000 minutes).</p>
+</li>
+</ul>
+<p><code>fg</code> (default) and <code>bg</code></p>
+<ul>
+<li>
+<p>These options control the <em>background mounting</em> facility. It is off
+    by default.</p>
+<p><code>bg</code></p>
+<p>:   NFSbg This turns on <em>background mounting</em>: the client first
+    tries to mount in the foreground. All retries occur in the
+    background.</p>
+<p><code>fg</code></p>
+<p>:   All attempts occur in the foreground. </p>
+<p><em>Background mounting</em> is also affected by other options. When <code>intr</code>
+is specified, the mount attempt will be interrupted by a an RPC
+timeout. This happens, for example, when either the remote host is
+down or the portmapper is not running. In a test setting the
+backgrounding was only done when a "connection refused" occurred.</p>
+</li>
+</ul>
+<p>Options can be combined using comma's:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    mount -t nfs -o ro,rsize=8192 nfsshop:/usr/share /usr/local/share
+</code></pre></div></td></tr></table></div>
+
+<p>A preferred combination of options might be: <code>hard</code>, <code>intr</code> and <code>bg</code>.
+The mount will be tried indefinitely, with retries in the background,
+but can still be interrupted by the user that started the mount.</p>
+<p>Other mount options to consider are <code>noatime</code>, <code>noauto</code>, <code>nosuid</code> or
+even <code>noexec</code>. See <code>man 1 mount</code> and <code>man 5 nfs</code>. NFSnoatime NFSnoauto
+NFSnosuid NFSnoexec</p>
+<p>Of course, all these options can also be specified in <code>/etc/fstab</code>. Be
+sure to specify the <code>noauto</code> option if the filesystem should <strong>not</strong> be
+mounted automatically at boot time. The <code>user</code> option will allow
+non-root users to perform the mount. This is not default. Example entry
+in <code>/etc/fstab</code>:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    nfsshop:/home /homesOnShop  nfs ro,noauto,user   0  0
+</code></pre></div></td></tr></table></div>
+
+<p>Now every user can do</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    mount /homesOnShop
+</code></pre></div></td></tr></table></div>
+
+<p>You can also use automounters to mount and unmount remote automount
+filesystems. However, these are beyond the scope of this objective.</p>
+<p>Testing NFS {#TestingNFS}</p>
+<p>After NFS has been set up, it can be tested. The following tools can
+help: <code>showmount</code>, <code>rpcinfo</code> and <code>nfsstat</code>.</p>
+<h3 id="the-showmount-exports-command">The <code>showmount --exports</code> command<a class="headerlink" href="#the-showmount-exports-command" title="Permanent link">&para;</a></h3>
+<p>As shown in <a href="#showmount">showmount</a>, the <code>showmount
+                --exports</code> command lists the current exports for a
+server system. This can be used as a quick indication of the health of
+the created NFS system. showmount Nevertheless, there are more
+sophisticated ways of doing this.</p>
+<h3 id="the-procmounts-file">The <code>/proc/mounts</code> file<a class="headerlink" href="#the-procmounts-file" title="Permanent link">&para;</a></h3>
+<p>To see which file systems are mounted check /proc/mounts. It will also
+show nfs mounted filesystems.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ cat /proc/mounts
+</code></pre></div></td></tr></table></div>
+
+<h3 id="rpcinfo"><code>rpcinfo</code><a class="headerlink" href="#rpcinfo" title="Permanent link">&para;</a></h3>
+<p>portmapper The <code>rpcinfo</code> command reports RPC information. This can be
+used to probe the portmapper on a local or a remote rpcinfo system or to
+send pseudo requests.</p>
+<h4 id="rpcinfo-probing-a-system">rpcinfo: probing a system<a class="headerlink" href="#rpcinfo-probing-a-system" title="Permanent link">&para;</a></h4>
+<p>The <code>rpcinfo -p</code> command lists all registered services the portmapper
+knows about. Each <em>rpc...</em> program registers itself at startup with the
+portmapper, so the names shown correspond to real daemons (or the kernel
+equivalents, as is the case for NFS version 3).</p>
+<p>It can be used on the server system <code>nfsshop</code> to see if the portmapper
+is functioning:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>    program vers proto   port
+    100003    3   udp   2049  nfs
+</code></pre></div></td></tr></table></div>
+
+<p>This selection of the output shows that this portmapper will accept
+connections for nfs version 3 on udp.</p>
+<p>A full sample output of <code>rpcinfo -p&gt;</code> on a server system:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span></pre></div></td><td class="code"><div><pre><span></span><code>    rpcinfo -p
+    program vers proto   port
+     100000    2   tcp    111  portmapper
+     100000    2   udp    111  portmapper
+     100024    1   udp    757  status
+     100024    1   tcp    759  status
+     100003    2   udp   2049  nfs
+     100003    3   udp   2049  nfs
+     100021    1   udp  32770  nlockmgr
+     100021    3   udp  32770  nlockmgr
+     100021    4   udp  32770  nlockmgr
+     100005    1   udp  32771  mountd
+     100005    1   tcp  32768  mountd
+     100005    2   udp  32771  mountd
+     100005    2   tcp  32768  mountd
+     100005    3   udp  32771  mountd
+     100005    3   tcp  32768  mountd
+</code></pre></div></td></tr></table></div>
+
+<p>As can be seen in the listing above, the portmapper will accept RPC
+requests for versions 2 and 3 of the NFS protocol, both on udp.</p>
+<p><strong>Note</strong>
+As can be seen, each RPC service has its own version number. The
+<code>mountd</code> service, for instance, supports incoming connections for
+versions 1, 2 or 3 of mountd on both udp and tcp.</p>
+<p>It is also possible to probe <code>nfsshop</code> (the server system) from a client
+system, by specifying the name of the server system after <code>-p</code>:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    rpcinfo -p nfsshop
+</code></pre></div></td></tr></table></div>
+
+<p>The output, if all is well of course, will be the same.</p>
+<h4 id="rpcinfo-making-null-requests">rpcinfo: making <em>null</em> requests<a class="headerlink" href="#rpcinfo-making-null-requests" title="Permanent link">&para;</a></h4>
+<p>It is possible to test a connection without doing any real work:</p>
+<blockquote>
+<p><code>rpcinfo -u</code> <em>remotehost program</em></p>
+</blockquote>
+<p>This is like the <code>ping</code> command to test a network connection. However,
+<code>rpcinfo -u</code> works like a real rpc/nfs connection, sending a so-called
+<em>null</em> pseudo request. The <code>-u</code> option forces <code>rpcinfo</code> to use udp
+transport. The result of the test on <code>nfsshop</code>:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>    rpcinfo -u nfsshop nfs
+    program 100003 version 2 ready and waiting
+    program 100003 version 3 ready and waiting
+</code></pre></div></td></tr></table></div>
+
+<p>The <code>-t</code> options will do the same for tcp transport:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="n">rpcinfo</span><span class="w"> </span><span class="o">-</span><span class="n">t</span><span class="w"> </span><span class="n">nfsshop</span><span class="w"> </span><span class="n">nfs</span>
+<span class="w">    </span><span class="nl">rpcinfo:</span><span class="w"> </span><span class="nl">RPC:</span><span class="w"> </span><span class="n">Program</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="n">registered</span>
+<span class="w">    </span><span class="n">program</span><span class="w"> </span><span class="mh">100003</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="n">available</span>
+</code></pre></div></td></tr></table></div>
+
+<p>This system obviously does have support for nfs on udp, but not on tcp.</p>
+<p><strong>Note</strong>
+In the example output, the number 100003 is used instead of or together
+with the name <code>nfs</code>. Name or number can be used in each others place.
+That is, we could also have written:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    rpcinfo -u nfsshop 100003
+</code></pre></div></td></tr></table></div>
+
+<h3 id="the-nfsstat-command">The <code>nfsstat</code> command<a class="headerlink" href="#the-nfsstat-command" title="Permanent link">&para;</a></h3>
+<p>The <code>nfsstat</code> command lists statistics (i.e., counters) about
+connections. This can be used to see whether something is going on at
+all and also to make sure nothing has gone crazy.</p>
+<p><a href="#nfsstatTab">table_title</a> provides an overview of relevant options for
+<code>nfsstat</code>.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>       rpc     nfs     both
+</code></pre></div></td></tr></table></div>
+
+<hr />
+<p>server   <code>-sr</code>   <code>-sn</code>   <code>-s</code>
+  client   <code>-cr</code>   <code>-cn</code>   <code>-c</code>
+  both     <code>-r</code>    <code>-n</code>    <code>-nr</code></p>
+<p>: Some options for the <code>nfsstat</code> program</p>
+<p>Sample output from <code>nfsstat -sn</code> on the server host <code>nfsshop</code>:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span></pre></div></td><td class="code"><div><pre><span></span><code>    Server nfs v2:
+    null       getattr    setattr    root       lookup     readlink   
+    1       0% 3       0% 0       0% 0       0% 41      0% 0       0% 
+    read       wrcache    write      create     remove     rename     
+    5595   99% 0       0% 0       0% 1       0% 0       0% 0       0% 
+    link       symlink    mkdir      rmdir      readdir    fsstat     
+    0       0% 0       0% 0       0% 0       0% 7       0% 2       0%
+
+    Server nfs v3:
+    null       getattr    setattr    lookup     access     readlink   
+    1     100% 0       0% 0       0% 0       0% 0       0% 0       0% 
+    read       write      create     mkdir      symlink    mknod      
+    0       0% 0       0% 0       0% 0       0% 0       0% 0       0% 
+    remove     rmdir      rename     link       readdir    readdirplus
+    0       0% 0       0% 0       0% 0       0% 0       0% 0       0% 
+    fsstat     fsinfo     pathconf   commit     
+    0       0% 0       0% 0       0% 0       0%
+</code></pre></div></td></tr></table></div>
+
+<p>The <code>1</code>'s under both <code>null</code> headings are the result of the <code>rpcinfo -u 
+                nfsshop nfs</code> command shown earlier.</p>
+<h2 id="securing-nfs">Securing NFS<a class="headerlink" href="#securing-nfs" title="Permanent link">&para;</a></h2>
+<p>NFS security has several unrelated issues. First, the NFS protocol and
+implementations have some known weaknesses. NFS file-handles are numbers
+that should be random, but are not, in NFSsecuring reality. This opens
+the possibility of making a connection by guessing file-handles. Another
+problem is that all NFS data transfer is done as-is. This means that
+anyone able to listen to a connection can tap the information (this is
+called sniffing). Bad mount-point names combined with human error can be
+a completely different security risk.</p>
+<h3 id="limiting-access">Limiting access<a class="headerlink" href="#limiting-access" title="Permanent link">&para;</a></h3>
+<p>Both sniffing and unwanted connection requests can be prevented by
+limiting access to each NFS server to a set of known, trusted hosts
+containing trusted users: within a small workgroup, for instance.
+Tcp-wrapper support or firewall software can be used to limit access to
+an NFS server.</p>
+<p><strong>The tcp wrapper.</strong></p>
+<p>Earlier on it was shown how to
+limit connections to the portmapper from specific hosts. The same can be
+done for the NFS related daemons, i.e., <code>rpc.mountd</code> and <code>rpc.statd</code>. If
+your system runs an old-fashioned user-space NFS server (i.e., has
+<code>rpc.nfsd</code> in the process list), consider protecting <code>rpc.nfsd</code> and
+possibly <code>rpc.lockd</code>, as well. If, on the other hand, your system is
+running a modern kernel-based NFS implementation (i.e., has <code>[nfsd]</code> in
+the process list), you cannot do this, since the <code>rpc.nfsd</code> program is
+not the one accepting the connections. Make sure tcp-wrapper support is
+built into each daemon you wish to protect.</p>
+<p><strong>Firewall software.</strong></p>
+<p>The problem with tcp-wrapper support is that there already is a
+connection inside the host at the time that the connection-request is
+refused. If a security-related bug exists within either the tcp-wrapper
+library or the daemon that contains the
+support, unwanted access could be granted. Firewall software
+(e.g., iptables) can make the kernel block connections before they enter
+the host. You may consider blocking unwanted NFS connections at each NFS
+server host or at the entry point of a network to all but acceptable
+hosts. Block at least the portmapper port (111/udp and 111/tcp). Also,
+considering blocking 2049/udp and 2049/tcp (NFS connections). You might
+also want to block other ports like the ones shown with the <code>rpcinfo -p</code>
+command: for example, the mount daemon ports 32771/udp and 32768/tcp.
+How to set up a firewall is shown in detail in <a href="#chapterSecurity">???</a>.</p>
+<h3 id="preventing-human-error">Preventing human error<a class="headerlink" href="#preventing-human-error" title="Permanent link">&para;</a></h3>
+<p>Simple human error in combination with bad naming may also result in a
+security risk. You would not be the first person to remove a remote
+directory tree because the mount point was not easily recognized as such
+and the remote system was mounted with <em>read-write</em> permissions.</p>
+<p><strong>Mount <em>read-only</em>.</strong></p>
+<p>Mounting a remote filesystem <em>read-only</em> can prevent accidental erasure.
+So, mount <em>read-only</em> whenever possible. If you do need to mount a part
+<em>read-write</em>, make the part that can be written (erased) as small as
+possible.</p>
+<p><strong>Design your mountpoints well.</strong></p>
+<p>Also, name a mount point so that it can easily be recognized as a mount
+point. One of the possibilities is to use a special name:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    /MountPoints/nfsshop
+</code></pre></div></td></tr></table></div>
+
+<h3 id="best-nfs-version">Best NFS version<a class="headerlink" href="#best-nfs-version" title="Permanent link">&para;</a></h3>
+<p>Progress has been made in NFS software. Although no software can prevent
+human error, other risks (e.g., guessable file-handles and sniffing) can
+be prevented with better software.</p>
+<p><strong>Note</strong>
+NFS version 4 is a new version of the NFS protocol intended to fix
+NFSversion 4 all existing problems in NFS. At the time of this writing
+(May 2014) versions 4.0 and 4.1 have been released; version 4.2 is being
+developed. More about NFS version 4 and differences between earlier
+versions is covered in <a href="#NFSversions">NFS protocol versions</a>.</p>
+<p><strong>Guessable file handles.</strong></p>
+<p>One of the ways to break in a NFS server is to guess so-called
+file-handles. The old (32-bit) file-handles (used in NFS version 2) were
+rather easy to guess. NFSfile handles Version 3 of the NFS protocol
+offers improved security by using 64-bit file-handles that are
+considerably harder to guess.</p>
+<p><strong>Version 4 security enhancements.</strong></p>
+<p>Version 4 of the NFS protocol defines encrypted connections. When the
+connection is encrypted, getting information by sniffing is made much
+harder or even impossible.</p>
+<p>Overview of NFS components </p>
+<p><a href="#NFSsoft">table_title</a> provides an overview of the most important
+files and software related to NFS.</p>
+<table>
+<thead>
+<tr>
+<th>program or file</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The kernel</td>
+<td>provides NFS support</td>
+</tr>
+<tr>
+<td><code>portmap</code></td>
+<td>handles RPC requests</td>
+</tr>
+<tr>
+<td><code>rpc.nfsd</code></td>
+<td>NFS server control (kernel space) or software (user space)</td>
+</tr>
+<tr>
+<td><code>rpc.mountd</code></td>
+<td>handles incoming (un)mount requests</td>
+</tr>
+<tr>
+<td><code>/etc/exports</code></td>
+<td>defines which filesystems are exported</td>
+</tr>
+<tr>
+<td><code>exportfs</code> command</td>
+<td>(un)exports filesystems</td>
+</tr>
+<tr>
+<td><code>showmount --exports</code></td>
+<td>shows current exports</td>
+</tr>
+<tr>
+<td>The <code>rpcinfo</code> command</td>
+<td>reports RPC information</td>
+</tr>
+<tr>
+<td>The <code>nfsstat</code> command</td>
+<td>reports NFS statistics</td>
+</tr>
+<tr>
+<td><code>showmount --all</code></td>
+<td>shows active mounts to me (this host)</td>
+</tr>
+<tr>
+<td>`mount -t nfs</td>
+<td>mounts a remote filesystem</td>
+</tr>
+<tr>
+<td></td>
+<td>remote:/there</td>
+</tr>
+<tr>
+<td></td>
+<td>/here`</td>
+</tr>
+<tr>
+<td><code>umount -t nfs -a</code></td>
+<td>unmounts all remote filesystems</td>
+</tr>
+</tbody>
+</table>
+<h3 id="nfs-protocol-versions">NFS protocol versions<a class="headerlink" href="#nfs-protocol-versions" title="Permanent link">&para;</a></h3>
+<p>Currently, there are a lot of changes in the NFS protocol that can
+affect the way the system is set up. </p>
+<table>
+<thead>
+<tr>
+<th>Protocol version</th>
+<th>Current status</th>
+<th>kernel or user space</th>
+<th>udp or tcp transport</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>never released</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>becoming obsolete</td>
+<td>user, kernel</td>
+<td>udp, some tcp impl. exist</td>
+</tr>
+<tr>
+<td>3</td>
+<td>new standard</td>
+<td>kernel</td>
+<td>udp, tcp: under development</td>
+</tr>
+<tr>
+<td>4</td>
+<td>new standard</td>
+<td>kernel</td>
+<td>tcp                           performance improvements;   mandates strong security;   stateful protocol</td>
+</tr>
+</tbody>
+</table>
+<p>The trends that can be seen in this table 
+are: kernel space instead of user space and tcp instead of udp.</p>
+<p><strong>A note on the transport protocol.</strong></p>
+<p>Connections over <code>tcp</code> (NFS v3, v4, some v2) are considered better than
+connections over <code>udp</code> (NFS v2, v3). The <code>udp</code> option might be the best
+on a small, fast network. But <code>tcp</code> allows considerably larger packet
+sizes (<code>rsize</code>, <code>wsize</code>) to be set. With sizes of 64k, <code>tcp</code> connections
+are reported to be 10% faster than connections over <code>udp</code>, which does
+not allow sizes that large. Also, <code>tcp</code> is a more reliable protocol by
+design, compared to <code>udp</code>. </p>
+<h3 id="nfsv4">NFSv4<a class="headerlink" href="#nfsv4" title="Permanent link">&para;</a></h3>
+<p>NFS version 4 (NFSv4) offers some new features compared to its
+predecessors. Instead of exporting multiple filesystems, NFSv4 exports a
+single pseudo file system for each client. The origin for this pseudo
+file system may be from different filesystems, but this remains
+transparent to the client.</p>
+<p>NFSv4 offers an extended set of attributes, including support form MS
+Windows ACL's. Although NFSv4 offers enhanced security features
+compared to previous versions of NFS, and has been around since 2003, it
+was never widely adopted. Users are encouraged to implement NFSv4.1
+which has been ratified in January 2010. </p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 1997-2021 Sue B.V., The Netherlands - Open Sourced 2021
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["search.highlight", "tabs", "instant"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

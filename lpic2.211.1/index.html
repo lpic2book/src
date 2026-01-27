@@ -1,0 +1,3625 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Sue B.V., The Netherlands">
+      
+      
+      
+        <link rel="prev" href="../lpic2.211.0/">
+      
+      
+        <link rel="next" href="../lpic2.211.2/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Using e-mail servers (211.1) - The LPIC2 Exam Prep</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:300,300i,400,400i,700,700i%7CAnonymous+Pro:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Nunito";--md-code-font:"Anonymous Pro"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#using-e-mail-servers-2111" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="The LPIC2 Exam Prep" class="md-header__button md-logo" aria-label="The LPIC2 Exam Prep" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            The LPIC2 Exam Prep
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Using e-mail servers (211.1)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/lpic2book/src" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    LPIC2Book
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="The LPIC2 Exam Prep" class="md-nav__button md-logo" aria-label="The LPIC2 Exam Prep" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/></svg>
+
+    </a>
+    The LPIC2 Exam Prep
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/lpic2book/src" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    LPIC2Book
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The LPIC2 Exam Prep
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpicbook_about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About this book
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    200 Capacity Planning (200)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Measure and Troubleshoot Resource Usage (200.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Predict Future Resource Needs (200.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Kernel (201)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel Components (201.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compiling a Linux kernel (201.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel runtime management and troubleshooting (201.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Startup (202)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customizing system startup (202.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System recovery (202.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Alternate Bootloaders (202.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Filesystem and Devices (203)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operating The Linux Filesystem (203.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maintaining a Linux Filesystem (203.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Creating And Configuring Filesystem Options (203.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Storage Device Administration (204)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring RAID (204.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adjusting Storage Device Access (204.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logical Volume Manager (204.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring PCMCIA Devices (204.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Networking Configuration (205)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Networking Configuration (205.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Network Configuration and Troubleshooting (205.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting network issues (205.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Maintenance (206)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Make and install programs from source (206.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup Operations (206.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifying users on system-related issues (206.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domain Name Server (207)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic DNS server configuration (207.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Create and maintain DNS zones (207.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Securing a DNS Server (207.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTTP Services (208)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Apache Configuration (208.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Apache configuration for HTTPS (208.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementing Squid as a caching proxy (208.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementing Nginx as a web server and a reverse proxy (208.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File Sharing (209)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAMBA Server Configuration (209.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring an NFS Server (209.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Client Management (210)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DHCP Configuration (210.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PAM authentication (210.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LDAP client usage (210.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring an OpenLDAP server (210.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    E-Mail services (211)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using e-mail servers (211.1)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using e-mail servers (211.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#using-e-mail-servers-2111" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using e-mail servers (211.1)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Using e-mail servers (211.1)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-knowledge-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Knowledge Areas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terms-and-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terms and Utilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-knowledge-of-the-smtp-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic knowledge of the SMTP protocol
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sendmail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sendmail
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sendmail">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        cf
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#domain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        domain
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feature" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        feature
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hack
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#m4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        m4
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mailer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mailer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ostype" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ostype
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sh
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#siteconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        siteconfig
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sendmail-test-option" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sendmail test option
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sendmail-and-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sendmail and DNS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manual-entries-in-sendmailcf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manual entries in sendmail.cf
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exim
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#postfix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Postfix
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Postfix">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#postfix-main.cf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Postfix main.cf file format
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#postfix-mastercf-file-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Postfix master.cf file format
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Postfix master.cf file format">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#postfix-preparations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Postfix preparations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#myorigin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        myorigin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mydestination" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mydestination
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relay_domains" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        relay_domains
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relayhost" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        relayhost
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logging
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Logging">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pflogsumm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pflogsumm
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#virtual-domains" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        virtual domains
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#postfix-tls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Postfix TLS
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing E-Mail Delivery (211.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing Mailbox Access (211.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Security (212)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring a router (212.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing FTP servers (212.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secure shell (SSH) (212.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security tasks (212.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenVPN (212.5)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#using-e-mail-servers-2111" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using e-mail servers (211.1)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Using e-mail servers (211.1)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-knowledge-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Knowledge Areas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terms-and-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terms and Utilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-knowledge-of-the-smtp-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic knowledge of the SMTP protocol
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sendmail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sendmail
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sendmail">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        cf
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#domain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        domain
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feature" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        feature
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hack
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#m4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        m4
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mailer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mailer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ostype" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ostype
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sh
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#siteconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        siteconfig
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sendmail-test-option" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sendmail test option
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sendmail-and-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sendmail and DNS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manual-entries-in-sendmailcf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manual entries in sendmail.cf
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exim
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#postfix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Postfix
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Postfix">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#postfix-main.cf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Postfix main.cf file format
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#postfix-mastercf-file-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Postfix master.cf file format
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Postfix master.cf file format">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#postfix-preparations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Postfix preparations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#myorigin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        myorigin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mydestination" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mydestination
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relay_domains" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        relay_domains
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relayhost" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        relayhost
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logging
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Logging">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pflogsumm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pflogsumm
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#virtual-domains" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        virtual domains
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#postfix-tls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Postfix TLS
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>Using e-mail servers (211.1)</h1>
+
+<h2 id="using-e-mail-servers-2111">Using e-mail servers (211.1)<a class="headerlink" href="#using-e-mail-servers-2111" title="Permanent link">&para;</a></h2>
+<p>Candidates should be able to manage an e-mail server, including the
+configuration of e-mail aliases, e-mail quotas and virtual e-mail
+domains. This objective includes configuring internal e-mail relays and
+monitoring e-mail servers.</p>
+<h3 id="key-knowledge-areas">Key Knowledge Areas<a class="headerlink" href="#key-knowledge-areas" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Configuration files for postfix</p>
+</li>
+<li>
+<p>Basic knowledge of the SMTP protocol</p>
+</li>
+<li>
+<p>Awareness of sendmail and exim</p>
+</li>
+</ul>
+<h3 id="terms-and-utilities">Terms and Utilities<a class="headerlink" href="#terms-and-utilities" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Configuration files and commands for postfix</p>
+</li>
+<li>
+<p><code>/etc/aliases</code></p>
+</li>
+<li>
+<p><code>/etc/postfix/</code></p>
+</li>
+<li>
+<p><code>/var/spool/postfix/</code></p>
+</li>
+<li>
+<p>sendmail emulation layer commands</p>
+</li>
+<li>
+<p>mail-related logs in /var/log</p>
+</li>
+</ul>
+<h2 id="basic-knowledge-of-the-smtp-protocol">Basic knowledge of the SMTP protocol<a class="headerlink" href="#basic-knowledge-of-the-smtp-protocol" title="Permanent link">&para;</a></h2>
+<p>Since October 2008, RFC 5321 is used to describe the SMTPprotocol.</p>
+<p>When an SMTPclienthas a message to transmit, it establishes a two-way
+transmission channel to an SMTPserver. The responsibility of the client
+is to transfer the message to one or more SMTP servers, or to report a
+failure to do so.</p>
+<p>The means by which an e-mail message is presented to an SMTP client, and
+how the domain name to transfer the message to is determined, is a local
+matter that will not be addressed here.</p>
+<p>Detailed information can be found
+at:<a href="https://www.ietf.org/rfc/rfc5321.txt">RFC5321</a>.</p>
+<p>For demonstration and testing purposes a plain text SMTP session can be
+initiated with <code>telnet</code>, <code>nc</code> or <code>ncat</code>: nc ncat telnet</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code>    telnet mx1.unix.nl 25
+    Connected to mx1.unix.nl (213.154.248.146).
+    Escape character is &#39;^]&#39;.
+    220 mx1.unix.nl ESMTP Exim 4.63 Thu, 12 Aug 2010 08:50:30 +0200
+    ehlo sue.nl
+    250-mx1.unix.nl Hello mx1.unix.nl [81.23.226.83]
+    250-SIZE 52428800
+    250-PIPELINING
+    250-AUTH PLAIN LOGIN
+    250-STARTTLS
+    250 HELP
+</code></pre></div></td></tr></table></div>
+
+<p>When using <code>nc</code> or <code>ncat</code> when performing the commands above, an
+additional <code>Enter</code> keystroke may be necessary. This is due to the
+differences in return characters that may exist between <code>telnet</code> and
+other, similar tools.</p>
+<p>With <code>telnet &lt;smtp servername&gt; 
+            25</code> initial contact with the SMTP server is established. In
+the example above mx1.unix.nl was used as the server. The server
+responds with the maximum message size, the pipelining, and the
+authentication capabilities of the server, in this case <em>AUTH PLAIN
+LOGIN</em>. The server is also able to use <em>STARTTLS</em>, and <em>HELP</em>.</p>
+<ul>
+<li>
+<p>SIZE: when the size of the message the client wishes to send exceeds
+    the set limit, the SMTP transaction will be aborted with an ERROR
+    code pipelining. Also, when enabled, an SMTP client can transmit a
+    group of SMTP commands (e.g., RSET, MAIL FROM:, RCPT TO:) without
+    waiting for a response from the server.</p>
+</li>
+<li>
+<p>AUTH PLAIN LOGIN: the SMTP server is capable of handling a plain
+    password/username authentication. This can be handy for mobile
+    devices using the SMTP server while originating from different IP
+    addresses.</p>
+</li>
+<li>
+<p>STARTTLS: The SMTP protocol itself doesn't include any form of
+    encryption. With STARTTLS the communciation can be encrypted using
+    certificates. This is fully described in RFC 3207.</p>
+</li>
+</ul>
+<p>Since we have established the initial connection we can now proceed:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="n">mail</span><span class="w"> </span><span class="k">from</span><span class="err">:</span><span class="w"> </span><span class="n">nonexistent</span><span class="nv">@sue</span><span class="p">.</span><span class="n">nl</span>
+<span class="w">    </span><span class="mi">250</span><span class="w"> </span><span class="n">OK</span>
+<span class="w">    </span><span class="n">rcpt</span><span class="w"> </span><span class="k">to</span><span class="err">:</span><span class="w"> </span><span class="n">nonexistent</span><span class="nv">@unix</span><span class="p">.</span><span class="n">nl</span>
+<span class="w">    </span><span class="mi">250</span><span class="w"> </span><span class="n">Accepted</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The server responds with "250 OK" but when, for example, the "MAIL
+FROM:" command is followed by a misformatted or incomplete email address
+the server responds with "501: sender address must contain domain" or a
+similar error. With "RCPT TO: \&lt;email address&gt;" the destination of the
+message is given. If the recipient's address is accepted the server
+responds with: "250 Accepted".</p>
+<p>Now the mail serverknows who we are and to whom we wish to transmit a
+message. The email client also knows what the SMTP server is capable of.
+We then proceed with the transmission:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="k">data</span>
+<span class="w">    </span><span class="mi">354</span><span class="w"> </span><span class="n">Enter</span><span class="w"> </span><span class="n">message</span><span class="p">,</span><span class="w"> </span><span class="n">ending</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="ss">&quot;.&quot;</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">itself</span>
+<span class="w">    </span><span class="n">mail</span><span class="w"> </span><span class="k">from</span><span class="err">:</span><span class="w"> </span><span class="n">Aiu</span><span class="w"> </span><span class="o">&lt;</span><span class="n">nonexistent</span><span class="nv">@sue</span><span class="p">.</span><span class="n">nl</span><span class="o">&gt;</span>
+<span class="w">    </span><span class="k">From</span><span class="err">:</span><span class="w"> </span><span class="o">&lt;</span><span class="n">nonexistent</span><span class="nv">@sue</span><span class="p">.</span><span class="n">nl</span><span class="o">&gt;</span>
+<span class="w">    </span><span class="k">To</span><span class="err">:</span><span class="w"> </span><span class="n">Info</span><span class="w"> </span><span class="o">&lt;</span><span class="n">nonexistent</span><span class="nv">@unix</span><span class="p">.</span><span class="n">nl</span><span class="o">&gt;</span>
+<span class="w">    </span><span class="nl">Subject</span><span class="p">:</span><span class="w"> </span><span class="n">Demo</span><span class="w"> </span><span class="n">messages</span>
+<span class="w">    </span><span class="nc">Date</span><span class="err">:</span><span class="w"> </span><span class="mi">12</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">2010</span><span class="w"> </span><span class="mi">08</span><span class="err">:</span><span class="mi">53</span><span class="err">:</span><span class="mi">00</span>
+<span class="w">    </span><span class="nl">MesssageID</span><span class="p">:</span><span class="w"> </span><span class="mi">31231233</span><span class="nv">@sue</span><span class="p">.</span><span class="n">nl</span>
+<span class="w">    </span><span class="n">This</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">demonstration</span><span class="w"> </span><span class="n">mesage</span><span class="p">.</span>
+<span class="w">    </span><span class="p">.</span>
+<span class="w">    </span><span class="mi">250</span><span class="w"> </span><span class="n">OK</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="mi">1</span><span class="n">OjReS</span><span class="o">-</span><span class="mi">0005</span><span class="n">kT</span><span class="o">-</span><span class="n">Jj</span>
+<span class="w">    </span><span class="n">quit</span>
+</code></pre></div></td></tr></table></div>
+
+<p>With the <em>DATA</em> command we proceed with the contents of the message. The
+server responds with: "354 Enter message, ending with \".\" on a line by
+itself".</p>
+<p>Then the message contents is entered, starting with the message headers.
+These headers are used by the email client. In the example the commands
+<em>Mail From:</em>, <em>To:</em>, <em>Subject:</em>, <em>Date:</em> and <em>MessageID:</em> are used.
+<em>MessageID:</em> is a unique identifier generated by the SMTP client. These
+headers are required as described in RFC 5322.</p>
+<p>After the headers have been entered, a blank line indicates that the
+actual text of the message commences. The message ends, as the <em>DATA</em>
+command response has indicated, with a "." (without the quotes) on a
+line by itself. The server responds with: "250 OK id=1OjReS-0005kT-Jj".
+The id is a unique SMTP server identifier and can be used for
+troubleshooting.</p>
+<p><strong>Note</strong>
+To fight spam, some SMTP servers can check whether a message is RFC 5322
+compliant. Regular SMTP clients are RFC 5322 compliant, but spammers
+often use not so regular SMTP clients and hence could send malformed
+messages.</p>
+<h2 id="sendmail">Sendmail<a class="headerlink" href="#sendmail" title="Permanent link">&para;</a></h2>
+<p>Basic sendmail configuration steps are: sendmail</p>
+<ol>
+<li>
+<p>Download Sendmail</p>
+</li>
+<li>
+<p>Set up Sendmail</p>
+</li>
+<li>
+<p>Configure Sendmail</p>
+</li>
+<li>
+<p>Build the Sendmail User Table</p>
+</li>
+<li>
+<p>Add your domain names to Sendmail</p>
+</li>
+<li>
+<p>Test your configuration file</p>
+</li>
+</ol>
+<p>Basic configuration of sendmail is described at: <a href="http://www.sendmail.org/~ca/email/doc8.12/op-sh-1.html">Sendmail basic
+installation</a>.</p>
+<p>An installation and operation guide for sendmail 8.12 can be found at:
+<a href="http://www.sendmail.org/~ca/email/doc8.12/op.html">Sendmail installation and operation
+guide</a>.</p>
+<p>Sendmail can either be built from source or installed as sendmail
+binaries. With sendmail you must build a run-time configuration file.
+This is a file that sendmail reads when it starts which describes the
+mailers it knows about, how to parse addresses, how to rewrite the
+message header, and the settings of various options. Although it can be
+quite complex, it can usually be built using an m4-based configuration
+language (m4 is a general-purpose macro processor). Assuming you have
+the standard sendmail distribution, see cf/README for more information.</p>
+<p>The sendmail configuration files are processed by m4 to facilitate local
+customization; the directory cf in the distribution directory contains
+the source files. It contains several subdirectories:</p>
+<h3 id="cf">cf<a class="headerlink" href="#cf" title="Permanent link">&para;</a></h3>
+<p>Both site-dependent and site-independent descriptions of hosts. The
+files can be named after hosts (e.g., ucbvax.mc) when these are
+gateways, or after categories (such as generic-solaris2.mc) as a general
+description of an SMTP-connected host running Solaris 2.x. Files ending
+with .mc ("M4 Configuration") are input definitions; the output is in
+the corresponding .cf file. The files' general structure is described
+below.</p>
+<h3 id="domain">domain<a class="headerlink" href="#domain" title="Permanent link">&para;</a></h3>
+<p>Site-dependent subdomain descriptions. These are tied to the way your
+organization wants to do addressing. For example,
+<code>domain/CS.Berkeley.EDU.m4</code> is our description for hosts in the
+CS.Berkeley.EDU subdomain. These are referenced using the DOMAIN m4
+macro in the .mc file.</p>
+<h3 id="feature">feature<a class="headerlink" href="#feature" title="Permanent link">&para;</a></h3>
+<p>Definitions of specific features that a particular host at your site
+might need. These are referenced using the <em>FEATURE</em> m4 macro. An
+example is use_cw_file that tells sendmail to read an
+<code>/etc/mail/local-host-names</code> file on startup to determine the set of
+local hosts.</p>
+<h3 id="hack">hack<a class="headerlink" href="#hack" title="Permanent link">&para;</a></h3>
+<p>Local hacks, referenced using the <em>HACK</em> m4 macro. Try to avoid these.
+The point of having them here is to make it clear that they smell.</p>
+<h3 id="m4">m4<a class="headerlink" href="#m4" title="Permanent link">&para;</a></h3>
+<p>Site-independent m4(1) include files that have information common to all
+configuration files. This can be thought of as an <em>#include</em> directory.</p>
+<h3 id="mailer">mailer<a class="headerlink" href="#mailer" title="Permanent link">&para;</a></h3>
+<p>Definitions of mailers, referenced using the <em>MAILER</em> m4 macro. The
+types that are known in this distribution are fax, local, smtp, uucp,
+and usenet. For example, to include support for UUCP-based mailers, use
+<em>MAILER(uucp)</em>.</p>
+<h3 id="ostype">ostype<a class="headerlink" href="#ostype" title="Permanent link">&para;</a></h3>
+<p>Definitions describing various operating system environments (such as
+the location of support files). These are referenced using the <em>OSTYPE</em>
+m4 macro.</p>
+<h3 id="sh">sh<a class="headerlink" href="#sh" title="Permanent link">&para;</a></h3>
+<p>Shell files used by the m4 build process. You probably don't have to
+change these.</p>
+<h3 id="siteconfig">siteconfig<a class="headerlink" href="#siteconfig" title="Permanent link">&para;</a></h3>
+<p>Local UUCP connectivity information. This directory has been replaced by
+the mailertable feature; any new configurations should use that feature
+to do UUCP (and other) routing. <em>The use of the siteconfig directory is
+deprecated.</em></p>
+<p>Make sure the m4 utility is available at the server. With it the .mc
+macro files can be converted to a sendmail.cf file. The recommended
+method to configure sendmail is to edit the macro files and not the
+sendmail.cf file itself.</p>
+<p>Details of sendmail installation files can be seen at: <a href="http://www.sendmail.org/~ca/email/doc8.12/op-sh-1.html">Sendmail
+installation and operation
+guide</a>.</p>
+<p>Important sendmail files</p>
+<p><code>/etc/mail/sendmail.cf</code> - Main sendmail configuration file. sendmail.cf</p>
+<p>makemap access.db <code>/etc/mail/access</code> - The sendmail access database file
+can be created to accept or reject mail from selected domains, systems
+and users. Since it is a database, after editing the text file you have
+to use <code>makemap</code> to create or update it.</p>
+<p>To create a new access map:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    # makemap hash /etc/mail/access.db &lt; /etc/mail/access
+</code></pre></div></td></tr></table></div>
+
+<p>OK</p>
+<ul>
+<li>Accept mail even if other rules in the running ruleset would reject
+    it, for example, if the domain name is unresolvable. \"Accept\" does
+    not mean \"relay\", but at most acceptance for local recipients.
+    Thus, <em>OK</em> allows less than <em>RELAY</em>.</li>
+</ul>
+<p>RELAY</p>
+<ul>
+<li>Accept mail addressed to the indicated domain or received from the
+    indicated domain for relaying through your SMTP server. <em>RELAY</em> also
+    serves as an implicit <em>OK</em> for the other checks.</li>
+</ul>
+<p>REJECT</p>
+<ul>
+<li>Reject the sender or recipient with a general purpose message.</li>
+</ul>
+<p>DISCARD</p>
+<ul>
+<li>Discard the message completely using the $#discard mailer. If it
+    is used in check_compat, it affects only the designated recipient,
+    not the whole message as it does in all other cases. This should
+    only be used if really necessary.</li>
+</ul>
+<p>SKIP</p>
+<ul>
+<li>This can only be used for host/domain names and IP addresses/nets.
+    It will abort the current search for this entry without accepting or
+    rejecting it but causing the default action.</li>
+</ul>
+<p><code>/etc/mail/local-host-names</code> - Local host names can be defined in the
+local-host-names file. Add each domain that should be considered local
+into /etc/mail/local-host-names.</p>
+<p><code>/etc/mail/virtusertable</code> - Used to map incoming email to a local
+account. With virtusertable, messages sent to one account can be
+distributed to two users. Also a \"catch all\" email address can be set
+up to route all mistyped email to one particular user to create a new
+virtusertable.</p>
+<p>To generate the virtusertable database map:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    # makemap hash /etc/mail/virtusertable &lt; sourcefile
+</code></pre></div></td></tr></table></div>
+
+<p><code>/etc/mail/genericstable</code> - Used for outbound mail. Can be used to
+rewrite local usernames so they appear to have originated from a
+different host or domain.</p>
+<p><code>/etc/mail/genericsdomain</code> - Populate this file with the
+<code>hostname --long</code> command.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    # hostname --long &gt; genericsdomain
+</code></pre></div></td></tr></table></div>
+
+<p><code>/etc/mail/mailertable</code> - Used to route email from remote systems.</p>
+<p><code>/etc/mail/domaintable</code> - Can be used to transition from an old domain
+name to a new one.</p>
+<p>newaliases <code>/etc/mail/aliases</code> - Used to redirect mail for local
+recepients. Each line of <code>/etc/aliases</code> has the format of <em>alias: user</em>.
+Two system aliases must always be present: <em>mailer_daemon: postmaster</em>
+and <em>postmaster: root</em>. You can use aliases for all kind of daemons, for
+example use <em>ntp: root</em>. Now you can add a line to redirect all mail to
+<em>root</em> to a specific user or group of administrators, for example <em>root:
+marc</em>. <code>newaliases</code> needs to be run after any change to this file.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    # newaliases
+</code></pre></div></td></tr></table></div>
+
+<p>If any update is made to one of the configuration files, sendmail needs
+to reload its' configuration:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    # killall -HUP sendmail
+</code></pre></div></td></tr></table></div>
+
+<p>Antirelaying</p>
+<p>antirelaying</p>
+<p>Starting with version 8.9, sendmail does not relay by default. When
+using an older sendmail version, make changes to the <code>sendmail.cf</code> or
+<code>access</code> files to make sure that it does not relay. Antirelaying tips
+are described at: <a href="http://www.sendmail.com/sm/open_source/tips/smtp_relaying/">Controlling SMTP relaying tips -
+Sendmail.org</a>.</p>
+<h3 id="sendmail-test-option">Sendmail test option<a class="headerlink" href="#sendmail-test-option" title="Permanent link">&para;</a></h3>
+<p>Sendmail can be run in test mode. Use the <code>-b</code> and <code>-t</code> options to do
+this. You need to run this as root.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    # sendmail -bt
+</code></pre></div></td></tr></table></div>
+
+<h3 id="sendmail-and-dns">Sendmail and DNS<a class="headerlink" href="#sendmail-and-dns" title="Permanent link">&para;</a></h3>
+<p>Make sure that the MX records for the MTA's are available in DNS. This
+can be checked with: MX records</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ dig MX somedomain.com
+</code></pre></div></td></tr></table></div>
+
+<h3 id="manual-entries-in-sendmailcf">Manual entries in sendmail.cf<a class="headerlink" href="#manual-entries-in-sendmailcf" title="Permanent link">&para;</a></h3>
+<p>m4 As mentioned before this is not the recommended way. Change the m4
+files instead and use <code>m4</code> to generate <code>sendmail.cf</code>.</p>
+<h2 id="exim">Exim<a class="headerlink" href="#exim" title="Permanent link">&para;</a></h2>
+<p>Exim is a mail transfer agent(MTA) developed at the University of
+Cambridge for use on Unix systems connected to the Internet. Exim can be
+installed instead of Sendmail, although the configuration of Exim is
+quite different. See exim.org for more detailed information.</p>
+<p>The <em>exim4-config_files</em> man page contains descriptions for each of
+them. Exim comes with an <code>exim.conf</code> template. Just edit this config
+file for your environment. The <a href="https://github.com/Exim/exim/wiki">Exim Wiki on
+GitHub</a> provides additional
+configuration help, FAQ, etc.</p>
+<h2 id="postfix">Postfix<a class="headerlink" href="#postfix" title="Permanent link">&para;</a></h2>
+<p>Postfix is another, widely adopted, MTA. It focusses on speed, ease of
+administration and security. The author of the software, Wietse Venema,
+was dependant on long computer calculations during his study. It was
+during that time that he developed a habit of creating software that
+would be as fault-free and fault-resistant as possible. Only if he could
+trust the software to run for two weeks straight without errors, there
+would be no necessity to sleep on the floor for those two weeks while
+babysitting it. This coding habit stuck with the author for the years to
+come. When the Postfix program was first written, it was done with the
+same habit as those earlier study assignments. This habit then became a
+coding philosophy. By writing the code in a structured manner, only
+adding neccessary bits and making sure execution flows as efficient as
+possible, the resulting software became fast, easy to administer and
+secure. Today, Postfix is still under active development. Many people
+have contributed to it, and many still do. Despite this common effort,
+the original author still assures that only necessary code gets added.
+And that it is added in a way that does not interfere with the
+philosophy that has been part of Postfix from the start. This approach,
+in combination with the way that Postfix consists of various small
+programs working together instead of one big program, makes Postfix a
+very attractive alternative to other MTA solutions.</p>
+<p>At the time of writing Postfix version 3.1 is the latest stable release.
+Postfix version 3.2 is (still) considered experimental. Experimental
+Postfix releases can be recognized by their names. These will carry a
+date in them. An example of an experimental release is the following
+tarball: <code>postfix-3.2-20161204.tar.gz</code>. Stable Postfix versions only
+show (major and minor) version numbers without the date at the end. Due
+to its wide adoption, most Linux distributions offer Postfix. However
+there is a wide variety in versions being deployed. According to its
+website <a href="http://www.postfix.org">http://www.postfix.org</a>, versions prior to Postfix 2.10 are
+End-Of-Support (EOS). CentOS 6.8 still ships with Postfix 2.6 though.
+Debian 7 did not get beyond Postfix 2.9. More recent Linux distribution
+versions like CentOS 7 and Debian 8 ship with Postfix &gt;2.10, while some
+bleeding edge Linux distribution versions offer Postfix &gt;3.1. There is
+absolutely no certainty that more recent versions of Postfix will have
+fewer bugs than older versions of Postfix. It is regarded as a 'best
+practice' to be aware of which version of Postfix you are exposing to
+the Internet, while at the same time keeping up to date about known
+Postfix vulnerabilities. There is no reason to restrict this best
+practice to Postfix alone though.</p>
+<p>To address the Postfix objectives that are defined for the LPIC-2 exam,
+the following will provide some examples. These asume you are using
+Postfix installed from packages on either a Debian-based or a Red Hat
+based Linux distribution. There may still be circumstances that require
+Postfix to be build from source. That subject is beyond the scope of
+this chapter but the topic in general is covered by LPIC objective
+206.1.</p>
+<h3 id="postfix-main.cf">Postfix main.cf file format<a class="headerlink" href="#postfix-main.cf" title="Permanent link">&para;</a></h3>
+<p>The default location for the postfix configuration files is
+<code>/etc/postfix</code>. Amongst others there are two main ones that determine
+Postfix behavior: <code>main.cf</code> and <code>master.cf</code>. By default, the main.cf
+configuration file specifies a subset of all the parameters that control
+the operation of the Postfix mail system. Parameters not explicitly
+specified are left at their default values. Refer to the <code>postconf(5)</code>
+manpage for a full listing of all parameters. The <code>main.cf</code> file
+contains useful comments as well as references to other documentation
+sources at the top. On Debian-based systems, the <code>/etc/postfix/main.cf</code>
+file you encounter may be a stripped-down version. The
+<code>/usr/share/postfix</code> directory should then contain a <code>main.cf.dist</code> file
+that is more elaborate. The following line count operation gives an
+estimate about the differences between the different <code>main.cf</code> files on
+a Debian-based system:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="k">user</span><span class="nv">@debian</span><span class="err">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="k">postfix</span><span class="err">$</span><span class="w"> </span><span class="n">wc</span><span class="w"> </span><span class="o">-</span><span class="n">l</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="k">postfix</span><span class="o">/</span><span class="n">main</span><span class="p">.</span><span class="n">cf</span><span class="w"> </span>
+<span class="w">    </span><span class="mi">43</span><span class="w">  </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="k">postfix</span><span class="o">/</span><span class="n">main</span><span class="p">.</span><span class="n">cf</span>
+<span class="w">    </span><span class="k">user</span><span class="nv">@debian</span><span class="err">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="k">postfix</span><span class="err">$</span><span class="w"> </span><span class="n">wc</span><span class="w"> </span><span class="o">-</span><span class="n">l</span><span class="w"> </span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="k">postfix</span><span class="o">/</span><span class="n">main</span><span class="p">.</span><span class="n">cf</span><span class="o">*</span>
+<span class="w">    </span><span class="mi">18</span><span class="w">  </span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="k">postfix</span><span class="o">/</span><span class="n">main</span><span class="p">.</span><span class="n">cf</span><span class="p">.</span><span class="n">debian</span>
+<span class="w">    </span><span class="mi">665</span><span class="w"> </span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="k">postfix</span><span class="o">/</span><span class="n">main</span><span class="p">.</span><span class="n">cf</span><span class="p">.</span><span class="n">dist</span>
+<span class="w">     </span><span class="mi">11</span><span class="w"> </span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="k">postfix</span><span class="o">/</span><span class="n">main</span><span class="p">.</span><span class="n">cf</span><span class="p">.</span><span class="n">tls</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The example above demonstrates that the
+<code>/usr/share/postfix/main.cf.dist</code> file holds more than 600 lines,
+whereas the default <code>/etc/postfix/main.cf</code> file only holds 43. Keeping
+the main.cf file clean and tidy is a good habit. It is also a good habit
+to use a pager to read through the more elaborate <code>main.cf.dist</code> file on
+Debian-based systems. Red Hat based systems keep well documented
+configuration files within the <code>/etc/postfix</code> directory.</p>
+<p>By default, postfix will only read configuration files from the
+<code>/etc/postfix</code> directory. Other configuration directories may be
+specified by using the <code>alternate_config_directories</code> directive in
+<code>/etc/postfix/main.cf</code>. Red Hat based distributions may have
+<code>/etc/postfix/dynamicmaps.cf.d</code> and <code>/etc/postfix/postfix-files.d</code>
+directories. These directories exist to ease the life of the Postfix
+package creators and should be left alone unless you are really sure
+about what you are doing.</p>
+<p><strong>Note</strong>
+The postfix configuration directory <code>/etc/postfix</code> is "hard-coded" in
+compilation. Chapter 4.6 of the following document explains how to
+change this value when building Postfix from source: <a href="http://www.postfix.org/INSTALL.html">Postfix
+Installation From Source Code</a></p>
+<p>The general format of the main.cf file is as follows:</p>
+<ul>
+<li>
+<p>Each logical line is in the form <code>parameter = value</code>. Whitespace
+    around the "=" is ignored, as is whitespace at the end of a logical
+    line.</p>
+</li>
+<li>
+<p>Empty lines and whitespace-only lines are ignored, as are lines
+    whose first non-whitespace character is a "#".</p>
+</li>
+<li>
+<p>A logical line starts with non-whitespace text. A line that starts
+    with whitespace continues a logical line.</p>
+</li>
+<li>
+<p>A parameter value may refer to other parameters.</p>
+</li>
+<li>
+<p>When the same parameter is defined multiple times, only the last
+    instance is remembered.</p>
+</li>
+<li>
+<p>Otherwise, the order of <code>main.cf</code> parameter definitions does not
+    matter.</p>
+</li>
+</ul>
+<p>Also see <a href="http://www.postfix.org/postconf.5.html">Postfix Configuration
+Parameters</a> as an alternative to
+the <code>postconf</code> man page. The remainder of that document is a description
+of all Postfix configuration parameters. Default values are shown after
+the parameter name in parentheses. These default values can also be
+looked up with the <code>sudo /usr/sbin/postconf -d</code> command. Beware though,
+since this command will produce 877 lines of output on a Postfix 3.1
+instance. Because it is an administrative command and usually located
+within <code>/usr/sbin</code>, <code>sudo</code> or a shell with root privileges should be
+used to invoke this command.</p>
+<p>One of the "best practices" to use with Postfix is to disable the
+<code>SMTP VRFY</code> command on a publicly accessible mail server. This VeRiFY
+command can be abused by an attacker to enumerate valid user accounts or
+email adddresses as follows:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="nx">user</span><span class="err">@</span><span class="nx">mailserver</span><span class="p">:</span><span class="o">~</span><span class="err">$</span><span class="w"> </span><span class="nx">telnet</span><span class="w"> </span><span class="nx">mailserver</span><span class="w"> </span><span class="mi">25</span>
+<span class="w">    </span><span class="nx">Trying</span><span class="w"> </span><span class="o">::</span><span class="mi">1</span><span class="o">...</span>
+<span class="w">    </span><span class="nx">Connected</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="nx">mailserver</span><span class="p">.</span>
+<span class="w">    </span><span class="nx">Escape</span><span class="w"> </span><span class="nx">character</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="err">&#39;</span><span class="o">^</span><span class="p">]</span><span class="err">&#39;</span><span class="p">.</span>
+<span class="w">    </span><span class="mi">220</span><span class="w"> </span><span class="nx">localhost</span><span class="w"> </span><span class="nx">ESMTP</span><span class="w"> </span><span class="nx">Postfix</span><span class="w"> </span><span class="p">(</span><span class="nx">Linux</span><span class="o">/</span><span class="nx">GNU</span><span class="p">)</span>
+<span class="w">    </span><span class="nx">EHLO</span><span class="w"> </span><span class="nx">localhost</span>
+<span class="w">    </span><span class="mi">250</span><span class="o">-</span><span class="nx">localhost</span>
+<span class="w">    </span><span class="mi">250</span><span class="o">-</span><span class="nx">PIPELINING</span>
+<span class="w">    </span><span class="mi">250</span><span class="o">-</span><span class="nx">SIZE</span><span class="w"> </span><span class="mi">10240000</span>
+<span class="w">    </span><span class="mi">250</span><span class="o">-</span><span class="nx">VRFY</span>
+<span class="w">    </span><span class="mi">250</span><span class="o">-</span><span class="nx">ETRN</span>
+<span class="w">    </span><span class="mi">250</span><span class="o">-</span><span class="nx">STARTTLS</span>
+<span class="w">    </span><span class="mi">250</span><span class="o">-</span><span class="nx">ENHANCEDSTATUSCODES</span>
+<span class="w">    </span><span class="mi">250</span><span class="o">-</span><span class="mi">8</span><span class="nx">BITMIME</span>
+<span class="w">    </span><span class="mi">250</span><span class="w"> </span><span class="nx">DSN</span>
+<span class="w">    </span><span class="nx">VRFY</span><span class="w"> </span><span class="nx">root</span>
+<span class="w">    </span><span class="mi">252</span><span class="w"> </span><span class="m m-Double">2.0.0</span><span class="w"> </span><span class="nx">root</span>
+<span class="w">    </span><span class="nx">VRFY</span><span class="w"> </span><span class="nx">wodan</span>
+<span class="w">    </span><span class="mi">550</span><span class="w"> </span><span class="m m-Double">5.1.1</span><span class="w"> </span><span class="p">&lt;</span><span class="nx">wodan</span><span class="p">&gt;:</span><span class="w"> </span><span class="nx">Recipient</span><span class="w"> </span><span class="nx">address</span><span class="w"> </span><span class="nx">rejected</span><span class="p">:</span><span class="w"> </span><span class="nx">User</span><span class="w"> </span><span class="nx">unknown</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nx">local</span><span class="w"> </span><span class="nx">recipient</span><span class="w"> </span><span class="nx">table</span>
+<span class="w">    </span><span class="nx">VRFY</span><span class="w"> </span><span class="nx">postfix</span>
+<span class="w">    </span><span class="mi">252</span><span class="w"> </span><span class="m m-Double">2.0.0</span><span class="w"> </span><span class="nx">postfix</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The 200-category response codes expose valid recipients. Just like HTTP
+servers do, a SMTP server can respond with status codes. It is
+recommended to be familiar with the most common response codes. This
+will aid when debugging system performance or issues. It is usually not
+necessary to know the difference between 220 and 250 at first sight. But
+the difference between 2xx and 5xx status codes should be noticable and
+familiar. The VRFY command is enabled on Postfix by default. By enabling
+or adding the following line to <code>main.cf</code> the VRFY feature is disabled:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    disable_vrfy_command = yes
+</code></pre></div></td></tr></table></div>
+
+<p>Let's try the <code>VRFY root</code> command from above again after both having
+disabled the VRFY command and having reloaded Postfix:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="k">user</span><span class="nv">@mailserver</span><span class="err">:</span><span class="o">~</span><span class="err">$</span><span class="w"> </span><span class="n">telnet</span><span class="w"> </span><span class="n">mailserver</span><span class="w"> </span><span class="mi">25</span>
+<span class="w">    </span><span class="n">Trying</span><span class="w"> </span><span class="o">::</span><span class="mf">1.</span><span class="p">..</span>
+<span class="w">    </span><span class="n">Connected</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">localhost</span><span class="p">.</span>
+<span class="w">    </span><span class="k">Escape</span><span class="w"> </span><span class="k">character</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="s1">&#39;^]&#39;</span><span class="p">.</span>
+<span class="w">    </span><span class="mi">220</span><span class="w"> </span><span class="n">localhost</span><span class="w"> </span><span class="n">ESMTP</span><span class="w"> </span><span class="k">Postfix</span><span class="w"> </span><span class="p">(</span><span class="n">Linux</span><span class="o">/</span><span class="n">GNU</span><span class="p">)</span>
+<span class="w">    </span><span class="n">EHLO</span><span class="w"> </span><span class="n">localhost</span>
+<span class="w">    </span><span class="mi">250</span><span class="o">-</span><span class="n">localhost</span>
+<span class="w">    </span><span class="mi">250</span><span class="o">-</span><span class="n">PIPELINING</span>
+<span class="w">    </span><span class="mi">250</span><span class="o">-</span><span class="k">SIZE</span><span class="w"> </span><span class="mi">10240000</span>
+<span class="w">    </span><span class="mi">250</span><span class="o">-</span><span class="n">ETRN</span>
+<span class="w">    </span><span class="mi">250</span><span class="o">-</span><span class="n">STARTTLS</span>
+<span class="w">    </span><span class="mi">250</span><span class="o">-</span><span class="n">ENHANCEDSTATUSCODES</span>
+<span class="w">    </span><span class="mi">250</span><span class="o">-</span><span class="mi">8</span><span class="n">BITMIME</span>
+<span class="w">    </span><span class="mi">250</span><span class="w"> </span><span class="n">DSN</span>
+<span class="w">    </span><span class="n">VRFY</span><span class="w"> </span><span class="n">root</span>
+<span class="w">    </span><span class="mi">502</span><span class="w"> </span><span class="mf">5.5.1</span><span class="w"> </span><span class="n">VRFY</span><span class="w"> </span><span class="n">command</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">disabled</span>
+<span class="w">    </span><span class="n">VRFY</span><span class="w"> </span><span class="n">wodan</span>
+<span class="w">    </span><span class="mi">502</span><span class="w"> </span><span class="mf">5.5.1</span><span class="w"> </span><span class="n">VRFY</span><span class="w"> </span><span class="n">command</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">disabled</span>
+<span class="w">    </span><span class="n">VRFY</span><span class="w"> </span><span class="k">postfix</span>
+<span class="w">    </span><span class="mi">502</span><span class="w"> </span><span class="mf">5.5.1</span><span class="w"> </span><span class="n">VRFY</span><span class="w"> </span><span class="n">command</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">disabled</span>
+</code></pre></div></td></tr></table></div>
+
+<p>By disabling the possibility to distinguish between valid (2xx) and
+invalid (5xx) email recipients, the Internet has become a safer place.</p>
+<p>postfix The Postfix developers recommend to change no more than 2-3
+parameters at a time, and test if Postfix still works after every
+change. After making changes to <code>main.cf</code> you need to reload postfix.
+Depending on the Linux distribution used, this can be accomplished using
+one of the following commands using <code>sudo</code> or a shell with root
+privileges: <code>postfix reload</code> or <code>systemctl restart postfix</code> or even
+<code>/etc/init.d/postfix reload</code>.</p>
+<h3 id="postfix-mastercf-file-format">Postfix master.cf file format<a class="headerlink" href="#postfix-mastercf-file-format" title="Permanent link">&para;</a></h3>
+<p>The Postfix mail system follows a modular approach by implementing a
+small number of (mostly) client commands that are invoked by users, and
+by a larger number of services that run in the background. Postfix
+services are implemented by daemon processes. These run in the
+background and are controlled by the master process. The <code>master.cf</code>
+configuration file defines how a client program connects to a service,
+and what daemon program runs when a service is requested.</p>
+<p>The general format of the <code>master.cf</code> file is as follows:</p>
+<ul>
+<li>
+<p>Empty lines and whitespace-only lines are ignored, as are lines
+    whose first non-whitespace character is a "#".</p>
+</li>
+<li>
+<p>A logical line starts with non-whitespace text. A line that starts
+    with whitespace continues a logical line.</p>
+</li>
+<li>
+<p>Each logical line defines a single Postfix service. Each service is
+    identified by its name and type as described below. When multiple
+    lines specify the same service name and type, only the last one is
+    remembered. Otherwise, the order of master.cf service definitions
+    does not matter.</p>
+</li>
+</ul>
+<p>Each logical line consists of eight fields separated by whitespace.
+These are described below in the order as they appear in the master.cf
+file. Where applicable a field of "-" requests that the built-in default
+value be used. For boolean fields specify "y" or "n" to override the
+default value.</p>
+<p>Chroot option (default: Postfix &gt;= 3.0: n, Postfix \&lt;3.0: y) - Whether
+or not the service runs chrooted to the mail queue directory (pathname
+is controlled by the <em>queue_directory</em> configuration variable in de
+<code>main.cf</code> file).</p>
+<h4 id="postfix-preparations">Postfix preparations<a class="headerlink" href="#postfix-preparations" title="Permanent link">&para;</a></h4>
+<p>Before postfix can be used, it needs to know:</p>
+<ul>
+<li>
+<p>what domains to receive mail for 
+    (<a href="#mydestination">mydestination</a>)</p>
+</li>
+<li>
+<p>which domain name to use for outbound mail
+    (<a href="#myorigin">myorigin</a>)</p>
+</li>
+<li>
+<p>which domain(s) postfix is allowed to relay mail for
+    (<a href="#relay_domains">relay_domains</a>)</p>
+</li>
+<li>
+<p>what delivery method to use (<a href="#relayhost">relayhost</a>)</p>
+</li>
+</ul>
+<h4 id="myorigin">myorigin<a class="headerlink" href="#myorigin" title="Permanent link">&para;</a></h4>
+<p>The <code>myorigin</code> parameter specifies the domain that appears as the
+"From:" domain in outgoing email. The <code>myorigin</code> option is subject to
+other options, which define whether the "From:" domain gets appended or
+replaced by the <code>myorigin</code> value. Refer to the <code>main.cf</code> file or
+<code>postconf</code> man page for details. By default, the <code>myorigin</code> value is
+defined as <code>$myhostname</code>. Changing the <code>myorigin</code> value to the
+configured domain name can be done as follows:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    myorigin = $mydomain
+</code></pre></div></td></tr></table></div>
+
+<p>The <code>$myhostname</code> or <code>$mydomain</code> are replaced by postfix with the
+hostname or domain of the server it is running on.</p>
+<h4 id="mydestination">mydestination<a class="headerlink" href="#mydestination" title="Permanent link">&para;</a></h4>
+<p>Postfix needs to know for which domain(s) it will receive mail. The
+parameter <code>mydestination</code> is used for this. More than one domain may be
+specified. The domain names can be separated using whitespace or a
+comma. Also, a pattern can be used to point to a lookup table (hash,
+btree, nis, ldap or mysql).</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    mydestination = $mydomain, localhost.$mydomain, hash:/etc/postfix/moredomains
+</code></pre></div></td></tr></table></div>
+
+<p><strong>Note</strong>
+You have to include <code>$mydomain</code> when the server is used as a mail server
+for the entire domain.</p>
+<h4 id="relay_domains">relay_domains<a class="headerlink" href="#relay_domains" title="Permanent link">&para;</a></h4>
+<p>The default configuration of postfix will try to deliver incoming mail
+to <em>authorized</em> destinations only. The <code>relay_domains</code> parameter
+controls for which domains postfix will accept and <em>forward</em> emails.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>    relay_domains =     (safe: never forward mail from strangers)
+
+
+    relay_domains = $mydomain (forward mail to my domain and subdomains)
+</code></pre></div></td></tr></table></div>
+
+<h4 id="relayhost">relayhost<a class="headerlink" href="#relayhost" title="Permanent link">&para;</a></h4>
+<p>By default postfix tries to deliver directly to the internet depending
+on the domain name of the destination address in the mail message. Using
+the <code>relayhost</code> parameter we can specify to use another SMTP server as
+relay:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    relayhost =
+</code></pre></div></td></tr></table></div>
+
+<p>This is the default, direct delivery to the internet, or using another
+ISP SMTP server:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    relayhost = mail.example.com
+</code></pre></div></td></tr></table></div>
+
+<h3 id="logging">Logging<a class="headerlink" href="#logging" title="Permanent link">&para;</a></h3>
+<p>maillog Postfix uses the syslog daemon for its logging. When
+<code>/etc/syslog.conf</code> is configured like in the example below, Postfix log
+events are written to <code>/var/log/maillog</code>. Error messages are, in the
+example below, redirected to the console.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="n">mail</span><span class="o">.</span><span class="n">err</span><span class="w">    </span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">console</span>
+<span class="w">    </span><span class="n">mail</span><span class="o">.</span><span class="n">debug</span><span class="w">  </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">maillog</span>
+</code></pre></div></td></tr></table></div>
+
+<h4 id="pflogsumm">pflogsumm<a class="headerlink" href="#pflogsumm" title="Permanent link">&para;</a></h4>
+<p>Using <code>egrep '&lt;reject|warning|error|fatal|panic&gt;' 
+                    /var/log/maillog</code> will help you to find any problems
+postfix encountered. There are also third party utilities like
+<code>pflogsumm</code> that can generate statistics out of Postfix logging.</p>
+<h4 id="virtual-domains">virtual domains<a class="headerlink" href="#virtual-domains" title="Permanent link">&para;</a></h4>
+<p>Generally a postfix server is the final destination for a limited number
+of domains. But postfix can also be configured to handle mail for
+additional domains which are different from, for example, the domain in
+which the postfix server is located. These destinations are called
+virtual hosts. Using the <code>virtual_alias_domains</code> parameter we can
+specify for which virtual hosts we wish to receive mail. The format of
+the parameters is the same as in the samples above. Separate multiple
+virtual hosts using a space or a comma. Also a link to a (hashed) file
+on disk is possible:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    virtual_alias_domains = example.com, sue.nl, unix.nl
+</code></pre></div></td></tr></table></div>
+
+<p>postmap or when using a hashed file (using the <code>postmap</code> utility):</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    virtual_alias_domains = hash:/etc/postfix/virtual
+</code></pre></div></td></tr></table></div>
+
+<p>The content of <code>/etc/postfix/virtual</code> can be:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="n">postmaster</span><span class="nv">@example</span><span class="p">.</span><span class="n">com</span><span class="w">  </span><span class="n">peter</span>
+<span class="w">    </span><span class="n">info</span><span class="nv">@sue</span><span class="p">.</span><span class="n">nl</span><span class="w">     </span><span class="n">gerda</span>
+<span class="w">    </span><span class="n">sales</span><span class="nv">@example</span><span class="p">.</span><span class="n">com</span><span class="w">   </span><span class="n">petra</span>
+<span class="w">    </span><span class="nv">@example</span><span class="p">.</span><span class="n">com</span><span class="w">        </span><span class="n">jim</span>
+</code></pre></div></td></tr></table></div>
+
+<p>In the above example peter receives the postmaster\@example.com email.
+Gerda receives the info\@sue.nl email and the sales\@example.com goes to
+petra. The last line is a "catch all" rule, all email for example.com
+without a valid destination goes to jim.</p>
+<p><strong>Note</strong>
+Use <code>postmap /etc/postfix/virtual</code> to create the hashed file and issue a
+<code>postfix reload</code> afterwards.</p>
+<p>Sendmail emulation layer commands</p>
+<p>mailq</p>
+<p>newaliases Since Sendmail has been the de facto mail delivery standard
+on Unix-like systems for years, replacements like Postfix have felt
+compelled to implement sendmail emulation layer commands in order to
+maintain compatibility with outside programs. That is to say that
+certain commands that were originally included with the sendmail package
+are available with Postfix as well.</p>
+<p>Mailq</p>
+<ul>
+<li><code>mailq</code> is available on most systems to check the mail queue. It is
+    equivalent to <code>sendmail -bp</code>, which works with Postfix too. Its
+    native alternative is <code>postqueue -p</code>. postqueue</li>
+</ul>
+<p>Newaliases</p>
+<ul>
+<li><code>newaliases</code> is required to generate a binary aliases file with both
+    sendmail and postfix. Both employ <code>/etc/aliases</code> as the default
+    input file.</li>
+</ul>
+<p>On Postfix systems <code>man sendmail</code> will provide more details on the
+"Postfix to Sendmail compatibility interface".</p>
+<p>/var/spool/mail</p>
+<p>Specifies the default mail drop directory. By default all mail is
+delivered to the <code>/var/spool/mail/&lt;username&gt;</code> file.</p>
+<h3 id="postfix-tls">Postfix TLS<a class="headerlink" href="#postfix-tls" title="Permanent link">&para;</a></h3>
+<p>LPIC objective 208.2 covers HTTP over SSL/TLS. The SMTP protocol is
+similar to the HTTP protocol in that both protocols use plain text
+network commands. This comes in handy when debugging, because it allows
+for command execution through telnet- or netcat-like software. But it
+does not come in handy when transferring sensitive information across a
+range of systems. Due to the nature of the SMTP protocol, multiple
+machines may be involved to transfer an e-mail message from the source
+to the final destination. And there is no way of excluding the
+possibility that a message has been altered during transfer. This is
+where encryption comes in. By using encrypted communication, at least
+some form of confidentiality and authenticity can be added to SMTP
+transactions. Just like Apache needs to be set up properly for HTTPS
+transactions, Postfix needs to be configured for use with TLS as well.
+Unlike Apache, we leave out the SSL acronym and only refer to TLS for
+Postfix. The following paragraphs will explain more about TLS-specific
+Postfix directives and about configuring Postfix for use with TLS.</p>
+<p>At the time of writing, TLSv1.3 is the latest TLS version. TLSv1.3 has
+reached DRAFT status, and it will be a matter of time before it hits the
+streets. There will be some noteworthy changes between TLSv1.2 and
+TLSv1.3. Up to TLSv1.2, a ciphersuite consisted of an authentication
+algorithm, an encryption algorithm, a message digest algorithm and a key
+exchange algorithm. These four algorithms work together and are defined
+by their acronyms. From TLSv1.3 onward, the ciphersuite will consist of
+only the encryption and message authentication algorithm.</p>
+<p>The following paragraphs are ment to assist you in getting Postfix with
+TLS up and running. Encryption is an ever expanding subject, and it is
+recommended to take the time to read and understand the available
+documentation with regard to Postfix and the (proper) use of TLS.
+Postfix comes with extensive documentation that may be found within the
+<code>/usr/share/doc/postfix</code> directory (on Debian-based systems, you might
+have to install the <code>postfix-doc</code> package for completeness as is
+explained on the bottom of this page). The <code>TLS_README</code> document is
+definitely worth reading. It can be viewed using a pager like <code>less</code> or
+first expanded using a utility like <code>zcat</code> if the file is compressed.
+The <code>TLS_README.txt</code> document is also available on the Postix website
+<a href="http://www.postfix.org">http://www.postfix.org</a>.</p>
+<p>openssl When creating a keypair for use with Apache, it may be preferred
+to use an <em>encrypted</em> private key. An encrypted key needs to be
+decrypted using a password before it can be used. OpenSSL will encrypt
+the private key during creation by default, unless specified otherwise.
+Postfix requires the private key used for TLS encrypted communication to
+be <em>unencrypted</em>, in other words without a password. A private key may
+be <em>stripped</em> from its password by reading, importing and exporting the
+key with OpenSSL. In the following example though, the <code>-nodes</code> option
+is used with OpenSSL during creation time of the key. This will prevent
+OpenSSL from encrypting the private key in the first place.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>    sudo openssl req -nodes -x509 -newkey rsa:2048 \
+    -keyout postfixkey.pem -out postfixcert.pem \
+    -days 356
+</code></pre></div></td></tr></table></div>
+
+<p>The <em>self-signed</em> certificate and private key created with the one-liner
+above can be used for postfix. Postfix demands the private key file is
+owned by, and readable only by root. The certificate file may be
+world-readable. Because the example above uses the RSA algorithm, the
+following directives are used to refer to these files:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>    smtpd_tls_cert_file=postfixcert.pem
+    smtpd_tls_key_file=postfixkey.pem
+</code></pre></div></td></tr></table></div>
+
+<p><strong>Note</strong>
+smtpd_tls smtp_tls When declaring these directives, take special care
+to differentiate between <code>smtpd_tls_</code> directives and <code>smtp_tls</code>
+directives. The latter are used for client authentication.</p>
+<p>The certificate file must be in the PEM-format. This is the OpenSSL
+standard export format, so no additional flags should be required. In
+the example above, the RSA algorithm is used. Instead of RSA, DSA could
+also be used as the encryption algorithm. When using the DSA algorithm,
+the key needs to be generated using the <code>-t dsa</code> option and the
+directives for the certificate file and key slightly differ from their
+RSA counterparts:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>    smtpd_tls_dcert_file=postfixcert.pem
+    smtpd_tls_dkey_file=postfixkey.pem
+</code></pre></div></td></tr></table></div>
+
+<p>ECDSA is another valid encryption algorithm for use with Postfix. But
+because many mailservers still use OpenSSL 0.9.8 versions that lack the
+proper ECDSA implementation, the use of ECDSA for Postfix with TLS is
+currently not recommended. Currently RSA is the recommended encryption
+algorithm to use with TLS for Postfix. However if you do want to use
+ECDSA keys, the key must be generated using the <code>-t ecdsa</code> option and
+the certificate and key files have to be specified using the following
+directives:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>    smtpd_tls_eccert_file=postfixcert.pem
+    smtpd_tls_eckey_file=postfixkey.pem
+</code></pre></div></td></tr></table></div>
+
+<p>certificateself-signed CSR CA The OpenSSL example above creates a
+<em>self-signed</em> certificate. This is a way of getting the Postfix STARTTLS
+functionality working "quick and dirty". But in terms of authenticity,
+self-signed certificates may not be validated by many public SMTP
+servers. An alternative is to create a key and CSR, and sign the CSR
+using your own CA. This is demonstrated in the Apache chapter. By using
+certificates issued by your own CA, you could let your mailservers
+validate each other. Yet another option is to create a key and CSR, and
+have the CSR signed by a public CA. That way, public SMTP servers should
+be able to validate the certificate offered by your Postfix server. When
+going this route, it may be necessary to add additional root CA
+references to complete the certificate chain. Additional root CA files
+may be configured by using either the <code>smtpd_tls_CAfile</code> or
+<code>smtpd_tls_CApath</code> directives. The file directive should point to a (you
+guessed it) file holding the necessary root CA information. When
+concatenating several certificates in to one file, be aware that the
+files are read "bottom to top". The <code>smtpd_tls_CApath</code> directive should
+point to a directory holding the necessary file(s).</p>
+<p>Postfix uses <em>opportunistic encryption</em> by default. This means that a
+connecting system will try to create an encrypted connection at first.
+However, if this fails for any reason (say, due to an invalid
+certificate) then the system will continue to perform all SMTP commands
+without encryption. This behavior is determined by the value of the
+<code>smtpd_tls_security_level</code> directive. By changing the value of this
+directive from <code>may</code> to <code>encrypt</code>, unencrypted sessions are prevented.
+Be aware though! This directive may prevent the Postfix server from
+performing <em>any</em> SMTP transactions anymore if TLS sessions cannot be
+initiated.</p>
+<p><strong>Note</strong>
+Certificate Authority Despite all the good intentions from various
+public Certificate Authorities, the Certificate Authority system is kind
+of flawed by design. After all, ANY Certificate Authority may issue
+certificates for ANY service on ANY host. The chapter on DNS mentions
+DANE TLSA records to combat this issue. When DNSSEC has been properly
+configured and TLSA records are supported, it is recommended to create
+301 or 311 TLSA records for a given TLS-capable Postfix server. By
+shifting the trust from the CA trust store with over 1300 CA root
+certificates to the authenticity and integrity of DNSSEC, it becomes
+less of a problem to depend on self-signed certificates. If multiple
+domains are served on the same Postfix server, it is recommended to
+publish a digest for every seperate domain (and therefore certificate)
+in DNS. The <code>smtpd_tls_support_level</code> value can be set to either <code>dane</code>
+or <code>dane-only</code> to handle TLSA records. Refer to the <code>TLS_README</code> file
+for details.</p>
+<p>Directives and options Postfix has been written with many "what if..."
+fall-back scenarios in mind. The result is a very resilient piece of
+software. Being a result of good coding practices, Postfix uses a number
+of mechanisms to determine if circumstances are favourable or not. If
+system resources become scarse, the Postfix system will adapt as is
+deemed suitable regarding the circumstances. When configuring Postfix to
+use TLS encryption, there are some directives that deserve additional
+attention. When configured correctly, directives should complement each
+others functionality. When configured inconsistently or incorrectly,
+directives may conflict with each others functionality. It is advised to
+pay additional attention to directives that are involved when
+configuring the allowed protocols and cipher suites. Modern Postfix
+versions exclude the use of SSLv2. Because version upgrades may change
+the default protocols and allowed cipher suites, there is no harm in
+configuring these yourself. By declaring the following directives in
+<code>main.cf</code>, these options will stay constant despite Postfix version
+upgrades over time.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>    smtpd_tls_protocols
+    smtpd_tls_mandatory_protocols
+    smtpd_tls_ciphers
+    smtpd_tls_mandatory_ciphers
+    smtpd_tls_exclude_ciphers
+</code></pre></div></td></tr></table></div>
+
+<p>By disabling the <code>aNULL</code> ciphers, use of <em>anonymous</em> ciphers is
+prevented. The use of anonymous ciphers is one of the fall-back
+scenarios that helps Postfix in providing availability, at the expense
+of accountability.</p>
+<p>As mentioned before, the TLS functionality in Postfix can be configured
+using the <code>smtpd_tls_security_level</code> directive. According to RFC 2487,
+this directive <em>should</em> be set to the value <code>may</code>. This will result in
+Postfix announcing the availability of <code>STARTTLS</code> to connecting clients,
+without demanding its use. If you want to enforce the use of <code>STARTTLS</code>,
+the value of <code>smtpd_tls_security_level</code> should be set to <code>encrypt</code>
+instead. Again, be aware that this may result in degraded server
+compatibility towards other systems. By setting the directive value to
+<code>none</code>, the Postfix server will refrain from announcing the <code>STARTTLS</code>
+method at all. When a connecting system tries to initiate <code>STARTTLS</code>,
+the Postfix server will reply with a
+<code>502 5.5.1 Error: command not implemented</code> message.</p>
+<p>When enabling TLS for Postfix, various additional configuration
+directives become available. Most directives starting with <code>smtpd_tls_</code>
+or <code>smtp_tls_</code> are not significant for the working of Postfix unless TLS
+is enabled. One of these directives is the <code>smtpd_tls_loglevel</code>
+directive. This directive may be configured by setting a value from
+<code>0-4</code>. It is not recommended to use a setting above <code>2</code>, except for
+debugging purposes. A value of <code>0</code> will disable logging of TLS events. A
+value of <code>1</code> will log a summary message on TLS handshake completion. A
+value of <code>2</code> will also log levels during TLS negotiation. A value of <code>3</code>
+will log all of the above plus hex and text dumps of the TLS
+transaction. A value of <code>4</code> eventually will log all of the above but
+will not stop dumping after the TLS transaction has been processed. It
+will continue to dump the entire SMTP transmission after the STARTTLS
+command. Use with caution!</p>
+<p>On most Linux distributions, additional documentation regarding Postfix
+can be found in the <code>/usr/share/doc/postfix</code> directory. On Debian-based
+systems, this requires installing the <code>postfix-doc</code> package. Without the
+addition of this package, the contents of that directory will be very
+shallow.</p>
+<p><strong>Note</strong>
+postfix-tls tlsmgr tlsproxy Postfix 3.x makes TLS easier by
+incorperating the <code>postfix-tls</code>. While reading up, you might also want
+to check out what <code>tlsmgr</code> and <code>tlsproxy</code> do.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 1997-2021 Sue B.V., The Netherlands - Open Sourced 2021
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["search.highlight", "tabs", "instant"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

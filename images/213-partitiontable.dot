@@ -1,0 +1,45 @@
+digraph G {
+	node [shape=none, width=2.2, height=0.3];
+/*	edge [arrowhead=none];
+*/	rankdir="LR";
+	
+	
+	
+	subgraph cluster_0 {
+		labeljust="r";
+		label="/dev/hda"
+		"Partition table"
+		subgraph cluster_1 {
+			label="/dev/hda1"
+			"Partition 1"
+		}
+		subgraph cluster_2 {
+			label="/dev/hda2"
+			"Partition 2"
+		}
+		subgraph cluster_3 {
+			label="/dev/hda3"
+			"Extended Partition"
+			subgraph cluster_3a {
+				label=""
+				"Extended partition table1"[label="Extended partition table"]
+			}
+			subgraph cluster_3b {
+				label="/dev/hda5"
+				"Partition 3"
+			}
+			subgraph cluster_3c {
+				label=""
+				"Extended partition table"
+			}			
+			subgraph cluster_3d {
+				label="/dev/hda6"
+				"Partition 4"
+			}
+		}
+		subgraph cluster_4 {
+			label="/dev/hda4"
+			"Partition 5"
+		}
+	}
+}

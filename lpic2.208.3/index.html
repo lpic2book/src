@@ -1,0 +1,2714 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Sue B.V., The Netherlands">
+      
+      
+      
+        <link rel="prev" href="../lpic2.208.2/">
+      
+      
+        <link rel="next" href="../lpic2.208.4/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Implementing Squid as a caching proxy (208.3) - The LPIC2 Exam Prep</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:300,300i,400,400i,700,700i%7CAnonymous+Pro:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Nunito";--md-code-font:"Anonymous Pro"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#implementing-squid-as-a-caching-proxy-2083" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="The LPIC2 Exam Prep" class="md-header__button md-logo" aria-label="The LPIC2 Exam Prep" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            The LPIC2 Exam Prep
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Implementing Squid as a caching proxy (208.3)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/lpic2book/src" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    LPIC2Book
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="The LPIC2 Exam Prep" class="md-nav__button md-logo" aria-label="The LPIC2 Exam Prep" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/></svg>
+
+    </a>
+    The LPIC2 Exam Prep
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/lpic2book/src" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    LPIC2Book
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The LPIC2 Exam Prep
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpicbook_about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About this book
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    200 Capacity Planning (200)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Measure and Troubleshoot Resource Usage (200.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Predict Future Resource Needs (200.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Kernel (201)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel Components (201.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compiling a Linux kernel (201.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel runtime management and troubleshooting (201.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Startup (202)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customizing system startup (202.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System recovery (202.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Alternate Bootloaders (202.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Filesystem and Devices (203)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operating The Linux Filesystem (203.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maintaining a Linux Filesystem (203.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Creating And Configuring Filesystem Options (203.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Storage Device Administration (204)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring RAID (204.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adjusting Storage Device Access (204.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logical Volume Manager (204.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring PCMCIA Devices (204.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Networking Configuration (205)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Networking Configuration (205.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Network Configuration and Troubleshooting (205.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting network issues (205.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Maintenance (206)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Make and install programs from source (206.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup Operations (206.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifying users on system-related issues (206.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domain Name Server (207)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic DNS server configuration (207.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Create and maintain DNS zones (207.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Securing a DNS Server (207.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTTP Services (208)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Apache Configuration (208.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Apache configuration for HTTPS (208.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementing Squid as a caching proxy (208.3)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementing Squid as a caching proxy (208.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#implementing-squid-as-a-caching-proxy-2083" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementing Squid as a caching proxy (208.3)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementing Squid as a caching proxy (208.3)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-knowledge-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Knowledge Areas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terms-and-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terms and utilities:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#web-caches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Web-caches
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Web-caches">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#squid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        squid
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="squid">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#redirectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redirectors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authenticators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authenticators
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#access-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Access policies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authenticator-behaviour" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authenticator Behaviour
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#utilizing-memory-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Utilizing memory usage
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementing Nginx as a web server and a reverse proxy (208.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File Sharing (209)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAMBA Server Configuration (209.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring an NFS Server (209.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Client Management (210)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DHCP Configuration (210.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PAM authentication (210.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LDAP client usage (210.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring an OpenLDAP server (210.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    E-Mail services (211)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using e-mail servers (211.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing E-Mail Delivery (211.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing Mailbox Access (211.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Security (212)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring a router (212.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing FTP servers (212.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secure shell (SSH) (212.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security tasks (212.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenVPN (212.5)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#implementing-squid-as-a-caching-proxy-2083" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementing Squid as a caching proxy (208.3)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementing Squid as a caching proxy (208.3)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-knowledge-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Knowledge Areas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terms-and-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terms and utilities:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#web-caches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Web-caches
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Web-caches">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#squid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        squid
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="squid">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#redirectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redirectors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authenticators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authenticators
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#access-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Access policies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authenticator-behaviour" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authenticator Behaviour
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#utilizing-memory-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Utilizing memory usage
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>Implementing Squid as a caching proxy (208.3)</h1>
+
+<h2 id="implementing-squid-as-a-caching-proxy-2083">Implementing Squid as a caching proxy (208.3)<a class="headerlink" href="#implementing-squid-as-a-caching-proxy-2083" title="Permanent link">&para;</a></h2>
+<p>Candidates should be able to install and configure a proxy server,
+including access policies, authentication and resource usage.</p>
+<h3 id="key-knowledge-areas">Key Knowledge Areas<a class="headerlink" href="#key-knowledge-areas" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Squid 3.x configuration files, terms and utilities</p>
+</li>
+<li>
+<p>Access restriction methods</p>
+</li>
+<li>
+<p>Client user authentication methods</p>
+</li>
+<li>
+<p>Layout and content of ACL in the Squid configuration files</p>
+</li>
+</ul>
+<h3 id="terms-and-utilities">Terms and utilities:<a class="headerlink" href="#terms-and-utilities" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><code>squid.conf</code></p>
+</li>
+<li>
+<p><code>acl</code></p>
+</li>
+<li>
+<p><code>http_access</code></p>
+</li>
+</ul>
+<h2 id="web-caches">Web-caches<a class="headerlink" href="#web-caches" title="Permanent link">&para;</a></h2>
+<p>A <em>web-cache</em>, also known as an <em>http proxy</em>, is web-cache http proxy
+used to reduce bandwidth demands and often allows for finer-grained
+access control. Using a proxy, in the client software the hostname and
+port number of a proxy must be specified. When the browser tries to
+connect to a web server, the request will be sent to the specified proxy
+server but to the user it looks like the request has been sent to the
+requested web server directly. The proxy server now makes a connection
+to the specified web server, waits for the answer and sends this back to
+the client. The proxy works like an interpreter: the client talks and
+listens to the proxy and the proxy talks and listens to the web server
+the client wants to talk to. A proxy will also use locally cached
+versions of web-pages if they have not yet expired and will also
+validate client requests.</p>
+<p>Additionally, there are <em>transparent proxies</em>. Usually this is the
+transparent proxy tandem of a regular proxy and a redirecting router. In
+these cases, a web request can be intercepted by the proxy,
+transparently. In this case there is no need to setup a proxy in the
+settings of the client software. As far as the client software knows, it
+is talking directly to the target server, whereas it is actually talking
+to the proxy.</p>
+<h3 id="squid"><code>squid</code><a class="headerlink" href="#squid" title="Permanent link">&para;</a></h3>
+<p><code>squid</code> is a high-performance proxy caching server for web clients.
+squid <code>squid</code> supports more then just HTTP data objects: it supports FTP
+and <code>gopher</code> objects too. FTP gopher <code>squid</code> handles all requests in a
+single, non-blocking, I/O-driven process. <code>squid</code> keeps meta data and,
+especially, hot objects cached in RAM, it caches DNS lookups, supports
+non-blocking DNS lookups and implements negative caching of failed
+requests. <code>squid</code> also supports SSL, extensive access controls and full
+request squidSSL logging. By using the lightweight Internet Cache
+Protocol, <code>squid</code> caches can be arranged in a hierarchy or mesh for
+additional bandwidth savings.</p>
+<p><code>squid</code> can be used for a number of things, including bandwidth saving,
+handling traffic spikes and caching sites that are occasionally
+unavailable. <code>squid</code> can also be used for load balancing. Essentially,
+the first time <code>squid</code> receives a request from a browser, it acts as an
+intermediary and passes the request on to the server. <code>squid</code> then saves
+a copy of the object. If no other clients request the same object, no
+benefit will be gained. However, if multiple clients request the object
+before it expires from the cache, <code>squid</code> can speed up transactions and
+save bandwidth. If you've ever needed a document from a slow site, say
+one located in another country or hosted on a slow connection, or both,
+you will notice the benefit of having a document cached. The first
+request may be slower than molasses, but the next request for the same
+document will be much faster, and the originating server's load will be
+lightened.</p>
+<p><code>squid</code> consists of a main server program <code>squid</code>, a Domain Name System
+lookup program <code>dnsserver</code>, some optional programs for rewriting
+requests and performing authentication, and some management and client
+tools. When <code>squid</code> starts up, it spawns a configurable number of
+<code>dnsserver</code> processes, each of which can perform a single, blocking
+Domain Name System (DNS) lookup. This reduces the amount of time the
+cache waits for DNS lookups.</p>
+<p><code>squid</code> is normally obtained in source code format. On most systems a
+simple <code>make install</code> will suffice. After that, you will also have a set
+of configuration files. In most distributions all the squid
+configuration files are, by default, kept in the directory
+<code>/usr/local/squid/etc</code>. However, the location may vary, depending on the
+style and habits of your distribution. The Debian packages, for example,
+place the configuration files in <code>/etc</code>, which is the normal home
+directory for <code>.conf</code> files. Though there is more than one file in this
+directory, only one file is important to most administrators, namely the
+<code>squid.conf</code> file. There are just about 125 option tags in this file but
+only eight options are really needed to get <code>squid</code> up and running. The
+other options just give you additional flexibility.</p>
+<p><code>squid</code> assumes that you wish to use the default value if there is no
+occurrence of a tag in the <code>squid.conf</code> file. Theoretically, you could
+even run <code>squid</code> with a zero length configuration file. However, you
+will need to change at least one part of the configuration file, i.e.
+the default <code>squid.conf</code> denies access to all browsers. You will need to
+edit the Access Control Lists to allow your clients to use the <code>squid</code>
+proxy. The most basic way to perform access control is to use the
+<code>http_access</code> option (see below).</p>
+<p><code>http_port</code></p>
+<ul>
+<li>This option determines on which port(s) <code>squid</code> will listen
+    squidhttp_port for requests. By default this is port <code>3128</code>.
+    Another commonly used port is port <code>8080</code>.</li>
+</ul>
+<p><code>cache_dir</code></p>
+<ul>
+<li>
+<p>Used to configure specific storage areas. If you use more than one
+    disk squidcache_dir for cached data, you may need more than one
+    mount point (e.g., <code>/usr/local/squid/cache1</code> for the first disk,
+    <code>/usr/local/squid/cache2</code> for the second disk). <code>squid</code> allows you
+    to have more than one <code>cache_dir</code> option in your config file. This
+    option can have four parameters:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    cache_dir /usr/local/squid/cache/ 100 16 256
+</code></pre></div></td></tr></table></div>
+
+<p>The first option determines in which directory the cache should be
+maintained. The next option is a size value in Megabytes where the
+default is 100 Megabytes. <code>squid</code> will store up to that amount of
+data in the specified directory. The next two options will set the
+number of subdirectories (first and second tier) to create in this
+directory. <code>squid</code> creates a large number of directories and stores
+just a few files in each of them in an attempt to speed up disk
+access (finding the correct entry in a directory with one million
+files in it is not efficient: it's better to split the files up
+into lots of smaller sets of files).</p>
+</li>
+</ul>
+<p><code>http_access</code>; <code>acl</code></p>
+<ul>
+<li>
+<p>The basic syntax of the option is
+    <code>http_access allow|deny [!]aclname</code>. squidhttp_access If you want
+    to provide access to an internal network, and deny access to anyone
+    else, your options might look like this:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>    acl home src 10.0.0.0/255.0.0.0
+    http_access allow home
+</code></pre></div></td></tr></table></div>
+
+<p>The first line sets up an Access Control List class called "home" of
+an internal network range of ip addresses. The second line allows
+access to that range of ip addresses. Assuming it's the final line
+in the access list, all other clients will be denied. See also the
+section on <a href="#acl">acl</a>.</p>
+<p>::: {.tip}
+Note that <code>squid</code>'s default behavior is to do the <em>opposite of your
+last access line</em> if it can't find a matching entry. For example,
+if the last line is set to "allow" access for a certain set of
+network addresses, then <code>squid</code> will deny any client that doesn't
+match any of its rules. On the other hand, if the last line is set
+to "deny" access, then <code>squid</code> will allow access to any client that
+doesn't match its rules.
+:::</p>
+</li>
+</ul>
+<p><code>auth_param</code></p>
+<ul>
+<li>This option is used to specify which program to start up as an
+    squidauth_param <a href="#authenticator">authenticator</a>. You can specify
+    the name of the program and any parameters needed.</li>
+</ul>
+<p><code>redirect_program</code>; <code>redirect_children</code></p>
+<ul>
+<li>The <code>redirect_program</code> is used to specify which program to start up
+    squidredirect_program as a <a href="#redirector">redirector</a>. The option
+    <code>redirect_children</code> is used to specify how many processes to start
+    up to do redirection.</li>
+</ul>
+<p>After you have made changes to your configuration, issue
+<code>squid -k reconfigure</code> so that <code>squid</code> will use squid-k reconfigure the
+changes.</p>
+<h4 id="redirectors">Redirectors<a class="headerlink" href="#redirectors" title="Permanent link">&para;</a></h4>
+<p><code>squid</code> can be configured to pass every incoming URL through a
+<em>redirector process</em> squidredirector that returns either a new URL or a
+blank line to indicate no change. A redirector is an external program,
+e.g. a script that you wrote yourself. Thus, a redirector program is
+<em>NOT</em> a standard part of the <code>squid</code> package. However, some examples are
+provided in the <code>contrib/</code> directory of the source distribution. Since
+everyone has different needs, it is up to the individual administrators
+to write their own implementation.</p>
+<p>A redirector allows the administrator to control the web sites his users
+can get access to. It can be used in conjunction with transparent
+proxies to deny the users of squiddeny access your network access to
+certain sites, e.g. porn-sites and the like.</p>
+<p>The redirector program must read URLs (one per line) on standard input,
+and write rewritten URLs or blank lines on standard output. Also,
+<code>squid</code> writes additional information after the URL which a redirector
+can use to make a decision. The input line consists of four fields:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="nx">URL</span><span class="w"> </span><span class="nx">ip</span><span class="o">-</span><span class="nx">address</span><span class="o">/</span><span class="nx">fqdn</span><span class="w"> </span><span class="nx">ident</span><span class="w"> </span><span class="nx">method</span>
+</code></pre></div></td></tr></table></div>
+
+<ul>
+<li>
+<p>The URL originally requested.</p>
+</li>
+<li>
+<p>The IP address and domain name (if already cached by <code>squid</code>) of the
+    client making the request.</p>
+</li>
+<li>
+<p>The results of any IDENT / AUTH lookup done for this client, if
+    enabled.</p>
+</li>
+<li>
+<p>The HTTP method used in the request, e.g. <code>GET</code>.</p>
+</li>
+</ul>
+<p>A parameter that is not known or specified is replaced by a dash.</p>
+<p>A sample redirector input line:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    ftp://ftp.gnome.org/pub/GNOME/stable/releases/gnome-1.0.53/README 192.168.12.34/- - GET
+</code></pre></div></td></tr></table></div>
+
+<p>A sample response:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    ftp://ftp.net.lboro.ac.uk/gnome/stable/releases/gnome-1.0.53/README 192.168.12.34/- - GET
+</code></pre></div></td></tr></table></div>
+
+<p>It is possible to send an HTTP redirect to the new URL directly to the
+client, rather than have <code>squid</code> silently fetch the alternative URL. To
+do this, the redirector should begin its response with <code>301:</code> or <code>302:</code>
+depending on the type of redirect.</p>
+<p>A simple very fast redirector called <code>squirm</code> is a good place to start,
+it uses the <code>regex</code> library to allow pattern matching.</p>
+<p>The following Perl script may also be used as a template for writing
+your own redirector:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="err">#!</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="k">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">perl</span>
+<span class="w">    </span><span class="err">$</span><span class="o">|=</span><span class="mi">1</span><span class="p">;</span><span class="w">           </span><span class="err">#</span><span class="w"> </span><span class="n">Unbuffer</span><span class="w"> </span><span class="k">output</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;&gt;</span><span class="p">)</span><span class="w"> </span><span class="err">{</span>
+<span class="w">    </span><span class="n">s</span><span class="nv">@http</span><span class="err">:</span><span class="o">//</span><span class="n">fromhost</span><span class="p">.</span><span class="n">com</span><span class="nv">@http</span><span class="err">:</span><span class="o">//</span><span class="n">tohost</span><span class="p">.</span><span class="n">org</span><span class="err">@</span><span class="p">;</span>
+<span class="w">    </span><span class="k">print</span><span class="p">;</span>
+<span class="w">    </span><span class="err">}</span>
+</code></pre></div></td></tr></table></div>
+
+<p>This Perl script replaces requests to "<a href="http://fromhost.com">http://fromhost.com</a>" with
+"<a href="http://tohost.org">http://tohost.org</a>".</p>
+<h4 id="authenticators">Authenticators<a class="headerlink" href="#authenticators" title="Permanent link">&para;</a></h4>
+<p><code>squid</code> can make use of authentication. Authentication
+squidauthentication can be done on various levels, e.g. network or user.</p>
+<p>Browsers are capable to send the user's authentication credentials
+using a special "authorization request header". This works as follows.
+If <code>squid</code> gets a request, given there was an <code>http_access</code> rule list
+that points to a <code>proxy_auth</code> ACL, <code>squid</code> looks for an <em>authorization
+header</em>. If the header is present, <code>squid</code> decodes it and extracts a
+username and password. If the header is missing, <code>squid</code> returns an HTTP
+reply with status 407 (Proxy Authentication Required). The user agent
+(browser) receives the 407 reply and then prompts the user to enter a
+name and password. The name and password are encoded, and sent in the
+authorization header for subsequent requests to the proxy.</p>
+<p>Authentication is actually performed outside of the main <code>squid</code>
+process. When <code>squid</code> starts, it spawns a number of authentication
+subprocesses. These processes read usernames and passwords on <code>stdin</code>
+and reply with <code>OK</code> or <code>ERR</code> on <code>stdout</code>. This technique allows you to
+use a number of different authentication schemes. The current supported
+schemes are: <em>basic</em>, <em>digest</em>, <em>ntlm</em> and <em>negotiate</em>.</p>
+<p>Squid has some basic authentication backends. These include:</p>
+<ul>
+<li>
+<p>LDAP: Uses the Lightweight Directory Access Protocol</p>
+</li>
+<li>
+<p>NCSA: Uses a NCSA-style username and password file</p>
+</li>
+<li>
+<p>MSNT: Uses a Windows NT authentication domain</p>
+</li>
+<li>
+<p>PAM: Uses the Unix Pluggable Authentication Modules scheme</p>
+</li>
+<li>
+<p>SMB: Uses a SMB server like Windows NT or Samba</p>
+</li>
+<li>
+<p>getpwam: Uses the old-fashioned Unix password file</p>
+</li>
+<li>
+<p>SASL: Uses SASL libraries (Simple Authentication and Security Layer)</p>
+</li>
+<li>
+<p>mswin_sspi: Windows native authenticator</p>
+</li>
+<li>
+<p>YP: Uses the NIS database</p>
+</li>
+</ul>
+<p>The <em>ntlm</em>, <em>negotiate</em> and <em>digest</em> authentication schemes provide more
+secure authentication methods because passwords are not exchanged over
+the wire or air in plain text.</p>
+<p>Configuration of each scheme is done via the <em>auth_param</em> director in
+the config file. Each scheme has some global and scheme-specific
+configuration options. The order in which authentication schemes are
+presented to the client is dependent on the order the scheme first
+appears in the config file.</p>
+<p>Example configuration file with multiple directors:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span></pre></div></td><td class="code"><div><pre><span></span><code>    #Recommended minimum configuration per scheme:
+    #
+    #auth_param negotiate program  &lt; uncomment and complete this line to activate&gt;
+    #auth_param negotiate children 20 startup=0 idle=1
+    #auth_param negotiate keep_alive on
+    #
+    #auth_param ntlm program &lt; uncomment and complete this line to activate&gt;
+    #auth_param ntlm children 20 startup=0 idle=1
+    #auth_param ntlm keep_alive on
+    #
+    #auth_param digest program &lt; uncomment and complete this line&gt;
+    #auth_param digest children 20 startup=0 idle=1
+    #auth_param digest realm Squid proxy-caching web server
+    #auth_param digest nonce_garbage_interval 5 minutes
+    #auth_param digest nonce_max_duration 30 minutes
+    #auth_param digest nonce_max_count 50
+    #
+    #auth_param basic program &lt; uncomment and complete this line&gt;
+    #auth_param basic children 5 startup=5 idle=1
+    #auth_param basic realm Squid proxy-caching web server
+    #auth_param basic credentialsttl 2 hours
+</code></pre></div></td></tr></table></div>
+
+<h4 id="access-policies">Access policies<a class="headerlink" href="#access-policies" title="Permanent link">&para;</a></h4>
+<p>Many <code>squid.conf</code> options require the use of Access Control Lists
+squidsquid.conf (ACLs). Each ACL consists of a name, type and value (a
+string or filename). ACLs are often regarded as being the most difficult
+part of the <code>squid</code> cache configuration, i.e. the layout and concept is
+not immediately obvious to most people. Additionally, the use of
+external authenticators and the default ACL augment to the confusion.
+squidACL</p>
+<p>ACLs can be seen as definitions of resources that may or may not gain
+access to certain functions in the web-cache. Allowing the use of the
+proxy server is one of these functions.</p>
+<p>To regulate access to certain functions, you will have to define an ACL
+first, and then add a line to deny or allow access to a function of the
+cache, thereby using that ACL as a reference. In most cases the feature
+to <code>allow</code> or <code>deny</code> will be <code>http_access</code>, which allows or denies a web
+browsers access to the web-cache. The same principles apply to the other
+options, such as <code>icp_access</code> (Internet Cache Protocol).</p>
+<p>To determine whether a resource (e.g. a user) has access to the
+web-cache, <code>squid</code> works its way through the <code>http_access</code> list from top
+to bottom. It will squidhttp_access allow squidhttp_access deny match
+the rules, until one is found that matches the user and either denies or
+allows access. Thus, if you want to allow access to the proxy only to
+those users whose machines fall within a certain IP range you would use
+the following:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>    acl ourallowedhosts src 192.168.1.0/255.255.255.0
+    acl all src 0.0.0.0/0.0.0.0
+
+    http_access allow ourallowedhosts
+    http_access deny all
+</code></pre></div></td></tr></table></div>
+
+<p>If a user from 192.168.1.2 connects using TCP and requests an URL,
+<code>squid</code> will work it's way through the list of <code>http_access</code> lines. It
+works through this list from <em>top to bottom</em>, stopping after the <em>first</em>
+match to decide which one they are in. In this case, <code>squid</code> will match
+on the first <code>http_access</code> line. Since the policy that matched is
+<code>allow</code>, <code>squid</code> would proceed to allow the request.</p>
+<p>The <code>src</code> option on the first line is one of the options you can use to
+decide which domain the requesting user is in. You can regulate access
+based on the source or destination IP address, domain or domain regular
+expression, hours, days, URL, port, protocol, method, username or type
+of browser. ACLs may also require user authentication, specify an SNMP
+read community string, or set a TCP connection limit.</p>
+<p>For example, these lines would keep all internal IP addresses off the
+Web except during lunchtime:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>    acl allowed_hosts src 192.168.1.0/255.255.255.0
+    acl lunchtime MTWHF 12:00-13:00
+    http_access allow allowed_hosts lunchtime
+</code></pre></div></td></tr></table></div>
+
+<p>The <code>MTWHF</code> string denotes the proper days of the week, where <code>M</code>
+specifies Monday, <code>T</code> specifies Tuesday and so on. <code>WHFAS</code> means
+Wednesday until Sunday. For more options have a look at the default
+configuration file <code>squid</code> installs on your system.</p>
+<p>Another example is the blocking of certain sites, based on their domain
+names:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code>    acl adults dstdomain playboy.com sex.com
+    acl ourallowedhosts src 192.168.1.0/255.255.255.0
+    acl all src 0.0.0.0/0.0.0.0
+
+    http_access deny adults
+    http_access allow ourallowedhosts
+    http_access deny all
+</code></pre></div></td></tr></table></div>
+
+<p>These lines prevent access to the web-cache (<code>http_access</code>) to users who
+request sites listed in the <code>adults</code> ACL. If another site is requested,
+the next line allows access if the user is in the range as specified by
+the ACL <code>ourallowedhosts</code>. If the user is not in that range, the third
+line will deny access to the web-cache.</p>
+<p>To use an <a href="#authenticator">authenticator</a>, you have to tell <code>squid</code>
+which program it should use to authenticate a user (using the
+<code>authenticate_program</code> option in the <code>squid.conf</code> file). Next you need
+to set up an ACL of type <code>proxy_auth</code> and add a line to regulate the
+access to the web-cache using that <code>ACL</code>. Here's an example:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>    authenticate_program /sbin/my_auth -f /etc/my_auth.db
+    acl name proxy_auth REQUIRED
+    http_access allow name
+</code></pre></div></td></tr></table></div>
+
+<p>The ACL points to the external authenticator <code>/sbin/my_auth</code>. If a user
+wants access to the webcache (the <code>http_access</code> function), you would
+expect that (as usual) the request is granted if the ACL <code>name</code> is
+matched. <em>HOWEVER, this is not the case!</em></p>
+<h4 id="authenticator-behaviour">Authenticator Behaviour<a class="headerlink" href="#authenticator-behaviour" title="Permanent link">&para;</a></h4>
+<p>Authenticator <code>allow</code> rules act as <code>deny</code> rules!</p>
+<p>If the external authenticator allowed access, the <code>allow</code> rule actually
+acts as if it were a <code>deny</code> rule! <em>Any following rules are consequently
+checked too</em> until another matching ACL is found. In other words: the
+rule "<code>http_access allow name</code>" should be read as
+"<code>http_access deny !name</code>". The exclamation mark signifies a negation,
+thus the rule "<code>http_access deny !name</code>" means: "deny access to users
+<em>not</em> matching the 'name' rule".</p>
+<p><code>squid</code> always adds a default ACL!</p>
+<p><code>squid</code> automatically adds a final rule to the ACL section that
+<em>reverses</em> the preceding (last) rule: if the last rule was an "<code>allow</code>"
+rule, a "<code>deny all</code>" rule would be added, and vice versa: if the last
+rule was a "<code>deny</code>" rule, an "<code>allow all</code>" rule would be added
+automatically.</p>
+<p>Both warnings imply that if the example above is implemented as it
+stands, the final line "<code>http_access allow name</code>" implicitly adds a
+final rule "<code>http_access deny all</code>". If the external authenticator
+grants access, <em>the access is not granted, but the next rule is checked</em>
+- and that next rule is the default <code>deny</code> rule if you do not specify
+one yourself! This means that properly authorized people would be
+<em>denied</em> access. This exceptional behavior of <code>squid</code> is often
+misunderstood and puzzles many novice <code>squid</code> administrators. A common
+solution is to add an extra line, like this:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>    http_access allow name 
+    http_access allow all
+</code></pre></div></td></tr></table></div>
+
+<h4 id="utilizing-memory-usage">Utilizing memory usage<a class="headerlink" href="#utilizing-memory-usage" title="Permanent link">&para;</a></h4>
+<p><code>squid</code> uses lots of memory. For performance reasons this makes sense
+since it takes much, much longer to read something from disk compared to
+reading directly from memory. A small amount of metadata for each cached
+object is kept in memory, the so-called StoreEntry. For <code>squid</code> version
+2 this is 56-bytes on "small" pointer architectures (Intel, Sparc, MIPS,
+etc) and 88-bytes on "large" pointer architectures (Alpha). In addition,
+there is a 16-byte cache key (MD5 checksum) associated with each
+StoreEntry. This means squidStoreEntry there are 72 or 104 bytes of
+metadata in memory for every object in your cache. A cache with
+1,000,000 objects therefore requires 72 MB of memory for metadata only.</p>
+<p>In practice, <code>squid</code> requires much more than that. Other uses of memory
+by <code>squid</code> include:</p>
+<ul>
+<li>
+<p>Disk buffers for reading and writing</p>
+</li>
+<li>
+<p>Network I/O buffers</p>
+</li>
+<li>
+<p>IP Cache contents</p>
+</li>
+<li>
+<p>FQDN Cache contents</p>
+</li>
+<li>
+<p>Netdb ICMP measurement database</p>
+</li>
+<li>
+<p>Per-request state information, including full request and reply
+    headers</p>
+</li>
+<li>
+<p>Miscellaneous statistics collection</p>
+</li>
+<li>
+<p><em>Hot objects</em> which are kept entirely in memory</p>
+</li>
+</ul>
+<p>You can use a number of parameters in <code>squid.conf</code> to determine
+<code>squid</code>'s memory utilization:</p>
+<ul>
+<li>
+<p>The <code>cache_mem</code> parameter specifies how much memory to use for
+    caching squidcache_mem <em>hot</em> (very popular) requests. <code>squid</code>'s
+    actual memory usage depends strongly on your disk space (cache
+    space) and your incoming request load. Reducing <code>cache_mem</code> will
+    <em>usually</em> also reduce <code>squid</code>'s process size, but not necessarily.</p>
+</li>
+<li>
+<p>The <code>maximum_object_size</code> option in <code>squid.conf</code>
+    squidmaximum_object_size specifies the maximum file size that will
+    be cached. Objects larger than this size will NOT be saved on disk.
+    The value is specified in kilobytes and the default is 4MB. If speed
+    is more important than saving bandwidth, you should leave this low.</p>
+</li>
+<li>
+<p>The <code>minimum_object_size</code> option specifies that objects smaller than
+    this size will squidminimum_object_size NOT be saved on disk. The
+    value is specified in kilobytes, and the default is 0 KB, which
+    means there is no minimum (and everything will be saved to disk).</p>
+</li>
+<li>
+<p>The <code>cache_swap</code> option tells <code>squid</code> how much squidcache_swap disk
+    space it may use. If you have a large disk cache, you may find that
+    you do not have enough memory to run <code>squid</code> effectively. If it
+    performs badly, consider increasing the amount of RAM or reducing
+    the <code>cache_swap</code>.</p>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 1997-2021 Sue B.V., The Netherlands - Open Sourced 2021
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["search.highlight", "tabs", "instant"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

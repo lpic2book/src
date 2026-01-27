@@ -1,0 +1,3244 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Sue B.V., The Netherlands">
+      
+      
+      
+        <link rel="prev" href="../lpic2.203.1/">
+      
+      
+        <link rel="next" href="../lpic2.203.3/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Maintaining a Linux Filesystem (203.2) - The LPIC2 Exam Prep</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:300,300i,400,400i,700,700i%7CAnonymous+Pro:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Nunito";--md-code-font:"Anonymous Pro"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#maintaining-a-linux-filesystem-2032" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="The LPIC2 Exam Prep" class="md-header__button md-logo" aria-label="The LPIC2 Exam Prep" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            The LPIC2 Exam Prep
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Maintaining a Linux Filesystem (203.2)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/lpic2book/src" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    LPIC2Book
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="The LPIC2 Exam Prep" class="md-nav__button md-logo" aria-label="The LPIC2 Exam Prep" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/></svg>
+
+    </a>
+    The LPIC2 Exam Prep
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/lpic2book/src" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    LPIC2Book
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The LPIC2 Exam Prep
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpicbook_about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About this book
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    200 Capacity Planning (200)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Measure and Troubleshoot Resource Usage (200.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Predict Future Resource Needs (200.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Kernel (201)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel Components (201.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compiling a Linux kernel (201.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel runtime management and troubleshooting (201.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Startup (202)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customizing system startup (202.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System recovery (202.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Alternate Bootloaders (202.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Filesystem and Devices (203)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operating The Linux Filesystem (203.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maintaining a Linux Filesystem (203.2)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maintaining a Linux Filesystem (203.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#maintaining-a-linux-filesystem-2032" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Maintaining a Linux Filesystem (203.2)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Maintaining a Linux Filesystem (203.2)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-knowledge-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Knowledge Areas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terms-and-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terms and Utilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disk-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disk Checks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Disk Checks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fsck-fsck" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fsck (fsck.*)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mkfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mkfs (mkfs.*)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tune2fs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        tune2fs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dumpe2fs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        dumpe2fs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#badblocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        badblocks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debugfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        debugfs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ext4fs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ext4
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#btrfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        btrfs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#raid-functionality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RAID functionality
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#snapshotting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Snapshotting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subvolumes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subvolumes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#space-efficient-indexed-directories" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Space-efficient indexed directories
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mkswap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mkswap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xfs_info" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        xfs_info
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xfs_check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        xfs_check
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xfs_repair" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        xfs_repair
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#smartmontools-smartd-and-smartctl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        smartmontools: smartd and smartctl
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zfs-zpool-and-zfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ZFS: zpool and zfs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Creating And Configuring Filesystem Options (203.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Storage Device Administration (204)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring RAID (204.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adjusting Storage Device Access (204.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logical Volume Manager (204.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring PCMCIA Devices (204.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Networking Configuration (205)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Networking Configuration (205.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Network Configuration and Troubleshooting (205.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting network issues (205.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Maintenance (206)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Make and install programs from source (206.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup Operations (206.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifying users on system-related issues (206.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domain Name Server (207)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic DNS server configuration (207.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Create and maintain DNS zones (207.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Securing a DNS Server (207.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTTP Services (208)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Apache Configuration (208.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Apache configuration for HTTPS (208.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementing Squid as a caching proxy (208.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementing Nginx as a web server and a reverse proxy (208.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File Sharing (209)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAMBA Server Configuration (209.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring an NFS Server (209.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Client Management (210)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DHCP Configuration (210.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PAM authentication (210.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LDAP client usage (210.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring an OpenLDAP server (210.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    E-Mail services (211)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using e-mail servers (211.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing E-Mail Delivery (211.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing Mailbox Access (211.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Security (212)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring a router (212.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing FTP servers (212.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secure shell (SSH) (212.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security tasks (212.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenVPN (212.5)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#maintaining-a-linux-filesystem-2032" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Maintaining a Linux Filesystem (203.2)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Maintaining a Linux Filesystem (203.2)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-knowledge-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Knowledge Areas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terms-and-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terms and Utilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disk-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disk Checks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Disk Checks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fsck-fsck" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        fsck (fsck.*)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mkfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mkfs (mkfs.*)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tune2fs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        tune2fs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dumpe2fs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        dumpe2fs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#badblocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        badblocks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debugfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        debugfs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ext4fs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ext4
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#btrfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        btrfs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#raid-functionality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RAID functionality
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#snapshotting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Snapshotting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subvolumes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subvolumes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#space-efficient-indexed-directories" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Space-efficient indexed directories
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mkswap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mkswap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xfs_info" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        xfs_info
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xfs_check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        xfs_check
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xfs_repair" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        xfs_repair
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#smartmontools-smartd-and-smartctl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        smartmontools: smartd and smartctl
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zfs-zpool-and-zfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ZFS: zpool and zfs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>Maintaining a Linux Filesystem (203.2)</h1>
+
+<h2 id="maintaining-a-linux-filesystem-2032">Maintaining a Linux Filesystem (203.2)<a class="headerlink" href="#maintaining-a-linux-filesystem-2032" title="Permanent link">&para;</a></h2>
+<p>Candidates should be able to properly maintain a Linux filesystem using
+system utilities. This objective includes manipulating standard
+filesystems and monitoring SMART devices.</p>
+<p>Resources: <a href="#bandel97">???</a>; <a href="#btrfs">???</a>; the <code>man</code> pages for
+<code>e2fsck</code>, <code>badblocks</code>, <code>dumpe2fs</code>, <code>debugfs</code> and <code>tune2fs</code>.</p>
+<h3 id="key-knowledge-areas">Key Knowledge Areas<a class="headerlink" href="#key-knowledge-areas" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Tools and utilities to manipulate ext2, ext3 and ext4.</p>
+</li>
+<li>
+<p>Tools and utilities to perform Btrfs operations, including
+    subvolumes and snapshots.</p>
+</li>
+<li>
+<p>Tools and utilities to manipulate xfs.</p>
+</li>
+<li>
+<p>Awareness of ZFS.</p>
+</li>
+</ul>
+<h3 id="terms-and-utilities">Terms and Utilities<a class="headerlink" href="#terms-and-utilities" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><code>fsck (fsck.*)</code></p>
+</li>
+<li>
+<p><code>mkfs (mkfs.*)</code></p>
+</li>
+<li>
+<p><code>mkswap</code></p>
+</li>
+<li>
+<p><code>tune2fs</code></p>
+</li>
+<li>
+<p><code>dumpe2fs</code></p>
+</li>
+<li>
+<p><code>debugfs</code></p>
+</li>
+<li>
+<p><code>btrfs</code></p>
+</li>
+<li>
+<p><code>btrfs-convert</code></p>
+</li>
+<li>
+<p><code>xfs_info</code>, <code>xfs_check</code>, <code>xfs_repair</code>, <code>xfs_dump</code> and <code>xfs_restore</code></p>
+</li>
+<li>
+<p><code>smartd</code> and <code>smartctl</code></p>
+</li>
+</ul>
+<h3 id="disk-checks">Disk Checks<a class="headerlink" href="#disk-checks" title="Permanent link">&para;</a></h3>
+<p>Good disk maintenance requires periodic disk checks. Your best tool is
+<code>fsck</code>, and should be run at least monthly. Default checks will
+normally be run after 20 system reboots, but if your system stays up for
+weeks or months at a time, you'll want to force a check from time to
+time. Your best bet is performing routine system backups and checking
+your <code>lost+found</code> directories from time to time.</p>
+<p>The frequency of the checks at system reboot can be changed with
+<code>tune2fs</code>. This utility can also be used to tune2fs change the mount
+count, which will prevent the system from having to check all
+filesystems at the 20<sup>th</sup> reboot (which can take a long time).</p>
+<p>The <code>dumpe2fs</code> utility will provide important dumpe2fs information
+regarding hard disk operating parameters found in the superblock, and
+<code>badblocks</code> will perform surface checking. Finally, surgical procedures
+to remove areas grown bad on the disk can be accomplished using
+<code>debugfs</code>. debugfs</p>
+<h4 id="fsck-fsck">fsck (fsck.*)<a class="headerlink" href="#fsck-fsck" title="Permanent link">&para;</a></h4>
+<p><code>fsck</code> is a utility to check and repair a fsck Linux filesystem. In
+actuality <code>fsck</code> is simply a front-end for the various filesystem
+checkers (<code>fsck.fstype</code>) available under Linux.</p>
+<p><code>fsck</code> is called automatically at system startup. If the filesystem is
+marked "not clean", or the maximum mount count is reached or the time
+between checks is exceeded, the filesystem is checked. To change the
+maximum mount count or the time between checks, use <code>tune2fs</code>.</p>
+<p>Frequently used options to <code>fsck</code> include:</p>
+<p><code>-s</code></p>
+<ul>
+<li>Serialize <code>fsck</code> operations. This is a fsck-a good idea if you're
+    checking multiple filesystems and the checkers are in an interactive
+    mode.</li>
+</ul>
+<p><code>-A</code></p>
+<ul>
+<li>
+<p>Walk through the <code>/etc/fstab</code> file fsck-A and try to check all
+    filesystems in one run. This option is typically used from the
+    /etc/rc system initialization file, instead of multiple commands for
+    checking a single filesystem.</p>
+<p>The root filesystem will be checked first. After that, filesystems
+will be checked in the order specified by the <code>fs_passno</code> (the
+sixth) field in the <code>/etc/fstab</code> file. Filesystems with a
+<code>fs_passno</code> value of 0 are skipped and are not checked at all. If
+there are multiple filesystems with the same pass number, fsck will
+attempt to check them in parallel, although it will avoid running
+multiple filesystem checks on the same physical disk.</p>
+</li>
+</ul>
+<p><code>-R</code></p>
+<ul>
+<li>When checking all filesystems with the -A flag, skip fsck-R the root
+    filesystem (in case it's already mounted read-write).</li>
+</ul>
+<p>Options which are not understood by fsck are passed to the
+filesystem-specific checker. These arguments(=options) must not take
+arguments, as there is no way for fsck to be able to properly guess
+which arguments take options and which don't. Options and arguments
+which follow the <code>--</code> are treated as filesystem-specific options to be
+passed to the filesystem-specific checker.</p>
+<p>The filesystem checker for the ext2 filesystem is called <code>fsck.e2fs</code> or
+<code>e2fsck</code>. Frequently used options include:</p>
+<p><code>-a</code></p>
+<ul>
+<li>This option does the same thing as the <code>-p</code> option. It is provided
+    for backwards compatibility only; it is suggested that people use -p
+    option whenever possible.</li>
+</ul>
+<p><code>-c</code></p>
+<ul>
+<li>This option causes e2fsck to run the fsck-c <code>badblocks(8)</code> program
+    to find any badblocks blocks which are bad on the filesystem, and
+    then marks them as bad by adding them to the bad block inode.</li>
+</ul>
+<p><code>-C</code></p>
+<ul>
+<li>This option causes e2fsck to write completion fsck-C information to
+    the specified file descriptor so that the progress of the filesystem
+    check can be monitored. This option is typically used by programs
+    which are running e2fsck. If the file descriptor specified is 0,
+    e2fsck will print a completion bar as it goes about its business.
+    This requires that e2fsck is running on a video console or terminal.</li>
+</ul>
+<p><code>-f</code></p>
+<ul>
+<li>Force checking even if the filesystem seems clean. fsck-f</li>
+</ul>
+<p><code>-n</code></p>
+<ul>
+<li>Open the filesystem read-only, and assume an answer of fsck-n "no"
+    to all questions. Allows e2fsck to be used non-interactively. (Note:
+    if the -c, -l, or -L options are specified in addition to the -n
+    option, then the filesystem will be opened read-write, to permit the
+    bad-blocks list to be updated. However, no other changes will be
+    made to the filesystem.)</li>
+</ul>
+<p><code>-p</code></p>
+<ul>
+<li>Automatically repair (\"preen\") the filesystem without fsck-p any
+    questions.</li>
+</ul>
+<p><code>-y</code></p>
+<ul>
+<li>Assume an answer of "yes" to all questions; allows fsck-y <code>e2fsck</code>
+    to be used non-interactively.</li>
+</ul>
+<h4 id="mkfs">mkfs (mkfs.*)<a class="headerlink" href="#mkfs" title="Permanent link">&para;</a></h4>
+<p>mkfs The <code>mk2fs</code> command is used to create a Linux filesystem. It can
+create different types of filesystems by specifying the <code>-t filesystem</code>
+or by giving the <code>mkfs.filesystem</code> command. Actually <code>mkfs</code> is a
+front-end for the several <code>mkfs.fstype</code> commands. Please read the mkfs
+man pages and section for more information. <a href="#creating-filesystems">???</a></p>
+<h4 id="tune2fs">tune2fs<a class="headerlink" href="#tune2fs" title="Permanent link">&para;</a></h4>
+<p><code>tune2fs</code> is used to "tune" a tune2fs filesystem. This is mostly used to
+set filesystem check options, such as the <code>maximum mount count</code> and the
+<code>time between filesystem checks</code>.</p>
+<p>It is also possible to set the <code>mount count</code> to a specific value. This
+can be used to 'stagger' the mount counts of the different
+filesystems, which ensures that at reboot not all filesystems will be
+checked at the same time.</p>
+<p>So for a system that contains 5 partitions and is booted approximately
+once a month you could do the following to stagger the mount counts:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code>    tune2fs -c 5 -C 0
+    partition1
+    tune2fs -c 5 -C 1
+    partition2
+    tune2fs -c 5 -C 2
+    partition3
+    tune2fs -c 5 -C 3
+    partition4
+    tune2fs -c 5 -C 4
+    partition5
+</code></pre></div></td></tr></table></div>
+
+<p>The maximum mount count is 20, but for a system that is not mount count
+frequently rebooted a lower value is advisable.</p>
+<p>Frequently used options include:</p>
+<p><code>-c max-mount-counts</code></p>
+<ul>
+<li>
+<p>Adjust the maximum mount count between two filesystem tunefs-c
+    checks. If max-mount-counts is 0 then the number of times the
+    filesystem is mounted will be disregarded by e2fsck(8) and the
+    kernel. Staggering the mount-counts at which filesystems are
+    forcibly checked will avoid all filesystems being checked at one
+    time when using journalling filesystems.</p>
+<p>You should strongly consider the consequences of disabling
+mount-count-dependent checking entirely. Bad disk drives, cables,
+memory and kernel bugs could all corrupt a filesystem without
+marking the filesystem dirty or in error. If you are using
+journalling on your filesystem, your filesystem will never be marked
+dirty, so it will not normally be checked. A filesystem error
+detected by the kernel will still force an fsck on the next reboot,
+but it may already be too late to prevent data loss at that point.</p>
+</li>
+</ul>
+<p><code>-C mount-count</code></p>
+<ul>
+<li>Set the number of times the filesystem has been tunefs-C mounted.
+    Can be used in conjunction with -c to force an fsck on the
+    filesystem at the next reboot.</li>
+</ul>
+<p><code>-i interval-between-checks[d|m|w]</code></p>
+<ul>
+<li>
+<p>Adjust the maximal time between two filesystem tunefs-i checks. No
+    suffix or d result in days, m in interval between checks months, and
+    w in weeks. A value of zero will disable the time-dependent
+    checking.</p>
+<p>It is strongly recommended that either -c (mount-count-dependent) or
+-i (time-dependent) checking be enabled to force periodic full
+e2fsck(8) checking of the filesystem. Failure to do so may lead to
+filesystem corruption due to bad disks, cables or memory or kernel
+bugs to go unnoticed, until they cause data loss or corruption.</p>
+</li>
+</ul>
+<p><code>-m reserved-blocks-percentage</code></p>
+<ul>
+<li>Set the percentage of reserved filesystem blocks. tunefs-m reserved
+    blocks</li>
+</ul>
+<p><code>-r reserved-blocks-count</code></p>
+<ul>
+<li>Set the number of reserved filesystem blocks. tunefs-r</li>
+</ul>
+<h4 id="dumpe2fs">dumpe2fs<a class="headerlink" href="#dumpe2fs" title="Permanent link">&para;</a></h4>
+<p><code>dumpe2fs</code> prints the super block and blocks dumpe2fs group information
+for the filesystem present on device.</p>
+<p><code>-b</code></p>
+<ul>
+<li>print the blocks which are reserved as bad in the filesystem.</li>
+</ul>
+<p><code>-h</code></p>
+<ul>
+<li>only display the superblock information and not any of the block
+    group descriptor detail information.</li>
+</ul>
+<h4 id="badblocks">badblocks<a class="headerlink" href="#badblocks" title="Permanent link">&para;</a></h4>
+<p><code>badblocks</code> is a Linux utility to check for damaged sectors on a disk
+drive. It marks these sectors so that they are not used in the future
+and thus do not cause corruption of data. It is part of the e2fsprogs
+project.</p>
+<p>It is strongly recommended that badblocks not be run directly but to
+have it invoked through the <code>-c</code> option in <code>e2fsck</code> or <code>mke2fs</code>. A
+commonly used option is:</p>
+<p><code>-o output-file</code></p>
+<ul>
+<li>write the list of bad blocks to <code>output-file</code>.</li>
+</ul>
+<h4 id="debugfs">debugfs<a class="headerlink" href="#debugfs" title="Permanent link">&para;</a></h4>
+<p>With <code>debugfs</code>, you can modify the disk with direct disk writes. Since
+this utility is so powerful, you will normally want to invoke it as
+read-only until you are ready to actually make changes and write them to
+the disk. To invoke <code>debugfs</code> in read-only mode, do not use any options.
+To open in read-write mode, add the <code>-w</code> option. You may also want to
+include in the command line the device you wish to work on, as in
+<code>/dev/hda1</code> or <code>/dev/sda1</code>, etc. Once it is invoked, you should see a
+debugfs prompt.</p>
+<p>When the superblock of a partition is damaged, you can specify
+superblock location a different superblock to use:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    debugfs -b 1024 -s 8193 /dev/hda1
+</code></pre></div></td></tr></table></div>
+
+<p>This means that the superblock at block 8193 will be used and the
+blocksize is 1024. Note that you have to specify the blocksize when you
+want to use a different superblock. The information about blocksize and
+backup superblocks can be found with:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    dumpe2fs /dev/hda1
+</code></pre></div></td></tr></table></div>
+
+<p>The first command to try after invocation of <code>debugfs</code>, is <code>params</code> to
+show the mode (read-only or read-write), and the current file system. If
+you run this command without opening a filesystem, it will almost
+certainly dump core and exit. Two other commands, <code>open</code> and <code>close</code>,
+may be of interest when checking more than one filesystem. Close takes
+no argument, and appropriately enough, it closes the filesystem that is
+currently open. Open takes the device name as an argument. To see disk
+statistics from the superblock, the command <code>stats</code> will display the
+information by group. The command <code>testb</code> checks whether a block is in
+use. This can be used to test if any data is lost in the blocks marked
+as "bad" by the <code>badblocks</code> command. To get the filename for a block,
+first use the <code>icheck</code> command to get the inode and then <code>ncheck</code> to get
+the filename. The best course of action with bad blocks is to mark the
+block "bad" and restore the file from backup.</p>
+<p>To get a complete list of all commands, see the man page of <code>debugfs</code> or
+type <code>?</code>, <code>lr</code> or <code>list_requests</code>.</p>
+<h4 id="ext4fs">ext4<a class="headerlink" href="#ext4fs" title="Permanent link">&para;</a></h4>
+<p>Ext4 is the evolution of the most used Linux filesystem, Ext3. In many
+ways, Ext4 is a deeper improvement over Ext3 than Ext3 was over Ext2.
+Ext3 was mostly about adding journaling to Ext2, but Ext4 modifies
+important data structures of the filesystem such as the ones destined to
+store the file data. The result is a filesystem with an improved design,
+better performance, reliability, and features. Therefore converting ext3
+to ext4 is not as straightforward and easy as it was converting ext2 to
+ext3.</p>
+<p>To creating ext4 partitions from scratch, use:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    mkfs.ext4 /dev/sdxY
+</code></pre></div></td></tr></table></div>
+
+<p><strong>Note</strong>
+Tip: See the mkfs.ext4 man page for more options; edit
+<code>/etc/mke2fs.conf</code> to view/configure default options.</p>
+<p>Be aware that by default, mkfs.ext4 uses a rather low bytes-per-inode
+ratio to calculate the fixed amount of inodes to be created.</p>
+<p><strong>Note</strong>
+Note: Especially for contemporary HDDs (750 GB+) this usually results in
+a much too large inode number and thus many likely wasted GB. The ratio
+can be set directly via the -i option; one of 6291456 resulted in 476928
+inodes for a 2 TB partition.</p>
+<p>For the rest ext4 can be manipulated using all the same tools that are
+available for ext2/ext3 type of filesystems like badblocks, dumpe2fs,
+e2fsck and tune2fs.</p>
+<h4 id="btrfs">btrfs<a class="headerlink" href="#btrfs" title="Permanent link">&para;</a></h4>
+<p>Btrfs (abbreviation for: <em>BTree File System</em>)is a new copy on write
+(CoW) filesystem for Linux aimed at implementing advanced features while
+focusing on fault tolerance, repair and easy administration. Jointly
+developed at Oracle, Red Hat, Fujitsu, Intel, SUSE, STRATO and many
+others, Btrfs is licensed under the GPL and open for contribution from
+anyone. Btrfs has several features characteristic of a storage device.
+It is designed to make the file system tolerant of errors, and to
+facilitate the detection and repair of errors when they occur. It uses
+checksums to ensure the validity of data and metadata, and maintains
+snapshots of the file system that can be used for backup or repair. The
+core datastructure used by btrfs is the <em>B-Tree</em> - hence the name.</p>
+<p><strong>Note</strong>
+Btrfs is still under heavy development, but every effort is being made
+to keep the filesystem stable and fast. Because of the speed of
+development, you should run the latest kernel you can (either the latest
+release kernel from kernel.org, or the latest -rc kernel.</p>
+<p>As of the beginning of the year 2013 Btrfs was included in the default
+kernel and its tools (btrfs-progs) are part of the default installation.
+GRUB 2, mkinitcpio, and Syslinux have support for Btrfs and require no
+additional configuration.</p>
+<p>The main Btrfs features available at the moment include:</p>
+<ul>
+<li>
+<p>Extent based file storage</p>
+</li>
+<li>
+<p>2^64 byte == 16 EiB maximum file size</p>
+</li>
+<li>
+<p>Space-efficient packing of small files</p>
+</li>
+<li>
+<p>Space-efficient indexed directories</p>
+</li>
+<li>
+<p>Dynamic inode allocation</p>
+</li>
+<li>
+<p>Writable snapshots, read-only snapshots</p>
+</li>
+<li>
+<p>Subvolumes (separate internal filesystem roots)</p>
+</li>
+<li>
+<p>Checksums on data and metadata (crc32c)</p>
+</li>
+<li>
+<p>Compression (zlib and LZO)</p>
+</li>
+<li>
+<p>Integrated multiple device support</p>
+</li>
+<li>
+<p>File Striping, File Mirroring, File Striping+Mirroring, Striping
+    with Single and Dual Parity implementations</p>
+</li>
+<li>
+<p>SSD (Flash storage) awareness (TRIM/Discard for reporting free
+    blocks for reuse) and optimizations (e.g. avoiding unnecessary seek
+    optimizations, sending writes in clusters, even if they are from
+    unrelated files. This results in larger write operations and faster
+    write throughput)</p>
+</li>
+<li>
+<p>Efficient Incremental Backup</p>
+</li>
+<li>
+<p>Background scrub process for finding and fixing errors on files with
+    redundant copies</p>
+</li>
+<li>
+<p>Online filesystem defragmentation</p>
+</li>
+<li>
+<p>Offline filesystem check</p>
+</li>
+<li>
+<p>Conversion of existing ext&frac34; file systems</p>
+</li>
+<li>
+<p>Seed devices. Create a (readonly) filesystem that acts as a template
+    to seed other Btrfs filesystems. The original filesystem and devices
+    are included as a readonly starting point for the new filesystem.
+    Using copy on write, all modifications are stored on different
+    devices; the original is unchanged.</p>
+</li>
+<li>
+<p>Subvolume-aware quota support</p>
+</li>
+<li>
+<p>Send/receive of subvolume changes</p>
+</li>
+<li>
+<p>Efficient incremental filesystem mirroring</p>
+</li>
+</ul>
+<p>The most notable (unique) btrfs features are:</p>
+<h4 id="raid-functionality">RAID functionality<a class="headerlink" href="#raid-functionality" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p>A Btrfs filesystem provides support for integrated RAID
+    functionality, and can be created on top of many devices. More
+    devices can be added after the filesystem is created. By default,
+    metadata will be mirrored across two devices and data will be
+    striped across all of the devices present. If only one device is
+    present, metadata will be duplicated on that one device.</p>
+<p>Btrfs can add and remove devices online, and freely convert between
+RAID levels after the filesystem is created. Btrfs supports raid0,
+raid1, raid10, raid5 and raid6, and it can also duplicate metadata
+on a single spindle. When blocks are read in, checksums are
+verified. If there are any errors, Btrfs tries to read from an
+alternate copy and will repair the broken copy if the alternative
+copy succeeds.</p>
+<p><code>mkfs.btrfs</code> will accept more than one device on the command line.
+It has options to control the raid configuration for data (-d) and
+metadata (-m). Valid choices are raid0, raid1, raid10 and single.
+The option -m single means that no duplication of metadata is done,
+which may be desired when using hardware raid. here some examples on
+creating the filesystem.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code>    <span class="c1"># Create a filesystem across four drives (metadata mirrored, linear data allocation)</span>
+    <span class="n">mkfs</span>.<span class="n">btrfs</span> /<span class="n">dev</span><span class="o">/</span><span class="n">sdb</span> /<span class="n">dev</span><span class="o">/</span><span class="n">sdc</span> /<span class="n">dev</span><span class="o">/</span><span class="n">sdd</span> /<span class="n">dev</span><span class="o">/</span><span class="n">sde</span>
+
+    <span class="c1"># Stripe the data without mirroring</span>
+    <span class="n">mkfs</span>.<span class="n">btrfs</span> -<span class="n">d</span> <span class="n">raid0</span> /<span class="n">dev</span><span class="o">/</span><span class="n">sdb</span> /<span class="n">dev</span><span class="o">/</span><span class="n">sdc</span>
+
+    <span class="c1"># Use raid10 for both data and metadata</span>
+    <span class="n">mkfs</span>.<span class="n">btrfs</span> -<span class="o">m</span> <span class="n">raid10</span> -<span class="n">d</span> <span class="n">raid10</span> /<span class="n">dev</span><span class="o">/</span><span class="n">sdb</span> /<span class="n">dev</span><span class="o">/</span><span class="n">sdc</span> /<span class="n">dev</span><span class="o">/</span><span class="n">sdd</span> /<span class="n">dev</span><span class="o">/</span><span class="n">sde</span>
+
+    <span class="c1"># Don&#39;t duplicate metadata on a single drive (default on single SSDs)</span>
+    <span class="n">mkfs</span>.<span class="n">btrfs</span> -<span class="o">m</span> <span class="n">single</span> /<span class="n">dev</span><span class="o">/</span><span class="n">sdb</span>
+</code></pre></div></td></tr></table></div>
+
+<p>After filesystem creation it can be mounted like any other
+filesystem. To see the devices used by the filesystem you can use
+the follwing command:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="nv">butterfs</span><span class="w"> </span><span class="nv">filesystem</span><span class="w"> </span><span class="k">show</span>
+<span class="w">    </span><span class="nv">label</span>:<span class="w">  </span><span class="nv">none</span><span class="w">  </span><span class="nv">uuid</span>:<span class="w"> </span><span class="nv">c67b1e23</span><span class="o">-</span><span class="mi">887</span><span class="nv">b</span><span class="o">-</span><span class="mi">4</span><span class="nv">cb9</span><span class="o">-</span><span class="nv">b037</span><span class="o">-</span><span class="mi">5958</span><span class="nv">f6c0a333</span>
+<span class="w">        </span><span class="nv">total</span><span class="w"> </span><span class="nv">devices</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="nv">FS</span><span class="w"> </span><span class="nv">bytes</span><span class="w"> </span><span class="nv">used</span><span class="w"> </span><span class="mi">383</span>.<span class="mi">00</span><span class="nv">KiB</span>
+<span class="w">        </span><span class="nv">devid</span><span class="w">   </span><span class="mi">1</span><span class="w"> </span><span class="nv">size</span><span class="w"> </span><span class="mi">4</span>.<span class="mi">00</span><span class="w"> </span><span class="nv">GiB</span><span class="w"> </span><span class="nv">used</span><span class="w"> </span><span class="mi">847</span>.<span class="mi">12</span><span class="nv">MiB</span><span class="w"> </span><span class="nv">path</span><span class="w"> </span><span class="o">/</span><span class="nv">dev</span><span class="o">/</span><span class="nv">sdb</span>
+<span class="w">        </span><span class="nv">devid</span><span class="w">   </span><span class="mi">2</span><span class="w"> </span><span class="nv">size</span><span class="w"> </span><span class="mi">4</span>.<span class="mi">00</span><span class="w"> </span><span class="nv">GiB</span><span class="w"> </span><span class="nv">used</span><span class="w"> </span><span class="mi">837</span>.<span class="mi">12</span><span class="nv">MiB</span><span class="w"> </span><span class="nv">path</span><span class="w"> </span><span class="o">/</span><span class="nv">dev</span><span class="o">/</span><span class="nv">sdc</span>
+<span class="w">    </span><span class="nv">Btrfs</span><span class="w"> </span><span class="nv">v4</span>.<span class="mi">8</span>.<span class="mi">5</span>
+</code></pre></div></td></tr></table></div>
+
+</li>
+</ul>
+<h4 id="snapshotting">Snapshotting<a class="headerlink" href="#snapshotting" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p>Btrfs's snapshotting is simple to use and understand. The snapshots
+    will show up as normal directories under the snapshotted directory,
+    and you can cd into it and walk around there as you would in any
+    directory.</p>
+<p>By default, all snapshots are writeable in Btrfs, but you can create
+read-only snapshots if you choose so. Read-only snapshots are great
+if you are just going to take a snapshot for a backup and then
+delete it once the backup completes. Writeable snapshots are handy
+because you can do things such as snapshot your file system before
+performing a system update; if the update breaks your system, you
+can reboot into the snapshot and use it like your normal file
+system. When you create a new Btrfs file system, the root directory
+is a subvolume. Snapshots can only be taken of subvolumes, because a
+subvolume is the representation of the root of a completely
+different filesystem tree, and you can only snapshot a filesystem
+tree.</p>
+<p>The simplest way to think of this would be to create a subvolume for
+<code>/home</code>, so you could snapshot <code>/</code> and <code>/home</code> independently of each
+other. So you could run the following command to create a subvolume:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    btrfs subvolume create /home
+</code></pre></div></td></tr></table></div>
+
+<p>And then at some point down the road when you need to snapshot
+<code>/home</code> for a backup, you simply run:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    btrfs subvolume snapshot /home/ /home-snap
+</code></pre></div></td></tr></table></div>
+
+<p>Once you are done with your backup, you can delete the snapshot with
+the command</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    btrfs subvolume delete /home-snap/
+</code></pre></div></td></tr></table></div>
+
+<p>The hard work of unlinking the snapshot tree is done in the
+background, so you may notice I/O happening on a seemingly idle box;
+this is just Btrfs cleaning up the old snapshot. If you have a lot
+of snapshots or don't remember which directories you created as
+subvolumes, you can run the command:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>    # btrfs subvolume list /mnt/btrfs-test/
+    ID 267 top level 5 path home
+    ID 268 top level 5 path snap-home
+    ID 270 top level 5 path home/josef
+</code></pre></div></td></tr></table></div>
+
+<p>This doesn't differentiate between a snapshot and a normal
+subvolume, so you should probably name your snapshots consistently
+so that later on you can tell which is which.</p>
+</li>
+</ul>
+<h4 id="subvolumes">Subvolumes<a class="headerlink" href="#subvolumes" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p>A subvolume in btrfs is not the same as an LVM logical volume, or a
+    ZFS subvolume. With LVM, a logical volume is a block device in its
+    own right; this is not the case with btrfs. A btrfs subvolume is not
+    a block device, and cannot be treated as one.</p>
+<p>Instead, a btrfs subvolume can be thought of as a POSIX file
+namespace. This namespace can be accessed via the top-level
+subvolume of the filesystem, or it can be mounted in its own right.
+So, given a filesystem structure like this:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code>    toplevel
+      <span class="sb">`--- dir_a                * just a normal directory</span>
+<span class="sb">      |         `</span>--- p
+      |         <span class="sb">`--- q</span>
+<span class="sb">      `</span>--- subvol_z             * a subvolume
+            <span class="sb">`--- r</span>
+<span class="sb">            `</span>--- s
+</code></pre></div></td></tr></table></div>
+
+<p>the root of the filesystem can be mounted, and the full filesystem
+structure will be seen at the mount point; alternatively the
+subvolume can be mounted (with the <code>mount</code> option
+<code>subvol=subvol_z</code>), and only the files <code>r</code> and <code>s</code> will be visible
+at the mount point.</p>
+<p>A btrfs filesystem has a default subvolume, which is initially set
+to be the top-level subvolume. It is the default subvolume which is
+mounted if no subvol or subvolid option is passed to mount. Changing
+the default subvolume with <em>btrfs subvolume default</em> will make the
+top level of the filesystem inaccessible, except by use of the
+<code>subvolid=0</code> mount option.</p>
+</li>
+</ul>
+<h4 id="space-efficient-indexed-directories">Space-efficient indexed directories<a class="headerlink" href="#space-efficient-indexed-directories" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p>Directories and files look the same on disk in Btrfs, which is
+    consistent with the UNIX way of doing things. The ext file system
+    variants have to pre-allocate their inode space when making the file
+    system, so you are limited to the number of files you can create
+    once you create the file system.</p>
+<p>With Btrfs we add a couple of items to the B-tree when you create a
+new file, which limits you only by the amount of metadata space you
+have in your file system. If you have ever created thousands of
+files in a directory on an ext file system and then deleted the
+files, you may have noticed that doing an ls on the directory would
+take much longer than you'd expect given that there may only be a
+few files in the directory.</p>
+<p>You may have even had to run this command:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    e2fsck -D /dev/sda1
+</code></pre></div></td></tr></table></div>
+
+<p>to re-optimize your directories in ext. This is due to a flaw in how
+the directory indexes are stored in ext: they cannot be shrunk. So
+once you add thousands of files and the internal directory index
+tree grows to a large size, it will not shrink back down as you
+remove files. This is not the case with Btrfs.</p>
+<p>In Btrfs we store a file index next to the directory inode within
+the file system B-tree. The B-tree will grow and shrink as
+necessary, so if you create a billion files in a directory and then
+remove all of them, an ls will take only as long as if you had just
+created the directory.</p>
+<p>Btrfs also has an index for each file that is based on the name of
+the file. This is handy because instead of having to search through
+the containing directory's file index for a match, we simply hash
+the name of the file and search the B-tree for this hash value. This
+item is stored next to the inode item of the file, so looking up the
+name will usually read in the same block that contains all of the
+important information you need. Again, this limits the amount of I/O
+that needs to be done to accomplish basic tasks.</p>
+</li>
+</ul>
+<h4 id="mkswap">mkswap<a class="headerlink" href="#mkswap" title="Permanent link">&para;</a></h4>
+<p>mkswap mkswap sets up a Linux swap area on a device or in a file. (After
+creating the swap area, you need to invoke the <code>swapon</code> command to start
+using it. Usually swap areas are listed in <code>/etc/fstab</code> so that they can
+be taken into use at boot time by a <code>swapon</code> <code>-a</code> command in some boot
+script.) See <a href="#swapfilemc">???</a></p>
+<h4 id="xfs_info">xfs_info<a class="headerlink" href="#xfs_info" title="Permanent link">&para;</a></h4>
+<p>xfs_info xfs_info shows the filesystem geometry for an XFS filesystem.
+xfs_info is equivalent to invoking xfs_growfs with the <code>-n</code> option.</p>
+<h4 id="xfs_check">xfs_check<a class="headerlink" href="#xfs_check" title="Permanent link">&para;</a></h4>
+<p>xfs_check xfs_check checks whether an XFS filesystem is consistent. It
+is needed only when there is reason to believe that the filesystem has a
+consistency problem. Since XFS is a Journalling filesystem, which allows
+it to retain filesystem consistency, there should be little need to ever
+run <code>xfs_check</code>.</p>
+<h4 id="xfs_repair">xfs_repair<a class="headerlink" href="#xfs_repair" title="Permanent link">&para;</a></h4>
+<p>xfs_repair xfs_repair repairs corrupt or damaged XFS filesystems.
+xfs_repair will attempt to find the raw device associated with the
+specified block device and will use the raw device instead. Regardless,
+the filesystem to be repaired must be unmounted, otherwise, the
+resulting filesystem may become inconsistent or corrupt.</p>
+<h4 id="smartmontools-smartd-and-smartctl">smartmontools: smartd and smartctl<a class="headerlink" href="#smartmontools-smartd-and-smartctl" title="Permanent link">&para;</a></h4>
+<p>smartd smartctl Two utility programs, <em>smartctl</em> and <em>smartd</em> (available
+when the <em>smartmontools</em> package is installed) can be used to monitor
+and control storage systems using the <em>Self-Monitoring, Analysis and
+Reporting Technology System (SMART)</em>. SMARTis built into most modern ATA
+and SCSI harddisks and solid-state drives. The purpose of SMARTis to
+monitor the reliability of the hard drive and predict drive failures,
+and to carry out different types of drive self-tests.</p>
+<p>*smartd*is a daemon that will attempt to enable SMARTmonitoring on ATA
+devices and polls these and SCSI devices every 30 minutes
+(configurable), logging SMARTerrors and changes of SMARTAttributes via
+the SYSLOG interface. smartd can also be configured to send email
+warnings if problems are detected. Depending upon the type of problem,
+you may want to run self-tests on the disk, back up the disk, replace
+the disk, or use a manufacturer's utility to force reallocation of bad
+or unreadable disk sectors.</p>
+<p>smartd can be configured at start-up using the configuration file
+/usr/local/etc/smartd.conf. When the USR1 signal is sent to smartd it
+will immediately check the status of the disks, and then return to
+polling the disks every 30 minutes. Please consult the manual page for
+smartd for specific configuration options.</p>
+<p>The <em>smartctl</em> utility controls the SMART system. It can be used to scan
+devices and print info about them, to enable or disable SMART on
+specific disks, to configure what to do when (imminent) errors are
+detected. Please consult the smartctl manual page for details.</p>
+<h4 id="zfs-zpool-and-zfs">ZFS: zpool and zfs<a class="headerlink" href="#zfs-zpool-and-zfs" title="Permanent link">&para;</a></h4>
+<p>ZFS, currently owned by Oracle Corporation, was developed at Sun
+Microsystems as a next generation filesystem aimed at near infinite
+scalability and free from traditional design paradigms. Only Ubuntu
+currently offers kernel integration for ZFS on Linux. Other Linux
+distributions can make use of ZFS through userspace with the aid of
+Fuse.</p>
+<p>The main ZFS features available at the moment include:</p>
+<ul>
+<li>
+<p>High fault tolerance and data integrity</p>
+</li>
+<li>
+<p>Near unlimited storage due to 128 bit design</p>
+</li>
+<li>
+<p>Hybrid volume/filesystem management with RAID capabilities</p>
+</li>
+<li>
+<p>Compression/deduplication of data</p>
+</li>
+<li>
+<p>Data snapshots</p>
+</li>
+<li>
+<p>Volume provisioning (zvols)</p>
+</li>
+<li>
+<p>Ability to use different devices for caching and logging</p>
+</li>
+<li>
+<p>Ability to use delegate administrative rights to unprivileged users</p>
+</li>
+</ul>
+<p>The high fault tolerance and data integrity design makes it unneccesary
+to have a command like fsck available. ZFS works in transactions in
+where the ueberblock is only updated if everything was completed. Copies
+of previous uberblocks (128) are being kept in a round robin fashion.
+The so called vdev labels, which identify the disks used in a zfs pool,
+also have multiple copies: 2 at the beginning of the disk and 2 at the
+end. Periodic scrubbing of pools can reveal data integrity issues, and
+if a pool is equipped with more than one device, can repair it on the
+fly.</p>
+<p>ZFS allows for additional checksumming algoritms of blocks and can have
+multiple copies of those blocks stored. This can be configured per ZFS
+filesystem.</p>
+<p>ZFS pools can be considered the logical volume managent and can consist
+out of single or multiple disks. The pools can have seperate cache and
+logging devices attached so that reading/writing is offloaded to faster
+devices. Having multiple disks in a pool allows for on the fly data
+recovery.</p>
+<p>A typical simple ZFS pool:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ sudo zpool list -v
+    NAME   SIZE  ALLOC   FREE  EXPANDSZ   FRAG    CAP  DEDUP  HEALTH  ALTROOT
+    tank  1.98G   448K  1.98G         -     0%     0%  1.00x  ONLINE  -
+     sdb  1.98G   448K  1.98G         -     0%     0%
+</code></pre></div></td></tr></table></div>
+
+<p>Status of the pool:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ sudo zpool status -v
+      pool: tank
+     state: ONLINE
+      scan: none requested
+    config:
+
+        NAME        STATE     READ WRITE CKSUM
+        tank        ONLINE       0     0     0
+          sdb       ONLINE       0     0     0
+        errors: No known data errors
+</code></pre></div></td></tr></table></div>
+
+<p>History overview for ZFS pools:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span>$<span class="w"> </span><span class="nv">sudo</span><span class="w"> </span><span class="nv">zpool</span><span class="w"> </span><span class="nv">history</span>
+<span class="w">    </span><span class="nv">History</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="s1">&#39;tank&#39;</span>:
+<span class="w">    </span><span class="mi">2017</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">11</span>.<span class="mi">11</span>:<span class="mi">32</span>:<span class="mi">50</span><span class="w"> </span><span class="nv">zpool</span><span class="w"> </span><span class="nv">create</span><span class="w"> </span><span class="o">-</span><span class="nv">f</span><span class="w"> </span><span class="o">-</span><span class="nv">m</span><span class="w"> </span><span class="o">/</span><span class="nv">tank</span><span class="w"> </span><span class="nv">tank</span><span class="w"> </span><span class="o">/</span><span class="nv">dev</span><span class="o">/</span><span class="nv">sdb</span>
+<span class="w">    </span><span class="mi">2017</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">11</span>.<span class="mi">12</span>:<span class="mi">37</span>:<span class="mi">44</span><span class="w"> </span><span class="nv">zpool</span><span class="w"> </span><span class="nv">scrub</span><span class="w"> </span><span class="nv">tank</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The ZFS pool is used as backing for one or more ZFS filesystems. By
+default the pool itself has a single filesystem named after the pool.
+ZFS filesystems are flexible in size and allow for customisation of
+various attributes like compression, size reservation, quota, block
+copies and so on. A full set of attributes can be seen with
+<code>zfs get all</code> and optionally a zfs filesystem, snapshot or volume.</p>
+<p>A typical ZFS filesystem listing</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ sudo zfs list
+    NAME   USED  AVAIL  REFER  MOUNTPOINT
+    tank   242K  1.92G    19K  /tank
+</code></pre></div></td></tr></table></div>
+
+<p>Create a ZFS filesystem "documents" and use compression</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ sudo zfs create -o compression=on tank/documents
+    $ sudo zfs list tank/documents
+    NAME             USED  AVAIL  REFER  MOUNTPOINT
+    tank/documents    19K  1.92G    19K  /tank/documents
+</code></pre></div></td></tr></table></div>
+
+<p>or</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ sudo zfs create tank/documents
+    $ sudo zfs set compression=on tank/documents
+    $ sudo zfs list tank/documents
+    NAME             USED  AVAIL  REFER  MOUNTPOINT
+    tank/documents    19K  1.92G    19K  /tank/documents
+</code></pre></div></td></tr></table></div>
+
+<p>With some data in <code>/tank/documents</code> compression ratio can be seen with</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ sudo zfs get compressratio tank/documents 
+    NAME            PROPERTY       VALUE  SOURCE
+    tank/documents  compressratio  1.68x  -
+</code></pre></div></td></tr></table></div>
+
+<p>Creating a backup of <code>/tank/documents</code> can be done instantaniously and
+takes no space until <code>/tank/documents</code>'s content changes. The contents
+of the snapshot can be accessed through the <code>.zfs/snapshot</code> directory of
+that ZFS filesystem.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="err">$</span><span class="w"> </span><span class="n">sudo</span><span class="w"> </span><span class="n">zfs</span><span class="w"> </span><span class="n">snap</span><span class="w"> </span><span class="n">tank</span><span class="o">/</span><span class="n">documents</span><span class="nv">@backup</span>
+<span class="w">    </span><span class="err">$</span><span class="w"> </span><span class="n">sudo</span><span class="w"> </span><span class="n">zfs</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="o">-</span><span class="n">t</span><span class="w"> </span><span class="n">snapshot</span>
+<span class="w">    </span><span class="n">NAME</span><span class="w">                    </span><span class="n">USED</span><span class="w">  </span><span class="n">AVAIL</span><span class="w">  </span><span class="n">REFER</span><span class="w">  </span><span class="n">MOUNTPOINT</span>
+<span class="w">    </span><span class="n">tank</span><span class="o">/</span><span class="n">documents</span><span class="nv">@backup</span><span class="w">      </span><span class="mi">0</span><span class="w">      </span><span class="o">-</span><span class="w">  </span><span class="mf">45.0</span><span class="n">M</span><span class="w">  </span><span class="o">-</span>
+</code></pre></div></td></tr></table></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 1997-2021 Sue B.V., The Netherlands - Open Sourced 2021
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["search.highlight", "tabs", "instant"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

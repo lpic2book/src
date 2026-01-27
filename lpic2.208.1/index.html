@@ -1,0 +1,3861 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Sue B.V., The Netherlands">
+      
+      
+      
+        <link rel="prev" href="../lpic2.208.0/">
+      
+      
+        <link rel="next" href="../lpic2.208.2/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Basic Apache Configuration (208.1) - The LPIC2 Exam Prep</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:300,300i,400,400i,700,700i%7CAnonymous+Pro:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Nunito";--md-code-font:"Anonymous Pro"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#basic-apache-configuration-2081" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="The LPIC2 Exam Prep" class="md-header__button md-logo" aria-label="The LPIC2 Exam Prep" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            The LPIC2 Exam Prep
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Basic Apache Configuration (208.1)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/lpic2book/src" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    LPIC2Book
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="The LPIC2 Exam Prep" class="md-nav__button md-logo" aria-label="The LPIC2 Exam Prep" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/></svg>
+
+    </a>
+    The LPIC2 Exam Prep
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/lpic2book/src" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    LPIC2Book
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The LPIC2 Exam Prep
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpicbook_about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About this book
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    200 Capacity Planning (200)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Measure and Troubleshoot Resource Usage (200.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Predict Future Resource Needs (200.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Kernel (201)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel Components (201.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compiling a Linux kernel (201.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel runtime management and troubleshooting (201.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Startup (202)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customizing system startup (202.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System recovery (202.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Alternate Bootloaders (202.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Filesystem and Devices (203)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operating The Linux Filesystem (203.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maintaining a Linux Filesystem (203.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Creating And Configuring Filesystem Options (203.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Storage Device Administration (204)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring RAID (204.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adjusting Storage Device Access (204.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logical Volume Manager (204.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring PCMCIA Devices (204.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Networking Configuration (205)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Networking Configuration (205.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Network Configuration and Troubleshooting (205.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting network issues (205.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Maintenance (206)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Make and install programs from source (206.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup Operations (206.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifying users on system-related issues (206.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domain Name Server (207)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic DNS server configuration (207.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Create and maintain DNS zones (207.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Securing a DNS Server (207.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTTP Services (208)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Apache Configuration (208.1)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Apache Configuration (208.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#basic-apache-configuration-2081" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Apache Configuration (208.1)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic Apache Configuration (208.1)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-knowledge-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Knowledge Areas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terms-and-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terms and utilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-the-apache-web-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installing the Apache web-server
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installing the Apache web-server">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modularity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modularity
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Modularity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#DSO" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Run-time loading of modules (DSO)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apache-extension-apxs-support-tool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        APache eXtenSion (APXS) support tool
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monitoring-apache-load-and-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monitoring Apache load and performance
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Monitoring Apache load and performance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enhancing-apache-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enhancing Apache performance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apache-access_log-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Apache access_log file
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apache-error_log-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Apache error_log file
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restricting-client-user-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Restricting client user access
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Restricting client user access">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#user-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#group-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Group files
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#building-apache-from-source-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Building Apache from source code
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Building Apache from source code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuring-mod_php-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring mod_php support
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apachehttpd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The httpd binary
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apacheoptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring Apache server options
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring Apache server options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#apache-virtual-hosting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Apache Virtual Hosting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#name-based-virtual-hosting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Name-based virtual hosting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ip-based-virtual-hosting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IP-based virtual hosting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-multiple-daemons" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setting up multiple daemons
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-a-single-daemon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setting up a single daemon
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redirective" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Customizing file access
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Apache configuration for HTTPS (208.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementing Squid as a caching proxy (208.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementing Nginx as a web server and a reverse proxy (208.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File Sharing (209)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAMBA Server Configuration (209.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring an NFS Server (209.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Client Management (210)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DHCP Configuration (210.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PAM authentication (210.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LDAP client usage (210.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring an OpenLDAP server (210.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    E-Mail services (211)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using e-mail servers (211.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing E-Mail Delivery (211.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing Mailbox Access (211.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Security (212)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring a router (212.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing FTP servers (212.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secure shell (SSH) (212.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security tasks (212.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenVPN (212.5)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#basic-apache-configuration-2081" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Apache Configuration (208.1)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic Apache Configuration (208.1)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-knowledge-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Knowledge Areas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terms-and-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terms and utilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-the-apache-web-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installing the Apache web-server
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installing the Apache web-server">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modularity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modularity
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Modularity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#DSO" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Run-time loading of modules (DSO)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apache-extension-apxs-support-tool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        APache eXtenSion (APXS) support tool
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monitoring-apache-load-and-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monitoring Apache load and performance
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Monitoring Apache load and performance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enhancing-apache-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enhancing Apache performance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apache-access_log-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Apache access_log file
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apache-error_log-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Apache error_log file
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restricting-client-user-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Restricting client user access
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Restricting client user access">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#user-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#group-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Group files
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#building-apache-from-source-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Building Apache from source code
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Building Apache from source code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuring-mod_php-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring mod_php support
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apachehttpd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The httpd binary
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apacheoptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring Apache server options
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring Apache server options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#apache-virtual-hosting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Apache Virtual Hosting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#name-based-virtual-hosting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Name-based virtual hosting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ip-based-virtual-hosting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IP-based virtual hosting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-multiple-daemons" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setting up multiple daemons
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-a-single-daemon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setting up a single daemon
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redirective" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Customizing file access
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>Basic Apache Configuration (208.1)</h1>
+
+<h2 id="basic-apache-configuration-2081">Basic Apache Configuration (208.1)<a class="headerlink" href="#basic-apache-configuration-2081" title="Permanent link">&para;</a></h2>
+<p>Candidates should be able to install and configure
+a web server. This objective includes monitoring the server's load and
+performance, restricting client user access, configuring support for
+scripting languages as modules and setting up client user
+authentication. Also included is configuring server options to restrict
+usage of resources. Candidates should be able to configure a web server
+to use virtual hosts and customise file access.</p>
+<h3 id="key-knowledge-areas">Key Knowledge Areas<a class="headerlink" href="#key-knowledge-areas" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Apache 2.x including 2.4 configuration files, terms and utilities</p>
+</li>
+<li>
+<p>Apache log files configuration and content</p>
+</li>
+<li>
+<p>Access restriction methods and files</p>
+</li>
+<li>
+<p>mod_perl and PHP configuration</p>
+</li>
+<li>
+<p>Client user authentication modules, files and utilities</p>
+</li>
+<li>
+<p>Configuration of maximum requests, minimum and maximim servers and
+clients</p>
+</li>
+<li>
+<p>Apache 2.x virtual host implementation (with and without dedicated IP
+addresses)</p>
+</li>
+<li>
+<p>Using redirect statements in Apache's configuration files to customise
+file access</p>
+</li>
+</ul>
+<h3 id="terms-and-utilities">Terms and utilities<a class="headerlink" href="#terms-and-utilities" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><code>access.log</code> or <code>access_log</code></p>
+</li>
+<li>
+<p><code>error.log</code> or <code>error_log</code></p>
+</li>
+<li>
+<p><code>.htaccess</code></p>
+</li>
+<li>
+<p><code>httpd.conf</code></p>
+</li>
+<li>
+<p><code>mod_auth</code></p>
+</li>
+<li>
+<p><code>mod_authn_file</code></p>
+</li>
+<li>
+<p><code>mod_access_compat</code></p>
+</li>
+<li>
+<p><code>htpasswd</code></p>
+</li>
+<li>
+<p><code>AuthUserFile, AuthGroupFile</code></p>
+</li>
+<li>
+<p><code>apache2ctl</code></p>
+</li>
+<li>
+<p><code>httpd</code></p>
+</li>
+</ul>
+<h2 id="installing-the-apache-web-server">Installing the Apache web-server<a class="headerlink" href="#installing-the-apache-web-server" title="Permanent link">&para;</a></h2>
+<p>Building Apache from source was routinely done when Apache emerged.
+Nowadays Apache is available in binary format for most modern (post
+2005) Linux distributions. Installing programs from source is already
+covered in <a href="/src/lpic2.206.1/">206.1</a>. Therefore, we will concentrate on working with rpm and
+apt package managers and tools during this chapter. Do not underestimate
+the importance of building Apache from source though. Depending on
+requirements and (lack of) availability, it might still be necessary to
+compile Apache and Apache modules from source. The Apache binary <code>httpd</code>
+can be invoked with certain command-line options that affect the
+behaviour of the server. But in general Apache is started by other
+scripts that serve as a wrapper for <code>httpd</code>. These scripts should take
+care of passing required flags to <code>httpd</code>. The behaviour of the server
+is configured by setting various options called <code>directives</code>. These
+<code>directives</code> are declared in configuration files. The location of configuration
+files and how they are organized varies. Red Hat and similar distributions have their
+configuration files in the <code>/etc/httpd/conf</code> directory. Other locations
+which are or have been used are <code>/etc/apache/config</code>,
+<code>/etc/httpd/config</code> and <code>/etc/apache2</code>.</p>
+<p>Depending on your Linux distribution and enabled
+repositories, your distribution may come with Apache 2.2 or Apache 2.4
+or both. Apache 2.0 does comply to the LPIC-2 Apache 2.x scope due to
+its name, but Apache 2.0 is no longer maintained. It is therefore not
+recommended to use Apache 2.0. Instead, Apache 2.4 is recommended to be
+used by the Apache foundation. As a Linux administrator, you may however
+still encounter Apache 2.0 on servers. It is therefore recommended to
+familiarize yourself with the configuration differences between the different
+versions. The Apache foundation does provide guidence: Via
+<a href="https://httpd.apache.org/docs/">https://httpd.apache.org/docs/</a> upgrade documents can be accessed that
+address the necessary steps when upgrading from Apache 2.0 to 2.2, and
+from Apache 2.2 to 2.4.</p>
+<p>It is important to distinguish between (global) directives that affect
+the Apache server processes, and options that affect a specific
+component of the Apache server, i.e. an option that only affects a
+specific website. The way the configuration files are layed out can
+often be a clue as to where which settings are configured. Despite this
+presumed obviousness, it is also important not to make assumptions.
+Always familiarize yourself with all the configured options. When in
+doubt about a specific option, use the documentation or a web search to
+find out more and consider whether the option is configured
+appropriately.</p>
+<p>On many (Red Hat based) distributions the main Apache configuration file
+is <code>httpd.conf</code>, other (Debian based) distributions favour the
+<code>apache2.conf</code> filename. Depending on your distribution and installation
+it might be one big file or a small generic one with references to other
+configuration files via <code>Include</code> and/or <code>IncludeOptional</code> statements.
+The difference between these two directives lies in the optional part.
+If Apache is configured to <code>Include</code> all <code>*.conf</code> files from a certain directory, there has to be at
+least one file that matches that pattern to include. Otherwise, the
+Apache server will fail to start. As an alternative, the
+<code>IncludeOptional</code> directive can be used to include configuration files
+<em>if</em> they are present and accessible. The Apache main configuration file
+can configure generic settings like servername, listening port(s) and
+which IP addresses these ports should be bound to. There may also be a
+seperate <code>ports.conf</code> configuration file though, so always follow the
+<code>Include</code> directives and familiarize yourself with the contents of <em>all</em>
+configuration files. The user and group Apache should run as can also be
+configured from the main configuration file. These accounts can be set
+to switch after startup. This way, the Apache software can be started as
+the root user, but then switch to a dedicated "www", "httpd" or "apache"
+user to adhere to the principle of least privilege. There are also
+various directives to influence the way Apache serves files from its
+document tree. For example there are <code>Directory</code> directives that control
+whether it is allowed to execute PHP files located in them. The default
+configuration file is meant to be self explanatory and contains a lot of
+valuable information. In regards to the LPIC-2 exam, you are required to
+be familiar with the most common Apache directives. We shall cover some
+of those in the section to come. At the time of this writing, Apache 2.4
+is the latest stable version and the recommended version to use
+according to it's distributor, the Apache Foundation. Where applicable,
+this book will try to point out the differences between the various
+versions.</p>
+<p>An additional method to set options for a subdivision of the document
+tree is by means of an <code>.htaccess</code> file. For security reasons you will
+also need to enable the use of <code>.htaccess</code> files in the main
+configuration file by setting the <code>AllowOverride</code> directive for that
+<code>Directory</code> context. All options in an <code>.htaccess</code> file influence files
+in the directory and the ones below it, unless they are overridden by
+another <code>.htaccess</code> file or directives in the main configuration file.</p>
+<h3 id="modularity">Modularity<a class="headerlink" href="#modularity" title="Permanent link">&para;</a></h3>
+<p>Apache has a modular source code architecture. You can custom build a
+server with only modules you really want. Many modules are available on
+the Internet and you could also write your own.</p>
+<p>Modules are compiled objects written in C. If you have questions about
+the development of Apache modules, join the Apache-modules mailing list
+at <a href="http://httpd.apache.org/lists.html">http://httpd.apache.org/lists.html</a>. Remember to do your homework
+first: research past messages and check all the documentation on the
+Apache site before posting questions.</p>
+<p>Special modules exist for the use of interpreted languages like Perl and
+Tcl. They allow Apache to run interpreted scripts natively without
+having to reload an interpreter every time a script runs (e.g.
+<code>mod_perl</code> and <code>mod_tcl</code>). These modules include an API to allow for
+modules written in an interpreted (scripted) language.</p>
+<p>The modular structure of Apache's <em>source code</em> should not be confused
+with the functionality of <em>run-time loading</em> of Apache modules. Run-time
+modules are loaded after the core functionality of Apache
+has started and are a relatively new feature. In older versions, to use
+the functionality of a module, it needed to be compiled in during the
+<em>build</em> phase. Current implementations of Apache are capable of
+<em>run-time</em> module loading. The section on <a href="#DSO">DSO</a> has more details.</p>
+<h4 id="DSO">Run-time loading of modules (DSO)<a class="headerlink" href="#DSO" title="Permanent link">&para;</a></h4>
+<p>Most modern Unix derivatives have a mechanism for the on demand linking
+and loading of so called Dynamic Shared Objects (DSO). This is a way to
+load a Dynamic Shared Objects special program into the address space of
+an executable at run-time. This can usually be done in two ways: either
+automatically by a system program called <code>ld.so</code> when the executable is
+started, or manually from within the executing program with the system
+calls <code>dlopen()</code> and <code>dlsym()</code>.</p>
+<p>In the latter method the DSO's are usually called shared objects or DSO
+files and can be named with an arbitrary extension. By convention the
+extension <code>.so</code> is used. These files are usually installed in a
+program-specific directory. The executable program manually loads the
+DSO at run-time into its address space via <code>dlopen()</code>.</p>
+<p>How to run Apache-SSL as a shareable (DSO) module: First of all, install
+the appropriate package:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="nx">packagemanager</span><span class="w"> </span><span class="nx">installcommand</span><span class="w"> </span><span class="nx">modulename</span>
+</code></pre></div></td></tr></table></div>
+
+<p>Depending on your distribution, the configuration file(s) might or might
+not have been adjusted accordingly. Always check for the existence of a
+<code>LoadModule</code> line in one of the configuration files:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    LoadModule apache_ssl_module modules/libssl.so
+</code></pre></div></td></tr></table></div>
+
+<p>This line might belong in the Apache main configuration file, or one of
+the included configuration files. A construction that has been receiving
+much support lately, is the use of seperate <code>modules-available</code> and
+<code>modules-enabled</code> directories. These directories are subdirectories
+inside the Apache configuration directory. Modules are installed in the
+<code>modules-available</code> directory, and an <code>Include</code> reference is made to a
+symbolic link inside the <code>modules-enabled</code> directory. This symbolic link
+then points back to the module. The <code>Include</code> reference might be a
+wildcard, including all files from a certain directory.</p>
+<p>Another construction is similar, but includes a <code>conf.modules.d</code>
+directory inside the Apache configuration directory. This file is in
+fact a symbolic link, pointing to a directory inside the Apache program
+directory somewhere else on the filesystem. An example from a Red Hat
+based host:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    Include conf.modules.d/*.conf
+</code></pre></div></td></tr></table></div>
+
+<p>Again, the implementations you could encounter might differ
+significantly from each other. Various aspects such as Linux
+distribution used, Apache version installed or whether Apache is
+installed from packages or source may be of influence to the way Apache
+is implemented. Not to mention the administrator on duty. Important to
+remember is that Apache often uses configuration files that may be
+nested. But that there will always be one main Apache configuration
+file, at the top of the hiearchy.</p>
+<p>To see whether your version of Apache supports DSOs, execute the command
+<code>httpd -l</code> which lists the modules that have been compiled into Apache.
+If <code>mod_so.c</code> appears in the list of modules then your
+Apache server can make use of dyamic modules.</p>
+<h4 id="apache-extension-apxs-support-tool">APache eXtenSion (APXS) support tool<a class="headerlink" href="#apache-extension-apxs-support-tool" title="Permanent link">&para;</a></h4>
+<p>The APXS is a new support tool from Apache 1.3 and onwards which can be
+used to build an Apache module as a DSO <em>outside the Apache source-tree</em>.
+It knows the platform dependent build parameters for making DSO files and
+provides an easy way to run the build commands with them.</p>
+<h3 id="monitoring-apache-load-and-performance">Monitoring Apache load and performance<a class="headerlink" href="#monitoring-apache-load-and-performance" title="Permanent link">&para;</a></h3>
+<p>An Open Source system that can be used to periodically load-test pages
+of web-servers is Cricket. Cricket can be easily set up to
+record page-load times, and it has a web-based grapher that will
+generate charts to display the data in several formats. It is based on
+RRDtool (Round Robin Data Tool) whose ancestor is  MRTG (short MRTG for
+"Multi-Router Traffic Grapher"). RRDtool is a package that collects data
+in "round robin" databases; each data file is fixed in size so that
+running Cricket does not slowly fill up your disks. The database tables
+are sized when created and do not grow larger over time. As the data
+ages, it is averaged.</p>
+<h4 id="enhancing-apache-performance">Enhancing Apache performance<a class="headerlink" href="#enhancing-apache-performance" title="Permanent link">&para;</a></h4>
+<p>Lack of available RAM may result in memory swapping. A swapping
+webserver will perform badly, especially if the disk subsystem is not up
+to par. Causing users to hit stop and reload, further increasing the
+load. You can use the <code>MaxClients</code> setting to limit the amount of
+children your server may spawn hence reducing memory footprint. It is
+advised to <code>grep</code> through the Apache main configuration file for all
+directives that start with <code>Min</code> or <code>Max</code>. These settings define the
+MINimal and MAXimum boundaries for each affected setting. The default
+values should provide a concense balance between server load at idle on
+one hand, and the possibility to handle heavy load on the other. As each
+chain is only as strong as it's weakest link, the underlying system
+should be adequatetly configured to handle the expected load. The LPIC-2
+exam focuses more on the detection of these performance bottlenecks in
+chapter <a href="/src/lpic2.200.1/">200.1</a>.</p>
+<h3 id="apache-access_log-file">Apache <code>access_log</code> file<a class="headerlink" href="#apache-access_log-file" title="Permanent link">&para;</a></h3>
+<p>access logs The <code>access_log</code> contains a generic overview of
+page requests for your web-server. The format of the
+access log is highly configurable. The format is specified using a
+format string that looks much like a C-style <code>printf</code> format string. A
+typical configuration for the access log might look like the following:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>    LogFormat &quot;%h %l %u %t \&quot;%r\&quot; %&gt;s %b&quot; common
+    CustomLog logs/access_log common
+</code></pre></div></td></tr></table></div>
+
+<p>This defines the nickname <em>common</em> and associates it with a particular
+log format string. The format as shown is known as the Common Log Format
+(CLF). It is a standard format produced bymany web servers and can be
+read by most log analysis programs. Log file entries produced in CLF
+will look similar to this line:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    127.0.0.1 - bob [10/Oct/2000:13:55:36 -0100] &quot;GET /apache_pb.gif HTTP/1.0&quot; 200 2326
+</code></pre></div></td></tr></table></div>
+
+<p>CLF contains the following fields:</p>
+<ol>
+<li>
+<p>IP address of the client (%h)</p>
+</li>
+<li>
+<p>RFC 1413 identity determined by <code>identd</code> (%l)</p>
+</li>
+<li>
+<p>userid of person requesting (%u)</p>
+</li>
+<li>
+<p>time server finished serving request (%t)</p>
+</li>
+<li>
+<p>request line of user (%r)</p>
+</li>
+<li>
+<p>status code servers sent to client (%s)</p>
+</li>
+<li>
+<p>size of object returned (%b).</p>
+</li>
+</ol>
+<h3 id="apache-error_log-file">Apache <code>error_log</code> file<a class="headerlink" href="#apache-error_log-file" title="Permanent link">&para;</a></h3>
+<p>The server error log, whose name and location is set by the <em>ErrorLog</em>
+directive, is a very important log file. This is the file to which
+Apache httpd will send diagnostic information and record any errors that
+it encounters in processing requests. It is a good place to look when a
+problem occurs starting the server or while operating the server. It
+will often contain details of what went wrong and how to fix it.</p>
+<p>The error log is usually written to a file (typically error_log on Unix
+systems and error.log on Windows). On Unix systems it is also possible
+to have the server send errors to syslog or pipe them to a program.</p>
+<p>The format of the error log is relatively free-form and descriptive. But
+there is certain information that is contained in most error log
+entries. For example, here is a typical message:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="o">[</span><span class="n">Wed Oct 11 14:32:52 2000</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">error</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">client 127.0.0.1</span><span class="o">]</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="n">denied</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">server</span><span class="w"> </span><span class="err">\</span>
+<span class="w">    </span><span class="nl">configuration</span><span class="p">:</span><span class="w"> </span><span class="o">/</span><span class="n">export</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">live</span><span class="o">/</span><span class="n">ap</span><span class="o">/</span><span class="n">htdocs</span><span class="o">/</span><span class="n">test</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The first item in the log entry is the date and time of the message. The
+second item lists the severity of the error being reported. The
+<code>LogLevel</code> directive is used to control the types of errors that are
+sent to the error log by restricting the severity level. The third item
+gives the IP address of the client that generated the error. Beyond that
+is the message itself, which in this case indicates that the server has
+been configured to deny the client access. The server reports the
+file-system path (as opposed to the web path) of the requested document.</p>
+<p>A very wide variety of different messages can appear in the error log.
+Most look similar to the example above. The error log will also contain
+debugging output from CGI scripts. Any information written to stderr by
+a CGI script will be copied directly to the error log.</p>
+<p>It is not possible to customize the error log by adding or removing
+information. However, error log entries dealing with particular requests
+have corresponding entries in the access log. For example, the above
+example entry corresponds to an access log entry with status code 403.
+Since it is possible to customize the access log, you can obtain more
+information about error conditions using that log file.</p>
+<p>During testing, it is often useful to continuously monitor the error log
+for any problems. On Unix systems, you can accomplish this using:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    tail -f error_log
+</code></pre></div></td></tr></table></div>
+
+<p>Knowing how to customize Apache logging may prove to be a very usable
+skill. Manually reviewing Apache logs is not for the faint of heart. For
+a low-traffic server, this may still be doable. Otherwise, looking for
+information by sifting through logs on a busy server that serves
+multiple websites, can become a very intense
+textfile-manipulating-excercise. This creates a paradox: With little to
+no logging, hardly any input is available when looking for the cause of
+a problem. With very elaborate logging in place, the information may be
+overwhelming. For this reason, Apache logs are often interpreted by
+external facilities. The logs are either sent to or read by a system
+that has the capability to visualize statistics and recognize patterns.
+To ensure the provided logging is adequate, customizing the Apache
+logging first may be necessary.</p>
+<p>Apache 2.3.6 and later provide the possibility to enable different kinds
+of <code>LogLevel</code> configurations on a per-module or per-directory basis. The
+Apache documentation regarding the <code>Loglevel</code> directive is outstanding
+and there is not much we could add to that.</p>
+<h3 id="restricting-client-user-access">Restricting client user access<a class="headerlink" href="#restricting-client-user-access" title="Permanent link">&para;</a></h3>
+<p>Many systems use either DAC or MAC to control access to objects:</p>
+<p><strong>Discretionary Access Control (DAC)</strong></p>
+<ul>
+<li>A system that employs DAC allows users to set object permissions
+    themselves. They can change these at their discretion.</li>
+</ul>
+<p><strong>Mandatory Access Controls (MAC)</strong></p>
+<ul>
+<li>A system that employs MAC has all its objects (e.g., files) under
+    strict control of a system administrator. Users are not allowed to
+    set any permissions themselves.</li>
+</ul>
+<p>Apache takes a liberal stance and defines discretionary controls to be
+controls based on usernames and passwords, and mandatory controls to be
+based on static or quasi-static data like the IP address of the
+requesting client.</p>
+<p>Apache uses modules to authenticate and authorise users. First of all,
+the difference between authentication and authorization should be clear.
+Authentication is the process in which a user should validate their
+identity. This is the <em>who</em> part. Authorization is the process of
+deciding <em>who</em> is allowed to do <em>what</em>. Authorization either allows or
+denies requests made to the Apache server. Authorization depends on
+authentication to make these decisions.</p>
+<p>The Apache modules that serve the purpose of autheNtication, follow the
+naming convention of <code>mod_authn_*</code>. The modules that serve the purpose
+of authoriZation, follow the convention of <code>mod_authz_*</code>. An exception
+to this rule is the <code>mod_authnz_ldap</code> module. As you might have guessed,
+due to the nature of LDAP this module can aid in both authentication as
+well as authorization.</p>
+<p>The location of these modules on the filesystem may vary. Most
+distributions create a <code>modules</code>, <code>modules.d</code> or <code>modules-available</code>
+directory within the Apache configuration directory. This directory can
+very well be a symbolic link to a directory somewhere else on the
+filesystem. This can be determined by invoking <code>pwd -P</code> or <code>ls -ld</code> from
+within the modules directory as shown by the following example:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="o">[</span><span class="n">user@redhatbased /etc/httpd</span><span class="o">]</span><span class="err">$</span><span class="w"> </span><span class="n">pwd</span><span class="w"> </span><span class="o">-</span><span class="n">P</span>
+<span class="w">    </span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">httpd</span><span class="o">/</span><span class="n">modules</span>
+</code></pre></div></td></tr></table></div>
+
+<p>In the example above, the symbolic link <code>/etc/httpd/modules</code> provides
+for easy reference to the modules from within Apache configuration
+files. Apache modules are loaded using the <code>LoadModule</code> directive. This
+directive expects the path to the module to be relative to the Apache
+configuration directory declared by the <code>ServerRoot</code> directive.</p>
+<p>In general, modules will use some form of database to
+store and retrieve credential data. The <code>mod_authn_file</code> module for
+instance uses text files where <code>mod_auth_dbm</code> employs a Unix DBM
+database.</p>
+<p>Below is a list of some modules that are included as part of the
+standard Apache distribution.</p>
+<p><code>mod_auth_file</code></p>
+<ul>
+<li>(DAC) This is the basis for most Apache security modules; it uses
+    ordinary text files for the authentication database.</li>
+</ul>
+<p><code>mod_access</code></p>
+<ul>
+<li>(MAC) This used to be the only module in the standard Apache
+    distribution which applies what Apache defines as
+    mandatory controls. It used to allow you to list hosts, domains,
+    and/or IP addresses or networks that were permitted or denied access
+    to documents. As of Apache 2.4, this module is no longer used.
+    Apache 2.4 and newer use an updated authentication and authorization
+    model. This new model also comes with new modules, new directives
+    and new syntax. The <code>mod_access</code> module is still an LPIC-2 exam
+    objective, so the pre-2.4 syntax should still be familiar to you. In
+    order to aid the migration towards Apache 2.4, a module called
+    <code>mod_access_compat</code> ships with Apache 2.4. This module serves the
+    purpose of still accepting the pre-2.4 syntax on Apache 2.4 servers.
+    If you encounter <code>mod_access</code> related errors after upgrading to
+    Apache 2.4 from a previous version, make sure the Apache 2.4
+    configuration loads this compabibility module with a line similar
+    to:<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>LoadModule mod_access_compat modules/mod_access_compat.so
+</code></pre></div></td></tr></table></div>
+
+</li>
+</ul>
+<p><code>mod_authn_anon</code></p>
+<ul>
+<li>(DAC) This module mimics the behaviour of anonymous FTP. Rather than
+    having a Apachemod_auth_anon database of valid credentials, it
+    recognizes a list of valid usernames (i.e., the way an FTP server
+    recognizes "ftp" and "anonymous") and grants access to any of those
+    with virtually any password. This module is more useful for logging
+    access to resources and keeping robots out than it is for actual
+    access control.</li>
+</ul>
+<p><code>mod_authn_dbm</code></p>
+<ul>
+<li>(DAC) Like <code>mod_auth_db</code>, except that credentials are stored in a
+    Unix DBM file.</li>
+</ul>
+<p><code>mod_auth_digest</code></p>
+<ul>
+<li>
+<p>(DAC) This module implements HTTP Digest Authentication (RFC2617),
+    Apachemod_auth_digest which used to provide a more secure
+    alternative to the <code>mod_auth_basic</code> functionality. The explanation
+    that follows is nice to know but outdated. The whole point of digest
+    authentication was to prevent user credentials to travel via
+    unencrypted HTTP over the wire. The hashing algorithms used by the
+    digest module are however seriously outdated. Using digest
+    authentication instead of basic HTTP authentication does not offer
+    as many advantages in terms of security as the use of HTTPS would.
+    The following documentation page provides more detail:
+    <a href="http://httpd.apache.org/docs/2.4/mod/mod_auth_digest.html">http://httpd.apache.org/docs/2.4/mod/mod_auth_digest.html</a>.</p>
+<p>After receiving a request and a user name, the server will challenge
+the client by sending a <code>nonce</code>. The contents of a nonce can be any
+(preferably base 64 encoded) string, and the server may use the
+nonce to prevent replay attacks. A nonce might, for example, be
+constructed using an encrypted timestamp within a resolution of a
+minute, i.e. '201611291619'. The timestamp (and maybe other static
+data identifying the requested URI) might be encrypted using a
+private key known only to the server.</p>
+<p>Upon receival of the nonce the client calculates a hash (by default
+a MD5 checksum) of the received nonce, the username, the password,
+the HTTP method, and the requested URI and sends the result back to
+the server. The server will gather the same data from session data
+and password data retrieved from a local digest database. To
+reconstruct the nonce the server will try twice: the first try will
+use the current clocktime, the second try (if necessary) will use
+the current clocktime minus one minute. One of the tries should give
+the exact same hash the client calculated. If so, access to the page
+will be granted. This restricts validity of the challenge to one
+minute and prevents replay attacks.</p>
+<p>Please note that the contents of the nonce can be chosen by the
+server at will. The example provided is one of many possibilities.
+Like with <code>mod_auth</code>, the credentials are stored in a text file (the
+digest database). Digest database files are managed with the
+<code>htdigest</code> tool. Please refer to the module documentation for more
+details.</p>
+</li>
+</ul>
+<p><code>mod_authz_host</code></p>
+<ul>
+<li>The <code>mod_authz_host</code> module may be used to <code>Require</code> a certain
+    source of request towards Apache. The <code>mod_authz_host</code> module is
+    quite flexible about the arguments provided. Due to the name of the
+    module, it may seem logical to provide a hostname. While this
+    certainly works, it may not be the preferred choice. Not only does
+    this module need to perform a forward DNS lookup on the provided
+    hostname to resolve it to a numerical IP, the module is also
+    configured to perform a reverse DNS lookup on the resolved numerical
+    IP after the forward lookup is performed. Providing a hostname thus
+    leads to at least two DNS lookups for every affected webserver
+    request. And if the reverse DNS result differs from the provided
+    hostname, the request will be denied despite what the configuration
+    may allow. To circumvent this requirement regarding forward and
+    reverse DNS records matching, the <code>forward-dns</code> option may be used
+    when providing a hostname. Luckily, <code>mod_authz_host</code> not only
+    accepts hostnames as an argument. It can also handle (partial) IP
+    addresses, both IPv4 and IPv6, and CIDR style notations. There is
+    also an argument available called <code>local</code>. This will translate to
+    the <code>127.0.0.0/8</code> or <code>::1</code> loopback addresses as well as the
+    configured IP addresses of the server. This setting may come in
+    handy when restricting connections in regards to the local host.
+    Because of the liberal way that IP addresses are interpreted, it is
+    recommended to be as explicit as possible when using this module.
+    For instance, all of the following is regarded as valid input and
+    will be interpreted by the rules that apply:<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code> Require host: sue.nl
+ Require ip: 10.6.6
+ Require ip: 172
+ Require ip: 10.9.9.9/32
+ Require forward-dns: cloudhost.sue.nl
+ Require local
+</code></pre></div></td></tr></table></div>
+
+</li>
+</ul>
+<p>One of the noteworthy differences between Apache 2.2 and 2.4 lies in the
+directives used for authorization. The authorization functionality is
+provided by Apache <code>mod_authz_*</code> modules. Where previous versions of
+Apache used the <code>Order</code>, <code>Allow from</code>, <code>Deny from</code> and <code>Satisfy</code>
+directives, Apache 2.4 uses new directives called <code>all</code>, <code>env</code>, <code>host</code>
+and <code>ip</code>. These new directives have a significant impact on the syntax
+of configuration files. In order to aid the transition towards Apache
+2.4, the <code>mod_access_compat</code> module can still interpret the previously
+used authorization directives. This module has to be explicitly enabled
+though. In doing so, backwards compatibility towards previous
+authorization configuration directives is maintained. The current
+authorization directives provide the possibility of a more granular
+configuration in regards to who is authorized to do what. This added
+granularity mostly comes from the availability of the <code>Require</code>
+directive. This directive could already be used before Apache 2.4 for
+authentication purposes. Since Apache 2.4 though, this directive can
+also be interpreted by the authorization modules.</p>
+<p>The following example puts the old en new syntax in comparison, while
+providing the same functionality.</p>
+<p>First, the pre-2.4 style:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="nt">&lt;Directory</span><span class="w"> </span><span class="err">/lpic2bookdev</span><span class="nt">&gt;</span>
+<span class="w">    </span>Order<span class="w"> </span>deny,allow
+<span class="w">    </span>Deny<span class="w"> </span>from<span class="w"> </span>all
+<span class="w">    </span>allow<span class="w"> </span>from<span class="w"> </span>10.6.6.0/24
+<span class="w">    </span>Require<span class="w"> </span>group<span class="w"> </span>employees
+<span class="w">    </span>Satisfy<span class="w"> </span>any
+<span class="w">    </span><span class="nt">&lt;/Directory&gt;</span>
+</code></pre></div></td></tr></table></div>
+
+<p>And now the same codeblock, but using the Apache 2.4 style syntax:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="nt">&lt;Directory</span><span class="w"> </span><span class="err">/lpic2bookdev</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;RequireAny&gt;</span>
+<span class="w">    </span>Require<span class="w"> </span>ip<span class="w"> </span>10.6.6.0/24
+<span class="w">    </span>Require<span class="w"> </span>group<span class="w"> </span>employees
+<span class="w">    </span><span class="nt">&lt;/RequireAny&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/Directory&gt;</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The benefit of the new syntax is all about efficiency. By accomplishing
+the same functionality with fewer lines, the processing of those lines
+will be handled more effectively by both humans and computers. The
+computers benefit from spending less processing cycles while
+accomplishing the same result. Humans benefit from a short configuration
+section. Long configurations are more prone to contain errors that may
+be overlooked. By creating sections within configuration files using the
+<code>RequireAll</code>, <code>RequireAny</code>, and <code>RequireNone</code> directives, these
+configurations can contain granular rules while at the same time
+preserving their readability.</p>
+<p>Another 2.4 change that is worth mentioning, has to do with the LPIC-2
+exam objective regarding the <code>mod_auth</code> module. Starting with Apache
+2.1, the functionality of the <code>mod_auth</code> module has been superseeded by
+more specific modules. One of these modules, <code>mod_authn_file</code> now provides the functionality that was
+previously offered by <code>mod_auth</code>. <code>mod_authn_file</code> allows for the use of
+a file that holds usernames and password as part of the authorization
+process. This file can be created and the contents may be maintained by
+the <code>htpasswd</code> utility. When using <code>mod_auth_digest</code> instead of
+<code>mod_auth_basic</code>, the <code>htdigest</code> utility should be used instead. This book will
+focus on the <code>mod_auth_basic</code> option. The <code>htpasswd -c</code> option will
+create a file with the provided argument as a filename during creation
+of a username and password pair. <code>htpasswd</code> allows for the creation of crypt, MD5 or SHA1
+password algorithms. As of Apache 2.4.4, it is also possible to use
+bcrypt as the password encryption algorithm. Plaintext passwords can
+also be generated using the <code>htpasswd -p</code> option, but will only work if
+Apache 2.4 is hosted on Netware and MS Windows platforms. The crypt
+algorithm used to be the <code>htpasswd</code> default algorithm up to Apache version 2.2.17, but
+is considered insecure. Crypt will limit the provided password to the
+first eight characters. Every part of the password string from the ninth
+character on will be neglected. Crypt password strings are subject to
+fast brute force cracking and therefore pose a considerable security
+risk. The use of the crypt algorithm should be avoided whenever
+possible. Instead, the bcrypt algorithm should be considered when
+available. On a system with Apache 2.4.4 or later, the following syntax
+can be used to create a new password file <code>htpasswdfile</code>, supply it with the user "bob" and set the password for
+the user account using the bcrypt algorithm:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    htpasswd -cB /path/outside/document/root/htpasswdfile bob
+</code></pre></div></td></tr></table></div>
+
+<p>The system will ask for the new password twice. To update this file
+anytime later by adding the user "alice", the <code>-c</code> option can be ommited
+to prevent the file from being rewritten:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    htpasswd -B /path/outside/document/root/htpasswdfile alice
+</code></pre></div></td></tr></table></div>
+
+<p>Using the brypt algorithm with <code>htpasswd</code> also enables the use of the
+<code>-C</code> option. Using this option, the computing time used to calculate the
+password hash may be influenced. By default, the system uses a setting
+of 5. A value between 4 and 31 may be provided. Depending on the
+available resources, a value up to 18 should be acceptable to generate
+whilst increasing security. To add the user eve to the existing
+<code>htpasswdfile</code> while increasing the computing time to a value of 18, the
+following syntax may be used:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    htpasswd -B -C18 /path/outside/document/root/htpasswdfile eve
+</code></pre></div></td></tr></table></div>
+
+<p>In the examples above, it is suggested that the password file is created
+outside of the webserver document tree. Otherwise, it could be possible
+for clients to download the password file.</p>
+<p>To use the generated password file for authentication purposes, Apache
+has to be aware of the <code>htpasswdfile</code> file. This can be accomplished by defining the
+<code>AuthUserFile</code> directive. This directive may be defined in either the
+Apache configuration files, or in a seperate <code>.htaccess</code> file. That <code>.htaccess</code> file should be located inside the
+directory of the document root it should represent. The Apache config
+responsible for that document root should have the <code>AllowOverride</code>
+directive specified. This way Apache will override directives from its
+configuration for directories that have <code>.htaccess</code> documents in them.
+The syntax for the <code>.htaccess</code> documents is the same as for Apache
+configuration files. A code block to use for user authentication could
+look as follows:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="nt">&lt;Directory</span><span class="w"> </span><span class="err">/web/document/root</span><span class="nt">&gt;</span>
+<span class="w">    </span>AuthName<span class="w"> </span>&quot;Authentication<span class="w"> </span>Required&quot;
+<span class="w">    </span>AuthType<span class="w"> </span>Basic
+<span class="w">    </span>AuthUserFile<span class="w"> </span>/path/outside/document/root/htpasswdfile
+<span class="w">    </span>Require<span class="w"> </span>valid-user
+<span class="w">    </span>Documentroot<span class="w"> </span>/web/document/root
+<span class="w">    </span><span class="nt">&lt;/Directory&gt;</span>
+</code></pre></div></td></tr></table></div>
+
+<p>Consult the contents of your Apache modules directory for the presence
+of mod_auth* files. There are multiple authentication and
+authorization modules available. Each has its own purpose, and some
+depend on each other. Each module adds functionality within Apache. This
+functionality can be addressed by using specific module-specific
+directives. Refer to the Apache documentation website
+<a href="https://httpd.apache.org/docs/2.4/mod/">https://httpd.apache.org/docs/2.4/mod/</a> for detailed usage options
+regarding the modules available for Apache 2.4.</p>
+<p>Configuring authentication modules</p>
+<p>ConfiguringApache Authentication Modules Apache security modules are
+configured by configuration directives. These are read from either the
+centralized configuration files (mostly found under or in the <code>/etc/</code>
+directory) or from decentralized <code>.htaccess</code> files. The latter are
+mostly used to restrict access to directories and are placed in the top
+level directory of the tree they help to protect. For example,
+authentication Apache.htaccess modules will read the location of their
+databases using the ApacheAuthUserFile ApacheAuthDBMGroupFile
+<code>AuthUserFile</code> or <code>AuthDBMGroupFile</code> directives.</p>
+<p><strong>Centralized configuration.</strong></p>
+<p>This is an example of a configuration as it might occur in a centralized
+configuration file: ApacheAuthType ApacheRequire valid-user</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="nt">&lt;Directory</span><span class="w"> </span><span class="err">/home/johnson/public_html</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;Files</span><span class="w"> </span><span class="err">foo.bar</span><span class="nt">&gt;</span>
+<span class="w">    </span>AuthName<span class="w"> </span>&quot;Foo<span class="w"> </span>for<span class="w"> </span>Thought&quot;
+<span class="w">    </span>AuthType<span class="w"> </span>Basic
+<span class="w">    </span>AuthUserFile<span class="w"> </span>/home/johnson/foo.htpasswd
+<span class="w">    </span>Require<span class="w"> </span>valid-user
+<span class="w">    </span><span class="nt">&lt;/Files&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/Directory&gt;</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The resource being protected is "any file named foo.bar" in the
+<code>/home/johnson/public_html</code> directory <em>or any underlying subdirectory</em>.
+Likewise, the file specifies whom are authorized to access <code>foo.bar</code>:
+any user that has credentials in the <code>/home/johnson/foo.htpasswd</code> file.</p>
+<p><strong>Decentralized configuration.</strong></p>
+<p>The alternate approach is to place a <code>.htaccess</code> file in the top level
+directory of any document tree that needs access protection. Note that
+you must set the directive <code>AllowOverride</code> ApacheAllowOverride in the
+<em>central</em> configuration to enable this.</p>
+<p>The first section of <code>.htaccess</code> determines which authentication type
+should be used. It can contain the name of the password or <em>group file</em>
+to be used, e.g.:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="nv">AuthUserFile</span><span class="w"> </span>{<span class="nv">path</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="nv">passwd</span><span class="w"> </span><span class="nv">file</span>}
+<span class="w">    </span><span class="nv">AuthGroupFile</span><span class="w"> </span>{<span class="nv">path</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="nv">group</span><span class="w"> </span><span class="nv">file</span>}
+<span class="w">    </span><span class="nv">AuthName</span><span class="w"> </span>{<span class="nv">title</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">dialog</span><span class="w"> </span><span class="nv">box</span>}
+<span class="w">    </span><span class="nv">AuthType</span><span class="w"> </span><span class="nv">Basic</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The second section of <code>.htaccess</code> ensures that only user <code>{username}</code>
+can access (GET) the current directory:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="nt">&lt;Limit</span><span class="w"> </span><span class="err">GET</span><span class="nt">&gt;</span>
+<span class="w">    </span>require<span class="w"> </span>user<span class="w"> </span>{username}<span class="w"> </span>
+<span class="w">    </span><span class="nt">&lt;/Limit&gt;</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The <code>Limit</code> section can contain other directives to ApacheLimit restrict
+access to certain IP addresses or to a group of users.</p>
+<p>The following would permit any client on the local network (IP addresses
+10.*.*.*) to access the <code>foo.html</code> page and require a username and
+password for anyone else:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="nt">&lt;Files</span><span class="w"> </span><span class="err">foo.html</span><span class="nt">&gt;</span>
+<span class="w">    </span>Order<span class="w"> </span>Deny,Allow
+<span class="w">    </span>Deny<span class="w"> </span>from<span class="w"> </span>All
+<span class="w">    </span>Allow<span class="w"> </span>from<span class="w"> </span>10.0.0.0/8
+<span class="w">    </span>AuthName<span class="w"> </span>&quot;Insiders<span class="w"> </span>Only&quot;
+<span class="w">    </span>AuthType<span class="w"> </span>Basic
+<span class="w">    </span>AuthUserFile<span class="w"> </span>/usr/local/web/apache/.htpasswd-foo
+<span class="w">    </span>Require<span class="w"> </span>valid-user
+<span class="w">    </span>Satisfy<span class="w"> </span>Any
+<span class="w">    </span><span class="nt">&lt;/Files&gt;</span>
+</code></pre></div></td></tr></table></div>
+
+<h4 id="user-files">User files<a class="headerlink" href="#user-files" title="Permanent link">&para;</a></h4>
+<p>The <code>mod_auth</code> module uses plain text files that contain lists of valid
+users. The <code>htpasswd</code> Apachehtpasswd command can be used to create and
+update these files. The resulting files are plain text files, which can
+be read by any editor. They contain entries of the form
+"username:password", where the password is encrypted. Additional fields
+are allowed, but ignored by the software.</p>
+<p><code>htpasswd</code> encrypts passwords using either a version of MD5 modified for
+Apache or the older <code>crypt()</code> routine. You can mix and match.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>    SYNOPSIS
+    htpasswd [ -c ] passwdfile username
+</code></pre></div></td></tr></table></div>
+
+<p>Here are two examples of using <code>htpasswd</code> for creating an Apache
+password file. The first is for creating a new password file while
+adding a user, the second is for changing the password for an existing
+user.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>    $ htpasswd -c /home/joe/public/.htpasswd joe
+    $ htpasswd /home/joe/public/.htpasswd stephan
+</code></pre></div></td></tr></table></div>
+
+<p><strong>Note</strong>
+Using the <code>-c</code> option, the specified password file will be overwritten
+if it already exists!</p>
+<h4 id="group-files">Group files<a class="headerlink" href="#group-files" title="Permanent link">&para;</a></h4>
+<p>Apache can work with <em>group files</em>. Group files contain group names
+followed by the names of the people in the group. By authorizing a
+group, all users in that group have access. Group files are known as
+<code>.htgroup</code> files and by convention bear that name - though you can use
+any name you want. Group files can be located anywhere in the directory
+tree but are normally placed in the toplevel directory of the tree they
+help to protect. To allow the use of group files you will need to
+include some directives in the Apache main configuration file. This will
+normally be inside the proper <code>Directory</code> definition. Where the
+<code>AuthUserFile</code> may specify either an absolute or relative path, the
+<code>AuthGroupFile</code> directive will always treat the provided argument as
+relative to the <code>ServerRoot</code>. The <code>AuthGroupFile</code> file functions as an
+addition to the <code>AuthUserFile</code>. The file should contain a group on each
+line, followed by a colon. An example:</p>
+<p>ApacheAuthGroupFile Apache main configuration file:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="o">...</span>
+<span class="w">    </span><span class="n">AuthType</span><span class="w"> </span><span class="n">Basic</span>
+<span class="w">    </span><span class="n">AuthUserFile</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">www</span><span class="o">/.</span><span class="n">htpasswd</span>
+<span class="w">    </span><span class="n">AuthGroupFile</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">www</span><span class="o">/.</span><span class="n">htgroup</span>
+<span class="w">    </span><span class="n">Require</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="n">Management</span>
+<span class="w">    </span><span class="o">...</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The associated <code>.htgroup</code> file might have the following syntax:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>    Management: bob alice
+    Accounting: joe
+</code></pre></div></td></tr></table></div>
+
+<p>Now the accounts "bob" and "alice" would have access to the resource but
+account "joe" would not due to the "Require group Management" statement
+in the main configuration file because "joe" is not a member of the
+required "Management" group. For this to work the users specified in the
+<code>.htgroup</code> file must have an entry in the <code>.htpasswd</code> file as well.</p>
+<p><strong>Note</strong>
+A username can be in more than one group entry. This simply means that
+the user is a member of both groups.</p>
+<p>To use a DBM database (as used by <code>mod_auth_db</code>) you may use
+<code>dbmmanage</code>. For other types of user files/databases, please consult the
+documentation that comes with the chosen module.</p>
+<p><strong>Note</strong>
+Make sure the various files are readable by the webserver.</p>
+<p>Configuring <code>mod_perl</code></p>
+<p><code>mod_perl</code> is another module for Apache, which loads the Perl
+interpreter into your Apache webserver, reducing spawning of child
+processes and hence memory footprint and need for processor power.
+Another benefit is code-caching: modules and scripts are loaded and
+compiled only once, and will be served from the cache for the rest of
+the webserver's life.</p>
+<p>ConfiguringApache mod_perl Using <code>mod_perl</code> allows inclusion of Perl
+statements into your webpages, which will be executed dynamically if the
+page is requested. A very basic page might look like this:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="nx">print</span><span class="w"> </span><span class="s">&quot;Content-type: text/plain\r\n\r\n&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">print</span><span class="w"> </span><span class="s">&quot;Hello, you perly thing!\n&quot;</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+
+<p><code>mod_perl</code> also allows you to write new modules in Perl. You have full
+access to the inner workings of the web server and can intervene at any
+stage of request-processing. This allows for customized processing of
+(to name just a few of the phases) <code>URI-&gt;filename</code> translation,
+authentication, response generation and logging. There is very little
+run-time overhead.</p>
+<p>The standard Common Gateway Interface (CGI) within Apache can be
+replaced entirely with Perl code that handles the response generation
+phase of request processing. <code>mod_perl</code> includes two general purpose
+modules for this purpose. The first is <code>Apache::Registry</code>, which can
+transparently run well-written existing perl CGI scripts. If you have
+badly written scripts, you should rewrite them. If you lack resources,
+you may choose to use the second module <code>Apache::PerlRun</code> instead
+because it doesn't use caching and is far more permissive then
+<code>Apache::Registry</code>.</p>
+<p>You can configure your <code>httpd</code> server and handlers in Perl using
+<code>PerlSetVar</code>, and <code>&lt;Perl&gt;</code> ApachePerlSetVar sections. You can also
+define your own configuration directives, to be read by your own
+modules.</p>
+<p>There are many ways to install <code>mod_perl</code>, e.g. as a <a href="#DSO">DSO</a>, either
+using <a href="#APXS">APXS</a> or not, from source or from RPM's. Most of the
+possible scenarios can be found in the Mod_perl Guide
+<a href="#perlref01">???</a>.</p>
+<h3 id="building-apache-from-source-code">Building Apache from source code<a class="headerlink" href="#building-apache-from-source-code" title="Permanent link">&para;</a></h3>
+<p>For building Apache from source code you should have downloaded the
+Apache source code, the source code for <code>mod_perl</code> and have unpacked
+these in the same directory. You'll need a recent version of
+<code>perl</code> installed on your system. To build the module, in most cases,
+these commands will suffice:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span>$<span class="w"> </span>cd<span class="w"> </span><span class="cp">${</span><span class="n">the</span><span class="o">-</span><span class="n">name</span><span class="o">-</span><span class="n">of</span><span class="o">-</span><span class="n">the</span><span class="o">-</span><span class="n">directory</span><span class="o">-</span><span class="k">with</span><span class="o">-</span><span class="n">the</span><span class="o">-</span><span class="n">sources</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">the</span><span class="o">-</span><span class="n">module</span><span class="cp">}</span>
+<span class="w">    </span>$<span class="w"> </span>perl<span class="w"> </span>Makefile.PL<span class="w"> </span>APACHE_SRC=../apache_x.x.x/src<span class="w"> </span>\
+<span class="w">    </span>DO_HTTPD=1<span class="w"> </span>USE_APACI=1<span class="w"> </span>EVERYTHING=1
+<span class="w">    </span>$<span class="w"> </span>make<span class="w"> </span><span class="err">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>test<span class="w"> </span><span class="err">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>install
+</code></pre></div></td></tr></table></div>
+
+<p>After building the module, you should also build the Apache server. This
+can be done using the following commands:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span>$<span class="w"> </span>cd<span class="w"> </span><span class="cp">${</span><span class="n">the</span><span class="o">-</span><span class="n">name</span><span class="o">-</span><span class="n">of</span><span class="o">-</span><span class="n">the</span><span class="o">-</span><span class="n">directory</span><span class="o">-</span><span class="k">with</span><span class="o">-</span><span class="n">the</span><span class="o">-</span><span class="n">sources</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">Apache</span><span class="cp">}</span>
+<span class="w">    </span>$<span class="w"> </span>make<span class="w"> </span>install
+</code></pre></div></td></tr></table></div>
+
+<p>All that's left then is to add a few configuration lines to
+<code>httpd.conf</code> (the Apache configuration file) and start the server. Which
+lines you should add depends on the specific type of installation, but
+usually a few <code>LoadModule</code> and <code>AddModule</code> lines suffice.</p>
+<p>As an example, these are the lines you would need to add to <code>httpd.conf</code>
+to use <code>mod_perl</code> as a <a href="#DSO">DSO</a>:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span>LoadModule<span class="w"> </span>perl_module<span class="w"> </span>modules/libperl.so
+<span class="w">    </span>AddModule<span class="w"> </span>mod_perl.c
+<span class="w">    </span>PerlModule<span class="w"> </span>Apache::Registry
+
+<span class="w">    </span>Alias<span class="w"> </span>/perl/<span class="w"> </span>/home/httpd/perl/<span class="w"> </span>
+<span class="w">    </span><span class="nt">&lt;Location</span><span class="w"> </span><span class="err">/perl</span><span class="nt">&gt;</span>
+<span class="w">    </span>SetHandler<span class="w"> </span>perl-script<span class="w"> </span>
+<span class="w">    </span>PerlHandler<span class="w"> </span>Apache::Registry<span class="w"> </span>
+<span class="w">    </span>Options<span class="w"> </span>+ExecCGI
+<span class="w">    </span>PerlSendHeader<span class="w"> </span>On<span class="w"> </span>
+<span class="w">    </span><span class="nt">&lt;/Location&gt;</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The first two lines will add the <code>mod_perl</code> module when Apache starts.
+During startup, the <code>PerlModule</code> directive ensures that the named Perl
+module is read in too. This usually is a Perl package file ending in
+<code>.pm</code>. The <code>Alias</code> keyword reroutes requests for URIs in the form
+<code>http://www.example.com/perl/file.pl</code> to the directory
+<code>/home/httpd/perl</code>. Next, we define settings for that location. By
+setting the <code>SetHandler</code>, all requests for a Perl file in the directory
+<code>/home/httpd/perl</code> now will be redirected to the perl-script handler,
+which is part of the <code>Apache::Registry</code> module. The next line simply
+allows execution of CGI scripts in the specified location instead of
+displaying this file. Any URI of the form
+<code>http://www.example.com/perl/file.pl</code> will now be compiled once and
+cached in memory. The memory image will be refreshed by recompiling the
+Perl routine whenever its source is updated on disk. Setting
+<code>PerlSendHeader</code> to on tells the server to send an HTTP headers to the
+browser on every script invocation but most of the time it's better
+either to use the <code>$r-&gt;send_http_header</code> method using the Apache Perl
+API or to use the <code>$q-&gt;header</code> method from the <code>CGI.pm</code> module.</p>
+<h4 id="configuring-mod_php-support">Configuring <code>mod_php</code> support<a class="headerlink" href="#configuring-mod_php-support" title="Permanent link">&para;</a></h4>
+<p>PHP is a server-side, cross-platform, HTML embedded scripting language.
+PHP started as a quick Perl hack written by Rasmus Lerdorf in late 1994.
+Later he rewrote his code in C and hence the \"Personal Home Page/Forms
+Interpreter\" (PHP/FI) was born. Over the next two to three years, it
+evolved into PHP/FI 2.0. Zeev Suraski and Andi Gutmans wrote a new
+parser in the summer of 1997, which led to the introduction of PHP 3.0.
+PHP 3.0 defined the syntax and semantics used in both versions 3 and 4. PHP
+became the de facto programming language for millions of web developers.
+Still another version of the (Zend) parser and much better support for
+object oriented programming led to the introduction of version 5.0 in july
+2004. Several subversions followed and also version 6 was started to include
+native Unicode support. However this version was abandoned. The current version
+of PHP at the time of writing is PHP 8</p>
+<p>PHP can be called from the CGI interface, but the common approach is to
+configure PHP in the Apache web server as a (dynamic) <a href="#DSO">DSO</a>
+module. To do this, you can either use pre-built modules extracted from
+RPM's or roll your own from the source code. You need to configure
+the <code>make</code> process first. To tell <code>configure</code> to build the module as a
+<a href="#DSO">DSO</a>, you need to tell it to use <a href="#apache-extension-apxs-support-tool">APXS</a>:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    ./configure -with-apxs
+</code></pre></div></td></tr></table></div>
+
+<p>.. or, in case you want to specify the location for the <code>apxs</code> binary:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    ./configure -with-apxs={path-to-apxs}/apxs
+</code></pre></div></td></tr></table></div>
+
+<p>Next, you can compile PHP by running the <code>make</code> command. Once all the
+source files are successfully compiled, install PHP by using the
+<code>make install</code> command.</p>
+<p>Before Apache can use PHP, it has to know about the PHP module and when
+to use it. The <code>apxs</code> program took care of telling Apache about the PHP
+module, so all that is left to do is tell Apache about <code>.php</code> files.
+File types are controlled in the <code>httpd.conf</code> file, and it usually
+includes lines about PHP that are commented out. You may want to search
+for these lines and uncomment them:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="nx">Addtype</span><span class="w"> </span><span class="nx">application</span><span class="o">/</span><span class="nx">x</span><span class="o">-</span><span class="nx">httpd</span><span class="o">-</span><span class="nx">php</span><span class="w"> </span><span class="p">.</span><span class="nx">php</span>
+</code></pre></div></td></tr></table></div>
+
+<p>Then restart Apache by issuing the <code>apachectl restart</code> command. The
+<code>apachectl</code> command is another way of passing commands to the Apache
+server instead of using <code>/etc/init.d/httpd</code>. Consult the <code>apachectl(8)</code>
+manpage for more information.</p>
+<p>To test whether it actually works, create the following page:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="nt">&lt;HTML&gt;</span>
+<span class="w">    </span><span class="nt">&lt;HEAD&gt;&lt;TITLE&gt;</span>PHP<span class="w"> </span>Test<span class="w"> </span><span class="nt">&lt;/TITLE&gt;&lt;/HEAD&gt;</span>
+<span class="w">    </span><span class="nt">&lt;BODY&gt;</span>
+<span class="w">    </span><span class="cp">&lt;?php</span> <span class="nb">phpinfo</span><span class="p">(</span> <span class="p">)</span> <span class="cp">?&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/BODY&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/HTML&gt;</span>
+</code></pre></div></td></tr></table></div>
+
+<p>Save the file as <code>test.php</code> in Apache's <code>htdocs</code> directory and aim your
+browser at <code>http://localhost/test.php</code>. A page should appear with the
+PHP logo and additional information about your PHP configuration. Notice
+that PHP commands are contained by <code>&lt;?</code> and <code>?&gt;</code> tags.</p>
+<h4 id="apachehttpd">The httpd binary<a class="headerlink" href="#apachehttpd" title="Permanent link">&para;</a></h4>
+<p>The <code>httpd</code> binary is the actual HTTP server component of Apache. 
+During normal operation, it is recommended to use the <code>apachectl</code> or 
+<code>apache2ctl</code> command to controlthe httpd daemon. On some distributions
+the <code>httpd</code> binary is named <code>apache2</code>.</p>
+<p>Apache used to be a daemon that forked child-processes only when needed.
+To allow better response times, nowadays Apache can also be run in
+pre-forked mode. This means that the server will spawn a number of
+child-processes in advance, ready to serve any communication requests.
+On most distributions the pre-forked mode is run by default.</p>
+<h3 id="apacheoptions">Configuring Apache server options<a class="headerlink" href="#apacheoptions" title="Permanent link">&para;</a></h3>
+<p>The <code>httpd.conf</code> file contains a number of sections
+that allow you to configure the behavior of the Apache server. A number
+of keywords/sections are listed below.</p>
+<p><code>MaxKeepAliveRequests</code></p>
+<ul>
+<li>The maximum number of requests to allow during a persistent
+    connection. Set to 0 to allow an unlimited amount.</li>
+</ul>
+<p><code>StartServers</code></p>
+<ul>
+<li>The number of servers to start initially.</li>
+</ul>
+<p><code>MinSpareServers</code>; <code>MaxSpareServers</code></p>
+<ul>
+<li>Used for server-pool size regulation. Rather than making you guess how
+    many server processes you need, Apache dynamically adapts to the load it
+    sees. That is, it tries to maintain enough server processes to
+    handle the current load, plus a few spare servers to handle
+    transient load spikes (e.g., multiple simultaneous requests from a
+    single browser). It does this by periodically checking how many
+    servers are waiting for a request. If there are fewer than
+    <code>MinSpareServers</code>, it creates a new spare. If there are more than
+    <code>MaxSpareServers</code>, the superfluous spares are killed.</li>
+</ul>
+<p><code>MaxClients</code></p>
+<ul>
+<li>Limit on total number of servers running, i.e., limit on the number
+    of clients that can simultaneously connect. If this
+    limit is ever reached, clients will be <em>locked out</em>, so it should
+    <em>not be set too low</em>. It is intended mainly as a brake to keep a
+    runaway server from taking the system with it as it spirals down.</li>
+</ul>
+<p><strong>Note</strong>
+In most Red Hat derivates the Apache configuration is split into two
+subdirectories. The main configuration file <code>httpd.conf</code> is located in
+<code>/etc/httpd/conf</code>. The configuration of Apache modules is located in
+<code>/etc/httpd/conf.d</code>. Files in that directories with the suffix <code>.conf</code>
+are added to the Apache configuration during startup of Apache.</p>
+<h4 id="apache-virtual-hosting">Apache Virtual Hosting<a class="headerlink" href="#apache-virtual-hosting" title="Permanent link">&para;</a></h4>
+<p><em>Virtual Hosting</em> is a technique that provides the capability
+to host more than one domain on one <em>physical</em> host. There are
+two methods to implement virtual hosting:</p>
+<p><strong>Name-based virtual hosting</strong></p>
+<p>With name-based virtual hosting, the HTTP server relies on the client
+(e.g. the browser) to report the hostname as part of the HTTP request
+headers. By using name-based virtual hosting, one IP address may serve
+multiple websites for different web domains. In other words: Name-based
+virtual hosts use the website address from the URL to determine the
+correct virtual host to serve.</p>
+<p><strong>IP-based virtual hosting</strong></p>
+<p>Using IP-based virtual hosting, each configured web domain is committed
+to at least one IP address. Since most host systems can be configured
+with multiple IP addresses, one host can serve multiple web domains.
+Each web domain is configured to use a specific IP address or range of
+IP addresses. In other words: IP-based virtual hosts use the IP address
+of the TCP connection to determine the correct virtual host to serve.</p>
+<h4 id="name-based-virtual-hosting">Name-based virtual hosting<a class="headerlink" href="#name-based-virtual-hosting" title="Permanent link">&para;</a></h4>
+<p>Name-based virtual hosting is a fairly simple technique. You need to
+configure  your DNS server to map each domain name to the correct IP
+address first. Then, configure the Apache HTTP Server to recognize
+the different domain names and serve the appropriate websites.</p>
+<p>Name-based virtual hosting eases the demand for scarce IPv4 addresses.
+Therefore you could (or should) use name-based virtual hosting unless
+there is a specific reason to choose IP-based virtual hosting, see
+<a href="#IPBasedVirtualHosting">IP-based Virtual Hosting</a>.</p>
+<p>To use name-based virtual hosting, you must designate the IP address
+(and possibly port) on the server that will be accepting requests for
+the hosts. On Apache 2.x up to 2.4, this is configured using the
+<code>NameVirtualHost</code> directive. This <code>NameVirtualHost</code> directive is
+deprectated since Apache 2.4. Each <code>VirtualHost</code> also implies a
+<code>NameVirtualHost</code>, so defining a <code>VirtualHost</code> is sufficient from Apache 2.4
+on. Any available IP address can be used. There should be a balance
+between ease of configuration, use and administration on one hand, and
+security on the other. Using a wildcard as the listening IP address
+inside a <code>NameVirtualHost</code> or <code>VirtualHost</code> segment will enable
+the functionality of that specific configuration on all IP addresses
+specified by the <code>Listen</code> directive of Apache's main configuration
+file. If the main configuration file also uses a wildcard for the
+<code>Listen</code> option, this will result in the availability of the
+Apache HTTPD server on all configured IP addresses of the server. And
+therefore, the availability of the previously mentioned functionality on
+all of these IP addresses as well. Whether or not this is either
+preferable or imposes risk, depends on the circumstances. If the server
+is using multiple network interfaces and/or IP addresses, special care
+should be taken when configuring services. Every daemon exposing
+services to the network could contain code based or configuration based
+errors. These errors could be abused by someone with malicious
+intentions. By minimizing the so called network footprint of the server,
+the available attack surface is also minimized. Whether or not the
+additional configuration overhead of preventing wildcards is worth the
+effort, will always remain a trade off.</p>
+<ul>
+<li><code>Listen</code> can be used to specify the IP addresses and ports to which
+    an Apache listener should be opened in order to serve the configured
+    content.</li>
+</ul>
+<p>The <code>&lt;VirtualHost&gt;</code> directive is the next step to create for each
+different webdomain you would like to serve. The argument to the 
+<code>&lt;VirtualHost&gt;</code> directive should be the same as the argument to 
+the (pre-Apache 2.4) <code>NameVirtualHost</code> directive (i.e., an IP address
+or <code>*</code> for all addresses). Inside each <code>&lt;VirtualHost&gt;</code> block you will
+need, at minimum, a <code>ServerName</code> directive to designate which host is
+served and a <code>DocumentRoot</code> directive to point out where in the
+filesystem the content for that webdomain can be found.</p>
+<p>Suppose that both <code>www.domain.tld</code> and <code>www.otherdomain.tld</code> point to
+the IP address <code>111.22.33.44</code>. You could then add the following to
+<code>httpd.conf</code> or equivalent (included) configuration file:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span>NameVirtualHost<span class="w"> </span>111.22.33.44
+
+<span class="w">    </span><span class="nt">&lt;VirtualHost</span><span class="w"> </span><span class="err">111.22.33.44</span><span class="nt">&gt;</span>
+<span class="w">        </span>ServerName<span class="w"> </span>www.domain.tld
+<span class="w">        </span>DocumentRoot<span class="w"> </span>/www/domain
+<span class="w">    </span><span class="nt">&lt;/VirtualHost&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;VirtualHost</span><span class="w"> </span><span class="err">111.22.33.44</span><span class="nt">&gt;</span>
+<span class="w">        </span>ServerName<span class="w"> </span>www.otherdomain.tld
+<span class="w">        </span>DocumentRoot<span class="w"> </span>/www/otherdomain
+<span class="w">    </span><span class="nt">&lt;/VirtualHost&gt;</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The IP address <code>111.22.44.33</code> could be replaced by <code>*</code> to match all IP
+addresses for this server. The implications of using wildcards in this
+way have been addressed above.</p>
+<p>Many websites should be accessible by more than one name. For instance,
+the organization behind <code>domain.tld</code> wants to facilitate
+<code>blog.domain.tld</code>. There are multiple ways to implement this
+functionality, but one of them uses the <code>ServerAlias</code> directive. The
+<code>ServerAlias</code> directive is declared inside the \&lt;VirtualHost&gt; section.</p>
+<p>If, for example, you add the following to the first \&lt;VirtualHost&gt;
+block above</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    ServerAlias domain.tld *.domain.tld
+</code></pre></div></td></tr></table></div>
+
+<p>then requests for all hosts in the <code>domain.tld</code> domain will be served by
+the <code>www.domain.tld</code> virtual host. The wildcard characters <code>*</code> and <code>?</code>
+can be used to match names.</p>
+<p>Of course, you can't just make up names and place them in <code>ServerName</code>
+or <code>ServerAlias</code>. The DNS system must be properly configured
+to map those names to the IP address(es) declared in the
+<code>NameVirtualHost</code> directive.</p>
+<p>Finally, you can fine-tune the configuration of the virtual hosts by
+placing other directives inside the <code>&lt;VirtualHost&gt;</code> containers. Most
+directives can be placed in these containers and will then change the
+configuration only of the relevant virtual host. Configuration
+directives set in the main server context (outside any <code>&lt;VirtualHost&gt;</code>
+container) will be used only if they are not overridden by the virtual
+host settings.</p>
+<p>Now when a request arrives, the server will first check if it is
+requesting an IP address that matches the <code>NameVirtualHost</code>. If it is,
+then it will look at each <code>&lt;VirtualHost&gt;</code> section with a matching IP
+address and try to find one where the <code>ServerName</code> or <code>ServerAlias</code>
+matches the requested hostname. If it finds one, it then uses the
+corresponding configuration for that server. If no matching virtual host
+is found, then the first listed virtual host that matches the IP address
+will be used.</p>
+<p>As a consequence, the first listed virtual host is the default virtual
+host. The <code>DocumentRoot</code> from the main server will never be used when an
+IP address matches the <code>NameVirtualHost</code> directive. If you would like to
+have a special configuration for requests that do not match any
+particular virtual host, put that configuration in a <code>&lt;VirtualHost&gt;</code>
+container and place it before any other <code>&lt;VirtualHost&gt;</code> container
+specification in the Apache configuration.</p>
+<h4 id="ip-based-virtual-hosting">IP-based virtual hosting<a class="headerlink" href="#ip-based-virtual-hosting" title="Permanent link">&para;</a></h4>
+<p>Despite the advantages of name-based virtual hosting, there are some
+reasons why you might consider using IP-based virtual hosting instead.
+These are niche scenarios though:</p>
+<ul>
+<li>
+<p>Some older or exotic web clients are not compatible with name-based
+    virtual hosting for HTTP or HTTPS. HTTPS name-based virtual hosting
+    is implemented using an extension to the TLS protocol called Server
+    Name Indicator (SNI). Most modern browsers on modern operating
+    systems should support SNI at the time of this writing.</p>
+</li>
+<li>
+<p>Some operating systems and network equipment devices implement
+    bandwidth management techniques that cannot differentiate between
+    hosts unless they are on separate IP addresses.</p>
+</li>
+</ul>
+<p>As the term <em>IP-based</em> indicates, the server must have a different IP
+address for each IP-based virtual host. This can be achieved by
+equipping the machine with several physical network connections or by
+using virtual interfaces. Virtual interfaces are supported by most
+modern operating systems (refer to the system documentation for details
+on IP aliasing and the <code>ifconfig</code> or <code>ip</code> command).</p>
+<p>There are two ways of running the Apache HTTP server to support multiple
+hosts:</p>
+<ul>
+<li>
+<p>By running a separate <code>httpd</code> daemon for each hostname;</p>
+</li>
+<li>
+<p>By running a single daemon that supports all the virtual hosts.</p>
+</li>
+</ul>
+<p>Use multiple daemons when:</p>
+<ul>
+<li>
+<p>There are security issues, e.g., if you want to maintain strict
+    separation between the web-pages for separate customers. In this
+    case you would need one daemon per customer, each running with
+    different <code>User</code>, <code>Group</code>, <code>Listen</code> and <code>ServerRoot</code> settings;</p>
+</li>
+<li>
+<p>You can afford the memory and file descriptor requirements of
+    listening to every IP alias on the machine. It is only possible to
+    <code>Listen</code> to the "wildcard" address, or to specific IP addresses. So,
+    if you need to restrict one webdomain to a specific IP address, all
+    other webdomains need to be configured to use specific IP addresses
+    as well.</p>
+</li>
+</ul>
+<p>Use a single daemon when:</p>
+<ul>
+<li>
+<p>Sharing of the <code>httpd</code> configuration between virtual hosts is
+    acceptable;</p>
+</li>
+<li>
+<p>The machine serves a large number of requests, and so the
+    performance loss in running separate daemons may be significant.</p>
+</li>
+</ul>
+<h4 id="setting-up-multiple-daemons">Setting up multiple daemons<a class="headerlink" href="#setting-up-multiple-daemons" title="Permanent link">&para;</a></h4>
+<p>Create a separate <code>httpd</code> installation for each virtual host. For each
+installation, use the <code>Listen</code> directive in the configuration file to
+select which IP address (or virtual host) that daemon services:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    Listen 123.45.67.89:80
+</code></pre></div></td></tr></table></div>
+
+<p>The <code>Listen</code> directive may be defined as an IP:PORT combination
+seperated by colons as above. Another option is to specify only the port
+number. By doing so, the Apache server will default to activating
+listeners on all configured IP addresses on the specified port(s):</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>    Listen 80
+    Listen 443
+</code></pre></div></td></tr></table></div>
+
+<p>The above <code>Listen</code> configuration could also be defined using <code>0.0.0.0</code>
+as the IP address, again using the colon as a seperator.</p>
+<p>Another option of the <code>Listen</code> directive enables the exact specification
+of the protocol. In the previous example, port 80 and 443 are used. By
+default, Port 80 is configured for HTTP and port 443 for HTTPS in
+Apache. This configuration could be expanded by another HTTPS website on
+port 8443::</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>    Listen 80
+    Listen 443
+    Listen 8443 https
+</code></pre></div></td></tr></table></div>
+
+<p>When configuring one or more Apache daemons, the <code>Listen</code> directive may
+be used to specify one or more ports above 1024. This will prevent the
+necessity of root privileges for that daemon, if no other ports below
+1025 are specified. Unless certain key or certificate files which are
+only accessible with root privileges are included in the configuration.
+You will read more about this on the next page of this book.</p>
+<p>As of Apache 2.4, the <code>Listen</code> directive is mandatory and should be
+specified. Previous versions of Apache would default to port 80 for HTTP
+and 443 for HTTPS on all available IP addresses if no <code>Listen</code> directive was specified. Starting with Apache 2.4, the
+Apache server will fail to start if no valid <code>Listen</code> directive is
+specified.</p>
+<h4 id="setting-up-a-single-daemon">Setting up a single daemon<a class="headerlink" href="#setting-up-a-single-daemon" title="Permanent link">&para;</a></h4>
+<p>For this case, a single <code>httpd</code> will service requests for the main
+server and all the virtual hosts. The <code>VirtualHost</code> directive in the
+configuration file is used to set the values of <code>ServerAdmin</code>,
+<code>ServerName</code>, <code>DocumentRoot</code>, <code>ErrorLog</code> and <code>TransferLog</code> or <code>CustomLog</code>
+configuration directives to different values for each virtual host.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="nt">&lt;VirtualHost</span><span class="w"> </span><span class="err">www.sue.nl</span><span class="nt">&gt;</span>
+<span class="w">        </span>ServerAdmin<span class="w"> </span>webmaster@mail.sue.nl
+<span class="w">        </span>DocumentRoot<span class="w"> </span>/groups/sue/www
+<span class="w">        </span>ServerName<span class="w"> </span>www.sue.nl
+<span class="w">        </span>ErrorLog<span class="w"> </span>/groups/sue/logs/error_log
+<span class="w">        </span>TransferLog<span class="w"> </span>/groups/sue/logs/access_log
+<span class="w">    </span><span class="nt">&lt;/VirtualHost&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;VirtualHost</span><span class="w"> </span><span class="err">www.unix.nl</span><span class="nt">&gt;</span>
+<span class="w">        </span>ServerAdmin<span class="w"> </span>webmaster@mail.unix.nl
+<span class="w">        </span>DocumentRoot<span class="w"> </span>/groups/unix_nl/www
+<span class="w">        </span>ServerName<span class="w"> </span>www.unix.nl
+<span class="w">        </span>ErrorLog<span class="w"> </span>/groups/unix_nl/logs/error_log
+<span class="w">        </span>TransferLog<span class="w"> </span>/groups/unix_nl/logs/access_log
+<span class="w">    </span><span class="nt">&lt;/VirtualHost&gt;</span>
+</code></pre></div></td></tr></table></div>
+
+<h4 id="redirective">Customizing file access<a class="headerlink" href="#redirective" title="Permanent link">&para;</a></h4>
+<p><code>Redirect</code> allows you to tell clients about documents
+which used to exist in your server's namespace, but do not anymore.
+This allows you to tell the clients where to look for the relocated
+document.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    Redirect {old-URI} {new-URI}
+</code></pre></div></td></tr></table></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 1997-2021 Sue B.V., The Netherlands - Open Sourced 2021
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["search.highlight", "tabs", "instant"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

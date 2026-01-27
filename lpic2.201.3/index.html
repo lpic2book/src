@@ -1,0 +1,3862 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Sue B.V., The Netherlands">
+      
+      
+      
+        <link rel="prev" href="../lpic2.201.2/">
+      
+      
+        <link rel="next" href="../lpic2.202.0/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Kernel runtime management and troubleshooting (201.3) - The LPIC2 Exam Prep</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:300,300i,400,400i,700,700i%7CAnonymous+Pro:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Nunito";--md-code-font:"Anonymous Pro"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#kernel-runtime-management-and-troubleshooting-2013" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="The LPIC2 Exam Prep" class="md-header__button md-logo" aria-label="The LPIC2 Exam Prep" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            The LPIC2 Exam Prep
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Kernel runtime management and troubleshooting (201.3)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/lpic2book/src" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    LPIC2Book
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="The LPIC2 Exam Prep" class="md-nav__button md-logo" aria-label="The LPIC2 Exam Prep" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/></svg>
+
+    </a>
+    The LPIC2 Exam Prep
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/lpic2book/src" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    LPIC2Book
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The LPIC2 Exam Prep
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpicbook_about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About this book
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    200 Capacity Planning (200)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Measure and Troubleshoot Resource Usage (200.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Predict Future Resource Needs (200.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Kernel (201)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel Components (201.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compiling a Linux kernel (201.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel runtime management and troubleshooting (201.3)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel runtime management and troubleshooting (201.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#key-knowledge-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Knowledge Areas:
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manipulating-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manipulating modules
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Manipulating modules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#insmod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        insmod
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rmmod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        rmmod
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modprobe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        modprobe
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modinfo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        modinfo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring modules
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring modules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#etcmodulesconf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /etc/modules.conf
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#module-dependency-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Module Dependency File
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#depmod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        depmod
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#building-a-custom-kernel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Building A Custom Kernel
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proc-filesystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /proc filesystem
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tools-and-utilities-to-trace-software-and-their-system-and-library-calls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tools and utilities to trace software and their system and library calls
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tools and utilities to trace software and their system and library calls">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#strace-trace-system-calls-and-signals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        strace - trace system calls and signals
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        strings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ltrace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ltrace
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-boot-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The boot process
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The boot process">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#procmounts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /proc/mounts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boot-option" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        boot option
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hardware-and-kernel-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hardware and Kernel Information
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hardware and Kernel Information">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uname" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        uname
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#procstyskernel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /proc/stys/kernel
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lspci" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lspci
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lsusb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lsusb
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lsdev" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lsdev
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sysctl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sysctl
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kernel-runtime-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kernel Runtime Management
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kernel Runtime Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#udev" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        udev
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Startup (202)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customizing system startup (202.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System recovery (202.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Alternate Bootloaders (202.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Filesystem and Devices (203)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operating The Linux Filesystem (203.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maintaining a Linux Filesystem (203.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Creating And Configuring Filesystem Options (203.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Storage Device Administration (204)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring RAID (204.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adjusting Storage Device Access (204.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logical Volume Manager (204.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring PCMCIA Devices (204.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Networking Configuration (205)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Networking Configuration (205.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Network Configuration and Troubleshooting (205.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting network issues (205.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Maintenance (206)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Make and install programs from source (206.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup Operations (206.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifying users on system-related issues (206.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domain Name Server (207)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic DNS server configuration (207.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Create and maintain DNS zones (207.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Securing a DNS Server (207.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTTP Services (208)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Apache Configuration (208.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Apache configuration for HTTPS (208.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementing Squid as a caching proxy (208.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementing Nginx as a web server and a reverse proxy (208.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File Sharing (209)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAMBA Server Configuration (209.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring an NFS Server (209.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Client Management (210)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DHCP Configuration (210.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PAM authentication (210.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LDAP client usage (210.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring an OpenLDAP server (210.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    E-Mail services (211)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using e-mail servers (211.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing E-Mail Delivery (211.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing Mailbox Access (211.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Security (212)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring a router (212.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing FTP servers (212.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secure shell (SSH) (212.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security tasks (212.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenVPN (212.5)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#key-knowledge-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Knowledge Areas:
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manipulating-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manipulating modules
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Manipulating modules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#insmod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        insmod
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rmmod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        rmmod
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modprobe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        modprobe
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modinfo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        modinfo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring modules
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring modules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#etcmodulesconf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /etc/modules.conf
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#module-dependency-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Module Dependency File
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#depmod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        depmod
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#building-a-custom-kernel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Building A Custom Kernel
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proc-filesystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /proc filesystem
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tools-and-utilities-to-trace-software-and-their-system-and-library-calls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tools and utilities to trace software and their system and library calls
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tools and utilities to trace software and their system and library calls">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#strace-trace-system-calls-and-signals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        strace - trace system calls and signals
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        strings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ltrace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ltrace
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-boot-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The boot process
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The boot process">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#procmounts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /proc/mounts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boot-option" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        boot option
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hardware-and-kernel-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hardware and Kernel Information
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hardware and Kernel Information">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uname" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        uname
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#procstyskernel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /proc/stys/kernel
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lspci" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lspci
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lsusb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lsusb
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lsdev" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lsdev
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sysctl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sysctl
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kernel-runtime-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kernel Runtime Management
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kernel Runtime Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#udev" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        udev
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="kernel-runtime-management-and-troubleshooting-2013">Kernel runtime management and troubleshooting (201.3)<a class="headerlink" href="#kernel-runtime-management-and-troubleshooting-2013" title="Permanent link">&para;</a></h1>
+<p>Candidates should be able to manage and/or query a 2.6.x, 3.x or 4.x
+kernel and its loadable modules. Candidates should be able to identify
+and correct common boot and run time issues. Candidates should
+understand device detection and management using udev. This objective
+includes troubleshooting udev rules.</p>
+<h2 id="key-knowledge-areas">Key Knowledge Areas:<a class="headerlink" href="#key-knowledge-areas" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Use command-line utilities to get information about the currently
+    running kernel and kernel modules.</p>
+</li>
+<li>
+<p>Manually load and unload kernel modules.</p>
+</li>
+<li>
+<p>Determine when modules can be unloaded.</p>
+</li>
+<li>
+<p>Determine what parameters a module accepts.</p>
+</li>
+<li>
+<p>Configure the system to load modules by names other than their file
+    name.</p>
+</li>
+<li>
+<p>/proc filesystem</p>
+</li>
+<li>
+<p>Content of /, /boot , and /lib/modules</p>
+</li>
+<li>
+<p>Tools and utilities to analyse information about the available
+    hardware</p>
+</li>
+<li>
+<p>udev rules</p>
+</li>
+</ul>
+<p>The following is a partial list of used files, terms, and utilities:</p>
+<ul>
+<li>
+<p><code>/lib/modules/kernel-version/modules.dep</code></p>
+</li>
+<li>
+<p>module configuration files in <code>/etc</code></p>
+</li>
+<li>
+<p><code>/proc/sys/kernel/</code></p>
+</li>
+<li>
+<p><code>/sbin/depmod</code></p>
+</li>
+<li>
+<p><code>/sbin/rmmod</code></p>
+</li>
+<li>
+<p><code>/sbin/modinfo</code></p>
+</li>
+<li>
+<p><code>/bin/dmesg</code></p>
+</li>
+<li>
+<p><code>/sbin/lspci</code></p>
+</li>
+<li>
+<p><code>/usr/bin/lsdev</code></p>
+</li>
+<li>
+<p><code>/sbin/lsmod</code></p>
+</li>
+<li>
+<p><code>/sbin/modprobe</code></p>
+</li>
+<li>
+<p><code>/sbin/insmod</code></p>
+</li>
+<li>
+<p><code>/bin/uname</code></p>
+</li>
+<li>
+<p><code>/usr/bin/lsusb</code></p>
+</li>
+<li>
+<p><code>/etc/sysctl.conf</code>, <code>/etc/sysctl.d/</code></p>
+</li>
+<li>
+<p><code>/sbin/sysctl</code></p>
+</li>
+<li>
+<p>udevmonitor</p>
+</li>
+<li>
+<p><code>udevadm</code> monitor</p>
+</li>
+<li>
+<p><code>/etc/udev</code></p>
+</li>
+</ul>
+<p>Customise, build and install a custom kernel and kernel modules {#UsingKernelModules}</p>
+<p>kernel modules</p>
+<p>In the paragraph <a href="#WhatAreKernelModules">???</a> you have learned what
+kernel modules are. There are various utilities and configuration files
+associated with these modules. This paragraph will explain how you can
+use these to manage a running kernel and it's modules.</p>
+<h2 id="manipulating-modules">Manipulating modules<a class="headerlink" href="#manipulating-modules" title="Permanent link">&para;</a></h2>
+<p>For each kernel module loaded, display its name, size, use count and a
+list of other referring modules. This command yields the same
+information as is available in <code>/proc/modules</code>. On a particular laptop,
+for instance, the command <code>/sbin/lsmod</code> reports:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="n">Module</span><span class="w">      </span><span class="n">Size</span><span class="w">   </span><span class="n">Used</span><span class="w"> </span><span class="n">by</span>
+<span class="w">    </span><span class="n">serial_cb</span><span class="w">   </span><span class="mi">1120</span><span class="w">   </span><span class="mi">1</span>
+<span class="w">    </span><span class="n">tulip_cb</span><span class="w">    </span><span class="mi">31968</span><span class="w">  </span><span class="mi">2</span>
+<span class="w">    </span><span class="n">cb_enabler</span><span class="w">  </span><span class="mi">2512</span><span class="w">   </span><span class="mi">4</span><span class="w"> </span><span class="p">[</span><span class="n">serial_cb</span><span class="w"> </span><span class="n">tulip_cb</span><span class="p">]</span>
+<span class="w">    </span><span class="n">ds</span><span class="w">          </span><span class="mi">6384</span><span class="w">   </span><span class="mi">2</span><span class="w"> </span><span class="p">[</span><span class="n">cb_enabler</span><span class="p">]</span>
+<span class="w">    </span><span class="n">i82365</span><span class="w">      </span><span class="mi">22384</span><span class="w">  </span><span class="mi">2</span>
+<span class="w">    </span><span class="n">pcmcia_core</span><span class="w"> </span><span class="mi">50080</span><span class="w">  </span><span class="mi">0</span><span class="w"> </span><span class="p">[</span><span class="n">cb_enabler</span><span class="w"> </span><span class="n">ds</span><span class="w"> </span><span class="n">i82365</span><span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The format is name, size, use count, list of referring modules. If the
+module controls its own unloading via a "can_unload" routine, then the
+user count displayed by lsmod is always -1, irrespective of the real use
+count.</p>
+<h3 id="insmod">insmod<a class="headerlink" href="#insmod" title="Permanent link">&para;</a></h3>
+<p>Insert a module into the running kernel. The module is located
+automatically and inserted. You must be logged in as superuser to insert
+modules. It is generally recommended to use <code>modprobe</code> instead, since
+<code>insmod</code> only returns very general error codes and <code>modprobe</code> is more
+specific about errors. Also, you will need to pass the complete filename
+to <code>insmod</code>, whereas <code>modprobe</code> will work with just the module name.</p>
+<p>-s</p>
+<ul>
+<li>Write results to syslog instead of the terminal.</li>
+</ul>
+<p>-v</p>
+<ul>
+<li>Set verbose mode.</li>
+</ul>
+<p>Suppose the kernel was compiled with modular support for a specific scsi
+card. To verify that this specific module exists, in this case
+<code>sym53c8xx.ko</code> exists, look for the file <code>sym53c8xx.ko</code> in the
+<code>/lib/modules/kernel-version/kernel/drivers/scsi/</code> directory:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>    # insmod sym53c8xx.ko
+    # echo $?
+    0
+</code></pre></div></td></tr></table></div>
+
+<p>Modules can depend on other modules. In this example all the
+prerequisite modules had been loaded before, so this specific module
+loaded successfully. However, <code>insmod</code> does not know about
+prerequisites, it simply loads whatever you tell it to load. This may go
+wrong if there are missing prerequisites:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>    # insmod snd-ens1371.ko
+    insmod: error inserting &#39;snd-ens1371.ko&#39;: -1 Unknown symbol in module
+    # echo $?
+    1
+</code></pre></div></td></tr></table></div>
+
+<p>The message indicates that the module requires a function or variable
+that is missing from the current kernel. This is usually caused by not
+having the prerequisite module(s) loaded or compiled into the kernel.</p>
+<h3 id="rmmod">rmmod<a class="headerlink" href="#rmmod" title="Permanent link">&para;</a></h3>
+<p><code>device or resource busy</code></p>
+<p>Unless a module is in use or referred to by another module, the module
+is removed from the running kernel. You must be logged in as the
+superuser to remove modules.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>    # rmmod snd_ac97_codec
+    ERROR: Module snd_ac97_codec is in use by snd_ens1371
+    # echo $?
+    1
+</code></pre></div></td></tr></table></div>
+
+<p>In this example the module could not be unloaded because it was in use,
+in this case by the <code>snd_ens1371</code> module. The solution is to remove the
+<code>snd_ens1371</code> module first:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>    # rmmod snd_ens1371
+    # rmmod snd_ac97_codec
+    # echo $?
+    0
+</code></pre></div></td></tr></table></div>
+
+<p>Issue the command <code>lsmod</code> to verify that the modules have indeed been
+removed from the running kernel.</p>
+<h3 id="modprobe">modprobe<a class="headerlink" href="#modprobe" title="Permanent link">&para;</a></h3>
+<p>Like <code>insmod</code>, <code>modprobe</code> is used to insert modules. However, <code>modprobe</code>
+has the ability to load single modules, modules and their prerequisites,
+or all modules stored in a specific directory. The <code>modprobe</code> command
+can also remove modules when combined with the <code>-r</code> option. It also is
+more specific in it's error messages than <code>insmod</code>.</p>
+<p>Modules can be inserted with optional <code>symbol=value</code> parameters such as
+<code>irq=5</code> or <code>dma=3</code>. Such parameters can be specified on the command line or by
+specifying them in the module configuration file, which will be
+explained later. If the module is dependent upon other modules these
+will be loaded first. The <code>modprobe</code> command determines prerequisite
+relationships between modules by reading the file <code>modules.dep</code> at the
+top of the module directory hierarchy, for instance
+<code>/lib/modules/2.6.31/modules.dep</code>. You must be logged in as the
+superuser to insert modules.</p>
+<p>-a</p>
+<ul>
+<li>Load all modules. When used with the -t tag, "all" is restricted to
+    modules in the tag directory. This action probes hardware by
+    successive module-insertion attempts for a single type of hardware,
+    such as a network adapter. This may be necessary, for example, to
+    probe for more than one kind of network interface.</li>
+</ul>
+<p>-c</p>
+<ul>
+<li>Display a complete module configuration, including defaults and
+    directives found in <code>/etc/modules.conf</code> (or <code>/etc/conf.modules</code>,
+    depending on your version of module utilities.) The <code>-c</code> option is
+    not used with any other options.</li>
+</ul>
+<p>-l</p>
+<ul>
+<li>List modules. When used with the -t tag, list only modules in
+    directory tag.</li>
+</ul>
+<p>-r</p>
+<ul>
+<li>Remove module, similar to <code>rmmod</code>. Multiple modules may be
+    specified.</li>
+</ul>
+<p>-s</p>
+<ul>
+<li>Display results in <code>syslog</code> instead of on the terminal.</li>
+</ul>
+<p><code>-t tag</code></p>
+<ul>
+<li>Attempt to load multiple modules found in the directory <code>tag</code> until
+    a module succeeds or all modules in tag are exhausted. This action
+    probes hardware by successive module-insertion attempts for a single
+    type of hardware, such as a network adapter.</li>
+</ul>
+<p><code>-v</code></p>
+<ul>
+<li>Set verbose mode.</li>
+</ul>
+<p>Loading sound modules using <code>modprobe</code>.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="p">#</span><span class="w"> </span><span class="n">modprobe</span><span class="w"> </span><span class="n">snd_ens1371</span>
+<span class="w">    </span><span class="p">#</span><span class="w"> </span><span class="n">echo</span><span class="w"> </span><span class="err">$?</span>
+<span class="w">    </span><span class="mi">0</span>
+<span class="w">    </span><span class="p">#</span><span class="w"> </span><span class="n">lsmod</span>
+<span class="w">    </span><span class="k">Module</span><span class="w">                  </span><span class="nn">Size</span><span class="w">  </span><span class="n">Used</span><span class="w"> </span><span class="n">by</span>
+<span class="w">    </span><span class="n">snd_ens1371</span><span class="w">            </span><span class="mi">20704</span><span class="w">  </span><span class="mi">0</span>
+<span class="w">    </span><span class="n">snd_rawmidi</span><span class="w">            </span><span class="mi">22448</span><span class="w">  </span><span class="mi">1</span><span class="w"> </span><span class="n">snd_ens1371</span>
+<span class="w">    </span><span class="n">snd_seq_device</span><span class="w">          </span><span class="mi">7436</span><span class="w">  </span><span class="mi">1</span><span class="w"> </span><span class="n">snd_rawmidi</span>
+<span class="w">    </span><span class="n">snd_ac97_codec</span><span class="w">        </span><span class="mi">112280</span><span class="w">  </span><span class="mi">1</span><span class="w"> </span><span class="n">snd_ens1371</span>
+<span class="w">    </span><span class="n">ac97_bus</span><span class="w">                </span><span class="mi">1992</span><span class="w">  </span><span class="mi">1</span><span class="w"> </span><span class="n">snd_ac97_codec</span>
+<span class="w">    </span><span class="n">snd_pcm</span><span class="w">                </span><span class="mi">72016</span><span class="w">  </span><span class="mi">2</span><span class="w"> </span><span class="n">snd_ens1371</span><span class="p">,</span><span class="n">snd_ac97_codec</span>
+<span class="w">    </span><span class="n">snd_timer</span><span class="w">              </span><span class="mi">21256</span><span class="w">  </span><span class="mi">1</span><span class="w"> </span><span class="n">snd_pcm</span>
+<span class="w">    </span><span class="n">snd</span><span class="w">                    </span><span class="mi">62392</span><span class="w">  </span><span class="mi">6</span><span class="w"> </span><span class="n">snd_ens1371</span><span class="p">,</span><span class="n">snd_rawmidi</span><span class="p">,</span><span class="n">snd_seq_device</span><span class="p">,</span><span class="n">snd_ac97_codec</span><span class="p">,</span><span class="n">snd_pcm</span><span class="p">,</span><span class="n">snd_timer</span>
+<span class="w">    </span><span class="n">soundcore</span><span class="w">               </span><span class="mi">7952</span><span class="w">  </span><span class="mi">1</span><span class="w"> </span><span class="n">snd</span>
+<span class="w">    </span><span class="n">snd_page_alloc</span><span class="w">          </span><span class="mi">9528</span><span class="w">  </span><span class="mi">1</span><span class="w"> </span><span class="n">snd_pcm</span>
+</code></pre></div></td></tr></table></div>
+
+<p>All prerequisite modules for snd_ens1371 have been loaded. To remove
+both snd_ac97_codec and snd_ens1371 modules, use
+<code>modprobe -r snd_ac97_codec</code>.</p>
+<p>Module configuration is handled in the file <code>/etc/modules.conf</code>. If this
+file does not exist the <code>modprobe</code> utility will try to read the
+<code>/etc/conf.modules</code> instead. The latter file is the historical name and
+is deprecated. It should be replaced by <code>/etc/modules.conf</code>.</p>
+<p><strong>Note</strong>
+On some systems this file is called <code>/etc/modprobe.conf</code> or there are
+configuration files in a directory called <code>/etc/modprobe.d</code>.</p>
+<p>More information on module configuration is given in the section on
+<a href="#confmods">configuring modules</a>.</p>
+<h3 id="modinfo">modinfo<a class="headerlink" href="#modinfo" title="Permanent link">&para;</a></h3>
+<p>Display information about a module from its <code>module-object-file</code>. Some
+modules contain no information at all, some have a short one-line
+description, others have a fairly descriptive message.</p>
+<p>-a, --author</p>
+<ul>
+<li>Display the module's author.</li>
+</ul>
+<p>-d, --description</p>
+<ul>
+<li>Display the module's description.</li>
+</ul>
+<p>-n, --filename</p>
+<ul>
+<li>Display the module's filename.</li>
+</ul>
+<p><code>-fformat_string</code>, <code>--format 
+              format_string</code></p>
+<ul>
+<li>Let's the user specify an arbitrary format string which can extract
+    values from the ELF section in module_file which contains the
+    module information. Replacements consist of a percent sign followed
+    by a tag name in curly braces. A tag name of %{filename} is always
+    supported, even if the module has no modinfo section.</li>
+</ul>
+<p><code>-p</code>, <code>--parameters</code></p>
+<ul>
+<li>Display the typed parameters that a module may support.</li>
+</ul>
+<p><code>-h</code>, <code>--help</code></p>
+<ul>
+<li>Display a small usage screen.</li>
+</ul>
+<p><code>-V</code>, <code>--version</code></p>
+<ul>
+<li>Display the version of <code>modinfo</code>.</li>
+</ul>
+<p>What information can be retrieved from the snd-ens1371 module:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="c1"># modinfo snd_ens1371</span>
+<span class="w">    </span><span class="n">filename</span><span class="p">:</span><span class="w">       </span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">modules</span><span class="o">/</span><span class="mf">2.6</span><span class="o">.</span><span class="mi">31</span><span class="o">/</span><span class="n">kernel</span><span class="o">/</span><span class="n">sound</span><span class="o">/</span><span class="n">pci</span><span class="o">/</span><span class="n">snd</span><span class="o">-</span><span class="n">ens1371</span><span class="o">.</span><span class="n">ko</span>
+<span class="w">    </span><span class="n">description</span><span class="p">:</span><span class="w">    </span><span class="n">Ensoniq</span><span class="o">/</span><span class="n">Creative</span><span class="w"> </span><span class="n">AudioPCI</span><span class="w"> </span><span class="n">ES1371</span><span class="o">+</span>
+<span class="w">    </span><span class="n">license</span><span class="p">:</span><span class="w">        </span><span class="n">GPL</span>
+<span class="w">    </span><span class="n">author</span><span class="p">:</span><span class="w">         </span><span class="n">Jaroslav</span><span class="w"> </span><span class="n">Kysela</span><span class="w"> </span><span class="o">&lt;</span><span class="n">perex</span><span class="err">@</span><span class="n">perex</span><span class="o">.</span><span class="n">cz</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">Thomas</span><span class="w"> </span><span class="n">Sailer</span><span class="w"> </span><span class="o">&lt;</span><span class="n">sailer</span><span class="err">@</span><span class="n">ife</span><span class="o">.</span><span class="n">ee</span><span class="o">.</span><span class="n">ethz</span><span class="o">.</span><span class="n">ch</span><span class="o">&gt;</span>
+<span class="w">    </span><span class="n">alias</span><span class="p">:</span><span class="w">          </span><span class="n">pci</span><span class="p">:</span><span class="n">v00001102d00008938sv</span><span class="o">*</span><span class="n">sd</span><span class="o">*</span><span class="n">bc</span><span class="o">*</span><span class="n">sc</span><span class="o">*</span><span class="n">i</span><span class="o">*</span>
+<span class="w">    </span><span class="n">alias</span><span class="p">:</span><span class="w">          </span><span class="n">pci</span><span class="p">:</span><span class="n">v00001274d00005880sv</span><span class="o">*</span><span class="n">sd</span><span class="o">*</span><span class="n">bc</span><span class="o">*</span><span class="n">sc</span><span class="o">*</span><span class="n">i</span><span class="o">*</span>
+<span class="w">    </span><span class="n">alias</span><span class="p">:</span><span class="w">          </span><span class="n">pci</span><span class="p">:</span><span class="n">v00001274d00001371sv</span><span class="o">*</span><span class="n">sd</span><span class="o">*</span><span class="n">bc</span><span class="o">*</span><span class="n">sc</span><span class="o">*</span><span class="n">i</span><span class="o">*</span>
+<span class="w">    </span><span class="n">depends</span><span class="p">:</span><span class="w">        </span><span class="n">snd</span><span class="o">-</span><span class="n">pcm</span><span class="p">,</span><span class="n">snd</span><span class="p">,</span><span class="n">snd</span><span class="o">-</span><span class="n">rawmidi</span><span class="p">,</span><span class="n">snd</span><span class="o">-</span><span class="n">ac97</span><span class="o">-</span><span class="n">codec</span>
+<span class="w">    </span><span class="n">vermagic</span><span class="p">:</span><span class="w">       </span><span class="mf">2.6</span><span class="o">.</span><span class="mi">31</span><span class="o">-</span><span class="n">gentoo</span><span class="o">-</span><span class="n">r10</span><span class="w"> </span><span class="n">SMP</span><span class="w"> </span><span class="n">mod_unload</span><span class="w"> </span><span class="n">modversions</span>
+<span class="w">    </span><span class="n">parm</span><span class="p">:</span><span class="w">           </span><span class="n">index</span><span class="p">:</span><span class="n">Index</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">Ensoniq</span><span class="w"> </span><span class="n">AudioPCI</span><span class="w"> </span><span class="n">soundcard</span><span class="o">.</span><span class="w"> </span><span class="p">(</span><span class="n">array</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="nb nb-Type">int</span><span class="p">)</span>
+<span class="w">    </span><span class="n">parm</span><span class="p">:</span><span class="w">           </span><span class="n">id</span><span class="p">:</span><span class="n">ID</span><span class="w"> </span><span class="n">string</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">Ensoniq</span><span class="w"> </span><span class="n">AudioPCI</span><span class="w"> </span><span class="n">soundcard</span><span class="o">.</span><span class="w"> </span><span class="p">(</span><span class="n">array</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">charp</span><span class="p">)</span>
+<span class="w">    </span><span class="n">parm</span><span class="p">:</span><span class="w">           </span><span class="n">enable</span><span class="p">:</span><span class="n">Enable</span><span class="w"> </span><span class="n">Ensoniq</span><span class="w"> </span><span class="n">AudioPCI</span><span class="w"> </span><span class="n">soundcard</span><span class="o">.</span><span class="w"> </span><span class="p">(</span><span class="n">array</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="nb nb-Type">bool</span><span class="p">)</span>
+<span class="w">    </span><span class="n">parm</span><span class="p">:</span><span class="w">           </span><span class="n">spdif</span><span class="p">:</span><span class="n">S</span><span class="o">/</span><span class="n">PDIF</span><span class="w"> </span><span class="n">output</span><span class="w"> </span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">none</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">auto</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">force</span><span class="p">)</span><span class="o">.</span><span class="w"> </span><span class="p">(</span><span class="n">array</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="nb nb-Type">int</span><span class="p">)</span>
+<span class="w">    </span><span class="n">parm</span><span class="p">:</span><span class="w">           </span><span class="n">lineio</span><span class="p">:</span><span class="n">Line</span><span class="w"> </span><span class="n">In</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">Rear</span><span class="w"> </span><span class="n">Out</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">auto</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">force</span><span class="p">)</span><span class="o">.</span><span class="w"> </span><span class="p">(</span><span class="n">array</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="nb nb-Type">int</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+
+<h2 id="configuring-modules">Configuring modules<a class="headerlink" href="#configuring-modules" title="Permanent link">&para;</a></h2>
+<h3 id="etcmodulesconf">/etc/modules.conf<a class="headerlink" href="#etcmodulesconf" title="Permanent link">&para;</a></h3>
+<p>You may sometimes need to control assignments of the resources a module
+uses, such as hardware interrupts or Direct Memory Access (DMA)
+channels. Other situations may dictate special procedures to prepare
+for, or to clean up after, module insertion or removal. This type of
+special control of modules is configured in the file
+<code>/etc/modules.conf</code>.</p>
+<p><code>keep</code></p>
+<ul>
+<li>kernel modules keep The keep directive, when found before any path
+    directives, causes the default paths to be retained and added to any
+    paths specified.</li>
+</ul>
+<p><code>depfile=</code><em>full_path</em></p>
+<ul>
+<li>kernel modules depfile= This directive overrides the default
+    location for the modules dependency file, <code>modules.dep</code> which will
+    be described in the next section.</li>
+</ul>
+<p><code>path=</code><em>path</em></p>
+<ul>
+<li>kernel modules path= This directive specifies an additional
+    directory to search for modules.</li>
+</ul>
+<p><code>options</code> <em>modulename module-specific-options</em></p>
+<ul>
+<li>kernel modules options Options for modules can be specified using
+    the options configuration line in <code>modules.conf</code> or on the
+    <code>modprobe</code> command line. The command line overrides configurations
+    in the file. <em>modulename</em> is the name of a single module file
+    without the <code>.ko</code> extension. <em>Module-specific options</em> are specified
+    as <em>name=value</em> pairs, where the name is understood by the module
+    and is reported using <code>modinfo -p</code>.</li>
+</ul>
+<p><code>alias</code> <em>aliasname</em> <em>result</em></p>
+<ul>
+<li>kernel modules alias Aliases can be used to associate a generic name
+    with a specific module, for example:<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code>    alias /dev/ppp ppp_generic
+    alias char-major-108 ppp_generic
+    alias tty-ldisc-3 ppp_async
+    alias tty-ldisc-14 ppp_synctty
+    alias ppp-compress-21 bsd_comp
+    alias ppp-compress-24 ppp_deflate
+    alias ppp-compress-26 ppp_deflate
+</code></pre></div></td></tr></table></div>
+
+</li>
+</ul>
+<p><code>pre-install</code> <em>module command</em></p>
+<ul>
+<li>kernel modules pre-install /etc/init.d/pcmcia This directive causes
+    a specified shell command to be executed prior to the insertion of a
+    module. For example, PCMCIA services need to be started prior to
+    installing the <code>pcmcia_core</code> module:<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    pre-install pcmcia_core /etc/init.d/pcmcia start
+</code></pre></div></td></tr></table></div>
+
+</li>
+</ul>
+<p><code>install</code> <em>module command</em></p>
+<ul>
+<li>kernel modules install This directive allows a specific shell
+    command to override the default module-insertion command.</li>
+</ul>
+<p><code>post-install</code> <em>module command</em></p>
+<ul>
+<li>kernel modules post-install This directive causes a specified shell
+    command to be executed after insertion of the module.</li>
+</ul>
+<p><code>pre-remove</code> <em>module command</em></p>
+<ul>
+<li>kernel modules pre-remove This directive causes a specified shell
+    command to be executed prior to removal of module.</li>
+</ul>
+<p><code>remove</code> <em>module command</em></p>
+<ul>
+<li>kernel modules remove This directive allows a specific shell command
+    to override the default module-removal command.</li>
+</ul>
+<p><code>post-remove</code> <em>module command</em></p>
+<ul>
+<li>kernel modules post-remove This directive causes a specified shell
+    command to be executed after removal of module.</li>
+</ul>
+<p>For more detailed information concerning the module-configuration file
+see <code>man modules.conf</code>.</p>
+<p>Blank lines and lines beginning with a <code>#</code> are ignored in
+<code>modules.conf</code>.</p>
+<h3 id="module-dependency-file">Module Dependency File<a class="headerlink" href="#module-dependency-file" title="Permanent link">&para;</a></h3>
+<p>The command <code>modprobe</code> can determine module dependencies and install
+prerequisite modules automatically. To do this, <code>modprobe</code> scans the
+first column of <code>/lib/modules/kernel-version/modules.dep</code> to find the
+module it is to install. Lines in <code>modules.dep</code> are in the following
+form:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    <span class="n">module_name</span>.(<span class="n">k</span>)<span class="n">o:</span> <span class="n">dependency1</span> <span class="n">dependency2</span> ...
+</code></pre></div></td></tr></table></div>
+
+<p>Find below an example for <code>thermal</code> and <code>processor</code> modules (which are
+part of the ACPI layer):</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>    /lib/modules/2.6.31/kernel/drivers/acpi/thermal.ko: \
+        /lib/modules/2.6.31/kernel/drivers/thermal/thermal_sys.ko
+    /lib/modules/2.6.31/kernel/drivers/acpi/processor.ko: \
+        /lib/modules/2.6.31/kernel/drivers/thermal/thermal_sys.ko
+</code></pre></div></td></tr></table></div>
+
+<p>In this case both the <code>processor</code> and <code>thermal</code> module depend on the
+<code>thermal_sys</code> module.</p>
+<p>All of the modules that are available on the system should be listed in
+the <code>modules.dep</code> file. They are listed with full path and filenames, so
+including their .(k)o extension. Those that are not depending on other
+modules are listed without dependencies. Dependencies that are listed
+are inserted into the kernel by <code>modprobe</code> first, and after they have
+been successfully inserted, the subject module itself can be loaded.</p>
+<p>The <code>modules.dep</code> file must be kept current to ensure the correct
+operation of <code>modprobe</code>. If module dependencies were to change without a
+corresponding modification to <code>modules.dep</code>, then <code>modprobe</code> would fail
+because a dependency would be missed. As a result, <code>modules.dep</code> needs
+to be (re)created each time the system is booted. Most distributions
+will do this by executing <code>depmod -a</code> automatically when the system is
+booted.</p>
+<h3 id="depmod">depmod<a class="headerlink" href="#depmod" title="Permanent link">&para;</a></h3>
+<p>The <code>depmod -a</code> procedure is also necessary after any change in module
+dependencies.</p>
+<p>The <code>/lib/modules/kernel-version/modules.dep</code> file contains a list of
+module dependencies. It is generated by the <code>depmod</code> command, which
+reads each module under <code>/lib/modules/kernel-version</code> to determine what
+symbols the module needs and which ones it exports. By default the list
+is written to the file <code>modules.dep</code>. The <code>modprobe</code> command in turn
+uses this file to determine the order in which modules are to be loaded
+into or unloaded from the kernel.</p>
+<p><code>kmod</code> versus <code>kerneld</code></p>
+<p>kmod kerneld Both <code>kmod</code> and <code>kerneld</code> provide for dynamic loading of
+kernel-modules. A module is loaded when the kernel first needs it. For a
+description on modules see <a href="#sqkernelmodules">???</a>.</p>
+<p><code>kerneld</code> is a daemon, <code>kmod</code> is a thread in the kernel itself. The
+communication with <code>kerneld</code> is done through System V IPC. <code>kmod</code>
+operates directly from the kernel and does not use System V IPC thereby
+making it an optional module.</p>
+<p><code>kmod</code> replaces <code>kerneld</code> as of Linux kernel 2.2.x.</p>
+<p><code>kerneld</code> and <code>kmod</code> both facilitate dynamic loading of kernel modules.
+Both use <code>modprobe</code> to manage dependencies and dynamic loading of
+modules.</p>
+<p>Manual loading of modules with <code>modprobe</code> or <code>insmod</code> is possible
+without the need for <code>kmod</code> or <code>kerneld</code>. In both cases, the
+kernel-option <code>CONFIG_MODULES</code> must be set to enable the usage of
+modules.</p>
+<p>CONFIG_KMOD CONFIG_MODULESTo enable the use of <code>kmod</code>, a kernel must
+be compiled with the kernel-option <code>CONFIG_KMOD</code> enabled. Because <code>kmod</code>
+is implemented as a kernel module the kernel-option <code>CONFIG_MODULES</code>
+needs to be enabled too.</p>
+<h3 id="building-a-custom-kernel">Building A Custom Kernel<a class="headerlink" href="#building-a-custom-kernel" title="Permanent link">&para;</a></h3>
+<p>A summary on how to configure and compile a kernel to meet custom needs
+follows. You start with the configuration, normally using one of the
+<code>make</code> targets for configuration (<code>make</code> <code>config</code>, <code>xconfig</code>,
+<code>menuconfig</code>, <code>gconfig</code>, <code>oldconfig</code>), see the section on <a href="#CreatingAConfigFile">creating a
+.config file</a>.</p>
+<p>Once the kernel is configured it can be built with the command
+<code>make zImage/bzImage</code>. To build the modules, use <code>make modules</code> followed
+by <code>make modules_install</code>. To compile the kernel image and loadable
+modules in one step you can use the command <code>make all</code>. After
+configuring and compiling the kernel it can be installed with
+<code>make install</code>. Installing the kernel means installing the following
+files into the <code>/boot</code> directory:</p>
+<ul>
+<li>
+<p><code>System.map-2.6.x</code></p>
+</li>
+<li>
+<p><code>config-2.6.x</code></p>
+</li>
+<li>
+<p><code>vmlinuz-2.6.x</code></p>
+</li>
+</ul>
+<p>The <code>depmod</code> command builds a <code>modules.dep</code> file which is needed by
+modprobe to determine the dependencies of the (newly) built modules.</p>
+<p>Besides building and installing a kernel on a local machine, you can
+also create packages that allow you to distribute your newly built
+kernel to other machines. The common package formats are all available,
+each has its own <code>make</code> parameter:</p>
+<ul>
+<li>
+<p><code>make</code> <code>rpm-pkg</code>: builds both source and binary RPM packages.</p>
+</li>
+<li>
+<p><code>make</code> <code>binrpm-pkg</code>: builds (only) binary kernel RPM package.</p>
+</li>
+<li>
+<p><code>make</code> <code>deb-pkg</code>: builds the kernel package as a deb(ian) package.</p>
+</li>
+</ul>
+<h3 id="proc-filesystem">/proc filesystem<a class="headerlink" href="#proc-filesystem" title="Permanent link">&para;</a></h3>
+<p>troubleshooting/proc The <code>/proc</code> filesystem is a pseudo-filesystem,
+meaning that its contents are directly presented by the kernel. It
+contains directories and other files that reflect the state of the
+running system. Some commands read the <code>/proc</code> filesystem to get
+information about the state of the system. You can extract statistical
+information, hardware information, network and host parameters and
+memory and performance information. The <code>/proc</code> filesystem also allows
+you to modify some parameters at runtime by writing values to files.</p>
+<p>Contents of <code>/</code>, <code>/boot</code>, and <code>/lib/modules</code></p>
+<p>As an example the contents of these directories on a Debian system are
+presented.</p>
+<p>Contents of /:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="n">debian</span><span class="o">-</span><span class="mi">601</span><span class="n">a</span><span class="p">:</span><span class="o">/$</span><span class="w"> </span><span class="n">ls</span><span class="w"> </span><span class="o">-</span><span class="n">a</span>
+<span class="w">    </span><span class="o">.</span><span class="w">    </span><span class="n">boot</span><span class="w">  </span><span class="n">home</span><span class="w">        </span><span class="n">lib32</span><span class="w">       </span><span class="n">media</span><span class="w">  </span><span class="n">proc</span><span class="w">  </span><span class="n">selinux</span><span class="w">  </span><span class="n">tmp</span><span class="w">  </span><span class="o">.</span><span class="n">ure</span><span class="w"> </span><span class="n">vmlinuz</span>
+<span class="w">    </span><span class="o">..</span><span class="w">   </span><span class="n">dev</span><span class="w">   </span><span class="n">initrd</span><span class="o">.</span><span class="n">img</span><span class="w">  </span><span class="n">lib64</span><span class="w">       </span><span class="n">mnt</span><span class="w">    </span><span class="n">root</span><span class="w">  </span><span class="n">srv</span><span class="w">      </span><span class="n">u8</span><span class="w">   </span><span class="n">usr</span>
+<span class="w">    </span><span class="n">bin</span><span class="w">  </span><span class="n">etc</span><span class="w">   </span><span class="n">lib</span><span class="w">         </span><span class="n">lost</span><span class="o">+</span><span class="n">found</span><span class="w">  </span><span class="n">opt</span><span class="w">    </span><span class="n">sbin</span><span class="w">  </span><span class="n">sys</span><span class="w">      </span><span class="n">u9</span><span class="w">   </span><span class="k">var</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The most important directories are <code>/bin</code> which contains the generic
+systemwide commands, <code>/var</code> which is the top level directory for data
+that will be constantly changing (logs etc.), <code>/srv</code> which contains data
+related to services the system provides (e.g. a webserver), <code>/tmp</code> to
+hold temporary files, <code>/mnt</code> where USB disks, tape-units and other
+devices that contain a filesystem can be mounted temporarily, <code>/lib</code>,
+<code>/lib32</code> and <code>/lib64</code> to hold modules and other libraries, <code>/boot</code> to
+hold files used during boot, <code>/sbin</code> under which we find special
+commands for the system administrator, <code>/opt</code> for third party packages,
+and <code>/etc</code> that contains the configuration files for your system.</p>
+<p>The <code>/usr</code> directory contains a shadow hierarchy that mimics parts of
+the contents of the root directory. Hence, you will find a <code>/usr/bin</code>
+directory, a <code>/usr/sbin</code> directory, a <code>/usr/lib</code> directory and a
+<code>/usr/etc</code> directory. The 'secondary hierarchy' was meant to allow
+users to override or enhance the system, for example by allowing them to
+put local system administrator commands in <code>/usr/sbin</code>, and local system
+configuration data in <code>/usr/etc</code>. A special case are <code>/usr/local</code> and
+its subdirectories, which contain yet another shadow hierarchy that
+mimics parts of the contents of the root directory, this time containing
+very specific (local system) commands and configuration data. Hence, you
+will find commands in <code>/bin</code>, <code>/usr/bin</code> and in <code>/usr/local/bin</code>: the
+ones in <code>/bin</code> will be part of the distribution, the ones in <code>/usr/bin</code>
+may be commands that are non-mandatory or added later by the system
+administrator and finally the ones in <code>/usr/local/bin</code> are commands that
+are specific to the local system.</p>
+<p><strong>Note</strong>
+The <code>lost+found</code> directory is used by the filesystem itself.</p>
+<ul>
+<li>Contents of /boot:<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>debian-601a:/boot$ ls -a
+.                      debian.bmp                 sarge.bmp
+..                     debianlilo.bmp             sid.bmp
+coffee.bmp             grub           System.map-2.6.32-5-amd64
+config-2.6.32-5-amd64  initrd.img-2.6.32-5-amd64  vmlinuz-2.6.32-5-amd64
+</code></pre></div></td></tr></table></div>
+
+</li>
+</ul>
+<p>The most important are <code>vmlinuz</code>, <code>System.map</code>, <code>initrd.img</code> and
+<code>config</code> file. The <code>grub</code> directory resides here too. Also some bitmap
+images live here.</p>
+<ul>
+<li>Contents of <code>/lib/modules</code>:<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code>debian-601a:/lib/modules$ ls -a
+.  ..  2.6.32-5-amd64
+
+debian-601a:/lib/modules/2.6.32-5-amd64$ ls -a
+.      kernel             modules.dep      modules.order    modules.symbols.bin
+..     modules.alias      modules.dep.bin  modules.softdep  source
+build  modules.alias.bin  modules.devname  modules.symbols  updates
+</code></pre></div></td></tr></table></div>
+
+</li>
+</ul>
+<p>See also the section on <a href="#fhs">the FHS standard</a>.</p>
+<h2 id="tools-and-utilities-to-trace-software-and-their-system-and-library-calls">Tools and utilities to trace software and their system and library calls<a class="headerlink" href="#tools-and-utilities-to-trace-software-and-their-system-and-library-calls" title="Permanent link">&para;</a></h2>
+<h3 id="strace-trace-system-calls-and-signals">strace - trace system calls and signals<a class="headerlink" href="#strace-trace-system-calls-and-signals" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="n">SYNOPSIS</span>
+<span class="w">        </span><span class="n">strace</span><span class="w">  </span><span class="p">[</span><span class="w">  </span><span class="o">-</span><span class="n">CdffhiqrtttTvxx</span><span class="w">  </span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="o">-</span><span class="n">acolumn</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="o">-</span><span class="n">eexpr</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="o">...</span><span class="w">  </span><span class="p">[</span><span class="w"> </span><span class="o">-</span><span class="n">ofile</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="o">-</span><span class="n">ppid</span><span class="w"> </span><span class="p">]</span>
+<span class="w">        </span><span class="o">...</span><span class="w">  </span><span class="p">[</span><span class="w"> </span><span class="o">-</span><span class="n">sstrsize</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="o">-</span><span class="n">uusername</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="o">-</span><span class="n">Evar</span><span class="o">=</span><span class="n">val</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="o">...</span><span class="w">  </span><span class="p">[</span><span class="w"> </span><span class="o">-</span><span class="n">Evar</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="o">...</span><span class="w">  </span><span class="p">[</span><span class="w"> </span><span class="n">command</span><span class="w">  </span><span class="p">[</span>
+<span class="w">        </span><span class="n">arg</span><span class="w"> </span><span class="o">...</span><span class="w">  </span><span class="p">]</span><span class="w"> </span><span class="p">]</span>
+
+<span class="w">        </span><span class="n">strace</span><span class="w"> </span><span class="o">-</span><span class="n">c</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="o">-</span><span class="n">eexpr</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="o">...</span><span class="w">  </span><span class="p">[</span><span class="w"> </span><span class="o">-</span><span class="n">Ooverhead</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="o">-</span><span class="n">Ssortby</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="n">command</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="n">arg</span><span class="w"> </span><span class="o">...</span><span class="w">  </span><span class="p">]</span><span class="w"> </span><span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+
+<p><code>strace</code> is a useful diagnostic,
+instructional, and debugging tool. System administrators, diagnosticians
+and trouble-shooters will find it invaluable for solving problems with
+programs for which the source is not readily available since they do not
+need to be recompiled in order to trace them. Students, hackers and the
+overly-curious will find that a great deal can be learned about a system
+and its system calls by tracing even ordinary programs. And programmers
+will find that since system calls and signals are events that happen at
+the user/kernel interface, a close examination of this boundary is very
+useful for bug isolation, sanity checking and attempting to capture race
+conditions.</p>
+<p>In the simplest case <code>strace</code> runs the specified command until it exits.
+It intercepts and records the system calls which are called by a process
+and the signals which are received by a process. The name of each system
+call, its arguments and its return value are printed on standard error
+or to the file specified with the <code>-o</code> option.</p>
+<p>By default <code>strace</code> reports the name of the system call, its arguments
+and the return value on standard error.</p>
+<p>Example:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="n">debian</span><span class="o">-</span><span class="mi">601</span><span class="n">a</span><span class="p">:</span><span class="o">~$</span><span class="w"> </span><span class="n">strace</span><span class="w"> </span><span class="n">cat</span><span class="w"> </span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="nb nb-Type">null</span>
+<span class="w">    </span><span class="n">execve</span><span class="p">(</span><span class="s2">&quot;/bin/cat&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;/dev/null&quot;</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="o">/*</span><span class="w"> </span><span class="mi">34</span><span class="w"> </span><span class="n">vars</span><span class="w"> </span><span class="o">*/</span><span class="p">])</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="n">brk</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w">                                  </span><span class="o">=</span><span class="w"> </span><span class="mh">0xc25000</span>
+<span class="w">    </span><span class="n">access</span><span class="p">(</span><span class="s2">&quot;/etc/ld.so.nohwcap&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">F_OK</span><span class="p">)</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="w"> </span><span class="n">ENOENT</span><span class="w"> </span><span class="p">(</span><span class="n">No</span><span class="w"> </span><span class="n">such</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">directory</span><span class="p">)</span>
+<span class="w">    </span><span class="n">mmap</span><span class="p">(</span><span class="n">NULL</span><span class="p">,</span><span class="w"> </span><span class="mi">8192</span><span class="p">,</span><span class="w"> </span><span class="n">PROT_READ</span><span class="o">|</span><span class="n">PROT_WRITE</span><span class="p">,</span><span class="w"> </span><span class="n">MAP_PRIVATE</span><span class="o">|</span><span class="n">MAP_ANONYMOUS</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x7fcac8fb4000</span>
+<span class="w">    </span><span class="n">access</span><span class="p">(</span><span class="s2">&quot;/etc/ld.so.preload&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">R_OK</span><span class="p">)</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="w"> </span><span class="n">ENOENT</span><span class="w"> </span><span class="p">(</span><span class="n">No</span><span class="w"> </span><span class="n">such</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">directory</span><span class="p">)</span>
+<span class="w">    </span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;/etc/ld.so.cache&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">O_RDONLY</span><span class="p">)</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span>
+<span class="w">    </span><span class="n">fstat</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="n">st_mode</span><span class="o">=</span><span class="n">S_IFREG</span><span class="o">|</span><span class="mi">0644</span><span class="p">,</span><span class="w"> </span><span class="n">st_size</span><span class="o">=</span><span class="mi">59695</span><span class="p">,</span><span class="w"> </span><span class="o">...</span><span class="p">})</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="n">mmap</span><span class="p">(</span><span class="n">NULL</span><span class="p">,</span><span class="w"> </span><span class="mi">59695</span><span class="p">,</span><span class="w"> </span><span class="n">PROT_READ</span><span class="p">,</span><span class="w"> </span><span class="n">MAP_PRIVATE</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x7fcac8fa5000</span>
+<span class="w">    </span><span class="n">close</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w">                                </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="n">access</span><span class="p">(</span><span class="s2">&quot;/etc/ld.so.nohwcap&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">F_OK</span><span class="p">)</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="w"> </span><span class="n">ENOENT</span><span class="w"> </span><span class="p">(</span><span class="n">No</span><span class="w"> </span><span class="n">such</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">directory</span><span class="p">)</span>
+<span class="w">    </span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;/lib/libc.so.6&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">O_RDONLY</span><span class="p">)</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span>
+<span class="w">    </span><span class="n">read</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;</span><span class="se">\177</span><span class="s2">ELF</span><span class="se">\2\1\1\0\0\0\0\0\0\0\0\0\3\0</span><span class="s2">&gt;</span><span class="se">\0\1\0\0\0</span><span class="s2">`</span><span class="se">\355\1\0\0\0\0\0</span><span class="s2">&quot;</span><span class="o">...</span><span class="p">,</span><span class="w"> </span><span class="mi">832</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">832</span>
+<span class="w">    </span><span class="n">fstat</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="n">st_mode</span><span class="o">=</span><span class="n">S_IFREG</span><span class="o">|</span><span class="mi">0755</span><span class="p">,</span><span class="w"> </span><span class="n">st_size</span><span class="o">=</span><span class="mi">1432968</span><span class="p">,</span><span class="w"> </span><span class="o">...</span><span class="p">})</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="n">mmap</span><span class="p">(</span><span class="n">NULL</span><span class="p">,</span><span class="w"> </span><span class="mi">3541032</span><span class="p">,</span><span class="w"> </span><span class="n">PROT_READ</span><span class="o">|</span><span class="n">PROT_EXEC</span><span class="p">,</span><span class="w"> </span><span class="n">MAP_PRIVATE</span><span class="o">|</span><span class="n">MAP_DENYWRITE</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x7fcac8a38000</span>
+<span class="w">    </span><span class="n">mprotect</span><span class="p">(</span><span class="mh">0x7fcac8b90000</span><span class="p">,</span><span class="w"> </span><span class="mi">2093056</span><span class="p">,</span><span class="w"> </span><span class="n">PROT_NONE</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="n">mmap</span><span class="p">(</span><span class="mh">0x7fcac8d8f000</span><span class="p">,</span><span class="w"> </span><span class="mi">20480</span><span class="p">,</span><span class="w"> </span><span class="n">PROT_READ</span><span class="o">|</span><span class="n">PROT_WRITE</span><span class="p">,</span><span class="w"> </span><span class="n">MAP_PRIVATE</span><span class="o">|</span><span class="n">MAP_FIXED</span><span class="o">|</span><span class="n">MAP_DENYWRITE</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mh">0x157000</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x7fcac8d8f000</span>
+<span class="w">    </span><span class="n">mmap</span><span class="p">(</span><span class="mh">0x7fcac8d94000</span><span class="p">,</span><span class="w"> </span><span class="mi">18472</span><span class="p">,</span><span class="w"> </span><span class="n">PROT_READ</span><span class="o">|</span><span class="n">PROT_WRITE</span><span class="p">,</span><span class="w"> </span><span class="n">MAP_PRIVATE</span><span class="o">|</span><span class="n">MAP_FIXED</span><span class="o">|</span><span class="n">MAP_ANONYMOUS</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x7fcac8d94000</span>
+<span class="w">    </span><span class="n">close</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w">                                </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="n">mmap</span><span class="p">(</span><span class="n">NULL</span><span class="p">,</span><span class="w"> </span><span class="mi">4096</span><span class="p">,</span><span class="w"> </span><span class="n">PROT_READ</span><span class="o">|</span><span class="n">PROT_WRITE</span><span class="p">,</span><span class="w"> </span><span class="n">MAP_PRIVATE</span><span class="o">|</span><span class="n">MAP_ANONYMOUS</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x7fcac8fa4000</span>
+<span class="w">    </span><span class="n">mmap</span><span class="p">(</span><span class="n">NULL</span><span class="p">,</span><span class="w"> </span><span class="mi">4096</span><span class="p">,</span><span class="w"> </span><span class="n">PROT_READ</span><span class="o">|</span><span class="n">PROT_WRITE</span><span class="p">,</span><span class="w"> </span><span class="n">MAP_PRIVATE</span><span class="o">|</span><span class="n">MAP_ANONYMOUS</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x7fcac8fa3000</span>
+<span class="w">    </span><span class="n">mmap</span><span class="p">(</span><span class="n">NULL</span><span class="p">,</span><span class="w"> </span><span class="mi">4096</span><span class="p">,</span><span class="w"> </span><span class="n">PROT_READ</span><span class="o">|</span><span class="n">PROT_WRITE</span><span class="p">,</span><span class="w"> </span><span class="n">MAP_PRIVATE</span><span class="o">|</span><span class="n">MAP_ANONYMOUS</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x7fcac8fa2000</span>
+<span class="w">    </span><span class="n">arch_prctl</span><span class="p">(</span><span class="n">ARCH_SET_FS</span><span class="p">,</span><span class="w"> </span><span class="mh">0x7fcac8fa3700</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="n">mprotect</span><span class="p">(</span><span class="mh">0x7fcac8d8f000</span><span class="p">,</span><span class="w"> </span><span class="mi">16384</span><span class="p">,</span><span class="w"> </span><span class="n">PROT_READ</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="n">mprotect</span><span class="p">(</span><span class="mh">0x7fcac8fb6000</span><span class="p">,</span><span class="w"> </span><span class="mi">4096</span><span class="p">,</span><span class="w"> </span><span class="n">PROT_READ</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="n">munmap</span><span class="p">(</span><span class="mh">0x7fcac8fa5000</span><span class="p">,</span><span class="w"> </span><span class="mi">59695</span><span class="p">)</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="n">brk</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w">                                  </span><span class="o">=</span><span class="w"> </span><span class="mh">0xc25000</span>
+<span class="w">    </span><span class="n">brk</span><span class="p">(</span><span class="mh">0xc46000</span><span class="p">)</span><span class="w">                           </span><span class="o">=</span><span class="w"> </span><span class="mh">0xc46000</span>
+<span class="w">    </span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;/usr/lib/locale/locale-archive&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">O_RDONLY</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span>
+<span class="w">    </span><span class="n">fstat</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="n">st_mode</span><span class="o">=</span><span class="n">S_IFREG</span><span class="o">|</span><span class="mi">0644</span><span class="p">,</span><span class="w"> </span><span class="n">st_size</span><span class="o">=</span><span class="mi">1527584</span><span class="p">,</span><span class="w"> </span><span class="o">...</span><span class="p">})</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="n">mmap</span><span class="p">(</span><span class="n">NULL</span><span class="p">,</span><span class="w"> </span><span class="mi">1527584</span><span class="p">,</span><span class="w"> </span><span class="n">PROT_READ</span><span class="p">,</span><span class="w"> </span><span class="n">MAP_PRIVATE</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x7fcac8e2d000</span>
+<span class="w">    </span><span class="n">close</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w">                                </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="n">fstat</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="n">st_mode</span><span class="o">=</span><span class="n">S_IFCHR</span><span class="o">|</span><span class="mi">0620</span><span class="p">,</span><span class="w"> </span><span class="n">st_rdev</span><span class="o">=</span><span class="n">makedev</span><span class="p">(</span><span class="mi">136</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="o">...</span><span class="p">})</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;/dev/null&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">O_RDONLY</span><span class="p">)</span><span class="w">             </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span>
+<span class="w">    </span><span class="n">fstat</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="n">st_mode</span><span class="o">=</span><span class="n">S_IFCHR</span><span class="o">|</span><span class="mi">0666</span><span class="p">,</span><span class="w"> </span><span class="n">st_rdev</span><span class="o">=</span><span class="n">makedev</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="o">...</span><span class="p">})</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="n">read</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">32768</span><span class="p">)</span><span class="w">                      </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="n">close</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w">                                </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="n">close</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w">                                </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="n">close</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w">                                </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="n">exit_group</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w">                           </span><span class="o">=</span><span class="w"> </span><span class="err">?</span>
+</code></pre></div></td></tr></table></div>
+
+<p>Another very useful feature of <code>strace</code> is its ability to connect to a
+running process using the <code>-p</code> flag. In combination with the <code>-f</code> flag
+you can connect to say a running daemon that seems to malfunction and
+gain insight in what it is actually doing.</p>
+<h3 id="strings">strings<a class="headerlink" href="#strings" title="Permanent link">&para;</a></h3>
+<p><code>strings</code> - print the strings of printable characters in files.
+<code>strings</code> can be useful for reading non-text files.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c">    SYNOPSIS</span>
+<span class="c">        strings </span><span class="k">[</span><span class="nb">-</span><span class="c">afovV</span><span class="k">]</span><span class="c"> </span><span class="k">[</span><span class="nb">-</span><span class="c">min</span><span class="nb">-</span><span class="c">len</span><span class="k">]</span>
+<span class="c">               </span><span class="k">[</span><span class="nb">-</span><span class="c">n min</span><span class="nb">-</span><span class="c">len</span><span class="k">]</span><span class="c"> </span><span class="k">[</span><span class="nb">--</span><span class="c">bytes=min</span><span class="nb">-</span><span class="c">len</span><span class="k">]</span>
+<span class="c">               </span><span class="k">[</span><span class="nb">-</span><span class="c">t radix</span><span class="k">]</span><span class="c"> </span><span class="k">[</span><span class="nb">--</span><span class="c">radix=radix</span><span class="k">]</span>
+<span class="c">               </span><span class="k">[</span><span class="nb">-</span><span class="c">e encoding</span><span class="k">]</span><span class="c"> </span><span class="k">[</span><span class="nb">--</span><span class="c">encoding=encoding</span><span class="k">]</span>
+<span class="c">               </span><span class="k">[</span><span class="nb">-</span><span class="k">]</span><span class="c"> </span><span class="k">[</span><span class="nb">--</span><span class="c">all</span><span class="k">]</span><span class="c"> </span><span class="k">[</span><span class="nb">--</span><span class="c">print</span><span class="nb">-</span><span class="c">file</span><span class="nb">-</span><span class="c">name</span><span class="k">]</span>
+<span class="c">               </span><span class="k">[</span><span class="nb">-</span><span class="c">T bfdname</span><span class="k">]</span><span class="c"> </span><span class="k">[</span><span class="nb">--</span><span class="c">target=bfdname</span><span class="k">]</span>
+<span class="c">               </span><span class="k">[</span><span class="nb">--</span><span class="c">help</span><span class="k">]</span><span class="c"> </span><span class="k">[</span><span class="nb">--</span><span class="c">version</span><span class="k">]</span><span class="c"> file</span><span class="nt">...</span>
+</code></pre></div></td></tr></table></div>
+
+<p>For each file given, GNU <code>strings</code> prints the printable character
+sequences that are at least 4 characters long (or the number given with
+the options below) and are followed by an unprintable character. By
+default, it only prints the strings from the initialized and loaded
+sections of object files; for other types of files, it prints the
+strings from the whole file. troubleshootingstrings</p>
+<p><code>strings</code> is mainly useful for determining the contents of non-text
+files, such as executables. Often used to check for names of environment
+variables and configurations files used by an executable.</p>
+<h3 id="ltrace">ltrace<a class="headerlink" href="#ltrace" title="Permanent link">&para;</a></h3>
+<p><code>ltrace</code> - a library call tracer</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="nx">SYNOPSIS</span>
+<span class="w">        </span><span class="nx">ltrace</span><span class="w">  </span><span class="p">[</span><span class="o">-</span><span class="nx">CfhiLrStttV</span><span class="p">]</span><span class="w">  </span><span class="p">[</span><span class="o">-</span><span class="nx">a</span><span class="w">  </span><span class="nx">column</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="o">-</span><span class="nx">A</span><span class="w"> </span><span class="nx">maxelts</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="o">-</span><span class="nx">D</span><span class="w"> </span><span class="nx">level</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="o">-</span><span class="nx">e</span><span class="w"> </span><span class="nx">expr</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="o">-</span><span class="nx">l</span><span class="w"> </span><span class="nx">file</span><span class="o">-</span>
+<span class="w">        </span><span class="nx">name</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="o">-</span><span class="nx">n</span><span class="w"> </span><span class="nx">nr</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="o">-</span><span class="nx">o</span><span class="w"> </span><span class="nx">filename</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="o">-</span><span class="nx">p</span><span class="w"> </span><span class="nx">pid</span><span class="p">]</span><span class="w"> </span><span class="o">...</span><span class="w"> </span><span class="p">[</span><span class="o">-</span><span class="nx">s</span><span class="w"> </span><span class="nx">strsize</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="o">-</span><span class="nx">u</span><span class="w"> </span><span class="nx">username</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="o">-</span><span class="nx">X</span><span class="w">  </span><span class="nx">extern</span><span class="p">]</span>
+<span class="w">        </span><span class="p">[</span><span class="o">-</span><span class="nx">x</span><span class="w">   </span><span class="nx">extern</span><span class="p">]</span><span class="w">   </span><span class="o">...</span><span class="w">   </span><span class="p">[</span><span class="o">--</span><span class="nx">align</span><span class="p">=</span><span class="nx">column</span><span class="p">]</span><span class="w">   </span><span class="p">[</span><span class="o">--</span><span class="nx">debug</span><span class="p">=</span><span class="nx">level</span><span class="p">]</span><span class="w">  </span><span class="p">[</span><span class="o">--</span><span class="nx">demangle</span><span class="p">]</span><span class="w">  </span><span class="p">[</span><span class="o">--</span><span class="nx">help</span><span class="p">]</span>
+<span class="w">        </span><span class="p">[</span><span class="o">--</span><span class="nx">indent</span><span class="p">=</span><span class="nx">nr</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="o">--</span><span class="kn">library</span><span class="p">=</span><span class="nx">filename</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="o">--</span><span class="nx">output</span><span class="p">=</span><span class="nx">filename</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="o">--</span><span class="nx">version</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="nx">command</span><span class="w"> </span><span class="p">[</span><span class="nx">arg</span>
+<span class="w">        </span><span class="o">...</span><span class="p">]]</span>
+</code></pre></div></td></tr></table></div>
+
+<p>Similar to the <code>strace</code>, that intercepts and
+records system calls, <code>ltrace</code> intercepts and records the dynamic
+library calls which are called by the executed process and the signals
+which are received by that process. The program to be traced need not be
+recompiled for this, so you can use it on binaries for which you don't
+have the source handy. By default, <code>ltrace</code> will start the program you
+specify on the command line and traces it until the program exits.</p>
+<p>Example:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span></pre></div></td><td class="code"><div><pre><span></span><code>    debian-601a:~$ ltrace cat /dev/null
+    __libc_start_main(0x401ad0, 2, 0x7fff5f357f38, 0x409110, 0x409100 &lt;unfinished ...&gt;
+    getpagesize()                                                     = 4096
+    strrchr(&quot;cat&quot;, &#39;/&#39;)                                               = NULL
+    setlocale(6, &quot;&quot;)                                                  = &quot;en_US.utf8&quot;
+    bindtextdomain(&quot;coreutils&quot;, &quot;/usr/share/locale&quot;)                  = &quot;/usr/share/locale&quot;
+    textdomain(&quot;coreutils&quot;)                                           = &quot;coreutils&quot;
+    __cxa_atexit(0x4043d0, 0, 0, 0x736c6974756572, 0x7f4069c04ea8)    = 0
+    getenv(&quot;POSIXLY_CORRECT&quot;)                                         = NULL
+    __fxstat(1, 1, 0x7fff5f357d80)                                    = 0
+    open(&quot;/dev/null&quot;, 0, 02)                                          = 3
+    __fxstat(1, 3, 0x7fff5f357d80)                                    = 0
+    malloc(36863)                                                     = 0x014c4030
+    read(3, &quot;&quot;, 32768)                                                = 0
+    free(0x014c4030)                                                  = &lt;void&gt;
+    close(3)                                                          = 0
+    exit(0 &lt;unfinished ...&gt;
+    __fpending(0x7f4069c03780, 0, 0x7f4069c04330, 0x7f4069c04330, 0x7f4069c04e40) = 0
+    fclose(0x7f4069c03780)                                            = 0
+    __fpending(0x7f4069c03860, 0, 0x7f4069c04df0, 0, 0x7f4069e13700)  = 0
+    fclose(0x7f4069c03860)                                            = 0
+    +++ exited (status 0) +++
+</code></pre></div></td></tr></table></div>
+
+<h2 id="the-boot-process">The boot process<a class="headerlink" href="#the-boot-process" title="Permanent link">&para;</a></h2>
+<p>When using an <code>initrd</code>, the system goes through the following steps:</p>
+<ol>
+<li>
+<p>The boot loader loads the kernel and the initial RAM disk.</p>
+</li>
+<li>
+<p>The kernel converts <code>initrd</code> into a "normal" RAM disk and frees the
+    memory used by the <code>initrd</code> image.</p>
+</li>
+<li>
+<p>The <code>initrd</code> image is mounted read-write as root</p>
+</li>
+<li>
+<p>The <code>linuxrc</code> is executed (this can be any valid executable,
+    including shell scripts; it is run with uid 0 and can do everything
+    <code>init</code> can do)</p>
+</li>
+<li>
+<p>After <code>linuxrc</code> terminates, the "real" root filesystem is mounted</p>
+</li>
+<li>
+<p>If a directory <code>/initrd</code> exists, the <code>initrd</code> image is moved there,
+    otherwise, <code>initrd</code> image is unmounted</p>
+</li>
+<li>
+<p>The usual boot sequence (e.g. invocation of the <code>/sbin/init</code>) is
+    performed on the root filesystem</p>
+</li>
+</ol>
+<p>As moving the <code>initrd</code> from <code>/</code> to <code>/initrd</code> does not require to unmount
+it, process(es) that use files on the RAMdisk may kept running. All
+filesystems that were mounted will remain mounted during the move.
+However, if <code>/initrd</code> does not exist the move is not made and in that
+case any running processes that use files from the <code>initrd</code> image will
+prevent it from becoming unmounted. It will remain in memory until
+forced out of existence by the continuation of the bootprocess.</p>
+<h3 id="procmounts">/proc/mounts<a class="headerlink" href="#procmounts" title="Permanent link">&para;</a></h3>
+<p>Also, even when the move can be made and so filesystems mounted under
+<code>initrd</code> remain accessible, the entries in <code>/proc/mounts</code> will not be
+updated. Also keep in mind that if the directory <code>/initrd</code> does not
+exist it is impossible to unmount the RAM disk image. The image will be
+forced out of existence during the rest of the bootprocess, so any
+filesystems mounted within it will also disappear and can not be
+remounted. Therefore, it is strongly recommendated to unmount all
+filesystems before switching from the <code>initrd</code> filesystem to the normal
+root filesystem, including the <code>/proc</code> filesystem.</p>
+<p>The memory used for the <code>initrd</code> image can be reclaimed. To do this, the
+command <code>freeramdisk</code> must be used directly after unmounting <code>/initrd</code>.</p>
+<h3 id="boot-option">boot option<a class="headerlink" href="#boot-option" title="Permanent link">&para;</a></h3>
+<p>initrd=</p>
+<p>Including <code>initrd</code> support to the kernel adds options to the boot
+command line:</p>
+<p><code>initrd=</code></p>
+<ul>
+<li>This option loads the file that is specified as the initial RAM
+    disk.</li>
+</ul>
+<p><code>noinitrd</code></p>
+<ul>
+<li>
+<p>This option causes the <code>initrd</code> data to be preserved, but it is not
+    converted to a RAM disk and the normal root filesystem is mounted
+    instead. The <code>initrd</code> data can be read from <code>/dev/initrd</code>. If read
+    through <code>/dev/initrd</code>, the data can have any structure so it need
+    not necessarily be a filesystem image. This option is used mainly
+    for debugging purposes.</p>
+<p><strong>Note</strong>
+The <code>/dev/initrd</code> is read-only and can be used only once. As soon as
+the last process has closed it, all memory is freed and
+<code>/dev/initrd</code> can no longer be accessed.
+:::</p>
+</li>
+</ul>
+<p><code>root=/dev/ram</code></p>
+<ul>
+<li>The <code>initrd</code> is mounted as root and subsequently <code>/linuxrc</code> is
+    started. If there is no <code>/linuxrc</code> the normal boot procedure will be
+    followed. Without using this parameter, the <code>initrd</code> would be moved
+    or unloaded, however in this case, the root filesystem will continue
+    to be the RAM disk. The advantage of this is that it allows the use
+    of a compressed filesystem and it is slightly faster.</li>
+</ul>
+<h2 id="hardware-and-kernel-information">Hardware and Kernel Information<a class="headerlink" href="#hardware-and-kernel-information" title="Permanent link">&para;</a></h2>
+<h3 id="uname">uname<a class="headerlink" href="#uname" title="Permanent link">&para;</a></h3>
+<p><code>uname</code> prints system information such as machine type, network
+hostname, OS release, OS name, OS version and processor type of the
+host. The parameters are: uname</p>
+<p><code>-a</code>; <code>--all</code></p>
+<ul>
+<li>uname -a uname --all print all information, in the order below,
+    except omit -p and -i if these are unknown.</li>
+</ul>
+<p><code>-s</code>; <code>--kernel-name</code></p>
+<ul>
+<li>uname-s uname--kernel-name prints the kernel name</li>
+</ul>
+<p><code>-n</code>; <code>--nodename</code></p>
+<ul>
+<li>uname-n uname--nodename prints the network node hostname</li>
+</ul>
+<p><code>-r</code>; <code>--kernel-release</code></p>
+<ul>
+<li>uname-r uname--kernel-release prints the kernel release</li>
+</ul>
+<p><code>-v</code>; <code>--kernel-version</code></p>
+<ul>
+<li>uname-v uname--kernel-version prints the kernel build version, date
+    and time</li>
+</ul>
+<p><code>-m</code>; <code>--machine</code></p>
+<ul>
+<li>uname-m uname--machine prints the machine hardware architecture
+    name</li>
+</ul>
+<p><code>-p</code>; <code>--processor</code></p>
+<ul>
+<li>uname-p uname--processor prints the name of the processor type</li>
+</ul>
+<p><code>-i</code>; <code>--hardware-platform</code></p>
+<ul>
+<li>uname-i uname--hardware-platform prints the name of hardware
+    platform</li>
+</ul>
+<p><code>-o</code>; <code>--operating-system</code></p>
+<ul>
+<li>uname-o uname--operating-system prints the name of the operating
+    system</li>
+</ul>
+<p>Example:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>    debian-601a:~$ uname -a
+    Linux debian-601a 2.6.32-5-amd64 #1 SMP Mon Mar 7 21:35:22 UTC 2011 x86_64 GNU/Linux
+</code></pre></div></td></tr></table></div>
+
+<h3 id="procstyskernel">/proc/stys/kernel<a class="headerlink" href="#procstyskernel" title="Permanent link">&para;</a></h3>
+<p><code>/proc/sys/kernel/</code> is a directory in the <code>/proc</code>
+pseudo filesystem. It contains files that allow you to tune and monitor
+the Linux kernel. Be careful, as modification of some of the files may
+lead to a hanging or dysfunctional system. As these parameters are
+highly dependant on the kernel verions, it is advisable to read both
+documentation and source before actually making adjustments. See also
+<a href="#procfs">the section on the <code>/proc</code> filesystem</a>.</p>
+<p>Some files are quite harmless and can safely be used to obtain
+information, for instance to show the version of the running kernel:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    debian-601a:~$ cat /proc/sys/kernel/osrelease
+</code></pre></div></td></tr></table></div>
+
+<p>Some files can be used to <em>set</em> information in the kernel. For
+instance, the following will tell the kernel not to loop on a panic, but
+to auto-reboot after 20 seconds:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    debian-601a:~$ echo 20 &gt; /proc/sys/kernel/panic
+</code></pre></div></td></tr></table></div>
+
+<h3 id="lspci">lspci<a class="headerlink" href="#lspci" title="Permanent link">&para;</a></h3>
+<p>With <code>lspci</code> you can display information about all the PCI buses
+in the system and all the devices that are connected to them. Keep in
+mind that you need to have Linux kernel 2.1.82 or newer. With older
+kernels direct hardware access is only available to root. To make the
+output of <code>lspci</code> more verbose, one or more <code>-v</code> paramaters (up to 3)
+can be added. Access to some parts of the PCI configuraion space is
+restricted to root on many operating systems. So <code>lspci</code> features
+available to normal users are limited.</p>
+<p>Example of <code>lspci</code> output on a system running Debian in Virtualbox:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="n">debian</span><span class="o">-</span><span class="mi">601</span><span class="nl">a</span><span class="p">:</span><span class="o">~</span><span class="err">$</span><span class="w"> </span><span class="n">lspci</span>
+<span class="w">    </span><span class="mi">00</span><span class="err">:</span><span class="mf">00.0</span><span class="w"> </span><span class="k">Host</span><span class="w"> </span><span class="nl">bridge</span><span class="p">:</span><span class="w"> </span><span class="n">Intel</span><span class="w"> </span><span class="n">Corporation</span><span class="w"> </span><span class="mi">440</span><span class="n">FX</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">82441</span><span class="n">FX</span><span class="w"> </span><span class="n">PMC</span><span class="w"> </span><span class="o">[</span><span class="n">Natoma</span><span class="o">]</span><span class="w"> </span><span class="p">(</span><span class="n">rev</span><span class="w"> </span><span class="mi">02</span><span class="p">)</span>
+<span class="w">    </span><span class="mi">00</span><span class="err">:</span><span class="mf">01.0</span><span class="w"> </span><span class="n">ISA</span><span class="w"> </span><span class="nl">bridge</span><span class="p">:</span><span class="w"> </span><span class="n">Intel</span><span class="w"> </span><span class="n">Corporation</span><span class="w"> </span><span class="mi">82371</span><span class="n">SB</span><span class="w"> </span><span class="n">PIIX3</span><span class="w"> </span><span class="n">ISA</span><span class="w"> </span><span class="o">[</span><span class="n">Natoma/Triton II</span><span class="o">]</span>
+<span class="w">    </span><span class="mi">00</span><span class="err">:</span><span class="mf">01.1</span><span class="w"> </span><span class="n">IDE</span><span class="w"> </span><span class="nl">interface</span><span class="p">:</span><span class="w"> </span><span class="n">Intel</span><span class="w"> </span><span class="n">Corporation</span><span class="w"> </span><span class="mi">82371</span><span class="n">AB</span><span class="o">/</span><span class="n">EB</span><span class="o">/</span><span class="n">MB</span><span class="w"> </span><span class="n">PIIX4</span><span class="w"> </span><span class="n">IDE</span><span class="w"> </span><span class="p">(</span><span class="n">rev</span><span class="w"> </span><span class="mi">01</span><span class="p">)</span>
+<span class="w">    </span><span class="mi">00</span><span class="err">:</span><span class="mf">02.0</span><span class="w"> </span><span class="n">VGA</span><span class="w"> </span><span class="n">compatible</span><span class="w"> </span><span class="nl">controller</span><span class="p">:</span><span class="w"> </span><span class="n">InnoTek</span><span class="w"> </span><span class="n">Systemberatung</span><span class="w"> </span><span class="n">GmbH</span><span class="w"> </span><span class="n">VirtualBox</span><span class="w"> </span><span class="n">Graphics</span><span class="w"> </span><span class="n">Adapter</span>
+<span class="w">    </span><span class="mi">00</span><span class="err">:</span><span class="mf">03.0</span><span class="w"> </span><span class="n">Ethernet</span><span class="w"> </span><span class="nl">controller</span><span class="p">:</span><span class="w"> </span><span class="n">Intel</span><span class="w"> </span><span class="n">Corporation</span><span class="w"> </span><span class="mi">82540</span><span class="n">EM</span><span class="w"> </span><span class="n">Gigabit</span><span class="w"> </span><span class="n">Ethernet</span><span class="w"> </span><span class="n">Controller</span><span class="w"> </span><span class="p">(</span><span class="n">rev</span><span class="w"> </span><span class="mi">02</span><span class="p">)</span>
+<span class="w">    </span><span class="mi">00</span><span class="err">:</span><span class="mf">04.0</span><span class="w"> </span><span class="k">System</span><span class="w"> </span><span class="nl">peripheral</span><span class="p">:</span><span class="w"> </span><span class="n">InnoTek</span><span class="w"> </span><span class="n">Systemberatung</span><span class="w"> </span><span class="n">GmbH</span><span class="w"> </span><span class="n">VirtualBox</span><span class="w"> </span><span class="n">Guest</span><span class="w"> </span><span class="n">Service</span>
+<span class="w">    </span><span class="mi">00</span><span class="err">:</span><span class="mf">05.0</span><span class="w"> </span><span class="n">Multimedia</span><span class="w"> </span><span class="n">audio</span><span class="w"> </span><span class="nl">controller</span><span class="p">:</span><span class="w"> </span><span class="n">Intel</span><span class="w"> </span><span class="n">Corporation</span><span class="w"> </span><span class="mi">82801</span><span class="n">AA</span><span class="w"> </span><span class="n">AC</span><span class="err">&#39;</span><span class="mi">97</span><span class="w"> </span><span class="n">Audio</span><span class="w"> </span><span class="n">Controller</span><span class="w"> </span><span class="p">(</span><span class="n">rev</span><span class="w"> </span><span class="mi">01</span><span class="p">)</span>
+<span class="w">    </span><span class="mi">00</span><span class="err">:</span><span class="mf">06.0</span><span class="w"> </span><span class="n">USB</span><span class="w"> </span><span class="nl">Controller</span><span class="p">:</span><span class="w"> </span><span class="n">Apple</span><span class="w"> </span><span class="n">Computer</span><span class="w"> </span><span class="n">Inc</span><span class="p">.</span><span class="w"> </span><span class="n">KeyLargo</span><span class="o">/</span><span class="n">Intrepid</span><span class="w"> </span><span class="n">USB</span>
+<span class="w">    </span><span class="mi">00</span><span class="err">:</span><span class="mf">07.0</span><span class="w"> </span><span class="nl">Bridge</span><span class="p">:</span><span class="w"> </span><span class="n">Intel</span><span class="w"> </span><span class="n">Corporation</span><span class="w"> </span><span class="mi">82371</span><span class="n">AB</span><span class="o">/</span><span class="n">EB</span><span class="o">/</span><span class="n">MB</span><span class="w"> </span><span class="n">PIIX4</span><span class="w"> </span><span class="n">ACPI</span><span class="w"> </span><span class="p">(</span><span class="n">rev</span><span class="w"> </span><span class="mi">08</span><span class="p">)</span>
+<span class="w">    </span><span class="mi">00</span><span class="err">:</span><span class="mi">0</span><span class="n">d</span><span class="mf">.0</span><span class="w"> </span><span class="n">SATA</span><span class="w"> </span><span class="nl">controller</span><span class="p">:</span><span class="w"> </span><span class="n">Intel</span><span class="w"> </span><span class="n">Corporation</span><span class="w"> </span><span class="mi">82801</span><span class="n">HBM</span><span class="o">/</span><span class="n">HEM</span><span class="w"> </span><span class="p">(</span><span class="n">ICH8M</span><span class="o">/</span><span class="n">ICH8M</span><span class="o">-</span><span class="n">E</span><span class="p">)</span><span class="w"> </span><span class="n">SATA</span><span class="w"> </span><span class="n">AHCI</span><span class="w"> </span><span class="n">Controller</span><span class="w"> </span><span class="p">(</span><span class="n">rev</span><span class="w"> </span><span class="mi">02</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+
+<h3 id="lsusb">lsusb<a class="headerlink" href="#lsusb" title="Permanent link">&para;</a></h3>
+<p>lsusb <code>lsusb</code> is similiar to <code>lspci</code>, but checks the USB buses and
+devices. To make use of <code>lsusb</code> a Linux kernel which supports the
+<code>/proc/bus/usb</code> inferface is needed (Linux 2.3.15 or newer). <code>lsusb -v</code>
+will provide verbose information.</p>
+<p>Example of <code>lsusb</code> output as generated on a laptop running Ubuntu:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="n">ubuntu</span><span class="p">:</span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">$</span><span class="w"> </span><span class="n">lsusb</span>
+<span class="w">    </span><span class="n">Bus</span><span class="w"> </span><span class="mi">007</span><span class="w"> </span><span class="n">Device</span><span class="w"> </span><span class="mi">003</span><span class="p">:</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="mi">03</span><span class="n">f0</span><span class="p">:</span><span class="mi">0324</span><span class="w"> </span><span class="n">Hewlett</span><span class="o">-</span><span class="n">Packard</span><span class="w"> </span><span class="n">SK</span><span class="o">-</span><span class="mi">2885</span><span class="w"> </span><span class="n">keyboard</span>
+<span class="w">    </span><span class="n">Bus</span><span class="w"> </span><span class="mi">007</span><span class="w"> </span><span class="n">Device</span><span class="w"> </span><span class="mi">002</span><span class="p">:</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="mi">045</span><span class="n">e</span><span class="p">:</span><span class="mi">0040</span><span class="w"> </span><span class="n">Microsoft</span><span class="w"> </span><span class="n">Corp</span><span class="o">.</span><span class="w"> </span><span class="n">Wheel</span><span class="w"> </span><span class="n">Mouse</span><span class="w"> </span><span class="n">Optical</span>
+<span class="w">    </span><span class="n">Bus</span><span class="w"> </span><span class="mi">007</span><span class="w"> </span><span class="n">Device</span><span class="w"> </span><span class="mi">001</span><span class="p">:</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="mi">1</span><span class="n">d6b</span><span class="p">:</span><span class="mi">0001</span><span class="w"> </span><span class="n">Linux</span><span class="w"> </span><span class="n">Foundation</span><span class="w"> </span><span class="mf">1.1</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="n">hub</span>
+<span class="w">    </span><span class="n">Bus</span><span class="w"> </span><span class="mi">006</span><span class="w"> </span><span class="n">Device</span><span class="w"> </span><span class="mi">001</span><span class="p">:</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="mi">1</span><span class="n">d6b</span><span class="p">:</span><span class="mi">0001</span><span class="w"> </span><span class="n">Linux</span><span class="w"> </span><span class="n">Foundation</span><span class="w"> </span><span class="mf">1.1</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="n">hub</span>
+<span class="w">    </span><span class="n">Bus</span><span class="w"> </span><span class="mi">005</span><span class="w"> </span><span class="n">Device</span><span class="w"> </span><span class="mi">001</span><span class="p">:</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="mi">1</span><span class="n">d6b</span><span class="p">:</span><span class="mi">0001</span><span class="w"> </span><span class="n">Linux</span><span class="w"> </span><span class="n">Foundation</span><span class="w"> </span><span class="mf">1.1</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="n">hub</span>
+<span class="w">    </span><span class="n">Bus</span><span class="w"> </span><span class="mi">004</span><span class="w"> </span><span class="n">Device</span><span class="w"> </span><span class="mi">002</span><span class="p">:</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="mi">147</span><span class="n">e</span><span class="p">:</span><span class="mi">2016</span><span class="w"> </span><span class="n">Upek</span><span class="w"> </span><span class="n">Biometric</span><span class="w"> </span><span class="n">Touchchip</span><span class="o">/</span><span class="n">Touchstrip</span><span class="w"> </span><span class="n">Fingerprint</span><span class="w"> </span><span class="n">Sensor</span>
+<span class="w">    </span><span class="n">Bus</span><span class="w"> </span><span class="mi">004</span><span class="w"> </span><span class="n">Device</span><span class="w"> </span><span class="mi">001</span><span class="p">:</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="mi">1</span><span class="n">d6b</span><span class="p">:</span><span class="mi">0001</span><span class="w"> </span><span class="n">Linux</span><span class="w"> </span><span class="n">Foundation</span><span class="w"> </span><span class="mf">1.1</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="n">hub</span>
+<span class="w">    </span><span class="n">Bus</span><span class="w"> </span><span class="mi">003</span><span class="w"> </span><span class="n">Device</span><span class="w"> </span><span class="mi">001</span><span class="p">:</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="mi">1</span><span class="n">d6b</span><span class="p">:</span><span class="mi">0001</span><span class="w"> </span><span class="n">Linux</span><span class="w"> </span><span class="n">Foundation</span><span class="w"> </span><span class="mf">1.1</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="n">hub</span>
+<span class="w">    </span><span class="n">Bus</span><span class="w"> </span><span class="mi">002</span><span class="w"> </span><span class="n">Device</span><span class="w"> </span><span class="mi">001</span><span class="p">:</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="mi">1</span><span class="n">d6b</span><span class="p">:</span><span class="mi">0002</span><span class="w"> </span><span class="n">Linux</span><span class="w"> </span><span class="n">Foundation</span><span class="w"> </span><span class="mf">2.0</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="n">hub</span>
+<span class="w">    </span><span class="n">Bus</span><span class="w"> </span><span class="mi">001</span><span class="w"> </span><span class="n">Device</span><span class="w"> </span><span class="mi">002</span><span class="p">:</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="mi">04</span><span class="n">f2</span><span class="p">:</span><span class="n">b018</span><span class="w"> </span><span class="n">Chicony</span><span class="w"> </span><span class="n">Electronics</span><span class="w"> </span><span class="n">Co</span><span class="o">.</span><span class="p">,</span><span class="w"> </span><span class="n">Ltd</span><span class="w"> </span><span class="mi">2</span><span class="n">M</span><span class="w"> </span><span class="n">UVC</span><span class="w"> </span><span class="n">Webcam</span>
+<span class="w">    </span><span class="n">Bus</span><span class="w"> </span><span class="mi">001</span><span class="w"> </span><span class="n">Device</span><span class="w"> </span><span class="mi">001</span><span class="p">:</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="mi">1</span><span class="n">d6b</span><span class="p">:</span><span class="mi">0002</span><span class="w"> </span><span class="n">Linux</span><span class="w"> </span><span class="n">Foundation</span><span class="w"> </span><span class="mf">2.0</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="n">hub</span>
+</code></pre></div></td></tr></table></div>
+
+<h3 id="lsdev">lsdev<a class="headerlink" href="#lsdev" title="Permanent link">&para;</a></h3>
+<p>lsdev <code>lsdev</code> displays information about installed hardware. It gathers
+information from interupts, DMA files, and interrupts from the <code>/proc</code>
+directory. <code>lsdev</code> gives a quick overview about which device is using
+what I/O address and IRQ/DMA channels. Files being used:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>/proc/interrupts
+
+/proc/ioports
+
+/proc/dma
+</code></pre></div></td></tr></table></div>
+
+<p>Example of <code>lsdev</code> output on a Debian based system:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="n">debian</span><span class="o">-</span><span class="mi">601</span><span class="n">a</span><span class="p">:</span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">$</span><span class="w"> </span><span class="n">lsdev</span>
+<span class="w">    </span><span class="n">Device</span><span class="w">            </span><span class="n">DMA</span><span class="w">   </span><span class="n">IRQ</span><span class="w">  </span><span class="n">I</span><span class="o">/</span><span class="n">O</span><span class="w"> </span><span class="n">Ports</span>
+<span class="w">    </span><span class="o">------------------------------------------------</span>
+<span class="w">    </span><span class="mi">0000</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mf">01.1</span><span class="w">                 </span><span class="mi">0170</span><span class="o">-</span><span class="mi">0177</span><span class="w"> </span><span class="mi">01</span><span class="n">f0</span><span class="o">-</span><span class="mi">01</span><span class="n">f7</span><span class="w"> </span><span class="mi">0376</span><span class="o">-</span><span class="mi">0376</span><span class="w"> </span><span class="mi">03</span><span class="n">f6</span><span class="o">-</span><span class="mi">03</span><span class="n">f6</span><span class="w"> </span><span class="n">d000</span><span class="o">-</span><span class="n">d00f</span>
+<span class="w">    </span><span class="mi">0000</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mf">03.0</span><span class="w">                 </span><span class="n">d010</span><span class="o">-</span><span class="n">d017</span>
+<span class="w">    </span><span class="mi">0000</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mf">04.0</span><span class="w">                 </span><span class="n">d020</span><span class="o">-</span><span class="n">d03f</span>
+<span class="w">    </span><span class="mi">0000</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mf">05.0</span><span class="w">                 </span><span class="n">d100</span><span class="o">-</span><span class="n">d1ff</span><span class="w"> </span><span class="n">d200</span><span class="o">-</span><span class="n">d23f</span>
+<span class="w">    </span><span class="mi">0000</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">0</span><span class="n">d</span><span class="o">.</span><span class="mi">0</span><span class="w">                 </span><span class="n">d240</span><span class="o">-</span><span class="n">d247</span><span class="w"> </span><span class="n">d250</span><span class="o">-</span><span class="n">d257</span><span class="w"> </span><span class="n">d260</span><span class="o">-</span><span class="n">d26f</span>
+<span class="w">    </span><span class="mi">82801</span><span class="n">AA</span><span class="o">-</span><span class="n">ICH</span><span class="w">               </span><span class="mi">5</span>
+<span class="w">    </span><span class="n">ACPI</span><span class="w">                         </span><span class="mi">4000</span><span class="o">-</span><span class="mi">4003</span><span class="w"> </span><span class="mi">4004</span><span class="o">-</span><span class="mi">4005</span><span class="w"> </span><span class="mi">4008</span><span class="o">-</span><span class="mi">400</span><span class="n">b</span><span class="w"> </span><span class="mi">4020</span><span class="o">-</span><span class="mi">4021</span>
+<span class="w">    </span><span class="n">ahci</span><span class="w">                           </span><span class="n">d240</span><span class="o">-</span><span class="n">d247</span><span class="w">   </span><span class="n">d250</span><span class="o">-</span><span class="n">d257</span><span class="w">   </span><span class="n">d260</span><span class="o">-</span><span class="n">d26f</span>
+<span class="w">    </span><span class="n">ata_piix</span><span class="w">              </span><span class="mi">14</span><span class="w"> </span><span class="mi">15</span><span class="w">    </span><span class="mi">0170</span><span class="o">-</span><span class="mi">0177</span><span class="w">   </span><span class="mi">01</span><span class="n">f0</span><span class="o">-</span><span class="mi">01</span><span class="n">f7</span><span class="w">   </span><span class="mi">0376</span><span class="o">-</span><span class="mi">0376</span><span class="w">   </span><span class="mi">03</span><span class="n">f6</span><span class="o">-</span><span class="mi">03</span><span class="n">f6</span><span class="w">   </span><span class="n">d000</span><span class="o">-</span><span class="n">d00f</span>
+<span class="w">    </span><span class="n">cascade</span><span class="w">             </span><span class="mi">4</span><span class="w">     </span><span class="mi">2</span>
+<span class="w">    </span><span class="n">dma</span><span class="w">                          </span><span class="mi">0080</span><span class="o">-</span><span class="mi">008</span><span class="n">f</span>
+<span class="w">    </span><span class="n">dma1</span><span class="w">                         </span><span class="mi">0000</span><span class="o">-</span><span class="mi">001</span><span class="n">f</span>
+<span class="w">    </span><span class="n">dma2</span><span class="w">                         </span><span class="mi">00</span><span class="n">c0</span><span class="o">-</span><span class="mi">00</span><span class="n">df</span>
+<span class="w">    </span><span class="n">e1000</span><span class="w">                          </span><span class="n">d010</span><span class="o">-</span><span class="n">d017</span>
+<span class="w">    </span><span class="n">eth1</span><span class="w">                     </span><span class="mi">10</span>
+<span class="w">    </span><span class="n">fpu</span><span class="w">                          </span><span class="mi">00</span><span class="n">f0</span><span class="o">-</span><span class="mi">00</span><span class="n">ff</span>
+<span class="w">    </span><span class="n">i8042</span><span class="w">                  </span><span class="mi">1</span><span class="w"> </span><span class="mi">12</span>
+<span class="w">    </span><span class="n">Intel</span><span class="w">                          </span><span class="n">d100</span><span class="o">-</span><span class="n">d1ff</span><span class="w">   </span><span class="n">d200</span><span class="o">-</span><span class="n">d23f</span>
+<span class="w">    </span><span class="n">keyboard</span><span class="w">                     </span><span class="mi">0060</span><span class="o">-</span><span class="mi">0060</span><span class="w"> </span><span class="mi">0064</span><span class="o">-</span><span class="mi">0064</span>
+<span class="w">    </span><span class="n">ohci_hcd</span><span class="p">:</span><span class="n">usb1</span><span class="w">            </span><span class="mi">11</span>
+<span class="w">    </span><span class="n">PCI</span><span class="w">                          </span><span class="mi">0</span><span class="n">cf8</span><span class="o">-</span><span class="mi">0</span><span class="n">cff</span>
+<span class="w">    </span><span class="n">pic1</span><span class="w">                         </span><span class="mi">0020</span><span class="o">-</span><span class="mi">0021</span>
+<span class="w">    </span><span class="n">pic2</span><span class="w">                         </span><span class="mi">00</span><span class="n">a0</span><span class="o">-</span><span class="mi">00</span><span class="n">a1</span>
+<span class="w">    </span><span class="n">rtc0</span><span class="w">                      </span><span class="mi">8</span><span class="w">    </span><span class="mi">0070</span><span class="o">-</span><span class="mi">0071</span>
+<span class="w">    </span><span class="n">rtc_cmos</span><span class="w">                     </span><span class="mi">0070</span><span class="o">-</span><span class="mi">0071</span>
+<span class="w">    </span><span class="n">timer</span><span class="w">                     </span><span class="mi">0</span>
+<span class="w">    </span><span class="n">timer0</span><span class="w">                       </span><span class="mi">0040</span><span class="o">-</span><span class="mi">0043</span>
+<span class="w">    </span><span class="n">timer1</span><span class="w">                       </span><span class="mi">0050</span><span class="o">-</span><span class="mi">0053</span>
+<span class="w">    </span><span class="n">vboxguest</span><span class="w">                 </span><span class="mi">9</span>
+<span class="w">    </span><span class="n">vga</span><span class="o">+</span><span class="w">                         </span><span class="mi">03</span><span class="n">c0</span><span class="o">-</span><span class="mi">03</span><span class="n">df</span>
+</code></pre></div></td></tr></table></div>
+
+<p><strong>Note</strong></p>
+<p>On some systems <code>lsdev</code> is missing, use <code>procinfo</code> instead.</p>
+<h3 id="sysctl">sysctl<a class="headerlink" href="#sysctl" title="Permanent link">&para;</a></h3>
+<p>sysctl sysctl is used to modify kernel paramaters at runtime. The
+parameters available are those listed under <code>/proc/sys/</code>. The
+configuration file can usually be found in <code>/etc/sysctl.conf</code>. It is
+important to know that modules loaded after <code>sysctl</code> is used may
+override its settings. You can prevent this by running <code>sysctl</code> only
+after all modules are loaded.</p>
+<h2 id="kernel-runtime-management">Kernel Runtime Management<a class="headerlink" href="#kernel-runtime-management" title="Permanent link">&para;</a></h2>
+<p>With the <code>dmesg</code> command you can write kernel messages to standard
+output. Or write them to a file using <code>dmesg &gt; /var/log/boot.messages</code>.
+This can be helpful when it comes to troubleshooting issues with your
+system or when you just want to get some information about the hardware
+in your system. The output of <code>dmesg</code> can usually be found in
+<code>/var/log/dmesg</code>. Use <code>dmesg</code> in combination with <code>grep</code> to find
+specific information.</p>
+<h3 id="udev">udev<a class="headerlink" href="#udev" title="Permanent link">&para;</a></h3>
+<p>Candidates should understand device detection and management using
+<code>udev</code>. This objective includes troubleshooting udev rules</p>
+<p>Key Knowledge Areas:</p>
+<ul>
+<li>
+<p>udev rules</p>
+</li>
+<li>
+<p>Kernel interfaces</p>
+</li>
+</ul>
+<p><code>udev</code> was designed to make Linux device handling more flexible and safe
+by taking device handling out of system space into userspace.</p>
+<p><code>udev</code> consists of a userspace daemon (<code>udevd</code>) which receives
+"uevents" from the kernel. Communication between the userspace daemon
+and the kernel is done through the <code>sysfs</code> pseudo filesystem. The kernel
+sends the aforementioned "uevents" when it detects addition or removal
+of hardware, for example when you plug in your camera or USB disk. Based
+on a set of rules to match these uevents the kernel provides a dynamic
+device directory containing only device files for devices that are
+actually present, and can fire up scripts etc. to perform various
+actions. Hence, it is possible, for example, to plug in a camera, which
+will be automatically detected and properly mounted in the right place.
+After that a script might be started that copies all files to the local
+disk into a properly named subdirectory that will be created using the
+proper rights.</p>
+<p><code>/etc/udev/</code></p>
+<p>The <code>/etc/udev/</code> directory contains the configuration and the rule files
+for the udev utility. The <code>udev.conf</code> is the main configuration file for
+udev. Here, for instance, the logging priority can be changed.</p>
+<p><code>udev rules</code></p>
+<p><code>udev</code> rules are read from files located in the default rules directory.
+<code>/lib/udev/rules.d/</code>. Custom rules to override these default rules are
+specified in the <code>/etc/udev/rules.d/</code> directory.</p>
+<p>When devices are initialized or removed, the kernel sends an 'uevent'.
+These uevents contain information such as the subsystem (e.g. net, sub),
+action and attributes (e.g. mac, vendor). <code>udev</code> listens to these
+events, matches the uevent information to the specified rules, and
+responds accordingly.</p>
+<p>A <code>udev</code> rule consists of multiple key value pairs separated by a comma.
+Each key value pair represents either a match key, that matches to
+information provided with the uevent or an assign key, which assign
+values, names and actions to the device nodes maintained by <code>udev</code>:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="nx">SUBSYSTEM</span><span class="o">==</span><span class="s">&quot;net&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">ACTION</span><span class="o">==</span><span class="s">&quot;ADD&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">DRIVERS</span><span class="p">=</span><span class="s">&quot;?*&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">ATTR</span><span class="p">{</span><span class="nx">address</span><span class="p">}</span><span class="o">==</span><span class="s">&quot;00:21:86:9e:c2:c4&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nx">ATTR</span><span class="p">{</span><span class="k">type</span><span class="p">}</span><span class="o">==</span><span class="s">&quot;1&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">KERNEL</span><span class="p">=</span><span class="s">&quot;eth*&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">NAME</span><span class="o">==</span><span class="s">&quot;eth0&quot;</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The rule specified above would add a device <code>/dev/eth0</code> for a network
+card with MAC address 00:21:86:9e:c2:c4</p>
+<p>As shown, a key value pair also specifies an operator. Depending on the
+used operator, different actions are taken. Valid operators are: ==,
+Compare for equality, !=, Compare for inequality, =, Assign a value to a
+key. Keys that represent a list, are reset and only this single value is
+assigned, +=, Add the value to a key finally; disallow any later
+changes, which may be used to prevent changes by any later rules</p>
+<p>When specifying rules, be careful not to create conflicting rules (e.g.
+do not point two different netword cards to the same device name). Also,
+changing device names into something else could cause userpsace software
+incompatibilities. You have power, use it wisely.</p>
+<p><code>udevmonitor</code></p>
+<p><code>udevmonitor</code> will print <code>udev</code> and kernel uevents
+to standard output. You can use it to analyze event timing by comparing
+the timestamps of the kernel uevent and the <code>udev</code> event. Usually
+<code>udevmonitor</code> is a symbolic link to <code>udevadm</code>. In some distributions,
+this symbolic link no longer exists. To access the monitor on these
+systems, use the command <code>udevadm monitor</code>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 1997-2021 Sue B.V., The Netherlands - Open Sourced 2021
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["search.highlight", "tabs", "instant"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

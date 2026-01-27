@@ -1,0 +1,2836 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Sue B.V., The Netherlands">
+      
+      
+      
+        <link rel="prev" href="../lpic2.211.1/">
+      
+      
+        <link rel="next" href="../lpic2.211.3/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Managing E-Mail Delivery (211.2) - The LPIC2 Exam Prep</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:300,300i,400,400i,700,700i%7CAnonymous+Pro:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Nunito";--md-code-font:"Anonymous Pro"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#managing-e-mail-delivery-2112" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="The LPIC2 Exam Prep" class="md-header__button md-logo" aria-label="The LPIC2 Exam Prep" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            The LPIC2 Exam Prep
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Managing E-Mail Delivery (211.2)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/lpic2book/src" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    LPIC2Book
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="The LPIC2 Exam Prep" class="md-nav__button md-logo" aria-label="The LPIC2 Exam Prep" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/></svg>
+
+    </a>
+    The LPIC2 Exam Prep
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/lpic2book/src" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    LPIC2Book
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The LPIC2 Exam Prep
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpicbook_about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About this book
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    200 Capacity Planning (200)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Measure and Troubleshoot Resource Usage (200.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Predict Future Resource Needs (200.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Kernel (201)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel Components (201.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compiling a Linux kernel (201.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel runtime management and troubleshooting (201.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Startup (202)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customizing system startup (202.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System recovery (202.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Alternate Bootloaders (202.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Filesystem and Devices (203)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operating The Linux Filesystem (203.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maintaining a Linux Filesystem (203.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Creating And Configuring Filesystem Options (203.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Storage Device Administration (204)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring RAID (204.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adjusting Storage Device Access (204.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logical Volume Manager (204.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring PCMCIA Devices (204.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Networking Configuration (205)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Networking Configuration (205.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Network Configuration and Troubleshooting (205.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting network issues (205.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Maintenance (206)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Make and install programs from source (206.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup Operations (206.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifying users on system-related issues (206.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domain Name Server (207)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic DNS server configuration (207.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Create and maintain DNS zones (207.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Securing a DNS Server (207.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTTP Services (208)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Apache Configuration (208.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Apache configuration for HTTPS (208.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementing Squid as a caching proxy (208.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementing Nginx as a web server and a reverse proxy (208.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File Sharing (209)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAMBA Server Configuration (209.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring an NFS Server (209.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Client Management (210)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DHCP Configuration (210.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PAM authentication (210.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LDAP client usage (210.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring an OpenLDAP server (210.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    E-Mail services (211)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using e-mail servers (211.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing E-Mail Delivery (211.2)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing E-Mail Delivery (211.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#managing-e-mail-delivery-2112" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Managing E-Mail Delivery (211.2)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Managing E-Mail Delivery (211.2)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-knowledge-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Knowledge Areas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terms-and-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terms and Utilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#procmail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Procmail
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sieve" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sieve
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sieve">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sieve-syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sieve syntax
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sieve syntax">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#control-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Control commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#action-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Action commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sieve-vacation-extension" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sieve vacation extension
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mbox-and-maildir-storage-formats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mbox and maildir storage formats
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mbox and maildir storage formats">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mbox-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mbox format
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mbox format">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#advantages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advantages:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disadvantages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disadvantages:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maildir-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Maildir format
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Maildir format">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#advantages_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advantages:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disadvantages_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disadvantages:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recipe-differences-between-mbox-and-maildir-for-procmailrc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recipe differences between mbox and maildir for procmailrc
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing Mailbox Access (211.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Security (212)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring a router (212.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing FTP servers (212.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secure shell (SSH) (212.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security tasks (212.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenVPN (212.5)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#managing-e-mail-delivery-2112" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Managing E-Mail Delivery (211.2)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Managing E-Mail Delivery (211.2)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-knowledge-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Knowledge Areas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terms-and-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terms and Utilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#procmail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Procmail
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sieve" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sieve
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sieve">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sieve-syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sieve syntax
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sieve syntax">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#control-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Control commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#action-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Action commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sieve-vacation-extension" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sieve vacation extension
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mbox-and-maildir-storage-formats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mbox and maildir storage formats
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mbox and maildir storage formats">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mbox-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mbox format
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mbox format">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#advantages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advantages:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disadvantages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disadvantages:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maildir-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Maildir format
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Maildir format">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#advantages_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advantages:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disadvantages_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disadvantages:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recipe-differences-between-mbox-and-maildir-for-procmailrc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recipe differences between mbox and maildir for procmailrc
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>Managing E-Mail Delivery (211.2)</h1>
+
+<h2 id="managing-e-mail-delivery-2112">Managing E-Mail Delivery (211.2)<a class="headerlink" href="#managing-e-mail-delivery-2112" title="Permanent link">&para;</a></h2>
+<p>Candidates should be able to implement client e-mail management software
+to filter, sort and monitor incoming user email.</p>
+<h3 id="key-knowledge-areas">Key Knowledge Areas<a class="headerlink" href="#key-knowledge-areas" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Understanding of Sieve functionality, syntax and operators</p>
+</li>
+<li>
+<p>Use Sieve to filter and sort mail with respect to sender, recipient(s),
+headers and size</p>
+</li>
+<li>
+<p>Awareness of procmail</p>
+</li>
+</ul>
+<h3 id="terms-and-utilities">Terms and Utilities<a class="headerlink" href="#terms-and-utilities" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Conditions and comparison operators</p>
+</li>
+<li>
+<p>keep, fileinto, redirect, reject, discard, stop</p>
+</li>
+<li>
+<p>Dovecot vacation extension</p>
+</li>
+</ul>
+<h2 id="procmail">Procmail<a class="headerlink" href="#procmail" title="Permanent link">&para;</a></h2>
+<p>Procmail is a email filtering utility that may be used for
+preprocessing and sorting of incoming mail. It can also be used to sort
+out email from mailinglists, to filter spam and send auto-replies.
+Procmail configuration is based on a file placed in the user's
+homedirectory. It is rarely run from the command line (except for
+testing purposes) but it's an autonomous program which is normally
+invoked by MTA's (Mail Transport Agent) like Sendmail or Postfix.</p>
+<p>Procmail follows the following scheme for reading its configuration (it
+reads both): <code>/etc/procmailrc</code>, <code>~/.procmailrc</code></p>
+<p>Be careful using the system-wide <code>/etc/procmailrc</code>. It is usually read
+and processed as root. This fact means that a poorly designed recipe in
+that file could do serious damage. For instance, a typo could cause
+Procmail to overwrite an important system binary rather than use that
+binary to process a message. For this reason, you should keep
+system-wide Procmail processing to a minimum and instead focus on using
+<code>~/.procmailrc</code> to process email using individual accounts.</p>
+<h2 id="sieve">Sieve<a class="headerlink" href="#sieve" title="Permanent link">&para;</a></h2>
+<p>Dovecot Sieve is a scripting language that may be used to
+preprocess and sort incoming email. It can also be used to sort out email
+from mailinglists, to filter spam and send auto-replies. To use sieve it
+should first be configured on the email servers. In this setup postfix
+is used to deliver email to the Dovecot local delivery agent. In the
+file <code>main.cf</code> the <em>mailbox_command</em> option should be configured to use
+the local delivery agent.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    mailbox_command = /usr/lib/dovecot/dovecot-lda -a &quot;$RECIPIENT&quot;
+</code></pre></div></td></tr></table></div>
+
+<p>The next step is enabling sieve support in dovecot. In the configuration
+file <code>15-lda.conf</code> the following options should be configured:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code>    lda_mailbox_autocreate = yes
+
+    lda_mailbox_autosubscribe = yes
+
+    protocol lda {
+      mail_plugins = $mail_plugins sieve
+    }
+</code></pre></div></td></tr></table></div>
+
+<p>The configuration option: <em>lda_mailbox_autocreate</em> enables dovecot to
+create a mailbox if this action is initiated by a rule in sieve. The
+option: <em>lda_mailbox_autosubscribe</em> subscribes a user to a specific
+mailbox if this is initiated by an auto created action for a specific
+mailbox. The option: <em>mail_plugins</em> enables the sieve scripting module
+in dovecot. The configuration file <code>90-sieve.conf</code> needs the following
+adjustments:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="n">plugin</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">sieve</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">~/.</span><span class="n">dovecot</span><span class="o">.</span><span class="n">sieve</span>
+<span class="w">        </span><span class="n">sieve_dir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">~/</span><span class="n">sieve</span>
+<span class="w">        </span><span class="n">sieve_default</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">dovecot</span><span class="o">/</span><span class="n">sieve</span><span class="o">/</span><span class="n">default</span><span class="o">.</span><span class="n">sieve</span>
+<span class="w">        </span><span class="n">sieve_global_dir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">dovecot</span><span class="o">/</span><span class="n">sieve</span>
+<span class="w">    </span><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The <em>sieve</em> configuration option is the location where users can save
+their sieve rules. The <em>sieve_dir</em> configuration option is the
+directory of a user which can hold multiple sieve scripts. The
+configuration option <em>sieve_default</em> is used to execute a default sieve
+script. If a user has a personal sieve configuration file in its home
+directory then the global configuration file is overruled. The option
+<em>sieve_global_dir</em> identifies a global directory to contain multiple
+global sieve scripts. After configuration the services should be
+restarted with <code>service postfix restart</code> and <code>service dovecot restart</code>.</p>
+<h3 id="sieve-syntax">Sieve syntax<a class="headerlink" href="#sieve-syntax" title="Permanent link">&para;</a></h3>
+<p>The <em>sieve</em> syntax is easy to understand. It consists of three basic
+parts: Control, Test and Action commands. The control command controls
+the flow of the code. They affect how the commands will be carried out.
+The test command will be used in conjunction with control commands to
+specify a condition that could lead to an action. The action command
+will be executed after a condition is evaluated to true. You can also
+use single-line comments starting with a "#" and multi-line comments
+starting with "/*" and ending with "*/" to clarify sieve rules.
+Example:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">comment</span>
+<span class="w">    </span><span class="n">require</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;extension&quot;</span><span class="p">];</span>
+
+<span class="w">    </span><span class="cm">/* This is multi</span>
+<span class="cm">       line comment */</span>
+
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="nf">if</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">control</span><span class="w"> </span><span class="n">command</span>
+<span class="w">    </span><span class="nf">if</span><span class="w"> </span><span class="o">&lt;</span><span class="n">condition</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">       </span><span class="n">action1</span><span class="p">;</span><span class="w"> </span>
+<span class="w">       </span><span class="n">action2</span><span class="p">;</span>
+<span class="w">       </span><span class="p">...</span>
+<span class="w">       </span><span class="n">stop</span><span class="p">;</span><span class="w"> </span><span class="err">#</span><span class="kd">end </span><span class="n">processing</span>
+</code></pre></div></td></tr></table></div>
+
+<h4 id="control-commands">Control commands<a class="headerlink" href="#control-commands" title="Permanent link">&para;</a></h4>
+<p>The control commands in sieve are the basic <code>if</code>, <code>else</code> and <code>elsif</code>
+control statements. If the test condition is evaluated to true then the
+associated action will be executed. In the control statements the
+following tagged arguments can be used: <code>:contains</code>, <code>:is</code>, <code>:matches</code>,
+<code>:over</code>, and <code>:under</code> as shown in the upcoming sieve examples. The
+<code>require</code> control command is used to declare optional extensions at the
+beginning of a script (e.g. fileinto) and the <code>stop</code> command ends all
+processing of the script. Example:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="nv">require</span><span class="w"> </span><span class="s2">&quot;fileinto&quot;</span><span class="c1">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nv">header</span><span class="w"> </span>:<span class="nv">contains</span><span class="w"> </span><span class="s2">&quot;from&quot;</span><span class="w"> </span><span class="s2">&quot;lottery&quot;</span><span class="w"> </span>{
+<span class="w">        </span><span class="nv">discard</span><span class="c1">;</span>
+<span class="w">    </span>}<span class="w"> </span><span class="nv">elsif</span><span class="w"> </span><span class="nv">header</span><span class="w"> </span>:<span class="nv">contains</span><span class="w"> </span>[<span class="s2">&quot;subject&quot;</span>]<span class="w"> </span>[<span class="s2">&quot;$$$&quot;</span>]<span class="w"> </span>{
+<span class="w">        </span><span class="nv">discard</span><span class="c1">;</span>
+<span class="w">    </span>}<span class="w"> </span><span class="k">else</span><span class="w"> </span>{
+<span class="w">        </span><span class="nv">fileinto</span><span class="w"> </span><span class="s2">&quot;INBOX&quot;</span><span class="c1">;</span>
+<span class="w">    </span>}
+</code></pre></div></td></tr></table></div>
+
+<p>Example:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nv">header</span><span class="w"> </span>:<span class="nv">contains</span><span class="w"> </span><span class="s2">&quot;subject&quot;</span><span class="w"> </span><span class="s2">&quot;money&quot;</span><span class="w"> </span>{<span class="w"> </span>
+<span class="w">       </span><span class="nv">discard</span><span class="c1">; </span>
+<span class="w">       </span><span class="nv">stop</span><span class="c1">; </span>
+<span class="w">    </span>}
+</code></pre></div></td></tr></table></div>
+
+<h4 id="test-commands">Test commands<a class="headerlink" href="#test-commands" title="Permanent link">&para;</a></h4>
+<p>The control commands as stated in the previous section can support
+different test commands, namely: <code>address</code>, <code>allof</code>, <code>anyof</code>, <code>exists</code>,
+<code>false</code>, <code>header</code>, <code>not</code>, <code>size</code> and <code>true</code>.</p>
+<p>With the <code>address</code> command you can only test if an email address is in the
+header. If the <code>to</code> header contains "John Doe \&lt;john\@doe.com&gt;", then
+the test would evaluate to false. If the <code>to</code> address contains
+"john\@doe.com" then the test would be true because only the address is
+evaluated. Example:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="nx">require</span><span class="w"> </span><span class="s">&quot;fileinto&quot;</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">address</span><span class="w"> </span><span class="p">:</span><span class="k">is</span><span class="w"> </span><span class="s">&quot;to&quot;</span><span class="w"> </span><span class="s">&quot;john@doe.com&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="nx">fileinto</span><span class="w"> </span><span class="s">&quot;john&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The <code>allof</code> command is a logical "AND" meaning all conditions should be
+evaluated to true for further action. Example:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nv">allof</span><span class="w"> </span><span class="ss">(</span><span class="nv">header</span><span class="w"> </span>:<span class="nv">contains</span><span class="w"> </span><span class="s2">&quot;from&quot;</span><span class="w"> </span><span class="s2">&quot;Bofh&quot;</span>,<span class="w"> </span><span class="nv">header</span><span class="w"> </span>:<span class="nv">contains</span><span class="w"> </span><span class="s2">&quot;to&quot;</span><span class="w"> </span><span class="s2">&quot;abuse&quot;</span><span class="ss">)</span>
+<span class="w">    </span>{
+<span class="w">        </span><span class="nv">fileinto</span><span class="w"> </span><span class="s2">&quot;spam&quot;</span><span class="c1">;</span>
+<span class="w">    </span>}
+</code></pre></div></td></tr></table></div>
+
+<p>The <code>anyof</code> command is a logical "OR" meaning ANY condition should be
+evaluated to true for further action. Example:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nv">anyof</span><span class="w"> </span><span class="ss">(</span><span class="nv">size</span><span class="w"> </span>:<span class="nv">over</span><span class="w"> </span><span class="mi">1</span><span class="nv">M</span>,<span class="w"> </span><span class="nv">header</span><span class="w"> </span>:<span class="nv">contains</span><span class="w"> </span><span class="s2">&quot;subject&quot;</span><span class="w"> </span><span class="s2">&quot;big file attached&quot;</span><span class="ss">)</span>
+<span class="w">    </span>{
+<span class="w">        </span><span class="nv">reject</span><span class="w"> </span><span class="s2">&quot;I don&#39;t want messages that claim to have big files.&quot;</span><span class="c1">;</span>
+<span class="w">    </span>}
+</code></pre></div></td></tr></table></div>
+
+<p>The <code>exists</code> command tests if a header exits with the message. All
+headers must return true for any action being executed. Example:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="ow">exists</span><span class="w"> </span><span class="ss">&quot;x-custom-header&quot;</span><span class="w"> </span>
+<span class="w">    </span><span class="err">{</span>
+<span class="w">        </span><span class="n">redirect</span><span class="w"> </span><span class="ss">&quot;admin@example.com&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="err">}</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The <code>false</code> command simply returns false.</p>
+<p>The <code>header</code> command tests if a header matches the condition set by the
+argument and evaluates to true. Example:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nv">header</span><span class="w"> </span>:<span class="nv">is</span><span class="w"> </span>[<span class="s2">&quot;subject&quot;</span>]<span class="w"> </span><span class="s2">&quot;make money fast&quot;</span><span class="w"> </span>{
+<span class="w">        </span><span class="nv">discard</span><span class="c1">; </span>
+<span class="w">        </span><span class="nv">stop</span><span class="c1">;</span>
+<span class="w">    </span>}
+</code></pre></div></td></tr></table></div>
+
+<p>The <code>not</code> command should be used with another test. This command negates
+the other test for the action to be taken. The example below means that
+if the message does NOT contain "from" and "date" then the discard
+action will be taken. Example:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nv">not</span><span class="w"> </span><span class="nv">exists</span><span class="w"> </span>[<span class="s2">&quot;from&quot;</span>,<span class="w"> </span><span class="s2">&quot;date&quot;</span>]<span class="w"> </span>
+<span class="w">    </span>{<span class="w"> </span>
+<span class="w">       </span><span class="nv">discard</span><span class="c1">; </span>
+<span class="w">    </span>}
+</code></pre></div></td></tr></table></div>
+
+<p>The <code>size</code> command is used to specify the message size to be higher or
+lower than a specified value in order to evaluate the condition to true.
+The command accepts tagged arguments <code>:over</code> and <code>:under</code> and you can
+use M after the specified value for megabytes, K for kilobytes and no
+letter for bytes. Example:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nv">size</span><span class="w"> </span>:<span class="nv">over</span><span class="w"> </span><span class="mi">500</span><span class="nv">K</span><span class="w"> </span>{
+<span class="w">       </span><span class="nv">discard</span><span class="c1">;</span>
+<span class="w">    </span>}
+</code></pre></div></td></tr></table></div>
+
+<p>The <code>true</code> command simply returns true.</p>
+<h4 id="action-commands">Action commands<a class="headerlink" href="#action-commands" title="Permanent link">&para;</a></h4>
+<p>The action commands are being executed after a test command is evaluated
+to true or operate on their own. The action commands are: <code>keep</code>,
+<code>fileinto</code>, <code>redirect</code> and <code>discard</code>. The <code>keep</code> action commands causes
+the message to be saved in the default location. The <code>fileinto</code> action
+command is an optional command and can be used by using
+<code>require "fileinto"</code> control command in the beginning of the script. If
+the test command is evaluated to true then the message is moved into the
+defined mailbox. Example:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>    if attachment :matches [&quot;*.vbs&quot;, &quot;*.exe&quot;] {
+        fileinto &quot;INBOX.suspicious&quot;;
+    }
+</code></pre></div></td></tr></table></div>
+
+<p>The <code>redirect</code> command redirects the message to the address that is
+specified in the argument without tampering the message. Example:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="ow">exists</span><span class="w"> </span><span class="ss">&quot;x-virus-found&quot;</span><span class="w"> </span><span class="err">{</span>
+<span class="w">        </span><span class="n">redirect</span><span class="w"> </span><span class="ss">&quot;admin@example.com&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="err">}</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The <code>discard</code> command causes the message silently deleted without
+sending any notification or any other message. Example:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nv">size</span><span class="w"> </span>:<span class="nv">over</span><span class="w"> </span><span class="mi">2</span><span class="nv">M</span><span class="w"> </span>{<span class="w"> </span>
+<span class="w">        </span><span class="nv">discard</span><span class="c1">; </span>
+<span class="w">    </span>}
+</code></pre></div></td></tr></table></div>
+
+<h3 id="sieve-vacation-extension">Sieve vacation extension<a class="headerlink" href="#sieve-vacation-extension" title="Permanent link">&para;</a></h3>
+<p>Sieve also offers an auto-responder functionality by using the
+<code>vacation</code> extension. Below is an example shown that uses the <code>vacation</code>
+extension.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="nx">require</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;fileinto&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;vacation&quot;</span><span class="p">];</span>
+
+<span class="w">    </span><span class="nx">vacation</span>
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="nx">Reply</span><span class="w"> </span><span class="nx">at</span><span class="w"> </span><span class="nx">most</span><span class="w"> </span><span class="nx">once</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="nx">day</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="nx">same</span><span class="w"> </span><span class="nx">sender</span>
+<span class="w">        </span><span class="p">:</span><span class="nx">days</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">        </span><span class="p">:</span><span class="nx">subject</span><span class="w"> </span><span class="s">&quot;Out of office reply&quot;</span>
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="nx">List</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="nx">additional</span><span class="w"> </span><span class="nx">recipient</span><span class="w"> </span><span class="nx">addresses</span><span class="w"> </span><span class="nx">which</span><span class="w"> </span><span class="nx">are</span><span class="w"> </span><span class="nx">included</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="kt">auto</span><span class="w"> </span><span class="nx">replying</span><span class="p">.</span>
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="nx">If</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="nx">mail</span><span class="err">&#39;</span><span class="nx">s</span><span class="w"> </span><span class="nx">recipient</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">envelope</span><span class="w"> </span><span class="nx">recipient</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="nx">it</span><span class="err">&#39;</span><span class="nx">s</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="nx">on</span><span class="w"> </span><span class="nx">this</span><span class="w"> </span><span class="nx">list</span><span class="p">,</span>
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="nx">no</span><span class="w"> </span><span class="nx">vacation</span><span class="w"> </span><span class="nx">reply</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="nx">sent</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nx">it</span><span class="p">.</span>
+<span class="w">        </span><span class="p">:</span><span class="nx">addresses</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;j.doe@company.dom&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;john.doe@company.dom&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="s">&quot;I&#39;m out of office, please contact Joan Doe instead.</span>
+<span class="s">    Best regards</span>
+<span class="s">    John Doe&quot;</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The <code>vacation</code> extension provides several options, namely:</p>
+<ul>
+<li>
+<p><code>:days number</code> - Is used to specify the period where addresses are
+    kept and not responded to (in days).</p>
+</li>
+<li>
+<p><code>:subject string</code> - Specifies the subject line attached to any
+    vacation response.</p>
+</li>
+<li>
+<p><code>:from string</code> - Specifies an alternate to use in the From field of
+    vacation messages.</p>
+</li>
+<li>
+<p><code>:addresses string-list</code> - Specifies additional email addresses to
+    the recipient.</p>
+</li>
+<li>
+<p><code>:mime</code> - Specifies arbitrary mime content. For example to specify
+    multiple vacation messages in different languages.</p>
+</li>
+<li>
+<p><code>:handle string</code> - Tells sieve to treat two vacation actions with
+    different arguments as the same command for response tracking</p>
+</li>
+<li>
+<p><em>reason: string</em> - The actual message</p>
+</li>
+</ul>
+<p>Example:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="nv">require</span><span class="w"> </span><span class="s2">&quot;vacation&quot;</span><span class="c1">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nv">header</span><span class="w"> </span>:<span class="nv">contains</span><span class="w"> </span><span class="s2">&quot;subject&quot;</span><span class="w"> </span><span class="s2">&quot;lunch&quot;</span><span class="w"> </span>{
+<span class="w">           </span><span class="nv">vacation</span><span class="w"> </span>:<span class="nv">handle</span><span class="w"> </span><span class="s2">&quot;ran-away&quot;</span><span class="w"> </span><span class="s2">&quot;I&#39;m out and can&#39;t meet for lunch&quot;</span><span class="c1">;</span>
+<span class="w">    </span>}<span class="w"> </span><span class="k">else</span><span class="w"> </span>{
+<span class="w">           </span><span class="nv">vacation</span><span class="w"> </span>:<span class="nv">handle</span><span class="w"> </span><span class="s2">&quot;ran-away&quot;</span><span class="w"> </span><span class="s2">&quot;I&#39;m out&quot;</span><span class="c1">;</span>
+<span class="w">    </span>}
+</code></pre></div></td></tr></table></div>
+
+<h2 id="mbox-and-maildir-storage-formats">Mbox and maildir storage formats<a class="headerlink" href="#mbox-and-maildir-storage-formats" title="Permanent link">&para;</a></h2>
+<p>Mbox and maildir are email storage formats. Postfix and Dovecot support
+the two email storage formats where maildir is the recommended format.</p>
+<h3 id="mbox-format">Mbox format<a class="headerlink" href="#mbox-format" title="Permanent link">&para;</a></h3>
+<p>Mbox is the traditional email storage format. In this format there is
+only one regular text file which serves as the user's mailbox.
+Typically, the name of this file is <code>/var/spool/mail/&lt;user name&gt;</code>. Mbox
+locks the mailbox when an operation is performed on the mailbox. After
+the operation the mailbox is unlocked.</p>
+<h4 id="advantages">Advantages:<a class="headerlink" href="#advantages" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p>Mbox format is universally supported</p>
+</li>
+<li>
+<p>Appending new email is fast</p>
+</li>
+<li>
+<p>Searching inside single mailbox is fast</p>
+</li>
+</ul>
+<h4 id="disadvantages">Disadvantages:<a class="headerlink" href="#disadvantages" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p>Mbox is known for locking problems</p>
+</li>
+<li>
+<p>The mbox format is prone to corruption</p>
+</li>
+</ul>
+<h3 id="maildir-format">Maildir format<a class="headerlink" href="#maildir-format" title="Permanent link">&para;</a></h3>
+<p>Maildir is the newer email storage format. A directory maildir is
+created for each email user, typically in the users' home directories.
+Under this maildir directory by default three more directories exist:
+new, cur and tmp.</p>
+<h4 id="advantages_1">Advantages:<a class="headerlink" href="#advantages_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p>Locating, retrieving and deleting a specific email is fast,
+    particularly when a email folder contains hundreds of messages</p>
+</li>
+<li>
+<p>Minimal to no file locking needed</p>
+</li>
+<li>
+<p>Can be used on a network file system</p>
+</li>
+<li>
+<p>Immune to mailbox corruption (assuming the hardware will not fail)</p>
+</li>
+</ul>
+<h4 id="disadvantages_1">Disadvantages:<a class="headerlink" href="#disadvantages_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p>Some filesystems may not efficiently handle a large number of small
+    files</p>
+</li>
+<li>
+<p>Searching text, which requires all email files to be opened is slow</p>
+</li>
+</ul>
+<h3 id="recipe-differences-between-mbox-and-maildir-for-procmailrc">Recipe differences between mbox and maildir for procmailrc<a class="headerlink" href="#recipe-differences-between-mbox-and-maildir-for-procmailrc" title="Permanent link">&para;</a></h3>
+<p>Before copying the recipes from this page into your procmailrc file,
+remember to adapt them to your particular maildir/mbox format, taking
+into consideration that the name of maildir folders end in \"/\". You do
+not need to lock the file when using maildir format (:0 instead of :0:).</p>
+<p>In mbox the format is:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>    :0:
+    recipe
+    directory_name
+</code></pre></div></td></tr></table></div>
+
+<p>While in maildir it would be:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>    :0
+    recipe
+    directory_name/
+</code></pre></div></td></tr></table></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 1997-2021 Sue B.V., The Netherlands - Open Sourced 2021
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["search.highlight", "tabs", "instant"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

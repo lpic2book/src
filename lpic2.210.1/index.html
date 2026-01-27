@@ -1,0 +1,3588 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Sue B.V., The Netherlands">
+      
+      
+      
+        <link rel="prev" href="../lpic2.210.0/">
+      
+      
+        <link rel="next" href="../lpic2.210.2/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>DHCP Configuration (210.1) - The LPIC2 Exam Prep</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:300,300i,400,400i,700,700i%7CAnonymous+Pro:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Nunito";--md-code-font:"Anonymous Pro"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#dhcp-configuration-2101" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="The LPIC2 Exam Prep" class="md-header__button md-logo" aria-label="The LPIC2 Exam Prep" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            The LPIC2 Exam Prep
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              DHCP Configuration (210.1)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/lpic2book/src" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    LPIC2Book
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="The LPIC2 Exam Prep" class="md-nav__button md-logo" aria-label="The LPIC2 Exam Prep" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/></svg>
+
+    </a>
+    The LPIC2 Exam Prep
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/lpic2book/src" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    LPIC2Book
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The LPIC2 Exam Prep
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpicbook_about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About this book
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    200 Capacity Planning (200)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Measure and Troubleshoot Resource Usage (200.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Predict Future Resource Needs (200.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Kernel (201)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel Components (201.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compiling a Linux kernel (201.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel runtime management and troubleshooting (201.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Startup (202)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customizing system startup (202.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System recovery (202.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Alternate Bootloaders (202.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Filesystem and Devices (203)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operating The Linux Filesystem (203.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maintaining a Linux Filesystem (203.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Creating And Configuring Filesystem Options (203.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Storage Device Administration (204)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring RAID (204.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adjusting Storage Device Access (204.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logical Volume Manager (204.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring PCMCIA Devices (204.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Networking Configuration (205)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Networking Configuration (205.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Network Configuration and Troubleshooting (205.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting network issues (205.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Maintenance (206)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Make and install programs from source (206.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup Operations (206.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifying users on system-related issues (206.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domain Name Server (207)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic DNS server configuration (207.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Create and maintain DNS zones (207.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Securing a DNS Server (207.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTTP Services (208)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Apache Configuration (208.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Apache configuration for HTTPS (208.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementing Squid as a caching proxy (208.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementing Nginx as a web server and a reverse proxy (208.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File Sharing (209)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAMBA Server Configuration (209.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring an NFS Server (209.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Client Management (210)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DHCP Configuration (210.1)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DHCP Configuration (210.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dhcp-configuration-2101" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DHCP Configuration (210.1)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="DHCP Configuration (210.1)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-knowledge-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Knowledge Areas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terms-and-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terms and Utilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-dhcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is DHCP?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What is DHCP?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-is-the-server-configured" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How is the server configured?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How is the server configured?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-are-global-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What are (global) parameters?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-a-shared-network-declaration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is a shared-network declaration?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-a-subnet-declaration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is a subnet declaration?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-a-group-declaration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is a group declaration?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-a-host-declaration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is a host declaration?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-network-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The network architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-network-services-available-to-workstations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The network services available to workstations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The network services available to workstations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#subnet-independent-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subnet-independent Services
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subnet-dependent-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subnet dependent services
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#building-the-dhcp-servers-configuration-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Building the DHCP-server's configuration file
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Building the DHCP-server&#39;s configuration file">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-global-parameters-for-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The global parameters for services
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-companys-shared-networks-and-subnets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The company's shared-networks and subnets
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#static-hosts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Static hosts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#static-bootp-hosts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Static BOOTP hosts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#leases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Leases
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interfaces-the-dhcp-server-listens-on" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interfaces the DHCP-server listens on
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reloading-the-dhcp-server-after-making-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reloading the DHCP-server after making changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logging
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-dhcp-relaying" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is DHCP-relaying?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PAM authentication (210.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LDAP client usage (210.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring an OpenLDAP server (210.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    E-Mail services (211)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using e-mail servers (211.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing E-Mail Delivery (211.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing Mailbox Access (211.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Security (212)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring a router (212.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing FTP servers (212.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secure shell (SSH) (212.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security tasks (212.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenVPN (212.5)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dhcp-configuration-2101" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DHCP Configuration (210.1)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="DHCP Configuration (210.1)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-knowledge-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Knowledge Areas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terms-and-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terms and Utilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-dhcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is DHCP?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What is DHCP?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-is-the-server-configured" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How is the server configured?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How is the server configured?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-are-global-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What are (global) parameters?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-a-shared-network-declaration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is a shared-network declaration?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-a-subnet-declaration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is a subnet declaration?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-a-group-declaration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is a group declaration?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-a-host-declaration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is a host declaration?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-network-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The network architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-network-services-available-to-workstations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The network services available to workstations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The network services available to workstations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#subnet-independent-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subnet-independent Services
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subnet-dependent-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subnet dependent services
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#building-the-dhcp-servers-configuration-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Building the DHCP-server's configuration file
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Building the DHCP-server&#39;s configuration file">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-global-parameters-for-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The global parameters for services
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-companys-shared-networks-and-subnets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The company's shared-networks and subnets
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#static-hosts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Static hosts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#static-bootp-hosts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Static BOOTP hosts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#leases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Leases
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interfaces-the-dhcp-server-listens-on" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interfaces the DHCP-server listens on
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reloading-the-dhcp-server-after-making-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reloading the DHCP-server after making changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logging
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-dhcp-relaying" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is DHCP-relaying?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>DHCP Configuration (210.1)</h1>
+
+<h2 id="dhcp-configuration-2101">DHCP Configuration (210.1)<a class="headerlink" href="#dhcp-configuration-2101" title="Permanent link">&para;</a></h2>
+<p>Candidates should be able to configure a DHCP server. This objective
+includes setting default and per client options, adding static hosts and
+BOOTP hosts. Also included is configuring a DHCP relay agent and
+maintaining the DHCP server.</p>
+<h3 id="key-knowledge-areas">Key Knowledge Areas<a class="headerlink" href="#key-knowledge-areas" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>DHCP configuration files, terms and utilities</p>
+</li>
+<li>
+<p>Subnet and dynamically-allocated range setup</p>
+</li>
+</ul>
+<h3 id="terms-and-utilities">Terms and Utilities<a class="headerlink" href="#terms-and-utilities" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><code>dhcpd.conf</code></p>
+</li>
+<li>
+<p><code>dhcpd.leases</code></p>
+</li>
+<li>
+<p><code>/var/log/daemon.log</code> and <code>/var/log/messages</code></p>
+</li>
+<li>
+<p><code>arp</code></p>
+</li>
+<li>
+<p><code>dhcpd</code></p>
+</li>
+<li>
+<p><code>radvd</code></p>
+</li>
+<li>
+<p><code>radvd.conf</code></p>
+</li>
+</ul>
+<h2 id="what-is-dhcp">What is DHCP?<a class="headerlink" href="#what-is-dhcp" title="Permanent link">&para;</a></h2>
+<p>The "Dynamic Host Configuration Protocol" (DHCP) is a protocol that
+allows computers to get configuration information about the network from
+the network. DHCP addresses are "leased" from servers to clients for a
+period of time. There is a separate protocol for assigning IPv6
+addresses called DHCPv6, although the "Neighbour Discovery Protocol"
+(NDP) better fits this purpose.</p>
+<p>The process of requesting and assigning addresses works as follows:</p>
+<ul>
+<li>
+<p>When a computer starts, it sends a request to the network.</p>
+</li>
+<li>
+<p>Any DHCP servers that receive this request decide what address and
+    other configuration options to assign to the client. This is
+    typically based on things like: which network the request arrived
+    on, or the MAC address of the  interface that sent the request.</p>
+</li>
+<li>
+<p>Each server sends a packet which offers to assign the address to the
+    client.</p>
+</li>
+<li>
+<p>The client decides which offer to accept, and sends a message to the
+    server confirming the choice.</p>
+</li>
+<li>
+<p>The server acknowledges that it has recorded this address.</p>
+</li>
+</ul>
+<p>Amongst the most commonly used configuration items are: <code>ip-address</code>,
+<code>host-name</code>, <code>domain-name</code>, <code>subnet-mask</code>, <code>broadcast-address</code>,
+<code>routers</code> and <code>domain-name-servers</code>.</p>
+<p>The information is requested by a DHCP client and provided by a DHCP
+DHCPServer DHCPClient server. By default, the server listens for
+requests on udp port 67 and 67 answers through udp port 68, but it can
+be told to listen to another 68 port instead with the <code>-p</code> option. The
+DHCP server will then answer through an udp port with a number one
+higher than the port it listens to.</p>
+<p>Hosts using IPv6 are actually capable of assigning themselves link-local
+IP addresses using stateless autoconfiguration. DHCPv6 or NDP may be
+used to assign additional globally unique addresses and other
+configuration parameters. NDP is described in further detail in the
+section on <code>radvd</code></p>
+<p>The web-site <a href="https://www.isc.org/downloads/dhcp/">Resources for DHCP</a>
+contains a lot of (pointers to) information on the DHCP protocol,
+including RFC's.</p>
+<h3 id="how-is-the-server-configured">How is the server configured?<a class="headerlink" href="#how-is-the-server-configured" title="Permanent link">&para;</a></h3>
+<p>dhcpd The configuration of the DHCP server, <code>dhcpd</code>, is done
+DHCPdhcpd.conf by means of its configuration file <code>/etc/dhcpd.conf</code>.</p>
+<p>The elements that can be used in a configuration file are: (global)
+parameters, shared networks, subnets, groups and hosts.</p>
+<h4 id="what-are-global-parameters">What are (global) parameters?<a class="headerlink" href="#what-are-global-parameters" title="Permanent link">&para;</a></h4>
+<p>Parameters can be seen as variables that get assigned a value and are
+DHCPGlobal Parameters passed from the server to the client. Some
+parameters start with the <em>option</em> keyword and some do not. Parameters
+that do not start with the <em>option</em> keyword are either parameters that
+control the behaviour of the DHCP server or are parameters that are
+optional in the DHCP protocol.</p>
+<p>The difference between "normal" parameters and "global" parameters lies
+purely in the scope of the parameters. DHCPNormal Parameters If, for
+instance, the DNS is always the same, it is pointless to add a
+<code>domain-name-servers</code> parameter-definition statement to every
+network-definition statement. By assigning the <code>domain-name-servers</code>
+parameter a value at the beginning of the configuration file, the
+parameter becomes a global parameter and its value becomes the default
+value for that parameter.</p>
+<p>The value of a global parameter can be overridden by assigning it
+another value in subsequent sections.</p>
+<h4 id="what-is-a-shared-network-declaration">What is a shared-network declaration?<a class="headerlink" href="#what-is-a-shared-network-declaration" title="Permanent link">&para;</a></h4>
+<p>A shared-network declaration is used if there are multiple subnets
+DHCPshared network on the same physical network. Parameters that are the
+same for all the subnets belonging to the shared-network can be defined
+once above the subnet-declarations within the shared-network declaration
+that encompasses those subnet-declarations.</p>
+<h4 id="what-is-a-subnet-declaration">What is a subnet declaration?<a class="headerlink" href="#what-is-a-subnet-declaration" title="Permanent link">&para;</a></h4>
+<p>A subnet-declaration is used to define a network segment. Parameters
+DHCPsubnet declaration that only apply to the subnet in question are
+defined within the subnet-declaration.</p>
+<p>A subnet-declaration must contain a range statement that defines the
+IP-addresses the DHCP-server can give to clients on that subnet.</p>
+<h4 id="what-is-a-group-declaration">What is a group declaration?<a class="headerlink" href="#what-is-a-group-declaration" title="Permanent link">&para;</a></h4>
+<p>A group-declaration is used to group other declarations, including
+DHCPgroup declaration group-declarations, that have a number of
+properties in common so that the common properties only have to be be
+specified once in stead of for every declaration.</p>
+<h4 id="what-is-a-host-declaration">What is a host declaration?<a class="headerlink" href="#what-is-a-host-declaration" title="Permanent link">&para;</a></h4>
+<p>A host declaration is used to set properties for a specific client.
+DHCPhost declaration The client identifies itself to the DHCP server by
+one of its unique properties such as its NIC address or its
+client-identifier. NIC address</p>
+<h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
+<p>Consider a firm which has four departments: Sales, Administration,
+Engineering and Management. All departments are located in the same
+building and each department has three floors to its disposal.</p>
+<p>On each floor, there are up to 200 workstations and one laser printer
+(LPRT-xx). Furthermore each department has its own colour laser-printer
+(CLPRT-xx) located on the middle floor. The printers can only be used by
+users of the department the printers belong to.</p>
+<p>All users obtain an IP-address from the company's DHCP-server and must
+be able to reach the company's DNS-server and
+NTP-server. All users get their mail using the POP3 protocol, send their
+mail using the SMTP protocol and read their news using the NNTP
+protocol.</p>
+<p>A graphical representation of the company's network is shown below:</p>
+<p><img alt="" src="../images/210-dhcp.dot.svg.jpg" /></p>
+<h4 id="the-network-architecture">The network architecture<a class="headerlink" href="#the-network-architecture" title="Permanent link">&para;</a></h4>
+<p>Assuming that the IP range 21.31.x.x has been assigned to the company
+and that each department has its own network (determined by the highest
+four bits of the third octet; in other words: the netmask used is /20 or
+255.255.240.0), the subnets could be set up as follows:
+Table 10.1. The first two octets are 21.31</p>
+<table>
+<thead>
+<tr>
+<th>Dept.</th>
+<th>Floor</th>
+<th>IP range</th>
+<th>Router</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0001</td>
+<td>0001</td>
+<td>21.31.17.0 - 21.31.17.255</td>
+<td></td>
+<td>Sales floor #1</td>
+</tr>
+<tr>
+<td>0001</td>
+<td>0010</td>
+<td>21.31.18.0 - 21.31.18.255</td>
+<td>21.31.17.1</td>
+<td>Sales floor #2</td>
+</tr>
+<tr>
+<td>0001</td>
+<td>0011</td>
+<td>21.31.19.0 - 21.31.19.255</td>
+<td></td>
+<td>Sales floor #3</td>
+</tr>
+<tr>
+<td>0010</td>
+<td>0100</td>
+<td>21.31.36.0 - 21.31.36.255</td>
+<td></td>
+<td>Administration #4</td>
+</tr>
+<tr>
+<td>0010</td>
+<td>0101</td>
+<td>21.31.37.0 - 21.31.37.255</td>
+<td>21.31.36.1</td>
+<td>Administration #5</td>
+</tr>
+<tr>
+<td>0010</td>
+<td>0110</td>
+<td>21.31.38.0 - 21.31.38.255</td>
+<td></td>
+<td>Administration #6</td>
+</tr>
+<tr>
+<td>0011</td>
+<td>0111</td>
+<td>21.31.55.0 - 21.31.55.255</td>
+<td></td>
+<td>Engineering floor #7</td>
+</tr>
+<tr>
+<td>0011</td>
+<td>1000</td>
+<td>21.31.56.0 - 21.31.56.255</td>
+<td>21.31.55.1</td>
+<td>Engineering floor #8</td>
+</tr>
+<tr>
+<td>0011</td>
+<td>1001</td>
+<td>21.31.57.0 - 21.31.57.255</td>
+<td></td>
+<td>Engineering floor #9</td>
+</tr>
+<tr>
+<td>0100</td>
+<td>1010</td>
+<td>21.31.74.0 - 21.31.74.255</td>
+<td></td>
+<td>Management floor #10</td>
+</tr>
+<tr>
+<td>0100</td>
+<td>1011</td>
+<td>21.31.75.0 - 21.31.75.255</td>
+<td>21.31.74.1</td>
+<td>Management floor #11</td>
+</tr>
+<tr>
+<td>0100</td>
+<td>1100</td>
+<td>21.31.76.0 - 21.31.76.255</td>
+<td></td>
+<td>Management floor #12</td>
+</tr>
+</tbody>
+</table>
+<h3 id="the-network-services-available-to-workstations">The network services available to workstations<a class="headerlink" href="#the-network-services-available-to-workstations" title="Permanent link">&para;</a></h3>
+<p>The workstations on the company's network obtain their IP-address and
+the IP-addresses of the available network services from the company's
+DHCP-server via the department's DHCP-relay which also functions as a
+router.</p>
+<h4 id="subnet-independent-services">Subnet-independent Services<a class="headerlink" href="#subnet-independent-services" title="Permanent link">&para;</a></h4>
+<p>Subnet-independent services are the services that are available to all
+workstations on the company's network regardless the subnet they are
+on. The table below shows those services and their fixed IP-addresses.</p>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Description</th>
+<th>IP-address</th>
+<th>Host name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DHCP</td>
+<td>DHCP-server</td>
+<td>21.31.0.1</td>
+<td>dhcp.company.com</td>
+</tr>
+<tr>
+<td>DNS</td>
+<td>DNS</td>
+<td>21.31.0.2</td>
+<td>dns.company.com</td>
+</tr>
+<tr>
+<td>SMTP</td>
+<td>SMTP-server</td>
+<td>21.31.0.3</td>
+<td>smtp.company.com</td>
+</tr>
+<tr>
+<td>POP3</td>
+<td>POP3-server</td>
+<td>21.31.0.4</td>
+<td>pop3.company.com</td>
+</tr>
+<tr>
+<td>NEWS</td>
+<td>NNTP-server</td>
+<td>21.31.0.5</td>
+<td>news.company.com</td>
+</tr>
+<tr>
+<td>NTP</td>
+<td>NTP-server</td>
+<td>21.31.0.6</td>
+<td>ntp.company.com</td>
+</tr>
+</tbody>
+</table>
+<h4 id="subnet-dependent-services">Subnet dependent services<a class="headerlink" href="#subnet-dependent-services" title="Permanent link">&para;</a></h4>
+<p>Subnet-dependent services are the services that are only available to
+the workstations on the same subnet as the service. The table below
+shows those services and their fixed IP-addresses.</p>
+<table>
+<thead>
+<tr>
+<th>Department</th>
+<th>Service</th>
+<th>Description</th>
+<th>IP-address</th>
+<th>Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Router</td>
+<td>Sales Router floor #2</td>
+<td>21.31.17.1</td>
+<td>rtr-02.company.com</td>
+<td></td>
+</tr>
+<tr>
+<td>Printer</td>
+<td>Laser Printer floor #1</td>
+<td>21.31.17.2</td>
+<td>lprt-01.company.com</td>
+<td></td>
+</tr>
+<tr>
+<td>Sales</td>
+<td>Printer</td>
+<td>Laser Printer floor #2</td>
+<td>21.31.18.2</td>
+<td>lprt-02.company.com</td>
+</tr>
+<tr>
+<td>Printer</td>
+<td>Laser Printer floor #3</td>
+<td>21.31.19.2</td>
+<td>lprt-03.company.com</td>
+<td></td>
+</tr>
+<tr>
+<td>Printer</td>
+<td>Color Laser Printer floor #2</td>
+<td>21.31.18.3</td>
+<td>clprt-02.company.com</td>
+<td></td>
+</tr>
+<tr>
+<td>Router</td>
+<td>Administration Router floor #5</td>
+<td>21.31.36.1</td>
+<td>rtr-05.company.com</td>
+<td></td>
+</tr>
+<tr>
+<td>Printer</td>
+<td>Laser Printer floor #4</td>
+<td>21.31.36.2</td>
+<td>lprt-04.company.com</td>
+<td></td>
+</tr>
+<tr>
+<td>Administration</td>
+<td>Printer</td>
+<td>Laser Printer floor #5</td>
+<td>21.31.37.2</td>
+<td>lprt-05.company.com</td>
+</tr>
+<tr>
+<td>Printer</td>
+<td>Laser Printer floor #6</td>
+<td>21.31.38.2</td>
+<td>lprt-06.company.com</td>
+<td></td>
+</tr>
+<tr>
+<td>Printer</td>
+<td>Color Laser Printer floor #5</td>
+<td>21.31.37.3</td>
+<td>clprt-05.company.com</td>
+<td></td>
+</tr>
+<tr>
+<td>Router</td>
+<td>Engineering Router floor #8</td>
+<td>21.31.55.1</td>
+<td>rtr-08.company.com</td>
+<td></td>
+</tr>
+<tr>
+<td>Printer</td>
+<td>Laser Printer floor #7</td>
+<td>21.31.55.2</td>
+<td>lprt-07.company.com</td>
+<td></td>
+</tr>
+<tr>
+<td>Engineering</td>
+<td>Printer</td>
+<td>Laser Printer floor #8</td>
+<td>21.31.56.2</td>
+<td>lprt-08.company.com</td>
+</tr>
+<tr>
+<td>Printer</td>
+<td>Laser Printer floor #9</td>
+<td>21.31.57.2</td>
+<td>lprt-09.company.com</td>
+<td></td>
+</tr>
+<tr>
+<td>Printer</td>
+<td>Color Laser Printer floor #8</td>
+<td>21.31.56.3</td>
+<td>clprt-08.company.com</td>
+<td></td>
+</tr>
+<tr>
+<td>Router</td>
+<td>Management Router floor #11</td>
+<td>21.31.74.1</td>
+<td>rtr-11.company.com</td>
+<td></td>
+</tr>
+<tr>
+<td>Printer</td>
+<td>Laser Printer floor #10</td>
+<td>21.31.74.2</td>
+<td>lprt-10.company.com</td>
+<td></td>
+</tr>
+<tr>
+<td>Management</td>
+<td>Printer</td>
+<td>Laser Printer floor #11</td>
+<td>21.31.75.2</td>
+<td>lprt-11.company.com</td>
+</tr>
+<tr>
+<td>Printer</td>
+<td>Laser Printer floor #12</td>
+<td>21.31.76.2</td>
+<td>lprt-12.company.com</td>
+<td></td>
+</tr>
+<tr>
+<td>Printer</td>
+<td>Color Laser Printer floor #11</td>
+<td>21.31.75.3</td>
+<td>clprt-11.company.com</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="building-the-dhcp-servers-configuration-file">Building the DHCP-server's configuration file<a class="headerlink" href="#building-the-dhcp-servers-configuration-file" title="Permanent link">&para;</a></h3>
+<p>The information needed to be able to build a configuration file has
+already been gathered in the previous sections when the network topology
+was devised.</p>
+<p>In this section the actual configuration file <code>/etc/dhcpd.conf</code> will be
+filled with the necessary information.</p>
+<h4 id="the-global-parameters-for-services">The global parameters for services<a class="headerlink" href="#the-global-parameters-for-services" title="Permanent link">&para;</a></h4>
+<p>Global parameters are put at the top of the configuration file:
+DHCPoption DHCPdomain-name-servers DHCPsmtp-server DHCPpop-server
+DHCPnntp-server</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code>    # DNS
+    option domain-name-servers 21.31.0.2;
+    # SMTP
+    option smtp-server 21.31.0.3;
+    # POP3
+    option pop-server 21.31.0.4;
+    # NEWS
+    option nntp-server 21.31.0.5;
+    # NTP
+    option time-servers 21.31.0.6;
+</code></pre></div></td></tr></table></div>
+
+<p>Another way to do this is by using domain names. A <em>single</em> domain name
+<em>must</em> resolve to a <em>single</em> IP-address. Using domain names, you would
+put the following entries in the configuration file:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code>    # DNS
+    option domain-name-servers dns.company.com;
+    # SMTP
+    option smtp-server smtp.company.com;
+    # POP3
+    option pop-server pop3.company.com;
+    # NEWS
+    option nntp-server news.company.com;
+    # NTP
+    option time-servers ntp.company.com;
+</code></pre></div></td></tr></table></div>
+
+<h4 id="the-companys-shared-networks-and-subnets">The company's shared-networks and subnets<a class="headerlink" href="#the-companys-shared-networks-and-subnets" title="Permanent link">&para;</a></h4>
+<p>As has been discussed in the previous sections, there are four different
+networks, one for each department and there are twelve different
+IP-address ranges, one for each floor. Furthermore, each network has its
+own router and printers.</p>
+<p>This translates into four shared-networks each having their own netmask
+and broadcast-address and encompassing three IP-address ranges.</p>
+<p>The netmask is an IP-address used to determine the network a
+workstation, or some other network device that uses an IP-address, is
+on. A netmask has 1's in the bit-positions that are the same for all
+network devices in that network and 0's in the other positions. Since
+all the subnets on a department's shared-network are on the same
+physical network, the distinction is made on the shared-network level,
+not on the floor level. The floor level has been coded into the
+IP-address (low-nibble of the third octet) to prepare for the planned
+instalment next year of one router per floor in stead of one router per
+department. The netmask is calculated as follows:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="mf">21.31.16.0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0001</span><span class="w"> </span><span class="mf">0101</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0001</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0001</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="n">SALES</span>
+<span class="mf">21.31.31.255</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0001</span><span class="w"> </span><span class="mf">0101</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0001</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0001</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="n">NETWORK</span>
+
+<span class="mf">21.31.32.0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0001</span><span class="w"> </span><span class="mf">0101</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0001</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0010</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="n">ADMINISTRATION</span>
+<span class="mf">21.31.47.255</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0001</span><span class="w"> </span><span class="mf">0101</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0001</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0010</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="n">NETWORK</span>
+
+<span class="mf">21.31.48.0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0001</span><span class="w"> </span><span class="mf">0101</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0001</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0011</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="n">ENGINEERING</span>
+<span class="mf">21.31.63.255</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0001</span><span class="w"> </span><span class="mf">0101</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0001</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0011</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="n">NETWORK</span>
+
+<span class="mf">21.31.64.0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0001</span><span class="w"> </span><span class="mf">0101</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0001</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0100</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="n">MANAGEMENT</span><span class="w"> </span>
+<span class="mf">21.31.79.255</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0001</span><span class="w"> </span><span class="mf">0101</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0001</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0100</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="n">NETWORK</span>
+
+<span class="n">fixed</span><span class="o">-</span><span class="n">bits</span><span class="w">   </span><span class="p">:</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="n">NETMASK</span>
+<span class="w">                    </span><span class="mf">255</span><span class="w">         </span><span class="mf">255</span><span class="w">         </span><span class="mf">240</span><span class="w">          </span><span class="mf">0</span>
+</code></pre></div></td></tr></table></div>
+
+<p>Using a netmask of 255.255.240.0, the network an IP-address is on can be
+determined. This is done by AND-ing the IP-address with the netmask. To
+determine on which of the four networks a workstation with IP-address
+21.31.57.105 is, the following calculation is performed:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="mf">21.31.57.105</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0001</span><span class="w"> </span><span class="mf">0101</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0001</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0011</span><span class="w"> </span><span class="mf">1001</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0110</span><span class="w"> </span><span class="mf">1001</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="n">IP</span><span class="o">-</span><span class="n">ADDRESS</span>
+<span class="mf">255.255.240.0</span><span class="p">:</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="ow">AND</span><span class="w"> </span><span class="n">NETMASK</span>
+<span class="mf">21.31.48.0</span><span class="p">:</span><span class="w">    </span><span class="err">|</span><span class="w"> </span><span class="mf">0001</span><span class="w"> </span><span class="mf">0101</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0001</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0011</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="n">GIVES</span><span class="w"> </span><span class="n">NETWORK</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The IP-address 21.31.57.105 is on the 21.31.48.0 network, which is the
+Engineering-network.</p>
+<p>The broadcast-address is used to send packets to every workstation
+broadcast on a network. A broadcast-address differs per network and can
+be determined by replacing all bits reserved/used for the host address
+(as denoted by the subnet mask) with 1's.</p>
+<p>Another way of determining the broadcast-address is to take the inverse
+of the netmask, in this case 0.0.15.255, and then OR the result with the
+network address:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="mf">21.31.16.0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0001</span><span class="w"> </span><span class="mf">0101</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0001</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0001</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="n">SALES</span>
+<span class="mf">0.0.15.255</span><span class="w">   </span><span class="p">:</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="ow">OR</span><span class="w"> </span><span class="n">INV</span><span class="w"> </span><span class="n">NETMASK</span>
+<span class="mf">21.31.31.255</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0001</span><span class="w"> </span><span class="mf">0101</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0001</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0001</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="n">GIVES</span><span class="w"> </span><span class="n">BCAST</span>
+
+<span class="mf">21.31.32.0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0001</span><span class="w"> </span><span class="mf">0101</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0001</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0010</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="n">ADMINISTRATION</span>
+<span class="mf">0.0.15.255</span><span class="w">   </span><span class="p">:</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="ow">OR</span><span class="w"> </span><span class="n">INV</span><span class="w"> </span><span class="n">NETMASK</span>
+<span class="mf">21.31.47.255</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0001</span><span class="w"> </span><span class="mf">0101</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0001</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0010</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="n">GIVES</span><span class="w"> </span><span class="n">BCAST</span>
+
+<span class="mf">21.31.48.0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0001</span><span class="w"> </span><span class="mf">0101</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0001</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0011</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="n">ENGINEERING</span>
+<span class="mf">0.0.15.255</span><span class="w">   </span><span class="p">:</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="ow">OR</span><span class="w"> </span><span class="n">INV</span><span class="w"> </span><span class="n">NETMASK</span>
+<span class="mf">21.31.63.255</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0001</span><span class="w"> </span><span class="mf">0101</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0001</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0011</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="n">GIVES</span><span class="w"> </span><span class="n">BCAST</span>
+
+<span class="mf">21.31.64.0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0001</span><span class="w"> </span><span class="mf">0101</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0001</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0100</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="n">MANAGEMENT</span><span class="w"> </span>
+<span class="mf">0.0.15.255</span><span class="w">   </span><span class="p">:</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="ow">OR</span><span class="w"> </span><span class="n">INV</span><span class="w"> </span><span class="n">NETMASK</span>
+<span class="mf">21.31.79.255</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0001</span><span class="w"> </span><span class="mf">0101</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0001</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0100</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="n">GIVES</span><span class="w"> </span><span class="n">BCAST</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The broadcast-address for the network an IP-address is on can be
+determined by OR-ing the IP-address with the inverse-netmask. For a
+workstation with IP-address 21.31.57.105, the broadcast-address can be
+calculated as follows:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="mf">21.31.57.105</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0001</span><span class="w"> </span><span class="mf">0101</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0001</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0011</span><span class="w"> </span><span class="mf">1001</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0110</span><span class="w"> </span><span class="mf">1001</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="n">IP</span><span class="o">-</span><span class="n">ADDRESS</span>
+<span class="mf">0.0.15.255</span><span class="w">   </span><span class="p">:</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0000</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="ow">OR</span><span class="w"> </span><span class="n">INV</span><span class="w"> </span><span class="n">NETMASK</span>
+<span class="mf">21.31.63.255</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0001</span><span class="w"> </span><span class="mf">0101</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0001</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">0011</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="mf">1111</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="n">GIVES</span><span class="w"> </span><span class="n">BCAST</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The IP-address 21.31.57.105 belongs to a network that has
+broadcast-address 21.31.63.255, which is correct since the IP-address is
+on the Engineering-network.</p>
+<p>To tell the DHCP-server what IP-addresses to give-out per subnet, a
+range statement must be added to the subnet. Is this example the
+IP-addresses 21.31.x.0 to 21.31.x.10 and 21.31.x.211 to 21.31.x.255 on
+every floor are reserved for printers and routers. This means that for
+every subnet the range statement is:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>range 21.31.x.11 21.31.x.210
+</code></pre></div></td></tr></table></div>
+
+<p>Where "x" depends on the department and the floor.</p>
+<p>To implement this structure, the following lines are added to the
+configuration-file:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="nx">The</span><span class="w"> </span><span class="nx">Sales</span><span class="w"> </span><span class="nx">network</span><span class="p">,</span><span class="w"> </span><span class="nx">floors</span><span class="w"> </span><span class="mi">1</span><span class="o">-</span><span class="mi">3</span>
+<span class="nx">shared</span><span class="o">-</span><span class="nx">network</span><span class="w"> </span><span class="nx">sales</span><span class="o">-</span><span class="nx">net</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="nx">Sales</span><span class="o">-</span><span class="nx">net</span><span class="w"> </span><span class="nx">specific</span><span class="w"> </span><span class="nx">parameters</span>
+<span class="w">  </span><span class="nx">option</span><span class="w"> </span><span class="nx">routers</span><span class="w"> </span><span class="m m-Double">21.31.17.1</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">option</span><span class="w"> </span><span class="nx">lpr</span><span class="o">-</span><span class="nx">servers</span><span class="w"> </span><span class="m m-Double">21.31.17.2</span><span class="p">,</span><span class="w"> </span><span class="m m-Double">21.31.18.2</span><span class="p">,</span><span class="w"> </span><span class="m m-Double">21.31.19.2</span><span class="p">,</span><span class="w"> </span><span class="m m-Double">21.31.18.3</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">option</span><span class="w"> </span><span class="nx">broadcast</span><span class="o">-</span><span class="nx">address</span><span class="w"> </span><span class="m m-Double">21.31.31.255</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">subnet</span><span class="w"> </span><span class="m m-Double">21.31.17.0</span><span class="w"> </span><span class="nx">netmask</span><span class="w"> </span><span class="m m-Double">255.255.240.0</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="nx">Floor</span><span class="w"> </span><span class="err">#</span><span class="mi">1</span><span class="w"> </span><span class="nx">specific</span><span class="w"> </span><span class="nx">parameters</span>
+<span class="w">    </span><span class="nx">range</span><span class="w"> </span><span class="m m-Double">21.31.17.11</span><span class="w"> </span><span class="m m-Double">21.31.17.210</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="nx">subnet</span><span class="w"> </span><span class="m m-Double">21.31.18.0</span><span class="w"> </span><span class="nx">netmask</span><span class="w"> </span><span class="m m-Double">255.255.240.0</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="nx">Floor</span><span class="w"> </span><span class="err">#</span><span class="mi">2</span><span class="w"> </span><span class="nx">specific</span><span class="w"> </span><span class="nx">parameters</span>
+<span class="w">    </span><span class="nx">range</span><span class="w"> </span><span class="m m-Double">21.31.18.11</span><span class="w"> </span><span class="m m-Double">21.31.18.210</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="nx">subnet</span><span class="w"> </span><span class="m m-Double">21.31.19.0</span><span class="w"> </span><span class="nx">netmask</span><span class="w"> </span><span class="m m-Double">255.255.240.0</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="nx">Floor</span><span class="w"> </span><span class="err">#</span><span class="mi">3</span><span class="w"> </span><span class="nx">specific</span><span class="w"> </span><span class="nx">parameters</span>
+<span class="w">    </span><span class="nx">range</span><span class="w"> </span><span class="m m-Double">21.31.19.11</span><span class="w"> </span><span class="m m-Double">21.31.19.210</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="err">#</span><span class="w"> </span><span class="nx">The</span><span class="w"> </span><span class="nx">Administration</span><span class="w"> </span><span class="nx">network</span><span class="p">,</span><span class="w"> </span><span class="nx">floors</span><span class="w"> </span><span class="mi">4</span><span class="o">-</span><span class="mi">6</span>
+<span class="nx">shared</span><span class="o">-</span><span class="nx">network</span><span class="w"> </span><span class="nx">administration</span><span class="o">-</span><span class="nx">net</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="nx">Administration</span><span class="o">-</span><span class="nx">net</span><span class="w"> </span><span class="nx">specific</span><span class="w"> </span><span class="nx">parameters</span>
+<span class="w">  </span><span class="nx">option</span><span class="w"> </span><span class="nx">routers</span><span class="w"> </span><span class="m m-Double">21.31.36.1</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">option</span><span class="w"> </span><span class="nx">lpr</span><span class="o">-</span><span class="nx">servers</span><span class="w"> </span><span class="m m-Double">21.31.36.2</span><span class="p">,</span><span class="w"> </span><span class="m m-Double">21.31.37.2</span><span class="p">,</span><span class="w"> </span><span class="m m-Double">21.31.38.2</span><span class="p">,</span><span class="w"> </span><span class="m m-Double">21.31.37.3</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">option</span><span class="w"> </span><span class="nx">broadcast</span><span class="o">-</span><span class="nx">address</span><span class="w"> </span><span class="m m-Double">21.31.47.255</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">subnet</span><span class="w"> </span><span class="m m-Double">21.31.36.0</span><span class="w"> </span><span class="nx">netmask</span><span class="w"> </span><span class="m m-Double">255.255.240.0</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="nx">Floor</span><span class="w"> </span><span class="err">#</span><span class="mi">4</span><span class="w"> </span><span class="nx">specific</span><span class="w"> </span><span class="nx">parameters</span>
+<span class="w">    </span><span class="nx">range</span><span class="w"> </span><span class="m m-Double">21.31.36.11</span><span class="w"> </span><span class="m m-Double">21.31.36.210</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="nx">subnet</span><span class="w"> </span><span class="m m-Double">21.31.37.0</span><span class="w"> </span><span class="nx">netmask</span><span class="w"> </span><span class="m m-Double">255.255.240.0</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="nx">Floor</span><span class="w"> </span><span class="err">#</span><span class="mi">5</span><span class="w"> </span><span class="nx">specific</span><span class="w"> </span><span class="nx">parameters</span>
+<span class="w">    </span><span class="nx">range</span><span class="w"> </span><span class="m m-Double">21.31.37.11</span><span class="w"> </span><span class="m m-Double">21.31.37.210</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="nx">subnet</span><span class="w"> </span><span class="m m-Double">21.31.38.0</span><span class="w"> </span><span class="nx">netmask</span><span class="w"> </span><span class="m m-Double">255.255.240.0</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="nx">Floor</span><span class="w"> </span><span class="err">#</span><span class="mi">6</span><span class="w"> </span><span class="nx">specific</span><span class="w"> </span><span class="nx">parameters</span>
+<span class="w">    </span><span class="nx">range</span><span class="w"> </span><span class="m m-Double">21.31.38.11</span><span class="w"> </span><span class="m m-Double">21.31.38.210</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="err">#</span><span class="w"> </span><span class="nx">The</span><span class="w"> </span><span class="nx">Engineering</span><span class="w"> </span><span class="nx">network</span><span class="p">,</span><span class="w"> </span><span class="nx">floors</span><span class="w"> </span><span class="mi">7</span><span class="o">-</span><span class="mi">9</span>
+<span class="nx">shared</span><span class="o">-</span><span class="nx">network</span><span class="w"> </span><span class="nx">engineering</span><span class="o">-</span><span class="nx">net</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="nx">Engineering</span><span class="o">-</span><span class="nx">net</span><span class="w"> </span><span class="nx">specific</span><span class="w"> </span><span class="nx">parameters</span>
+<span class="w">  </span><span class="nx">option</span><span class="w"> </span><span class="nx">routers</span><span class="w"> </span><span class="m m-Double">21.31.55.1</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">option</span><span class="w"> </span><span class="nx">lpr</span><span class="o">-</span><span class="nx">servers</span><span class="w"> </span><span class="m m-Double">21.31.55.2</span><span class="p">,</span><span class="w"> </span><span class="m m-Double">21.31.56.2</span><span class="p">,</span><span class="w"> </span><span class="m m-Double">21.31.57.2</span><span class="p">,</span><span class="w"> </span><span class="m m-Double">21.31.56.3</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">option</span><span class="w"> </span><span class="nx">broadcast</span><span class="o">-</span><span class="nx">address</span><span class="w"> </span><span class="m m-Double">21.31.63.255</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">subnet</span><span class="w"> </span><span class="m m-Double">21.31.55.0</span><span class="w"> </span><span class="nx">netmask</span><span class="w"> </span><span class="m m-Double">255.255.240.0</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="nx">Floor</span><span class="w"> </span><span class="err">#</span><span class="mi">7</span><span class="w"> </span><span class="nx">specific</span><span class="w"> </span><span class="nx">parameters</span>
+<span class="w">    </span><span class="nx">range</span><span class="w"> </span><span class="m m-Double">21.31.55.11</span><span class="w"> </span><span class="m m-Double">21.31.55.210</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="nx">subnet</span><span class="w"> </span><span class="m m-Double">21.31.56.0</span><span class="w"> </span><span class="nx">netmask</span><span class="w"> </span><span class="m m-Double">255.255.240.0</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="nx">Floor</span><span class="w"> </span><span class="err">#</span><span class="mi">8</span><span class="w"> </span><span class="nx">specific</span><span class="w"> </span><span class="nx">parameters</span>
+<span class="w">    </span><span class="nx">range</span><span class="w"> </span><span class="m m-Double">21.31.56.11</span><span class="w"> </span><span class="m m-Double">21.31.56.210</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="nx">subnet</span><span class="w"> </span><span class="m m-Double">21.31.57.0</span><span class="w"> </span><span class="nx">netmask</span><span class="w"> </span><span class="m m-Double">255.255.240.0</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="nx">Floor</span><span class="w"> </span><span class="err">#</span><span class="mi">9</span><span class="w"> </span><span class="nx">specific</span><span class="w"> </span><span class="nx">parameters</span>
+<span class="w">    </span><span class="nx">range</span><span class="w"> </span><span class="m m-Double">21.31.57.11</span><span class="w"> </span><span class="m m-Double">21.31.57.210</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="err">#</span><span class="w"> </span><span class="nx">The</span><span class="w"> </span><span class="nx">Management</span><span class="w"> </span><span class="nx">network</span><span class="p">,</span><span class="w"> </span><span class="nx">floors</span><span class="w"> </span><span class="mi">10</span><span class="o">-</span><span class="mi">12</span>
+<span class="nx">shared</span><span class="o">-</span><span class="nx">network</span><span class="w"> </span><span class="nx">management</span><span class="o">-</span><span class="nx">net</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="nx">Management</span><span class="o">-</span><span class="nx">net</span><span class="w"> </span><span class="nx">specific</span><span class="w"> </span><span class="nx">parameters</span>
+<span class="w">  </span><span class="nx">option</span><span class="w"> </span><span class="nx">routers</span><span class="w"> </span><span class="m m-Double">21.31.74.1</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">option</span><span class="w"> </span><span class="nx">lpr</span><span class="o">-</span><span class="nx">servers</span><span class="w"> </span><span class="m m-Double">21.31.74.2</span><span class="p">,</span><span class="w"> </span><span class="m m-Double">21.31.75.2</span><span class="p">,</span><span class="w"> </span><span class="m m-Double">21.31.76.2</span><span class="p">,</span><span class="w"> </span><span class="m m-Double">21.31.75.3</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">option</span><span class="w"> </span><span class="nx">broadcast</span><span class="o">-</span><span class="nx">address</span><span class="w"> </span><span class="m m-Double">21.31.79.255</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">subnet</span><span class="w"> </span><span class="m m-Double">21.31.74.0</span><span class="w"> </span><span class="nx">netmask</span><span class="w"> </span><span class="m m-Double">255.255.240.0</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="nx">Floor</span><span class="w"> </span><span class="err">#</span><span class="mi">10</span><span class="w"> </span><span class="nx">specific</span><span class="w"> </span><span class="nx">parameters</span>
+<span class="w">    </span><span class="nx">range</span><span class="w"> </span><span class="m m-Double">21.31.74.11</span><span class="w"> </span><span class="m m-Double">21.31.74.210</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="nx">subnet</span><span class="w"> </span><span class="m m-Double">21.31.75.0</span><span class="w"> </span><span class="nx">netmask</span><span class="w"> </span><span class="m m-Double">255.255.240.0</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="nx">Floor</span><span class="w"> </span><span class="err">#</span><span class="mi">11</span><span class="w"> </span><span class="nx">specific</span><span class="w"> </span><span class="nx">parameters</span>
+<span class="w">    </span><span class="nx">range</span><span class="w"> </span><span class="m m-Double">21.31.75.11</span><span class="w"> </span><span class="m m-Double">21.31.75.210</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="nx">subnet</span><span class="w"> </span><span class="m m-Double">21.31.76.0</span><span class="w"> </span><span class="nx">netmask</span><span class="w"> </span><span class="m m-Double">255.255.240.0</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="nx">Floor</span><span class="w"> </span><span class="err">#</span><span class="mi">12</span><span class="w"> </span><span class="nx">specific</span><span class="w"> </span><span class="nx">parameters</span>
+<span class="w">    </span><span class="nx">range</span><span class="w"> </span><span class="m m-Double">21.31.76.11</span><span class="w"> </span><span class="m m-Double">21.31.76.210</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+
+<h3 id="static-hosts">Static hosts<a class="headerlink" href="#static-hosts" title="Permanent link">&para;</a></h3>
+<p>A static host is a host that always gets the same IP-address from the
+DHCP-server in opposite to dynamic hosts which get their DHCPStatic Host
+IP-address from a range of IP-addresses.</p>
+<p>Obviously, the DHCP-server must be able recognize the host to be able to
+conclude that the host has been defined as a static one in the
+DHCP-server's configuration file. This can be done by using the
+<code>dhcp-client-identifier</code> option or by using the DHCPclient identifier
+<code>hardware ethernet</code> option. DHCPethernet address</p>
+<p>The <code>dhcp-client-identifier</code> is send to the server by the client (host)
+and must uniquely identify that client. This is not safe because there
+is no way to be sure that there isn't a second client that uses the
+same identifier.</p>
+<p>The <code>hardware ethernet</code> option causes the match to be done on the
+client's NIC-address which is world-wide unique.</p>
+<p>If the client does not send a <code>dhcp-client-identifier</code>, then the
+NIC-address is used to identify the client.</p>
+<p>There are two designers, working for the Engineering department, that
+come to the office sometimes to get a hardcopy of their designs in
+colour. These designers are called "luke" and "leah" and they bring
+their laptops and connect them to the Engineering-network. The host
+names of their machines will be "luke" and "leah".</p>
+<p>To make this so, the administrator has added the following lines to the
+DHCP-server's configuration file:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nx">group</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="err">#</span><span class="w"> </span><span class="nx">options</span><span class="w"> </span><span class="nx">that</span><span class="w"> </span><span class="nx">apply</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="nx">all</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">static</span><span class="w"> </span><span class="nx">hosts</span>
+<span class="w">      </span><span class="nx">option</span><span class="w"> </span><span class="nx">routers</span><span class="w"> </span><span class="m m-Double">21.31.55.1</span><span class="p">;</span>
+<span class="w">      </span><span class="nx">option</span><span class="w"> </span><span class="nx">lpr</span><span class="o">-</span><span class="nx">servers</span><span class="w"> </span><span class="m m-Double">21.31.56.3</span><span class="p">;</span>
+<span class="w">      </span><span class="nx">option</span><span class="w"> </span><span class="nx">broadcast</span><span class="o">-</span><span class="nx">address</span><span class="w"> </span><span class="m m-Double">21.31.63.255</span><span class="p">;</span>
+<span class="w">      </span><span class="nx">netmask</span><span class="w"> </span><span class="m m-Double">255.255.240.0</span><span class="p">;</span>
+<span class="w">      </span><span class="nx">host</span><span class="w"> </span><span class="nx">luke</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="err">#</span><span class="w"> </span><span class="nx">specific</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nx">luke</span>
+<span class="w">              </span><span class="nx">hardware</span><span class="w"> </span><span class="nx">ethernet</span><span class="w"> </span><span class="nx">AA</span><span class="p">:</span><span class="mi">88</span><span class="p">:</span><span class="mi">54</span><span class="p">:</span><span class="mi">72</span><span class="p">:</span><span class="mi">7</span><span class="nx">F</span><span class="p">:</span><span class="mi">92</span><span class="p">;</span>
+<span class="w">              </span><span class="nx">fixed</span><span class="o">-</span><span class="nx">address</span><span class="w"> </span><span class="m m-Double">21.31.55.211</span><span class="p">;</span>
+<span class="w">              </span><span class="nx">option</span><span class="w"> </span><span class="nx">host</span><span class="o">-</span><span class="nx">name</span><span class="w"> </span><span class="s">&quot;luke&quot;</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span>
+
+<span class="w">      </span><span class="nx">host</span><span class="w"> </span><span class="nx">leah</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="err">#</span><span class="w"> </span><span class="nx">specific</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nx">leah</span>
+<span class="w">              </span><span class="nx">hardware</span><span class="w"> </span><span class="nx">ethernet</span><span class="w"> </span><span class="nx">CC</span><span class="p">:</span><span class="mi">88</span><span class="p">:</span><span class="mi">54</span><span class="p">:</span><span class="mi">72</span><span class="p">:</span><span class="mi">84</span><span class="p">:</span><span class="mi">4</span><span class="nx">F</span><span class="p">;</span>
+<span class="w">              </span><span class="nx">fixed</span><span class="o">-</span><span class="nx">address</span><span class="w"> </span><span class="m m-Double">21.31.55.212</span><span class="p">;</span>
+<span class="w">              </span><span class="nx">option</span><span class="w"> </span><span class="nx">host</span><span class="o">-</span><span class="nx">name</span><span class="w"> </span><span class="s">&quot;leah&quot;</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+
+<h3 id="static-bootp-hosts">Static BOOTP hosts<a class="headerlink" href="#static-bootp-hosts" title="Permanent link">&para;</a></h3>
+<p>This is a special static host. If luke and leah's laptops were
+BOOTP-clients, the administrator could have added the following
+DHCPBOOTP lines to the DHCP-server's configuration file:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">group</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1"># options that apply to all the static hosts</span>
+<span class="w">      </span><span class="n">option</span><span class="w"> </span><span class="n">routers</span><span class="w"> </span><span class="mf">21.31</span><span class="o">.</span><span class="mf">55.1</span><span class="p">;</span>
+<span class="w">      </span><span class="n">option</span><span class="w"> </span><span class="n">lpr</span><span class="o">-</span><span class="n">servers</span><span class="w"> </span><span class="mf">21.31</span><span class="o">.</span><span class="mf">56.3</span><span class="p">;</span>
+<span class="w">      </span><span class="n">option</span><span class="w"> </span><span class="n">broadcast</span><span class="o">-</span><span class="n">address</span><span class="w"> </span><span class="mf">21.31</span><span class="o">.</span><span class="mf">63.255</span><span class="p">;</span>
+<span class="w">      </span><span class="n">netmask</span><span class="w"> </span><span class="mf">255.255</span><span class="o">.</span><span class="mf">240.0</span><span class="p">;</span>
+<span class="w">      </span><span class="n">host</span><span class="w"> </span><span class="n">luke</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="c1"># specific for luke</span>
+<span class="w">              </span><span class="n">filename</span><span class="w"> </span><span class="s2">&quot;lukes-boot-file&quot;</span><span class="p">;</span>
+<span class="w">              </span><span class="n">server</span><span class="o">-</span><span class="n">name</span><span class="w"> </span><span class="s2">&quot;server name to send to luke&quot;</span><span class="p">;</span>
+<span class="w">              </span><span class="n">next</span><span class="o">-</span><span class="n">server</span><span class="w"> </span><span class="o">&lt;</span><span class="n">address</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">server</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="nb">load</span><span class="w"> </span><span class="n">boot</span><span class="o">-</span><span class="n">file</span><span class="w"> </span><span class="n">from</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="w">              </span><span class="n">hardware</span><span class="w"> </span><span class="n">ethernet</span><span class="w"> </span><span class="n">AA</span><span class="p">:</span><span class="mi">88</span><span class="p">:</span><span class="mi">54</span><span class="p">:</span><span class="mi">72</span><span class="p">:</span><span class="mi">7</span><span class="n">F</span><span class="p">:</span><span class="mi">92</span><span class="p">;</span>
+<span class="w">              </span><span class="n">fixed</span><span class="o">-</span><span class="n">address</span><span class="w"> </span><span class="mf">21.31</span><span class="o">.</span><span class="mf">55.211</span><span class="p">;</span>
+<span class="w">              </span><span class="n">option</span><span class="w"> </span><span class="n">host</span><span class="o">-</span><span class="n">name</span><span class="w"> </span><span class="s2">&quot;luke&quot;</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span>
+
+<span class="w">      </span><span class="n">host</span><span class="w"> </span><span class="n">leah</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="c1"># specific for leah</span>
+<span class="w">              </span><span class="n">filename</span><span class="w"> </span><span class="s2">&quot;leahs-boot-file&quot;</span><span class="p">;</span>
+<span class="w">              </span><span class="n">server</span><span class="o">-</span><span class="n">name</span><span class="w"> </span><span class="s2">&quot;server name to send to leah&quot;</span><span class="p">;</span>
+<span class="w">              </span><span class="n">next</span><span class="o">-</span><span class="n">server</span><span class="w"> </span><span class="o">&lt;</span><span class="n">address</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">server</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="nb">load</span><span class="w"> </span><span class="n">boot</span><span class="o">-</span><span class="n">file</span><span class="w"> </span><span class="n">from</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="w">              </span><span class="n">hardware</span><span class="w"> </span><span class="n">ethernet</span><span class="w"> </span><span class="n">CC</span><span class="p">:</span><span class="mi">88</span><span class="p">:</span><span class="mi">54</span><span class="p">:</span><span class="mi">72</span><span class="p">:</span><span class="mi">84</span><span class="p">:</span><span class="mi">4</span><span class="n">F</span><span class="p">;</span>
+<span class="w">              </span><span class="n">fixed</span><span class="o">-</span><span class="n">address</span><span class="w"> </span><span class="mf">21.31</span><span class="o">.</span><span class="mf">55.212</span><span class="p">;</span>
+<span class="w">              </span><span class="n">option</span><span class="w"> </span><span class="n">host</span><span class="o">-</span><span class="n">name</span><span class="w"> </span><span class="s2">&quot;leah&quot;</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The <code>filename</code> option states the name of the file to get from the server
+defined in the <code>next-server</code> option. If the <code>next-server</code> is omitted,
+the server to get the file from is the DHCP-server. The <code>server-name</code>
+can be used to send the name of the server the client is booting from to
+the client.</p>
+<p>For information on the valid options, consult the dhcp-options man page
+(<code>man dhcp-options</code>) and the dhcpd.conf man page (<code>man dhcpd.conf</code>).</p>
+<p>Controlling the DHCP-server's behaviour</p>
+<h3 id="leases">Leases<a class="headerlink" href="#leases" title="Permanent link">&para;</a></h3>
+<p>A lease is the amount of time a client may use the IP-address it got
+from the DHCP-server. The client must refresh the lease periodically
+because the IP-address can be given to another client if the lease is
+expired. Normally, a client will be given the same IP-address if the
+lease is refreshed before it expired.</p>
+<p>The option <code>max-lease-time</code> is used to specify the DHCPmax-lease-time
+maximum amount of time in seconds that will be assigned to a lease if
+the client asks for a specific expiration time.</p>
+<p>The option <code>default-lease-time</code> is used to specify the
+DHCPdefault-lease-time amount of time in seconds that will be assigned
+to a lease if a client does not ask for a specific expiration time.</p>
+<p>The DHCP-server keeps a database of the leases it has issued in the file
+<code>/var/dhcp/dhcpd.leases</code>. If this file is DHCPdhcpd.leases empty, this
+is probably caused by the fact that you have only defined static hosts
+in the DHCP-server's configuration file and you haven't used any
+<code>range</code> statements. On the DHCP clients the leased IP addresses are kept
+in the file <code>dhclient.leases</code>.</p>
+<h3 id="interfaces-the-dhcp-server-listens-on">Interfaces the DHCP-server listens on<a class="headerlink" href="#interfaces-the-dhcp-server-listens-on" title="Permanent link">&para;</a></h3>
+<p>Unless you specify otherwise, <code>dhcpd</code> will listen on <em>all interfaces</em>
+for a dhcp request. If you only want to serve requests on <em>eth0</em> for
+instance, you can tell this to the daemon by including the parameter on
+the command line that starts the daemon.</p>
+<h3 id="reloading-the-dhcp-server-after-making-changes">Reloading the DHCP-server after making changes<a class="headerlink" href="#reloading-the-dhcp-server-after-making-changes" title="Permanent link">&para;</a></h3>
+<p>This is done as follows: DHCPreload</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code># /etc/init.d/dhcp restart
+</code></pre></div></td></tr></table></div>
+
+<p>This will stop the running daemon, wait two seconds, then start a new
+daemon which causes <code>/etc/dhcpd.conf</code> to be read again.</p>
+<h3 id="logging">Logging<a class="headerlink" href="#logging" title="Permanent link">&para;</a></h3>
+<p>By default the DHCP server logs using syslogd, although many Linux
+distributions have exchanged syslogd for Systemd's journald. Logging is
+configured in the <code>dhcpd.conf</code> file using the log-facility keyword. This
+statement causes the DHCP server to do all of its logging on the
+specified log facility once the dhcpd.conf file has been read. By
+default the DHCP server logs to the daemon facility. Possible log
+facilities include auth, authpriv, cron, daemon, ftp, kern, lpr, mail,
+mark, news, ntp, security, syslog, user, uucp, and local0 through
+local7. Not all of these facilities are available on all systems, and
+there may be other facilities available on other systems. In addition to
+setting log-facility value, you may need to modify your syslog.conf file
+to configure logging of the DHCP server. For example, you might add a
+line like this:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="n">local7</span><span class="o">.</span><span class="n">debug</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">dhcpd</span><span class="o">.</span><span class="n">log</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The syntax of the syslog.conf file may be different on some operating
+systems - consult the syslog.conf manual page to be sure. To get syslog
+to start logging to the new file, you must first create the file with
+correct ownership and permissions (usually, the same owner and
+permissions of your /var/log/messages or /usr/adm/messages file should
+be fine) and send a SIGHUP to syslogd. Note that <code>journald</code> does not log
+to a plaintext file; it uses a binairy format instead. To view messages
+specific for <code>dhcpd</code>, you have to filter these out using the
+<code>journalctl</code> command.</p>
+<p>DHCP-relaying</p>
+<h3 id="what-is-dhcp-relaying">What is DHCP-relaying?<a class="headerlink" href="#what-is-dhcp-relaying" title="Permanent link">&para;</a></h3>
+<p>In our earlier example there is one DHCP-server for the whole
+DHCPrelaying network and there are routers between the clients and that
+server.</p>
+<p>If a client would be able to connect to the DHCP-server through a
+router, the DHCP-server would not see the NIC-address of the client but
+the NIC-address of the router. This would mean that a static host for
+instance, could not be recognized by its hardware address.</p>
+<p>A DHCP-relay agent, such as <code>dhcrelay</code> provides a dhcrelay means for
+relaying DHCP and BOOTP requests from one of the subnets to the
+company's DHCP-server.</p>
+<p>If you need more information, consult <a href="http://www.isc.org/downloads/dhcp/">The Internet Consortium DHCP
+Homepage</a>.</p>
+<p>The DHCP Relay Agent listens for DHCP and BOOTP queries and responses.
+When a query is received from a client, dhcrelay forwards it to the list
+of DHCP servers specified on the command line. When a reply is received
+from a server, it is broadcast or unicast (according to the relay
+agent's ability or the client's request) on the network from which the
+original request came. If no interface names are specified on the
+command line dhcrelay will identify all network interfaces,
+elimininating non-broadcast interfaces if possible, and attempt to
+configure each interface.</p>
+<p>Please consult the man page (<code>man dhcrelay</code>) for further details.</p>
+<p>Assigning addresses in IPv6 networks</p>
+<p>radvd The previous paragraphs were mainly concerned with automatic IP
+assignment in IPv4 networks. Networks using IPv6 often use the "Neighbor
+Discovery Protocol" to obtain an IP address that is valid for the
+network. In Linux, this protocol is handled by the "Router
+Advertisement" (<code>radvd</code>) daemon.</p>
+<p>The process for IPv6 address assignment works a bit different from IPv4
+networks, because IPv6 hosts always assign link-local addresses for
+IPv6-enabled interfaces automatically, without any help from external
+hosts. NDP builds upon this <em>stateless autoconfiguration</em> process by
+distributing "prefixes" instead of addresses. Using the prefix (which is
+basically the network part of an IP address) obtained through NDP, hosts
+can assign valid IPv6 addresses to themselves. So in contrast with the
+DHCP daemon on IPv4 networks, NDP has no concept of IP pools and leases.</p>
+<p>Instead of requesting an address, clients send "router sollicitation"
+requests to obtain a valid IPv6 prefix. The <code>radvd</code> daemon responds to
+these requests with router advertisement messages. These messages
+contain the routing prefix used on the link, the maximum transmission
+unit (MTU), and the address of the responsible default router.</p>
+<p>The <code>radvd</code> daemon is configured by <code>/etc/radvd.conf</code>, which has to contain at least the interface the
+daemon should listen on and the prefix it has to serve. Additionally,
+<code>radvd</code> can periodically re-advertise its prefixes to hosts on the same
+network. If you wish, you can also configure the lifetime of the IPv6
+addresses that hosts configure for themselves.</p>
+<p>A typical <code>radvd.conf</code> would look similar to the following:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nt">interface</span><span class="w"> </span><span class="nt">eth0</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">        </span><span class="err">AdvSendAdvert</span><span class="w"> </span><span class="err">on</span><span class="p">;</span>
+<span class="w">        </span><span class="err">MinRtrAdvInterval</span><span class="w"> </span><span class="err">3</span><span class="p">;</span><span class="w"> </span>
+<span class="w">        </span><span class="err">MaxRtrAdvInterval</span><span class="w"> </span><span class="err">10</span><span class="p">;</span>
+<span class="w">        </span><span class="err">prefix</span><span class="w"> </span><span class="err">2001:0</span><span class="n">db8</span><span class="p">:</span><span class="mi">0100</span><span class="o">:</span><span class="n">f101</span><span class="o">::/</span><span class="mi">64</span><span class="w"> </span><span class="err">{</span><span class="w"> </span>
+<span class="w">                </span><span class="n">AdvOnLink</span><span class="w"> </span><span class="kc">on</span><span class="p">;</span><span class="w"> </span>
+<span class="w">                </span><span class="err">AdvAutonomous</span><span class="w"> </span><span class="err">on</span><span class="p">;</span><span class="w"> </span>
+<span class="w">                </span><span class="err">AdvRouterAddr</span><span class="w"> </span><span class="err">on</span><span class="p">;</span><span class="w"> </span>
+<span class="w">        </span><span class="p">}</span><span class="o">;</span>
+<span class="err">}</span><span class="o">;</span>
+</code></pre></div></td></tr></table></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 1997-2021 Sue B.V., The Netherlands - Open Sourced 2021
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["search.highlight", "tabs", "instant"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

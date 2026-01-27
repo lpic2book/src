@@ -1,0 +1,35 @@
+digraph G {
+	compound=true;
+	node [shape=record];
+	edge [arrowhead=none];
+	rankdir="LR";
+	ranksep="equally";
+
+	some_host1[label="<f0>Some Host 1|<f1>201.202.203.204"];
+	some_host2[label="<f0>Some Host 2|<f1>201.202.203.205"];
+	some_host3[label="<f0>Some Host 3|<f1>201.202.203.206"];
+	machine1[label="<f0>Machine1|<f1>192.168.0.10:22"];
+	machine2[label="<f0>Machine2|<f1>192.168.0.11:22"];
+	machine3[label="<f0>Machine3|<f1>192.168.0.12:22"];
+	machine4[label="<f0>101.102.103.104:22|<f1>firewall|<f2>192.168.0.1"];
+	internet [label="Internet", 
+		  shape=none 
+		  image="icons/globe.png" 
+		  labelloc=b 
+		  color="#ffffff"
+		  imagescale=true
+		  height=1
+		  fixedsize=true
+		  ];		
+	
+	
+	some_host1 -> internet [color=green]
+	some_host2 -> internet [color=blue]
+	some_host3 -> internet [color=red]
+	internet -> machine4:f0 [color=red]
+	internet -> machine4:f0 [color=blue]
+	internet -> machine4:f0 [color=green]
+	machine4:f2 -> machine1:f1 [color=green]
+	machine4:f2 -> machine2:f1 [color=blue]
+	machine4:f2 -> machine3:f1 [color=red]
+}

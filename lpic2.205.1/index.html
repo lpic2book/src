@@ -1,0 +1,2752 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Sue B.V., The Netherlands">
+      
+      
+      
+        <link rel="prev" href="../lpic2.205.0/">
+      
+      
+        <link rel="next" href="../lpic2.205.2/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Basic Networking Configuration (205.1) - The LPIC2 Exam Prep</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:300,300i,400,400i,700,700i%7CAnonymous+Pro:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Nunito";--md-code-font:"Anonymous Pro"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#basic-networking-configuration-2051" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="The LPIC2 Exam Prep" class="md-header__button md-logo" aria-label="The LPIC2 Exam Prep" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            The LPIC2 Exam Prep
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Basic Networking Configuration (205.1)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/lpic2book/src" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    LPIC2Book
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="The LPIC2 Exam Prep" class="md-nav__button md-logo" aria-label="The LPIC2 Exam Prep" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/></svg>
+
+    </a>
+    The LPIC2 Exam Prep
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/lpic2book/src" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    LPIC2Book
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The LPIC2 Exam Prep
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpicbook_about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About this book
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    200 Capacity Planning (200)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Measure and Troubleshoot Resource Usage (200.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Predict Future Resource Needs (200.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Kernel (201)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel Components (201.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compiling a Linux kernel (201.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel runtime management and troubleshooting (201.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Startup (202)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customizing system startup (202.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System recovery (202.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Alternate Bootloaders (202.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Filesystem and Devices (203)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operating The Linux Filesystem (203.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maintaining a Linux Filesystem (203.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Creating And Configuring Filesystem Options (203.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Storage Device Administration (204)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring RAID (204.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adjusting Storage Device Access (204.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logical Volume Manager (204.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring PCMCIA Devices (204.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Networking Configuration (205)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Networking Configuration (205.1)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Networking Configuration (205.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#basic-networking-configuration-2051" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Networking Configuration (205.1)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic Networking Configuration (205.1)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-knowledge-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Knowledge Areas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terms-and-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terms and Utilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-the-network-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring the network interface
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring the network interface">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-loopback-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Loopback Interface
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ethernet-interfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ethernet Interfaces
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#routing-through-a-gateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Routing Through a Gateway
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-ip-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The ip command
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arp-address-resolution-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ARP, Address Resolution Protocol
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wireless-networking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wireless networking
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Wireless networking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#iw" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        iw
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iwconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        iwconfig
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iwlist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        iwlist
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Network Configuration and Troubleshooting (205.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting network issues (205.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Maintenance (206)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Make and install programs from source (206.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup Operations (206.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifying users on system-related issues (206.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domain Name Server (207)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic DNS server configuration (207.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Create and maintain DNS zones (207.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Securing a DNS Server (207.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTTP Services (208)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Apache Configuration (208.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Apache configuration for HTTPS (208.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementing Squid as a caching proxy (208.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementing Nginx as a web server and a reverse proxy (208.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File Sharing (209)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAMBA Server Configuration (209.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring an NFS Server (209.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Client Management (210)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DHCP Configuration (210.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PAM authentication (210.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LDAP client usage (210.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring an OpenLDAP server (210.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    E-Mail services (211)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using e-mail servers (211.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing E-Mail Delivery (211.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing Mailbox Access (211.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Security (212)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring a router (212.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing FTP servers (212.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secure shell (SSH) (212.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security tasks (212.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenVPN (212.5)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#basic-networking-configuration-2051" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Networking Configuration (205.1)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic Networking Configuration (205.1)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-knowledge-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Knowledge Areas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terms-and-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terms and Utilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-the-network-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring the network interface
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring the network interface">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-loopback-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Loopback Interface
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ethernet-interfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ethernet Interfaces
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#routing-through-a-gateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Routing Through a Gateway
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-ip-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The ip command
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arp-address-resolution-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ARP, Address Resolution Protocol
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wireless-networking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wireless networking
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Wireless networking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#iw" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        iw
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iwconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        iwconfig
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iwlist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        iwlist
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>Basic Networking Configuration (205.1)</h1>
+
+<h2 id="basic-networking-configuration-2051">Basic Networking Configuration (205.1)<a class="headerlink" href="#basic-networking-configuration-2051" title="Permanent link">&para;</a></h2>
+<p>Candidates should be able to configure a network device to be able to
+connect to a local, wired or wireless, and a wide-area network. This
+objective includes being able to communicate between various subnets
+within a single network.</p>
+<h3 id="key-knowledge-areas">Key Knowledge Areas<a class="headerlink" href="#key-knowledge-areas" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Utilities to configure and manipulate ethernet network interfaces</p>
+</li>
+<li>
+<p>Configuring wireless networks</p>
+</li>
+</ul>
+<h3 id="terms-and-utilities">Terms and Utilities<a class="headerlink" href="#terms-and-utilities" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><code>/sbin/route</code></p>
+</li>
+<li>
+<p><code>/sbin/ifconfig</code></p>
+</li>
+<li>
+<p><code>/sbin/ip</code></p>
+</li>
+<li>
+<p><code>/usr/sbin/arp</code></p>
+</li>
+<li>
+<p><code>/sbin/iw</code></p>
+</li>
+<li>
+<p><code>/sbin/iwconfig</code></p>
+</li>
+<li>
+<p><code>/sbin/iwlist</code></p>
+</li>
+</ul>
+<h3 id="configuring-the-network-interface">Configuring the network interface<a class="headerlink" href="#configuring-the-network-interface" title="Permanent link">&para;</a></h3>
+<p>Most network devices are supported by modern kernels. But you will need
+to configure your devices to fit into your network. They will need an IP
+address (IPv4, IPv6 or both), possibly a number of gateways/routers has
+to be made known to allow access to other networks and the default route
+needs to be set. Configuring Network Interface These tasks are usually
+performed from the routing table network-initialization script each time
+you boot the system. The basic tools for this process are <code>ifconfig</code>
+(where "if" stands <code>ifconfig</code> for interface) and <code>route</code>. route</p>
+<p>The <code>ifconfig</code> command is still widely used. It configures an
+interface and makes it accessible to the kernel networking layer. An IP
+address, submask, broadcast address and various other parameters can be
+set. The tool can also be used to activate and de-activate the
+interface, also known as "bringing up" and "bringing down" the
+interface. An active interface will send and receive IP datagrams
+through the interface. The simplest way to IP invoke it is:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="nx">ifconfig</span><span class="w"> </span><span class="kd">interface</span><span class="w"> </span><span class="nx">ip</span><span class="o">-</span><span class="nx">address</span>
+</code></pre></div></td></tr></table></div>
+
+<p>This command assigns <code>ip-address</code> to <code>interface</code> and activates it. All
+other parameters are set to default values. For instance, the default
+network mask is derived from the network class of the IP address, such
+as 255.255.0.0 for a class B address.</p>
+<p><code>route</code> allows you to add or remove routes from the kernel routing
+table. It can be invoked as:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">route</span><span class="w"> </span><span class="err">{</span><span class="k">add</span><span class="o">|</span><span class="n">del</span><span class="err">}</span><span class="w"> </span><span class="o">[</span><span class="n">-net|-host</span><span class="o">]</span><span class="w"> </span><span class="n">target</span><span class="w"> </span><span class="o">[</span><span class="n">if</span><span class="o">]</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The <code>add</code> and <code>del</code> arguments determine whether to add or delete the
+route to <code>target</code>. The <code>-net</code> and <code>-host</code> arguments tell the route
+command whether the target is a network or a host (a host is assumed if
+you don't specify). The <code>if</code> argument specifies the interface and is
+optional, and allows you to specify to which network interface the route
+should be directed -- the Linux kernel makes a sensible guess if you
+don't supply this information.</p>
+<h4 id="the-loopback-interface">The Loopback Interface<a class="headerlink" href="#the-loopback-interface" title="Permanent link">&para;</a></h4>
+<p>TCP/IP implementations include a virtual network interface that can be
+used to emulate network traffic between two processes on the same host.
+The loopback interface is not connected to any real network, it is
+implemented entirely within the operating system's networking software.
+Traffic sent to the loopback IP address (often the address 127.0.0.1 is
+used) is simply passed back up the network software stack as if it had
+been received from another device. The IPv6 address used is ::1, and
+commonly the name "localhost" is used as hostname. It is the first
+interface to be activated during boot: loopback interface</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    # ifconfig lo 127.0.0.1
+</code></pre></div></td></tr></table></div>
+
+<p>Occasionally, you will see the dummy hostname localhost being used
+instead of the IP address. This requires proper configuration of the
+<code>/etc/hosts</code> file: 127.0.0.1</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span>#<span class="w"> </span><span class="nv">Sample</span><span class="w"> </span><span class="o">/</span><span class="nv">etc</span><span class="o">/</span><span class="nv">hosts</span><span class="w"> </span><span class="nv">entry</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">localhost</span>
+<span class="w">    </span><span class="mi">127</span>.<span class="mi">0</span>.<span class="mi">0</span>.<span class="mi">1</span><span class="w"> </span><span class="nv">localhost</span>
+</code></pre></div></td></tr></table></div>
+
+<p>To view the configuration of an interface simply invoke <code>ifconfig</code> with
+the interface name as lo sole argument:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="err">$</span><span class="w"> </span><span class="nx">ifconfig</span><span class="w"> </span><span class="nx">lo</span>
+<span class="w">    </span><span class="nx">lo</span><span class="w">        </span><span class="nx">Link</span><span class="w"> </span><span class="nx">encap</span><span class="p">:</span><span class="nx">Local</span><span class="w"> </span><span class="nx">Loopback</span><span class="w"> </span><span class="nx">inet</span><span class="w"> </span><span class="kd">addr</span><span class="p">:</span><span class="m m-Double">127.0.0.1</span>
+<span class="w">    </span><span class="nx">Mask</span><span class="p">:</span><span class="m m-Double">255.0.0.0</span><span class="w"> </span><span class="nx">UP</span><span class="w"> </span><span class="nx">LOOPBACK</span><span class="w"> </span><span class="nx">RUNNING</span><span class="w"> </span><span class="nx">MTU</span><span class="p">:</span><span class="mi">3924</span><span class="w"> </span><span class="nx">Metric</span><span class="p">:</span><span class="mi">1</span><span class="w"> </span><span class="nx">RX</span><span class="w"> </span><span class="nx">packets</span><span class="p">:</span><span class="mi">0</span>
+<span class="w">    </span><span class="nx">errors</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">dropped</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">overruns</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">frame</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">TX</span><span class="w"> </span><span class="nx">packets</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">errors</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">dropped</span><span class="p">:</span><span class="mi">0</span>
+<span class="w">    </span><span class="nx">overruns</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">carrier</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">Collisions</span><span class="p">:</span><span class="mi">0</span>
+</code></pre></div></td></tr></table></div>
+
+<p>This example shows that the loopback interface has been assigned a
+netmask of 255.0.0.0 by default. 127.0.0.1 is a class A address.</p>
+<p>These steps suffice to use networking applications on a stand-alone
+host. After adding these lines to your network initialization script
+and ensuring its execution at boot time by rebooting your machine
+you can test the loopback interface. For instance, <code>telnet localhost</code>
+should establish a telnet telnet connection to your host, giving you a
+<code>login:</code> prompt.</p>
+<p>The loopback interface is often used as a test bed during development,
+but there are other applications. For example, all applications based on
+RPC use the loopback RPC interface to register themselves with the
+portmapper daemon at startup. These applications include NIS and NFS.
+NIS NFS Hence the loopback interface should always be configured,
+whether your machine is attached to a network or not.</p>
+<h4 id="ethernet-interfaces">Ethernet Interfaces<a class="headerlink" href="#ethernet-interfaces" title="Permanent link">&para;</a></h4>
+<p>Configuring an Ethernet interface is pretty much the same as the
+ethernet interface loopback interface - it just requires a few more
+parameters when you use subnetting.</p>
+<p>Suppose we have subnetted the IP network, which was originally a class B
+network, into class C subnetworks. To make the interface netmask
+recognize this, the <code>ifconfig</code> invocation would look like this:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    # ifconfig eth0 172.16.1.2 netmask 255.255.255.0
+</code></pre></div></td></tr></table></div>
+
+<p>This command assigns the eth0 interface an IP address of 172.16.1.2. If
+we had omitted the netmask, <code>ifconfig</code> would deduce the netmask from the
+IP network class, which would result in an incorrect netmask of
+255.255.0.0. Now a quick check shows:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="nx">ifconfig</span><span class="w"> </span><span class="nx">eth0</span>
+<span class="w">    </span><span class="nx">eth0</span><span class="w">      </span><span class="nx">Link</span><span class="w"> </span><span class="nx">encap</span><span class="w"> </span><span class="mi">10</span><span class="nx">Mps</span><span class="w"> </span><span class="nx">Ethernet</span><span class="w"> </span><span class="nx">HWaddr</span>
+<span class="w">              </span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="nx">C0</span><span class="p">:</span><span class="mi">90</span><span class="p">:</span><span class="nx">B3</span><span class="p">:</span><span class="mi">42</span><span class="w"> </span><span class="nx">inet</span><span class="w"> </span><span class="kd">addr</span><span class="w"> </span><span class="m m-Double">172.16.1.2</span><span class="w"> </span><span class="nx">Bcast</span><span class="w"> </span><span class="m m-Double">172.16.1.255</span><span class="w"> </span><span class="nx">Mask</span>
+<span class="w">              </span><span class="m m-Double">255.255.255.0</span><span class="w"> </span><span class="nx">UP</span><span class="w"> </span><span class="nx">BROADCAST</span><span class="w"> </span><span class="nx">RUNNING</span><span class="w"> </span><span class="nx">MTU</span><span class="w"> </span><span class="mi">1500</span><span class="w"> </span><span class="nx">Metric</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="nx">RX</span><span class="w"> </span><span class="nx">packets</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">              </span><span class="nx">errors</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="nx">dropped</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="nx">overrun</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="nx">TX</span><span class="w"> </span><span class="nx">packets</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="nx">errors</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="nx">dropped</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="nx">overrun</span><span class="w"> </span><span class="mi">0</span>
+</code></pre></div></td></tr></table></div>
+
+<p>You can see that <code>ifconfig</code> automatically sets the broadcast broadcast
+address address (the Bcast field) to the usual value, which is the
+host's network number with all the host bits set. Also, the maximum
+transmission unit (the maximum size of IP datagrams the MTU kernel will
+generate for this interface) has been set to the maximum size of
+Ethernet packets: 1,500 bytes. The defaults are usually what you will
+use, but all these values can be overridden if required.</p>
+<h3 id="routing-through-a-gateway">Routing Through a Gateway<a class="headerlink" href="#routing-through-a-gateway" title="Permanent link">&para;</a></h3>
+<p>You do not need routing if your host is on a single Ethernet.
+Quite frequently however, networks are connected to one
+another by gateways. These gateways may simply link two or more
+Ethernets, but may also provide a link to the outside world, such as the
+Internet. In order to use a gateway, you have to provide additional
+routing information to the networking layer.</p>
+<p>Imagine two ethernets linked through such a gateway, the host romeo.
+Assuming that romeo has already been configured, we just have to add an
+entry to the routing table telling the kernel all hosts on the other
+network can be reached through romeo. The appropriate invocation of
+<code>route</code> is shown below; the <code>gw</code> keyword tells it that the next argument
+denotes a gateway:</p>
+<div id="addnetmc" class="highlight"><pre><span></span><code>    # route add -net 172.16.0.0 netmask 255.255.255.0 gw romeo
+</code></pre></div>
+<p>Of course, any host on the other network you wish to communicate with
+must have a routing entry for our network. Otherwise you would only be
+able to send data to the other network, but the hosts on the other
+network would be unable to reply.</p>
+<p>This example only describes a gateway that switches packets between two
+isolated ethernets. Now assume that romeo also has a connection to the
+Internet (say, through an additional PPP link). In this case, we want
+datagrams to any destination network to be handed to romeo. This can be
+accomplished by making it the default gateway: default gateway</p>
+<div id="defaultgwmc" class="highlight"><pre><span></span><code>    # route add default gw romeo
+</code></pre></div>
+<p>Something that is frequently misunderstood is that only <em>ONE</em> default
+gateway can be configured. You may have many gateways, but only one can
+be the default.</p>
+<p>The network name <code>default</code> is a shorthand for 0.0.0.0, which denotes the
+default route. The default route 0.0.0.0 default route matches every
+destination and will be used if a more specific route is not available.</p>
+<h3 id="the-ip-command">The <code>ip</code> command<a class="headerlink" href="#the-ip-command" title="Permanent link">&para;</a></h3>
+<p>In recent years many people have advocated the use of the newer
+command <code>/sbin/ip</code>. It too can be used to show or manipulate routing and
+network devices, and also can be used to configure or show policy
+routing and tunnels. However, the old tools <code>ifconfig</code> and <code>route</code> can
+be used too if that is more convenient. A use case for the <code>ip</code> would be
+to show the IP addresses used on the network interfaces in a more
+concise way compared to <code>ifconfig</code>:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="nx">ip</span><span class="w"> </span><span class="kd">addr</span><span class="w"> </span><span class="nx">show</span>
+<span class="w">    </span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="nx">lo</span><span class="p">:</span><span class="w"> </span><span class="p">&lt;</span><span class="nx">LOOPBACK</span><span class="p">,</span><span class="nx">UP</span><span class="p">,</span><span class="nx">LOWER_UP</span><span class="p">&gt;</span><span class="w"> </span><span class="nx">mtu</span><span class="w"> </span><span class="mi">16436</span><span class="w"> </span><span class="nx">qdisc</span><span class="w"> </span><span class="nx">noqueue</span><span class="w"> </span><span class="nx">state</span><span class="w"> </span><span class="nx">UNKNOWN</span><span class="w"> </span>
+<span class="w">        </span><span class="nx">link</span><span class="o">/</span><span class="nx">loopback</span><span class="w"> </span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="w"> </span><span class="nx">brd</span><span class="w"> </span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>
+<span class="w">        </span><span class="nx">inet</span><span class="w"> </span><span class="m m-Double">127.0.0.1</span><span class="o">/</span><span class="mi">8</span><span class="w"> </span><span class="nx">scope</span><span class="w"> </span><span class="nx">host</span><span class="w"> </span><span class="nx">lo</span>
+<span class="w">        </span><span class="nx">inet6</span><span class="w"> </span><span class="o">::</span><span class="mi">1</span><span class="o">/</span><span class="mi">128</span><span class="w"> </span><span class="nx">scope</span><span class="w"> </span><span class="nx">host</span><span class="w"> </span>
+<span class="w">           </span><span class="nx">valid_lft</span><span class="w"> </span><span class="nx">forever</span><span class="w"> </span><span class="nx">preferred_lft</span><span class="w"> </span><span class="nx">forever</span>
+<span class="w">    </span><span class="mi">2</span><span class="p">:</span><span class="w"> </span><span class="nx">p8p1</span><span class="p">:</span><span class="w"> </span><span class="p">&lt;</span><span class="nx">BROADCAST</span><span class="p">,</span><span class="nx">MULTICAST</span><span class="p">,</span><span class="nx">UP</span><span class="p">,</span><span class="nx">LOWER_UP</span><span class="p">&gt;</span><span class="w"> </span><span class="nx">mtu</span><span class="w"> </span><span class="mi">1500</span><span class="w"> </span><span class="nx">qdisc</span><span class="w"> </span><span class="nx">pfifo_fast</span><span class="w"> </span><span class="nx">state</span><span class="w"> </span><span class="nx">UP</span><span class="w"> </span><span class="nx">qlen</span><span class="w"> </span><span class="mi">1000</span>
+<span class="w">        </span><span class="nx">link</span><span class="o">/</span><span class="nx">ether</span><span class="w"> </span><span class="mi">00</span><span class="p">:</span><span class="mi">90</span><span class="p">:</span><span class="nx">f5</span><span class="p">:</span><span class="nx">b6</span><span class="p">:</span><span class="mi">91</span><span class="p">:</span><span class="nx">d1</span><span class="w"> </span><span class="nx">brd</span><span class="w"> </span><span class="nx">ff</span><span class="p">:</span><span class="nx">ff</span><span class="p">:</span><span class="nx">ff</span><span class="p">:</span><span class="nx">ff</span><span class="p">:</span><span class="nx">ff</span><span class="p">:</span><span class="nx">ff</span>
+<span class="w">        </span><span class="nx">inet</span><span class="w"> </span><span class="m m-Double">192.168.123.181</span><span class="o">/</span><span class="mi">24</span><span class="w"> </span><span class="nx">brd</span><span class="w"> </span><span class="m m-Double">192.168.123.255</span><span class="w"> </span><span class="nx">scope</span><span class="w"> </span><span class="nx">global</span><span class="w"> </span><span class="nx">p8p1</span>
+<span class="w">        </span><span class="nx">inet6</span><span class="w"> </span><span class="nx">fe80</span><span class="o">::</span><span class="mi">290</span><span class="p">:</span><span class="nx">f5ff</span><span class="p">:</span><span class="nx">feb6</span><span class="p">:</span><span class="mi">91</span><span class="nx">d1</span><span class="o">/</span><span class="mi">64</span><span class="w"> </span><span class="nx">scope</span><span class="w"> </span><span class="nx">link</span><span class="w"> </span>
+<span class="w">           </span><span class="nx">valid_lft</span><span class="w"> </span><span class="nx">forever</span><span class="w"> </span><span class="nx">preferred_lft</span><span class="w"> </span><span class="nx">forever</span>
+<span class="w">    </span><span class="mi">3</span><span class="p">:</span><span class="w"> </span><span class="nx">wlan0</span><span class="p">:</span><span class="w"> </span><span class="p">&lt;</span><span class="nx">BROADCAST</span><span class="p">,</span><span class="nx">MULTICAST</span><span class="p">&gt;</span><span class="w"> </span><span class="nx">mtu</span><span class="w"> </span><span class="mi">1500</span><span class="w"> </span><span class="nx">qdisc</span><span class="w"> </span><span class="nx">mq</span><span class="w"> </span><span class="nx">state</span><span class="w"> </span><span class="nx">DOWN</span><span class="w"> </span><span class="nx">qlen</span><span class="w"> </span><span class="mi">1000</span>
+<span class="w">        </span><span class="nx">link</span><span class="o">/</span><span class="nx">ether</span><span class="w"> </span><span class="mi">88</span><span class="p">:</span><span class="mi">53</span><span class="p">:</span><span class="mi">2</span><span class="nx">e</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="nx">df</span><span class="p">:</span><span class="mi">14</span><span class="w"> </span><span class="nx">brd</span><span class="w"> </span><span class="nx">ff</span><span class="p">:</span><span class="nx">ff</span><span class="p">:</span><span class="nx">ff</span><span class="p">:</span><span class="nx">ff</span><span class="p">:</span><span class="nx">ff</span><span class="p">:</span><span class="nx">ff</span>
+<span class="w">    </span><span class="mi">4</span><span class="p">:</span><span class="w"> </span><span class="nx">vboxnet0</span><span class="p">:</span><span class="w"> </span><span class="p">&lt;</span><span class="nx">BROADCAST</span><span class="p">,</span><span class="nx">MULTICAST</span><span class="p">&gt;</span><span class="w"> </span><span class="nx">mtu</span><span class="w"> </span><span class="mi">1500</span><span class="w"> </span><span class="nx">qdisc</span><span class="w"> </span><span class="nx">noop</span><span class="w"> </span><span class="nx">state</span><span class="w"> </span><span class="nx">DOWN</span><span class="w"> </span><span class="nx">qlen</span><span class="w"> </span><span class="mi">1000</span>
+<span class="w">        </span><span class="nx">link</span><span class="o">/</span><span class="nx">ether</span><span class="w"> </span><span class="mi">0</span><span class="nx">a</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="w"> </span><span class="nx">brd</span><span class="w"> </span><span class="nx">ff</span><span class="p">:</span><span class="nx">ff</span><span class="p">:</span><span class="nx">ff</span><span class="p">:</span><span class="nx">ff</span><span class="p">:</span><span class="nx">ff</span><span class="p">:</span><span class="nx">ff</span>
+</code></pre></div></td></tr></table></div>
+
+<p>in contrast to <code>ifconfig</code></p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="nx">ifconfig</span><span class="w"> </span><span class="o">-</span><span class="nx">a</span>
+<span class="w">    </span><span class="nx">lo</span><span class="w">        </span><span class="nx">Link</span><span class="w"> </span><span class="nx">encap</span><span class="p">:</span><span class="nx">Local</span><span class="w"> </span><span class="nx">Loopback</span><span class="w">  </span>
+<span class="w">              </span><span class="nx">inet</span><span class="w"> </span><span class="kd">addr</span><span class="p">:</span><span class="m m-Double">127.0.0.1</span><span class="w">  </span><span class="nx">Mask</span><span class="p">:</span><span class="m m-Double">255.0.0.0</span>
+<span class="w">              </span><span class="nx">inet6</span><span class="w"> </span><span class="kd">addr</span><span class="p">:</span><span class="w"> </span><span class="o">::</span><span class="mi">1</span><span class="o">/</span><span class="mi">128</span><span class="w"> </span><span class="nx">Scope</span><span class="p">:</span><span class="nx">Host</span>
+<span class="w">              </span><span class="nx">UP</span><span class="w"> </span><span class="nx">LOOPBACK</span><span class="w"> </span><span class="nx">RUNNING</span><span class="w">  </span><span class="nx">MTU</span><span class="p">:</span><span class="mi">16436</span><span class="w">  </span><span class="nx">Metric</span><span class="p">:</span><span class="mi">1</span>
+<span class="w">              </span><span class="nx">RX</span><span class="w"> </span><span class="nx">packets</span><span class="p">:</span><span class="mi">48</span><span class="w"> </span><span class="nx">errors</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">dropped</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">overruns</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">frame</span><span class="p">:</span><span class="mi">0</span>
+<span class="w">              </span><span class="nx">TX</span><span class="w"> </span><span class="nx">packets</span><span class="p">:</span><span class="mi">48</span><span class="w"> </span><span class="nx">errors</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">dropped</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">overruns</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">carrier</span><span class="p">:</span><span class="mi">0</span>
+<span class="w">              </span><span class="nx">collisions</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">txqueuelen</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span>
+<span class="w">              </span><span class="nx">RX</span><span class="w"> </span><span class="nx">bytes</span><span class="p">:</span><span class="mi">4304</span><span class="w"> </span><span class="p">(</span><span class="m m-Double">4.2</span><span class="w"> </span><span class="nx">KiB</span><span class="p">)</span><span class="w">  </span><span class="nx">TX</span><span class="w"> </span><span class="nx">bytes</span><span class="p">:</span><span class="mi">4304</span><span class="w"> </span><span class="p">(</span><span class="m m-Double">4.2</span><span class="w"> </span><span class="nx">KiB</span><span class="p">)</span>
+
+<span class="w">    </span><span class="nx">p8p1</span><span class="w">      </span><span class="nx">Link</span><span class="w"> </span><span class="nx">encap</span><span class="p">:</span><span class="nx">Ethernet</span><span class="w">  </span><span class="nx">HWaddr</span><span class="w"> </span><span class="mi">00</span><span class="p">:</span><span class="mi">90</span><span class="p">:</span><span class="nx">F5</span><span class="p">:</span><span class="nx">B6</span><span class="p">:</span><span class="mi">91</span><span class="p">:</span><span class="nx">D1</span><span class="w">  </span>
+<span class="w">              </span><span class="nx">inet</span><span class="w"> </span><span class="kd">addr</span><span class="p">:</span><span class="m m-Double">192.168.123.181</span><span class="w">  </span><span class="nx">Bcast</span><span class="p">:</span><span class="m m-Double">192.168.123.255</span><span class="w">  </span><span class="nx">Mask</span><span class="p">:</span><span class="m m-Double">255.255.255.0</span>
+<span class="w">              </span><span class="nx">inet6</span><span class="w"> </span><span class="kd">addr</span><span class="p">:</span><span class="w"> </span><span class="nx">fe80</span><span class="o">::</span><span class="mi">290</span><span class="p">:</span><span class="nx">f5ff</span><span class="p">:</span><span class="nx">feb6</span><span class="p">:</span><span class="mi">91</span><span class="nx">d1</span><span class="o">/</span><span class="mi">64</span><span class="w"> </span><span class="nx">Scope</span><span class="p">:</span><span class="nx">Link</span>
+<span class="w">              </span><span class="nx">UP</span><span class="w"> </span><span class="nx">BROADCAST</span><span class="w"> </span><span class="nx">RUNNING</span><span class="w"> </span><span class="nx">MULTICAST</span><span class="w">  </span><span class="nx">MTU</span><span class="p">:</span><span class="mi">1500</span><span class="w">  </span><span class="nx">Metric</span><span class="p">:</span><span class="mi">1</span>
+<span class="w">              </span><span class="nx">RX</span><span class="w"> </span><span class="nx">packets</span><span class="p">:</span><span class="mi">6653</span><span class="w"> </span><span class="nx">errors</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">dropped</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">overruns</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">frame</span><span class="p">:</span><span class="mi">0</span>
+<span class="w">              </span><span class="nx">TX</span><span class="w"> </span><span class="nx">packets</span><span class="p">:</span><span class="mi">7609</span><span class="w"> </span><span class="nx">errors</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">dropped</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">overruns</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">carrier</span><span class="p">:</span><span class="mi">0</span>
+<span class="w">              </span><span class="nx">collisions</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">txqueuelen</span><span class="p">:</span><span class="mi">1000</span><span class="w"> </span>
+<span class="w">              </span><span class="nx">RX</span><span class="w"> </span><span class="nx">bytes</span><span class="p">:</span><span class="mi">3843849</span><span class="w"> </span><span class="p">(</span><span class="m m-Double">3.6</span><span class="w"> </span><span class="nx">MiB</span><span class="p">)</span><span class="w">  </span><span class="nx">TX</span><span class="w"> </span><span class="nx">bytes</span><span class="p">:</span><span class="mi">938833</span><span class="w"> </span><span class="p">(</span><span class="m m-Double">916.8</span><span class="w"> </span><span class="nx">KiB</span><span class="p">)</span>
+<span class="w">              </span><span class="nx">Interrupt</span><span class="p">:</span><span class="mi">53</span>
+
+<span class="w">    </span><span class="nx">vboxnet0</span><span class="w">  </span><span class="nx">Link</span><span class="w"> </span><span class="nx">encap</span><span class="p">:</span><span class="nx">Ethernet</span><span class="w">  </span><span class="nx">HWaddr</span><span class="w"> </span><span class="mi">0</span><span class="nx">A</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="w">  </span>
+<span class="w">              </span><span class="nx">BROADCAST</span><span class="w"> </span><span class="nx">MULTICAST</span><span class="w">  </span><span class="nx">MTU</span><span class="p">:</span><span class="mi">1500</span><span class="w">  </span><span class="nx">Metric</span><span class="p">:</span><span class="mi">1</span>
+<span class="w">              </span><span class="nx">RX</span><span class="w"> </span><span class="nx">packets</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">errors</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">dropped</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">overruns</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">frame</span><span class="p">:</span><span class="mi">0</span>
+<span class="w">              </span><span class="nx">TX</span><span class="w"> </span><span class="nx">packets</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">errors</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">dropped</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">overruns</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">carrier</span><span class="p">:</span><span class="mi">0</span>
+<span class="w">              </span><span class="nx">collisions</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">txqueuelen</span><span class="p">:</span><span class="mi">1000</span><span class="w"> </span>
+<span class="w">              </span><span class="nx">RX</span><span class="w"> </span><span class="nx">bytes</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="p">(</span><span class="m m-Double">0.0</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w">  </span><span class="nx">TX</span><span class="w"> </span><span class="nx">bytes</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="p">(</span><span class="m m-Double">0.0</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span>
+
+<span class="w">    </span><span class="nx">wlan0</span><span class="w">     </span><span class="nx">Link</span><span class="w"> </span><span class="nx">encap</span><span class="p">:</span><span class="nx">Ethernet</span><span class="w">  </span><span class="nx">HWaddr</span><span class="w"> </span><span class="mi">88</span><span class="p">:</span><span class="mi">53</span><span class="p">:</span><span class="mi">2</span><span class="nx">E</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="nx">DF</span><span class="p">:</span><span class="mi">14</span><span class="w">  </span>
+<span class="w">              </span><span class="nx">BROADCAST</span><span class="w"> </span><span class="nx">MULTICAST</span><span class="w">  </span><span class="nx">MTU</span><span class="p">:</span><span class="mi">1500</span><span class="w">  </span><span class="nx">Metric</span><span class="p">:</span><span class="mi">1</span>
+<span class="w">              </span><span class="nx">RX</span><span class="w"> </span><span class="nx">packets</span><span class="p">:</span><span class="mi">2</span><span class="w"> </span><span class="nx">errors</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">dropped</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">overruns</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">frame</span><span class="p">:</span><span class="mi">0</span>
+<span class="w">              </span><span class="nx">TX</span><span class="w"> </span><span class="nx">packets</span><span class="p">:</span><span class="mi">11</span><span class="w"> </span><span class="nx">errors</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">dropped</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">overruns</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">carrier</span><span class="p">:</span><span class="mi">0</span>
+<span class="w">              </span><span class="nx">collisions</span><span class="p">:</span><span class="mi">0</span><span class="w"> </span><span class="nx">txqueuelen</span><span class="p">:</span><span class="mi">1000</span><span class="w"> </span>
+<span class="w">              </span><span class="nx">RX</span><span class="w"> </span><span class="nx">bytes</span><span class="p">:</span><span class="mi">330</span><span class="w"> </span><span class="p">(</span><span class="m m-Double">330.0</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w">  </span><span class="nx">TX</span><span class="w"> </span><span class="nx">bytes</span><span class="p">:</span><span class="mi">1962</span><span class="w"> </span><span class="p">(</span><span class="m m-Double">1.9</span><span class="w"> </span><span class="nx">KiB</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+
+<p>An example of using <code>ip</code> as an alternative to <code>ifconfig</code> when
+configuring a network interface (p8p1):</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    # ifconfig p8p1 192.168.123.15 netmask 255.255.255.0 broadcast 192.168.123.255
+</code></pre></div></td></tr></table></div>
+
+<p>can be replaced by:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">                </span><span class="nx">ip</span><span class="w"> </span><span class="kd">addr</span><span class="w"> </span><span class="nx">add</span><span class="w"> </span><span class="m m-Double">192.168.123.15</span><span class="o">/</span><span class="mi">24</span><span class="w"> </span><span class="nx">broadcast</span><span class="w"> </span><span class="m m-Double">192.168.123.255</span><span class="w"> </span><span class="nx">dev</span><span class="w"> </span><span class="nx">p8p1</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The <code>ip</code> can also be used as alternative for the <code>route</code> command:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span>#<span class="w"> </span><span class="nv">ip</span><span class="w"> </span><span class="nv">route</span><span class="w"> </span><span class="nv">add</span><span class="w"> </span><span class="mi">192</span>.<span class="mi">168</span>.<span class="mi">123</span>.<span class="mi">254</span><span class="o">/</span><span class="mi">24</span><span class="w"> </span><span class="nv">dev</span><span class="w"> </span><span class="nv">p8p1</span>
+
+
+<span class="w">    </span>#<span class="w"> </span><span class="nv">ip</span><span class="w"> </span><span class="nv">route</span><span class="w"> </span><span class="k">show</span>
+<span class="w">    </span><span class="mi">192</span>.<span class="mi">168</span>.<span class="mi">123</span>.<span class="mi">0</span><span class="o">/</span><span class="mi">24</span><span class="w"> </span><span class="nv">dev</span><span class="w"> </span><span class="nv">p8p1</span><span class="w">  </span><span class="nv">proto</span><span class="w"> </span><span class="nv">kernel</span><span class="w">  </span><span class="nv">scope</span><span class="w"> </span><span class="nv">link</span><span class="w">  </span><span class="nv">src</span><span class="w"> </span><span class="mi">192</span>.<span class="mi">168</span>.<span class="mi">123</span>.<span class="mi">181</span><span class="w">  </span><span class="nv">metric</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span>
+<span class="w">    </span><span class="nv">default</span><span class="w"> </span><span class="nv">via</span><span class="w"> </span><span class="mi">192</span>.<span class="mi">168</span>.<span class="mi">123</span>.<span class="mi">254</span><span class="w"> </span><span class="nv">dev</span><span class="w"> </span><span class="nv">p8p1</span><span class="w">  </span><span class="nv">proto</span><span class="w"> </span><span class="nv">static</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The output of the <code>route</code> command in this case would be:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>    # route
+    Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+    192.168.123.0   *               255.255.255.0   U     1      0        0 p8p1
+    default         192.168.123.254 0.0.0.0         UG    0      0        0 p8p1
+</code></pre></div></td></tr></table></div>
+
+<p>As another example, to add a static route to network 192.168.1.0 over
+eth0, use:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    # ip route add 192.168.1.0/24 dev eth0
+</code></pre></div></td></tr></table></div>
+
+<p>For more information please read the manual pages of <code>ip</code>.</p>
+<h3 id="arp-address-resolution-protocol">ARP, Address Resolution Protocol<a class="headerlink" href="#arp-address-resolution-protocol" title="Permanent link">&para;</a></h3>
+<p>In the ISO network model there are seven layers. The Internet
+Protocol is a layer 3 protocol and the NIC is a layer 2 device. In a
+local network (layer 2) devices know each other by the MAC (Media Access
+Control) address. In the IP network (layer 3) devices know each other by
+their IP address.</p>
+<p>To allow transfer from data to and from layer 3 IP communication
+requires a protocol to map between layer 2 and layer 3. This protocol is
+known as ARP - the Address Resolution Protocol. ARP creates a mapping
+between an IP address and the MAC address where the IP address is
+configured.</p>
+<p>When IP enabled devices want to communicate, the kernel of the
+originating device hands the IP packet to the network interface driver
+software and requests to deliver the IP packet to the recipient. The
+only way to communicate on a local Ethernet is by means of a MAC
+address, IP addresses are of no use there. To find out the MAC address
+of the recipient with the proper IP address, the network driver for the
+interface on the origination side will send an ARP request. An ARP
+request is a broadcast: it is sent to any computer on the local network.
+The computer that has the requested IP address will now answer back with
+its MAC address. The sender then has al the information needed to
+transmit the packet. Also, the MAC and IP addres are stored in a local
+cache for future reference.</p>
+<p>The command <code>arp</code> can be used to show the ARP cache. Example:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="nx">arp</span>
+<span class="w">    </span><span class="nx">Address</span><span class="w">                  </span><span class="nx">HWtype</span><span class="w">  </span><span class="nx">HWaddress</span><span class="w">           </span><span class="nx">Flags</span><span class="w"> </span><span class="nx">Mask</span><span class="w">            </span><span class="nx">Iface</span>
+<span class="w">    </span><span class="m m-Double">10.9.8.126</span><span class="w">               </span><span class="nx">ether</span><span class="w">   </span><span class="mi">00</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span><span class="nx">bb</span><span class="p">:</span><span class="mi">2</span><span class="nx">e</span><span class="p">:</span><span class="nx">df</span><span class="p">:</span><span class="mi">73</span><span class="w">   </span><span class="nx">C</span><span class="w">                     </span><span class="nx">wlan0</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The cache can be manipulated manually, for example if a host is brought
+down you might want to remove it's arp entry. Normally you do not need
+to bother as the cache is not overly persistent. See the man pages for
+more information on the <code>arp</code> command.</p>
+<p><strong>Note</strong>
+Additionally, there exists the reverse ARP protocol (RARP). This
+protocol is used to allow an Ethernet (layer 2) device which IP
+address(es) it has configured. ARP: broadcast IP and receive MAC. RARP:
+broadcast MAC and receive IP.</p>
+<h3 id="wireless-networking">Wireless networking<a class="headerlink" href="#wireless-networking" title="Permanent link">&para;</a></h3>
+<h4 id="iw">iw<a class="headerlink" href="#iw" title="Permanent link">&para;</a></h4>
+<p><code>iw</code> is used to configure wireless devices. It only supports
+the nl80211 (netlink) standard. So if <code>iw</code> doesnt see your device, this
+might be the reason. You should use <code>iwconfig</code> (from the
+<em>wireless_tools</em> package) and <code>iwlist</code> to configure the wireless
+device. These are using the WEXT standard. <em>wireless_tools</em> is
+deprecated, but still widely supported.</p>
+<p>Syntax:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">            </span><span class="err">#</span><span class="w"> </span><span class="n">iw</span><span class="w"> </span><span class="n">command</span>
+<span class="w">            </span><span class="err">#</span><span class="w"> </span><span class="n">iw</span><span class="w"> </span><span class="o">[</span><span class="n">options</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">object</span><span class="o">]</span><span class="w"> </span><span class="n">command</span>
+</code></pre></div></td></tr></table></div>
+
+<p>Some common options:</p>
+<p>dev</p>
+<ul>
+<li>This is an object and the name op the wireless device should follow
+    after this option. with the command <code>iw dev</code> you can see the name of
+    your device.</li>
+</ul>
+<p>link</p>
+<ul>
+<li>This is a command and gets the link status of your wireless device.</li>
+</ul>
+<p>scan</p>
+<ul>
+<li>This is a command and scans the network for available access points.</li>
+</ul>
+<p>connect</p>
+<ul>
+<li>This is a command which lets you connect to an access point (essid),
+    you can specify a channel behind it and/or your password.</li>
+</ul>
+<p>set</p>
+<ul>
+<li>This is a command that lets you set a different interface/mode. For
+    instance <code>ibss</code> if you want to set the operation mode to Ad-Hoc. Or
+    set the power save state of the interface.</li>
+</ul>
+<p>Examples:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="nx">iw</span><span class="w"> </span><span class="nx">dev</span><span class="w"> </span><span class="nx">wlan0</span><span class="w"> </span><span class="nx">link</span><span class="w">                 </span>
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="nx">iw</span><span class="w"> </span><span class="nx">dev</span><span class="w"> </span><span class="nx">wlan0</span><span class="w"> </span><span class="nx">scan</span><span class="w">                 </span>
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="nx">iw</span><span class="w"> </span><span class="nx">dev</span><span class="w"> </span><span class="nx">wlan0</span><span class="w"> </span><span class="nx">connect</span><span class="w"> </span><span class="s">&quot;Access Point&quot;</span><span class="w">         </span>
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="nx">iw</span><span class="w"> </span><span class="nx">dev</span><span class="w"> </span><span class="nx">wlan0</span><span class="w"> </span><span class="nx">connect</span><span class="w"> </span><span class="s">&quot;Access Point&quot;</span><span class="w"> </span><span class="mi">2432</span><span class="w">        </span>
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="nx">iw</span><span class="w"> </span><span class="nx">dev</span><span class="w"> </span><span class="nx">wlan0</span><span class="w"> </span><span class="nx">connect</span><span class="w"> </span><span class="s">&quot;Access Point&quot;</span><span class="w">  </span><span class="mi">0</span><span class="p">:</span><span class="s">&quot;Your Key&quot;</span>
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="nx">iw</span><span class="w"> </span><span class="nx">dev</span><span class="w"> </span><span class="nx">wlan0</span><span class="w"> </span><span class="nx">set</span><span class="w"> </span><span class="k">type</span><span class="w"> </span><span class="nx">ibss</span><span class="w">            </span>
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="nx">iw</span><span class="w"> </span><span class="nx">dev</span><span class="w"> </span><span class="nx">wlan0</span><span class="w"> </span><span class="nx">ibss</span><span class="w"> </span><span class="nx">join</span><span class="w"> </span><span class="s">&quot;Access Point&quot;</span><span class="w"> </span><span class="mi">2432</span>
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="nx">iw</span><span class="w"> </span><span class="nx">dev</span><span class="w"> </span><span class="nx">wlan0</span><span class="w"> </span><span class="nx">ibss</span><span class="w"> </span><span class="nx">leave</span>
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="nx">iw</span><span class="w"> </span><span class="nx">dev</span><span class="w"> </span><span class="nx">wlan0</span><span class="w"> </span><span class="nx">set</span><span class="w"> </span><span class="nx">power_save</span><span class="w"> </span><span class="nx">on</span>
+</code></pre></div></td></tr></table></div>
+
+<h4 id="iwconfig"><code>iwconfig</code><a class="headerlink" href="#iwconfig" title="Permanent link">&para;</a></h4>
+<p>iwconfig <code>iwconfig</code> is similar to <code>ifconfig</code>, but is dedicated to the
+wireless interfaces. It is used to set the parameters of the network
+interface which are specific to the wireless operation (for example :
+the frequency). <code>iwconfig</code> may also be used to display those parameters,
+and the wireless statistics.</p>
+<p>All parameters and statistics are device dependent. Each driver will
+provide only some of them depending on hardware support, and the range
+of values may change. Please refer to the man page of each device for
+details.</p>
+<p>Syntax:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">iwconfig</span><span class="w"> </span><span class="o">[</span><span class="n">interface</span><span class="o">]</span>
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">iwconfig</span><span class="w"> </span><span class="n">interface</span><span class="w"> </span><span class="o">[</span><span class="n">options</span><span class="o">]</span>
+</code></pre></div></td></tr></table></div>
+
+<p>Some common options:</p>
+<ul>
+<li>
+<p>essid</p>
+<ul>
+<li>Set the ESSID (or Network Name - in some products it may also be
+called Domain ID). With some cards, you may disable the ESSID
+checking (ESSID promiscuous) with off or any (and on to reenable
+it). If the ESSID of your network is one of the special keywords
+(off, on or any), you should use -- to escape it.</li>
+</ul>
+</li>
+<li>
+<p>mode</p>
+<ul>
+<li>Set the operating mode of the device, which depends on the network
+topology. The mode can be Ad-Hoc (the network is composed of one
+cell only and is without an Access Point), Managed (the node
+connects to a network composed of multiple Access Points, with
+roaming), Master (the node is the synchronisation master or acts as
+an Access Point), Repeater (the node forwards packets between other
+wireless nodes), Secondary (the node acts as a backup
+master/repeater), Monitor (the node is not associated with any cell
+and passively monitors all packets on the frequency) or Auto.</li>
+</ul>
+</li>
+</ul>
+<p>Examples:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>    # iwconfig wlan0 essid any
+    # iwconfig wlan0 essid &quot;Access Point&quot;
+    # iwconfig wlan0 essid -- &quot;any&quot;
+    # iwconfig wlan0 mode Ad-Hoc
+</code></pre></div></td></tr></table></div>
+
+<h4 id="iwlist">iwlist<a class="headerlink" href="#iwlist" title="Permanent link">&para;</a></h4>
+<p><code>iwlist</code> is used to scan for available wireless networks and
+display additional information about them. The syntax is as follows:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">iwlist</span><span class="w"> </span><span class="o">[</span><span class="n">interface</span><span class="o">]</span><span class="w"> </span><span class="n">command</span>
+</code></pre></div></td></tr></table></div>
+
+<p><code>iwlist</code> can display ESSID's, frequency/channel information, bit-rates,
+encryption type, power management information of other wireless nodes in
+range. Which information is displayed is hardware dependent.</p>
+<p>Some useful options are:</p>
+<ul>
+<li>
+<p>scan[ning]</p>
+</li>
+<li>
+<p>Returns a list of ad-hoc networks and access points. Depending on
+    the type of card, more information is shown, i.e. ESSID, signal
+    strength, frequency. Scanning can only be done by root. When a
+    non-root users issues the scan command, results from the last scan
+    are returned, if available. This can also be achieved by adding the
+    option <strong>last</strong>. Furthermore, the option <strong>essid</strong> can be used to
+    scan for a specific ESSID. Depending on the driver, more options may
+    be available.</p>
+</li>
+<li>
+<p>keys/enc[ryption]</p>
+</li>
+<li>
+<p>List the encryption key sizes supported and list all the encryption
+    keys set in the device.</p>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 1997-2021 Sue B.V., The Netherlands - Open Sourced 2021
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["search.highlight", "tabs", "instant"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

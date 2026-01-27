@@ -1,0 +1,4245 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Sue B.V., The Netherlands">
+      
+      
+      
+        <link rel="prev" href="../lpic2.212.0/">
+      
+      
+        <link rel="next" href="../lpic2.212.2/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Configuring a router (212.1) - The LPIC2 Exam Prep</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:300,300i,400,400i,700,700i%7CAnonymous+Pro:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Nunito";--md-code-font:"Anonymous Pro"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#configuring-a-router-2121" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="The LPIC2 Exam Prep" class="md-header__button md-logo" aria-label="The LPIC2 Exam Prep" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            The LPIC2 Exam Prep
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Configuring a router (212.1)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/lpic2book/src" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    LPIC2Book
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="The LPIC2 Exam Prep" class="md-nav__button md-logo" aria-label="The LPIC2 Exam Prep" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/></svg>
+
+    </a>
+    The LPIC2 Exam Prep
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/lpic2book/src" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    LPIC2Book
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The LPIC2 Exam Prep
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpicbook_about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About this book
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    200 Capacity Planning (200)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Measure and Troubleshoot Resource Usage (200.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Predict Future Resource Needs (200.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Kernel (201)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel Components (201.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compiling a Linux kernel (201.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel runtime management and troubleshooting (201.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Startup (202)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customizing system startup (202.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System recovery (202.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Alternate Bootloaders (202.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Filesystem and Devices (203)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operating The Linux Filesystem (203.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maintaining a Linux Filesystem (203.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Creating And Configuring Filesystem Options (203.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Storage Device Administration (204)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring RAID (204.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adjusting Storage Device Access (204.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logical Volume Manager (204.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring PCMCIA Devices (204.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Networking Configuration (205)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Networking Configuration (205.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Network Configuration and Troubleshooting (205.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting network issues (205.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Maintenance (206)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Make and install programs from source (206.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup Operations (206.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifying users on system-related issues (206.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domain Name Server (207)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic DNS server configuration (207.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Create and maintain DNS zones (207.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Securing a DNS Server (207.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTTP Services (208)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Apache Configuration (208.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Apache configuration for HTTPS (208.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementing Squid as a caching proxy (208.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementing Nginx as a web server and a reverse proxy (208.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File Sharing (209)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAMBA Server Configuration (209.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring an NFS Server (209.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Client Management (210)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DHCP Configuration (210.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PAM authentication (210.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LDAP client usage (210.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring an OpenLDAP server (210.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    E-Mail services (211)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using e-mail servers (211.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing E-Mail Delivery (211.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing Mailbox Access (211.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Security (212)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring a router (212.1)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring a router (212.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-a-router-2121" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring a router (212.1)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring a router (212.1)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-knowledge-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Knowledge Areas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terms-and-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terms and Utilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#private-network-addresses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Private Network Addresses
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Private Network Addresses">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#network-address-translation-nat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Network Address Translation (NAT)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-linux-firewall-an-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Linux firewall, an overview
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Linux firewall, an overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#netfilter-hooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Netfilter "hooks"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tables-and-chains" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tables and Chains
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-filter-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The FILTER table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-nat-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The NAT table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-mangle-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The MANGLE table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connection-tracking-stateful-firewalling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Connection tracking: Stateful Firewalling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hooks-tables-and-chains-put-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hooks, Tables and Chains put together
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-extra-functionality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adding extra functionality
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iptables-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        iptables options
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iptables-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        iptables parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iptables-match-extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        iptables match extensions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-firms-network-with-iptables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Firm's network with IPTABLES
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-traffic-initiated-by-the-firewall-and-destined-for-the-internet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (1) Traffic initiated by the firewall and destined for the Internet
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-traffic-initiated-from-the-internet-and-destined-for-the-firewall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (2) Traffic initiated from the Internet and destined for the Firewall
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-traffic-initiated-by-the-firewall-and-destined-for-the-internal-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (3) Traffic initiated by the Firewall and destined for the internal network
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-traffic-initiated-by-the-internal-network-and-destined-for-the-firewall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (4) Traffic initiated by the internal network and destined for the firewall
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-traffic-initiated-by-the-internal-network-and-destined-for-the-internet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (5) Traffic initiated by the internal network and destined for the Internet
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-traffic-initiated-by-the-internet-and-destined-for-the-internal-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (6) Traffic initiated by the Internet and destined for the internal network
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#traffic-as-a-result-of-initiated-traffic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (!) Traffic as a result of initiated traffic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#all-iptables-commands-put-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        All iptables commands put together
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="All iptables commands put together">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#saving-and-restoring-firewall-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Saving And Restoring Firewall Rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#port-andor-ip-forwarding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Port and/or IP forwarding
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Port and/or IP forwarding">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exaample-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exaample 1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 2
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#denial-of-service-dos-attacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Denial of Service (DoS) attacks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Denial of Service (DoS) attacks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Description
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prevention" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prevention
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#routed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Routed
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Routed">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use-routed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to use routed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#route" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        route
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#netstat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        netstat
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ip6tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ip6tables
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing FTP servers (212.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secure shell (SSH) (212.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security tasks (212.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenVPN (212.5)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-a-router-2121" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring a router (212.1)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring a router (212.1)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-knowledge-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Knowledge Areas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terms-and-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terms and Utilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#private-network-addresses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Private Network Addresses
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Private Network Addresses">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#network-address-translation-nat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Network Address Translation (NAT)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-linux-firewall-an-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Linux firewall, an overview
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Linux firewall, an overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#netfilter-hooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Netfilter "hooks"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tables-and-chains" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tables and Chains
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-filter-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The FILTER table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-nat-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The NAT table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-mangle-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The MANGLE table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connection-tracking-stateful-firewalling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Connection tracking: Stateful Firewalling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hooks-tables-and-chains-put-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hooks, Tables and Chains put together
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-extra-functionality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adding extra functionality
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iptables-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        iptables options
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iptables-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        iptables parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iptables-match-extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        iptables match extensions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-firms-network-with-iptables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Firm's network with IPTABLES
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-traffic-initiated-by-the-firewall-and-destined-for-the-internet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (1) Traffic initiated by the firewall and destined for the Internet
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-traffic-initiated-from-the-internet-and-destined-for-the-firewall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (2) Traffic initiated from the Internet and destined for the Firewall
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-traffic-initiated-by-the-firewall-and-destined-for-the-internal-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (3) Traffic initiated by the Firewall and destined for the internal network
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-traffic-initiated-by-the-internal-network-and-destined-for-the-firewall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (4) Traffic initiated by the internal network and destined for the firewall
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-traffic-initiated-by-the-internal-network-and-destined-for-the-internet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (5) Traffic initiated by the internal network and destined for the Internet
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-traffic-initiated-by-the-internet-and-destined-for-the-internal-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (6) Traffic initiated by the Internet and destined for the internal network
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#traffic-as-a-result-of-initiated-traffic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (!) Traffic as a result of initiated traffic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#all-iptables-commands-put-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        All iptables commands put together
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="All iptables commands put together">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#saving-and-restoring-firewall-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Saving And Restoring Firewall Rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#port-andor-ip-forwarding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Port and/or IP forwarding
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Port and/or IP forwarding">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exaample-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exaample 1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 2
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#denial-of-service-dos-attacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Denial of Service (DoS) attacks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Denial of Service (DoS) attacks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Description
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prevention" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prevention
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#routed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Routed
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Routed">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use-routed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to use routed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#route" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        route
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#netstat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        netstat
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ip6tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ip6tables
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>Configuring a router (212.1)</h1>
+
+<h2 id="configuring-a-router-2121">Configuring a router (212.1)<a class="headerlink" href="#configuring-a-router-2121" title="Permanent link">&para;</a></h2>
+<p>Candidates should be able to configure a system to perform network
+address translation (NAT, IP masquerading) and state its significance in
+protecting a network. This objective includes configuring port
+redirection, managing filter rules and averting attacks.</p>
+<h3 id="key-knowledge-areas">Key Knowledge Areas<a class="headerlink" href="#key-knowledge-areas" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Network Address Translation (NAT)</p>
+</li>
+<li>
+<p>iptables configuration files, tools and utilities</p>
+</li>
+<li>
+<p>Tools, commands and utilities to manage routing tables</p>
+</li>
+<li>
+<p>Private address ranges</p>
+</li>
+<li>
+<p>Port redirection and IP forwarding</p>
+</li>
+<li>
+<p>List and write filtering and rules that accept or block datagrams based
+on source or destination protocol, port and address</p>
+</li>
+<li>
+<p>Save and reload filtering configurations</p>
+</li>
+<li>
+<p>Awareness of ip6tables and filtering</p>
+</li>
+</ul>
+<h3 id="terms-and-utilities">Terms and Utilities<a class="headerlink" href="#terms-and-utilities" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><code>/proc/sys/net/ipv4</code></p>
+</li>
+<li>
+<p><code>/etc/services</code></p>
+</li>
+<li>
+<p><code>iptables</code></p>
+</li>
+</ul>
+<h2 id="private-network-addresses">Private Network Addresses<a class="headerlink" href="#private-network-addresses" title="Permanent link">&para;</a></h2>
+<p>Why do Private Network Addresses exist? It has been common practice to
+Private Network Addresses assign globally-unique addresses to all hosts
+that use IP addresses. In order to extend the life of the IPv4 address
+space, address registries are requiring more justification concerning
+the need for extra address space than ever before, which makes it harder
+for organizations to acquire additional address space.</p>
+<p>Hosts within enterprises that use IP can be partitioned into three
+categories:</p>
+<ul>
+<li>
+<p>Category 1</p>
+</li>
+<li>
+<p>These hosts do not require access to the hosts of other IPCategory 1
+    enterprises or on the Internet itself; hosts within this category
+    may use IP addresses that are unambiguous within an enterprise, but
+    may be ambiguous between enterprises.</p>
+</li>
+<li>
+<p>Category 2</p>
+<ul>
+<li>These are hosts that need access to a limited set of outside
+IPCategory 2 services (e.g., E-mail, FTP, netnews, remote login),
+which can be handled by mediating gateways (e.g., application layer
+gateways). For many hosts in this category, unrestricted external
+access (provided via IP connectivity) may be unnecessary and even
+undesirable (for privacy/security reasons). These hosts, the same as
+category 1 hosts, may use IP addresses that are unambiguous within
+an enterprise, but may be ambiguous between enterprises.</li>
+</ul>
+</li>
+<li>
+<p>Category 3</p>
+<ul>
+<li>These hosts need network-layer access outside the enterprise
+IPCategory 3 (provided via IP connectivity); hosts in the last
+category require IP addresses that are globally unambiguous.</li>
+</ul>
+</li>
+</ul>
+<p>We will refer to the hosts in the first and second categories as
+"private" and to hosts in the third category as
+"public".</p>
+<p>Many applications require connectivity only within one enterprise and do
+not need external (outside the enterprise) connectivity for the majority
+of internal hosts. In larger enterprises it is often easy to identify a
+substantial number of hosts using TCP/IP that do not need network-layer
+connectivity outside the enterprise.</p>
+<p>The Internet Assigned Numbers Authority (IANA) has reserved the 10/8
+172.16/12 192.168/16 following three blocks of the IP address space for
+private internets:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>    10.0.0.0        -   10.255.255.255  (10/8 prefix)
+    172.16.0.0      -   172.31.255.255  (172.16/12 prefix)
+    192.168.0.0     -   192.168.255.255 (192.168/16 prefix)
+</code></pre></div></td></tr></table></div>
+
+<p>We will refer to the first block as "24-bit block", the second as
+"20-bit block", and to the third as "16-bit" block. Note that when no
+subnetting is used (i.e. in pre- Classless Inter-Domain Routing (CIDR)
+notation) the first block is nothing but a single class A network
+number, while the second block is a set of 16 contiguous class B network
+numbers and third block is a set of 256 contiguous class C network
+numbers.</p>
+<p>Even though IPv6 addresses are not likely to run out in the foreseeable
+future, the need for allocating private addresses has been recognized.
+RFC4193 describes address block fc00::/7, which is the approximate
+counterpart of the IPv4 private addresses described above.</p>
+<p>In addition to private IP addresses, IPv6 re-introduces the concept of
+link-local addresses, valid only for communications within the network
+segment (link) or the broadcast domain that the host is connected to.
+Routers do not forward packets with link-local addresses, because they
+are not guaranteed to be unique outside their network segment. In IPv4,
+the network range 169.254.0.0/16 was reserved for interfaces to allocate
+an IP address to themselves automatically. In practice, finding an IP
+address in this range on an interface generally means that DHCP
+allocation has failed, as link-local addressing is not generally used in
+IPv4 networks.</p>
+<p>In IPv6 networks, interfaces <em>always</em> allocate a link-local address in
+addition to potentially other configured or allocated IPv6 addresses.
+Therefore, IPv6 interfaces usually have more than one address.
+Link-local address are an integral part of the IPv6 protocol standard to
+facilitate neighbour discovery (NDP) and allocating globally unique IP
+addresses using DHCP6. Interfaces configured for IPv6 use part of their
+MAC address as a means to create a (hopefully) unique link-local address
+in the fe80::/64 range.</p>
+<h3 id="network-address-translation-nat">Network Address Translation (NAT)<a class="headerlink" href="#network-address-translation-nat" title="Permanent link">&para;</a></h3>
+<p><img alt="" src="../images/212-NAT.dot.svg.jpg" /></p>
+<p>The figure above displays a hypothetical
+situation which will serve as an example in the following explanation.</p>
+<p>This section describes Network Address Translation (NAT), which is a
+technique to rewrite the source or destination address (or sometimes
+both) of certain IP traffic. It can be used to enable hosts using a
+private IP address to communicate with hosts using a globally unique IP
+address. NAT is primarily an IPv4 concept. IPv6 discourages the use of
+NAT, because its creators believed it causes more problems than it
+solves. Under certain circumstances beyond the scope of this book,
+however, a need to rewrite IPv6 addresses may arise.</p>
+<p>"The Firm" has four machines, 1 to 4, which are connected via a network
+switch and have private IP addresses in the 192.168.x.x range. Machine 4
+serves as a router to the Internet and has two network interfaces. One
+connects the router to The Firm's internal network via the network
+switch and has a private IP address of 192.168.0.1, while the other
+connects the router to the Internet and has a valid (dynamic) IP address
+of 101.102.103.104.</p>
+<p>Let's say that the user at Machine 2 wishes to look at a web page on
+Some Host (<a href="http://SomeHost.example">http://SomeHost.example</a>) with an IP address of
+201.202.203.204. To be able to see the web page, Machine 2 must be able
+to get information from the Internet and thus must be, in some way,
+connected to the Internet. And indeed, Machine 2 has an indirect
+connection to the Internet via Machine 4, but how can this work? Machine
+2 has a private IP address which is not supported (routed) on the
+Internet!</p>
+<p>This is where NAT kicks in. Machine 4, the router, replaces the private
+IP address of Machine 2 (and also of Machine 1 and 3 if needed) with its
+own IP address before sending the request to Some Host. Some Host thinks
+that a machine with IP address 101.102.103.104 asked for the web page
+and responds by sending the web page to Machine 4.</p>
+<p>Machine 4 knows that it has replaced the IP address of Machine 2 with
+its own before sending the request to Some Host so it also knows that
+the answer it got to the request has to go to Machine 2. Machine 4
+accomplishes this by replacing its own IP address in the answer by the
+IP address of Machine 2.</p>
+<p>This is in a nutshell how NAT works. For more detailed information
+consult RFC1631</p>
+<h2 id="the-linux-firewall-an-overview">The Linux firewall, an overview<a class="headerlink" href="#the-linux-firewall-an-overview" title="Permanent link">&para;</a></h2>
+<h3 id="implementation">Implementation<a class="headerlink" href="#implementation" title="Permanent link">&para;</a></h3>
+<p>The Linux firewall is implemented in
+the kernel (as of version 2.3.15). The <em>NETFILTER</em> modules implement the
+packet filtering rules. The user space application <code>iptables</code> is used to
+configure these rules.</p>
+<h3 id="netfilter-hooks">Netfilter "hooks"<a class="headerlink" href="#netfilter-hooks" title="Permanent link">&para;</a></h3>
+<p>As the figure above shows, netfilter supports five different hooks in
+netfilterhooks the protocol stack. These hooks enable us to examine and
+modify (if necessary) every packet passing through the kernel.</p>
+<p><img alt="" src="../images/212-HOOKS.dot.svg.jpg" /></p>
+<p>NF_ACCEPT</p>
+<ul>
+<li>Continue traversal as normal. iptablesNF_ACCEPT</li>
+</ul>
+<p>NF_DROP</p>
+<ul>
+<li>Drop the packet and do not continue traversal. iptablesNF_DROP</li>
+</ul>
+<p>NF_QUEUE</p>
+<ul>
+<li>Queue the packet for userspace handling. iptablesNF_QUEUE</li>
+</ul>
+<p>NF_REPEAT</p>
+<ul>
+<li>Call this hook again. iptablesNF_REPEAT</li>
+</ul>
+<p>NF_STOLEN</p>
+<ul>
+<li>Take over (absorb) the packet but do not continue traversal.
+    iptablesNF_STOLEN</li>
+</ul>
+<h3 id="tables-and-chains">Tables and Chains<a class="headerlink" href="#tables-and-chains" title="Permanent link">&para;</a></h3>
+<p>By default five chains (the netfilter hooks) and three tables are
+supported. As the figure below shows, certain chains are only valid for
+certain tables.</p>
+<p>| | |CHAIN| | | |
+|----|----|----|----|----|----|----|
+| | |PREROUTING|INPUT|FORWARD|OUTPUT|POSTROUTING|
+|TABLE|MANGLE|V| | |V| |
+| |NAT|V| | |V|V|
+| |FILTER| |V|V|V| |</p>
+<h3 id="the-filter-table">The <em>FILTER</em> table<a class="headerlink" href="#the-filter-table" title="Permanent link">&para;</a></h3>
+<p>IPTABLESFILTER The FILTER table is used for filtering packets. The
+filter table contains three chains. The INPUT chain is used for all
+packets that are intended for the firewall itself. The FORWARD chain is
+used for all packets that come from outside the firewall and are
+destined for another machine outside the firewall. These packets must
+flow through the firewall. The OUTPUT chain is used for all packets
+generated by the firewall.</p>
+<h3 id="the-nat-table">The <em>NAT</em> table<a class="headerlink" href="#the-nat-table" title="Permanent link">&para;</a></h3>
+<p>IPTABLESNAT The NAT table is used for Network Address Translation. The
+NAT table contains three chains. The PREROUTING chain is the first used
+to alter incoming packets, before any routing decision has taken place.
+The OUTPUT chain is used to alter packets generated by the firewall. The
+POSTROUTING chain is the last chain where packets can be altered as they
+leave the firewall. Note that traffic flowing through the firewall
+passes the PREROUTING and POSTROUTING chains, whereas traffic originated
+by the firewall passes the OUTPUT and POSTROUTING chains.</p>
+<h3 id="the-mangle-table">The <em>MANGLE</em> table<a class="headerlink" href="#the-mangle-table" title="Permanent link">&para;</a></h3>
+<p>IPTABLESMANGLE The MANGLE table is used to mangle packets. We can change
+several things but we can't do masquerading or network address
+translation here. The mangle table contains two chains. The PREROUTING
+chain is the first chain to alter incoming packets, before any routing
+decision has taken place. The OUTPUT chain is used to alter packets
+generated by the firewall.</p>
+<h3 id="connection-tracking-stateful-firewalling">Connection tracking: Stateful Firewalling<a class="headerlink" href="#connection-tracking-stateful-firewalling" title="Permanent link">&para;</a></h3>
+<p>IPTABLESstateful Firewalls that are able to do connection tracking are
+called Stateful Firewall <em>Stateful Firewalls</em>. These firewalls keep
+track of established connections by memorizing the source and
+destination addresses and port numbers (so-called 5-tuples) mostly in
+order to determine valid return traffic. For protocols that do not use
+port numbers (e.g. ICMP) other properties are maintained. When using a
+stateful firewall, firewall rules have to be configured for traffic
+going one way only, as valid return traffic is passed automatically by a
+catch-all rule.</p>
+<p>The <code>iptables</code> option used for connection tracking is iptables--state
+state the <code>--state</code> option.</p>
+<p>state</p>
+<ul>
+<li>This module, when combined with connection tracking, allows access
+    to the connection tracking state for this packet.</li>
+</ul>
+<p>--state state</p>
+<ul>
+<li>Where state is a comma-separated list of the connection states to
+    match. Possible states are: NEW, ESTABLISHED, RELATED, and INVALID.</li>
+</ul>
+<div class="highlight"><pre><span></span><code>&lt;!-- --&gt;
+</code></pre></div>
+<p><code>ip_conntrack</code></p>
+<ul>
+<li>The main connection-tracking code. iptablesip_conntrack
+    ip_conntrack</li>
+</ul>
+<p><code>ip_conntrack_ftp</code></p>
+<ul>
+<li>Additional code needed to track ftp connections, both active and
+    iptablesip_conntrack_ftp ip_conntrack_ftp passive.</li>
+</ul>
+<p>The connection tracking modules have hooks into PREROUTING, FORWARD,
+OUTPUT and POSTROUTING.</p>
+<h3 id="hooks-tables-and-chains-put-together">Hooks, Tables and Chains put together<a class="headerlink" href="#hooks-tables-and-chains-put-together" title="Permanent link">&para;</a></h3>
+<p>Putting what we've discussed so far into one picture:</p>
+<p><img alt="" src="../images/212-IPTABLES.dot.svg.jpg" /></p>
+<h3 id="adding-extra-functionality">Adding extra functionality<a class="headerlink" href="#adding-extra-functionality" title="Permanent link">&para;</a></h3>
+<p>ACCEPT</p>
+<ul>
+<li>Let the packet through. iptablesACCEPT</li>
+</ul>
+<p>DROP</p>
+<ul>
+<li>Absorb the packet and forget about it. iptablesDROP</li>
+</ul>
+<p>QUEUE</p>
+<ul>
+<li>Pass the packet to user space. iptablesQUEUE</li>
+</ul>
+<p>RETURN``</p>
+<ul>
+<li>Stop traversing this chain and resume at the next rule in the
+    previous calling chain. If the end of a built-in chain is reached or
+    a rule in a built-in chain with target RETURN matches the packet,
+    the target specified in the chain policy determines the fate of the
+    packet. iptablesRETURN</li>
+</ul>
+<p>Included in the standard distribution are a number of target extensions
+for which support in the kernel must be enabled if you wish to use them.
+Consult the man page of <code>iptables</code> for further details. Most of these
+targets have options. The extension LOG for instance, has the following
+five options: "--log-level", "--log-prefix", "--log-tcp-sequence",
+"--log-tcp-options", "--log-ip-options". Please consult the man page
+for details on options per target.</p>
+<p>LOG</p>
+<ul>
+<li>Turn on kernel logging of matching packets. When this option
+    iptablesLOG is set for a rule, the Linux kernel will print some
+    information on all matching packets (such as most IP header fields)
+    via printk().</li>
+</ul>
+<p>MARK</p>
+<ul>
+<li>This is used to set the netfilter mark value associated with
+    iptablesMARK the packet. It is only valid in the mangle table.</li>
+</ul>
+<p>REJECT</p>
+<ul>
+<li>This is used to send back an error packet in response to the
+    iptablesREJECT matched packet; otherwise, it is equivalent to DROP.
+    This target is only valid in the INPUT, FORWARD and OUTPUT chains
+    and user-defined chains which are only called by those chains.</li>
+</ul>
+<p>TOS</p>
+<ul>
+<li>This is used to set the 8-bit Type of Service field in the IP
+    iptablesTOS header. It is only valid in the mangle table.</li>
+</ul>
+<p>MIRROR</p>
+<ul>
+<li>This is an experimental demonstration target which inverts
+    iptablesMIRROR the source and destination fields in the IP header
+    and retransmits the packet. It is only valid in the INPUT, FORWARD
+    and OUTPUT chains and user-defined chains which are only called by
+    those chains.</li>
+</ul>
+<p>SNAT</p>
+<ul>
+<li>This target is only valid in the POSTROUTING chain of the
+    iptablesSNAT SNAT nat table. It specifies that the source address of
+    the packet should be modified (and all future packets in this
+    connection will also be mangled), and rules should cease being
+    examined.</li>
+</ul>
+<p>DNAT</p>
+<ul>
+<li>This target is only valid in the PREROUTING, OUTPUT and iptablesDNAT
+    DNAT user-defined chains (which are only called by those chains) of
+    the nat table. It specifies that the destination address of the
+    packet should be modified (and all future packets in this connection
+    will also be mangled), and rules should cease being examined.</li>
+</ul>
+<p>MASQUERADE</p>
+<ul>
+<li>This target is only valid in the POSTROUTING chain of the
+    iptablesMASQUERADE nat table. It should only be used with
+    dynamically assigned IP (dialup) connections: if you have a static
+    IP address, you should use the SNAT target. Masquerading is
+    equivalent to specifying a mapping to the IP address of the
+    interface the packet is going out, but also has the effect that
+    connections are forgotten when the interface goes down. This is the
+    correct behaviour when the next dialup is unlikely to have the same
+    interface address (and hence any established connections are lost
+    anyway).</li>
+</ul>
+<p>REDIRECT</p>
+<ul>
+<li>This target is only valid in the PREROUTING, OUTPUT and
+    iptablesREDIRECT user-defined chains (which are only called by those
+    chains) of the nat table. It alters the destination IP address to
+    send the packet to the machine itself (locally-generated packets are
+    mapped to the 127.0.0.1 address).</li>
+</ul>
+<p>tcp</p>
+<ul>
+<li>These extensions are loaded if "--protocol tcp" is specified,
+    iptablestcp and no other match is specified.</li>
+</ul>
+<p>udp</p>
+<ul>
+<li>These extensions are loaded if "--protocol udp" is specified,
+    iptablesudp and no other match is specified.</li>
+</ul>
+<p>icmp</p>
+<ul>
+<li>This extension is loaded if "--protocol icmp" is specified, and
+    iptablesicmp no other match is specified.</li>
+</ul>
+<p>mac</p>
+<ul>
+<li>Match source MAC address. It must be of the form iptablesmac
+    XX:XX:XX:XX:XX:XX. Note that this only makes sense for packets
+    entering the PREROUTING, FORWARD or INPUT chains for packets coming
+    from an ethernet device.</li>
+</ul>
+<p>limit</p>
+<ul>
+<li>This module matches at a limited rate using a token bucket
+    iptableslimit filter: it can be used in combination with the LOG
+    target to give limited logging. A rule using this extension will
+    match until this limit is reached (unless the "!" flag is used).</li>
+</ul>
+<p>multiport</p>
+<ul>
+<li>This module matches a set of source or destination ports. Up to
+    iptablesmultiport 15 ports can be specified. It can only be used in
+    conjunction with -p tcp or -p udp.</li>
+</ul>
+<p>mark</p>
+<ul>
+<li>This module matches the netfilter mark field associated with a
+    iptablesmark packet (which can be set using the MARK target).</li>
+</ul>
+<p>owner</p>
+<ul>
+<li>This module attempts to match various characteristics of the
+    iptablesowner packet creator for locally-generated packets. It is
+    only valid in the OUTPUT chain, and even then some packets (such as
+    ICMP responses) may have no owner and hence, never match.</li>
+</ul>
+<p>state</p>
+<ul>
+<li>This module, when combined with connection tracking, allows
+    iptablesstate state access to the connection tracking state for this
+    packet.</li>
+</ul>
+<p>unclean</p>
+<ul>
+<li>This module takes no options, but attempts to match packets
+    iptablesunclean which seem malformed or unusual. This is regarded as
+    experimental.</li>
+</ul>
+<p>tos</p>
+<ul>
+<li>This module matches the 8 bits of Type of Service field in the
+    iptablestos IP header (ie. including the precedence bits).</li>
+</ul>
+<h3 id="iptables-options"><code>iptables</code> options<a class="headerlink" href="#iptables-options" title="Permanent link">&para;</a></h3>
+<p>-t, --table <em>table</em></p>
+<ul>
+<li>
+<p>Table to manipulate (default: "filter"). The tables are as follows:</p>
+<p>filter</p>
+<p>:   This is the default table (if no -t option is passed). It
+    contains the built-in chains INPUT (for packets destined to
+    local sockets), FORWARD (for packets being routed through the
+    box), and OUTPUT (for locally-generated packets).</p>
+<p>nat</p>
+<p>:   This table is consulted when a packet that creates a new
+    connection is encountered. It consists of three built-ins:
+    PREROUTING (for altering packets as soon as they come in),
+    OUTPUT (for altering locally-generated packets before routing),
+    and POSTROUTING (for altering packets as they are about to go
+    out).</p>
+<p>mangle</p>
+<p>:   This table is used for specialized packet alteration. Until
+    kernel 2.4.17 it had two built-in chains: PREROUTING (for
+    altering incoming packets before routing) and OUTPUT (for
+    altering locally-generated packets before routing). Since kernel
+    2.4.18, three other built-in chains are also supported: INPUT
+    (for packets coming into the box itself), FORWARD (for altering
+    packets being routed through the box), and POSTROUTING (for
+    altering packets as they are about to go out).</p>
+<p>raw</p>
+<p>:   This table is used mainly for configuring exemptions from
+    connection tracking in combination with the NOTRACK target. It
+    registers at the netfilter hooks with higher priority and is
+    thus called before ip_conntrack, or any other IP tables. It
+    provides the following built-in chains: PREROUTING (for packets
+    arriving via any network interface) OUTPUT (for packets
+    generated by local processes).</p>
+</li>
+</ul>
+<p>-A, --append <em>chain</em> <em>rule-specification</em></p>
+<ul>
+<li>Append one or more rules to the end of the selected chain.</li>
+</ul>
+<p>-D, --delete <em>chain</em> <em>rule-specification</em>; -D, --delete <em>chain</em> <em>rulenum</em></p>
+<ul>
+<li>Delete one or more rules from the selected chain. You can use a
+    rule-specification or a rule number.</li>
+</ul>
+<p>-I, --insert <em>chain</em> [<em>rulenum</em>] <em>rule-specification</em></p>
+<ul>
+<li>Insert one or more rules in the selected chain as the given rule
+    number.</li>
+</ul>
+<p>-R, --replace <em>chain</em> <em>rulenum</em> <em>rule-specification</em></p>
+<ul>
+<li>Replace a rule in the selected chain.</li>
+</ul>
+<p>-L, --list [<em>chain</em>]</p>
+<ul>
+<li>List all rules in the selected chain. This option is often used with
+    the <code>-n</code> option for numeric output instead of displaying the output
+    with the host names, network names and service names. This option
+    also shows the default policy of each chain.</li>
+</ul>
+<p>-F, --flush [<em>chain</em>]</p>
+<ul>
+<li>Flush the selected chain (all the chains in the table if none is
+    given).</li>
+</ul>
+<p>-P, --policy <em>chain</em> <em>target</em></p>
+<ul>
+<li>Set the policy for packets not matched by any rule in the chain to
+    the given target. This target can be a user-defined chain or one of
+    the special values ACCEPT, DROP or REJECT.</li>
+</ul>
+<p>-v, --verbose</p>
+<ul>
+<li>Verbose output.</li>
+</ul>
+<p>--line-numbers</p>
+<ul>
+<li>When listing rules, add line numbers to the beginning of each rule,
+    corresponding to the rule's position in the chain.</li>
+</ul>
+<p>-N, --new-chain <em>chain</em></p>
+<ul>
+<li>Create a new <em>user-defined</em> chain by the given name. There must be
+    no target of that name already.</li>
+</ul>
+<p>-X, --delete-chain <em>chain</em></p>
+<ul>
+<li>Delete the optional <em>user-defined</em> chain specified. There must be no
+    references to the chain. If there are, you must delete or replace
+    the referring rules befor the chain can be deleted. If no argument
+    is given, it will attempt to delete every non-builtin chain in the
+    table!</li>
+</ul>
+<p>Every chain has a default policy. This can only be changed when the
+chain is empty. You can see the default policy using the <code>-L</code> option.
+Then flush the chain of all its rules using the <code>-F table</code> option. Then
+set the default policy using the <code>-P</code> option.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>    iptables -t filter -L
+    iptables -t filter -F INPUT
+    iptables -t filter -P INPUT DROP
+</code></pre></div></td></tr></table></div>
+
+<p>REJECT is not possible as a default policy. If you still want REJECT as
+an (implied) last rule then add a REJECT rule yourself as the last rule
+in the chain.</p>
+<h3 id="iptables-parameters"><code>iptables</code> parameters<a class="headerlink" href="#iptables-parameters" title="Permanent link">&para;</a></h3>
+<p>The following parameters make up a rule specification (as used in the
+add, delete, insert, replace and append commands).</p>
+<p>[!] -p, --protocol <em>protocol</em></p>
+<ul>
+<li>The protocol of the rule or of the packet to check. The specified
+    protocol can be one of tcp, udp, udplite, icmp, esp, ah, sctp or the
+    special keyword "all", or it can be a numeric value representing one
+    of these protocols. A protocol name from <code>/etc/protocols</code> is also
+    allowed. A "!" argument before the protocol inverts the test. The
+    number zero is equivalent to all.</li>
+</ul>
+<p>[!] -s, --source <em>address</em> [/<em>mask</em>][,...]</p>
+<ul>
+<li>Source specification. Address can be either a network name, a
+    hostname, a network IP address (with /mask), or a plain IP address.
+    Hostnames will be resolved once only, before the rule is submitted
+    to the kernel. Please note that specifying any name to be resolved
+    with a remote query such as DNS is a really bad idea. The mask can
+    be either a network mask or a plain number, specifying the number of
+    1's at the left side of the network mask. Thus, a mask of 24 is
+    equivalent to 255.255.255.0. Multiple addresses can be specified,
+    but this will expand to multiple rules (when adding with -A), or
+    will cause multiple rules to be deleted (with -D).</li>
+</ul>
+<p>[!] -d, --destination <em>address</em> [/<em>mask</em>][,...]</p>
+<ul>
+<li>Destination specification. See also the "source address" parameter
+    above.</li>
+</ul>
+<p>-j, --jump <em>target</em></p>
+<ul>
+<li>This specifies the target of the rule; i.e., what to do if the
+    packet matches it.</li>
+</ul>
+<p>[!] -i, --in-interface <em>name</em></p>
+<ul>
+<li>Name of an interface via which a packet was received.</li>
+</ul>
+<p>[!] -o, --out-interface <em>name</em></p>
+<ul>
+<li>Name of an interface via which a packet is going to be sent.</li>
+</ul>
+<h3 id="iptables-match-extensions"><code>iptables</code> match extensions<a class="headerlink" href="#iptables-match-extensions" title="Permanent link">&para;</a></h3>
+<p><code>iptables</code> can use extended packet matching modules. These are loaded in
+two ways: implicitly, when <code>-p</code> or <code>--protocol</code> is specified, or with
+the <code>-m</code> or <code>-match</code> options, followed by the matching module name.
+Possible are: addrtype, ah, cluster, comment, connbytes, connlimit,
+connmark, conntrack, dccp, dscp, ecn, esp, hashlimit, helper, icmp,
+iprange, length, limit, mac, mark, multiport, owner, physdev, pkttype,
+policy, quota, ratetest, realm, recent, sctp, set, socket, state,
+statistic, string, tcp, tcpmss, time, tos, ttl, u32, udp and unclean. A
+few of them are explained her:</p>
+<p>-m state</p>
+<ul>
+<li>
+<p>This module, when combined with connection tracking, allows access
+    to the connection tracking state of this packet.</p>
+<p>[!] --state <em>state</em></p>
+<p>:   Here state is a comma separated list of the connection states to
+    match. Possible states are INVALID (meaning that the packet
+    could not be identified for some reason), ESTABLISHED (meaning
+    that the packet is associated with a connection which has seen
+    packets in both directions), NEW (meaning that the packet has
+    started a new connection, or otherwise associated with a
+    connection which has not seen packets in both directions), and
+    RELATED (meaning that the packet is starting a new connection,
+    but is associated with an existing connection, such as an FTP
+    data transfer, or an ICMP error).</p>
+</li>
+</ul>
+<p>-m time</p>
+<ul>
+<li>
+<p>This matches if the packet arrival time/date is within a given
+    range. All options are optional, but are ANDed when specified. It
+    provides the following options:</p>
+<p>-m time --datestart <em>YYYY</em> [-<em>MM</em> [-<em>DD</em> [T*hh* [:<em>mm</em> [:<em>ss</em>]]]]]</p>
+<p>:   Only match during the given time, which must be in ISO 8601
+    \"T\" notation. The possible time range is 1970-01-01T00:00:00
+    to 2038-01-19T04:17:07.</p>
+<p>-m time --datestop <em>YYYY</em> [-<em>MM</em> [-<em>DD</em> [T*hh* [:<em>mm</em> [:<em>ss</em>]]]]]</p>
+<p>:   Only match during the given time, which must be in ISO 8601
+    \"T\" notation. The possible time range is 1970-01-01T00:00:00
+    to 2038-01-19T04:17:07.</p>
+</li>
+</ul>
+<p>-p udp, --protocol udp</p>
+<ul>
+<li>
+<p>These extensions can be used if "--protocol udp" is specified. It
+    provides the following options:</p>
+<p>[!] --source-port,--sport <em>port</em> [:<em>port</em>]</p>
+<p>:   Source port or port range specification.</p>
+<p>[!] --destination-port,--dport <em>port</em> [:<em>port</em>]</p>
+<p>:   Destination port or port range specification.</p>
+</li>
+</ul>
+<p>-p tcp, --protocol tcp</p>
+<ul>
+<li>
+<p>These extensions are loaded if "--protocol tcp" is specified. It
+    provides among other things the following options:</p>
+<p>--source-port, --sport [!] port[:port]</p>
+<p>:   Source port or port range specification. This can either be a
+    service name or a port number. An inclusive range can also be
+    specified, using the format port:port. If the first port is
+    omitted, \"0\" is assumed; if the last is omitted, "65535" is
+    assumed. If the second port greater then the first they will be
+    swapped. The flag --sport is a convenient alias for this
+    option.</p>
+<p>--destination-port, --dport [!] port[:port]</p>
+<p>:   Destination port or port range specification. The flag --dport
+    is a convenient alias for this option.</p>
+<p>--tcp-flags [!] mask comp</p>
+<p>:   Match when the TCP flags are as specified. The first argument is
+    the flags which we should examine, written as a comma-sepa rated
+    list, and the second argument is a comma-separated list of flags
+    which must be set. Flags are: SYN ACK FIN RST URG PSH ALL NONE.
+    Hence the command iptables -A FORWARD -p tcp --tcp-flags
+    SYN,ACK,FIN,RST SYN will only match packets with the SYN flag
+    set, and the ACK, FIN and RST flags unset.</p>
+<p>[!] --syn</p>
+<p>:   Only match TCP packets with the SYN bit set and the ACK and RST
+    bits cleared. Such packets are used to request TCP connection
+    initiation; for example, blocking such packets coming in an
+    interface will prevent incoming TCP connections, but outgoing
+    TCP connections will be unaffected. It is equivalent to
+    --tcp-flags SYN,RST,ACK SYN. If the "!" flag precedes the
+    "--syn", the sense of the option is inverted.</p>
+</li>
+</ul>
+<h3 id="the-firms-network-with-iptables">The Firm's network with IPTABLES<a class="headerlink" href="#the-firms-network-with-iptables" title="Permanent link">&para;</a></h3>
+<p>The picture below shows The Firm's network and the possible
+combinations of traffic initiation/destination. We will go through six
+possible scenario's.</p>
+<p><img alt="" src="../images/212-IPTFW.dot.svg.jpg" /></p>
+<h3 id="1-traffic-initiated-by-the-firewall-and-destined-for-the-internet">(1) Traffic initiated by the firewall and destined for the Internet<a class="headerlink" href="#1-traffic-initiated-by-the-firewall-and-destined-for-the-internet" title="Permanent link">&para;</a></h3>
+<p>We are running a DNS on the Firewall that needs to be able to consult
+other DNS servers on the Internet (which use the UDP protocol and listen
+to port 53). We also want to be able to use <code>ssh</code> (which uses the TCP
+protocol and port 22) to connect to other systems on the Internet. We
+are participating in a distributed.net project RC564 (RC5 64 bit
+cracking) and are running a proxy server on the Firewall (which uses the
+TCP protocol and port 2064 to communicate with the keyserver). We want
+to be able to <code>ping</code> hosts on the Internet (the <code>ping</code> command uses the
+ICMP protocol and message type 8 (echo-request)). The Firewall
+communicates with the Internet through interface eth1. Taking all this
+into consideration, the <code>iptables</code> commands needed are:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="nx">iptables</span><span class="w"> </span><span class="o">-</span><span class="nx">t</span><span class="w"> </span><span class="nx">filter</span><span class="w"> </span><span class="o">-</span><span class="nx">A</span><span class="w"> </span><span class="nx">OUTPUT</span><span class="w"> </span><span class="o">-</span><span class="nx">o</span><span class="w"> </span><span class="nx">eth1</span><span class="w"> </span><span class="o">-</span><span class="nx">p</span><span class="w"> </span><span class="nx">udp</span><span class="w">  </span><span class="o">--</span><span class="nx">destination</span><span class="o">-</span><span class="nx">port</span><span class="w"> </span><span class="nx">dns</span><span class="w">        </span>\
+<span class="w">    </span><span class="o">-</span><span class="nx">m</span><span class="w"> </span><span class="nx">state</span><span class="w"> </span><span class="o">--</span><span class="nx">state</span><span class="w"> </span><span class="nx">NEW</span><span class="w"> </span><span class="o">-</span><span class="nx">j</span><span class="w"> </span><span class="nx">ACCEPT</span><span class="w">  </span>
+<span class="w">    </span><span class="nx">iptables</span><span class="w"> </span><span class="o">-</span><span class="nx">t</span><span class="w"> </span><span class="nx">filter</span><span class="w"> </span><span class="o">-</span><span class="nx">A</span><span class="w"> </span><span class="nx">OUTPUT</span><span class="w"> </span><span class="o">-</span><span class="nx">o</span><span class="w"> </span><span class="nx">eth1</span><span class="w"> </span><span class="o">-</span><span class="nx">p</span><span class="w"> </span><span class="nx">tcp</span><span class="w">  </span><span class="o">--</span><span class="nx">destination</span><span class="o">-</span><span class="nx">port</span><span class="w"> </span><span class="nx">ssh</span><span class="w">        </span>\
+<span class="w">    </span><span class="o">-</span><span class="nx">m</span><span class="w"> </span><span class="nx">state</span><span class="w"> </span><span class="o">--</span><span class="nx">state</span><span class="w"> </span><span class="nx">NEW</span><span class="w"> </span><span class="o">-</span><span class="nx">j</span><span class="w"> </span><span class="nx">ACCEPT</span>
+<span class="w">    </span><span class="nx">iptables</span><span class="w"> </span><span class="o">-</span><span class="nx">t</span><span class="w"> </span><span class="nx">filter</span><span class="w"> </span><span class="o">-</span><span class="nx">A</span><span class="w"> </span><span class="nx">OUTPUT</span><span class="w"> </span><span class="o">-</span><span class="nx">o</span><span class="w"> </span><span class="nx">eth1</span><span class="w"> </span><span class="o">-</span><span class="nx">p</span><span class="w"> </span><span class="nx">tcp</span><span class="w">  </span><span class="o">--</span><span class="nx">destination</span><span class="o">-</span><span class="nx">port</span><span class="w"> </span><span class="mi">2064</span><span class="w">       </span>\
+<span class="w">    </span><span class="o">-</span><span class="nx">m</span><span class="w"> </span><span class="nx">state</span><span class="w"> </span><span class="o">--</span><span class="nx">state</span><span class="w"> </span><span class="nx">NEW</span><span class="w"> </span><span class="o">-</span><span class="nx">j</span><span class="w"> </span><span class="nx">ACCEPT</span>
+<span class="w">    </span><span class="nx">iptables</span><span class="w"> </span><span class="o">-</span><span class="nx">t</span><span class="w"> </span><span class="nx">filter</span><span class="w"> </span><span class="o">-</span><span class="nx">A</span><span class="w"> </span><span class="nx">OUTPUT</span><span class="w"> </span><span class="o">-</span><span class="nx">o</span><span class="w"> </span><span class="nx">eth1</span><span class="w"> </span><span class="o">-</span><span class="nx">p</span><span class="w"> </span><span class="nx">icmp</span><span class="w"> </span><span class="o">--</span><span class="nx">icmp</span><span class="o">-</span><span class="k">type</span><span class="w"> </span><span class="nx">echo</span><span class="o">-</span><span class="nx">request</span><span class="w">      </span>\
+<span class="w">    </span><span class="o">-</span><span class="nx">m</span><span class="w"> </span><span class="nx">state</span><span class="w"> </span><span class="o">--</span><span class="nx">state</span><span class="w"> </span><span class="nx">NEW</span><span class="w"> </span><span class="o">-</span><span class="nx">j</span><span class="w"> </span><span class="nx">ACCEPT</span>
+</code></pre></div></td></tr></table></div>
+
+<p>These four <code>iptables</code> commands tell the firewall to allow outgoing
+connection-initialization packets for DNS, SSH, TCP/2064 and ping.</p>
+<h3 id="2-traffic-initiated-from-the-internet-and-destined-for-the-firewall">(2) Traffic initiated from the Internet and destined for the Firewall<a class="headerlink" href="#2-traffic-initiated-from-the-internet-and-destined-for-the-firewall" title="Permanent link">&para;</a></h3>
+<p>We want to be able to use <code>ssh</code>, which uses the TCP protocol and port
+22, to connect to our Firewall from other systems on the Internet. The
+<code>iptables</code> command needed is:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>    iptables -t filter -A INPUT  -i eth1 -p tcp --destination-port ssh         \
+    -m state --state NEW -j ACCEPT
+</code></pre></div></td></tr></table></div>
+
+<p>This <code>iptables</code> command tells the firewall to allow incoming connection
+initialization packets for SSH.</p>
+<h3 id="3-traffic-initiated-by-the-firewall-and-destined-for-the-internal-network">(3) Traffic initiated by the Firewall and destined for the internal network<a class="headerlink" href="#3-traffic-initiated-by-the-firewall-and-destined-for-the-internal-network" title="Permanent link">&para;</a></h3>
+<p>We want to be able to use <code>ssh</code>, which uses the TCP protocol and port
+22, to connect to one of our internal machines from our Firewall. The
+<code>iptables</code> command needed is:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>    iptables -t filter -A OUTPUT -o eth0 -p tcp --destination-port ssh         \
+    -m state --state NEW -j ACCEPT
+</code></pre></div></td></tr></table></div>
+
+<p>This <code>iptables</code> command tells the Firewall to allow outgoing SSH
+connection initialization packets destined for a machine on the internal
+Network.</p>
+<h3 id="4-traffic-initiated-by-the-internal-network-and-destined-for-the-firewall">(4) Traffic initiated by the internal network and destined for the firewall<a class="headerlink" href="#4-traffic-initiated-by-the-internal-network-and-destined-for-the-firewall" title="Permanent link">&para;</a></h3>
+<p>The machines on the internal network, using the DNS of the firewall,
+must be able to connect to the firewall using SSH, are processing RC564
+keys, must be able to talk to the proxy on the firewall using port 2064
+and must be able to ping the firewall for system administrative
+purposes. The <code>iptables</code> commands needed are:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="nx">iptables</span><span class="w"> </span><span class="o">-</span><span class="nx">t</span><span class="w"> </span><span class="nx">filter</span><span class="w"> </span><span class="o">-</span><span class="nx">A</span><span class="w"> </span><span class="nx">INPUT</span><span class="w">  </span><span class="o">-</span><span class="nx">i</span><span class="w"> </span><span class="nx">eth0</span><span class="w"> </span><span class="o">-</span><span class="nx">p</span><span class="w"> </span><span class="nx">udp</span><span class="w"> </span><span class="o">--</span><span class="nx">destination</span><span class="o">-</span><span class="nx">port</span><span class="w"> </span><span class="nx">dns</span><span class="w">         </span>\
+<span class="w">    </span><span class="o">-</span><span class="nx">m</span><span class="w"> </span><span class="nx">state</span><span class="w"> </span><span class="o">--</span><span class="nx">state</span><span class="w"> </span><span class="nx">NEW</span><span class="w"> </span><span class="o">-</span><span class="nx">j</span><span class="w"> </span><span class="nx">ACCEPT</span>
+<span class="w">    </span><span class="nx">iptables</span><span class="w"> </span><span class="o">-</span><span class="nx">t</span><span class="w"> </span><span class="nx">filter</span><span class="w"> </span><span class="o">-</span><span class="nx">A</span><span class="w"> </span><span class="nx">INPUT</span><span class="w">  </span><span class="o">-</span><span class="nx">i</span><span class="w"> </span><span class="nx">eth0</span><span class="w"> </span><span class="o">-</span><span class="nx">p</span><span class="w"> </span><span class="nx">tcp</span><span class="w"> </span><span class="o">--</span><span class="nx">destination</span><span class="o">-</span><span class="nx">port</span><span class="w"> </span><span class="nx">ssh</span><span class="w">         </span>\
+<span class="w">    </span><span class="o">-</span><span class="nx">m</span><span class="w"> </span><span class="nx">state</span><span class="w"> </span><span class="o">--</span><span class="nx">state</span><span class="w"> </span><span class="nx">NEW</span><span class="w"> </span><span class="o">-</span><span class="nx">j</span><span class="w"> </span><span class="nx">ACCEPT</span>
+<span class="w">    </span><span class="nx">iptables</span><span class="w"> </span><span class="o">-</span><span class="nx">t</span><span class="w"> </span><span class="nx">filter</span><span class="w"> </span><span class="o">-</span><span class="nx">A</span><span class="w"> </span><span class="nx">INPUT</span><span class="w">  </span><span class="o">-</span><span class="nx">i</span><span class="w"> </span><span class="nx">eth0</span><span class="w"> </span><span class="o">-</span><span class="nx">p</span><span class="w"> </span><span class="nx">tcp</span><span class="w"> </span><span class="o">--</span><span class="nx">destination</span><span class="o">-</span><span class="nx">port</span><span class="w"> </span><span class="mi">2064</span><span class="w">        </span>\
+<span class="w">    </span><span class="o">-</span><span class="nx">m</span><span class="w"> </span><span class="nx">state</span><span class="w"> </span><span class="o">--</span><span class="nx">state</span><span class="w"> </span><span class="nx">NEW</span><span class="w"> </span><span class="o">-</span><span class="nx">j</span><span class="w"> </span><span class="nx">ACCEPT</span>
+<span class="w">    </span><span class="nx">iptables</span><span class="w"> </span><span class="o">-</span><span class="nx">t</span><span class="w"> </span><span class="nx">filter</span><span class="w"> </span><span class="o">-</span><span class="nx">A</span><span class="w"> </span><span class="nx">INPUT</span><span class="w">  </span><span class="o">-</span><span class="nx">i</span><span class="w"> </span><span class="nx">eth0</span><span class="w"> </span><span class="o">-</span><span class="nx">p</span><span class="w"> </span><span class="nx">icmp</span><span class="w"> </span><span class="o">--</span><span class="nx">icmp</span><span class="o">-</span><span class="k">type</span><span class="w"> </span><span class="nx">echo</span><span class="o">-</span><span class="nx">request</span><span class="w">      </span>\
+<span class="w">    </span><span class="o">-</span><span class="nx">m</span><span class="w"> </span><span class="nx">state</span><span class="w"> </span><span class="o">--</span><span class="nx">state</span><span class="w"> </span><span class="nx">NEW</span><span class="w"> </span><span class="o">-</span><span class="nx">j</span><span class="w"> </span><span class="nx">ACCEPT</span>
+</code></pre></div></td></tr></table></div>
+
+<p>These four <code>iptables</code> commands tell the firewall to allow incoming
+connection-initialization packets for DNS, SSH, RC564 cracking and ping.</p>
+<h3 id="5-traffic-initiated-by-the-internal-network-and-destined-for-the-internet">(5) Traffic initiated by the internal network and destined for the Internet<a class="headerlink" href="#5-traffic-initiated-by-the-internal-network-and-destined-for-the-internet" title="Permanent link">&para;</a></h3>
+<p>Every connection from a machine on the internal network to a machine on
+the Internet is allowed. The <code>iptables</code> command needed is:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>    iptables -t filter -A FORWARD -i eth0 -o eth1 -m state --state NEW -j ACCEPT
+    iptables -t nat -A POSTROUTING -o eth1 -j SNAT --to-source 101.102.103.104
+</code></pre></div></td></tr></table></div>
+
+<p>This <code>iptables</code> command tells the firewall to allow ALL outgoing
+connection initialization packets.</p>
+<h3 id="6-traffic-initiated-by-the-internet-and-destined-for-the-internal-network">(6) Traffic initiated by the Internet and destined for the internal network<a class="headerlink" href="#6-traffic-initiated-by-the-internet-and-destined-for-the-internal-network" title="Permanent link">&para;</a></h3>
+<p>This does not occur because our local network uses private IP addresses
+that can't be used on the Internet. Our local machines aren't visible
+from the Internet.</p>
+<p>What we could do to make one of our machines available from the Internet
+is to let people connect to a certain port on the firewall and use NAT
+to redirect them to a port on one of the machines on the internal
+network.</p>
+<p>Suppose Machine 2 has a web-server (or some other program) running which
+listens to port 2345 and people from the Internet must be able to
+connect to that program. Since The Firm is using private IP addresses
+for their internal network, Machine 2 is not visible on the Internet.
+The solution here is to tell Machine 4 that all data from the Internet
+that is aimed at port 80 should be routed to port 2345 on Machine 2. The
+<code>iptables</code> commands needed are:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>    iptables -t nat -A PREROUTING -i eth1 -p tcp --destination-port 80         \
+    -j DNAT --to-destination 192.168.0.11:2345
+    iptables -t filter -A FORWARD -i eth1 -p tcp --destination-port 2345       \
+    -m state --state NEW -j ACCEPT
+</code></pre></div></td></tr></table></div>
+
+<p>The first line changes the destination address and port. Since this then
+becomes traffic aimed at another machine, the traffic must pass the
+FORWARD filter. The second line sees to it that this traffic will be
+allowed.</p>
+<h3 id="traffic-as-a-result-of-initiated-traffic">(!) Traffic as a result of initiated traffic<a class="headerlink" href="#traffic-as-a-result-of-initiated-traffic" title="Permanent link">&para;</a></h3>
+<p>So far, we've only specified that connection initiation traffic is
+allowed, but that is not enough. We also must allow ESTABLISHED and
+RELATED traffic.</p>
+<p>Let's tell the firewall that all ESTABLISHED and RELATED traffic,
+regardless of type, interface etc. is allowed. We must also allow the
+initiation of traffic on the firewalls <code>lo</code> interface because otherwise
+some services, such a caching DNS server, will not work. We need the
+following <code>iptables</code> commands to realize this:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>    iptables -t filter -A INPUT   -m state --state ESTABLISHED,RELATED -j ACCEPT
+    iptables -t filter -A FORWARD -m state --state ESTABLISHED,RELATED -j ACCEPT
+    iptables -t filter -A OUTPUT  -m state --state ESTABLISHED,RELATED -j ACCEPT
+    iptables -t filter -A INPUT   -m state --state NEW -i lo           -j ACCEPT
+</code></pre></div></td></tr></table></div>
+
+<p>Remember that these last rules can't cause a security problem because
+the packets allowed are a result of the fact that we've accepted the
+initiation of the connection in the first place.</p>
+<h3 id="all-iptables-commands-put-together">All <code>iptables</code> commands put together<a class="headerlink" href="#all-iptables-commands-put-together" title="Permanent link">&para;</a></h3>
+<p>Adding stuff to start with a clean sheet and telling the firewall to
+masquerade packets from the internal network aimed at the Internet can
+be accomplished with the following commands:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">  1</span>
+<span class="normal">  2</span>
+<span class="normal">  3</span>
+<span class="normal">  4</span>
+<span class="normal">  5</span>
+<span class="normal">  6</span>
+<span class="normal">  7</span>
+<span class="normal">  8</span>
+<span class="normal">  9</span>
+<span class="normal"> 10</span>
+<span class="normal"> 11</span>
+<span class="normal"> 12</span>
+<span class="normal"> 13</span>
+<span class="normal"> 14</span>
+<span class="normal"> 15</span>
+<span class="normal"> 16</span>
+<span class="normal"> 17</span>
+<span class="normal"> 18</span>
+<span class="normal"> 19</span>
+<span class="normal"> 20</span>
+<span class="normal"> 21</span>
+<span class="normal"> 22</span>
+<span class="normal"> 23</span>
+<span class="normal"> 24</span>
+<span class="normal"> 25</span>
+<span class="normal"> 26</span>
+<span class="normal"> 27</span>
+<span class="normal"> 28</span>
+<span class="normal"> 29</span>
+<span class="normal"> 30</span>
+<span class="normal"> 31</span>
+<span class="normal"> 32</span>
+<span class="normal"> 33</span>
+<span class="normal"> 34</span>
+<span class="normal"> 35</span>
+<span class="normal"> 36</span>
+<span class="normal"> 37</span>
+<span class="normal"> 38</span>
+<span class="normal"> 39</span>
+<span class="normal"> 40</span>
+<span class="normal"> 41</span>
+<span class="normal"> 42</span>
+<span class="normal"> 43</span>
+<span class="normal"> 44</span>
+<span class="normal"> 45</span>
+<span class="normal"> 46</span>
+<span class="normal"> 47</span>
+<span class="normal"> 48</span>
+<span class="normal"> 49</span>
+<span class="normal"> 50</span>
+<span class="normal"> 51</span>
+<span class="normal"> 52</span>
+<span class="normal"> 53</span>
+<span class="normal"> 54</span>
+<span class="normal"> 55</span>
+<span class="normal"> 56</span>
+<span class="normal"> 57</span>
+<span class="normal"> 58</span>
+<span class="normal"> 59</span>
+<span class="normal"> 60</span>
+<span class="normal"> 61</span>
+<span class="normal"> 62</span>
+<span class="normal"> 63</span>
+<span class="normal"> 64</span>
+<span class="normal"> 65</span>
+<span class="normal"> 66</span>
+<span class="normal"> 67</span>
+<span class="normal"> 68</span>
+<span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="err">###############################################################################</span>
+<span class="err">#</span><span class="w"> </span><span class="nx">FLUSH</span><span class="w"> </span><span class="nx">ALL</span><span class="w"> </span><span class="nx">RULES</span><span class="w"> </span><span class="nx">IN</span><span class="w"> </span><span class="nx">THE</span><span class="w"> </span><span class="nx">MANGLE</span><span class="p">,</span><span class="w"> </span><span class="nx">NAT</span><span class="w"> </span><span class="nx">AND</span><span class="w"> </span><span class="nx">FILTER</span><span class="w"> </span><span class="nx">TABLES</span>
+<span class="err">###############################################################################</span>
+<span class="nx">iptables</span><span class="w"> </span><span class="o">-</span><span class="nx">t</span><span class="w"> </span><span class="nx">mangle</span><span class="w"> </span><span class="o">-</span><span class="nx">F</span>
+<span class="nx">iptables</span><span class="w"> </span><span class="o">-</span><span class="nx">t</span><span class="w"> </span><span class="nx">nat</span><span class="w">    </span><span class="o">-</span><span class="nx">F</span>
+<span class="nx">iptables</span><span class="w"> </span><span class="o">-</span><span class="nx">t</span><span class="w"> </span><span class="nx">filter</span><span class="w"> </span><span class="o">-</span><span class="nx">F</span>
+
+<span class="err">###############################################################################</span>
+<span class="err">#</span><span class="w"> </span><span class="nx">DELETE</span><span class="w"> </span><span class="nx">ALL</span><span class="w"> </span><span class="nx">USER</span><span class="o">-</span><span class="nx">DEFINED</span><span class="w"> </span><span class="p">(</span><span class="nx">NOT</span><span class="w"> </span><span class="nx">BUILT</span><span class="o">-</span><span class="nx">IN</span><span class="p">)</span><span class="w"> </span><span class="nx">CHAINS</span><span class="w"> </span><span class="nx">IN</span><span class="w"> </span><span class="nx">THE</span><span class="w"> </span><span class="nx">TABLES</span>
+<span class="err">###############################################################################</span>
+<span class="nx">iptables</span><span class="w"> </span><span class="o">-</span><span class="nx">t</span><span class="w"> </span><span class="nx">mangle</span><span class="w"> </span><span class="o">-</span><span class="nx">X</span>
+<span class="nx">iptables</span><span class="w"> </span><span class="o">-</span><span class="nx">t</span><span class="w"> </span><span class="nx">nat</span><span class="w">    </span><span class="o">-</span><span class="nx">X</span>
+<span class="nx">iptables</span><span class="w"> </span><span class="o">-</span><span class="nx">t</span><span class="w"> </span><span class="nx">filter</span><span class="w"> </span><span class="o">-</span><span class="nx">X</span>
+
+<span class="err">###############################################################################</span>
+<span class="err">#</span><span class="w"> </span><span class="nx">SET</span><span class="w"> </span><span class="nx">ALL</span><span class="w"> </span><span class="nx">POLICIES</span><span class="w"> </span><span class="nx">FOR</span><span class="w"> </span><span class="nx">ALL</span><span class="w"> </span><span class="nx">BUILT</span><span class="o">-</span><span class="nx">IN</span><span class="w"> </span><span class="nx">CHAINS</span><span class="w"> </span><span class="nx">TO</span><span class="w"> </span><span class="nx">DROP</span>
+<span class="err">###############################################################################</span>
+<span class="nx">iptables</span><span class="w"> </span><span class="o">-</span><span class="nx">P</span><span class="w"> </span><span class="nx">INPUT</span><span class="w">   </span><span class="nx">DROP</span>
+<span class="nx">iptables</span><span class="w"> </span><span class="o">-</span><span class="nx">P</span><span class="w"> </span><span class="nx">FORWARD</span><span class="w"> </span><span class="nx">DROP</span>
+<span class="nx">iptables</span><span class="w"> </span><span class="o">-</span><span class="nx">P</span><span class="w"> </span><span class="nx">OUTPUT</span><span class="w">  </span><span class="nx">DROP</span>
+
+<span class="err">###############################################################################</span>
+<span class="err">#</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="nx">TRAFFIC</span><span class="w"> </span><span class="nx">INITIATED</span><span class="w"> </span><span class="nx">BY</span><span class="w"> </span><span class="nx">THE</span><span class="w"> </span><span class="nx">FIREWALL</span><span class="w"> </span><span class="nx">AND</span><span class="w"> </span><span class="nx">DESTINED</span><span class="w"> </span><span class="nx">FOR</span><span class="w"> </span><span class="nx">THE</span><span class="w"> </span><span class="nx">INTERNET</span>
+<span class="err">#</span><span class="w">     </span><span class="nx">DNS</span><span class="p">,</span><span class="w"> </span><span class="nx">SSH</span><span class="p">,</span><span class="w"> </span><span class="nx">RC564</span><span class="p">,</span><span class="w"> </span><span class="nx">PING</span>
+<span class="err">###############################################################################</span>
+<span class="err">#</span><span class="w"> </span><span class="nx">ALLOW</span><span class="w"> </span><span class="nx">INITIATION</span><span class="w"> </span><span class="nx">BY</span><span class="w"> </span><span class="nx">THE</span><span class="w"> </span><span class="nx">FIREWALL</span>
+<span class="nx">iptables</span><span class="w"> </span><span class="o">-</span><span class="nx">t</span><span class="w"> </span><span class="nx">filter</span><span class="w"> </span><span class="o">-</span><span class="nx">A</span><span class="w"> </span><span class="nx">OUTPUT</span><span class="w"> </span><span class="o">-</span><span class="nx">o</span><span class="w"> </span><span class="nx">eth1</span><span class="w"> </span><span class="o">-</span><span class="nx">p</span><span class="w"> </span><span class="nx">udp</span><span class="w">  </span><span class="o">--</span><span class="nx">destination</span><span class="o">-</span><span class="nx">port</span><span class="w"> </span><span class="nx">dns</span><span class="w">        </span>\
+<span class="o">-</span><span class="nx">m</span><span class="w"> </span><span class="nx">state</span><span class="w"> </span><span class="o">--</span><span class="nx">state</span><span class="w"> </span><span class="nx">NEW</span><span class="w"> </span><span class="o">-</span><span class="nx">j</span><span class="w"> </span><span class="nx">ACCEPT</span>
+<span class="nx">iptables</span><span class="w"> </span><span class="o">-</span><span class="nx">t</span><span class="w"> </span><span class="nx">filter</span><span class="w"> </span><span class="o">-</span><span class="nx">A</span><span class="w"> </span><span class="nx">OUTPUT</span><span class="w"> </span><span class="o">-</span><span class="nx">o</span><span class="w"> </span><span class="nx">eth1</span><span class="w"> </span><span class="o">-</span><span class="nx">p</span><span class="w"> </span><span class="nx">tcp</span><span class="w">  </span><span class="o">--</span><span class="nx">destination</span><span class="o">-</span><span class="nx">port</span><span class="w"> </span><span class="nx">ssh</span><span class="w">        </span>\
+<span class="o">-</span><span class="nx">m</span><span class="w"> </span><span class="nx">state</span><span class="w"> </span><span class="o">--</span><span class="nx">state</span><span class="w"> </span><span class="nx">NEW</span><span class="w"> </span><span class="o">-</span><span class="nx">j</span><span class="w"> </span><span class="nx">ACCEPT</span>
+<span class="nx">iptables</span><span class="w"> </span><span class="o">-</span><span class="nx">t</span><span class="w"> </span><span class="nx">filter</span><span class="w"> </span><span class="o">-</span><span class="nx">A</span><span class="w"> </span><span class="nx">OUTPUT</span><span class="w"> </span><span class="o">-</span><span class="nx">o</span><span class="w"> </span><span class="nx">eth1</span><span class="w"> </span><span class="o">-</span><span class="nx">p</span><span class="w"> </span><span class="nx">tcp</span><span class="w">  </span><span class="o">--</span><span class="nx">destination</span><span class="o">-</span><span class="nx">port</span><span class="w"> </span><span class="mi">2064</span><span class="w">       </span>\
+<span class="o">-</span><span class="nx">m</span><span class="w"> </span><span class="nx">state</span><span class="w"> </span><span class="o">--</span><span class="nx">state</span><span class="w"> </span><span class="nx">NEW</span><span class="w"> </span><span class="o">-</span><span class="nx">j</span><span class="w"> </span><span class="nx">ACCEPT</span>
+<span class="nx">iptables</span><span class="w"> </span><span class="o">-</span><span class="nx">t</span><span class="w"> </span><span class="nx">filter</span><span class="w"> </span><span class="o">-</span><span class="nx">A</span><span class="w"> </span><span class="nx">OUTPUT</span><span class="w"> </span><span class="o">-</span><span class="nx">o</span><span class="w"> </span><span class="nx">eth1</span><span class="w"> </span><span class="o">-</span><span class="nx">p</span><span class="w"> </span><span class="nx">icmp</span><span class="w"> </span><span class="o">--</span><span class="nx">icmp</span><span class="o">-</span><span class="k">type</span><span class="w"> </span><span class="nx">echo</span><span class="o">-</span><span class="nx">request</span><span class="w">      </span>\
+<span class="o">-</span><span class="nx">m</span><span class="w"> </span><span class="nx">state</span><span class="w"> </span><span class="o">--</span><span class="nx">state</span><span class="w"> </span><span class="nx">NEW</span><span class="w"> </span><span class="o">-</span><span class="nx">j</span><span class="w"> </span><span class="nx">ACCEPT</span>
+<span class="err">#</span><span class="w"> </span><span class="nx">ALLOW</span><span class="w"> </span><span class="nx">INCOMING</span><span class="w"> </span><span class="nx">RESPONSES</span><span class="w"> </span>
+<span class="nx">iptables</span><span class="w"> </span><span class="o">-</span><span class="nx">t</span><span class="w"> </span><span class="nx">filter</span><span class="w"> </span><span class="o">-</span><span class="nx">A</span><span class="w"> </span><span class="nx">INPUT</span><span class="w">  </span><span class="o">-</span><span class="nx">i</span><span class="w"> </span><span class="nx">eth1</span><span class="w">                                       </span>\
+<span class="o">-</span><span class="nx">m</span><span class="w"> </span><span class="nx">state</span><span class="w"> </span><span class="o">--</span><span class="nx">state</span><span class="w"> </span><span class="nx">ESTABLISHED</span><span class="p">,</span><span class="nx">RELATED</span><span class="w"> </span><span class="o">-</span><span class="nx">j</span><span class="w"> </span><span class="nx">ACCEPT</span>
+
+<span class="err">###############################################################################</span>
+<span class="err">#</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="nx">TRAFFIC</span><span class="w"> </span><span class="nx">INITIATED</span><span class="w"> </span><span class="nx">FROM</span><span class="w"> </span><span class="nx">THE</span><span class="w"> </span><span class="nx">INTERNET</span><span class="w"> </span><span class="nx">AND</span><span class="w"> </span><span class="nx">DESTINED</span><span class="w"> </span><span class="nx">FOR</span><span class="w"> </span><span class="nx">THE</span><span class="w"> </span><span class="nx">FIREWALL</span>
+<span class="err">#</span><span class="w">     </span><span class="nx">SSH</span>
+<span class="err">###############################################################################</span>
+<span class="err">#</span><span class="w"> </span><span class="nx">ALLOW</span><span class="w"> </span><span class="nx">INITIATION</span>
+<span class="nx">iptables</span><span class="w"> </span><span class="o">-</span><span class="nx">t</span><span class="w"> </span><span class="nx">filter</span><span class="w"> </span><span class="o">-</span><span class="nx">A</span><span class="w"> </span><span class="nx">INPUT</span><span class="w">  </span><span class="o">-</span><span class="nx">i</span><span class="w"> </span><span class="nx">eth1</span><span class="w"> </span><span class="o">-</span><span class="nx">p</span><span class="w"> </span><span class="nx">tcp</span><span class="w">  </span><span class="o">--</span><span class="nx">destination</span><span class="o">-</span><span class="nx">port</span><span class="w"> </span><span class="nx">ssh</span><span class="w">        </span>\
+<span class="o">-</span><span class="nx">m</span><span class="w"> </span><span class="nx">state</span><span class="w"> </span><span class="o">--</span><span class="nx">state</span><span class="w"> </span><span class="nx">NEW</span><span class="w"> </span><span class="o">-</span><span class="nx">j</span><span class="w"> </span><span class="nx">ACCEPT</span>
+<span class="err">#</span><span class="w"> </span><span class="nx">ALLOW</span><span class="w"> </span><span class="nx">RESPONSE</span>
+<span class="nx">iptables</span><span class="w"> </span><span class="o">-</span><span class="nx">t</span><span class="w"> </span><span class="nx">filter</span><span class="w"> </span><span class="o">-</span><span class="nx">A</span><span class="w"> </span><span class="nx">OUTPUT</span><span class="w"> </span><span class="o">-</span><span class="nx">o</span><span class="w"> </span><span class="nx">eth1</span><span class="w"> </span><span class="o">-</span><span class="nx">p</span><span class="w"> </span><span class="nx">tcp</span><span class="w">  </span><span class="o">--</span><span class="nx">destination</span><span class="o">-</span><span class="nx">port</span><span class="w"> </span><span class="nx">ssh</span><span class="w">                     </span>\
+<span class="o">-</span><span class="nx">m</span><span class="w"> </span><span class="nx">state</span><span class="w"> </span><span class="o">--</span><span class="nx">state</span><span class="w"> </span><span class="nx">ESTABLISHED</span><span class="p">,</span><span class="nx">RELATED</span><span class="w"> </span><span class="o">-</span><span class="nx">j</span><span class="w"> </span><span class="nx">ACCEPT</span>
+
+<span class="err">###############################################################################</span>
+<span class="err">#</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="nx">TRAFFIC</span><span class="w"> </span><span class="nx">INITIATED</span><span class="w"> </span><span class="nx">BY</span><span class="w"> </span><span class="nx">THE</span><span class="w"> </span><span class="nx">FIREWALL</span><span class="w"> </span><span class="nx">AND</span><span class="w"> </span><span class="nx">DESTINED</span><span class="w"> </span><span class="nx">FOR</span><span class="w"> </span><span class="nx">THE</span><span class="w"> </span><span class="nx">INTERNAL</span><span class="w"> </span><span class="nx">NETWORK</span>
+<span class="err">#</span><span class="w">     </span><span class="nx">SSH</span>
+<span class="err">###############################################################################</span>
+<span class="err">#</span><span class="w"> </span><span class="nx">ALLOW</span><span class="w"> </span><span class="nx">INITIATION</span>
+<span class="nx">iptables</span><span class="w"> </span><span class="o">-</span><span class="nx">t</span><span class="w"> </span><span class="nx">filter</span><span class="w"> </span><span class="o">-</span><span class="nx">A</span><span class="w"> </span><span class="nx">OUTPUT</span><span class="w"> </span><span class="o">-</span><span class="nx">o</span><span class="w"> </span><span class="nx">eth0</span><span class="w"> </span><span class="o">-</span><span class="nx">p</span><span class="w"> </span><span class="nx">tcp</span><span class="w">  </span><span class="o">--</span><span class="nx">destination</span><span class="o">-</span><span class="nx">port</span><span class="w"> </span><span class="nx">ssh</span><span class="w">        </span>\
+<span class="o">-</span><span class="nx">m</span><span class="w"> </span><span class="nx">state</span><span class="w"> </span><span class="o">--</span><span class="nx">state</span><span class="w"> </span><span class="nx">NEW</span><span class="w"> </span><span class="o">-</span><span class="nx">j</span><span class="w"> </span><span class="nx">ACCEPT</span>
+<span class="err">#</span><span class="w"> </span><span class="nx">ALLOW</span><span class="w"> </span><span class="nx">RESPONSE</span>
+<span class="nx">iptables</span><span class="w"> </span><span class="o">-</span><span class="nx">t</span><span class="w"> </span><span class="nx">filter</span><span class="w"> </span><span class="o">-</span><span class="nx">A</span><span class="w"> </span><span class="nx">INPUT</span><span class="w">  </span><span class="o">-</span><span class="nx">i</span><span class="w"> </span><span class="nx">eth0</span><span class="w"> </span><span class="o">-</span><span class="nx">p</span><span class="w"> </span><span class="nx">tcp</span><span class="w">  </span><span class="o">--</span><span class="nx">destination</span><span class="o">-</span><span class="nx">port</span><span class="w"> </span><span class="nx">ssh</span><span class="w">        </span>\
+<span class="o">-</span><span class="nx">m</span><span class="w"> </span><span class="nx">state</span><span class="w"> </span><span class="o">--</span><span class="nx">state</span><span class="w"> </span><span class="nx">ESTABLISHED</span><span class="p">,</span><span class="nx">RELATED</span><span class="w"> </span><span class="o">-</span><span class="nx">j</span><span class="w"> </span><span class="nx">ACCEPT</span>
+
+<span class="err">###############################################################################</span>
+<span class="err">#</span><span class="w"> </span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="nx">TRAFFIC</span><span class="w"> </span><span class="nx">INITIATED</span><span class="w"> </span><span class="nx">BY</span><span class="w"> </span><span class="nx">THE</span><span class="w"> </span><span class="nx">INTERNAL</span><span class="w"> </span><span class="nx">NETWORK</span><span class="w"> </span><span class="nx">AND</span><span class="w"> </span><span class="nx">DESTINED</span><span class="w"> </span><span class="nx">FOR</span><span class="w"> </span><span class="nx">THE</span><span class="w"> </span><span class="nx">FIREWALL</span>
+<span class="err">#</span><span class="w">     </span><span class="nx">DNS</span><span class="p">,</span><span class="w"> </span><span class="nx">SSH</span><span class="p">,</span><span class="w"> </span><span class="nx">RC564</span><span class="p">,</span><span class="w"> </span><span class="nx">PING</span>
+<span class="err">###############################################################################</span>
+<span class="err">#</span><span class="w"> </span><span class="nx">ALLOW</span><span class="w"> </span><span class="nx">INITIATION</span>
+<span class="nx">iptables</span><span class="w"> </span><span class="o">-</span><span class="nx">t</span><span class="w"> </span><span class="nx">filter</span><span class="w"> </span><span class="o">-</span><span class="nx">A</span><span class="w"> </span><span class="nx">INPUT</span><span class="w">  </span><span class="o">-</span><span class="nx">i</span><span class="w"> </span><span class="nx">eth0</span><span class="w"> </span><span class="o">-</span><span class="nx">p</span><span class="w"> </span><span class="nx">udp</span><span class="w">  </span><span class="o">--</span><span class="nx">destination</span><span class="o">-</span><span class="nx">port</span><span class="w"> </span><span class="nx">dns</span><span class="w">        </span>\
+<span class="o">-</span><span class="nx">m</span><span class="w"> </span><span class="nx">state</span><span class="w"> </span><span class="o">--</span><span class="nx">state</span><span class="w"> </span><span class="nx">NEW</span><span class="w"> </span><span class="o">-</span><span class="nx">j</span><span class="w"> </span><span class="nx">ACCEPT</span>
+<span class="nx">iptables</span><span class="w"> </span><span class="o">-</span><span class="nx">t</span><span class="w"> </span><span class="nx">filter</span><span class="w"> </span><span class="o">-</span><span class="nx">A</span><span class="w"> </span><span class="nx">INPUT</span><span class="w">  </span><span class="o">-</span><span class="nx">i</span><span class="w"> </span><span class="nx">eth0</span><span class="w"> </span><span class="o">-</span><span class="nx">p</span><span class="w"> </span><span class="nx">tcp</span><span class="w">  </span><span class="o">--</span><span class="nx">destination</span><span class="o">-</span><span class="nx">port</span><span class="w"> </span><span class="nx">ssh</span><span class="w">        </span>\
+<span class="o">-</span><span class="nx">m</span><span class="w"> </span><span class="nx">state</span><span class="w"> </span><span class="o">--</span><span class="nx">state</span><span class="w"> </span><span class="nx">NEW</span><span class="w"> </span><span class="o">-</span><span class="nx">j</span><span class="w"> </span><span class="nx">ACCEPT</span>
+<span class="nx">iptables</span><span class="w"> </span><span class="o">-</span><span class="nx">t</span><span class="w"> </span><span class="nx">filter</span><span class="w"> </span><span class="o">-</span><span class="nx">A</span><span class="w"> </span><span class="nx">INPUT</span><span class="w">  </span><span class="o">-</span><span class="nx">i</span><span class="w"> </span><span class="nx">eth0</span><span class="w"> </span><span class="o">-</span><span class="nx">p</span><span class="w"> </span><span class="nx">tcp</span><span class="w">  </span><span class="o">--</span><span class="nx">destination</span><span class="o">-</span><span class="nx">port</span><span class="w"> </span><span class="mi">2064</span><span class="w">       </span>\
+<span class="o">-</span><span class="nx">m</span><span class="w"> </span><span class="nx">state</span><span class="w"> </span><span class="o">--</span><span class="nx">state</span><span class="w"> </span><span class="nx">NEW</span><span class="w"> </span><span class="o">-</span><span class="nx">j</span><span class="w"> </span><span class="nx">ACCEPT</span>
+<span class="nx">iptables</span><span class="w"> </span><span class="o">-</span><span class="nx">t</span><span class="w"> </span><span class="nx">filter</span><span class="w"> </span><span class="o">-</span><span class="nx">A</span><span class="w"> </span><span class="nx">INPUT</span><span class="w">  </span><span class="o">-</span><span class="nx">i</span><span class="w"> </span><span class="nx">eth0</span><span class="w"> </span><span class="o">-</span><span class="nx">p</span><span class="w"> </span><span class="nx">icmp</span><span class="w"> </span><span class="o">--</span><span class="nx">icmp</span><span class="o">-</span><span class="k">type</span><span class="w"> </span><span class="nx">echo</span><span class="o">-</span><span class="nx">request</span><span class="w">      </span>\
+<span class="o">-</span><span class="nx">m</span><span class="w"> </span><span class="nx">state</span><span class="w"> </span><span class="o">--</span><span class="nx">state</span><span class="w"> </span><span class="nx">NEW</span><span class="w"> </span><span class="o">-</span><span class="nx">j</span><span class="w"> </span><span class="nx">ACCEPT</span>
+<span class="err">#</span><span class="w"> </span><span class="nx">ALLOW</span><span class="w"> </span><span class="nx">RESPONSE</span><span class="w"> </span>
+<span class="nx">iptables</span><span class="w"> </span><span class="o">-</span><span class="nx">t</span><span class="w"> </span><span class="nx">filter</span><span class="w"> </span><span class="o">-</span><span class="nx">A</span><span class="w"> </span><span class="nx">OUTPUT</span><span class="w"> </span><span class="o">-</span><span class="nx">o</span><span class="w"> </span><span class="nx">eth0</span><span class="w">                                       </span>\
+<span class="o">-</span><span class="nx">m</span><span class="w"> </span><span class="nx">state</span><span class="w"> </span><span class="o">--</span><span class="nx">state</span><span class="w"> </span><span class="nx">ESTABLISHED</span><span class="p">,</span><span class="nx">RELATED</span><span class="w"> </span><span class="o">-</span><span class="nx">j</span><span class="w"> </span><span class="nx">ACCEPT</span>
+
+<span class="err">###############################################################################</span>
+<span class="err">#</span><span class="w"> </span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="nx">TRAFFIC</span><span class="w"> </span><span class="nx">INITIATED</span><span class="w"> </span><span class="nx">BY</span><span class="w"> </span><span class="nx">THE</span><span class="w"> </span><span class="nx">INTERNAL</span><span class="w"> </span><span class="nx">NETWORK</span><span class="w"> </span><span class="nx">AND</span><span class="w"> </span><span class="nx">DESTINED</span><span class="w"> </span><span class="nx">FOR</span><span class="w"> </span><span class="nx">THE</span><span class="w"> </span><span class="nx">OUTSIDE</span>
+<span class="err">#</span><span class="w">     </span><span class="nx">EVERYTHING</span><span class="w"> </span><span class="nx">WE</span><span class="w"> </span><span class="nx">CAN</span><span class="w"> </span><span class="nx">INITIATE</span><span class="w"> </span><span class="nx">IS</span><span class="w"> </span><span class="nx">ALLOWED</span>
+<span class="err">###############################################################################</span>
+<span class="err">#</span><span class="w"> </span><span class="nx">ALLOW</span><span class="w"> </span><span class="nx">INITIATION</span><span class="w"> </span><span class="nx">OF</span><span class="w"> </span><span class="nx">EVERYTHING</span>
+<span class="nx">iptables</span><span class="w"> </span><span class="o">-</span><span class="nx">t</span><span class="w"> </span><span class="nx">filter</span><span class="w"> </span><span class="o">-</span><span class="nx">A</span><span class="w"> </span><span class="nx">FORWARD</span><span class="w"> </span><span class="o">-</span><span class="nx">i</span><span class="w"> </span><span class="nx">eth0</span><span class="w"> </span><span class="o">-</span><span class="nx">o</span><span class="w"> </span><span class="nx">eth1</span><span class="w">                              </span>\
+<span class="o">-</span><span class="nx">m</span><span class="w"> </span><span class="nx">state</span><span class="w"> </span><span class="o">--</span><span class="nx">state</span><span class="w"> </span><span class="nx">NEW</span><span class="w"> </span><span class="o">-</span><span class="nx">j</span><span class="w"> </span><span class="nx">ACCEPT</span>
+<span class="err">#</span><span class="w"> </span><span class="nx">ALLOW</span><span class="w"> </span><span class="nx">RECEPTION</span>
+<span class="nx">iptables</span><span class="w"> </span><span class="o">-</span><span class="nx">t</span><span class="w"> </span><span class="nx">filter</span><span class="w"> </span><span class="o">-</span><span class="nx">A</span><span class="w"> </span><span class="nx">FORWARD</span><span class="w"> </span><span class="o">-</span><span class="nx">i</span><span class="w"> </span><span class="nx">eth1</span><span class="w"> </span><span class="o">-</span><span class="nx">o</span><span class="w"> </span><span class="nx">eth0</span><span class="w">                              </span>\
+<span class="o">-</span><span class="nx">m</span><span class="w"> </span><span class="nx">state</span><span class="w"> </span><span class="o">--</span><span class="nx">state</span><span class="w"> </span><span class="nx">ESTABLISHED</span><span class="p">,</span><span class="nx">RELATED</span><span class="w"> </span><span class="o">-</span><span class="nx">j</span><span class="w"> </span><span class="nx">ACCEPT</span>
+
+<span class="err">###############################################################################</span>
+<span class="err">#</span><span class="w"> </span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="w"> </span><span class="nx">TRAFFIC</span><span class="w"> </span><span class="nx">INITIATED</span><span class="w"> </span><span class="nx">FROM</span><span class="w"> </span><span class="nx">THE</span><span class="w"> </span><span class="nx">INTERNET</span><span class="w"> </span><span class="nx">AND</span><span class="w"> </span><span class="nx">DESTINED</span><span class="w"> </span><span class="nx">FOR</span><span class="w"> </span><span class="nx">THE</span><span class="w"> </span><span class="nx">INTERNAL</span><span class="w"> </span><span class="nx">NETWORK</span>
+<span class="err">#</span><span class="w">     </span><span class="nx">ALL</span><span class="w"> </span><span class="nx">FORBIDDEN</span><span class="p">,</span><span class="w"> </span><span class="nx">EXCEPT</span><span class="w"> </span><span class="nx">WEBSERVER</span><span class="w"> </span><span class="nx">FORWARDING</span><span class="w"> </span><span class="nx">TO</span><span class="w"> </span><span class="nx">INTERNAL</span><span class="w"> </span><span class="nx">MACHINE</span>
+<span class="err">###############################################################################</span>
+<span class="err">#</span><span class="w"> </span><span class="nx">ALLOW</span><span class="w"> </span><span class="nx">DESTINATION</span><span class="w"> </span><span class="nx">NAT</span><span class="w"> </span><span class="nx">FROM</span><span class="w"> </span><span class="nx">FIREWALL</span><span class="p">:</span><span class="mi">80</span><span class="w"> </span><span class="nx">TO</span><span class="w"> </span><span class="nx">INTERNAL</span><span class="w"> </span><span class="nx">MACHINE</span><span class="p">:</span><span class="mi">2345</span>
+<span class="nx">iptables</span><span class="w"> </span><span class="o">-</span><span class="nx">t</span><span class="w"> </span><span class="nx">nat</span><span class="w"> </span><span class="o">-</span><span class="nx">A</span><span class="w"> </span><span class="nx">PREROUTING</span><span class="w"> </span><span class="o">-</span><span class="nx">i</span><span class="w"> </span><span class="nx">eth1</span><span class="w"> </span><span class="o">-</span><span class="nx">p</span><span class="w"> </span><span class="nx">tcp</span><span class="w"> </span><span class="o">--</span><span class="nx">destination</span><span class="o">-</span><span class="nx">port</span><span class="w"> </span><span class="mi">80</span><span class="w">         </span>\
+<span class="o">-</span><span class="nx">j</span><span class="w"> </span><span class="nx">DNAT</span><span class="w"> </span><span class="o">--</span><span class="nx">to</span><span class="o">-</span><span class="nx">destination</span><span class="w"> </span><span class="m m-Double">192.168.0.11</span><span class="p">:</span><span class="mi">2345</span>
+<span class="nx">iptables</span><span class="w"> </span><span class="o">-</span><span class="nx">t</span><span class="w"> </span><span class="nx">filter</span><span class="w"> </span><span class="o">-</span><span class="nx">A</span><span class="w"> </span><span class="nx">FORWARD</span><span class="w"> </span><span class="o">-</span><span class="nx">i</span><span class="w"> </span><span class="nx">eth1</span><span class="w"> </span><span class="o">-</span><span class="nx">p</span><span class="w"> </span><span class="nx">tcp</span><span class="w"> </span><span class="o">--</span><span class="nx">destination</span><span class="o">-</span><span class="nx">port</span><span class="w"> </span><span class="mi">2345</span><span class="w">       </span>\
+<span class="o">-</span><span class="nx">m</span><span class="w"> </span><span class="nx">state</span><span class="w"> </span><span class="o">--</span><span class="nx">state</span><span class="w"> </span><span class="nx">NEW</span><span class="w"> </span><span class="o">-</span><span class="nx">j</span><span class="w"> </span><span class="nx">ACCEPT</span>
+
+<span class="err">###############################################################################</span>
+<span class="err">#</span><span class="w"> </span><span class="p">(!)</span><span class="w"> </span><span class="nx">TRAFFIC</span><span class="w"> </span><span class="nx">AS</span><span class="w"> </span><span class="nx">A</span><span class="w"> </span><span class="nx">RESULT</span><span class="w"> </span><span class="nx">OF</span><span class="w"> </span><span class="nx">INITIATED</span><span class="w"> </span><span class="nx">TRAFFIC</span>
+<span class="err">#</span><span class="w">     </span><span class="nx">ALL</span><span class="w"> </span><span class="nx">ALLOWED</span>
+<span class="err">###############################################################################</span>
+<span class="err">#</span><span class="w"> </span><span class="nx">ALLOW</span><span class="w"> </span><span class="nx">ALL</span><span class="w"> </span><span class="nx">PACKETS</span><span class="w"> </span><span class="nx">RESULTING</span><span class="w"> </span><span class="nx">FROM</span><span class="w"> </span><span class="nx">ALLOWED</span><span class="w"> </span><span class="nx">CONNECTIONS</span>
+<span class="nx">iptables</span><span class="w"> </span><span class="o">-</span><span class="nx">t</span><span class="w"> </span><span class="nx">filter</span><span class="w"> </span><span class="o">-</span><span class="nx">A</span><span class="w"> </span><span class="nx">INPUT</span><span class="w">   </span><span class="o">-</span><span class="nx">m</span><span class="w"> </span><span class="nx">state</span><span class="w"> </span><span class="o">--</span><span class="nx">state</span><span class="w"> </span><span class="nx">ESTABLISHED</span><span class="p">,</span><span class="nx">RELATED</span><span class="w"> </span><span class="o">-</span><span class="nx">j</span><span class="w"> </span><span class="nx">ACCEPT</span>
+<span class="nx">iptables</span><span class="w"> </span><span class="o">-</span><span class="nx">t</span><span class="w"> </span><span class="nx">filter</span><span class="w"> </span><span class="o">-</span><span class="nx">A</span><span class="w"> </span><span class="nx">FORWARD</span><span class="w"> </span><span class="o">-</span><span class="nx">m</span><span class="w"> </span><span class="nx">state</span><span class="w"> </span><span class="o">--</span><span class="nx">state</span><span class="w"> </span><span class="nx">ESTABLISHED</span><span class="p">,</span><span class="nx">RELATED</span><span class="w"> </span><span class="o">-</span><span class="nx">j</span><span class="w"> </span><span class="nx">ACCEPT</span>
+<span class="nx">iptables</span><span class="w"> </span><span class="o">-</span><span class="nx">t</span><span class="w"> </span><span class="nx">filter</span><span class="w"> </span><span class="o">-</span><span class="nx">A</span><span class="w"> </span><span class="nx">OUTPUT</span><span class="w">  </span><span class="o">-</span><span class="nx">m</span><span class="w"> </span><span class="nx">state</span><span class="w"> </span><span class="o">--</span><span class="nx">state</span><span class="w"> </span><span class="nx">ESTABLISHED</span><span class="p">,</span><span class="nx">RELATED</span><span class="w"> </span><span class="o">-</span><span class="nx">j</span><span class="w"> </span><span class="nx">ACCEPT</span>
+<span class="nx">iptables</span><span class="w"> </span><span class="o">-</span><span class="nx">t</span><span class="w"> </span><span class="nx">filter</span><span class="w"> </span><span class="o">-</span><span class="nx">A</span><span class="w"> </span><span class="nx">INPUT</span><span class="w">   </span><span class="o">-</span><span class="nx">m</span><span class="w"> </span><span class="nx">state</span><span class="w"> </span><span class="o">--</span><span class="nx">state</span><span class="w"> </span><span class="nx">NEW</span><span class="w"> </span><span class="o">-</span><span class="nx">i</span><span class="w"> </span><span class="nx">lo</span><span class="w">           </span><span class="o">-</span><span class="nx">j</span><span class="w"> </span><span class="nx">ACCEPT</span>
+
+<span class="err">###############################################################################</span>
+<span class="err">#</span><span class="w"> </span><span class="nx">MASQUERADE</span><span class="w"> </span><span class="nx">PACKAGES</span><span class="w"> </span><span class="nx">FROM</span><span class="w"> </span><span class="nx">OUR</span><span class="w"> </span><span class="nx">INTERNAL</span><span class="w"> </span><span class="nx">NETWORK</span><span class="w"> </span><span class="nx">DESTINED</span><span class="w"> </span><span class="nx">FOR</span><span class="w"> </span><span class="nx">THE</span><span class="w"> </span><span class="nx">INTERNET</span>
+<span class="err">#</span><span class="w"> </span><span class="nx">THIS</span><span class="w"> </span><span class="nx">IS</span><span class="w"> </span><span class="nx">SNAT</span><span class="w"> </span><span class="p">(</span><span class="nx">SOURCE</span><span class="w"> </span><span class="nx">NAT</span><span class="p">)</span>
+<span class="err">###############################################################################</span>
+<span class="nx">iptables</span><span class="w"> </span><span class="o">-</span><span class="nx">t</span><span class="w"> </span><span class="nx">nat</span><span class="w">    </span><span class="o">-</span><span class="nx">A</span><span class="w"> </span><span class="nx">POSTROUTING</span><span class="w"> </span><span class="o">-</span><span class="nx">o</span><span class="w"> </span><span class="nx">eth1</span><span class="w"> </span><span class="o">-</span><span class="nx">j</span><span class="w"> </span><span class="nx">SNAT</span><span class="w"> </span><span class="o">--</span><span class="nx">to</span><span class="o">-</span><span class="nx">source</span><span class="w"> </span><span class="m m-Double">101.102.103.104</span>
+
+<span class="err">###############################################################################</span>
+<span class="err">#</span><span class="w"> </span><span class="nx">ENABLE</span><span class="w"> </span><span class="nx">FORWARDING</span>
+<span class="err">###############################################################################</span>
+<span class="nx">echo</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">&gt;</span><span class="w"> </span><span class="o">/</span><span class="nx">proc</span><span class="o">/</span><span class="nx">sys</span><span class="o">/</span><span class="nx">net</span><span class="o">/</span><span class="nx">ipv4</span><span class="o">/</span><span class="nx">ip_forward</span>
+</code></pre></div></td></tr></table></div>
+
+<h4 id="saving-and-restoring-firewall-rules">Saving And Restoring Firewall Rules<a class="headerlink" href="#saving-and-restoring-firewall-rules" title="Permanent link">&para;</a></h4>
+<p>Firewall rules can be saved and restored easily by using the commands
+<code>iptables-save</code> (which writes to iptablessave iptablesrestore
+iptables-save iptables-restore <code>stdout</code>) and <code>iptables-restore</code> (which
+reads from <code>stdin</code>). Assuming that we use the file <code>fwrules.saved</code> to
+save and/or restore the rules, the two commands are:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>    iptables-save &gt; fwrules.saved
+    iptables-restore &lt; fwrules.saved
+</code></pre></div></td></tr></table></div>
+
+<p>These commands can be used to initialize a firewall/routing machine at
+boottime by putting them into a SysV startup script.</p>
+<h3 id="port-andor-ip-forwarding">Port and/or IP forwarding<a class="headerlink" href="#port-andor-ip-forwarding" title="Permanent link">&para;</a></h3>
+<p>In the fifth example of this chapter the
+client thinks it's connecting directly to the external server. The
+router in between transparently routes all traffic and performs SOURCE
+NAT to masquerade the internal (private) addresses. Keyword in this
+example is transparency. If you need NAT for outgoing traffic to the
+internet you can use SNAT (specifying the WAN IP address) if you have a
+static WAN IP address. The kernel's connection tracking keeps track of
+all the connections when the interface is taken down and brought back
+up. This is not the case when using MASQUERADE. Using MASQUERADE is a
+better idea when you have a dynamic WAN IP address because you don't
+have to specify the used IP address but can specify the used interface.
+Whatever IP address is on that interface, it is applied to al the
+outgoing packets.</p>
+<p>Besides packet filtering, firewalls can also perform port and IP
+forwarding. In the sixth example (with port forwarding) an outside
+client will connect to a port on the firewall. To the client the
+connection will terminate on the firewall, but the firewall knows to
+what internal server connections on the receiving port should be
+forwarded. The firwewall will apply DESTINATION NAT to the packets and
+pass them on.</p>
+<p>Forwarded traffic can also have SOURCE NAT applied but in most cases
+this is undesired because this would seriously hamper auditing the
+connections on the receiving server(s). There is no way of telling the
+original source address in that case - all traffic seems to originate at
+the firewall.</p>
+<p>Situations in which port forwarding is used are (amongst others):</p>
+<ul>
+<li>
+<p>Transparency is unwanted (security or other considerations):</p>
+<ul>
+<li>Example: One specific service available through the firewall is
+    running on multiple internal servers, for instance one for each
+    customer of our organization. Based on the source address a
+    decision can be made to which server the traffic has to be
+    forwarded.</li>
+</ul>
+</li>
+<li>
+<p>Transparency is impossible (private IP addresses aren't routed on
+    the internet):</p>
+<ul>
+<li>
+<p>Example 1: If an organisation has only one external public IP
+    address, but several services that have to be accessible from
+    the internet running on different servers, these services will
+    need to be made available to the outside as seemingly
+    originating from one single IP address.</p>
+</li>
+<li>
+<p>Example 2: One internal server is serving a single service but
+    listening on different port numbers (for instance to seperate
+    between customer). Clients will connect to the IANA assigned
+    service port and based on source IP address the firewall will
+    forward the traffic to the assigned destination port for that
+    source address.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Scaling considerations:</p>
+<ul>
+<li>Example: If an organisation has only one external public IP
+    address but several services that have to be accessible from the
+    internet running on different servers these services will need
+    to be made available to the outside as seemingly originating
+    from one single IP address.</li>
+</ul>
+</li>
+</ul>
+<p>Most often port and/or IP forwarding is used to enable incoming
+connections from the internet to servers with a private IP address.</p>
+<p>Port forwarding examples:</p>
+<h4 id="exaample-1">Exaample 1<a class="headerlink" href="#exaample-1" title="Permanent link">&para;</a></h4>
+<p><img alt="" src="../images/212-DNAT.dot.svg.jpg" /></p>
+<h4 id="example-2">Example 2<a class="headerlink" href="#example-2" title="Permanent link">&para;</a></h4>
+<p><img alt="" src="../images/212-DNAT2.dot.svg.jpg" /></p>
+<h2 id="denial-of-service-dos-attacks">Denial of Service (DoS) attacks<a class="headerlink" href="#denial-of-service-dos-attacks" title="Permanent link">&para;</a></h2>
+<h3 id="description">Description<a class="headerlink" href="#description" title="Permanent link">&para;</a></h3>
+<p>DoS attackers abuse the fact that resources on the Internet are DoS
+Attack limited and that services can be disrupted by taking away (one
+of) AttacksDoS their resources: storage-capacity, bandwith or
+processor-capacity. This is often achieved by "packet flooding".</p>
+<p>Packet flooding can be done with TCP, ICMP and UDP. DoS AttacksPacket
+Flooding Packet Flooding When using TCP mostly the SYN, ACK and RST
+flags are used. DoS AttacksSYN AttacksSYN SYN Attack When using ICMP,
+the message types echo request and echo reply are used. This is called
+"ping-flooding". When using UDP, the chargen (character generator
+protocol) and echo UDP services are used.</p>
+<p>Also, two systems (A and B) can be played out against each other by a
+third system (C). System C sends packets to system A but changes the
+source IP address of the packages it sends to the IP address of system
+B. System A then thinks the packets came from system B and starts
+sending replies to system B. DoS AttacksIP address spoofing DoS with IP
+address spoofing This method is called "DoS with IP address spoofing".</p>
+<p>Check the site <a href="http://www.cert.org/">http://www.cert.org/</a> for a complete history of DoS and
+DDoS (Distributed DoS) attacks. And have a look at RFC2827 which
+describes Network Ingress Filtering, a method to DoS AttacksNetwork
+Ingress Filtering Network Ingress Filtering RFC2827 prevent IP address
+spoofing. This doesn't prevent DoS attacks but makes it possible to
+trace the real IP address of the offender.</p>
+<h3 id="prevention">Prevention<a class="headerlink" href="#prevention" title="Permanent link">&para;</a></h3>
+<p>It is impossible to fully prevent DoS attacks without disconnecting from
+the Internet. What can be done to minimize the effects of DoS and DDoS
+attacks is to apply some packet filtering and rate limiting rules to the
+firewall.</p>
+<p>Using /proc/sys/net/ipv4 (sysctl) to prevent simple DOS attacks</p>
+<p>DoS Attackssysctl sysctl The kernel documentation describes the
+following sysctl options to prevent simple DoS attacks:</p>
+<ul>
+<li>
+<p>tcp_max_orphans - INTEGER:</p>
+<ul>
+<li>Maximal number of TCP sockets not attached to any user file
+    handle, held by system. If this number is exceeded orphaned
+    connections are reset immediately and a warning is printed.</li>
+</ul>
+</li>
+<li>
+<p>tcp_max_tw_buckets - INTEGER:</p>
+<ul>
+<li>Maximal number of timewait sockets held by system
+    simultaneously. If this number is exceeded time-wait socket is
+    immediately destroyed and a warning is printed.</li>
+</ul>
+</li>
+<li>
+<p>rp_filter - INTEGER:</p>
+<ul>
+<li>
+<p>0 - No source validation.</p>
+</li>
+<li>
+<p>1 - Strict mode as defined in RFC3704 Strict Reverse Path: Each
+    incoming packet is tested against the FIB and if the interface
+    is not the best reverse path the packet check will fail. By
+    default failed packets are discarded.</p>
+</li>
+<li>
+<p>2 - Loose mode as defined in RFC3704 Loose Reverse Path: Each
+    incoming packet's source address is also tested against the FIB
+    and if the source address is not reachable via any interface the
+    packet check will fail.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="routed">Routed<a class="headerlink" href="#routed" title="Permanent link">&para;</a></h2>
+<p>In an environment that uses dynamic routing, the <em>routed</em> daemon may be
+used. The routed daemon manages the routing tables in the kernel. The
+routed daemon only implements the RIP (Routing Information Protocol)
+protocol. When you wish to dynamically route other types of protocols
+gated can be used instead. Gated is a vintage routing daemon which
+supports RIPv2, RIPng, OSPF, OSPF6, BGP4+ and BGP4-.</p>
+<p>The routed daemon finds interfaces to directly connected hosts and
+networks that are configured into the system and marked as up. (Mark
+networks as up using the ifconfig command.) If multiple interfaces are
+present, the routed daemon assumes that the local host forwards packets
+between networks. The routed daemon transmits a RIP request packet on
+each interface, using a broadcast message when the interface supports
+it.</p>
+<p>The routed daemon then listens for RIP routing requests and response
+packets from other hosts. When the routed daemon supplies RIP
+information to other hosts, it sends RIP update packets every 30 seconds
+(containing copies of its routing tables) to all directly connected
+hosts and networks.</p>
+<p>When the routed daemon receives a Routing Information Protocol (RIP)
+request packet to supply RIP routing information, the routed daemon
+generates a reply in the form of a response packet. The response packet
+is based on the information maintained in the kernel routing tables and
+contains a list of known routes. Each route is marked with a hop-count
+metric, which is the number of gateway hops between the source network
+and the destination network. The metric for each route is relative to
+the sending host. A metric of 16 or greater is considered infinite or
+beyond reach.</p>
+<h3 id="when-to-use-routed">When to use routed<a class="headerlink" href="#when-to-use-routed" title="Permanent link">&para;</a></h3>
+<p>If there are multiple possible paths to a certain destination, and you
+want an alternate route to that destination to be selected automatically
+(in case the default route to that destination for some reason is
+unusable) the <code>routed</code> program can do this for you automatically.</p>
+<p>Tools, commands and utilities to manage routing tables</p>
+<h3 id="route"><code>route</code><a class="headerlink" href="#route" title="Permanent link">&para;</a></h3>
+<p><code>route</code> manipulates the kernel's IP routing tables. Its primary use is
+to set up static routes to specific hosts or networks via an interface
+after is has been configured with the <code>ifconfig</code> command. (The newest
+Linux distro's use <code>ip route</code> these days instead of <code>route</code>.)</p>
+<p>SYNOPSIS (most important opions):</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="n">route</span>
+<span class="w">    </span><span class="n">route</span><span class="w"> </span><span class="p">[</span><span class="o">-</span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="n">add</span><span class="w"> </span><span class="p">[</span><span class="o">-</span><span class="n">net</span><span class="o">|-</span><span class="n">host</span><span class="p">]</span><span class="w"> </span><span class="n">target</span><span class="w"> </span><span class="p">[</span><span class="n">netmask</span><span class="w"> </span><span class="n">NM</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="n">gw</span><span class="w"> </span><span class="n">GW</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="n">metric</span><span class="w"> </span><span class="n">N</span><span class="p">]</span><span class="w"> </span><span class="p">[[</span><span class="n">dev</span><span class="p">]</span><span class="w"> </span><span class="n">If</span><span class="p">]</span>
+<span class="w">    </span><span class="n">route</span><span class="w"> </span><span class="p">[</span><span class="o">-</span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="n">del</span><span class="w"> </span><span class="p">[</span><span class="o">-</span><span class="n">net</span><span class="o">|-</span><span class="n">host</span><span class="p">]</span><span class="w"> </span><span class="n">target</span><span class="w"> </span><span class="p">[</span><span class="n">netmask</span><span class="w"> </span><span class="n">NM</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="n">gw</span><span class="w"> </span><span class="n">GW</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="n">metric</span><span class="w"> </span><span class="n">N</span><span class="p">]</span><span class="w"> </span><span class="p">[[</span><span class="n">dev</span><span class="p">]</span><span class="w"> </span><span class="n">If</span><span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+
+<p><code>route</code> itself, without any parameters, displays the routing table. The
+<code>-ee</code> option will generate a very long line with all paramaters from the
+routing table.</p>
+<p>-v</p>
+<ul>
+<li>Select verbose operation.</li>
+</ul>
+<p>-net|-host</p>
+<ul>
+<li>The target is a network or a host.</li>
+</ul>
+<p>netmask Nm</p>
+<ul>
+<li>When adding a network route, the netmask to be used.</li>
+</ul>
+<p>gw GW</p>
+<ul>
+<li>Route packets via a gateway. The specified gateway must be reachable
+    first.</li>
+</ul>
+<p>metric N</p>
+<ul>
+<li>Set the metric field in the routing table (used by routing daemons)
+    to N.</li>
+</ul>
+<p>dev If</p>
+<ul>
+<li>Force the route to be associated with the specified device. If <em>dev
+    If</em> is the last option on the command line, the word <em>dev</em> may be
+    omitted, as it's the default. Otherwise the order of the route
+    modifiers (metric, netmask, gw, dev) doesn't matter.</li>
+</ul>
+<p>Examples:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>    route add -net 192.168.10.0 netmask 255.255.255.0 dev eth0
+    route add -net 192.168.20.0 netmask 255.255.255.0 gw 192.168.1.10
+    route add default gw 192.168.1.1 eth1
+</code></pre></div></td></tr></table></div>
+
+<p>The output of the kernel routing table is organized in the following
+columns:</p>
+<p>Destination</p>
+<ul>
+<li>The destination network or destination host.</li>
+</ul>
+<p>Gateway</p>
+<ul>
+<li>The gateway address or "*" if none is set.</li>
+</ul>
+<p>Genmask</p>
+<ul>
+<li>The netmask for the destination net; "255.255.255.255" for a host
+    destination and "0.0.0.0" for the <em>default</em> route.</li>
+</ul>
+<p>Flags</p>
+<ul>
+<li>Possible flags include: U - Route is up, H - Target is a host, G -
+    Use gateway, R - Reinstate route for dynamic routing, D -
+    Dynamically installed by daemon or redirect, M - Modified from
+    routing daemon or redirect, C - Cache entry, ! - Reject route</li>
+</ul>
+<p>Metric</p>
+<ul>
+<li>The "distance" to the target (usually counted in hops).</li>
+</ul>
+<p>Ref</p>
+<ul>
+<li>Number of references to this route.</li>
+</ul>
+<p>Iface</p>
+<ul>
+<li>Interface to which packets for this route will be sent.</li>
+</ul>
+<p>Example:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>    Kernel IP routing table
+    Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+    192.168.20.0    <span class="gs">*               255.255.255.0   U     0      0        0 eth0</span>
+<span class="gs">    link-local      *</span>               255.255.0.0     U     1002   0        0 eth0
+    default         192.168.20.1    0.0.0.0         UG    0      0        0 eth0
+</code></pre></div></td></tr></table></div>
+
+<h2 id="netstat"><code>netstat</code><a class="headerlink" href="#netstat" title="Permanent link">&para;</a></h2>
+<p>Print network connections, routing tables, interface statistics,
+masquerade connections, and multicast memberships.</p>
+<p><code>netstat</code> has a lot of possible options but the most used is the
+following:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code>    # netstat -rn
+    Kernel IP routing table
+    Destination     Gateway         Genmask         Flags   MSS Window  irtt Iface
+    192.168.20.0    0.0.0.0         255.255.255.0   U         0 0          0 eth0
+    169.254.0.0     0.0.0.0         255.255.0.0     U         0 0          0 eth0
+    0.0.0.0         192.168.20.1    0.0.0.0         UG        0 0          0 eth0
+</code></pre></div></td></tr></table></div>
+
+<p><code>netstat -rn</code> will show also the routing table. The <code>-r</code> option will
+show the routing table where the <code>-n</code> will prevent resolving IP
+addresses and networks to names. Please look at the man pages for more
+interesting options.</p>
+<h2 id="ip6tables">ip6tables<a class="headerlink" href="#ip6tables" title="Permanent link">&para;</a></h2>
+<p>Ip6tables is the ipv6 equivalent of iptables. The syntax is identical to
+its ipv4 counterpart, except for the use of 128-bit addresses instead of
+32-bit addresses.</p>
+<p>The following example allows ICMPv6:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>    ip6tables -A INPUT -p icmpv6 -j ACCEPT
+    ip6tables -A OUTPUT -p icmpv6 -j ACCEPT
+</code></pre></div></td></tr></table></div>
+
+<p>Iptables and ip6tables may be used simultanously. Refer to the
+<code>iptables(8)</code> manpage for detailed information.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 1997-2021 Sue B.V., The Netherlands - Open Sourced 2021
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["search.highlight", "tabs", "instant"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

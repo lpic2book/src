@@ -1,0 +1,2665 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Sue B.V., The Netherlands">
+      
+      
+      
+        <link rel="prev" href="../lpic2.210.3/">
+      
+      
+        <link rel="next" href="../lpic2.211.0/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Configuring an OpenLDAP server (210.4) - The LPIC2 Exam Prep</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:300,300i,400,400i,700,700i%7CAnonymous+Pro:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Nunito";--md-code-font:"Anonymous Pro"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#configuring-an-openldap-server-2104" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="The LPIC2 Exam Prep" class="md-header__button md-logo" aria-label="The LPIC2 Exam Prep" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            The LPIC2 Exam Prep
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Configuring an OpenLDAP server (210.4)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/lpic2book/src" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    LPIC2Book
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="The LPIC2 Exam Prep" class="md-nav__button md-logo" aria-label="The LPIC2 Exam Prep" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 22a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-6v7L9.5 7.5 7 9V2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/></svg>
+
+    </a>
+    The LPIC2 Exam Prep
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/lpic2book/src" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    LPIC2Book
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The LPIC2 Exam Prep
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpicbook_about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About this book
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    200 Capacity Planning (200)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Measure and Troubleshoot Resource Usage (200.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.200.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Predict Future Resource Needs (200.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Kernel (201)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel Components (201.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compiling a Linux kernel (201.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.201.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kernel runtime management and troubleshooting (201.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Startup (202)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customizing system startup (202.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System recovery (202.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.202.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Alternate Bootloaders (202.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Filesystem and Devices (203)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operating The Linux Filesystem (203.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maintaining a Linux Filesystem (203.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.203.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Creating And Configuring Filesystem Options (203.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Storage Device Administration (204)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring RAID (204.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adjusting Storage Device Access (204.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logical Volume Manager (204.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.204.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring PCMCIA Devices (204.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Networking Configuration (205)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Networking Configuration (205.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Network Configuration and Troubleshooting (205.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.205.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting network issues (205.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Maintenance (206)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Make and install programs from source (206.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup Operations (206.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.206.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifying users on system-related issues (206.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Domain Name Server (207)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic DNS server configuration (207.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Create and maintain DNS zones (207.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.207.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Securing a DNS Server (207.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTTP Services (208)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Apache Configuration (208.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Apache configuration for HTTPS (208.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementing Squid as a caching proxy (208.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.208.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementing Nginx as a web server and a reverse proxy (208.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File Sharing (209)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAMBA Server Configuration (209.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.209.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring an NFS Server (209.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Client Management (210)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DHCP Configuration (210.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PAM authentication (210.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.210.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LDAP client usage (210.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring an OpenLDAP server (210.4)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring an OpenLDAP server (210.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-an-openldap-server-2104" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring an OpenLDAP server (210.4)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring an OpenLDAP server (210.4)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-knowledge-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Knowledge Areas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terms-and-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terms and Utilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#openldap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenLDAP
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="OpenLDAP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#access-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Access Control
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#distinguished-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Distinguished Names
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slapd-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        slapd-config
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ldif" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LDIF
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#directories" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Directories
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schemas-and-whitepages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schemas and Whitepages
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    E-Mail services (211)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using e-mail servers (211.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing E-Mail Delivery (211.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.211.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing Mailbox Access (211.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Security (212)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuring a router (212.1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing FTP servers (212.2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secure shell (SSH) (212.3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security tasks (212.4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lpic2.212.5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenVPN (212.5)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-an-openldap-server-2104" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuring an OpenLDAP server (210.4)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring an OpenLDAP server (210.4)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-knowledge-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Knowledge Areas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terms-and-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terms and Utilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#openldap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenLDAP
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="OpenLDAP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#access-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Access Control
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#distinguished-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Distinguished Names
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slapd-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        slapd-config
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ldif" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LDIF
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#directories" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Directories
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schemas-and-whitepages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schemas and Whitepages
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>Configuring an OpenLDAP server (210.4)</h1>
+
+<h2 id="configuring-an-openldap-server-2104">Configuring an OpenLDAP server (210.4)<a class="headerlink" href="#configuring-an-openldap-server-2104" title="Permanent link">&para;</a></h2>
+<p>Candidates should be able to configure a basic OpenLDAP server including
+knowledge of LDIF format and essential access controls.</p>
+<h3 id="key-knowledge-areas">Key Knowledge Areas<a class="headerlink" href="#key-knowledge-areas" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>OpenLDAP</p>
+</li>
+<li>
+<p>Directory based configuration</p>
+</li>
+<li>
+<p>Access Control</p>
+</li>
+<li>
+<p>Distinguished Names</p>
+</li>
+<li>
+<p>Changetype Operations</p>
+</li>
+<li>
+<p>Schemas and Whitepages</p>
+</li>
+<li>
+<p>Directories</p>
+</li>
+<li>
+<p>Object IDs, Attributes and Classes</p>
+</li>
+</ul>
+<h3 id="terms-and-utilities">Terms and Utilities<a class="headerlink" href="#terms-and-utilities" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><code>slapd</code></p>
+</li>
+<li>
+<p><code>slapd.conf</code></p>
+</li>
+<li>
+<p>LDIF</p>
+</li>
+<li>
+<p><code>slapadd</code></p>
+</li>
+<li>
+<p><code>slapcat</code></p>
+</li>
+<li>
+<p><code>slapindex</code></p>
+</li>
+<li>
+<p><code>/var/lib/ldap/</code></p>
+</li>
+<li>
+<p><code>loglevel</code></p>
+</li>
+</ul>
+<h2 id="openldap">OpenLDAP<a class="headerlink" href="#openldap" title="Permanent link">&para;</a></h2>
+<p>OpenLDAP uses <code>slapd</code> which is the stand-alone LDAP daemon.
+It listens for LDAP connections on any number of ports (389 by default),
+responding to the LDAP operations it receives over these connections.
+OpenLDAP is typically started at boot time.</p>
+<p>It can be installed either from source obtaining it from <a href="http://www.OpenLDAP.org/software/">OpenLDAP
+software</a> but most linux
+distributions deliver it through their packagemanagement system like yum
+or apt.</p>
+<p>In OpenLDAP, directory entries are arranged in a hierarchical tree-like
+structure. Traditionally, this structure reflected the geographic and/or
+organizational boundaries. Entries representing countries appear at the
+top of the tree. Below them are entries representing states and national
+organizations. Below them might be entries representing organizational
+units, people, printers, documents, or just about anything else.</p>
+<h3 id="access-control">Access Control<a class="headerlink" href="#access-control" title="Permanent link">&para;</a></h3>
+<p>While the OpenLDAP directory gets filled the protection of data may become
+more critical. Some data might be protected by law or be confidential in
+any other way. Therefore access to the directory needs to be controlled.
+The default policy allows read access to all clients. Regardless of what 
+access control policy is defined, the olcRootDN is always allowed full 
+rights (i.e. auth, search, compare, read, and write) on everything.</p>
+<p>Access to <code>slapd</code> entries and attributes is controlled by the
+<code>olcAccess</code> attribute, whose values are a sequence of access rules. They
+begin with the access directive followed by a list of conditions:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="nx">olcAccess</span><span class="p">:</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="p">&lt;</span><span class="nx">what</span><span class="p">&gt;</span>
+<span class="w">           </span><span class="nx">by</span><span class="w"> </span><span class="p">&lt;</span><span class="nx">who</span><span class="p">&gt;</span><span class="w"> </span><span class="p">&lt;</span><span class="k">type</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="nx">access</span><span class="p">&gt;</span>
+<span class="w">           </span><span class="nx">by</span><span class="w"> </span><span class="p">&lt;</span><span class="nx">who</span><span class="p">&gt;</span><span class="w"> </span><span class="p">&lt;</span><span class="k">type</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="nx">access</span><span class="p">&gt;</span>
+</code></pre></div></td></tr></table></div>
+
+<p>For example:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>    olcAccess: to attrs=userPassword
+           by anonymous auth
+           by self write
+           by * none
+</code></pre></div></td></tr></table></div>
+
+<p>This access specification is used to keep a user's password protected.
+It allows anonymous users an authentication comparison on a password for
+the purpose of of logging on. Additionally it grants a user permission
+to change his password. The bottom line denies everyone else any access
+to the password.</p>
+<p>Alternatively we could grant users permission to update all their data
+with access speficifations like the following:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code>    olcAccess: to attrs=userPassword
+           by anonymous auth
+           by <span class="gs">* none</span>
+<span class="gs">    olcAccess: to *</span>
+               by self write
+               by * none
+</code></pre></div></td></tr></table></div>
+
+<h3 id="distinguished-names">Distinguished Names<a class="headerlink" href="#distinguished-names" title="Permanent link">&para;</a></h3>
+<p>A distinguished name (DN) is the name (set of attributes) which uniquely
+identifies an entry in the OpenLDAP directory and corresponds to the
+<code>path</code> which has to be traversed to reach that entry. A DN contains an
+attribute and value pair separated by commas.</p>
+<p>For example:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>    cn=John Doe,ou=editing,o=Paris,c=F
+    cn=Jane Doe,ou=editing,o=London,c=UK
+    cn=Tom Jones,ou=reporting,o=Amsterdam,c=NL
+</code></pre></div></td></tr></table></div>
+
+<p>Any of the attributes defined in the directory schema may be used to
+make up a DN. The order of the component attribute value pairs is
+important. The DN contains one component for each level of the directory
+hierarchy from the root down to the level where the entry resides. LDAP
+DNs begin with the most specific attribute and continue with
+progressively broader attributes. The first component of the DN is
+referred to as the Relative Distinguished Name (RDN). It identifies an
+entry distinctly from any other entries that have the same parent.</p>
+<p>An example to create an entry for a person:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="n">dn</span><span class="p">:</span><span class="w"> </span><span class="n">cn</span><span class="o">=</span><span class="n">John</span><span class="w"> </span><span class="n">Doe</span><span class="p">,</span><span class="n">o</span><span class="o">=</span><span class="n">bmi</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="n">us</span>
+<span class="w">    </span><span class="n">objectclass</span><span class="p">:</span><span class="w"> </span><span class="n">top</span>
+<span class="w">    </span><span class="n">objectclass</span><span class="p">:</span><span class="w"> </span><span class="n">person</span><span class="w"> </span>
+<span class="w">    </span><span class="n">cn</span><span class="p">:</span><span class="w"> </span><span class="n">John</span><span class="w"> </span><span class="n">Doe</span><span class="w"> </span>
+<span class="w">    </span><span class="n">sn</span><span class="p">:</span><span class="w"> </span><span class="n">Doe</span>
+<span class="w">    </span><span class="n">telephonenumber</span><span class="p">:</span><span class="w"> </span><span class="mi">555</span><span class="o">-</span><span class="mi">111</span><span class="o">-</span><span class="mi">5555</span>
+</code></pre></div></td></tr></table></div>
+
+<p>Some characters have special meaning in a DN. For example, = (equals)
+separates an attribute name and value and comma separates
+attribute=value pairs. The special characters are: comma, equals,
+plus,less than, greater than, number sign, semicolon, backslash,
+quotation mark.</p>
+<p>A special character can be escaped in an attribute value to remove the
+special meaning. To escape these special characters or other characters
+in an attribute value in a DN string, use the following methods:</p>
+<p>If a character to be escaped is one of the special characters, precede
+it by a backslash ("\" ASCII 92). This example shows a method of
+escaping a comma in an organization name:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    CN=Supergroup,O=Crosby\, Stills\, Nash and Young,C=US
+</code></pre></div></td></tr></table></div>
+
+<h3 id="slapd-config">slapd-config<a class="headerlink" href="#slapd-config" title="Permanent link">&para;</a></h3>
+<p>OpenLDAP 2.3 and later have transitioned to using a dynamic runtime
+configuration engine, <code>slapd-config</code>. The older style <code>slapd.conf</code> file
+is still supported, but its use is deprecated and support for it will be
+withdrawn in a future OpenLDAP release.</p>
+<p><strong>Note</strong>
+Although the slapd-config system stores its configuration as
+(text-based) LDIF files, you should never edit any of the LDIF files
+directly. Configuration changes should be performed via LDAP operations,
+e.g. <code>ldapadd</code>, <code>ldapdelete</code>, or <code>ldapmodify</code>.</p>
+<p>Depending on the linux distribution the <code>slapd-config</code> configuration
+tree <code>slapd.d</code> may be located in <code>/etc/OpenLDAP</code> or
+<code>/usr/local/etc/OpenLDAP</code>.</p>
+<p>An example might look like this:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code>    /etc/OpenLDAP/slapd.d
+    |-- cn=config
+    |   |-- cn=module{0}.ldif
+    |   |-- cn=schema
+    |   |   |-- cn={0}core.ldif
+    |   |   |-- cn={1}cosine.ldif
+    |   |   `-- cn={2}inetorgperson.ldif
+    |   |-- cn=schema.ldif
+    |   |-- olcDatabase={0}config.ldif
+    |   |-- olcDatabase={-1}frontend.ldif
+    |   `-- olcDatabase={1}hdb.ldif
+    `-- cn=config.ldif
+</code></pre></div></td></tr></table></div>
+
+<p>The <code>slapd.d</code> tree has a very specific structure. The root of the tree
+is named <code>cn=config</code> and contains global configuration settings.
+Additional settings are contained in separate child entries.</p>
+<p>These may be the following:</p>
+<ul>
+<li>
+<p>Dynamically loaded modules in the <code>cn=module{0}.ldif</code></p>
+</li>
+<li>
+<p>Schema definitations in the <code>cn=schema</code> directory (more about the
+    topic of schema's will follow below)</p>
+</li>
+<li>
+<p>Backend-specific configuration in the <code>cn=Database={1}hdb.ldif</code></p>
+</li>
+<li>
+<p>Database-specific configuration in the <code>cn=Database={0}config.ldif</code></p>
+</li>
+</ul>
+<p>The general layout of the LDIF (for more information on LDIF refer to
+the section below) that is used to create the configuration tree is as
+follows:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="nx">global</span><span class="w"> </span><span class="nx">configuration</span><span class="w"> </span><span class="nx">settings</span>
+<span class="w">    </span><span class="nx">dn</span><span class="p">:</span><span class="w"> </span><span class="nx">cn</span><span class="p">=</span><span class="nx">config</span>
+<span class="w">    </span><span class="nx">objectClass</span><span class="p">:</span><span class="w"> </span><span class="nx">olcGlobal</span>
+<span class="w">    </span><span class="nx">cn</span><span class="p">:</span><span class="w"> </span><span class="nx">config</span>
+<span class="w">    </span><span class="p">&lt;</span><span class="nx">global</span><span class="w"> </span><span class="nx">config</span><span class="w"> </span><span class="nx">settings</span><span class="p">&gt;</span>
+
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="nx">schema</span><span class="w"> </span><span class="nx">definitions</span>
+<span class="w">    </span><span class="nx">dn</span><span class="p">:</span><span class="w"> </span><span class="nx">cn</span><span class="p">=</span><span class="nx">schema</span><span class="p">,</span><span class="nx">cn</span><span class="p">=</span><span class="nx">config</span>
+<span class="w">    </span><span class="nx">objectClass</span><span class="p">:</span><span class="w"> </span><span class="nx">olcSchemaConfig</span>
+<span class="w">    </span><span class="nx">cn</span><span class="p">:</span><span class="w"> </span><span class="nx">schema</span>
+<span class="w">    </span><span class="p">&lt;</span><span class="nx">system</span><span class="w"> </span><span class="nx">schema</span><span class="p">&gt;</span>
+
+<span class="w">    </span><span class="nx">dn</span><span class="p">:</span><span class="w"> </span><span class="nx">cn</span><span class="p">={</span><span class="nx">X</span><span class="p">}</span><span class="nx">core</span><span class="p">,</span><span class="nx">cn</span><span class="p">=</span><span class="nx">schema</span><span class="p">,</span><span class="nx">cn</span><span class="p">=</span><span class="nx">config</span>
+<span class="w">    </span><span class="nx">objectClass</span><span class="p">:</span><span class="w"> </span><span class="nx">olcSchemaConfig</span>
+<span class="w">    </span><span class="nx">cn</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nx">X</span><span class="p">}</span><span class="nx">core</span>
+<span class="w">    </span><span class="p">&lt;</span><span class="nx">core</span><span class="w"> </span><span class="nx">schema</span><span class="p">&gt;</span>
+
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="nx">additional</span><span class="w"> </span><span class="nx">user</span><span class="o">-</span><span class="nx">specified</span><span class="w"> </span><span class="nx">schema</span>
+<span class="w">    </span><span class="o">...</span>
+
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="nx">backend</span><span class="w"> </span><span class="nx">definitions</span>
+<span class="w">    </span><span class="nx">dn</span><span class="p">:</span><span class="w"> </span><span class="nx">olcBackend</span><span class="p">=&lt;</span><span class="nx">typeA</span><span class="p">&gt;,</span><span class="nx">cn</span><span class="p">=</span><span class="nx">config</span>
+<span class="w">    </span><span class="nx">objectClass</span><span class="p">:</span><span class="w"> </span><span class="nx">olcBackendConfig</span>
+<span class="w">    </span><span class="nx">olcBackend</span><span class="p">:</span><span class="w"> </span><span class="p">&lt;</span><span class="nx">typeA</span><span class="p">&gt;</span>
+<span class="w">    </span><span class="p">&lt;</span><span class="nx">backend</span><span class="o">-</span><span class="nx">specific</span><span class="w"> </span><span class="nx">settings</span><span class="p">&gt;</span>
+
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="nx">database</span><span class="w"> </span><span class="nx">definitions</span>
+<span class="w">    </span><span class="nx">dn</span><span class="p">:</span><span class="w"> </span><span class="nx">olcDatabase</span><span class="p">={</span><span class="nx">X</span><span class="p">}&lt;</span><span class="nx">typeA</span><span class="p">&gt;,</span><span class="nx">cn</span><span class="p">=</span><span class="nx">config</span>
+<span class="w">    </span><span class="nx">objectClass</span><span class="p">:</span><span class="w"> </span><span class="nx">olcDatabaseConfig</span>
+<span class="w">    </span><span class="nx">olcDatabase</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nx">X</span><span class="p">}&lt;</span><span class="nx">typeA</span><span class="p">&gt;</span>
+<span class="w">    </span><span class="p">&lt;</span><span class="nx">database</span><span class="o">-</span><span class="nx">specific</span><span class="w"> </span><span class="nx">settings</span><span class="p">&gt;</span>
+
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="nx">subsequent</span><span class="w"> </span><span class="nx">definitions</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="nx">settings</span>
+<span class="w">    </span><span class="o">...</span>
+</code></pre></div></td></tr></table></div>
+
+<p>For the domain <code>example.com</code> the configuration file might look like
+this:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="n">dn</span><span class="p">:</span><span class="w"> </span><span class="n">olcDatabase</span><span class="o">=</span><span class="n">hdb</span><span class="p">,</span><span class="n">cn</span><span class="o">=</span><span class="n">config</span>
+<span class="w">    </span><span class="n">objectClass</span><span class="p">:</span><span class="w"> </span><span class="n">olcDatabaseConfig</span>
+<span class="w">    </span><span class="n">objectClass</span><span class="p">:</span><span class="w"> </span><span class="n">olcHdbConfig</span>
+<span class="w">    </span><span class="n">olcDatabase</span><span class="p">:</span><span class="w"> </span><span class="n">hdb</span>
+<span class="w">    </span><span class="n">olcSuffix</span><span class="p">:</span><span class="w"> </span><span class="n">dc</span><span class="o">=</span><span class="n">example</span><span class="p">,</span><span class="n">dc</span><span class="o">=</span><span class="n">com</span>
+<span class="w">    </span><span class="n">olcRootDN</span><span class="p">:</span><span class="w"> </span><span class="n">cn</span><span class="o">=</span><span class="n">Manager</span><span class="p">,</span><span class="n">dc</span><span class="o">=</span><span class="n">example</span><span class="p">,</span><span class="n">dc</span><span class="o">=</span><span class="n">com</span>
+<span class="w">    </span><span class="n">olcRootPW</span><span class="p">:</span><span class="w"> </span><span class="n">secret</span><span class="w"> </span>
+<span class="w">    </span><span class="n">olcDbDirectory</span><span class="p">:</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">ldap</span>
+</code></pre></div></td></tr></table></div>
+
+<p>It is more secure to generate a password hash using <code>slappasswd</code> instead
+of the plain text password secret as in the example above. In that case
+the <code>olcRootPW</code> line would be changed into something like the following:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    olcRootPW: {SSHA}xEleXlHqbSyi2FkmObnQ5m4fReBrjwGb
+</code></pre></div></td></tr></table></div>
+
+<p>The <code>olcLogLevel</code> directive specifies at which debugging
+level statements and operation statistics should be syslogged. Log
+levels may be specified as integers or by keyword. Multiple log levels
+may be used and the levels are additive.</p>
+<p>Available levels are:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><code>    1      (0x1 trace) trace function calls
+    2      (0x2 packets) debug packet handling
+    4      (0x4 args) heavy trace debugging (function args)
+    8      (0x8 conns) connection management
+    16     (0x10 BER) print out packets sent and received
+    32     (0x20 filter) search filter processing
+    64     (0x40 config) configuration file processing
+    128    (0x80 ACL) access control list processing
+    256    (0x100 stats) stats log connections/operations/results
+    512    (0x200 stats2) stats log entries sent
+    1024   (0x400 shell) print communication with shell backends
+    2048   (0x800 parse) entry parsing
+    16384  (0x4000 sync) LDAPSync replication
+    32768  (0x8000 none) only messages that get logged whatever log level is set
+</code></pre></div></td></tr></table></div>
+
+<p>For example:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    olcLogLevel: -1
+</code></pre></div></td></tr></table></div>
+
+<p>This will cause lots and lots of debugging information to be logged.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    olcLogLevel: conns filter
+</code></pre></div></td></tr></table></div>
+
+<p>This will only log the connection and search filter processing.</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    olcLogLevel: stats
+</code></pre></div></td></tr></table></div>
+
+<p>Basic stats logging is configured by default. However, if no olcLogLevel
+is defined, no logging occurs (equivalent to a 0 level).</p>
+<p>Note that the actual OpenLDAP database holding the user data is not
+located in the <code>slapd.d</code> configuration directory tree. Its location may
+be changed with the olcDbDirectory directory (see the example above) but
+by convention it is usually <code>/var/lib/ldap</code> /var/lib/ldap/.</p>
+<p>Its contents typically looks like this:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="o">$</span><span class="w"> </span><span class="n">ls</span><span class="w"> </span><span class="o">-</span><span class="n">l</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">ldap</span>
+<span class="w">    </span><span class="n">total</span><span class="w"> </span><span class="mi">1168</span>
+<span class="w">    </span><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span><span class="n">r</span><span class="o">--.</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">ldap</span><span class="w"> </span><span class="n">ldap</span><span class="w">    </span><span class="mi">4096</span><span class="w"> </span><span class="n">Dec</span><span class="w"> </span><span class="mi">12</span><span class="w"> </span><span class="mi">14</span><span class="p">:</span><span class="mi">29</span><span class="w"> </span><span class="n">alock</span>
+<span class="w">    </span><span class="o">-</span><span class="n">rw</span><span class="o">-------.</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">ldap</span><span class="w"> </span><span class="n">ldap</span><span class="w">    </span><span class="mi">8192</span><span class="w"> </span><span class="n">Dec</span><span class="w">  </span><span class="mi">2</span><span class="w"> </span><span class="mi">21</span><span class="p">:</span><span class="mi">31</span><span class="w"> </span><span class="n">cn</span><span class="o">.</span><span class="n">bdb</span>
+<span class="w">    </span><span class="o">-</span><span class="n">rw</span><span class="o">-------.</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">ldap</span><span class="w"> </span><span class="n">ldap</span><span class="w"> </span><span class="mi">2351104</span><span class="w"> </span><span class="n">Dec</span><span class="w"> </span><span class="mi">12</span><span class="w"> </span><span class="mi">14</span><span class="p">:</span><span class="mi">29</span><span class="w"> </span><span class="n">__db</span><span class="o">.</span><span class="mi">001</span>
+<span class="w">    </span><span class="o">-</span><span class="n">rw</span><span class="o">-------.</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">ldap</span><span class="w"> </span><span class="n">ldap</span><span class="w">  </span><span class="mi">819200</span><span class="w"> </span><span class="n">Dec</span><span class="w"> </span><span class="mi">12</span><span class="w"> </span><span class="mi">14</span><span class="p">:</span><span class="mi">29</span><span class="w"> </span><span class="n">__db</span><span class="o">.</span><span class="mi">002</span>
+<span class="w">    </span><span class="o">-</span><span class="n">rw</span><span class="o">-------.</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">ldap</span><span class="w"> </span><span class="n">ldap</span><span class="w">  </span><span class="mi">163840</span><span class="w"> </span><span class="n">Dec</span><span class="w"> </span><span class="mi">12</span><span class="w"> </span><span class="mi">14</span><span class="p">:</span><span class="mi">29</span><span class="w"> </span><span class="n">__db</span><span class="o">.</span><span class="mi">003</span>
+<span class="w">    </span><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--.</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">ldap</span><span class="w"> </span><span class="n">ldap</span><span class="w">     </span><span class="mi">104</span><span class="w"> </span><span class="n">Dec</span><span class="w">  </span><span class="mi">2</span><span class="w"> </span><span class="mi">21</span><span class="p">:</span><span class="mi">12</span><span class="w"> </span><span class="n">DB_CONFIG</span>
+<span class="w">    </span><span class="o">-</span><span class="n">rw</span><span class="o">-------.</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">ldap</span><span class="w"> </span><span class="n">ldap</span><span class="w">    </span><span class="mi">8192</span><span class="w"> </span><span class="n">Dec</span><span class="w">  </span><span class="mi">2</span><span class="w"> </span><span class="mi">21</span><span class="p">:</span><span class="mi">31</span><span class="w"> </span><span class="n">dn2id</span><span class="o">.</span><span class="n">bdb</span>
+<span class="w">    </span><span class="o">-</span><span class="n">rw</span><span class="o">-------.</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">ldap</span><span class="w"> </span><span class="n">ldap</span><span class="w">   </span><span class="mi">32768</span><span class="w"> </span><span class="n">Dec</span><span class="w">  </span><span class="mi">2</span><span class="w"> </span><span class="mi">21</span><span class="p">:</span><span class="mi">31</span><span class="w"> </span><span class="n">id2entry</span><span class="o">.</span><span class="n">bdb</span>
+<span class="w">    </span><span class="o">-</span><span class="n">rw</span><span class="o">-------.</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">ldap</span><span class="w"> </span><span class="n">ldap</span><span class="w">    </span><span class="mi">8192</span><span class="w"> </span><span class="n">Dec</span><span class="w">  </span><span class="mi">2</span><span class="w"> </span><span class="mi">21</span><span class="p">:</span><span class="mi">31</span><span class="w"> </span><span class="n">objectClass</span><span class="o">.</span><span class="n">bdb</span>
+</code></pre></div></td></tr></table></div>
+
+<h3 id="ldif">LDIF<a class="headerlink" href="#ldif" title="Permanent link">&para;</a></h3>
+<p>All modifications to the OpenLDAP database are formatted in the LDIF
+LDIF format. LDIF stands for LDAP Data Interchange Format. It is used by
+OpenLDAP's tools like <code>slapadd</code> in order to add data to the database.
+An example of a LDIF file:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code>    cat adduser.ldif
+
+    # John Doe&#39;s Entry
+    dn: cn=John Doe,dc=example,dc=com
+    cn: John Doe
+    cn: Johnnie Doe
+    objectClass: person
+    sn: Doe
+</code></pre></div></td></tr></table></div>
+
+<p>Multiple entries are separated using a blank line. <code>Slapcat</code> <code>slapcat</code>
+can be used to export information from the LDAP database in the LDIF
+format.</p>
+<p>For example:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    slapcat -l all.ldif
+</code></pre></div></td></tr></table></div>
+
+<p>This will generate a file called <code>all.ldif</code> which contains a full dump
+of the LDAP database.</p>
+<p>The generated output can be used by <code>slapadd</code> <code>slapadd</code> to import the
+data into an LDAP database.</p>
+<p>For example:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    slapadd -l all.ldif
+</code></pre></div></td></tr></table></div>
+
+<p>Sometimes it may be necessary to regenerate LDAP's database indexes.
+This can be done using the <code>slapindex</code> tool. <code>slapindex</code> It may also be
+used to regenerate the index for a specific attribute like the UID:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>    slapindex uid
+</code></pre></div></td></tr></table></div>
+
+<p>Note that <code>slapd</code> should not be running (at least, not in read-write
+mode) when the command is run to ensure consistency of the database.</p>
+<h3 id="directories">Directories<a class="headerlink" href="#directories" title="Permanent link">&para;</a></h3>
+<p>A directory can be contrived of as an hierarchically organized
+collection of data. The best known example probably is the telephone
+directory, but the file system directory is another one. Generally
+speaking a directory is a database that is optimized for reading,
+browsing and searching. OpenLDAP directories contain descriptive,
+attribute-based information. They do not support the roll-back
+mechanisms or complicated transactions that are found in Relational Data
+Base Management Systems (RDBMS's). Updates are typically simple
+all-or-nothing changes, if allowed at all. This type of directories are
+designed to give quick responses to high-volume lookup or search
+operations. OpenLDAP directories can be replicated to increase
+availability and reliability. Replicated databases can be temporarily
+out-of-sync but will be synchronized eventually.</p>
+<h3 id="schemas-and-whitepages">Schemas and Whitepages<a class="headerlink" href="#schemas-and-whitepages" title="Permanent link">&para;</a></h3>
+<p>Schemas are the standard way of describing the structure of objects that
+may be stored inside a directory. A whitepages schema is a data model
+for organizing the data contained in entries in a directory service such
+as an address book or LDAP. In a whitepages directory, each entry
+typically represents an individual that makes use of network resources,
+such as by receiving email of having an account to log in to a system.
+LDAP schemas are used to formally define attributes, object classes, and
+various rules for structuring the directory information tree. Usually
+schemas are configured in <code>slapd-config</code> LDIF using the include include
+directive.</p>
+<p>For example:</p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="k">include</span>:<span class="w"> </span><span class="nv">file</span>:<span class="o">///</span><span class="nv">etc</span><span class="o">/</span><span class="nv">OpenLDAP</span><span class="o">/</span><span class="nv">schema</span><span class="o">/</span><span class="nv">core</span>.<span class="nv">ldif</span>
+<span class="w">    </span><span class="k">include</span>:<span class="w"> </span><span class="nv">file</span>:<span class="o">///</span><span class="nv">etc</span><span class="o">/</span><span class="nv">OpenLDAP</span><span class="o">/</span><span class="nv">schema</span><span class="o">/</span><span class="nv">cosine</span>.<span class="nv">ldif</span>
+<span class="w">    </span><span class="k">include</span>:<span class="w"> </span><span class="nv">file</span>:<span class="o">///</span><span class="nv">etc</span><span class="o">/</span><span class="nv">OpenLDAP</span><span class="o">/</span><span class="nv">schema</span><span class="o">/</span><span class="nv">inetorgperson</span>.<span class="nv">ldif</span>
+</code></pre></div></td></tr></table></div>
+
+<p>The first line imports the core schema, which contains the schemas of
+attributes and object classes necessary for standard LDAP use. The
+cosine.schema imports a number of commonly used object classes and
+attributes, including those used for storing document information and
+DNS records. The third provides the inetOrgPerson object class
+definition and its associated attribute definitions. Other schemas are
+available with OpenLDAP (in <code>/etc/OpenLDAP/schema</code>); refer to the
+OpenLDAP Software 2.4 Administrator's guide for more information.</p>
+<p>References</p>
+<ul>
+<li>
+<p><a href="http://www.OpenLDAP.org/doc/admin24/">OpenLDAP Software 2.4 Administrator's
+    Guide</a></p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Directory_service">Directory Service</a></p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Lightweight_Directory_Access_Protocol#Directory_structure">Lightweight Directory Access
+    Protocol</a></p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/System_Security_Services_Daemon">System Security Services
+    Daemon</a></p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/White_pages_schema">White Pages
+    Schema</a></p>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 1997-2021 Sue B.V., The Netherlands - Open Sourced 2021
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["search.highlight", "tabs", "instant"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
