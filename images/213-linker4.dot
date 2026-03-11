@@ -1,0 +1,21 @@
+digraph G {
+	node [shape=record];
+/*	edge [arrowhead=none];
+*/	rankdir="LR";
+	
+	linkname[label="Linkname|libfoo.so"]
+	soname[label="Soname|<f0>libfoo.so.1"]
+	realname[label="Real name|<f0>libfoo.so.1.2.0|<f1>libfoo.so.1.0.4"]
+	
+	linkname -> soname [label="symlink"]
+	soname:f0 -> realname:f0 [label="symlink\n set up by ldconfig"]
+		
+	node [shape=ellipse]
+	"Linker uses.." -> linkname
+	"Executable asks loader for.." -> soname
+	"Loader finds.." -> realname
+	
+	{rank=same; "Linker uses.."; linkname}
+	{rank=same; "Executable asks loader for.."; soname}
+	{rank=same; "Loader finds.."; realname}
+}
