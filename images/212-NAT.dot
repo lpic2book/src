@@ -1,0 +1,30 @@
+digraph G {
+	compound=true;
+	node [shape=record];
+	edge [arrowhead=none];
+	rankdir="LR";
+	ranksep="equally";
+
+	some_host[label="<f0>Some Host|<f1>201.202.203.204"];
+	machine1[label="<f0>Machine1|<f1>192.168.0.10"];
+	machine2[label="<f0>Machine2|<f1>192.168.0.11"];
+	machine3[label="<f0>Machine3|<f1>192.168.0.12"];
+	machine4[label="<f0>101.102.103.104|<f1>Machine 4\nrouter|<f2>192.168.0.1"];
+	LAN[label="LAN|192.168.0/24"]
+	internet [label="Internet", 
+		  shape=none 
+		  image="icons/globe.png" 
+		  labelloc=b 
+		  color="#ffffff"
+		  imagescale=true
+		  height=1
+		  fixedsize=true
+		  ];		
+	
+	
+	some_host -> internet -> machine4:f0 
+	machine4:f2 -> LAN
+	LAN -> machine1:f1
+	LAN -> machine2:f1
+	LAN -> machine3:f1
+}

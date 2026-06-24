@@ -1,0 +1,51 @@
+digraph G {
+	node [shape=record, width=2];
+	
+	sanity1[label="sanity"];
+	sanity2[label="sanity"];
+	sanity3[label="sanity"];
+	
+	/* Main flow */
+	checksum -> sanity1
+	sanity1 -> INPUT
+	INPUT -> demasquerade
+	demasquerade -> "routing decision"
+	"routing decision" -> sanity2
+	sanity2 -> FORWARD
+	FORWARD -> sanity3
+	sanity3 -> OUTPUT
+
+	demasquerade -> sanity3
+
+	{rank=same; "local process"; sanity3 }
+	"routing decision" -> "local process"
+	"local process" -> sanity3
+
+
+	/* actions */
+	node [shape=none];
+	
+	DENY1[label="DENY"];
+	DENY2[label="DENY"];
+	DENY3[label="DENY or REJECT"];
+	DENY4[label="DENY"];	
+	DENY5[label="DENY or REJECT"];	
+	DENY6[label="DENY"];
+	DENY7[label="DENY or REJECT"];
+
+	{rank=same; checksum ; DENY1}
+	{rank=same; sanity1 ; DENY2}
+	{rank=same; INPUT ; DENY3}
+	{rank=same; sanity2 ; DENY4}
+	{rank=same; FORWARD; DENY5}
+	{rank=same; sanity3; DENY6}
+	{rank=same; OUTPUT; DENY7}
+	
+	checksum -> DENY1
+	sanity1 -> DENY2
+	INPUT -> DENY3
+	sanity2 -> DENY4
+	FORWARD -> DENY5
+	sanity3 -> DENY6
+	OUTPUT -> DENY7
+}

@@ -1,0 +1,18 @@
+digraph G {
+	compound=true;
+	node [shape=record];
+	rankdir="LR";
+
+	{rank=same; ROUTE1;  NF_IP_LOCAL_IN}
+	{rank=same; NF_IP_LOCAL_OUT; ROUTE2}
+	
+	Network1[label="Network"];
+	Network2[label="Network"];
+	ROUTE1[label="Route"];
+	ROUTE2[label="Route"];
+	"Local Process"[label="<f0>RECV|Local Process|<f1>SEND"];
+
+	Network1 -> NF_IP_PREROUTING -> ROUTE1 -> NF_IP_FORWARD -> ROUTE2 -> NF_IP_POSTROUTING -> Network2
+	ROUTE1 -> NF_IP_LOCAL_IN -> "Local Process":f0
+	"Local Process":f1 -> NF_IP_LOCAL_OUT -> ROUTE2
+}
