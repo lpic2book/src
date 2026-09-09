@@ -1,0 +1,24 @@
+digraph G {
+	node [shape=record];
+	/*edge [arrowhead=none];
+*/	rankdir="LR";
+	
+	subgraph cluster_0{
+		label="Client"
+		client
+	}
+	subgraph cluster_1{
+		label="Server (Apache with mod_ssl)"
+		server
+	}
+	
+	client[label="<f0>ask for public key|<f1>receive key				|<f2>verify if key is signed by CA		|<f3>encrypt message with public key"]
+	server[label="<f0>listens			|<f1>send (signed) public key	|										|<f2>decrypt message with private key"]
+	
+	client:f0->server:f0
+	server:f0:e->server:f1:e
+	server:f1->client:f1
+	client:f1:w->client:f2:w->client:f3:w
+	client:f3->server:f2
+		
+}
