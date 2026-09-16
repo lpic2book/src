@@ -1,0 +1,21 @@
+digraph G {
+	node [shape=record];
+	edge [arrowhead=none];
+	
+	{rank = same; romeo; juliet;}
+	internet [label="Internet", 
+			  shape=none 
+			  image="icons/globe.png" 
+			  labelloc=b 
+			  color="#ffffff"
+			  imagescale=true
+			  height=1
+			  fixedsize=true
+			  ];
+	
+	internet -> romeo
+	romeo -> "172.16.1.0/24"
+	juliet -> romeo
+	juliet -> "172.16.3.0/24"
+
+}

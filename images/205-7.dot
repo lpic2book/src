@@ -1,0 +1,33 @@
+digraph G {
+	compound=true;
+	node [shape=record];
+	ranksep="equally";
+
+	"External Machines Reachable" -> "Target Down" [label=Yes]
+	"External Machines Reachable" -> "Firewall Reachable" [label=No]
+	"Target Down" -> "Hop Down" [label=No]
+	"Target Down" -> Solved1 [label=Yes]
+	"Hop Down" -> "Firewall Blocks Traffic" [label=No]
+	"Hop Down" -> Solved2 [label=yes]
+	"Firewall Blocks Traffic" -> "...1" [label=No]
+	"Firewall Blocks Traffic" -> Solved [label=Yes]
+	
+	"Firewall Reachable" -> "Inspect Firewall" [label=Yes]
+	"Firewall Reachable" -> "Firewall Reachable by others" [label=No]
+	"Firewall Reachable by others" -> "Inspect Firewall" [label=No]
+	"Firewall Reachable by others" -> "eth0 up" [label=Yes]
+	"eth0 up" -> Solved3 [label=No]
+	"eth0 up" -> "Route table ok" [label=Yes]
+	"Route table ok" -> Solved4 [label=No]
+	"Route table ok" -> "Physical Reason: Cable" [label=Yes]
+	"Physical Reason: Cable" -> "...2" [label=No]
+	"Physical Reason: Cable" -> Solved5 [label=Yes]
+	
+	Solved1[label=Solved]
+	Solved2[label=Solved]
+	Solved3[label=Solved]
+	Solved4[label=Solved]
+	Solved5[label=Solved]
+	"...1"[label="..."]
+	"...2"[label="..."]
+}

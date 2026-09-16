@@ -1,0 +1,58 @@
+digraph G {
+	compound=true;
+	size="10.5,7.0"
+	page="11.69,8.27"
+	node [shape=record];
+	edge [arrowhead=none];
+	rankdir="LR";
+	ranksep="equally";
+
+	r1[style=invisible]
+	r2[style=invisible]
+	r3[style=invisible]	
+	r4[style=invisible]
+	r1 -> r2 -> r3 -> r4 [style=invisible]
+	{rank=same; r1; internet; i1; i2;}
+	{rank=same; r2; machine4; f1; f2;}
+	{rank=same; r3; LAN}
+	{rank=same; r4; machine1; machine2; machine3; n1; n2;}
+
+	machine1[label="<f0>Machine1|<f1>192.168.0.10"];
+	machine2[label="<f0>Machine2|<f1>192.168.0.11"];
+	machine3[label="<f0>Machine3|<f1>192.168.0.12"];
+	machine4[label="<f0>101.102.103.104|<f1>Firewall\nrouter|<f2>192.168.0.1"];
+	LAN[label="LAN | 192.168.0.0/24"];
+	internet [label="Internet", 
+		  shape=none 
+		  image="icons/globe.png" 
+		  labelloc=b 
+		  color="#ffffff"
+		  imagescale=true
+		  height=1
+		  fixedsize=true
+		  ];	
+	
+	internet -> machine4:f0:w [penwidth="2.0"]
+	machine4:f2:e -> LAN:w [penwidth="2.0"]
+	LAN:ne -> machine1:f1 [penwidth="2.0"]
+	LAN:e -> machine2:f1 [penwidth="2.0"]
+	LAN:se -> machine3:f1 [penwidth="2.0"]
+
+	edge [arrowhead=normal];
+	i1[style=invisible]
+	i2[style=invisible]
+	f1[style=invisible]
+	f2[style=invisible]
+	n1[style=invisible]
+	n2[style=invisible]
+	/* the above are necessary, otherwise dot will draw all these edges */
+
+	machine4:f1:sw->internet [label=1]
+	machine4:f1->machine1:f0:sw [label=3]
+	machine1:f0:w->internet [label=5]
+
+	internet->machine4:f1 [label=2]
+	machine1:f0:sw->machine4:f1:ne [label=4]
+	internet->machine1:f0:nw [label=6]
+
+}
