@@ -1,0 +1,85 @@
+H1 , H2 , H3 {
+text-decoration : none; 
+font-family : arial, helvetica, sanserif; 
+font-size : 15px; 
+font-weight : bold; 
+color : #486591; 
+}
+
+body {
+margin-left: 10px;
+margin-right: 10px;
+font-size : 14pt; 
+}
+
+
+a:visited {
+color : #486fbf;
+}
+a:hover {
+text-decoration : underline; 
+} 
+li {
+font-family : arial, helvetica, sanserif;
+font-size : 16px; 
+}
+# de inhoud van de chapters
+p {
+font-family : Verdana, Arial, Helvetica, sans-serif; 
+font-size : 14pt; 
+} 
+dl dd p {
+	margin-top : 0;
+	padding-top : 0;
+}
+.hide {
+text-decoration : none; 
+font-family : arial, helvetica, sanserif; 
+font-size : 16px; 
+font-weight : bold; 
+color : #ffffff; 
+} 
+.txt {
+text-decoration : none; 
+font-family : arial, helvetica, sanserif; 
+font-size : 16px; 
+font-weight : normal; 
+color : #000000; 
+} 
+.bold {
+text-decoration : none; 
+font-family : arial, helvetica, sanserif; 
+font-size : 16px; 
+font-weight : bold; 
+color : #486591;
+} 
+.normal {
+text-decoration : none; 
+font-family : arial, helvetica, sanserif; 
+font-size : 16px; 
+font-weight : normal; 
+color : #486591; 
+} 
+.tdmenu {
+font-family : arial, helvetica, sanserif; 
+font-size : 14pt; 
+}
+.tdsubmenu {
+font-family : arial, helvetica, sanserif;
+font-size : 14pt;
+text-decoration : none; 
+font-weight : bold;
+color : #ffffff;
+} 
+.submenu {
+text-decoration : none; 
+font-family : arial, helvetica, sanserif; 
+font-size : 16px; 
+font-weight : bold; 
+color : #486591; 
+} 
+.filter {
+        filter: alpha(Opacity=30);
+}
+
+.mediaobject object{ width: 100%; height: 100%;}

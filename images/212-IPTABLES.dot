@@ -1,0 +1,62 @@
+digraph G {
+	compound=true;
+	size="7.8,11.0"
+	page="8.27,11.69"
+	node [shape=record, width=2];
+	ranksep="equally";
+	
+	subgraph cluster_0 {
+		color=black;
+		CONNTRACK -> MANGLE -> NAT;
+		label = "PREROUTING";
+	}
+	
+	subgraph cluster_1 {
+		input_filter[label="FILTER"];
+		input_filter;
+		label = "INPUT";
+	}
+	
+	subgraph cluster_2 {
+		forward_filter[label="FILTER"];
+		forward_conntrack[label="CONNTRACK"];
+		forward_filter -> forward_conntrack;
+		label = "FORWARD";
+	}
+	
+	subgraph cluster_3 {
+
+		output_conntrack[label="CONNTRACK"];
+		output_mangle[label="MANGLE"];
+		output_nat[label="NAT"];
+		output_filter[label="FILTER"];
+		output_conntrack -> output_mangle -> output_nat -> output_filter
+		label = "OUTPUT";
+	}
+	
+	subgraph cluster_4 {
+		
+		post_nat[label="NAT"];
+		post_conntrack[label="CONNTRACK"];
+		post_nat -> post_conntrack
+		label = "POSTROUTING";
+	}
+	
+	local_process[label="<f0>RECV|<f1>LOCAL\nPROCESS|<f2>SEND"];
+	NETWORK2[label="NETWORK"]
+	NETWORK[label="NETWORK"]
+	incoming[label="incoming traffic"][shape=ellipse,distortion=0.7]
+	outgoing[label="outgoing traffic"][shape=ellipse,distortion=0.7]
+
+	incoming -> NETWORK
+	NETWORK -> CONNTRACK[lhead=cluster_0]
+	NAT-> "Routing Decision"
+	"Routing Decision" -> input_filter[lhead=cluster_1] 
+	"Routing Decision":w -> forward_filter [lhead=cluster_2][constraint=false] 
+	input_filter -> local_process:f0[ltail=cluster_1]
+	local_process:f2 -> output_conntrack [lhead=cluster_3][constraint=false] 
+	output_filter:s -> post_nat [ltail=cluster_3, lhead=cluster_4][constraint=false] 
+	forward_conntrack -> post_nat [ltail=cluster_2, lhead=cluster_4]
+	post_conntrack -> NETWORK2 [ltail=cluster_4]
+	NETWORK2-> outgoing
+}

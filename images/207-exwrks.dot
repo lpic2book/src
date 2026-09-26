@@ -1,0 +1,33 @@
+digraph G {
+	node [shape=record];
+	edge [arrowhead=none];
+	graph [rankdir = "LR"];
+	
+	liongate[label="<f0>224.123.240.10 |<f1> liongate |<f2> 192.168.72.1"];
+	laptop1[width="2", label="laptop_1 | 192.168.72.128"];
+	laptop2[width="2", label="laptop_2 | 192.168.72.129"];	
+	develop[width="2", label="develop | 192.168.72.3"];
+	unstable[width="2", label="unstable | 192.168.72.4"];
+	privdns[width="2", label="privdns | 192.168.72.2"];
+	LAN[label="LAN | 192.168.72.0/24"];
+	
+	internet [label="Internet", 
+			  shape=none 
+			  image="icons/globe.png" 
+			  labelloc=b 
+			  color="#ffffff"
+			  imagescale=true
+			  height=1
+			  fixedsize=true
+			  ];
+	
+	
+	"internet" -> liongate:f0
+	liongate:f2 -> LAN
+	LAN -> laptop1
+	LAN -> laptop2
+	LAN -> develop
+	LAN -> unstable
+	LAN -> privdns
+
+}
