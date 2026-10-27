@@ -1,0 +1,60 @@
+digraph G {
+	node [shape=record];
+	edge [arrowhead=none];
+	rankdir = "LR";
+	floor1[width="2", label = "<f0>Floor 1 |<f1>LPRT-01"];
+	floor2[width="2", label = "<f0>Floor 2 |<f1>LPRT-02 CLPRT-12"];
+	floor3[width="2", label = "<f0>Floor 3 |<f1>LPRT-03"];
+	floor4[width="2", label = "<f0>Floor 4 |<f1>LPRT-04"];
+	floor5[width="2", label = "<f0>Floor 5 |<f1>LPRT-05 CLPRT-5"];
+	floor6[width="2", label = "<f0>Floor 6 |<f1>LPRT-06"];
+	floor7[width="2", label = "<f0>Floor 7 |<f1>LPRT-07"];
+	floor8[width="2", label = "<f0>Floor 8 |<f1>LPRT-08 CLPRT-8"];
+	floor9[width="2", label = "<f0>Floor 9 |<f1>LPRT-09"];
+	floor10[width="2", label = "<f0>Floor 10 |<f1>LPRT-10"];	
+	floor11[width="2", label = "<f0>Floor 11 |<f1>LPRT-11 CLPRT-11"];
+	floor12[width="2", label = "<f0>Floor 12 |<f1>LPRT-12"];
+	salesrouter[width="3", label = "Sales router\nand DHCP relay"];
+	adminrouter[width="3", label = "Administration router\nand DHCP relay"];
+	engrouter[width="3", label = "Engineering router\nand DHCP relay"];
+	mngmtrouter[width="3", label = "Management router\nand DHCP relay"];
+	
+	internet [label="Internet", 
+		  shape=none 
+		  image="icons/globe.png" 
+		  labelloc=b 
+		  color="#ffffff"
+		  imagescale=true
+		  height=1
+		  fixedsize=true
+		  ];
+	
+	
+	floor1 -> salesrouter
+	floor2 -> salesrouter
+	floor3 -> salesrouter
+	floor4 -> adminrouter
+	floor5 -> adminrouter
+	floor6 -> adminrouter		
+	floor7 -> engrouter
+	floor8 -> engrouter
+	floor9 -> engrouter		
+	floor10 -> mngmtrouter
+	floor11 -> mngmtrouter
+	floor12 -> mngmtrouter
+	
+	salesrouter -> LAN
+	adminrouter -> LAN
+	engrouter -> LAN
+	mngmtrouter -> LAN
+	
+	LAN -> firewall
+	firewall -> internet
+	
+	node [shape=ellipse image=none];
+	LAN -> DHCP
+	LAN -> DNS 
+	LAN -> SMTP
+	LAN -> POP3
+	LAN -> NTP
+}
