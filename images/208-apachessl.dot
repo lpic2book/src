@@ -1,0 +1,11 @@
+digraph G {
+	node [shape=record];
+/*	edge [arrowhead=none];
+	rankdir="LR";
+*/	
+	SSLeay -> OpenSSL -> "Apache-SSL" -> mod_ssl
+	Apache -> "Apache-SSL"
+	
+	label="Relations between Apache and SSL related projects"
+		
+}
