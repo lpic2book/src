@@ -1,0 +1,17 @@
+digraph G {
+	node [shape=box];
+	edge [arrowhead=none];
+	MegaFix -> Sales
+	MegaFix -> Engineering
+	MegaFix -> Administration
+	Engineering -> London
+	Engineering -> Paris
+	Engineering -> Rome
+	Engineering -> Amsterdam
+	London -> "John Huges"
+	London -> "Peter Baines"
+	Paris -> "Linda Charteris"
+	Rome -> "Marcello Conti"
+	Amsterdam -> "Piet Jansen"
+	Amsterdam -> "Johan Klaassen"
+}
